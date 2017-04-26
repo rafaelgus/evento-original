@@ -1,0 +1,30 @@
+{
+  "name": "kiwing-it/evento-original",
+  "authors": [
+    {
+      "name": "Emiliano Rodriguez",
+      "email": "emiliano.rodriguez26@gmail.com"
+    }
+  ],
+  "description": "Marketplace Evento-Original",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "EventoOriginal\\Core\\": "core/src",
+      "EventoOriginal\\Core\\Tests\\": "core/tests",
+      "EventoOriginal\\Api\\": "api/src/app",
+      "EventoOriginal\\Api\\test\\": "api/tests",
+      "EventoOriginal\\Frontend\\": "frontend",
+      "EventoOriginal\\Frontend\\test\\": "frontend/tests"
+    }
+  },
+  "require": {
+    "vlucas/phpdotenv": "^2.4"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "platform": {
+      "php": "7.0"
+    }
+  }
+}
