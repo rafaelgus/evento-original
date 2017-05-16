@@ -1,0 +1,995 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Crocus, premium HTML5 &amp; CSS3 template</title>
+
+<!-- Favicons Icon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS Style -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
+
+
+<link rel="stylesheet" type="text/css" href="css/revslider.css" >
+<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="css/flexslider.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
+<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+<!-- Google Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,600,800,400' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="shopping-cart-page">
+<div id="page"> 
+ <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-12 col-sm-6">
+              <div class="dropdown block-language-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span> </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"> <a href="#"><img src="images/english.png" alt="language"> English </a> </li>
+                  <li role="presentation"> <a href="#"><img src="images/francais.png" alt="language"> French </a> </li>
+                  <li role="presentation"> <a href="#"><img src="images/german.png" alt="language"> German </a> </li>
+                </ul>
+              </div>
+              <!-- End Header Language --> 
+              
+              <!-- Header Currency -->
+              <div class="dropdown block-currency-wrapper"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a href="#"> $ - Dollar </a> </li>
+                  <li role="presentation"><a href="#"> £ - Pound </a> </li>
+                  <li role="presentation"><a href="#"> € - Euro </a> </li>
+                </ul>
+              </div>
+              <!-- End Header Currency -->
+              <div class="welcome-msg"> Welcome Crocus! </div>
+            </div>
+            <div class="col-xs-6 hidden-xs"> 
+              <!-- Header Top Links -->
+              <div class="toplinks">
+                <div class="links">
+                  <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Account</span></a> </div>
+                   <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Wishlist</span></a> </div>
+                   <div class="myaccount"><a title="My Account" href="login.html"><span class="hidden-xs">My Cart</span></a> </div>
+
+                  <div class="check"><a title="Checkout" href="checkout.html"><span class="hidden-xs">Checkout</span></a> </div>
+                  <div class="demo"><a title="Blog" href="blog.html"><span class="hidden-xs">Blog</span></a> </div>
+                  <!-- Header Company -->
+                  <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="#"> Company <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li role="presentation"><a href="about_us.html"> About Us </a> </li>
+                      <li role="presentation"><a href="#"> Customer Service </a> </li>
+                      <li role="presentation"><a href="#"> Privacy Policy </a> </li>
+                      <li role="presentation"><a href="sitemap.html">Site Map </a> </li>
+                      <li role="presentation"><a href="#">Search Terms </a> </li>
+                      <li role="presentation"><a href="#">Advanced Search </a> </li>
+                    </ul>
+                  </div>
+                  <!-- End Header Company -->
+                  
+                  <div class="login"><a href="login.html"><span class="hidden-xs">Log In</span></a> </div>
+                </div>
+              </div>
+              <!-- End Header Top Links --> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 logo-block"> 
+            <!-- Header Logo -->
+            <div class="logo"> <a title="Magento Commerce" href="index.html"><img alt="Magento Commerce" src="images/logo.png"> </a> </div>
+            <!-- End Header Logo --> 
+          </div>
+          <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 hidden-xs">
+            <div class="search-box">
+              <form action="cat" method="POST" id="search_mini_form" name="Categories">
+                <input type="text" placeholder="Search entire store here..." value="Search entire store" maxlength="70" name="search" id="search">
+                <button type="button" class="search-btn-bg"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <div class="top-cart-contain pull-right"> 
+              <!-- Top Cart -->
+              <div class="mini-cart">
+                <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="shopping_cart.html"> <span class="cart_count">2</span><span class="price">Shopping Cart</span> </a> </div>
+                <div>
+                  <div class="top-cart-content"> 
+                    
+                    <!--block-subtitle-->
+                    <ul class="mini-products-list" id="cart-sidebar">
+                      <li class="item first">
+                        <div class="item-inner"> <a class="product-image" title="QX30 Lens Camera" href="#l"><img alt="QX30 Lens Camera" src="products-images/product4.jpg"> </a>
+                          <div class="product-details">
+                            <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
+                            <!--access--><strong>1</strong> x <span class="price">$179.99</span>
+                            <p class="product-name"><a href="#">Aliquam erat volupat...</a> </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="item last">
+                        <div class="item-inner"> <a class="product-image" title="Epson L360 Printer" href="product_detail.html"><img alt="Epson L360 Printer" src="products-images/product3.jpg"> </a>
+                          <div class="product-details">
+                            <div class="access"><a class="btn-remove1" title="Remove This Item" href="#">Remove</a> <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a> </div>
+                            <!--access--><strong>1</strong> x <span class="price">$80.00</span>
+                            <p class="product-name"><a href="#">Aliquam erat volupat...</a> </p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    
+                    <!--actions-->
+                    <div class="actions">
+                      <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span> </button>
+                      <a href="shopping_cart.html" class="view-cart"><span>View Cart</span></a> </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Top Cart -->
+              <div id="ajaxconfig_info" style="display:none"> <a href="#/"></a>
+                <input value="" type="hidden">
+                <input id="enable_module" value="1" type="hidden">
+                <input class="effect_to_cart" value="1" type="hidden">
+                <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- end header --> 
+    
+    <!-- Navigation -->
+    
+        <nav>
+      <div class="container">
+        <div class="mm-toggle-wrap">
+          <div class="mm-toggle"><i class="fa fa-bars"></i><span class="mm-label">Menu</span> </div>
+        </div>
+        <div class="nav-inner"> 
+          <!-- BEGIN NAV -->
+          <ul id="nav" class="hidden-xs">
+            <li class="level0 parent drop-menu" id="nav-home"><a href="index.html" class="level-top"><span>Home</span></a> </li>
+            <li class="level0 nav-6 level-top drop-menu"> <a class="level-top" href="#"> <span>Pages</span> </a>
+              <ul class="level1">
+                <li class="level2 first"><a href="grid.html"><span>Grid</span></a> </li>
+                <li class="level2 nav-10-2"> <a href="list.html"> <span>List</span> </a> </li>
+                <li class="level2 nav-10-3"> <a href="product_detail.html"> <span>Product Detail</span> </a> </li>
+                <li class="level2 nav-10-4"> <a href="shopping_cart.html"> <span>Shopping Cart</span> </a> </li>
+                <li class="level2 parent"><a href="checkout.html"><span>Checkout</span></a> </li>
+                <li class="level1 nav-10-4"> <a href="wishlist.html"> <span>Wishlist</span> </a> </li>
+                <li class="level1"> <a href="dashboard.html"> <span>Dashboard</span> </a> </li>
+                <li class="level1"> <a href="multiple_addresses.html"> <span>Multiple Addresses</span> </a> </li>
+                              <li class="level1"><a href="quick_view.html"><span>Quick view</span></a> </li>
+                <li class="level1"><a href="newsletter.html"><span>Newsletter</span></a> </li>
+                <li class="level1"><a href="404error.html"><span>404 Error Page</span></a> </li>
+                  <li class="level1"><a href="about_us.html"><span>About us</span></a> </li>
+                   <li class="level1"><a href="contact_us.html"><span>Contact us</span></a> </li>
+              </ul>
+            </li>
+            <li class="mega-menu"> <a class="level-top" href="grid.html"><span>Women</span></a>
+              <div class="level0-wrapper dropdown-6col">
+                <div class="container">
+                  <div class="level0-wrapper2">
+                    <div class="nav-add"> <a href="#"><img src="images/menu-banner.jpg" alt="download"> </a> </div>
+                    <div class="nav-block nav-block-center"> 
+                      <!--mega menu-->
+                      <ul class="level0">
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>Stylish bag</span></a>
+                          <ul class="level1">
+
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Clutch Handbags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Diaper Bags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Hobo handbags</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>material bag</span></a>
+                          <ul class="level1">
+
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Beaded Handbags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Fabric Handbags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Leather Shoes</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Leather Handbags</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>shoes</span></a>
+                          <ul class="level1">
+                            <li class="level2 nav-6-1-1"> <a href="grid.html"><span>Flat Shoes</span></a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="grid.html"><span>Flat Sandals</span></a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="grid.html"><span>Boots</span></a> </li>
+                            <li class="level2 nav-6-1-1"> <a href="grid.html"><span>Crocs Shoes</span></a> </li>
+                          </ul>
+                        </li>
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>jwellery</span></a>
+                          <ul class="level1">
+
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Pins &amp; Brooches</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bracelets</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Necklaces &amp; Pendent</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Pendants</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>dresses</span></a>
+                          <ul class="level1">
+
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Casual Dresses</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Evening</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Designer</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Party</span></a></li>
+                            </ul>
+                        </li>
+                        <li class="level3 nav-6-1 parent item"> <a href="grid.html"><span>swimwear</span></a>
+                          <ul class="level1">
+
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Swimsuits</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Beach Clothing</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Clothing</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bikinis</span></a></li>
+                            </ul>
+                        </li>
+                      </ul>
+                      <!--level0--> 
+                    </div>
+                    <!--nav-block nav-block-center--> 
+                    <!--nav-block nav-block-center--> 
+                    
+                  </div>
+                  <!--level0-wrapper2--> 
+                </div>
+                <!--container--> 
+              </div>
+              <!--level0-wrapper dropdown-6col--> 
+              <!--mega menu--> 
+            </li>
+            <li class="mega-menu"> <a class="level-top" href="grid.html"><span>Men</span></a>
+              <div class="level0-wrapper dropdown-6col">
+                <div class="container">
+                  <div class="level0-wrapper2">
+                    <div class="nav-block nav-block-center">
+                      <div class="col-2">
+                        <div class="menu_image1"> <a title="" href="#"><img alt="menu_image" src="images/watch.png"> </a> </div>
+                      </div>
+                      
+                      <!--mega menu-->
+                      <div class="col-1">
+                        <ul class="level0">
+                          <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Shoes</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Sport Shoes</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Casual Shoes</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Canvas Shoes</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Heels</span></a></li>
+                            </ul>
+                        <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Dresses</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Casual Dresse</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Evening</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Designer</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Party</span></a></li>
+                            </ul>
+                        </li>
+                          <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Jackets</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Coats</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Formal Jackets</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Leather Jackets</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Blazers</span></a></li>
+                            </ul>
+                          </li>
+                          <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Watches</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Fasttrack</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Casio</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Titan</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Tommy-Hilfiger</span></a></li>
+                            </ul>
+                         </li>
+                          <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Sunglasses</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Ray Ban</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Fasttrack</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Police</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Oakley</span></a></li>
+                            </ul>
+                          </li>
+                          <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Accesories</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Backpacks</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Wallets</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Laptops Bags</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Belts</span></a></li>
+                            </ul>
+                        </li>
+                        </ul>
+                        <!--level0--> 
+                      </div>
+                    </div>
+                    <!--nav-block nav-block-center--> 
+                    
+                  </div>
+                  <!--level0-wrapper2--> 
+                </div>
+                <!--container--> 
+              </div>
+              <!--level0-wrapper dropdown-6col--> 
+              <!--mega menu--> 
+            </li>
+            <li class="mega-menu"> <a href="grid.html" class="level-top"> <span>Electronics</span> </a>
+               <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
+                 <div class="container">
+                    <div class="level0-wrapper2">
+           
+           <!-- top Menu images -->
+                                
+          <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col"> 
+
+           <!-- left Menu images -->
+                 <div class="">
+                  <ul class="level0">
+                    <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Mobiles</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Samsung</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Nokia</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Pendrives</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>IPhone</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Sony</span></a></li>
+                            </ul>
+                    </li>
+                    <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Accesories</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>External Hard Disk</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Mobile Memory Cards</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Cases &amp; Covers</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Mobile Headphones</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bluetooth Headsets</span></a></li>
+                            </ul>
+                    </li>
+                    <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Cameras</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Camcorders</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Point &amp; Shoot</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Digital SLR</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Camera Accesories</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>PC Components</span></a></li>
+                            </ul>
+                    </li>
+                    <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Audio &amp; Video</span></a>
+                            <ul class="level1">
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>MP3 Players</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>IPods</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Headphones</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Speakers</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Video Players</span></a></li>
+                            </ul>
+                    </li>
+           </ul>
+         </div><!-- level -->
+
+           <!-- bottom Menu images -->
+        </div> <!--nav-block nav-block-center--> 
+           
+        <!-- Right Menu images -->
+           <div class="nav-block nav-block-right std grid12-4">
+            <div class="menu_image1">
+            <a title="" href="#"><img alt="menu_image" src="images/laptop.jpg"> </a>          
+            </div>
+           </div>
+            
+      </div>  <!-- level0-wrapper2 -->
+    </div><!-- container -->
+   </div>
+ </li>
+            <li class="mega-menu"><a href="grid.html" class="level-top"><span>Furniture</span></a>
+              <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
+                <div class="container">
+                  <div class="level0-wrapper2">
+          
+           <!-- top Menu images -->
+                      
+          <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col"> 
+
+           <!-- left Menu images -->
+             
+          <div class="">
+           
+              <ul class="level0">
+               <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Living Room</span></a>
+                  <ul class="level1">
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Racks &amp; Cabinets</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Sofas</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Chairs</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Tables</span></a></li>
+                   </ul>
+               </li>
+               <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Dining &amp; Bar</span></a>
+                  <ul class="level1">
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Table Sets</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Serving Trolleys</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bar Counters</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Cabinets</span></a></li>
+                  </ul>
+               </li>
+               <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Kitchen</span></a>
+                  <ul class="level1">
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Racks</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Fillings</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Wall Units</span></a></li>
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Benches &amp; Stools</span></a></li>
+                  </ul>
+               </li>
+                 <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Appliances</span></a>
+                  <ul class="level1">
+                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Vaccum Cleaners</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Indoor Lighting</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Tools</span></a></li>
+                            <li class="level2 nav-6-1-1"><a href="grid.html"><span>Water Purifier</span></a></li>
+                  </ul>
+                 </li>
+                  </ul>
+          </div><!-- level -->
+
+           <!-- bottom Menu images -->
+          
+        </div> <!--nav-block nav-block-center--> 
+           
+        <!-- Right Menu images -->
+        
+      </div>  <!-- level0-wrapper2 -->
+    </div><!-- container -->
+  </div>
+ </li>
+            <li class="mega-menu"> <a class="level-top" href="grid.html"><span>Kids </span></a> </li>
+            <li class="nav-custom-link mega-menu"> <a href="#" class="level-top"> <span>Jwellery</span> </a></li>
+          </ul>
+          <!--nav--> 
+        </div>
+      </div>s
+    </nav>
+    
+    <!-- end nav --> 
+  </header>
+  <div class="main-container col2-right-layout">
+    <div class="main container">
+      <div class="row">
+        <section class="col-sm-9 wow bounceInUp animated">
+        <div class="col-main">
+          <div class="my-account">
+            <div class="page-title">
+              <h2>My Wishlist</h2>
+            </div>
+            <div class="my-wishlist">
+              <div class="table-responsive">
+                <form method="post" action="#/wishlist/index/update/wishlist_id/1/" id="wishlist-view-form">
+                  <fieldset>
+                    <input type="hidden" value="ROBdJO5tIbODPZHZ" name="form_key">
+                    <table id="wishlist-table" class="clean-table linearize-table data-table">
+                      <thead>
+                        <tr class="first last">
+                          <th class="customer-wishlist-item-image"></th>
+                          <th class="customer-wishlist-item-info"></th>
+                          <th class="customer-wishlist-item-quantity">Quantity</th>
+                          <th class="customer-wishlist-item-price">Price</th>
+                          <th class="customer-wishlist-item-cart"></th>
+                          <th class="customer-wishlist-item-remove"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr id="item_31" class="first odd">
+                          <td class="wishlist-cell0 customer-wishlist-item-image"><a title="ThinkPad Ultrabook" href="#/" class="product-image"> <img width="150" alt="ThinkPad X1 Ultrabook" src="products-images/product1.jpg"> </a></td>
+                          <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="ThinkPad Ultrabook" href="#">Aliquam erat volupat</a></h3>
+                            <div class="description std">
+                              <div class="inner">Sea congue inciderint in. Augue contentiones id cum, nec alii argumentum</div>
+                            </div>
+                            <textarea title="Comment" onblur="focusComment(this)" onfocus="focusComment(this)" cols="5" rows="3" name="description[31]" style="height: 120px; width: 96%;"></textarea></td>
+                          <td data-rwd-label="Quantity" class="wishlist-cell2 customer-wishlist-item-quantity"><div class="cart-cell">
+                              <div class="add-to-cart-alt">
+                                <input type="text" value="1" name="qty[31]" class="input-text qty validate-not-negative-number" pattern="\d*">
+                              </div>
+                            </div></td>
+                          <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
+                              <div class="price-box"> <span id="product-price-39" class="regular-price"> <span class="price">$99.00</span> </span> </div>
+                            </div></td>
+                          <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
+                              <button class="button btn-cart" onclick="addWItemToCart(31);" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
+                            </div>
+                            <p><a href="#/" class="">Edit</a></p></td>
+                          <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item" title="Clear Cart"  href="#"><span><span></span></span></a></td>
+                        </tr>
+                        <tr id="item_33" class="odd">
+                          <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Softwear Women's Designer" href="#" class="product-image"> <img width="150" alt="Softwear Women's Designer" src="products-images/product2.jpg"> </a></td>
+                          <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Samsung GALAXY Note" href="#">Aliquam erat volupat</a></h3>
+                            <div class="description std">
+                              <div class="inner">Sea congue inciderint in. Augue contentiones id cum, nec alii argumentum</div>
+                            </div>
+                            <textarea title="Comment" onblur="focusComment(this)" onfocus="focusComment(this)" cols="5" rows="3" name="description[31]" style="height: 120px; width: 96%;"></textarea></td>
+                          <td data-rwd-label="Quantity" class="wishlist-cell2 customer-wishlist-item-quantity"><div class="cart-cell">
+                              <div class="add-to-cart-alt">
+                                <input type="text" value="1" name="qty[31]" class="input-text qty validate-not-negative-number" pattern="\d*">
+                              </div>
+                            </div></td>
+                          <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
+                              <div class="price-box"> <span id="product-price-39" class="regular-price"> <span class="price">$99.00</span> </span> </div>
+                            </div></td>
+                          <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
+                              <button class="button btn-cart" onclick="addWItemToCart(31);" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
+                            </div>
+                            <p><a href="#" class="">Edit</a></p></td>
+                          <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item" title="Clear Cart"  href="#"><span><span></span></span></a></td>
+                        </tr>
+                        <tr id="item_32" class="last even">
+                          <td class="wishlist-cell0 customer-wishlist-item-image"><a title="Noise Smart Watch " href="#" class="product-image"> <img width="150" alt=" Noise Smart Watch " src="products-images/product5.jpg"> </a></td>
+                          <td class="wishlist-cell1 customer-wishlist-item-info"><h3 class="product-name"><a title="Slim Fit Casual Shirt" href="#"> Aliquam erat volupat</a></h3>
+                            <div class="description std">
+                              <div class="inner">Sea congue inciderint in. Augue contentiones id cum, nec alii argumentum</div>
+                            </div>
+                            <textarea title="Comment" onblur="focusComment(this)" onfocus="focusComment(this)" cols="5" rows="3" name="description[32]" style="height: 120px; width: 96%;"></textarea></td>
+                          <td data-rwd-label="Quantity" class="wishlist-cell2 customer-wishlist-item-quantity"><div class="cart-cell">
+                              <div class="add-to-cart-alt">
+                                <input type="text" value="1" name="qty[32]" class="input-text qty validate-not-negative-number" pattern="\d*">
+                              </div>
+                            </div></td>
+                          <td data-rwd-label="Price" class="wishlist-cell3 customer-wishlist-item-price"><div class="cart-cell">
+                              <div class="price-box"> <span id="product-price-2" class="regular-price"> <span class="price">$55.00</span> </span> </div>
+                            </div></td>
+                          <td class="wishlist-cell4 customer-wishlist-item-cart"><div class="cart-cell">
+                              <button class="button btn-cart" onclick="addWItemToCart(32);" title="Add to Cart" type="button"><span><span>Add to Cart</span></span></button>
+                            </div>
+                            <p><a href="#" class="">Edit</a></p></td>
+                          <td class="wishlist-cell5 customer-wishlist-item-remove last"><a class="remove-item" title="Clear Cart"  href="#"><span><span></span></span></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="buttons-set buttons-set2">
+                      <button class="button btn-share" title="Share Wishlist" name="save_and_share" type="submit"><span>Share Wishlist</span></button>
+                      <button class="button btn-add" onclick="addAllWItemsToCart()" title="Add All to Cart" type="button"><span>Add All to Cart</span></button>
+                      <button class="button btn-update" title="Update Wishlist" name="do" type="submit"><span>Update Wishlist</span></button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+            <div class="buttons-set">
+              <p class="back-link"><a href="#/customer/account/"><small>« </small>Back</a></p>
+            </div>
+          </div></div>
+        </section>
+        <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
+          <div class="block block-account">
+            <div class="block-title">My Account</div>
+            <div class="block-content">
+              <ul>
+                <li><a href="#">Account Dashboard</a></li>
+                <li><a href="#">Account Information</a></li>
+                <li><a href="#">Address Book</a></li>
+                <li><a href="#">My Orders</a></li>
+                <li><a href="#">Billing Agreements</a></li>
+                <li><a href="#">Recurring Profiles</a></li>
+                <li><a href="#">My Product Reviews</a></li>
+                <li><a href="#">My Tags</a></li>
+                <li class="current"><a href="#">My Wishlist</a></li>
+                <li><a href="#">My Downloadable</a></li>
+                <li class="last"><a href="#">Newsletter Subscriptions</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="block block-compare">
+            <div class="block-title "><span>Compare Products (2)</span></div>
+            <div class="block-content">
+              <ol id="compare-items">
+                <li class="item odd">
+                  <input type="hidden" value="2173" class="compare-item-id">
+                  <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#" class="product-name">  Aliquam erat volupat </a> </li>
+                <li class="item last even">
+                  <input type="hidden" value="2174" class="compare-item-id">
+                  <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#" class="product-name">Aliquam erat volupat</a> </li>
+              </ol>
+              <div class="ajax-checkout">
+                <button type="submit" title="Submit" class="button button-compare"><span>Compare</span></button>
+                <button type="submit" title="Submit" class="button button-clear"><span>Clear</span></button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+  
+
+ 
+
+  <!-- Footer -->
+   <!-- Footer -->
+  <footer>
+  
+    <div class="footer-inner">
+    
+      <div class="container">
+      
+        <div class="row">
+          <div class="col-sm-8 col-xs-12 col-lg-9">
+            <div class="footer-column pull-left">
+              <h4>QUICK LINKS</h4>
+              <ul class="links">
+                <li class="first"><a href="/blog/" title="How to buy">Blog</a></li>
+                <li><a href="#" title="FAQs">FAQs</a></li>
+                <li><a href="#" title="Payment">Payment</a></li>
+                <li><a href="#" title="Shipment">Shipment</a></li>
+                <li><a href="#" title="Where is my order?">Where is my order?</a></li>
+                <li class="last"><a href="#" title="Return policy">Return policy</a></li>
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Style Advisor</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="Your Account">Your Account</a></li>
+                <li><a href="#" title="Information">Information</a></li>
+                <li><a href="#" title="Addresses">Addresses</a></li>
+                <li><a href="#" title="Addresses">Discount</a></li>
+                <li><a href="#" title="Orders History">Orders History</a></li>
+                <li class="last"><a href="#" title=" Additional Information"> Additional Information</a></li>
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Information</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="Site Map">Site Map</a></li>
+                <li><a href="#" title="Search Terms">Search Terms</a></li>
+                <li><a href="#" title="Advanced Search">Advanced Search</a></li>
+                <li><a href="#" title="History">About Us</a></li>
+                <li><a href="#" title="History">Contact Us</a></li>
+                <li><a href="#" title="Suppliers">Suppliers</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-3 col-sm-4">
+            <div class="footer-column-last">
+              <div class="newsletter-wrap">
+                <h4>Download the App</h4>
+                <div class="app-img"><img src="images/android-app.png" alt="android"></div>
+                <div class="app-img"><img src="images/ios-app.png" alt="android"></div>
+                <div class="app-img"><img src="images/windows-btn.png" alt="android"></div>
+              </div>
+              <div class="payment-accept">
+                <div><img src="images/payment-1.png" alt="payment1"> <img src="images/payment-2.png" alt="payment2"> <img src="images/payment-3.png" alt="payment3"> <img src="images/payment-4.png" alt="payment4"> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Brand Logo -->
+    
+    <div class="brand-logo">
+      <div class="container">
+        <div class="slider-items-products">
+          <div id="brand-logo-slider" class="product-flexslider hidden-buttons">
+            <div class="slider-items slider-width-col6"> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo3.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo1.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo2.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo4.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo5.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo6.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo2.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+              <!-- Item -->
+              <div class="item"> <a href="#"><img src="images/b-logo4.png" alt="Image"> </a> </div>
+              <!-- End Item --> 
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <address>
+          <i class="fa fa-map-marker"></i> ABC Town Luton Street, New York 226688 <i class="fa fa-mobile"></i><span> + 0800 567 345</span> <i class="fa fa-envelope"></i><span> support@themessoft.com</span>
+          </address>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<div id="mobile-menu">
+  <ul>
+    <li>
+      <div class="mm-search">
+        <form id="search1" name="search">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> </button>
+            </div>
+            <input type="text" class="form-control simple" placeholder="Search ..." name="srch-term" id="srch-term">
+          </div>
+        </form>
+      </div>
+    </li>
+    <li><a href="index.html">Home</a>
+      
+    </li>
+    <li><a href="#">Pages</a>
+      <ul>
+        <li><a href="grid.html">Grid</a> </li>
+        <li> <a href="list.html">List</a> </li>
+        <li> <a href="product_detail.html">Product Detail</a> </li>
+        <li> <a href="shopping_cart.html">Shopping Cart</a> </li>
+        <li><a href="checkout.html">Checkout</a> </li>
+        <li> <a href="wishlist.html">Wishlist</a> </li>
+        <li> <a href="dashboard.html">Dashboard</a> </li>
+        <li> <a href="multiple_addresses.html">Multiple Addresses</a> </li>
+        <li> <a href="about_us.html">About us</a> </li>
+        <li><a href="blog.html">Blog</a>
+          <ul>
+            <li><a href="blog-detail.html">Blog Detail</a> </li>
+          </ul>
+        </li>
+        <li><a href="contact_us.html">Contact us</a> </li>
+        <li><a href="404error.html">404 Error Page</a> </li>
+      </ul>
+    </li>
+    <li><a href="#">Audio & Video</a>
+      <ul>
+        <li> <a href="#" class="">Audio Components</a>
+          <ul>
+            <li> <a href="grid.html" class="">Receivers</a> </li>
+            <li> <a href="grid.html" class="">Home Theater</a> </li>
+            <li> <a href="grid.html" class="">Mini Systems</a> </li>
+            <li> <a href="grid.html" class="">CD Recorders</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Video Accessories</a>
+          <ul>
+            <li> <a href="grid.html">Nintendo DS</a> </li>
+            <li> <a href="grid.html">PlayStation</a> </li>
+            <li> <a href="grid.html">DVD Players</a> </li>
+            <li> <a href="grid.html">Hard Drives</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Televisions</a>
+          <ul>
+            <li> <a href="grid.html">TV Accessories</a> </li>
+            <li> <a href="grid.html">Plasma & LCD</a> </li>
+            <li> <a href="grid.html">Televisions/Tube</a> </li>
+            <li> <a href="grid.html">Projection TV</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Headsets</a>
+          <ul>
+            <li> <a href="grid.html">Gaming Headsets</a> </li>
+            <li> <a href="grid.html">Stereo Headsets</a> </li>
+            <li> <a href="grid.html">Mobile Headsets</a> </li>
+            <li> <a href="grid.html">Wireless</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Videography</a>
+          <ul>
+            <li> <a href="grid.html">Underwater</a> </li>
+            <li> <a href="grid.html">Event Videography</a> </li>
+            <li> <a href="grid.html">Wedding Videography</a> </li>
+            <li> <a href="grid.html">Party Videography</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Audio Chipset</a>
+          <ul>
+            <li> <a href="grid.html">ASUS AV100</a> </li>
+            <li> <a href="grid.html">C-Media CMI8786</a> </li>
+            <li> <a href="grid.html">ASUS AV66</a> </li>
+            <li> <a href="grid.html">C-Media</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="grid.html">Computer</a>
+      <ul>
+        <li> <a href="grid.html" class="">Micro Computers</a>
+          <ul class="level1">
+            <li class="level2 nav-6-1-1"><a href="grid.html">Desktop</a> </li>
+            <li class="level2 nav-6-1-1"><a href="grid.html">Video Game</a> </li>
+            <li class="level2 nav-6-1-1"><a href="grid.html">Smart TV</a> </li>
+            <li class="level2 nav-6-1-1"><a href="grid.html">Miscellaneous</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Mobile Computers</a>
+          <ul class="level1">
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Laptop</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Tablet</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Netbooks</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Smartphones</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Accesories</a>
+          <ul class="level1">
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Input Devices</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Output Devices</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Processing Devices</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Storage Devices</a> </li>
+          </ul>
+        </li>
+        <li> <a href="#.html">Data Storage</a>
+          <ul class="level1">
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Portable</a> </li>
+      <li class="level2 nav-6-1-1"> <a href="grid.html">Semi-Portable</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Volatile</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Other</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Hardware</a>
+          <ul class="level1">
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Monitor</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Keyboard</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Data Storage</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">HDD</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Keyboard & Mice</a>
+          <ul class="level1">
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Wireless Keyboard</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Wireless Mice</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Combo</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Other</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="grid.html">Appliances</a>
+      <ul>
+        <li> <a href="grid.html">Mobiles</a>
+          <ul>
+            <li> <a href="grid.html">Samsung</a> </li>
+            <li> <a href="grid.html">Nokia</a> </li>
+            <li> <a href="grid.html">IPhone</a> </li>
+            <li> <a href="grid.html">Sony</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html" class="">Accesories</a>
+          <ul>
+            <li> <a href="grid.html">Mobile Memory Cards</a> </li>
+            <li> <a href="grid.html">Cases &amp; Covers</a> </li>
+            <li> <a href="grid.html">Mobile Headphones</a> </li>
+            <li> <a href="grid.html">Bluetooth Headsets</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Cameras</a>
+          <ul>
+            <li> <a href="grid.html">Camcorders</a> </li>
+            <li> <a href="grid.html">Point &amp; Shoot</a> </li>
+            <li> <a href="grid.html">Digital SLR</a> </li>
+            <li> <a href="grid.html">Camera Accesories</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Audio &amp; Video</a>
+          <ul>
+            <li> <a href="grid.html">MP3 Players</a> </li>
+            <li> <a href="grid.html">IPods</a> </li>
+            <li> <a href="grid.html">Speakers</a> </li>
+            <li> <a href="grid.html">Video Players</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Computer</a>
+          <ul>
+            <li> <a href="grid.html">External Hard Disk</a> </li>
+            <li> <a href="grid.html">Pendrives</a> </li>
+            <li> <a href="grid.html">Headphones</a> </li>
+            <li> <a href="grid.html">PC Components</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Appliances</a>
+          <ul>
+            <li> <a href="grid.html">Vaccum Cleaners</a> </li>
+            <li> <a href="grid.html">Indoor Lighting</a> </li>
+            <li> <a href="grid.html">Kitchen Tools</a> </li>
+            <li> <a href="grid.html">Water Purifier</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="grid.html">Mobile Electronics</a>
+      <ul>
+        <li> <a href="grid.html">Safety & Security</a>
+          <ul>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">GPS Navigation</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Safety Cameras</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Security Systems</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Vehicle Tracking</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html" class="">Audio</a>
+          <ul>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Audio Upgrades</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">HD Radio</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Satelite Radio</a> </li>
+           <li class="level2 nav-6-1-1"> <a href="grid.html">Streaming Music</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Accesories</a>
+          <ul>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Batteries</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Cables & Adapters</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Headsets</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Smart Watches</a> </li>
+          </ul>
+        </li>
+        <li> <a href="grid.html">Tablets</a>
+          <ul>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Entertainment</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Kids</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Gaming</a> </li>
+            <li class="level2 nav-6-1-1"> <a href="grid.html">Business</a> </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="grid.html">Desktop</a> </li>
+    <li><a href="contact-us.html">Custom</a> </li>
+  </ul>
+  <div class="top-links">
+    <ul class="links">
+      <li><a title="My Account" href="login.html">My Account</a> </li>
+      <li><a title="Wishlist" href="wishlist.html">Wishlist</a> </li>
+      <li><a title="Checkout" href="checkout.html">Checkout</a> </li>
+      <li><a title="Blog" href="blog.html">Blog</a> </li>
+      <li class="last"><a title="Login" href="login.html">Login</a> </li>
+    </ul>
+  </div>
+</div>
+
+<!-- End Footer --> 
+
+<!-- JavaScript --> 
+<script type="text/javascript" src="js/jquery.min.js"></script> 
+<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="js/revslider.js"></script> 
+<script type="text/javascript" src="js/common.js"></script> 
+ 
+<script type="text/javascript" src="js/owl.carousel.min.js"></script> 
+<script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script>
+</body>
+</html>
