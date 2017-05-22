@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('frontend.home');
 });
+
+Route::get('/admin-panel', function () {
+    return view('backend.home');
+});
