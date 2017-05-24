@@ -1,9 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class Allergen
 {
-    protected $id;
 
-    protected $name;
 }

@@ -1,9 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class Customer
 {
-    protected $id;
 
-    protected $name;
 }

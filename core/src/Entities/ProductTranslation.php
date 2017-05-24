@@ -1,9 +1,13 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class ProductTranslation
 {
     protected $id;
 
     protected $name;
+
+    protected $shortDescription;
+
+    protected $description;
 }

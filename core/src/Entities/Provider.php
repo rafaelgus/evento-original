@@ -1,9 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class Provider
 {
-    protected $id;
 
-    protected $name;
 }

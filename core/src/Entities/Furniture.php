@@ -1,9 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class Furniture
 {
-    protected $id;
 
-    protected $name;
 }

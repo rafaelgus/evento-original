@@ -1,7 +1,9 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Client
+class Brand
 {
+    protected $id;
 
+    protected $name;
 }

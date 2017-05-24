@@ -1,9 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Role
+class IngredientTranslation
 {
-    protected $id;
 
-    protected $name;
 }
