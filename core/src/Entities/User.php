@@ -31,8 +31,8 @@ class User
      * @ORM\ManyToMany(targetEntity="Role")
      * @ORM\JoinTable(
      *     name="users_roles",
-     *     joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@JoinColumn(name="role_id", referencedColumnName="id")}
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
      * )
      */
     protected $roles;

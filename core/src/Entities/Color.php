@@ -48,14 +48,6 @@ class Color
     }
 
     /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return string
      */
     public function getName(): string

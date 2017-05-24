@@ -5,13 +5,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
  * @ORM\Table(
  *     name="color_translations",
  *     uniqueConstraints={
  *          @ORM\UniqueConstraint(
  *              name="lookup_unique_idx",
- *              columns={"locale", "object_id", "field"}
+ *              columns={"locale", "object_id", "field", "foreign_key"}
  *          )
  *     }
  * )
