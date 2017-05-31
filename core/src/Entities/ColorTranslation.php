@@ -11,7 +11,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
  *     uniqueConstraints={
  *          @ORM\UniqueConstraint(
  *              name="lookup_unique_idx",
- *              columns={"locale", "object_id", "field", "foreign_key"}
+ *              columns={"locale", "object_id", "field"}
  *          )
  *     }
  * )

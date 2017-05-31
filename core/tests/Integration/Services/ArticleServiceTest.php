@@ -1,33 +1,58 @@
 <?php
 namespace EventoOriginal\Core\Tests\Integration\Services;
 
-use EventoOriginal\Core\Services\ColorService;
+use EventoOriginal\Core\Entities\Article;
+use EventoOriginal\Core\Entities\Brand;
+use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Tests\Integration\BaseTest;
 use Exception;
 
-class ColorServiceTest extends BaseTest
+class ArticleServiceTest extends BaseTest
 {
     /**
-     * @var ColorService
+     * @var ArticleService
      */
-    private $colorService;
+    private $articleService;
+
+    /**
+     * @var BrandService
+     */
+    private $brandService;
+
+    /**
+     * @var Caeg
+     */
+    private $categoryServvice;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->colorService = $this->getService('Color');
+        $this->articleService = $this->getService('Article');
+        $this->brandService = $this->getService('Brand');
     }
 
     public function testFindByNonExistentId()
     {
         $this->expectException(Exception::class);
-        $this->colorService->findOneById(999999999999, 'es');
+        $this->articleService->findOneById(999999999999, 'es');
     }
 
     public function testCreate()
     {
-        $name = 'Azul';
+        $name = 'Taza';
+        $description = 'Taza de porcelana';
+        $barCode = '123456';
+        $internalCode = '11002';
+        $status = Article::STATUS_DRAFT;
+        $price = 1.54;
+        $priceCurrency = 'EUR';
+        $costPrice = 1.22;
+        $ingredients = "";
+
+        $brand = $this->brandService->findAll()[0];
+        $category = $this->categoryService->findAll()[0];
 
         $color = $this->colorService->create($name);
 

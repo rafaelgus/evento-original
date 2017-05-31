@@ -2,19 +2,19 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
-use EventoOriginal\Core\Entities\Color;
+use EventoOriginal\Core\Entities\Tag;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
-class ColorRepository extends BaseRepository
+class TagRepository extends BaseRepository
 {
     const DEFAULT_LOCALE = 'es';
 
     public function findOneById(int $id, string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('color')
-            ->select('color')
-            ->where('color.id = :id')
+        $qb = $this->createQueryBuilder('tag')
+            ->select('tag')
+            ->where('tag.id = :id')
             ->setMaxResults(1)
             ->setParameter('id', $id);
 
@@ -34,9 +34,9 @@ class ColorRepository extends BaseRepository
 
     public function findOneByName(string $name, string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('color')
-            ->select('color')
-            ->where('color.name = :name')
+        $qb = $this->createQueryBuilder('tag')
+            ->select('tag')
+            ->where('tag.name = :name')
             ->setMaxResults(1)
             ->setParameter('name', $name);
 
@@ -56,7 +56,7 @@ class ColorRepository extends BaseRepository
 
     public function findAll(string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('color')->select('color');
+        $qb = $this->createQueryBuilder('tag')->select('tag');
 
         $query = $qb->getQuery();
 
@@ -72,18 +72,18 @@ class ColorRepository extends BaseRepository
         return $query->getResult();
     }
 
-    public function save(Color $color, bool $flush = true)
+    public function save(Tag $tag, bool $flush = true)
     {
-        $this->getEntityManager()->persist($color);
+        $this->getEntityManager()->persist($tag);
 
         if ($flush) {
             $this->getEntityManager()->flush();
         }
     }
 
-    public function delete(Color $color, bool $flush = true)
+    public function delete(Tag $tag, bool $flush = true)
     {
-        $this->getEntityManager()->remove($color);
+        $this->getEntityManager()->remove($tag);
 
         if ($flush) {
             $this->getEntityManager()->flush();

@@ -5,5 +5,7 @@ class Language
 {
     protected $id;
 
+    protected $code;
+
     protected $name;
 }

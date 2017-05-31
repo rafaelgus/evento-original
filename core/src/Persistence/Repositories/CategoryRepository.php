@@ -2,19 +2,19 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
-use EventoOriginal\Core\Entities\Color;
+use EventoOriginal\Core\Entities\Category;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
-class ColorRepository extends BaseRepository
+class CategoryRepository extends BaseRepository
 {
     const DEFAULT_LOCALE = 'es';
 
     public function findOneById(int $id, string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('color')
-            ->select('color')
-            ->where('color.id = :id')
+        $qb = $this->createQueryBuilder('category')
+            ->select('category')
+            ->where('category.id = :id')
             ->setMaxResults(1)
             ->setParameter('id', $id);
 
@@ -32,31 +32,9 @@ class ColorRepository extends BaseRepository
         return $query->getOneOrNullResult();
     }
 
-    public function findOneByName(string $name, string $locale = self::DEFAULT_LOCALE)
-    {
-        $qb = $this->createQueryBuilder('color')
-            ->select('color')
-            ->where('color.name = :name')
-            ->setMaxResults(1)
-            ->setParameter('name', $name);
-
-        $query = $qb->getQuery();
-
-        $query->setHint(
-            Query::HINT_CUSTOM_OUTPUT_WALKER,
-            TranslationWalker::class
-        );
-        $query->setHint(
-            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
-            $locale
-        );
-
-        return $query->getOneOrNullResult();
-    }
-
     public function findAll(string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('color')->select('color');
+        $qb = $this->createQueryBuilder('category')->select('category');
 
         $query = $qb->getQuery();
 
@@ -72,18 +50,18 @@ class ColorRepository extends BaseRepository
         return $query->getResult();
     }
 
-    public function save(Color $color, bool $flush = true)
+    public function save(Category $category, bool $flush = true)
     {
-        $this->getEntityManager()->persist($color);
+        $this->getEntityManager()->persist($category);
 
         if ($flush) {
             $this->getEntityManager()->flush();
         }
     }
 
-    public function delete(Color $color, bool $flush = true)
+    public function delete(Category $category, bool $flush = true)
     {
-        $this->getEntityManager()->remove($color);
+        $this->getEntityManager()->remove($category);
 
         if ($flush) {
             $this->getEntityManager()->flush();

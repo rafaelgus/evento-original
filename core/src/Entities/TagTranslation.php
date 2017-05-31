@@ -7,7 +7,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 /**
  * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
  * @ORM\Table(
- *     name="allergen_translations",
+ *     name="tag_translations",
  *     uniqueConstraints={
  *          @ORM\UniqueConstraint(
  *              name="lookup_unique_idx",
@@ -16,7 +16,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
  *     }
  * )
  */
-class AllergenTranslation extends AbstractPersonalTranslation
+class TagTranslation extends AbstractPersonalTranslation
 {
     /**
      * @param string $locale
@@ -31,7 +31,7 @@ class AllergenTranslation extends AbstractPersonalTranslation
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Allergen", inversedBy="translations")
+     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="translations")
      * @ORM\JoinColumn(name="object_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $object;

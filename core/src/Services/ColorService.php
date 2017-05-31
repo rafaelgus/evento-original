@@ -9,20 +9,18 @@ use Gedmo\Translatable\Entity\Repository\TranslationRepository;
 
 class ColorService
 {
-    private $colorRepository;
-    private $translationRepository;
+    const DEFAULT_LOCALE = 'es';
 
-    public function __construct(
-        ColorRepository $colorRepository,
-        TranslationRepository $translationRepository
-    ) {
+    private $colorRepository;
+
+    public function __construct(ColorRepository $colorRepository)
+    {
         $this->colorRepository = $colorRepository;
-        $this->translationRepository = $translationRepository;
     }
 
-    public function findOneById(int $id)
+    public function findOneById(int $id, string $locale)
     {
-        $color = $this->colorRepository->findOneById($id);
+        $color = $this->colorRepository->findOneById($id, $locale);
 
         if (!$color) {
             throw new Exception("This color doesn't exist");
@@ -31,9 +29,9 @@ class ColorService
         return $color;
     }
 
-    public function findOneByName(string $name)
+    public function findOneByName(string $name, string $locale)
     {
-        $color = $this->colorRepository->findOneByName($name);
+        $color = $this->colorRepository->findOneByName($name, $locale);
 
         if (!$color) {
             throw new Exception("Doesn't exist a color with this name");
@@ -42,9 +40,9 @@ class ColorService
         return $color;
     }
 
-    public function findAll()
+    public function findAll(string $locale)
     {
-        return $this->colorRepository->findAll();
+        return $this->colorRepository->findAll($locale);
     }
 
     public function create(string $name)
@@ -63,10 +61,8 @@ class ColorService
         $this->save($color);
     }
 
-    public function update(int $id, string $name)
+    public function update(Color $color, string $name)
     {
-        $color = $this->findOneById($id);
-
         $color->setName($name);
 
         $this->save($color);
@@ -74,13 +70,13 @@ class ColorService
         return $color;
     }
 
+    public function delete(Color $color)
+    {
+        $this->colorRepository->delete($color);
+    }
+
     public function save(Color $color)
     {
         $this->colorRepository->save($color);
-    }
-
-    public function findOneInLocale(int $id, string $locale)
-    {
-        return $this->colorRepository->findOneInLocale($id, $locale);
     }
 }

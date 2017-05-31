@@ -6,11 +6,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\AllergenRepository")
- * @ORM\Table(name="allergens")
- * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\AllergenTranslation")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\TagRepository")
+ * @ORM\Table(name="tags")
+ * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\TagTranslation")
  */
-class Allergen
+class Tag
 {
     /**
      * @ORM\Id
@@ -27,7 +27,7 @@ class Allergen
 
     /**
      * @ORM\OneToMany(
-     *   targetEntity="AllergenTranslation",
+     *   targetEntity="TagTranslation",
      *   mappedBy="object",
      *   cascade={"persist", "remove"}
      * )
@@ -68,7 +68,7 @@ class Allergen
         return $this->translations;
     }
 
-    public function addTranslation(AllergenTranslation $t)
+    public function addTranslation(TagTranslation $t)
     {
         if (!$this->translations->contains($t)) {
             $this->translations[] = $t;

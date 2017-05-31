@@ -49,6 +49,7 @@ return [
         $translatableListener->setTranslatableLocale('es');
         $translatableListener->setDefaultLocale('es');
         $translatableListener->setAnnotationReader($cachedAnnotationReader);
+        $translatableListener->setTranslationFallback(true);
         $evm->addEventSubscriber($translatableListener);
 
         $evm->addEventSubscriber(new Doctrine\DBAL\Event\Listeners\MysqlSessionInit());
@@ -68,5 +69,26 @@ return [
     }),
     TranslationRepository::class => DI\Factory(function (ContainerInterface $c) {
         return $c->get(EntityManager::class)->getRepository('Gedmo\Translatable\Entity\Translation');
+    }),
+    Repositories\AllergenRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Allergen::class);
+    }),
+    Repositories\BrandRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Brand::class);
+    }),
+    Repositories\CountryRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Country::class);
+    }),
+    Repositories\CurrencyConversionRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\CurrencyConversion::class);
+    }),
+    Repositories\FlavourRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Flavour::class);
+    }),
+    Repositories\TagRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Tag::class);
+    }),
+    Repositories\ArticleRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Article::class);
     }),
 ];

@@ -1,13 +1,23 @@
 <?php
-namespace EventoOriginal\Core\Tests;
+namespace EventoOriginal\Core\Tests\Integration;
 
 use DI\ContainerBuilder;
+use Doctrine\ORM\EntityManager;
+use EventoOriginal\Core\Tests\Integration\Utils\DbManager;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 abstract class BaseTest extends TestCase
 {
+    /**
+     * @var \DI\Container
+     */
     private $container;
+
+    /**
+     * @var EntityManager
+     */
+    private $em;
 
     public function setUp()
     {
@@ -15,7 +25,26 @@ abstract class BaseTest extends TestCase
         $builder->addDefinitions(API_DIR . '/config/di.php');
         $this->container = $builder->build();
         $this->container->injectOn($this);
+
         parent::setUp();
+
+        $this->em = $this->container->get(EntityManager::class);
+        $this->prepareForTests();
+    }
+
+    /**
+     * Migrate the database
+     */
+    private function prepareForTests()
+    {
+        $this->dbSeed();
+    }
+
+    protected function dbSeed()
+    {
+        $dbManager = DbManager::getInstance($this->em);
+        $fixturesLoader = new FixturesLoader($dbManager, true);
+        $fixturesLoader->load();
     }
 
     protected function getService($servicePrefix)

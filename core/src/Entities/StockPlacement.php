@@ -1,7 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-class Ingredient
+class StockPlacement
 {
 
 }
