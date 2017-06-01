@@ -61,17 +61,6 @@ class CategoryServiceTest extends BaseTest
         $this->assertEquals($category->getId(), $categorySearched->getId());
     }
 
-    public function testFindOneByName()
-    {
-        $name = 'Taza';
-
-        $this->categoryService->create($name);
-
-        $category = $this->categoryService->findOneByName($name, 'es');
-
-        $this->assertEquals($name, $category->getName());
-    }
-
     public function testUpdate()
     {
         $originalName = 'Tassa';

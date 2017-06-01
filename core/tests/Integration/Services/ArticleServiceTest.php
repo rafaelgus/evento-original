@@ -5,6 +5,8 @@ use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Brand;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\BrandService;
+use EventoOriginal\Core\Services\CategoryService;
+use EventoOriginal\Core\Services\TagService;
 use EventoOriginal\Core\Tests\Integration\BaseTest;
 use Exception;
 
@@ -21,9 +23,14 @@ class ArticleServiceTest extends BaseTest
     private $brandService;
 
     /**
-     * @var Caeg
+     * @var CategoryService
      */
-    private $categoryServvice;
+    private $categoryService;
+
+    /**
+     * @var TagService
+     */
+    private $tagService;
 
     public function setUp()
     {
@@ -31,6 +38,8 @@ class ArticleServiceTest extends BaseTest
 
         $this->articleService = $this->getService('Article');
         $this->brandService = $this->getService('Brand');
+        $this->categoryService = $this->getService('Category');
+        $this->tagService = $this->getService('Tag');
     }
 
     public function testFindByNonExistentId()
@@ -52,76 +61,124 @@ class ArticleServiceTest extends BaseTest
         $ingredients = "";
 
         $brand = $this->brandService->findAll()[0];
-        $category = $this->categoryService->findAll()[0];
+        $category = $this->categoryService->findAll('es')[0];
+        $tags = $this->tagService->findAll('es');
 
-        $color = $this->colorService->create($name);
+        $article = $this->articleService->create(
+            $name,
+            $description,
+            $barCode,
+            $internalCode,
+            $status,
+            $price,
+            $priceCurrency,
+            null,
+            $costPrice,
+            $ingredients,
+            $brand,
+            $category,
+            $tags
+        );
 
-        $this->assertNotNull($color->getId());
-        $this->assertEquals($name, $color->getName());
+        $this->assertNotNull($article->getId());
+        $this->assertEquals($name, $article->getName());
+        $this->assertEquals($description, $article->getDescription());
+        $this->assertEquals($barCode, $article->getBarCode());
+        $this->assertEquals($internalCode, $article->getInternalCode());
+        $this->assertEquals($status, $article->getStatus());
+        $this->assertEquals($price, $article->getPrice());
+        $this->assertEquals($priceCurrency, $article->getPriceCurrency());
+        $this->assertEquals($costPrice, $article->getCostPrice());
+        $this->assertEquals($ingredients, $article->getIngredients());
+        $this->assertEquals($brand, $article->getBrand());
+        $this->assertEquals($category, $article->getCategory());
+        $this->assertEquals($tags, $article->getTags()->toArray());
     }
 
     public function testAddTranslation()
     {
-        $name = 'Rojo';
-        $translatedName = 'Red';
+        $name = 'Taza';
+        $translatedName = 'Cup';
+        $description = 'Taza de porcelana';
+        $translatedDescription = 'Porcelain cup';
+        $barCode = '123456';
+        $internalCode = '11002';
+        $status = Article::STATUS_DRAFT;
+        $price = 1.54;
+        $priceCurrency = 'EUR';
+        $costPrice = 1.22;
+        $ingredients = "Azucar";
+        $translatedIngredients = "Sugar";
 
-        $color = $this->colorService->create($name);
-        $this->assertEquals($name, $color->getName());
+        $brand = $this->brandService->findAll()[0];
+        $category = $this->categoryService->findAll('es')[0];
+        $tags = $this->tagService->findAll('es');
 
-        $this->colorService->addTranslation($color, $translatedName, 'en');
+        $article = $this->articleService->create(
+            $name,
+            $description,
+            $barCode,
+            $internalCode,
+            $status,
+            $price,
+            $priceCurrency,
+            null,
+            $costPrice,
+            $ingredients,
+            $brand,
+            $category,
+            $tags
+        );
 
-        $translatedColorEn = $this->colorService->findOneById($color->getId(), 'en');
+        $this->articleService->addTranslation(
+            $article,
+            'en',
+            $translatedName,
+            $translatedDescription,
+            $translatedIngredients
+        );
 
-        $this->assertEquals($translatedName, $translatedColorEn->getName());
+        $articleTranslated = $this->articleService->findOneById($article->getId(), 'en');
+
+        $this->assertEquals($translatedName, $articleTranslated->getName());
+        $this->assertEquals($translatedDescription, $articleTranslated->getDescription());
+        $this->assertEquals($translatedIngredients, $articleTranslated->getIngredients());
     }
 
     public function testFindOneById()
     {
-        $name = 'Rojo';
+        $name = 'Taza';
+        $description = 'Taza de porcelana';
+        $barCode = '123456';
+        $internalCode = '11002';
+        $status = Article::STATUS_DRAFT;
+        $price = 1.54;
+        $priceCurrency = 'EUR';
+        $costPrice = 1.22;
+        $ingredients = "Azucar";
 
-        $color = $this->colorService->create($name);
+        $brand = $this->brandService->findAll()[0];
+        $category = $this->categoryService->findAll('es')[0];
+        $tags = $this->tagService->findAll('es');
 
-        $colorSearched = $this->colorService->findOneById($color->getId(), 'es');
+        $article = $this->articleService->create(
+            $name,
+            $description,
+            $barCode,
+            $internalCode,
+            $status,
+            $price,
+            $priceCurrency,
+            null,
+            $costPrice,
+            $ingredients,
+            $brand,
+            $category,
+            $tags
+        );
 
-        $this->assertEquals($color->getId(), $colorSearched->getId());
-    }
+        $articleSearched = $this->articleService->findOneById($article->getId(), 'es');
 
-    public function testFindOneByName()
-    {
-        $name = 'Rojo';
-
-        $this->colorService->create($name);
-
-        $color = $this->colorService->findOneByName($name, 'es');
-
-        $this->assertEquals($name, $color->getName());
-    }
-
-    public function testUpdate()
-    {
-        $originalName = 'Roj';
-
-        $color = $this->colorService->create($originalName);
-
-        $newName = 'Rojo';
-
-        $this->colorService->update($color, $newName);
-
-        $colorSearched = $this->colorService->findOneById($color->getId(), 'es');
-
-        $this->assertEquals($newName, $colorSearched->getName());
-    }
-
-    public function testDelete()
-    {
-        $this->expectException(Exception::class);
-
-        $color = $this->colorService->create('rojo');
-
-        $colorId = $color->getId();
-
-        $this->colorService->delete($color);
-
-        $this->colorService->findOneById($colorId, 'es');
+        $this->assertEquals($article->getId(), $articleSearched->getId());
     }
 }

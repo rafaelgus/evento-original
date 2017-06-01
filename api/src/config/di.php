@@ -91,4 +91,10 @@ return [
     Repositories\ArticleRepository::class => DI\Factory(function (ContainerInterface $c) {
         return $c->get(EntityManager::class)->getRepository(Entities\Article::class);
     }),
+    Repositories\TaxRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Tax::class);
+    }),
+    Repositories\CategoryRepository::class => DI\Factory(function (ContainerInterface $c) {
+        return $c->get(EntityManager::class)->getRepository(Entities\Category::class);
+    }),
 ];

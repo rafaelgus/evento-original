@@ -10,6 +10,7 @@ use InvalidArgumentException;
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ArticleRepository")
  * @ORM\Table(name="articles")
+ * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\ArticleTranslation")
  */
 class Article
 {

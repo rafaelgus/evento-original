@@ -4,7 +4,9 @@ namespace EventoOriginal\Core\Tests\Integration;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
-use EnviaMovil\Core\Tests\Integration\Fixtures\BrandsFixture;
+use EventoOriginal\Core\Tests\Integration\Fixtures\BrandsFixture;
+use EventoOriginal\Core\Tests\Integration\Fixtures\CategoriesFixture;
+use EventoOriginal\Core\Tests\Integration\Fixtures\TagsFixture;
 use EventoOriginal\Core\Tests\Integration\Utils\DbManager;
 
 class FixturesLoader
@@ -26,6 +28,8 @@ class FixturesLoader
     {
         $loader = new Loader();
         $loader->addFixture(new BrandsFixture());
+        $loader->addFixture(new CategoriesFixture());
+        $loader->addFixture(new TagsFixture());
         $purger = new ORMPurger();
         $executor = new ORMExecutor($this->dbManager->getEntityManager(), $purger);
         $executor->execute($loader->getFixtures());

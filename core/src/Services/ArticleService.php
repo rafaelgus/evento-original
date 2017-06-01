@@ -123,10 +123,10 @@ class ArticleService
      */
     public function addTranslation(
         Article $article,
+        string $locale,
         string $translatedName,
         string $translatedDescription,
-        string $translatedIngredients,
-        string $locale
+        string $translatedIngredients
     ) {
         $article->addTranslation(new ArticleTranslation($locale, 'name', $translatedName));
         $article->addTranslation(new ArticleTranslation($locale, 'description', $translatedDescription));
@@ -134,22 +134,24 @@ class ArticleService
         $this->save($article);
     }
 
-    /**
-     * @param Article $article
-     * @return Article
-     */
-    public function update(Article $article)
-    {
-        $this->save($article);
+/**
+ * @param Article $article
+ * @return Article
+ */
+public
+function update(Article $article)
+{
+    $this->save($article);
 
-        return $article;
-    }
+    return $article;
+}
 
-    /**
-     * @param Article $article
-     */
-    public function save(Article $article)
-    {
-        $this->articleRepository->save($article);
-    }
+/**
+ * @param Article $article
+ */
+public
+function save(Article $article)
+{
+    $this->articleRepository->save($article);
+}
 }

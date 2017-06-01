@@ -3,13 +3,12 @@ namespace EventoOriginal\Core\Tests\Integration\Fixtures;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use EventoOriginal\Core\Entities\Brand;
+use EventoOriginal\Core\Entities\Category;
 use Faker\Factory;
 use Faker\ORM\Doctrine\Populator;
 
-class BrandsFixture extends AbstractFixture
+class CategoriesFixture extends AbstractFixture
 {
-
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -19,7 +18,7 @@ class BrandsFixture extends AbstractFixture
     {
         $generator = Factory::create();
         $populator = new Populator($generator, $manager);
-        $populator->addEntity(Brand::class, 5, [
+        $populator->addEntity(Category::class, 5, [
             'name' => $generator->text(5)
         ]);
         $populator->execute();
