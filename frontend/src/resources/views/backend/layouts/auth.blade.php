@@ -15,7 +15,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="/backend/css/AdminLTE.min.css'">
+    <link rel="stylesheet" href="/backend/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/backend/plugins/iCheck/square/blue.css">
 
@@ -27,7 +27,7 @@
     <![endif]-->
 
 </head>
-<body class="hold-transition">
+<body class="hold-transition login-page">
 
 @yield('content')
 

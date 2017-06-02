@@ -89,7 +89,7 @@ class ArticleService
         $article->setDescription($description);
         $article->setBarCode($barCode);
         $article->setInternalCode($internalCode);
-        $article->setStatus(Article::STATUS_DRAFT);
+        $article->setStatus($status);
         if ($status === Article::STATUS_PUBLISHED) {
             $article->setPublishedOn(new DateTime('now'));
         }
@@ -134,24 +134,22 @@ class ArticleService
         $this->save($article);
     }
 
-/**
- * @param Article $article
- * @return Article
- */
-public
-function update(Article $article)
-{
-    $this->save($article);
+    /**
+     * @param Article $article
+     * @return Article
+     */
+    public function update(Article $article)
+    {
+        $this->save($article);
 
-    return $article;
-}
+        return $article;
+    }
 
-/**
- * @param Article $article
- */
-public
-function save(Article $article)
-{
-    $this->articleRepository->save($article);
-}
+    /**
+     * @param Article $article
+     */
+    public function save(Article $article)
+    {
+        $this->articleRepository->save($article);
+    }
 }

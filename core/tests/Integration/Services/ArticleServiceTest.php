@@ -93,6 +93,7 @@ class ArticleServiceTest extends BaseTest
         $this->assertEquals($brand, $article->getBrand());
         $this->assertEquals($category, $article->getCategory());
         $this->assertEquals($tags, $article->getTags()->toArray());
+        $this->assertNull($article->getPublishedOn());
     }
 
     public function testAddTranslation()
@@ -180,5 +181,41 @@ class ArticleServiceTest extends BaseTest
         $articleSearched = $this->articleService->findOneById($article->getId(), 'es');
 
         $this->assertEquals($article->getId(), $articleSearched->getId());
+    }
+
+    public function testAddArticleWithPublishedStatus()
+    {
+        $name = 'Taza';
+        $description = 'Taza de porcelana';
+        $barCode = '123456';
+        $internalCode = '11002';
+        $status = Article::STATUS_PUBLISHED;
+        $price = 1.54;
+        $priceCurrency = 'EUR';
+        $costPrice = 1.22;
+        $ingredients = "";
+
+        $brand = $this->brandService->findAll()[0];
+        $category = $this->categoryService->findAll('es')[0];
+        $tags = $this->tagService->findAll('es');
+
+        $article = $this->articleService->create(
+            $name,
+            $description,
+            $barCode,
+            $internalCode,
+            $status,
+            $price,
+            $priceCurrency,
+            null,
+            $costPrice,
+            $ingredients,
+            $brand,
+            $category,
+            $tags
+        );
+
+        $this->assertEquals($status, $article->getStatus());
+        $this->assertNotNull($article->getPublishedOn());
     }
 }

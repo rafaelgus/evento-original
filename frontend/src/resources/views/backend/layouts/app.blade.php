@@ -9,6 +9,7 @@
     <meta name="_token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="shortcut icon" href="/favicon.ico">
+
 @yield('scripts_head')
 
 <!-- Bootstrap 3.3.5 -->
@@ -25,7 +26,9 @@
     -->
 {{--<!-- AdminLTE Skins. Choose a skin from the css/skins--}}
 {{--folder instead of downloading all of them to reduce the load. -->--}}
-{{--<link rel="stylesheet" href="{{ template_path('dist/css/skins/_all-skins.min.css') }}">--}}
+<link rel="stylesheet" href="/backend/css/skins/_all-skins.min.css">
+
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +39,7 @@
     <style>
     </style>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini skin-red">
 <div class="wrapper">
 @if(Auth::check())
     @include('backend.partials.header')
@@ -76,7 +79,7 @@
 <!-- AdminLTE App -->
 <script src="/backend/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="backend/js/demo.js"></script>
+<script src="/backend/js/demo.js"></script>
 <script src="/backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 
 @yield('scripts_body')
