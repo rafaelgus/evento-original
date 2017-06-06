@@ -18,8 +18,16 @@
       "EventoOriginal\\Frontend\\test\\": "frontend/tests"
     }
   },
+  "repositories": [
+    {
+      "name": "cfrutos/flaubert",
+      "type": "git",
+      "url": "git@github.com:cfrutos/flaubert.git"
+    }
+  ],
   "require": {
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^2.4",
+    "cfrutos/flaubert": "dev-master"
   },
   "config": {
     "preferred-install": "dist",
