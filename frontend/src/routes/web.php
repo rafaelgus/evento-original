@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('frontend.home');
 });
 
-Route::get('/', function () {
-    return view('backend.home');
-});
+//Route::get('/', function () {
+//    return view('backend.home');
+//});
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');

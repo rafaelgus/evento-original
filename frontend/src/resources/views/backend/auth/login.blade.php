@@ -6,7 +6,7 @@
             <b>Evento</b>Original</div>
         <div class="login-box-body">
 
-            @include('backend.errors.errors')
+            @include('backend.messages.errors')
 
             <p class="login-box-msg">{{ trans('auth.log_in.title') }}</p>
 
