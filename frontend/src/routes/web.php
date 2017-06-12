@@ -42,11 +42,17 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/create', 'Backend\ColorController@create');
             Route::post('/', 'Backend\ColorController@store');
             Route::get('/', 'Backend\ColorController@index');
+            Route::get('/{id}/edit', 'Backend\ColorController@edit');
+            Route::put('/{id}', 'Backend\ColorController@update');
             Route::get('/getDatatable', 'Backend\ColorController@getDatatable');
         });
         Route::group(['prefix' => '/flavour'], function () {
             Route::get('/create', 'Backend\FlavourController@create');
             Route::post('/', 'Backend\FlavourController@store');
+            Route::get('/', 'Backend\FlavourController@index');
+            Route::get('/{id}/edit', 'Backend\FlavourController@edit');
+            Route::put('/{id}', 'Backend\FlavourController@update');
+            Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
         });
     });
 });

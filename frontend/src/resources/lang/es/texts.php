@@ -23,12 +23,14 @@ return [
           'view' => 'Ver',
           'new' => 'Nuevo',
           'name' => 'Nombre',
+          'edit' => 'Editar',
       ],
       'flavours' => [
           'title' => 'Sabores',
           'view' => 'Ver',
           'new' => 'Nuevo',
           'name' => 'Nombre',
+          'edit' => 'Editar',
       ],
       'allergens' => [
           'title' => 'Alérgenos',
