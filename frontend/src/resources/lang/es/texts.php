@@ -43,7 +43,11 @@ return [
           'title' => 'Tags'
       ],
       'brands' => [
-          'title' => 'Marcas'
+          'title' => 'Marcas',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'edit' => 'Editar',
       ],
       'stock' => [
           'title' => 'Stock'

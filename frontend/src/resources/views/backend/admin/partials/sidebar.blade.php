@@ -53,7 +53,15 @@
         </ul>
     </li>
     <li><a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span></a></li>
-    <li><a href="#"><i class="fa fa-fire"></i> <span>{{ trans('texts.sections.brands.title') }}</span></a></li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-fire"></i> <span>{{ trans('texts.sections.brands.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/brand">{{ trans('texts.sections.brands.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/brand/create">{{ trans('texts.sections.brands.new') }}</a></li>
+        </ul>
+    </li>
 
     <li class="header">{{ trans('texts.sections.stock.title') }}</li>
     <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>
