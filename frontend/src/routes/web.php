@@ -54,5 +54,13 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/{id}', 'Backend\FlavourController@update');
             Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
         });
+        Route::group(['prefix' => '/brand'], function () {
+            Route::get('/create', 'Backend\BrandController@create');
+            Route::post('/', 'Backend\BrandController@store');
+            Route::get('/', 'Backend\BrandController@index');
+            Route::get('/{id}/edit', 'Backend\BrandController@edit');
+            Route::put('/{id}', 'Backend\BrandController@update');
+            Route::get('/getDatatable', 'Backend\BrandController@getDatatable');
+        });
     });
 });
