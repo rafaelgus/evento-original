@@ -48,5 +48,12 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/create', 'Backend\FlavourController@create');
             Route::post('/', 'Backend\FlavourController@store');
         });
+        Route::group(['prefix' => '/allergen'], function () {
+            Route::get('/create', 'Backend\AllergenController@create');
+            Route::get('/', 'Backend\AllergenController@index');
+            Route::post('/', 'Backend\AllergenController@store');
+            Route::get('getAllergens', 'Backend\AllergenController@getDatatable');
+
+        });
     });
 });
