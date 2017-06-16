@@ -27,7 +27,7 @@
                 <div class="box">
                     <div class="box-body">
 
-                        <table id="colors-table" class="table table-bordered table-striped">
+                        <table id="allergen-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -54,7 +54,7 @@
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
-            $('#colors-table').DataTable({
+            $('#allergen-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: '/management/allergen/getAllergens',
