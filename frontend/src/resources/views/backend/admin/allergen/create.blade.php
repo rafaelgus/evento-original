@@ -1,7 +1,6 @@
 @extends('backend.layouts.app')
 
 @section('header')
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             {{ trans('texts.sections.colors.title') }}
@@ -43,10 +42,7 @@
                         </div>
                     </form>
                 </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
-    </section><!-- /.content -->
+    </section>
 @endsection
