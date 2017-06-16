@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Requests\Backend\StoreAllergen;
+use App\Http\Requests\Backend\UpdateAllergen;
 use EventoOriginal\Core\Services\AllergenService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -36,37 +38,23 @@ class AllergenController
         return view('backend.admin.allergen.create')->with('allergen', $allergen);
     }
 
-    public function store(Request $request)
+    public function store(StoreAllergen $request)
     {
-        $allergen = null;
-
-        $validator =  Validator::make($request->all(), [
-            'name' => 'required'
-        ]);
-
-        if ($request->has('allergenId')) {
-            $allergen = $this->allergenService->findOneById($request->input('allergenId'), App::getLocale());
-            if ($validator->fails()) {
-                return redirect('/management/allergen/'. $allergen->getId() .'/edit')
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            $this->allergenService->update($allergen, $request->input('name'));
-            Session::flash('message', trans('backend/messages.confirmation.edit.allergen'));
-
-            return redirect('/management/allergen/'. $allergen->getId() .'/edit');
-        } else {
-            if ($validator->fails()) {
-                return redirect(self::ALLERGEN_CREATE_ROUTE)
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-            $this->allergenService->create($request->input('name'));
-        }
+        $this->allergenService->create($request->input('name'));
 
         Session::flash('message', trans('backend/messages.confirmation.create.allergen'));
         return redirect(self::ALLERGEN_CREATE_ROUTE);
+    }
+
+    public function update(UpdateAllergen $request)
+    {
+        $allergen = $this->allergenService->findOneById($request->input('allergenId'), App::getLocale());
+
+        $this->allergenService->update($allergen, $request->input('name'));
+        Session::flash('message', trans('backend/messages.confirmation.edit.allergen'));
+
+        return redirect('/management/allergen/'. $allergen->getId() .'/edit');
+
     }
 
     public function getDataTables()
