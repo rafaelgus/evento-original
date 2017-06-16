@@ -3,8 +3,8 @@
 @section('header')
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.colors.title') }}
-            <small>{{ trans('texts.sections.colors.new') }}</small>
+            {{ trans('texts.sections.allergens.title') }}
+            <small>{{ trans('texts.sections.allergens.new') }}</small>
         </h1>
         <ol class="breadcrumb">
             <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.colors.title') }}</li>
@@ -27,10 +27,15 @@
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+
+                            @if ($allergen)
+                                <input type="hidden" name="allergenId" value="{{$allergen->getId()}}">
+                            @endif
+
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.colors.name') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="name"
+                                    <input type="text" class="form-control" id="inputName" name="name" value="{{$allergen ? $allergen->getName() : ''}}"
                                            placeholder="{{ trans('texts.sections.colors.name') }}" value="{{ old('name') }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>

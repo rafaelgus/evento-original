@@ -32,6 +32,8 @@ return [
       ],
       'allergens' => [
           'title' => 'Alérgenos',
+          'view' => 'Ver',
+          'new' => 'Nuevo'
       ],
       'articles' => [
           'title' => 'Artículos',

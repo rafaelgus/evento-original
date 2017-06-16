@@ -52,6 +52,15 @@
             <li><a href="/management/flavour/create">{{ trans('texts.sections.flavours.new') }}</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-apple"></i> <span>{{ trans('texts.sections.allergens.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/allergen">{{ trans('texts.sections.allergens.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/allergen/create">{{ trans('texts.sections.allergens.new') }}</a></li>
+        </ul>
+    </li>
     <li><a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span></a></li>
     <li><a href="#"><i class="fa fa-fire"></i> <span>{{ trans('texts.sections.brands.title') }}</span></a></li>
 

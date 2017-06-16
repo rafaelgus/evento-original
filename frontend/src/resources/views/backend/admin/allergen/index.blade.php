@@ -64,7 +64,7 @@
                     {
                         "mData": null,
                         "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/alergen/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a>'}
                     }
                 ],
                 language: {
