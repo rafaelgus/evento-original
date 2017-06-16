@@ -35,7 +35,7 @@ class AllergenController
     public function edit(int $id)
     {
         $allergen = $this->allergenService->findOneById($id, App::getLocale());
-        return view('backend.admin.allergen.create')->with('allergen', $allergen);
+        return view('backend.admin.allergen.edit')->with('allergen', $allergen);
     }
 
     public function store(StoreAllergen $request)
@@ -46,9 +46,9 @@ class AllergenController
         return redirect(self::ALLERGEN_CREATE_ROUTE);
     }
 
-    public function update(UpdateAllergen $request)
+    public function update(UpdateAllergen $request, int $id)
     {
-        $allergen = $this->allergenService->findOneById($request->input('allergenId'), App::getLocale());
+        $allergen = $this->allergenService->findOneById($id, App::getLocale());
 
         $this->allergenService->update($allergen, $request->input('name'));
         Session::flash('message', trans('backend/messages.confirmation.edit.allergen'));

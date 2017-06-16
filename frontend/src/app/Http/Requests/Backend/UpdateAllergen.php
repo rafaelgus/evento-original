@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateAllergen extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateAllergen extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -24,7 +25,6 @@ class UpdateAllergen extends FormRequest
     public function rules()
     {
         return [
-            'allergenId' => 'required',
             'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Allergen,name'
         ];
     }
