@@ -70,5 +70,13 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/{id}', 'Backend\AllergenController@update');
             Route::get('getAllergens', 'Backend\AllergenController@getDataTables');
         });
+        Route::group(['prefix' => '/categories'], function () {
+           Route::get('/create', 'Backend\CategoryController@create');
+           Route::get('{id}/edit', 'Backend\CategoryController@edit');
+           Route::get('/', 'Backend\CategoryController@index');
+           Route::post('/', 'Backend\CategoryController@store');
+           Route::put('/{id}', 'Backend\CategoryController@update');
+           Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
+        });
     });
 });
