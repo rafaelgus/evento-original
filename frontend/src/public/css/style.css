@@ -65,12 +65,20 @@ Tags: two-columns, left-sidebar, fixed-layout, responsive-layout, custom-backgro
 /* */
 /*----------- 1. Body --------------*/
 
+@font-face {
+    font-family: TradeGothicLTStd;
+    src: url(../fonts/TradeGothicLTStd.otf);
+}
+
+@font-face {
+    font-family: TradeGothicLTStd18;
+    src: url(../fonts/TradeGothicLTStd-Cn18.otf);
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	color: #333;
-
-
 }
 h2, .h2 {
 	font-size: 20px;
@@ -327,7 +335,7 @@ a.button:hover {
 .header-top {
 	padding: 5px 0px 5px 0px;
 	font-family: 'Open Sans', sans-serif;
-	border-bottom: 1px solid #e5e5e5;
+	/*border-bottom: 1px solid #e5e5e5;*/
 	background: #fff;
 	font-size:13px
 }
@@ -406,9 +414,9 @@ header .header-top-links {
 	margin: auto;
     right: 0px;
     background: #fff;
-    border-radius: 2px;
+    /*border-radius: 2px;*/
     margin: 20px 0px;
-    border: 1px #e5e5e5 solid;
+    border: 1px #f56f7d solid;
 }
 #search {
 	margin: 0;
@@ -1078,7 +1086,7 @@ nav {
 	margin: auto;
 	width: 100%;
 	z-index: 99;
-	background: #333333;
+	background: #ea4360;
 	/* border-bottom: 3px #ff4900 solid; */
 }
 .cms-index-index .nav-inner {
@@ -1163,13 +1171,16 @@ nav {
 .cms-index-index nav.sticky-header {
 
 }
-#nav {
+#nav {	right: 0px;
+
 	position: relative;
 	z-index: 10;
 	-webkit-transform: translateZ(0);
 	padding: 0;
 	margin: auto;
 	text-align: left;
+	font-family: "TradeGothicLTStd18";
+	font-size: 18px;
 }
 /* All levels */
 #nav li {
@@ -1200,7 +1211,7 @@ nav {
 }
 #nav > li > a {
 	display: block;
-	padding: 17px 3px;
+	padding: 13px 3px 7px;
 }
 #nav > li > a > span {
 	display: block;
@@ -1424,10 +1435,11 @@ ul.vertnav-top li > a > span > .cat-label {
 }
 /* horizontal + mobile menu trigger */
 #nav > li > a {
-	font-size: 14px;
+	font-size: 24px;
 	font-weight: bold;
+	font-stretch: condensed;
 	position: relative;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	-webkit-transition: all 0.3s cubic-bezier(0.8, 0, 0, 1);
 	-o-transition: all 0.3s cubic-bezier(0.8, 0, 0, 1);
 	transition: all 0.3s cubic-bezier(0.8, 0, 0, 1);
@@ -1467,7 +1479,7 @@ ul.level1 {
 }
 #nav > li > a {
 	color: #fff;
-	border-bottom: 3px solid #333333;
+	/*border-bottom: 3px solid #ea4360*/;
 }
 #nav > li.mega-menu {
 	position: static;

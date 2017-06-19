@@ -8,7 +8,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="dropdown block-language-wrapper"><a role="button" data-toggle="dropdown"
                                                                         data-target="#"
-                                                                        class="block-language dropdown-toggle" href="#">
+                                                                        class="block-language dropdown-toggle" href="#" hidden>
                                 <img src="images/spanish.png" alt="language"> Español <span class="caret"></span> </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation"><a href="#"><img src="images/english.png" alt="language">
@@ -24,7 +24,7 @@
                         <!-- Header Currency -->
                         <div class="dropdown block-currency-wrapper"><a role="button" data-toggle="dropdown"
                                                                         data-target="#"
-                                                                        class="block-currency dropdown-toggle" href="#">
+                                                                        class="block-currency dropdown-toggle" href="#" hidden>
                                 EUR <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation"><a href="#"> $ - Dollar </a></li>
@@ -33,7 +33,7 @@
                             </ul>
                         </div>
                         <!-- End Header Currency -->
-                        <div class="welcome-msg">
+                        <div class="welcome-msg" style="display: none;">
                             <span class="hidden-xs" style="margin-right: 10px;">
                                 <i class="icon fa fa-phone"></i><strong> 902 569 879 </strong>
                             </span>
