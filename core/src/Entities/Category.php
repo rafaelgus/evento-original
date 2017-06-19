@@ -45,7 +45,7 @@ class Category
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
      */
-    private $lvl;
+    private $level;
 
     /**
      * @Gedmo\TreeRight
@@ -126,9 +126,9 @@ class Category
     /**
      * @return integer
      */
-    public function getLvl()
+    public function getLevel()
     {
-        return $this->lvl;
+        return $this->level;
     }
 
     /**

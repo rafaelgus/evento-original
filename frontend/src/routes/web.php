@@ -77,6 +77,9 @@ Route::group(['prefix' => '/management'], function () {
            Route::post('/', 'Backend\CategoryController@store');
            Route::put('/{id}', 'Backend\CategoryController@update');
            Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
+           Route::get('/{parentId}/createSubCategory','Backend\CategoryController@createSubCategory');
+           Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
+           Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@storeSubCategory');
         });
     });
 });

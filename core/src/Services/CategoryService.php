@@ -67,4 +67,20 @@ class CategoryService
     {
         $this->categoryRepository->save($category);
     }
+
+    public function getChildren(Category $category)
+    {
+        $children = $this->categoryRepository->findSubcategories($category);
+
+        return $children;
+    }
+
+    public function createChildren(Category $parent, string $childName)
+    {
+        $category = new Category();
+        $category->setName($childName);
+        $category->setParent($parent);
+
+        $this->save($category);
+    }
 }

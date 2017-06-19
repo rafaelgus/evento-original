@@ -67,4 +67,13 @@ class CategoryRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findSubcategories(Category $category)
+    {
+        $subcategories = $this
+            ->getEntityManager()
+            ->children($category);
+
+        return $subcategories;
+    }
 }

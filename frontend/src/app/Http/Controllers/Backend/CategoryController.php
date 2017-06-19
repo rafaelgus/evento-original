@@ -23,6 +23,11 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
+    public function index()
+    {
+        return view('backend.admin.categories.index');
+    }
+
     public function create()
     {
         return view('backend.admin.categories.create');
@@ -72,5 +77,56 @@ class CategoryController extends Controller
         }
 
         return Datatables::of($allergenCollection)->make(true);
+    }
+
+    public function createSubCategory(int $parentId)
+    {
+        $category = $this->categoryService->findOneById($parentId, App::getLocale());
+
+        if (!$category) {
+            throw new \Exception('la categoria no existe');
+        }
+
+        return view('backend.admin.category.createSubcategory', ['parentId' => $parentId]);
+    }
+
+    public function getSubCategories(int $parentId)
+    {
+        $category = $this->categoryService->findOneById($parentId, App::getLocale());
+        $subCategories = $this->categoryService->getChildren($category);
+
+        $allergenCollection = new Collection();
+
+        foreach ($subCategories as $subCategory) {
+            $allergenCollection->push([
+                'id' => $subCategory->getId(),
+                'name' => $subCategory->getName()
+            ]);
+        }
+
+        return Datatables::of($allergenCollection)->make(true);
+    }
+
+    public function storeSubcategory(StoreCategoryRequest $request)
+    {
+        $category = $this
+            ->categoryService
+            ->findOneById(
+                $request->input('categoryId'),
+                    App::getLocale()
+            );
+
+        if ($category->getLevel() == 4) {
+            throw new \Exception('No se pueden agregar mas niveles');
+        }
+
+        $this->categoryService
+            ->createChildren($category,
+                $request->input('name')
+            );
+
+        Session::flash('message', trans('backend/messages.confirmation.edit.category'));
+
+        return redirect()->to();
     }
 }
