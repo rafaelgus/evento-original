@@ -53,9 +53,9 @@ class CategoryController extends Controller
         return redirect()->to(self::CATEGORY_CREATE_ROUTE);
     }
 
-    public function update(UpdateCategoryRequest $request)
+    public function update(int $id, UpdateCategoryRequest $request)
     {
-        $category = $this->categoryService->findOneById($request->input('idCategory'), App::getLocale());
+        $category = $this->categoryService->findOneById($id, App::getLocale());
 
         $this->categoryService->update($category, $request->input('name'));
 
@@ -87,7 +87,13 @@ class CategoryController extends Controller
             throw new \Exception('la categoria no existe');
         }
 
-        return view('backend.admin.category.createSubcategory', ['parentId' => $parentId]);
+        return view('backend.admin.categories.createSubcategory', ['category' => $category]);
+    }
+
+    public function subcategories(int $parentId)
+    {
+        $category = $this->categoryService->findOneById($parentId, App::getLocale());
+        return view('backend.admin.categories.subcategories', ['category' => $category]);
     }
 
     public function getSubCategories(int $parentId)
@@ -107,13 +113,13 @@ class CategoryController extends Controller
         return Datatables::of($allergenCollection)->make(true);
     }
 
-    public function storeSubcategory(StoreCategoryRequest $request)
+    public function storeSubcategory(int $parentId, StoreCategoryRequest $request)
     {
         $category = $this
             ->categoryService
             ->findOneById(
-                $request->input('categoryId'),
-                    App::getLocale()
+                $parentId,
+                App::getLocale()
             );
 
         if ($category->getLevel() == 4) {
@@ -127,6 +133,7 @@ class CategoryController extends Controller
 
         Session::flash('message', trans('backend/messages.confirmation.edit.category'));
 
-        return redirect()->to();
+        return redirect()->to('/management/category/'. $category->getId() .'/createSubCategory');
     }
+
 }

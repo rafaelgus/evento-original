@@ -27,6 +27,8 @@
                 <div class="box">
                     <div class="box-body">
 
+                        <input type="hidden" id="parent" value="{{$category->getId()}}">
+
                         <table id="categories-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -54,17 +56,19 @@
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
+
+            var parent = $('#parent').val();
             $('#categories-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/category/getCategories',
+                ajax: '/management/category/'+ parent +'/getSubCategory',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
                     {
                         "mData": null,
                         "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a> | <a href="/management/category/'+ o.id + '/subcategories">Subcategorias</a> | <a href="/management/category/'+ o.id + '/createSubCategory">Nueva Subcategorias</a>'}
+                        "mRender": function (o) { return '<a href="/management/category/' + o.id +'/edit" class="danger">Editar</a>'}
                     }
                 ],
                 language: {

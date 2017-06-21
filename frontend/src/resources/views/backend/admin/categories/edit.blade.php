@@ -22,7 +22,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="{{ '/management/categories/' . $allergen->getId() }} " method="POST">
+                    <form role="form" class="form-horizontal" action="{{ '/management/category/' . $category->getId() }}" method="POST">
                         <div class="box-body">
                             @include('backend.messages.session')
 
@@ -33,7 +33,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.categories.name') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="name"
-                                           placeholder="{{ trans('texts.sections.categories.name') }}" value="{{ old('name', $allergen->getName()) }}">
+                                           placeholder="{{ trans('texts.sections.categories.name') }}" value="{{ old('name', $category->getName()) }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>

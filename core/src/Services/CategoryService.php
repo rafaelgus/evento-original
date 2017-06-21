@@ -38,7 +38,7 @@ class CategoryService
         $category = new Category();
         $category->setName($name);
 
-        $this->save($category);
+        $this->save($category, true);
 
         return $category;
     }
@@ -81,6 +81,6 @@ class CategoryService
         $category->setName($childName);
         $category->setParent($parent);
 
-        $this->save($category);
+        $this->save($category, true);
     }
 }

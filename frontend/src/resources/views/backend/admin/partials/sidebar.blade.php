@@ -60,6 +60,7 @@
         <ul class="treeview-menu">
             <li><a href="/management/allergen/create">{{ trans('texts.sections.allergens.new') }}</a></li>
         </ul>
+
     </li>
     <li><a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span></a></li>
     <li class="treeview">
