@@ -62,6 +62,13 @@ return [
       ],
       'stock_placements' => [
           'title' => 'Muebles'
+      ],
+      'tag' => [
+          'title' => 'Tags',
+          'create'=> 'Crear',
+          'edit' => 'Editar',
+          'name' => 'Nombre',
+          'view' => 'ver'
       ]
   ]
 ];
