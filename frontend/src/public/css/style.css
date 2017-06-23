@@ -1083,7 +1083,7 @@ nav {
 	margin: auto;
 	width: 100%;
 	z-index: 99;
-	background: #333333;
+	background: #C8445F;
 	/* border-bottom: 3px #1fc0a0 solid; */
 }
 .cms-index-index .nav-inner {
@@ -1471,7 +1471,7 @@ ul.level1 {
 }
 #nav > li > a {
 	color: #fff;
-	border-bottom: 3px solid #333333;
+	border-bottom: 3px solid #C8445F;
 }
 #nav > li.mega-menu {
 	position: static;
@@ -5494,7 +5494,7 @@ ol#compare-items li.last {
 }
 
 .subscribe-content button.button span {
-    background: #1fc0a0;
+    background: #C8445F;
     border-left: 1px solid #eeeeee;
     color: #fff;
     font-size: 12px;
@@ -5531,7 +5531,7 @@ ol#compare-items li.last {
     line-height: 37px;
     margin: 10px 0px 0px 0px;
     width: 40px;
-    background: #1fc0a0;
+    background: #C8445F;
     display:inline-block;
     color:#fff;
     text-align:center;
@@ -7590,7 +7590,7 @@ button.button.submit:before {
 	text-decoration: none;
 	width: 45px;
 	background:  url(../images/to-top-arrow.png) no-repeat center;
-	background-color: #1fc0a0;
+	background-color: #C8445F;
 	text-transform: uppercase;
 	z-index: 100;
 	border-radius: 2px;
@@ -7984,7 +7984,7 @@ footer p {
 }
 footer .footer-column a {
 	display: inline-block;
-	color: #1fc0a0
+	color: #C8445F
 }
 footer a {
 	line-height: normal;
@@ -8026,7 +8026,7 @@ footer .coppyright {
 	width: 100%;
 	margin: auto;
 	padding: 15px 0;
-	background-color: #1fc0a0;
+	background-color: #C8445F;
 }
 .footer-bottom a {
 	color: #999;
