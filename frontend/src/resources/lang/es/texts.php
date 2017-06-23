@@ -44,9 +44,6 @@ return [
           'title' => 'Artículos',
           'view' => 'Ver'
       ],
-      'tags' => [
-          'title' => 'Tags'
-      ],
       'brands' => [
           'title' => 'Marcas',
           'view' => 'Ver',
@@ -62,6 +59,14 @@ return [
       ],
       'stock_placements' => [
           'title' => 'Muebles'
+      ],
+      'tags' => [
+          'title' => 'Tags',
+          'new' => 'Nuevo',
+          'create'=> 'Crear',
+          'edit' => 'Editar',
+          'name' => 'Nombre',
+          'view' => 'ver'
       ]
   ]
 ];
