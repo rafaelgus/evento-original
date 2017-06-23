@@ -16,7 +16,8 @@ return [
           'title' => 'Categorías',
           'view' => 'Ver',
           'new' => 'Nueva',
-          'name' => 'Nombre',
+          'edit' => 'editar',
+          'name' => 'Nombre'
       ],
       'colors' => [
           'title' => 'Colores',
