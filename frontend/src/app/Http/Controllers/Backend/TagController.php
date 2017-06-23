@@ -27,14 +27,25 @@ class TagController
 
     public function create()
     {
-        return view('backend.admin.tags.index');
+        return view('backend.admin.tags.create');
+    }
+
+    public function edit(int $id)
+    {
+        $tag = $this->tagService->findOneById($id, App::getLocale());
+
+        if (!$tag) {
+            throw new \Exception('Tag does not exist');
+        }
+
+        return view('backend.admin.tags.edit', ['tag' => $tag]);
     }
 
     public function store(StoreTagRequest $request)
     {
         $this->tagService->create($request->input('name'));
 
-        Session::flash('message', 'backend/messages.confirmation.create.tags');
+        Session::flash('message', trans('backend/messages.confirmation.create.tags'));
 
         return redirect()->to(self::FLAVOUR_CREATE_ROUTE);
     }
@@ -45,12 +56,12 @@ class TagController
 
         $this->tagService->update($tag, $request->input('name'));
 
-        Session::flash('message', 'backend/messages.confirmation.edit.tags');
+        Session::flash('message', trans('backend/messages.confirmation.edit.tags'));
 
-        return redirect()->to('/manegement/tags/'. $id . '/edit');
+        return redirect()->to('/management/tags/'. $id . '/edit');
     }
 
-    public function getDateTables()
+    public function getDataTables()
     {
         $tags = $this->tagService->findAll('es');
         $tagsCollection = new Collection();
