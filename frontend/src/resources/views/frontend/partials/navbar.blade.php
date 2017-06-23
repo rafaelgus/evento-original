@@ -8,8 +8,8 @@
         <div class="nav-inner">
             <!-- BEGIN NAV -->
             <ul id="nav" class="hidden-xs">
-                <li class="level0 parent drop-menu" id="nav-home"><a href="index.html" class="level-top"><span>{{ trans('sections.candies') }}</span></a> </li>
-                <li class="level0 nav-6 level-top drop-menu"> <a class="level-top" href="#" > <span>{{ trans('sections.pies') }}</span> </a>
+                <li class="level0 parent drop-menu" id="nav-home"><a href="index.html" class="level-top"><span>{{ trans('sections.home') }}</span></a> </li>
+                <li class="level0 nav-6 level-top drop-menu"> <a class="level-top" href="#" > <span>{{ trans('sections.mugs') }}</span> </a>
                     <ul class="level1">
                         <li class="level2 first"><a href="grid.html"><span>Grid</span></a> </li>
                         <li class="level2 nav-10-2"> <a href="list.html"> <span>List</span> </a> </li>
@@ -26,7 +26,7 @@
                         <li class="level1"><a href="contact_us.html"><span>Contact us</span></a> </li>
                     </ul>
                 </li>
-                <li class="mega-menu"> <a class="level-top" href="grid.html"><span>{{ trans('sections.chocolates_and_cookies') }}</span></a>
+                <li class="mega-menu"> <a class="level-top" href="grid.html"><span>{{ trans('sections.wedding') }}</span></a>
                     <div class="level0-wrapper dropdown-6col">
                         <div class="container">
                             <div class="level0-wrapper2">
@@ -101,7 +101,7 @@
                     <!--level0-wrapper dropdown-6col-->
                     <!--mega menu-->
                 </li>
-                <li class="mega-menu"> <a class="level-top" href="grid.html"><span>{{ trans('sections.nuts_and_snacks') }}</span></a>
+                <li class="mega-menu"> <a class="level-top" href="grid.html"><span>{{ trans('sections.personalized_gifts') }}</span></a>
                     <div class="level0-wrapper dropdown-6col">
                         <div class="container">
                             <div class="level0-wrapper2">
@@ -174,7 +174,7 @@
                     <!--level0-wrapper dropdown-6col-->
                     <!--mega menu-->
                 </li>
-                <li class="mega-menu"> <a href="grid.html" class="level-top"> <span>{{ trans('sections.trading_cars_and_toys') }}</span> </a>
+                <li class="mega-menu"> <a href="grid.html" class="level-top"> <span>{{ trans('sections.original_candy') }}</span> </a>
                     <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
                         <div class="container">
                             <div class="level0-wrapper2">
@@ -239,62 +239,8 @@
                         </div><!-- container -->
                     </div>
                 </li>
-                <li class="mega-menu"><a href="grid.html" class="level-top"><span>{{ trans('sections.events_and_parties') }}</span></a>
-                    <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
-                        <div class="container">
-                            <div class="level0-wrapper2">
-
-                                <!-- top Menu images -->
-
-                                <div class="nav-block nav-block-center grid12-8 itemgrid itemgrid-4col">
-
-                                    <!-- left Menu images -->
-
-                                    <div class="">
-
-                                        <ul class="level0">
-                                            <li class="level1 nav-6-1 parent item"><a href="grid.html"><span>Living Room</span></a>
-                                                <ul class="level1">
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Racks &amp; Cabinets</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Sofas</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Chairs</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Tables</span></a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Dining &amp; Bar</span></a>
-                                                <ul class="level1">
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Table Sets</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Serving Trolleys</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Bar Counters</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Cabinets</span></a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Kitchen</span></a>
-                                                <ul class="level1">
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Racks</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Fillings</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Wall Units</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Benches &amp; Stools</span></a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="level1 nav-6-1 parent item"> <a href="grid.html"><span>Appliances</span></a>
-                                                <ul class="level1">
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Vaccum Cleaners</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Indoor Lighting</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Kitchen Tools</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Water Purifier</span></a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div><!-- level -->
-
-                                    <!-- bottom Menu images -->
-
-                                </div> <!--nav-block nav-block-center-->
-
-                                <!-- Right Menu images -->
-
-                            </div>  <!-- level0-wrapper2 -->
+                <li class="mega-menu"><a href="grid.html" class="level-top"><span>{{ trans('sections.contact') }}</span></a>
+                
                         </div><!-- container -->
                     </div>
                 </li>
