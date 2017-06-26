@@ -15,7 +15,8 @@
               <ul>
                 <li data-transition='random' data-slotamount='7' data-masterspeed='1000' data-thumb='images/banner-09.jpg'><img src='images/banner-09.jpg' alt="slide-img" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' />
                 </li>
-                <li data-transition='random' data-slotamount='7' data-masterspeed='1000' data-thumb='images/banner-09.jpg'><img src='images/banner-09.jpg' alt="slide-img" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' />
+                <li data-transition='random' data-slotamount='7' data-masterspeed='1000' data-thumb='images/banner-10.jpg'><img src='images/banner-10.jpg' alt="slide-img" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' />
+                <li data-transition='random' data-slotamount='7' data-masterspeed='1000' data-thumb='images/banner-11.jpg'><img src='images/banner-11.jpg' alt="slide-img" data-bgposition='left top' data-bgfit='cover' data-bgrepeat='no-repeat' />
                 </li>
               </ul>
             </div>
