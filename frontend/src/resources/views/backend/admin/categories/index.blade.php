@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.allergens.title') }}
-            <small>{{ trans('texts.sections.allergens.view') }}</small>
+            {{ trans('texts.sections.categories.title') }}
+            <small>{{ trans('texts.sections.categories.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.allergens.title') }}</li>
-            <li class="active">{{ trans('texts.sections.allergens.view') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.categories.title') }}</li>
+            <li class="active">{{ trans('texts.sections.categories.view') }}</li>
         </ol>
     </section>
 @stop
@@ -27,11 +27,11 @@
                 <div class="box">
                     <div class="box-body">
 
-                        <table id="allergen-table" class="table table-bordered table-striped">
+                        <table id="categories-table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>{{ trans('texts.sections.allergens.name') }}</th>
+                                <th>{{ trans('texts.sections.categories.name') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -54,17 +54,17 @@
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
-            $('#allergen-table').DataTable({
+            $('#categories-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/allergen/getAllergens',
+                ajax: '/management/category/getCategories',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
                     {
                         "mData": null,
                         "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a> | <a href="/management/category/'+ o.id + '/subcategories">Subcategorias</a> | <a href="/management/category/'+ o.id + '/createSubCategory">Nueva Subcategorias</a>'}
                     }
                 ],
                 language: {

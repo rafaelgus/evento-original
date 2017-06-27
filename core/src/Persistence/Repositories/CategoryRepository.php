@@ -1,12 +1,15 @@
 <?php
 namespace EventoOriginal\Core\Persistence\Repositories;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping;
 use Doctrine\ORM\Query;
 use EventoOriginal\Core\Entities\Category;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
+use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 
-class CategoryRepository extends BaseRepository
+class CategoryRepository extends NestedTreeRepository
 {
     const DEFAULT_LOCALE = 'es';
 
@@ -66,5 +69,13 @@ class CategoryRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findSubcategories(Category $category)
+    {
+        $subcategories = $this
+            ->children($category);
+
+        return $subcategories;
     }
 }

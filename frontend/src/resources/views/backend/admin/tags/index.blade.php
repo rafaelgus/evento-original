@@ -2,19 +2,19 @@
 
 @section('scripts_head')
     <link href="/backend/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" >
+    <link href="/backend/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" >
 @stop
-
 
 @section('header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.allergens.title') }}
-            <small>{{ trans('texts.sections.allergens.view') }}</small>
+            {{ trans('texts.sections.tags.title') }}
+            <small>{{ trans('texts.sections.tags.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.allergens.title') }}</li>
-            <li class="active">{{ trans('texts.sections.allergens.view') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.tags.title') }}</li>
+            <li class="active">{{ trans('texts.sections.tags.view') }}</li>
         </ol>
     </section>
 @stop
@@ -23,18 +23,22 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+
+
+
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-
-                        <table id="allergen-table" class="table table-bordered table-striped">
+                        <table id="tags-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>{{ trans('texts.sections.allergens.name') }}</th>
+                                <th>{{ trans('texts.sections.tags.name') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
+                            <tbody>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -46,25 +50,27 @@
     </section><!-- /.content -->
 @endsection
 
-
 @section('scripts_body')
     <script src="/backend/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/backend/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="/backend/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/backend/plugins/datatables/extensions/Responsive/js/responsive.bootstrap.min.js"></script>
 
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
-            $('#allergen-table').DataTable({
+            $('#tags-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/allergen/getAllergens',
+                ajax: '/management/tags/getTags',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
                     {
                         "mData": null,
                         "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "bSearchable": false,
+                        "mRender": function (o) { return '<a href="/management/tags/' + o.id +'/edit" class="danger">Editar</a>'}
                     }
                 ],
                 language: {
