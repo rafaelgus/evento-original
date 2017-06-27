@@ -32,12 +32,6 @@ Route::group(['prefix' => '/management'], function () {
         Route::get('/', function () {
             return view('backend.home');
         });
-
-        Route::group(['prefix' => '/category'], function () {
-            Route::get('/create', 'Backend\CategoryController@create');
-            Route::post('/', 'Backend\CategoryController@store');
-            Route::get('/getDatatable', 'Backend\CategoryController@getDatatable');
-        });
         Route::group(['prefix' => '/color'], function () {
             Route::get('/create', 'Backend\ColorController@create');
             Route::post('/', 'Backend\ColorController@store');
@@ -81,6 +75,14 @@ Route::group(['prefix' => '/management'], function () {
            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+        });
+        Route::group(['prefix' => '/tags'], function () {
+            Route::get('/create', 'Backend\TagController@create');
+            Route::get('/{id}/edit', 'Backend\TagController@edit');
+            Route::get('/', 'Backend\TagController@index');
+            Route::post('/', 'Backend\TagController@store');
+            Route::put('/{id}', 'Backend\TagController@update');
+            Route::get('getTags', 'Backend\AllergenController@getDataTables');
         });
     });
 });

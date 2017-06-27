@@ -33,7 +33,15 @@
             <li><a href="/management/category/create">{{ trans('texts.sections.categories.new') }}</a></li>
         </ul>
     </li>
-    <li><a href="#"><i class="fa fa-tags"></i> <span>{{ trans('texts.sections.tags.title') }}</span></a></li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-tags"></i> <span>{{ trans('texts.sections.tags.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/tags">{{ trans('texts.sections.tags.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/tags/create">{{ trans('texts.sections.tags.new') }}</a></li>
+        </ul>
+    </li>
     <li class="treeview">
         <a href="#"><i class="fa fa-tint"></i> <span>{{ trans('texts.sections.colors.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
@@ -62,7 +70,6 @@
         </ul>
 
     </li>
-    <li><a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span></a></li>
     <li class="treeview">
         <a href="#"><i class="fa fa-fire"></i> <span>{{ trans('texts.sections.brands.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">

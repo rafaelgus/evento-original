@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreArticleRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class StoreArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -24,7 +25,12 @@ class StoreArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'description' => 'required|max:1000',
+            'category' => 'required',
+            'barCode' => 'required|max:255',
+            'internalCode' => 'required|max:255',
+            'price' => 'required'
         ];
     }
 }

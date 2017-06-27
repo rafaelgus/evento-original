@@ -45,7 +45,11 @@ return [
           'view' => 'Ver'
       ],
       'tags' => [
-          'title' => 'Tags'
+          'title' => 'Tags',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'Edit',
+          'name' => 'Nombre'
       ],
       'brands' => [
           'title' => 'Marcas',
