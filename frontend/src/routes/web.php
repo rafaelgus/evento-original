@@ -82,13 +82,5 @@ Route::group(['prefix' => '/management'], function () {
            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
         });
-        Route::group(['prefix' => '/tags'], function() {
-           Route::get('/create', 'Backend\TagController@create');
-           Route::get('{id}/edit', 'Backend\TagController@edit');
-           Route::get('/','Backend\TagController@index');
-           Route::post('/', 'Backend\TagController@store');
-           Route::put('/{id}', 'Backend\TagController@update');
-           Route::get('/getTags', 'Backend\TagController@getDataTables');
-        });
     });
 });
