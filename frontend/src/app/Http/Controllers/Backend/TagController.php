@@ -13,7 +13,7 @@ class TagController
 {
     protected $tagService;
 
-    const FLAVOUR_CREATE_ROUTE = '/management/tags/create';
+    const TAG_CREATE_ROUTE = '/management/tags/create';
 
     public function __construct(TagService $tagService)
     {
@@ -47,7 +47,7 @@ class TagController
 
         Session::flash('message', trans('backend/messages.confirmation.create.tags'));
 
-        return redirect()->to(self::FLAVOUR_CREATE_ROUTE);
+        return redirect()->to(self::TAG_CREATE_ROUTE);
     }
 
     public function update(int $id, UpdateCategoryRequest $request)

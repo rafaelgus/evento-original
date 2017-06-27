@@ -25,7 +25,7 @@ class StoreTagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Allergen,name'
+            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Tag,name'
         ];
     }
 }
