@@ -55,28 +55,13 @@
               </form>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"> <a href="#" title="My Wishlist" class="top-link-wishlist hidden-xs"><i class="fa fa-heart"><div class="wish">Wishlist</div></i></a>
-            <div class="top-cart-contain pull-right"> 
-              <!-- Top Cart -->
-              <div class="mini-cart">
-                <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"> <a href="shopping_cart.html"> <div class="wish">Cart</div><span class="cart_count">0</span><span class="price hidden-xs"></span> </a> </div>
-                <input id="cart-txt-heading" type="hidden" name="cart-txt-heading" value="My Cart ">
-                <ul class="dropdown-menu pull-right top-cart-content arrow_box" style="display: none;">
-                <li>
-                 <p class="text-center noitem">Your shopping cart is empty!</p>
-                </li>
-                </ul>
-
-                </div>
-             
-              <!-- Top Cart -->
-              <div id="ajaxconfig_info" style="display:none"> <a href="#/"></a>
-                <input value="" type="hidden">
-                <input id="enable_module" value="1" type="hidden">
-                <input class="effect_to_cart" value="1" type="hidden">
-                <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
-              </div>
-            </div>
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"> 
+          <a href="#" title="My Wishlist" class="top-link-wishlist hidden-xs"><img src="/images/heart.png" width="26" height="26">
+          <div class="wish">Lista de deseos</div>
+          </a>
+           <a href="#" title="Carrito" class="top-link-shopping-cart hidden-xs"><img src="/images/cart.png" width="26" height="26">
+          <div class="shopping-cart">Carrito<br>(Vacío)</div>
+          </a>
           </div>
         </div>
       </div>
