@@ -31,8 +31,8 @@
               <!-- Header Top Links -->
               <div class="toplinks">
                 <div class="links">
-                  <a title="My Account" href="login.html">{{trans('frontend/header.my_cart')}}</a> |
-                  <a href="login.html">{{ trans('frontend/header.my_account')}}</a>
+                  <a title="{{trans('frontend/header.my_cart')}}" href="login.html"><img src="/images/rombo.png" width="7px"></i> {{trans('frontend/header.my_cart')}}</a> |
+                  <a title="{{trans('frontend/header.my_account')}}" href="login.html">{{ trans('frontend/header.my_account')}}</a>
                 </div>
               </div>
               <!-- End Header Top Links --> 
@@ -50,12 +50,12 @@
           <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 hidden-xs">
             <div class="search-box">
               <form action="cat" method="POST" id="search_mini_form" name="Categories">
-                <input type="text" placeholder="{{ trans('frontend/header.search')}}"  maxlength="70" name="search" id="search">
+                <input type="text" placeholder="{{ trans('frontend/header.search')}}..."  maxlength="70" name="search" id="search">
                 <button type="button" class="search-btn-bg"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
               </form>
             </div>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"> <a href="#" class="top-link-compare hidden-xs"><i class="compare"><div class="wish">Compare</div></i></a> <a href="#" title="My Wishlist" class="top-link-wishlist hidden-xs"><i class="fa fa-heart"><div class="wish">Wishlist</div></i></a>
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"> <a href="#" title="My Wishlist" class="top-link-wishlist hidden-xs"><i class="fa fa-heart"><div class="wish">Wishlist</div></i></a>
             <div class="top-cart-contain pull-right"> 
               <!-- Top Cart -->
               <div class="mini-cart">

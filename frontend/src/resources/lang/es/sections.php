@@ -7,4 +7,8 @@ return [
     'personalized_gifts' => 'Regalos personalizados',
     'original_candy' => 'Dulces originales',
     'contact' => 'Contacto',
+    'candies' => 'Dulces',
+    'babies' => 'Bebés',
+    'arrangements' => 'Arreglos',
+    'others' => 'Otros',
 ];

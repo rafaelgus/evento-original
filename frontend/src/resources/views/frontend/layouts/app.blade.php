@@ -33,10 +33,6 @@
 <div id="page">
     @include('frontend.partials.header')
 
-    @include('frontend.partials.slider')
-
-    {{--@include('frontend.partials.our-features')--}}
-
     @yield('content')
 </div>
 
