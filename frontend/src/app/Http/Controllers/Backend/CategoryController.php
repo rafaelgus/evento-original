@@ -136,4 +136,16 @@ class CategoryController extends Controller
         return redirect()->to('/management/category/'. $category->getId() .'/createSubCategory');
     }
 
+    public function getAllCategories()
+    {
+        $categories = $this->categoryService->findAll(App::getLocale());
+        $parsedCategories = [];
+
+        foreach ($categories as $category) {
+            $parsedCategories[] = ['id' => $category->getId(), 'name' => $category->getName()];
+        }
+
+        return $parsedCategories;
+    }
+
 }

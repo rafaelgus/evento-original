@@ -72,4 +72,9 @@ class BrandController extends Controller
 
         return Datatables::of($brandsCollection)->make(true);
     }
+
+    public function getAllBrands()
+    {
+
+    }
 }

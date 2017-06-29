@@ -11,7 +11,6 @@
     <link rel="shortcut icon" href="/favicon.ico">
 
 @yield('scripts_head')
-
 <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/backend/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->

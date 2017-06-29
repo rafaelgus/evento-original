@@ -39,6 +39,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit', 'Backend\ColorController@edit');
             Route::put('/{id}', 'Backend\ColorController@update');
             Route::get('/getDatatable', 'Backend\ColorController@getDatatable');
+            Route::get('/getAll', 'Backend\ColorController@getAllColors');
         });
         Route::group(['prefix' => '/flavour'], function () {
             Route::get('/create', 'Backend\FlavourController@create');
@@ -47,6 +48,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit', 'Backend\FlavourController@edit');
             Route::put('/{id}', 'Backend\FlavourController@update');
             Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
+            Route::get('/getAll', 'Backend\FlavourController@getAllFlavours');
         });
         Route::group(['prefix' => '/brand'], function () {
             Route::get('/create', 'Backend\BrandController@create');
@@ -55,6 +57,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit', 'Backend\BrandController@edit');
             Route::put('/{id}', 'Backend\BrandController@update');
             Route::get('/getDatatable', 'Backend\BrandController@getDatatable');
+            Route::get('/getAll', 'Backend\BrandController@getAllBrands');
         });
         Route::group(['prefix' => '/allergen'], function () {
             Route::get('/create', 'Backend\AllergenController@create');
@@ -63,6 +66,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\AllergenController@store');
             Route::put('/{id}', 'Backend\AllergenController@update');
             Route::get('getAllergens', 'Backend\AllergenController@getDataTables');
+            Route::get('/getAll', 'Backend\AllergenController@getAllAllergens');
         });
         Route::group(['prefix' => '/category'], function () {
            Route::get('/create', 'Backend\CategoryController@create');
@@ -75,6 +79,7 @@ Route::group(['prefix' => '/management'], function () {
            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+           Route::get('/getAll', 'Backend\CategoryController@getAllCategories');
         });
         Route::group(['prefix' => '/tags'], function () {
             Route::get('/create', 'Backend\TagController@create');
@@ -82,7 +87,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/', 'Backend\TagController@index');
             Route::post('/', 'Backend\TagController@store');
             Route::put('/{id}', 'Backend\TagController@update');
-            Route::get('getTags', 'Backend\AllergenController@getDataTables');
+            Route::get('getTags', 'Backend\TagController@getDataTables');
+            Route::get('/getAll', 'Backend\TagController@getAllTags');
+        });
+        Route::group(['prefix' => '/articles'], function () {
+            Route::get('/create', 'Backend\ArticleController@create');
+            Route::get('/', 'Backend\ArticleController@index');
+            Route::get('/getArticles', 'Backend\ArticleController@getDataTables');
+            Route::post('/', 'Backend\ArticleController@store');
+            Route::put('/{id}', 'Backend\ArticleController@update');
         });
     });
 });

@@ -143,6 +143,11 @@ class Article
      */
     private $translations;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -488,4 +493,22 @@ class Article
             $t->setObject($this);
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
+    }
+
+
 }

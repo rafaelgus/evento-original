@@ -71,4 +71,17 @@ class AllergenController
 
         return Datatables::of($allergenCollection)->make(true);
     }
+
+    public function getAllAllergens()
+    {
+        $allergens = $this->allergenService->findAll(App::getLocale());
+
+        $parsedAllergen = [];
+
+        foreach ($allergens as $allergen) {
+            $parsedAllergen[] = ['id' => $allergen->getId(), 'name' => $allergen->getName()];
+        }
+
+        return $parsedAllergen;
+    }
 }

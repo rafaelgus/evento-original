@@ -66,6 +66,24 @@ return [
       ],
       'stock_placements' => [
           'title' => 'Muebles'
-      ]
+      ],
+      'article' => [
+          'title' => 'Artículos',
+          'new' => 'Nuevo',
+          'edit' => 'Editar',
+          'name' => 'Nombre',
+          'description' => 'Descripcion',
+          'costPrice' => 'Precio de costo',
+          'price' => 'Precio',
+          'barCode' => 'Codigo de barra',
+          'internalCode' => 'Codigo interno',
+          'tags' => 'Tags',
+          'colors' => 'Colores',
+          'ingredients' => 'Ingredientes',
+          'allergens' => 'Alérgenos',
+          'slug' => 'Slug',
+          'flavours' => 'Sabores',
+          'categories' => 'Categorías'
+      ],
   ]
 ];

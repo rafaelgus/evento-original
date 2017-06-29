@@ -53,6 +53,7 @@ class ArticleService
      * @param string $barCode
      * @param string $internalCode
      * @param string $status
+     * @param string $slug
      * @param $price
      * @param $priceCurrency
      * @param Tax|null $tax
@@ -72,6 +73,7 @@ class ArticleService
         string $barCode,
         string $internalCode,
         string $status,
+        string $slug,
         $price,
         $priceCurrency,
         Tax $tax = null,
@@ -90,6 +92,7 @@ class ArticleService
         $article->setBarCode($barCode);
         $article->setInternalCode($internalCode);
         $article->setStatus($status);
+        $article->setSlug($slug);
         if ($status === Article::STATUS_PUBLISHED) {
             $article->setPublishedOn(new DateTime('now'));
         }
