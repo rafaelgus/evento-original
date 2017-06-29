@@ -91,6 +91,7 @@ class ArticleController
             $data['barCode'],
             $data['internalCode'],
             $data['status'],
+            $data['slug'],
             $data['price'],
             $data['currency'],
             null,
