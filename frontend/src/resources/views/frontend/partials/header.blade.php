@@ -44,7 +44,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 logo-block"> 
             <!-- Header Logo -->
-            <div class="logo"> <a title="Magento Commerce" href="index.html"><img alt="Magento Commerce" src="images/logo.png" width="83%"> </a> </div>
+            <div class="logo"> <a title="Evento Original" href="/"><img alt="Evento Original" src="/images/logo.png" width="83%"> </a> </div>
             <!-- End Header Logo --> 
           </div>
           <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 hidden-xs">

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('frontend.home');
 });
 
+Route::get('/articulo/detalle', function () {
+    return view('frontend.articles.show');
+});
+
 //Route::get('/', function () {
 //    return view('backend.home');
 //});

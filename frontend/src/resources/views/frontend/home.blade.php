@@ -42,7 +42,7 @@
                                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                         <div class="item-inner">
                                                             <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="product_detail.html"> <img alt="Maharaja 450W Juicer" src="/products-images/product1.jpg"> </a>
+                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/products-images/product1.jpg"> </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">
                                                                             <li><a class="link-quickview" href="quick_view.html"></a> </li>
@@ -54,7 +54,7 @@
                                                             </div>
                                                             <div class="item-info">
                                                                 <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="product_detail.html"> MENTOS PINK LEMONADE </a> </div>
+                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle"> MENTOS PINK LEMONADE </a> </div>
                                                                     <div class="item-content">
                                                                         <div class="rating">
                                                                             <div class="ratings">
