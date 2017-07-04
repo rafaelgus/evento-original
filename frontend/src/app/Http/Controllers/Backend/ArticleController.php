@@ -2,15 +2,17 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\StoreArticleRequest;
+use App\Http\Requests\Backend\UpdateArticleRequest;
 use App\Http\Requests\Backend\UpdateCategoryRequest;
 use EventoOriginal\Core\Services\AllergenService;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
 use EventoOriginal\Core\Services\FlavourService;
+use EventoOriginal\Core\Services\ImageService;
 use EventoOriginal\Core\Services\TagService;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Yajra\Datatables\Datatables;
 
@@ -24,6 +26,7 @@ class ArticleController
     protected $tagsService;
     protected $allergenService;
     protected $flavourService;
+    protected $imageService;
 
     public function __construct(
         ArticleService $articleService,
@@ -31,7 +34,8 @@ class ArticleController
         TagService $tagService,
         ColorService $colorService,
         AllergenService $allergenService,
-        FlavourService $flavourService
+        FlavourService $flavourService,
+        ImageService $imageService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -39,6 +43,7 @@ class ArticleController
         $this->flavourService = $flavourService;
         $this->colorService = $colorService;
         $this->allergenService = $allergenService;
+        $this->imageService = $imageService;
     }
 
     public function index()
@@ -49,6 +54,13 @@ class ArticleController
     public function create()
     {
         return view('backend.admin.articles.create');
+    }
+
+    public function edit(int $id)
+    {
+        $article = $this->articleService->findOneById($id, App::getLocale());
+
+        return view('backend.admin.articles.edit')->with('article', $article);
     }
 
     public function store(StoreArticleRequest $request)
@@ -68,7 +80,7 @@ class ArticleController
         $colors = $this
             ->colorService
             ->findByIds(
-                $request->input('tags')
+                $request->input('colors')
             );
 
         $flavours = $this
@@ -85,7 +97,7 @@ class ArticleController
             );
 
         $data = $request->all();
-        $this->articleService->create(
+        $article = $this->articleService->create(
             $data['name'],
             $data['description'],
             $data['barCode'],
@@ -93,7 +105,7 @@ class ArticleController
             $data['status'],
             $data['slug'],
             $data['price'],
-            $data['currency'],
+            'EUR',
             null,
             $data['costPrice'],
             $data['ingredients'],
@@ -105,14 +117,48 @@ class ArticleController
             $allergens
         );
 
+        if ($request->allFiles()) {
+            $images = $this->storeImage($request->allFiles(), $article);
+        } else {
+            $images = [];
+        }
+
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
 
         return redirect()->to(self::ARTICLE_CREATE_ROUTE);
     }
 
-    public function update(int $id, UpdateCategoryRequest $request)
+    public function storeImage(array $files, $article)
+    {
+        $imageNumber = 1;
+        $images = [];
+
+        foreach ($files as $file) {
+            $path = $file->hasName();
+
+            $file->storeAs('/articles', $path);
+            $image = $this
+                ->imageService
+                ->create(
+                    $path,
+                    'image_' . $imageNumber, $article);
+            $images[] = $image;
+
+            $imageNumber = $imageNumber + 1;
+        }
+
+        return $images;
+    }
+
+    public function update(int $id, UpdateArticleRequest $request)
     {
         $article = $this->articleService->findOneById($id, App::getLocale());
+
+        if ($request->allFiles()) {
+            $images = $this->storeImage($request->allFiles(), $article  );
+        } else {
+            $images = [];
+        }
 
         $allergens = $this
             ->allergenService
@@ -129,7 +175,7 @@ class ArticleController
         $colors = $this
             ->colorService
             ->findByIds(
-                $request->input('tags')
+                $request->input('colors')
             );
 
         $flavours = $this
@@ -145,7 +191,7 @@ class ArticleController
                 App::getLocale()
             );
 
-        $article->setAllergen($allergens);
+        $article->setAllergens($allergens);
         $article->setColors($colors);
         $article->setFlavours($flavours);
         $article->setTags($tags);
@@ -155,7 +201,7 @@ class ArticleController
         $article->setBarCode($request->input('barCode'));
         $article->setPrice($request->input('internalCode'));
         $article->setCostPrice($request->input('costPrice'));
-        $article->setCurrency($request->input('currency'));
+        $article->setPriceCurrency('EUR');
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
@@ -179,7 +225,6 @@ class ArticleController
                 'internalCode' => $article->getInternalCode()
             ]);
         }
-
-        return Datatables::of($articlesCollection)->make();
+        return Datatables::of($articlesCollection)->make(true);
     }
 }

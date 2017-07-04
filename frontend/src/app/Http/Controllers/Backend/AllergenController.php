@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Validator;
 use Yajra\Datatables\Facades\Datatables;
 
 class AllergenController

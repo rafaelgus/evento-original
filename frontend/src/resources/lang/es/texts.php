@@ -69,6 +69,7 @@ return [
       ],
       'article' => [
           'title' => 'Artículos',
+          'view' => 'ver',
           'new' => 'Nuevo',
           'edit' => 'Editar',
           'name' => 'Nombre',
@@ -82,8 +83,10 @@ return [
           'ingredients' => 'Ingredientes',
           'allergens' => 'Alérgenos',
           'slug' => 'Slug',
+          'status' => 'Estado',
           'flavours' => 'Sabores',
-          'categories' => 'Categorías'
+          'categories' => 'Categorías',
+          'image' => 'Imagen'
       ],
   ]
 ];

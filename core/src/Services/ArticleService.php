@@ -65,6 +65,7 @@ class ArticleService
      * @param array $colors
      * @param array $flavours
      * @param array $allergens
+     * @param array $images
      * @return Article
      */
     public function create(

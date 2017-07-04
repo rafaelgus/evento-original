@@ -148,6 +148,11 @@ class Article
      */
     private $slug;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="article")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -157,6 +162,7 @@ class Article
         $this->flavours = new ArrayCollection();
         $this->allergens = new ArrayCollection();
         $this->translations = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -404,7 +410,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getColors()
     {
@@ -495,7 +501,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
@@ -503,11 +509,32 @@ class Article
     }
 
     /**
-     * @param mixed $slug
+     * @param string $slug
      */
     public function setSlug(string $slug)
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $images
+     */
+    public function addImage(Image $images)
+    {
+        $this->images[] = $images;
+    }
+
+    public function setImages(array $images)
+    {
+        $this->images = $images;
     }
 
 

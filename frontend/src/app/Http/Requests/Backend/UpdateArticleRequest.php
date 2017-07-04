@@ -26,11 +26,16 @@ class UpdateArticleRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:500',
             'category' => 'required',
             'barCode' => 'required|max:255',
             'internalCode' => 'required|max:255',
-            'price' => 'required'
+            'price' => 'required',
+            'costPrice' => 'required',
+            'allergens' => 'required',
+            'colors' => 'required',
+            'flavours' => 'required',
+            'tags' => 'required'
         ];
     }
 }

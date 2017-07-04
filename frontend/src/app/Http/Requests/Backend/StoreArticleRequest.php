@@ -26,11 +26,16 @@ class StoreArticleRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'description' => 'required|max:1000',
+            'description' => 'required|max:500',
             'category' => 'required',
-            'barCode' => 'required|max:255',
-            'internalCode' => 'required|max:255',
-            'price' => 'required'
+            'barCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,barCode',
+            'internalCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,internalCode',
+            'price' => 'required',
+            'costPrice' => 'required',
+            'allergens' => 'required',
+            'colors' => 'required',
+            'flavours' => 'required',
+            'tags' => 'required'
         ];
     }
 }

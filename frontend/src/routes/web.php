@@ -92,6 +92,7 @@ Route::group(['prefix' => '/management'], function () {
         });
         Route::group(['prefix' => '/articles'], function () {
             Route::get('/create', 'Backend\ArticleController@create');
+            Route::get('/{id}/edit', 'Backend\ArticleController@edit');
             Route::get('/', 'Backend\ArticleController@index');
             Route::get('/getArticles', 'Backend\ArticleController@getDataTables');
             Route::post('/', 'Backend\ArticleController@store');
