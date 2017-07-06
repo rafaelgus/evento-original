@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
 use Illuminate\Support\ServiceProvider;
@@ -68,6 +69,12 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\CategoryRepository::class, function () {
             return EntityManager::getRepository(Entities\Category::class);
+        });
+        $this->app->singleton(Repositories\LicenseRepository::class, function() {
+           return EntityManager::getRepository(Entities\License::class);
+        });
+        $this->app->singleton(Repositories\IngredientRepository::class, function(){
+           return EntityManager::getRepository(Entities\Ingredient::class);
         });
     }
 }

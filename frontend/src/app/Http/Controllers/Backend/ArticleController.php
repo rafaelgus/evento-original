@@ -14,6 +14,7 @@ use EventoOriginal\Core\Services\TagService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
 
 class ArticleController
@@ -117,11 +118,14 @@ class ArticleController
             $allergens
         );
 
-        if ($request->allFiles()) {
+        if (count($request->allFiles()) > 0) {
             $images = $this->storeImage($request->allFiles(), $article);
         } else {
             $images = [];
         }
+
+        $article->setImages($images);
+        $this->articleService->save($article);
 
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
 
@@ -134,16 +138,15 @@ class ArticleController
         $images = [];
 
         foreach ($files as $file) {
-            $path = $file->hasName();
-
-            $file->storeAs('/articles', $path);
+            $imageName = bcrypt($file->getFilename());
+            $file->storeAs('/article', $imageName .'.jpg');
             $image = $this
                 ->imageService
                 ->create(
-                    $path,
+                    $imageName,
                     'image_' . $imageNumber, $article);
-            $images[] = $image;
 
+            $images[] = $image;
             $imageNumber = $imageNumber + 1;
         }
 
@@ -208,6 +211,8 @@ class ArticleController
 
         return redirect()->to('/management/articles/'. $id . '/edit');
     }
+
+
 
     public function getDataTables()
     {

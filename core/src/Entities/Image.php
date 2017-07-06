@@ -83,9 +83,9 @@ class Image
     }
 
     /**
-     * @param mixed $article
+     * @param Article $article
      */
-    public function setArticle(string $article)
+    public function setArticle(Article $article)
     {
         $this->article = $article;
     }
