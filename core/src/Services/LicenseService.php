@@ -39,12 +39,20 @@ class LicenseService
 
     /**
      * @param int $id
-     * @return null|object
+     * @return null|License
      */
     public function findOneById(int $id)
     {
         $license = $this->licenseRepository->findById($id);
 
         return $license;
+    }
+
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->licenseRepository->findAll();
     }
 }

@@ -24,7 +24,7 @@ class UpdateIngredientRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:EventoOriginal\Core\Entities\Ingredient,name'
         ];
     }
 }

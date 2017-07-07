@@ -88,5 +88,17 @@ return [
           'categories' => 'Categorías',
           'image' => 'Imagen'
       ],
+      'license' => [
+          'title' => 'Licensias',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'editar'
+      ],
+      'ingredients' => [
+          'title' => 'Ingredientes',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'editar'
+      ]
   ]
 ];

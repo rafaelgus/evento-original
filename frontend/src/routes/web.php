@@ -98,5 +98,28 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\ArticleController@store');
             Route::put('/{id}', 'Backend\ArticleController@update');
         });
+        Route::group(['prefix' => '/ingredients'], function() {
+            Route::get('/create', 'Backend\IngredientController@create');
+            Route::get('/{id}/edit', 'Backend\IngredientController@create');
+            Route::get('/', 'Backend\IngredientController@index');
+            Route::put('/{id}', 'Backend\IngredientController@update');
+            Route::post('/', 'Backend\IngredientController@store');
+        });
+        Route::group(['prefix' => '/ingredients'], function() {
+            Route::get('/create', 'Backend\IngredientController@create');
+            Route::get('/{id}/edit', 'Backend\IngredientController@create');
+            Route::get('/', 'Backend\IngredientController@index');
+            Route::get('/getIngredients', 'Backend\IngredientController@getDataTables');
+            Route::put('/{id}', 'Backend\IngredientController@update');
+            Route::post('/', 'Backend\IngredientController@store');
+        });
+        Route::group(['prefix' => '/licenses'], function() {
+            Route::get('/create', 'Backend\LicenseController@create');
+            Route::get('/{id}/edit', 'Backend\LicenseController@edit');
+            Route::get('/getLicenses', 'Backend\LicenseController@getDataTables');
+            Route::get('/', 'Backend\LicenseController@index');
+            Route::put('/{id}', 'Backend\LicenseController@update');
+            Route::post('/', 'Backend\LicenseController@store');
+        });
     });
 });

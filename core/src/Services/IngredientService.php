@@ -48,4 +48,12 @@ class IngredientService
 
         return $ingredient;
     }
+
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->ingredientRepository->findAll();
+    }
 }
