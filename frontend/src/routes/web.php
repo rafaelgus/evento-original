@@ -27,6 +27,10 @@ Route::get('/lista-de-deseos', function () {
     return view('frontend.my_wishlist');
 });
 
+Route::get('/contacto', function () {
+    return view('frontend.contact_us');
+});
+
 //Route::get('/', function () {
 //    return view('backend.home');
 //});

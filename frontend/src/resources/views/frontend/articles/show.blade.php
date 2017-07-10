@@ -52,9 +52,21 @@
                       <h1>Taza de ensueño</h1>
                     </div>
                     <div class="ratings">
-                      <div class="rating-box">
-                        <div style="width:60%" class="rating"></div>
-                      </div>
+                      {{--<div class="rating-box">--}}
+                        {{--<div style="width:60%" class="rating"></div>--}}
+                      {{--</div>--}}
+                      <fieldset class="rating rating-set">
+                        <input type="radio" id="star5" name="rating" value="5" disabled /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="rating" value="4 and a half" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="rating" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="rating" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="rating" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="rating" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="rating" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="rating" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="rating" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                      </fieldset>
                       <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Your Review</a> </p>
                     </div>
                     <div class="price-block">

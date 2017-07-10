@@ -17,7 +17,7 @@
                 </li>
                 <li class="mega-menu"> <a href="grid.html" class="level-top"> <span>{{ trans('sections.original_candy') }}</span> </a>
                 </li>
-                <li class="mega-menu"><a href="grid.html" class="level-top"><span>{{ trans('sections.contact') }}</span></a>
+                <li class="mega-menu"><a href="/contacto" class="level-top"><span>{{ trans('sections.contact') }}</span></a>
                 
                         </div><!-- container -->
                     </div>

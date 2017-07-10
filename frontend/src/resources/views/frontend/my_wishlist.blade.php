@@ -99,12 +99,16 @@
                         </div></div>
                 </section>
 
-                @include('frontend.partials.my_account')
+                @include('frontend.partials.my_account_sidebar')
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts_body')
-
+    <script>
+        $(document).ready(function() {
+            $('#my_wishlist').addClass("current");
+        });
+    </script>
 @endsection

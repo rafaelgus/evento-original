@@ -351,7 +351,7 @@ a.button:hover {
 .col2-right-layout .col-main {
     background: none repeat scroll 0 0 #fff;
     display: inline-block;
-    font-size: 13px;
+    font-size: 14px;
     width: 100%;
 }
 
@@ -4529,7 +4529,7 @@ a.button.detail-bnt span {
 .ratings .rating-links a {
     margin: 0;
     text-decoration: none;
-    color: #666;
+    color: #e94d65;
     font-size: 13px;
 }
 
@@ -5213,7 +5213,7 @@ a.button.detail-bnt span {
 
 .breadcrumbs a {
     color: #605d7d;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
 }
 
@@ -5382,7 +5382,7 @@ figure.effect p {
 
 .block .block-title {
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1px;
     line-height: normal;
@@ -5756,7 +5756,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 
 .sidebar a, .sidebar .block-layered-nav .price .sub {
     color: #e94d65;
-    font-size: 13px;
+    font-size: 16px;
 }
 
 .sidebar .block-layered-nav .price {
@@ -6765,7 +6765,7 @@ ol#compare-items li.last {
 
 .block-company li a:hover {
     padding: 0 5px;
-    color: #000;
+    color: #F3BE49;
 }
 
 .block-company li:before {
@@ -6793,9 +6793,10 @@ ol#compare-items li.last {
 }
 
 .block-company li strong {
-    color: #333;
+    color: #413C5E;
     font-weight: 900;
     padding: 0 5px;
+    font-size: 16px;
 }
 
 /*12n. Block: Reorder */
@@ -7800,7 +7801,7 @@ ol#compare-items li.last {
 }
 
 .product-view .product-shop .ratings {
-    padding: 0px 0 18px 0px;
+    padding: 0px 0 14px 0px;
     margin: auto;
     border-bottom: 1px #ddd dotted;
     position: relative;
@@ -7813,6 +7814,7 @@ ol#compare-items li.last {
 .product-view .product-shop .ratings .rating-links {
     margin-bottom: 0px;
     display: inline-block;
+    margin-top: 7px;
 }
 
 .product-view .product-shop .no-rating {
@@ -10362,7 +10364,7 @@ address {
 
 .cart .totals table th, .cart .totals table td strong {
     font-weight: 900;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .cart-collaterals {
@@ -10515,7 +10517,7 @@ input#coupon_code {
 
 #shopping-cart-table input.qty {
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #605d7d;
     font-size: 15px;
     font-weight: normal;
     margin: 0;
@@ -10722,6 +10724,8 @@ button.button.btn-proceed-checkout span {
 
     transition: all 0.3s linear;
     text-decoration: none;
+    display: block;
+    margin: -2px;
 }
 
 #wishlist-table a.remove-item:before {
@@ -10791,7 +10795,7 @@ button.button.btn-proceed-checkout span {
     background-color: #fff;
     border: none;
     transition: all 0.3s linear;
-    margin: 0 0 10px;
+    margin: 6px 0 10px;
 }
 
 #wishlist-table button.button.btn-cart span {
@@ -11653,7 +11657,7 @@ a.button.wishlist {
 }
 
 .page-not-found h2 {
-    color: #da2c2a;
+    color: #423d5f;
     font-size: 160px;
     font-weight: bold;
     line-height: 1;
@@ -12112,18 +12116,19 @@ a.button.wishlist {
 
 }
 
+
 .data-table thead th {
-    border-bottom: 2px #e5e5e5 solid;
-    border-top: 1px #e5e5e5 solid
+    border-bottom: 2px #605d7d solid;
+    border-top: 1px #605d7d solid
 }
 
 .data-table tbody th, .data-table tbody td {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #605d7d;
     padding: 10px;
 }
 
 .cart-table tbody th, .cart-table tbody td {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #605d7d;
     vertical-align: middle;
 }
 
@@ -17321,3 +17326,42 @@ a.button.wishlist {
 .color-detail {
     display: inline;
 }
+
+.rating {
+    border: none;
+    float: left;
+    margin-left: -7px;
+    margin-right: 3px;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-select > input:checked ~ label, /* show gold star when clicked */
+.rating-select:not(:checked) > label:hover, /* hover current star */
+.rating-select:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating-select > input:checked + label:hover, /* hover current star when changing rating */
+.rating-select > input:checked ~ label:hover,
+.rating-select > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-select > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+.rating > input:checked ~ label { color: #FFD700;  } /* hover previous stars in list */
