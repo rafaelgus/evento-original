@@ -27,6 +27,7 @@ class StoreArticleRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'description' => 'required|max:500',
+            'shortDescription' => 'required|max:255',
             'category' => 'required',
             'barCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,barCode',
             'internalCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,internalCode',

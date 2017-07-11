@@ -10,7 +10,7 @@ use Yajra\Datatables\Datatables;
 
 class IngredientController
 {
-    const INGREDIENT_CREATE_ROUTE = '/management/ingredient/create';
+    const INGREDIENT_CREATE_ROUTE = '/management/ingredients/create';
 
     protected $ingredientService;
 
@@ -68,5 +68,17 @@ class IngredientController
         }
 
         return Datatables::of($ingredientsCollection)->make(true);
+    }
+
+    public function getAll()
+    {
+        $ingredients = $this->ingredientService->findAll();
+        $parsedIngredients = [];
+
+        foreach ($ingredients as $ingredient) {
+            $parsedIngredients[] = ['id' => $ingredient->getId(), 'name' => $ingredient->getName()];
+        }
+
+        return $parsedIngredients;
     }
 }

@@ -86,19 +86,22 @@ return [
           'status' => 'Estado',
           'flavours' => 'Sabores',
           'categories' => 'Categorías',
-          'image' => 'Imagen'
+          'image' => 'Imagen',
+          'shortDescription' => 'Descripcion corta'
       ],
       'license' => [
-          'title' => 'Licensias',
+          'title' => 'Licencia',
           'view' => 'Ver',
           'new' => 'Nuevo',
-          'edit' => 'editar'
+          'edit' => 'Editar',
+          'name' => 'Nombre'
       ],
       'ingredients' => [
           'title' => 'Ingredientes',
           'view' => 'Ver',
           'new' => 'Nuevo',
-          'edit' => 'editar'
+          'edit' => 'Editar',
+          'name' => 'Nombre'
       ]
   ]
 ];

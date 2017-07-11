@@ -44,6 +44,16 @@
                                     {!! $errors->first('description', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription')}}</textarea>
+
+                                    {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('barCode') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.barCode') }}</label>
                                 <div class="col-sm-10">
@@ -60,28 +70,60 @@
                                     {!! $errors->first('internalCode', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">venta por</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="priceType" name="priceType">
+                                        <option value="1">Unidad</option>
+                                        <option value="2">Granel</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="granel" class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">cantidad</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="quantity" name="price"
+                                           placeholder="{{ trans('texts.sections.article.quantity') }}" value="{{ old('price') }}">
+                                    {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}" id="priceInput">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.price') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputName" name="price"
+                                    <input type="number" class="form-control" id="price" name="price"
                                            placeholder="{{ trans('texts.sections.article.price') }}" value="{{ old('price') }}">
                                     {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            <div class="form-group" id="agregar">
+                                <div class="col-md-12">
+                                    <button type="button" id="addPrice" class="btn btn-danger pull-right">Agregar</button>
+                                </div>
+                            </div>
+                            <div class="row" id="table-price">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <table class="table table-bordered" id="tablePrice">
+                                        <tbody>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="hiddens">
+
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('costPrice') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.costPrice') }}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" id="inputName" name="costPrice"
                                            placeholder="{{ trans('texts.sections.article.costPrice') }}" value="{{ old('costPrice')}}">
                                     {!! $errors->first('costPrice', '<span class="help-block">* :message</span>') !!}
-                                </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('ingredients') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="ingredients"
-                                           placeholder="{{ trans('texts.sections.article.ingredients') }}" value="{{ old('ingredients')}}">
-                                    {!! $errors->first('ingredients', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
@@ -103,11 +145,19 @@
                                     {!! $errors->first('status', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
                             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="categories" name="category"></select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" id="license" name="license"></select>
+                                    {!! $errors->first('license', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('tags[]') ? 'has-error' : '' }}">
@@ -131,6 +181,13 @@
                                     {!! $errors->first('colors[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            <div class="form-group {{ $errors->has('ingredients[]') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
+                                <div class="col-sm-10">
+                                    <select multiple class="form-control select2" id="ingredients" name="ingredients[]"></select>
+                                    {!! $errors->first('ingredients[]', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('flavours[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.flavours') }}</label>
                                 <div class="col-sm-10">
@@ -138,11 +195,10 @@
                                     {!! $errors->first('flavours[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-
-                            <div id="fine-uploader-gallery"></div>
-
+                            @if($ableToLoad)
+                                <div id="fine-uploader-gallery"></div>
+                            @endif
                         </div>
-
                         <div class="box-footer">
                             <button type="submit" class="btn btn-danger pull-right">{{ trans('buttons.save') }}</button>
                         </div>
@@ -157,9 +213,6 @@
 @endsection
 
 @section('scripts_body')
-
-
-
 <link href="/css/select2.min.css" rel="stylesheet" />
 <script src="/js/select2.min.js"></script>
 
@@ -169,11 +222,31 @@
 
 <script type="text/javascript">
     $('#categories').select2();
+    $('#ingredients').select2();
+    $('#license').select2();
     $('#status').select2();
     $('#tags').select2();
     $('#allergens').select2();
     $('#colors').select2();
     $('#flavours').select2();
+
+    $('#addPrice').click(function() {
+        var quantity = $('#quantity').val();
+        var price = $('#price').val();
+        var rowCount = $('#tablePrice tr').length;
+
+        if (parseInt(quantity) > 0 && parseFloat(price) > 0) {
+            $('#tablePrice tr:last').after('<tr><td>'+rowCount+'</td><td>'+quantity+'</td><td>'+price+'</td></tr>');
+
+            $('#hiddens').append('<input type="hidden" value="'+quantity+'" name="quantities[]">');
+            $('#hiddens').append('<input type="hidden" value="'+price+'" name="prices[]">');
+
+            $('#quantity').val('');
+            $('#price').val();
+        } else {
+            alert('El precio y la cantidad debe ser mayor a 0');
+        }
+     });
 
     $.ajaxSetup({
         headers: {
@@ -246,6 +319,46 @@
         });
     });
 
+    $.ajax({
+        context: this,
+        url: '/management/licenses/getAll',
+        type: 'GET'
+    }).done(function (result) {
+        $.each(result, function (i, option) {
+            $('#license').append($('<option>', {
+                value: option.id,
+                text: option.name
+            }));
+        });
+    });
+
+    $.ajax({
+        context: this,
+        url: '/management/ingredients/getAll',
+        type: 'GET'
+    }).done(function (result) {
+        $.each(result, function (i, option) {
+            $('#ingredients').append($('<option>', {
+                value: option.id,
+                text: option.name
+            }));
+        });
+    });
+
+    $('#priceType').change(function() {
+       var type = parseInt($('#priceType').val());
+
+       if (type == 1) {
+           $('#agregar').hide();
+           $('#granel').hide();
+           $('#table-price').hide();
+       }
+       if (type == 2) {
+           $('#agregar').show();
+           $('#granel').show();
+           $('#table-price').show();
+       }
+    });
 
 </script>
 <script type="text/template" id="qq-template-gallery">
@@ -330,7 +443,13 @@
         element: document.getElementById("fine-uploader-gallery"),
         template: 'qq-template-gallery',
         request: {
-            endpoint: '/server/uploads'
+            endpoint: '/management/articles/uploadImage',
+            customHeaders: {
+                'X-CSRF-TOKEN' : '{{ csrf_token() }}'
+            },
+            params: {
+                'articleId': '{{ $articleId }}'
+            }
         },
         thumbnails: {
             placeholders: {
@@ -343,7 +462,4 @@
         }
     });
 </script>
-
-
-
 @endsection

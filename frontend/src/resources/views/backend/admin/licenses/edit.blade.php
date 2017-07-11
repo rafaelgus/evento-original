@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.ingredients.title') }}
-            <small>{{ trans('texts.sections.categories.edit') }}</small>
+            {{ trans('texts.sections.licenses.title') }}
+            <small>{{ trans('texts.sections.licenses.edit') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.ingredients.title') }}</li>
-            <li class="active">{{ trans('texts.sections.ingredients.edit') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.licenses.title') }}</li>
+            <li class="active">{{ trans('texts.sections.licenses.edit') }}</li>
         </ol>
     </section>
 @stop
@@ -22,7 +22,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="{{ '/management/category/' . $ingredient->getId() }}" method="POST">
+                    <form role="form" class="form-horizontal" action="{{ '/management/licenses/' . $licence->getId() }}" method="POST">
                         <div class="box-body">
                             @include('backend.messages.session')
 
@@ -30,10 +30,10 @@
                             <input type="hidden" name="_method" value="PUT">
 
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.ingredients.name') }}</label>
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.license.name') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="name"
-                                           placeholder="{{ trans('texts.sections.ingredients.name') }}" value="{{ old('name', $ingredient->getName()) }}">
+                                           placeholder="{{ trans('texts.sections.license.name') }}" value="{{ old('name', $license->getName()) }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>

@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.flavours.title') }}
-            <small>{{ trans('texts.sections.flavours.view') }}</small>
+            {{ trans('texts.sections.ingredients.title') }}
+            <small>{{ trans('texts.sections.ingredients.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.flavours.title') }}</li>
-            <li class="active">{{ trans('texts.sections.flavours.view') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.ingredients.title') }}</li>
+            <li class="active">{{ trans('texts.sections.ingredients.view') }}</li>
         </ol>
     </section>
 @stop
@@ -26,11 +26,11 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <table id="licenses-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="ingredient-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>{{ trans('texts.sections.flavours.name') }}</th>
+                                <th>{{ trans('texts.sections.ingredients.name') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -55,10 +55,10 @@
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
-            $('#licenses-table').DataTable({
+            $('#ingredient-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/licenses/getDataTable',
+                ajax: '/management/ingredients/getIngredients',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },

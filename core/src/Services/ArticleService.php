@@ -6,6 +6,7 @@ use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\ArticleTranslation;
 use EventoOriginal\Core\Entities\Brand;
 use EventoOriginal\Core\Entities\Category;
+use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Entities\Tax;
 use EventoOriginal\Core\Persistence\Repositories\ArticleRepository;
 use Exception;
@@ -58,14 +59,14 @@ class ArticleService
      * @param $priceCurrency
      * @param Tax|null $tax
      * @param $costPrice
-     * @param string $ingredients
      * @param Brand|null $brand
      * @param Category $category
+     * @param License $license
      * @param array $tags
      * @param array $colors
      * @param array $flavours
      * @param array $allergens
-     * @param array $images
+     * @param array $ingredients
      * @return Article
      */
     public function create(
@@ -75,17 +76,19 @@ class ArticleService
         string $internalCode,
         string $status,
         string $slug,
-        $price,
+        $price = null,
         $priceCurrency,
         Tax $tax = null,
         $costPrice,
-        string $ingredients,
         Brand $brand = null,
         Category $category,
+        License $license = null,
         array $tags = [],
         array $colors = [],
         array $flavours = [],
-        array $allergens = []
+        array $allergens = [],
+        array $ingredients = [],
+        array $prices = []
     ): Article {
         $article = new Article();
         $article->setName($name);
@@ -97,13 +100,20 @@ class ArticleService
         if ($status === Article::STATUS_PUBLISHED) {
             $article->setPublishedOn(new DateTime('now'));
         }
-        $article->setPrice($price);
+        if (count($prices) > 0 and $price == null) {
+
+        } else {
+            $article->setPrice($price);
+        }
+
         $article->setPriceCurrency($priceCurrency);
         if ($tax) {
             $article->setTax($tax);
         }
         $article->setCostPrice($costPrice);
         $article->setIngredients($ingredients);
+        $article->setLicense($license);
+
         if ($brand) {
             $article->setBrand($brand);
         }

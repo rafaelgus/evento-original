@@ -56,4 +56,18 @@ class IngredientService
     {
         return $this->ingredientRepository->findAll();
     }
+
+    /**
+     * @param array $ids
+     * @return array
+     */
+    public function findByIds(array $ids)
+    {
+        $ingredients = [];
+        foreach ($ids as $id) {
+            $ingredients[] = $this->ingredientRepository->findById($id);
+        }
+
+        return $ingredients;
+    }
 }

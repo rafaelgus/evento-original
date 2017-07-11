@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Requests\Backend\StoreArticleRequest;
 use App\Http\Requests\Backend\UpdateArticleRequest;
 use App\Http\Requests\Backend\UpdateCategoryRequest;
+use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Services\AllergenService;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
 use EventoOriginal\Core\Services\FlavourService;
 use EventoOriginal\Core\Services\ImageService;
+use EventoOriginal\Core\Services\IngredientService;
+use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\TagService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
@@ -28,6 +32,8 @@ class ArticleController
     protected $allergenService;
     protected $flavourService;
     protected $imageService;
+    protected $licenseService;
+    protected $ingredientService;
 
     public function __construct(
         ArticleService $articleService,
@@ -36,7 +42,9 @@ class ArticleController
         ColorService $colorService,
         AllergenService $allergenService,
         FlavourService $flavourService,
-        ImageService $imageService
+        ImageService $imageService,
+        LicenseService $licenseService,
+        IngredientService $ingredientService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -45,6 +53,8 @@ class ArticleController
         $this->colorService = $colorService;
         $this->allergenService = $allergenService;
         $this->imageService = $imageService;
+        $this->licenseService = $licenseService;
+        $this->ingredientService = $ingredientService;
     }
 
     public function index()
@@ -54,7 +64,10 @@ class ArticleController
 
     public function create()
     {
-        return view('backend.admin.articles.create');
+        return view('backend.admin.articles.create')
+            ->with(['ableToLoad' => false,
+                    'articleId' => false
+                ]);
     }
 
     public function edit(int $id)
@@ -97,6 +110,18 @@ class ArticleController
                     App::getLocale()
             );
 
+        $license = $this
+            ->licenseService
+            ->findOneById(
+                $request->input('license')
+            );
+
+        $ingredients = $this
+            ->ingredientService
+            ->findByIds(
+                $request->input('ingredients')
+            );
+
         $data = $request->all();
         $article = $this->articleService->create(
             $data['name'],
@@ -110,26 +135,24 @@ class ArticleController
             null,
             $data['costPrice'],
             $data['ingredients'],
-            null,
             $category,
+            $license,
             $tags,
             $colors,
             $flavours,
-            $allergens
+            $allergens,
+            $ingredients
         );
 
-        if (count($request->allFiles()) > 0) {
-            $images = $this->storeImage($request->allFiles(), $article);
-        } else {
-            $images = [];
-        }
-
-        $article->setImages($images);
         $this->articleService->save($article);
 
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
 
-        return redirect()->to(self::ARTICLE_CREATE_ROUTE);
+        return view('backend.admin.articles.create')
+            ->with([
+                'ableToLoad' => true,
+                'articleId' => $article->getId()
+                ]);
     }
 
     public function storeImage(array $files, $article)
@@ -212,8 +235,6 @@ class ArticleController
         return redirect()->to('/management/articles/'. $id . '/edit');
     }
 
-
-
     public function getDataTables()
     {
         $articles = $this->articleService->findAll(App::getLocale());
@@ -231,5 +252,12 @@ class ArticleController
             ]);
         }
         return Datatables::of($articlesCollection)->make(true);
+    }
+
+    public function uploadImages(Request $request)
+    {
+        $response = ['success' => true];
+
+        return json_encode($response);
     }
 }

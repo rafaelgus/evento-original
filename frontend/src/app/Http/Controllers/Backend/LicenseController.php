@@ -41,7 +41,7 @@ class LicenseController
 
         Session::flash('message', trans('backend/messages.confirmation.create.licenses'));
 
-        return view(self::INGREDIENT_CREATE_ROUTE);
+        return redirect()->to(self::INGREDIENT_CREATE_ROUTE);
     }
 
     public function update(int $id, UpdateLicenseRequest $request)
@@ -68,5 +68,18 @@ class LicenseController
         }
 
         return Datatables::of($licenceCollection)->make(true);
+    }
+
+    public function getAll()
+    {
+        $licenses = $this->licenseService->findAll();
+
+        $licenseParsed = [];
+
+        foreach ($licenses as $license) {
+            $licenseParsed[] = ['id' => $license->getId(), 'name' => $license->getName()];
+        }
+
+        return $licenseParsed;
     }
 }

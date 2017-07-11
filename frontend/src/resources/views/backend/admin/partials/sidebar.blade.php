@@ -28,6 +28,23 @@
         </ul>
     </li>
     <li class="treeview">
+        <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.license.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href='/management/licenses/'>{{ trans('texts.sections.license.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href='/management/licenses/create'>{{ trans('texts.sections.license.new') }}</a></li>
+        </ul>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.ingredients.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href='/management/ingredients/'>{{ trans('texts.sections.ingredients.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href='/management/ingredients/create'>{{ trans('texts.sections.ingredients.new') }}</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
         <a href="#"><i class="fa fa-gift"></i> <span>{{ trans('texts.sections.categories.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
             <li><a href="/management/category">{{ trans('texts.sections.categories.view') }}</a></li>

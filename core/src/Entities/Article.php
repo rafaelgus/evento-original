@@ -5,6 +5,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 /**
@@ -40,6 +41,12 @@ class Article
     private $description;
 
     /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string")
+     */
+    private $shortDescription;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $barCode;
@@ -55,9 +62,15 @@ class Article
     private $status;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", nullable=true)
      */
     private $price;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Price", mappedBy="article")
+     */
+    private $pricePerQuantity;
 
     /**
      * @ORM\Column(type="string")
@@ -81,10 +94,19 @@ class Article
     private $publishedOn;
 
     /**
-     * @Gedmo\Translatable
-     * @ORM\Column(type="text")
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(name="article_ingredients",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     *      )
      */
     private $ingredients;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="License", inversedBy="articles")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
+     */
+    private $licenses;
 
     /**
      * @ORM\ManyToOne(targetEntity="Brand", inversedBy="articles")
@@ -163,6 +185,7 @@ class Article
         $this->allergens = new ArrayCollection();
         $this->translations = new ArrayCollection();
         $this->images = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
     }
 
     /**
@@ -338,19 +361,24 @@ class Article
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getIngredients(): string
+    public function getIngredients()
     {
         return $this->ingredients;
     }
 
     /**
-     * @param string $ingredients
+     * @param array $ingredients
      */
-    public function setIngredients(string $ingredients)
+    public function setIngredients(array $ingredients)
     {
         $this->ingredients = $ingredients;
+    }
+
+    public function addIngredient(Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
     }
 
     /**
@@ -537,5 +565,35 @@ class Article
         $this->images = $images;
     }
 
+    /**
+     * @return array
+     */
+    public static function getAllowedStatus(): array
+    {
+        return self::$allowedStatus;
+    }
 
+    /**
+     * @param array $allowedStatus
+     */
+    public static function setAllowedStatus(array $allowedStatus)
+    {
+        self::$allowedStatus = $allowedStatus;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
+    }
+
+    /**
+     * @param License $license
+     */
+    public function setLicense(License $license)
+    {
+        $this->licenses = $license;
+    }
 }

@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('frontend.home');
 });
 
-//Route::get('/', function () {
-//    return view('backend.home');
-//});
-
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
     Route::post('/login', 'Auth\LoginController@managementLogin');
@@ -97,21 +93,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getArticles', 'Backend\ArticleController@getDataTables');
             Route::post('/', 'Backend\ArticleController@store');
             Route::put('/{id}', 'Backend\ArticleController@update');
+            Route::post('/uploadImage', 'Backend\ArticleController@uploadImages');
         });
         Route::group(['prefix' => '/ingredients'], function() {
             Route::get('/create', 'Backend\IngredientController@create');
-            Route::get('/{id}/edit', 'Backend\IngredientController@create');
-            Route::get('/', 'Backend\IngredientController@index');
-            Route::put('/{id}', 'Backend\IngredientController@update');
-            Route::post('/', 'Backend\IngredientController@store');
-        });
-        Route::group(['prefix' => '/ingredients'], function() {
-            Route::get('/create', 'Backend\IngredientController@create');
-            Route::get('/{id}/edit', 'Backend\IngredientController@create');
+            Route::get('/{id}/edit', 'Backend\IngredientController@edit');
             Route::get('/', 'Backend\IngredientController@index');
             Route::get('/getIngredients', 'Backend\IngredientController@getDataTables');
             Route::put('/{id}', 'Backend\IngredientController@update');
             Route::post('/', 'Backend\IngredientController@store');
+            Route::get('/getAll', 'Backend\IngredientController@getAll');
         });
         Route::group(['prefix' => '/licenses'], function() {
             Route::get('/create', 'Backend\LicenseController@create');
@@ -120,6 +111,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/', 'Backend\LicenseController@index');
             Route::put('/{id}', 'Backend\LicenseController@update');
             Route::post('/', 'Backend\LicenseController@store');
+            Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
     });
 });
