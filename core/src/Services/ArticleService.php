@@ -51,6 +51,7 @@ class ArticleService
     /**
      * @param string $name
      * @param string $description
+     * @param string $shortDescription
      * @param string $barCode
      * @param string $internalCode
      * @param string $status
@@ -67,11 +68,13 @@ class ArticleService
      * @param array $flavours
      * @param array $allergens
      * @param array $ingredients
+     * @param array $prices
      * @return Article
      */
     public function create(
         string $name,
         string $description,
+        string $shortDescription,
         string $barCode,
         string $internalCode,
         string $status,
@@ -93,6 +96,7 @@ class ArticleService
         $article = new Article();
         $article->setName($name);
         $article->setDescription($description);
+        $article->setShortDescription($shortDescription);
         $article->setBarCode($barCode);
         $article->setInternalCode($internalCode);
         $article->setStatus($status);
@@ -101,8 +105,8 @@ class ArticleService
             $article->setPublishedOn(new DateTime('now'));
         }
         if (count($prices) > 0 and $price == null) {
-
-        } else {
+            $article->setPrice($prices);
+        } elseif(count($prices) == 0 and $price != null) {
             $article->setPrice($price);
         }
 

@@ -9,7 +9,8 @@ return [
             'flavour' => 'Sabor guardado con éxito',
             'allergen' => 'El alergeno se guardo con exito',
             'license' => 'La licensia se guardo con exito',
-            'ingredient' => 'El ingrediente se actualizo con exito'
+            'ingredient' => 'El ingrediente se actualizo con exito',
+            'brand' => 'La marca se gruado con exito'
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',

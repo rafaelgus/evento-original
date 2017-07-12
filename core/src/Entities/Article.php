@@ -186,6 +186,7 @@ class Article
         $this->translations = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
+        $this->pricePerQuantity = new ArrayCollection();
     }
 
     /**
@@ -596,4 +597,37 @@ class Article
     {
         $this->licenses = $license;
     }
+
+    /**
+     * @return string
+     */
+    public function getShortDescription(): string
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param mixed $shortDescription
+     */
+    public function setShortDescription(string $shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPricePerQuantity()
+    {
+        return $this->pricePerQuantity;
+    }
+
+    /**
+     * @param array $pricePerQuantity
+     */
+    public function setPricePerQuantity(array $pricePerQuantity)
+    {
+        $this->pricePerQuantity[] = $pricePerQuantity;
+    }
+
 }

@@ -75,6 +75,13 @@ class BrandController extends Controller
 
     public function getAllBrands()
     {
+        $brands = $this->brandService->findAll();
+        $parsedBrands = [];
 
+        foreach ($brands as $brand){
+            $parsedBrands[] = ['id' => $brand->getId(), 'name' => $brand->getName()];
+        }
+
+        return $parsedBrands;
     }
 }

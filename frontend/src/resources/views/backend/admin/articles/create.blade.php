@@ -153,6 +153,13 @@
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            <div class="form-group {{ $errors->has('brand') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.brand') }}</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" id="brands" name="brand"></select>
+                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
                                 <div class="col-sm-10">
@@ -229,6 +236,11 @@
     $('#allergens').select2();
     $('#colors').select2();
     $('#flavours').select2();
+    $('#brands').select2();
+
+    $('#agregar').hide();
+    $('#granel').hide();
+    $('#table-price').hide();
 
     $('#addPrice').click(function() {
         var quantity = $('#quantity').val();
@@ -339,6 +351,19 @@
     }).done(function (result) {
         $.each(result, function (i, option) {
             $('#ingredients').append($('<option>', {
+                value: option.id,
+                text: option.name
+            }));
+        });
+    });
+
+    $.ajax({
+        context: this,
+        url: '/management/brand/getAll',
+        type: 'GET'
+    }).done(function (result) {
+        $.each(result, function (i, option) {
+            $('#brands').append($('<option>', {
                 value: option.id,
                 text: option.name
             }));

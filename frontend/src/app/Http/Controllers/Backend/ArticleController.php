@@ -7,12 +7,14 @@ use App\Http\Requests\Backend\UpdateCategoryRequest;
 use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Services\AllergenService;
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
 use EventoOriginal\Core\Services\FlavourService;
 use EventoOriginal\Core\Services\ImageService;
 use EventoOriginal\Core\Services\IngredientService;
 use EventoOriginal\Core\Services\LicenseService;
+use EventoOriginal\Core\Services\PriceService;
 use EventoOriginal\Core\Services\TagService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -34,6 +36,8 @@ class ArticleController
     protected $imageService;
     protected $licenseService;
     protected $ingredientService;
+    protected $brandService;
+    protected $priceService;
 
     public function __construct(
         ArticleService $articleService,
@@ -44,7 +48,9 @@ class ArticleController
         FlavourService $flavourService,
         ImageService $imageService,
         LicenseService $licenseService,
-        IngredientService $ingredientService
+        IngredientService $ingredientService,
+        BrandService $brandService,
+        PriceService $priceService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -55,6 +61,8 @@ class ArticleController
         $this->imageService = $imageService;
         $this->licenseService = $licenseService;
         $this->ingredientService = $ingredientService;
+        $this->brandService = $brandService;
+        $this->priceService = $priceService;
     }
 
     public function index()
@@ -122,10 +130,33 @@ class ArticleController
                 $request->input('ingredients')
             );
 
+        $brand = $this
+            ->brandService
+            ->findOneById(
+                $request->input('brand')
+            );
+
+        $prices = [];
+
+        if ($request->has('quantities') and $request->has('prices')) {
+            for ($i = 0 ; $i < count($request->input('quantities')); $i++) {
+                $price = $this
+                    ->priceService
+                    ->create(17,
+                        $request->input('quantities')[$i],
+                        $request->input('prices')[0]
+                    );
+
+                $prices[] = $price;
+            }
+        }
+
         $data = $request->all();
+
         $article = $this->articleService->create(
             $data['name'],
             $data['description'],
+            $data['shortDescription'],
             $data['barCode'],
             $data['internalCode'],
             $data['status'],
@@ -134,17 +165,23 @@ class ArticleController
             'EUR',
             null,
             $data['costPrice'],
-            $data['ingredients'],
+            $brand,
             $category,
             $license,
             $tags,
             $colors,
             $flavours,
             $allergens,
-            $ingredients
+            $ingredients,
+            $prices
         );
 
         $this->articleService->save($article);
+
+        foreach ($prices as $price) {
+            $price->setArticle($article);
+            $this->priceService->save($price);
+        }
 
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
 
@@ -152,7 +189,7 @@ class ArticleController
             ->with([
                 'ableToLoad' => true,
                 'articleId' => $article->getId()
-                ]);
+            ]);
     }
 
     public function storeImage(array $files, $article)
@@ -161,8 +198,12 @@ class ArticleController
         $images = [];
 
         foreach ($files as $file) {
-            $imageName = bcrypt($file->getFilename());
-            $file->storeAs('/article', $imageName .'.jpg');
+            $imageName = bcrypt($file->getFilename()). '.' .$file->getClientOriginalExtension();
+
+            $filePath = '/images/' . $imageName;
+
+            Storage::disk('s3')->put($filePath, file_get_contents($files), 'public');
+
             $image = $this
                 ->imageService
                 ->create(
@@ -181,7 +222,10 @@ class ArticleController
         $article = $this->articleService->findOneById($id, App::getLocale());
 
         if ($request->allFiles()) {
-            $images = $this->storeImage($request->allFiles(), $article  );
+            $images = $this->storeImage(
+                $request->allFiles(),
+                $article
+            );
         } else {
             $images = [];
         }
@@ -256,6 +300,14 @@ class ArticleController
 
     public function uploadImages(Request $request)
     {
+        $article = $this
+            ->articleService
+            ->findOneById(
+                $request->input('articleId'),
+                App::getLocale()
+            );
+
+        $this->storeImage($request->allFiles(), $article);
         $response = ['success' => true];
 
         return json_encode($response);

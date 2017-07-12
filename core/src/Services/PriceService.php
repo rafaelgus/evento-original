@@ -18,23 +18,26 @@ class PriceService
      * @param $currency
      * @param $amount
      * @param int $gramme
-     * @param Article $article
      * @return Price
      */
     public function create(
         $currency,
         $amount,
-        int $gramme,
-        Article $article
+        int $gramme
     ) :Price {
         $price = new Price();
-        $price->setArticle($article);
         $price->setGramme($gramme);
         $price->setPrice($amount);
         $price->setPriceCurrency($currency);
 
-        $this->priceRepository->save($price, true);
-
         return $price;
+    }
+
+    /**
+     * @param Price $price
+     */
+    public function save(Price $price)
+    {
+        $this->priceRepository->save($price, true);
     }
 }

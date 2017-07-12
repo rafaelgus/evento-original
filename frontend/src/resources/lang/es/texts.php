@@ -87,7 +87,8 @@ return [
           'flavours' => 'Sabores',
           'categories' => 'Categorías',
           'image' => 'Imagen',
-          'shortDescription' => 'Descripcion corta'
+          'shortDescription' => 'Descripcion corta',
+          'brand' => 'Marca'
       ],
       'license' => [
           'title' => 'Licencia',
