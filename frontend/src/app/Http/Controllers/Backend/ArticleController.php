@@ -16,6 +16,7 @@ use EventoOriginal\Core\Services\IngredientService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\PriceService;
 use EventoOriginal\Core\Services\TagService;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -75,7 +76,7 @@ class ArticleController
         return view('backend.admin.articles.create')
             ->with(['ableToLoad' => false,
                     'articleId' => false
-                ]);
+            ]);
     }
 
     public function edit(int $id)
@@ -162,6 +163,7 @@ class ArticleController
             $data['status'],
             $data['slug'],
             $data['price'],
+            $data['priceType'],
             'EUR',
             null,
             $data['costPrice'],
@@ -202,7 +204,7 @@ class ArticleController
 
             $filePath = '/images/' . $imageName;
 
-            Storage::disk('s3')->put($filePath, file_get_contents($files), 'public');
+            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
 
             $image = $this
                 ->imageService
@@ -213,7 +215,6 @@ class ArticleController
             $images[] = $image;
             $imageNumber = $imageNumber + 1;
         }
-
         return $images;
     }
 
@@ -311,5 +312,32 @@ class ArticleController
         $response = ['success' => true];
 
         return json_encode($response);
+    }
+
+    public function getImages(int $articleId)
+    {
+        $article = $this->articleService->findOneById($articleId, App::getLocale());
+        $images = $article->getImages();
+
+        $files = [];
+
+        foreach ($images as $image) {
+            $file = Storage::disk('s3')->get('/images/'. $image->getPath());
+            dd(Image::make($file)->response());
+        }
+
+        return $files;
+    }
+
+    public function deleteImage(int $imageId)
+    {
+        $image = $this->imageService->findById($imageId);
+
+        if (Storage::disk('s3')->exist('/images/'. $image->getPath())) {
+            Storage::disk('s3')->delete('/images/'. $image->getPath());
+        } else {
+            return ['status' => false];
+        }
+        return ['status' => true];
     }
 }

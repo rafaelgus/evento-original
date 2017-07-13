@@ -18,6 +18,8 @@ class Article
     const STATUS_DRAFT = 'draft';
     const STATUS_PUBLISHED = 'published';
     const STATUS_DISCONTINUED = 'discontinued';
+    const PRICE_TYPE_UNIT = 'unit';
+    const PRICE_TYPE_IN_BULK = 'in bulk';
 
     public static $allowedStatus = [self::STATUS_DRAFT, self::STATUS_PUBLISHED, self::STATUS_DISCONTINUED];
 
@@ -66,6 +68,10 @@ class Article
      */
     private $price;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $priceType;
 
     /**
      * @ORM\OneToMany(targetEntity="Price", mappedBy="article")
@@ -629,5 +635,22 @@ class Article
     {
         $this->pricePerQuantity[] = $pricePerQuantity;
     }
+
+    /**
+     * @return string
+     */
+    public function getPriceType(): string
+    {
+        return $this->priceType;
+    }
+
+    /**
+     * @param string $priceType
+     */
+    public function setPriceType(string $priceType)
+    {
+        $this->priceType = $priceType;
+    }
+
 
 }

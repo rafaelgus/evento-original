@@ -25,7 +25,7 @@ class ArticleService
     /**
      * @param int $id
      * @param string $locale
-     * @return mixed
+     * @return Article
      * @throws Exception
      */
     public function findOneById(int $id, string $locale)
@@ -57,6 +57,7 @@ class ArticleService
      * @param string $status
      * @param string $slug
      * @param $price
+     * @param string $priceType
      * @param $priceCurrency
      * @param Tax|null $tax
      * @param $costPrice
@@ -80,6 +81,7 @@ class ArticleService
         string $status,
         string $slug,
         $price = null,
+        string $priceType,
         $priceCurrency,
         Tax $tax = null,
         $costPrice,
@@ -117,6 +119,7 @@ class ArticleService
         $article->setCostPrice($costPrice);
         $article->setIngredients($ingredients);
         $article->setLicense($license);
+        $article->setPriceType($priceType);
 
         if ($brand) {
             $article->setBrand($brand);

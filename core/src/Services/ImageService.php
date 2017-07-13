@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: martinchos
- * Date: 30/06/17
- * Time: 17:33
- */
-
 namespace EventoOriginal\Core\Services;
-
 
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Image;
@@ -40,5 +32,14 @@ class ImageService
         $this->imageRepository->save($image);
 
         return $image;
+    }
+
+    /**
+     * @param int $id
+     * @return null|Image
+     */
+    public function findById(int $id)
+    {
+        return $this->imageRepository->find($id);
     }
 }
