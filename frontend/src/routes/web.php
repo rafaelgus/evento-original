@@ -94,8 +94,8 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\ArticleController@store');
             Route::put('/{id}', 'Backend\ArticleController@update');
             Route::post('/uploadImage', 'Backend\ArticleController@uploadImages');
-            Route::get('/uploads/{articleId}', 'Backend\ArticleController@getImages');
-            Route::get('/uploads/delete/{imageId}', 'Backend\ArticleController@deleteImage');
+            Route::post('/uploads/delete/{imageId}', 'Backend\ArticleController@deleteImage');
+            Route::get('/storage/{filename}', 'Backend\ArticleController@getImage');
         });
         Route::group(['prefix' => '/ingredients'], function() {
             Route::get('/create', 'Backend\IngredientController@create');
@@ -115,5 +115,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
+
+
     });
 });

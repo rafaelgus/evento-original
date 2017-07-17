@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Requests\Backend\StoreArticleRequest;
 use App\Http\Requests\Backend\UpdateArticleRequest;
 use App\Http\Requests\Backend\UpdateCategoryRequest;
+use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Services\AllergenService;
 use EventoOriginal\Core\Services\ArticleService;
@@ -16,13 +17,13 @@ use EventoOriginal\Core\Services\IngredientService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\PriceService;
 use EventoOriginal\Core\Services\TagService;
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ArticleController
 {
@@ -83,7 +84,10 @@ class ArticleController
     {
         $article = $this->articleService->findOneById($id, App::getLocale());
 
-        return view('backend.admin.articles.edit')->with('article', $article);
+        return view('backend.admin.articles.edit')
+            ->with([
+                'article' => $article,
+            ]);
     }
 
     public function store(StoreArticleRequest $request)
@@ -137,6 +141,13 @@ class ArticleController
                 $request->input('brand')
             );
 
+        $priceType = null;
+        if($request->input('priceType') == 1) {
+            $priceType = Article::PRICE_TYPE_UNIT;
+        } elseif ($request->input('priceType') == 2) {
+            $priceType = Article::PRICE_TYPE_IN_BULK;
+        }
+
         $prices = [];
 
         if ($request->has('quantities') and $request->has('prices')) {
@@ -163,7 +174,7 @@ class ArticleController
             $data['status'],
             $data['slug'],
             $data['price'],
-            $data['priceType'],
+            $priceType,
             'EUR',
             null,
             $data['costPrice'],
@@ -323,18 +334,26 @@ class ArticleController
 
         foreach ($images as $image) {
             $file = Storage::disk('s3')->get('/images/'. $image->getPath());
-            dd(Image::make($file)->response());
+            $files[] = $file;
         }
-
         return $files;
+    }
+
+    public function getImage(string $filename)
+    {
+        $image = Storage::disk('s3')->get('/images/'. $filename);
+
+        return $image;
     }
 
     public function deleteImage(int $imageId)
     {
         $image = $this->imageService->findById($imageId);
 
-        if (Storage::disk('s3')->exist('/images/'. $image->getPath())) {
+        if (Storage::disk('s3')->exists('/images/'. $image->getPath())) {
             Storage::disk('s3')->delete('/images/'. $image->getPath());
+
+            $this->imageService->delete($image);
         } else {
             return ['status' => false];
         }

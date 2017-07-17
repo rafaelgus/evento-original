@@ -42,4 +42,12 @@ class ImageService
     {
         return $this->imageRepository->find($id);
     }
+
+    /**
+     * @param Image $image
+     */
+    public function delete(Image $image)
+    {
+        $this->imageRepository->delete($image);
+    }
 }

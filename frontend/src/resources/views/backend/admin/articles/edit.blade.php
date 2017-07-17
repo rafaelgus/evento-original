@@ -32,14 +32,14 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.name') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="name"
-                                           placeholder="{{ trans('texts.sections.article.name') }}" value="{{ old('name')}}">
+                                           placeholder="{{ trans('texts.sections.article.name') }}" value="{{ old('name', $article->getName())}}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.description') }}</label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" class="form-control" id="inputName" name="description" placeholder="{{ trans('texts.sections.article.description') }}">{{ old('description')}}</textarea>
+                                    <textarea rows="10" class="form-control" id="inputName" name="description" placeholder="{{ trans('texts.sections.article.description') }}">{{ old('description', $article->getDescription())}}</textarea>
 
                                     {!! $errors->first('description', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -48,7 +48,7 @@
                             <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription')}}</textarea>
+                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription', $article->getShortDescription())}}</textarea>
 
                                     {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -66,7 +66,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.internalCode') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="internalCode"
-                                           placeholder="{{ trans('texts.sections.article.internalCode') }}" value="{{ old('internalCode') }}">
+                                           placeholder="{{ trans('texts.sections.article.internalCode') }}" value="{{ old('internalCode', $article->getInternalCode()) }}">
                                     {!! $errors->first('internalCode', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.price') }}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" id="price" name="price"
-                                           placeholder="{{ trans('texts.sections.article.price') }}" value="{{ old('price') }}">
+                                           placeholder="{{ trans('texts.sections.article.price') }}" value="{{ old('price',  $article->getPrice()) }}">
                                     {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -202,7 +202,29 @@
                                     {!! $errors->first('flavours[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div id="fine-uploader-gallery"></div>
+
+                            <div class="box-footer">
+                                @foreach($article->getImages() as $image)
+                                <ul class="mailbox-attachments clearfix">
+                                    <li id="image_{{$image->getId()}}">
+                                        <span class="mailbox-attachment-icon"><img style="max-width: 162px; max-height: 198px;" src="/management/articles/storage/{{$image->getPath()}}"></span>
+                                        <div class="mailbox-attachment-info">
+                                            <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip">
+                                                </i> Sep2014-report.pdf</a>
+                                            <span class="mailbox-attachment-size">1,245 KB
+                                                <a href="#" class="btn btn-default btn-xs pull-right deletePicture" id="{{$image->getId()}}">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </li>
+                                @endforeach
+                                </ul>
+                            </div>
+
+                            @if (count($article->getImages()) != 10)
+                                <div id="fine-uploader-gallery"></div>
+                            @endif
                         </div>
                         <div class="box-footer">
                             <button type="submit" class="btn btn-danger pull-right">{{ trans('buttons.save') }}</button>
@@ -381,6 +403,24 @@
                 $('#granel').show();
                 $('#table-price').show();
             }
+        });
+
+        $('.deletePicture').click(function() {
+            var id = $(this).attr('id');
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': '{{csrf_token()}}'
+                }
+            });
+
+            $.ajax({
+                context: this,
+                url: '/management/articles/uploads/delete/'+ id,
+                type: 'POST'
+            }).done(function (result) {
+                $('#image_'+id).remove();
+            });
         });
 
     </script>

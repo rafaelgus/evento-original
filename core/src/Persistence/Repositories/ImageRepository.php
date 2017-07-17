@@ -13,4 +13,13 @@ class ImageRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function delete(Image $image, bool $flush = true)
+    {
+        $this->getEntityManager()->remove($image);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 }
