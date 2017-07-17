@@ -24,7 +24,8 @@ class PriceService
         $currency,
         $amount,
         int $gramme
-    ) :Price {
+    ): Price
+    {
         $price = new Price();
         $price->setGramme($gramme);
         $price->setPrice($amount);
@@ -39,5 +40,31 @@ class PriceService
     public function save(Price $price)
     {
         $this->priceRepository->save($price, true);
+    }
+
+    /**
+     * @return array
+     */
+    public function getAll()
+    {
+        return $this->priceRepository->findAll();
+    }
+
+    /**
+     * @param Article $article
+     * @return array
+     */
+    public function findByArticle(Article $article)
+    {
+        return $this->priceRepository->findByArticle($article);
+    }
+
+    /**
+     * @param int $id
+     * @return null|Price
+     */
+    public function findById(int $id)
+    {
+        return $this->priceRepository->find($id);
     }
 }

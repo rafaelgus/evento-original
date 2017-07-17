@@ -88,7 +88,8 @@ return [
           'categories' => 'Categorías',
           'image' => 'Imagen',
           'shortDescription' => 'Descripcion corta',
-          'brand' => 'Marca'
+          'brand' => 'Marca',
+          'quantity' => 'Cantidad'
       ],
       'license' => [
           'title' => 'Licencia',

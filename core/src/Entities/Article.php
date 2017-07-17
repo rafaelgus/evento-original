@@ -637,6 +637,14 @@ class Article
     }
 
     /**
+     * @param Price $pricePerQuantity
+     */
+    public function addPricePerQuantity(Price $pricePerQuantity)
+    {
+        $this->pricePerQuantity[] = $pricePerQuantity;
+    }
+
+    /**
      * @return string
      */
     public function getPriceType(): string

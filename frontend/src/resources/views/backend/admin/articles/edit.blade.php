@@ -22,11 +22,12 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="/management/articles/" method="POST" enctype="multipart/form-data">
+                    <form role="form" class="form-horizontal" action="/management/articles/{{$article->getId()}}" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             @include('backend.messages.session')
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_method" value="PUT">
 
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.name') }}</label>
@@ -48,7 +49,7 @@
                             <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription', $article->getShortDescription())}}</textarea>
+                                    <input type="text" class="form-control" id="inputName" name="shortDescription" value="{{ old('shortDescription', $article->getShortDescription())}}" placeholder="{{ trans('texts.sections.article.shortDescription') }}">
 
                                     {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -58,7 +59,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.barCode') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="barCode"
-                                           placeholder="{{ trans('texts.sections.article.barCode') }}" value="{{ old('barCode') }}">
+                                           placeholder="{{ trans('texts.sections.article.barCode') }}" value="{{ old('barCode', $article->getBarCode()) }}">
                                     {!! $errors->first('barCode', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -73,11 +74,12 @@
                             <div class="form-group">
                                 <label for="inputName" class="col-sm-2 control-label">venta por</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="priceType" name="priceType">
-                                        <option value="1">Unidad</option>
-                                        <option value="2">Granel</option>
+                                    <select class="form-control" id="priceType" name="priceTypeDisabled" value="{{ $priceType }}" disabled>
+                                        @if($priceType == 1) <option value="1">Unidad</option> @endif
+                                        @if($priceType == 2)<option value="2">Granel</option> @endif
                                     </select>
                                 </div>
+                                <input type="hidden" value="{{$priceType}}" name="priceType">
                             </div>
                             <div id="granel" class="form-group">
                                 <label for="inputName" class="col-sm-2 control-label">cantidad</label>
@@ -104,15 +106,17 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-6">
                                     <table class="table table-bordered" id="tablePrice">
-                                        <tbody>
                                         <tr>
                                             <th>#</th>
                                             <th>Cantidad</th>
                                             <th>Precio</th>
+                                            <th>Opcion</th>
                                         </tr>
+                                        <tbody>
                                         </tbody>
                                     </table>
                                 </div>
+                                <input type="hidden" value="none" id="priceId">
                                 <div id="hiddens">
 
                                 </div>
@@ -122,7 +126,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.costPrice') }}</label>
                                 <div class="col-sm-10">
                                     <input type="number" class="form-control" id="inputName" name="costPrice"
-                                           placeholder="{{ trans('texts.sections.article.costPrice') }}" value="{{ old('costPrice')}}">
+                                           placeholder="{{ trans('texts.sections.article.costPrice') }}" value="{{ old('costPrice', $article->getCostPrice())}}">
                                     {!! $errors->first('costPrice', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -130,7 +134,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.slug') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="slug"
-                                           placeholder="{{ trans('texts.sections.article.slug') }}" value="{{ old('slug')}}">
+                                           placeholder="{{ trans('texts.sections.article.slug') }}" value="{{ old('slug', $article->getSlug())}}">
                                     {!! $errors->first('slug', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -257,26 +261,52 @@
         $('#colors').select2();
         $('#flavours').select2();
         $('#brands').select2();
+        loadTable();
 
-        $('#agregar').hide();
-        $('#granel').hide();
-        $('#table-price').hide();
+        if($('#priceType').val() == 1) {
+            $('#agregar').hide();
+            $('#granel').hide();
+            $('#table-price').hide();
+        }
+
 
         $('#addPrice').click(function() {
             var quantity = $('#quantity').val();
             var price = $('#price').val();
             var rowCount = $('#tablePrice tr').length;
 
-            if (parseInt(quantity) > 0 && parseFloat(price) > 0) {
-                $('#tablePrice tr:last').after('<tr><td>'+rowCount+'</td><td>'+quantity+'</td><td>'+price+'</td></tr>');
+            if ($('#priceId').val() != 'none') {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}'
+                    }
+                });
 
-                $('#hiddens').append('<input type="hidden" value="'+quantity+'" name="quantities[]">');
-                $('#hiddens').append('<input type="hidden" value="'+price+'" name="prices[]">');
-
-                $('#quantity').val('');
-                $('#price').val();
+                $.ajax({
+                    context: this,
+                    url: '/management/articles/prices/update/',
+                    type: 'POST',
+                    data: {
+                        id : $('#priceId').val(),
+                        price: price,
+                        quantity: quantity
+                    }
+                }).done(function(result) {
+                    alert(result.message);
+                    loadTable();
+                });
             } else {
-                alert('El precio y la cantidad debe ser mayor a 0');
+                if (parseInt(quantity) > 0 && parseFloat(price) > 0) {
+                    $('#tablePrice tr:last').after('<tr><td>'+rowCount+'</td><td>'+quantity+'</td><td>'+price+'</td></tr>');
+
+                    $('#hiddens').append('<input type="hidden" value="'+quantity+'" name="quantities[]">');
+                    $('#hiddens').append('<input type="hidden" value="'+price+'" name="prices[]">');
+
+                    $('#quantity').val('');
+                    $('#price').val();
+                } else {
+                    alert('El precio y la cantidad debe ser mayor a 0');
+                }
             }
         });
 
@@ -285,6 +315,23 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function loadTable() {
+            if ($('#priceType').val() == 2) {
+                $.ajax({
+                    context : this,
+                    url: '/management/articles/prices/{{ $article->getId() }}',
+                    type: 'GET'
+                }).done(function (result) {
+                    $("tablePrice").find("tr:gt(0)").remove();
+                    $.each(result, function (i, option) {
+                        $('#tablePrice').append('<tr><td class="priceId">'+option.id+'</td><td class="priceQuantity">'+option.quantity+'</td><td class="priceAmount">'+option.price+'</td><td><a href="#" class="editPrice" id="price_'+option.id+'">Editar</a> </td></tr>');
+                    });
+                })
+            }
+        }
+
+
 
         $.ajax({
             context: this,
@@ -421,6 +468,18 @@
             }).done(function (result) {
                 $('#image_'+id).remove();
             });
+        });
+
+        $(document).on('click', '.editPrice', function() {
+            var row = $(this).parent().parent();
+
+            var id = $($($(row).find('td')[0])).text();
+            var quantity = $($($(row).find('td')[1])).text();
+            var amount = $($($(row).find('td')[2])).text();
+
+            $('#quantity').val(quantity);
+            $('#price').val(amount);
+            $('#priceId').val(id);
         });
 
     </script>

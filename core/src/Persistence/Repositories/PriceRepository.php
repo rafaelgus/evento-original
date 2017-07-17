@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Persistence\Repositories;
 
+use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Price;
 
 class PriceRepository extends BaseRepository
@@ -12,5 +13,10 @@ class PriceRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByArticle(Article $article)
+    {
+        return $this->findBy(['article' => $article->getId()]);
     }
 }

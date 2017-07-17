@@ -96,6 +96,8 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/uploadImage', 'Backend\ArticleController@uploadImages');
             Route::post('/uploads/delete/{imageId}', 'Backend\ArticleController@deleteImage');
             Route::get('/storage/{filename}', 'Backend\ArticleController@getImage');
+            Route::get('/prices/{articleId}', 'Backend\ArticleController@getPrices');
+            Route::post('/prices/update', 'Backend\ArticleController@updatePrice');
         });
         Route::group(['prefix' => '/ingredients'], function() {
             Route::get('/create', 'Backend\IngredientController@create');

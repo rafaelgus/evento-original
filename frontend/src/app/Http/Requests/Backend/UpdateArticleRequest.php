@@ -30,7 +30,6 @@ class UpdateArticleRequest extends FormRequest
             'category' => 'required',
             'barCode' => 'required|max:255',
             'internalCode' => 'required|max:255',
-            'price' => 'required',
             'costPrice' => 'required',
             'allergens' => 'required',
             'colors' => 'required',
