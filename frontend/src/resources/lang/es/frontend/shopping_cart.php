@@ -15,4 +15,7 @@ return [
     'proceed_to_checkout' => 'Finalizar la compra',
     'discount' => 'Descuento',
     'recommended_for_you' => 'Recomendados para ti',
+    'slug' => 'carrito-de-compras',
+    'cart' => 'Carrito',
+    'empty' => 'Vacío',
 ];

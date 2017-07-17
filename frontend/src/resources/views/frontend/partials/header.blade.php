@@ -31,8 +31,8 @@
               <!-- Header Top Links -->
               <div class="toplinks">
                 <div class="links">
-                  <a title="{{trans('frontend/header.my_cart')}}" href="/carrito-de-compras"><img src="/images/rombo.png" width="7px"></i> {{trans('frontend/header.my_cart')}}</a> |
-                  <a title="{{trans('frontend/header.my_account')}}" href="login.html">{{ trans('frontend/header.my_account')}}</a>
+                  <a title="{{trans('frontend/header.my_cart')}}" href="/{{trans('frontend/shopping_cart.slug')}}"><img src="/images/rombo.png" width="7px"></i> {{trans('frontend/header.my_cart')}}</a> |
+                  <a title="{{trans('frontend/header.my_account')}}" href="/auth/login">{{ trans('frontend/header.my_account')}}</a>
                 </div>
               </div>
               <!-- End Header Top Links --> 
@@ -56,11 +56,11 @@
             </div>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12"> 
-          <a href="/lista-de-deseos" title="My Wishlist" class="top-link-wishlist hidden-xs"><img src="/images/heart.png" width="26" height="26">
-          <div class="wish">Lista de deseos</div>
+          <a href="/{{ trans('frontend/my_wishlist.slug') }}" title="{{ trans('frontend/my_wishlist.wishlist') }}" class="top-link-wishlist hidden-xs"><img src="/images/heart.png" width="26" height="26">
+          <div class="wish">{{ trans('frontend/my_wishlist.wishlist') }}</div>
           </a>
-           <a href="/carrito-de-compras" title="Carrito" class="top-link-shopping-cart hidden-xs"><img src="/images/cart.png" width="26" height="26">
-          <div class="shopping-cart">Carrito<br>(Vacío)</div>
+           <a href="/{{ trans('frontend/shopping_cart.slug') }}" title="{{ trans('frontend/shopping_cart.title') }}" class="top-link-shopping-cart hidden-xs"><img src="/images/cart.png" width="26" height="26">
+          <div class="shopping-cart">{{ trans('frontend/shopping_cart.cart') }}<br>({{ trans('frontend/shopping_cart.empty') }})</div>
           </a>
           </div>
         </div>

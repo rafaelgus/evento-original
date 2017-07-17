@@ -19,17 +19,19 @@ Route::get('/articulo/detalle', function () {
     return view('frontend.articles.show');
 });
 
-Route::get('/carrito-de-compras', function () {
+Route::get('/' . trans('frontend/shopping_cart.slug'), function () {
     return view('frontend.shopping_cart');
 });
 
-Route::get('/lista-de-deseos', function () {
+Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
     return view('frontend.my_wishlist');
 });
 
-Route::get('/contacto', function () {
+Route::get('/'. trans('sections.contact'), function () {
     return view('frontend.contact_us');
 });
+
+Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
 
 //Route::get('/', function () {
 //    return view('backend.home');

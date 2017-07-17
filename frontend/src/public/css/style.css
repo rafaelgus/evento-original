@@ -126,18 +126,18 @@ small {
 
 /* Fonts Style */
 .top-cart-contain .price, .product-view .product-shop .price, .top-cart-content .product-details, .add-to-cart .qty, .regular-price .price, .price, #limiter, .pages .pagination, .col-left .block-cart .block-content ul li .product-details strong, .timer-grid, .post-meta, .post-meta li a, .small-tag, .accordion-faq .panel-heading a {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'tt0142m', sans-serif;
 }
 
 .top-cart-content .product-name a, .products-list .actions .add-to-links a.link-wishlist span, .products-list .product-shop button.button span, .products-list .actions .add-to-links a.link-compare span, .bottom-banner-img1.last h3, .bottom-banner-img1 h3, .one-page-checkout .active .step-title h3, .page-not-found .btn-home span {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'tt0142m', sans-serif;
 }
 
 /* Fonts Style End*/
 
 /* Color Style */
 #nav ul.level1 > li a, .top-cart-content .product-name a, #limiter li a, #sort-by li a, .top-cart-content .product-details a.btn-edit, .products-grid .item .item-inner .item-info .info-inner .item-title a, .products-grid .item .actions a, a.blog-title, #limiter a.button-asc, .products-list h2.product-name a, footer a {
-    color: #000;
+    color: #e94d65;
 }
 
 .products-grid .item .actions a:hover, a.blog-title:hover, #recently-viewed-items .product-name a:hover, #recently-viewed-items .product-name a:hover, ol#compare-items li a.product-name:hover, .block-tags li a:hover, #limiter li a:hover, #sort-by li a:hover {
@@ -3291,15 +3291,16 @@ header {
 /*========== 7. Products Grid ==========*/
 .page-heading {
     /* border: 1px solid #e5e5e5; */
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     letter-spacing: 0.5px;
     margin: 0;
-    padding: 10px 0px;
+    /*padding: 10px 0px;*/
     position: relative;
     text-transform: uppercase;
     /* background-color: #f8f8f8; */
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    color: #e94d65;
 }
 
 .page-title h1, .page-title h2 {
@@ -3422,7 +3423,6 @@ header {
     border: 2px solid transparent;
     color: #413C5E;
     display: block;
-    font-size: 14px;
     font-weight: 700;
     margin: 0;
     padding: 12px 10px;
@@ -3619,6 +3619,7 @@ header {
 
 .category-description {
     margin-bottom: 15px;
+    color: #413C5E;
 }
 
 .cat-img-title.cat-box {
@@ -3791,7 +3792,7 @@ ul.products-grid {
 }
 
 .products-grid .item .ratings {
-    width: 100px;
+    width: 134px;
     transition: all 300ms ease-in-out 0s;
     -moz-transition: all 300ms ease-in-out 0s;
     -webkit-transition: all 300ms ease-in-out 0s;
@@ -3877,7 +3878,7 @@ ul.products-grid {
 }
 
 .products-grid .item .item-inner .action {
-    margin-top: 10px;
+    margin-top: 3px;
 }
 
 .products-grid .item .item-inner:hover {
@@ -4583,7 +4584,7 @@ a.button.detail-bnt span {
 
 .price-box {
     margin: 0;
-    padding: 5px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     min-height: 28px;
 }
 
@@ -4594,7 +4595,7 @@ a.button.detail-bnt span {
 
 .regular-price .price {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 28px;
     color: #e94d65;
 }
 
@@ -4641,7 +4642,7 @@ a.button.detail-bnt span {
 
 .old-price .price {
     color: #413C5E !important;
-    font-size: 18px;
+    font-size: 21px;
     font-weight: normal;
     text-decoration: line-through;
     margin-left: 6px;
@@ -4667,7 +4668,7 @@ a.button.detail-bnt span {
 }
 
 .special-price .price {
-    font-size: 20px;
+    font-size: 28px;
     color: #e94d65;
     font-weight: bold;
 }
@@ -7229,7 +7230,7 @@ ol#compare-items li.last {
     text-align: left;
     margin: 0px;
     padding: 0;
-    float: right;
+    /*float: right;*/
     height: 38px;
 }
 
@@ -16822,7 +16823,7 @@ a.button.wishlist {
     display: inline-block;
     width: 100%;
     margin-top: 0px;
-    padding: 0px 0 2px 0px;
+    padding: 10px 0 2px 0px;
 }
 
 .toolbar .sorter {
@@ -16887,13 +16888,13 @@ a.button.wishlist {
     outline: medium none;
     padding: 6px 15px;
     position: relative;
-    width: 100px;
+    width: 140px;
     float: left;
     border: none
 }
 
 #sort-by li li {
-    width: 100px;
+    width: 140px;
     margin-top: 0px;
     border-top: none;
     border-right: none;
@@ -17082,7 +17083,7 @@ a.button.wishlist {
     float: left;
     margin-right: 5px;
     padding: 6px 0 0;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
     margin-bottom: auto;
 }
@@ -17332,6 +17333,14 @@ a.button.wishlist {
     float: left;
     margin-left: -7px;
     margin-right: 3px;
+}
+
+.rating-item{
+    border: none;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 5px;
 }
 
 .rating > input { display: none; }

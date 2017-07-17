@@ -55,7 +55,7 @@
                       {{--<div class="rating-box">--}}
                         {{--<div style="width:60%" class="rating"></div>--}}
                       {{--</div>--}}
-                      <fieldset class="rating rating-set">
+                      <fieldset class="rating">
                         <input type="radio" id="star5" name="rating" value="5" disabled /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                         <input type="radio" id="star4half" name="rating" value="4 and a half" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
                         <input type="radio" id="star4" name="rating" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
@@ -110,7 +110,7 @@
                             <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
-                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Add to Cart" type="button">Comprar</button>
+                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Comprar" type="button">Comprar</button>
                       </div>
                       <div class="email-addto-box">
                         <ul class="add-to-links">
