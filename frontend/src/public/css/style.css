@@ -5602,7 +5602,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .box-category > ul > li > a {
-    color: #333;
+    color: #413C5E;
     text-transform: uppercase;
     display: block;
     font-size: 12px;
@@ -5706,9 +5706,9 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .sidebar .block dt {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #413C5E;
     padding: 10px 0;
     padding-bottom: 0px !important
 }
@@ -5796,9 +5796,9 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .block .block-content .price {
-    font-size: 12px;
-    font-weight: bold;
-    color: #000;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    color: #e94d65;
 }
 
 /* 12b. Block: Account */
@@ -6007,8 +6007,8 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
     padding-bottom: 6px;
     margin: 8px 0 8px;
     font-weight: 700;
-    font-size: 13px;
-    color: #333;
+    font-size: 15px;
+    color: #413C5E;
 }
 
 .col-left .block-cart .block-content ul li .product-details {
@@ -7588,7 +7588,7 @@ ol#compare-items li.last {
 
 .block .block-content {
     border-top: medium none;
-    font-size: 13px;
+    font-size: 16px;
     overflow: hidden;
     padding: 10px 15px;
 }

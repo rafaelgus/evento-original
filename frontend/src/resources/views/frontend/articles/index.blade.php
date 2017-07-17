@@ -585,78 +585,32 @@
                 <div class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
                     <aside class="col-left sidebar">
                         <div class="side-nav-categories">
-                            <div class="block-title"> Categories</div>
+                            <div class="block-title">{{ trans('texts.sections.categories.title') }}</div>
                             <!--block-title-->
                             <!-- BEGIN BOX-CATEGORY -->
                             <div class="box-content box-category">
                                 <ul>
-                                    <li><a class="active" href="grid.html">Women</a> <span
+                                    <li><a  href="grid.html">Tazas de ensueño</a> <span
                                                 class="subDropdown minus"></span>
                                         <ul class="level0_415" style="display:block">
-                                            <li><a href="grid.html"> Dresses </a> <span class="subDropdown plus"></span>
+                                            <li><a href="grid.html"> Categoria taza ensueño 1 </a> <span class="subDropdown plus"></span>
                                                 <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Evening Tops </a></li>
-                                                    <li><a href="grid.html"> Shirts &amp; Blouses </a></li>
-                                                    <li><a href="grid.html"> Tunics </a></li>
-                                                    <li><a href="grid.html"> Vests </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño</a></li>
                                                     <!--end for-each -->
                                                 </ul>
                                                 <!--level1-->
                                             </li>
                                             <!--level1-->
-                                            <li><a href="grid.html"> Stylish Bags </a> <span
+                                            <li><a href="grid.html"> Categoria taza ensueño 2 </a> <span
                                                         class="subDropdown plus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Bags </a></li>
-                                                    <li><a href="grid.html"> Designer Handbags </a></li>
-                                                    <li><a href="grid.html"> Purses </a></li>
-                                                    <li><a href="grid.html"> Shoulder Bags </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Footwear </a> <span
-                                                        class="subDropdown plus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Flat Shoes </a></li>
-                                                    <li><a href="grid.html"> Flat Sandals </a></li>
-                                                    <li><a href="grid.html"> Boots </a></li>
-                                                    <li><a href="grid.html"> Heels </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Jwellery </a>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Bracelets </a></li>
-                                                    <li><a href="grid.html"> Necklaces &amp; Pendants </a></li>
-                                                    <li><a href="grid.html"> Pins &amp; Brooches </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Swimwear </a> <span
-                                                        class="subDropdown plus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Casual Dresses </a></li>
-                                                    <li><a href="grid.html"> Evening </a></li>
-                                                    <li><a href="grid.html"> Designer </a></li>
-                                                    <li><a href="grid.html"> Party </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Material Bags </a> <span
-                                                        class="subDropdown plus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Bras </a></li>
-                                                    <li><a href="grid.html"> Bodies </a></li>
-                                                    <li><a href="grid.html"> Lingerie Sets </a></li>
-                                                    <li><a href="grid.html"> Shapewear </a></li>
+                                                <ul class="level1" >
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
+                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
                                                     <!--end for-each -->
                                                 </ul>
                                                 <!--level1-->
@@ -665,136 +619,39 @@
                                         <!--level0-->
                                     </li>
                                     <!--level 0-->
-                                    <li><a href="grid.html">Men</a> <span class="subDropdown plus"></span>
-                                        <ul class="level0_455" style="display:none">
-                                            <li><a href="grid.html"> Shoes </a> <span class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Flat Shoes </a></li>
-                                                    <li><a href="grid.html"> Boots </a></li>
-                                                    <li><a href="grid.html"> Heels </a></li>
+                                    <li><a href="grid.html">Tazas originales</a> <span class="subDropdown minus"></span>
+                                        <ul class="level0_415" style="display:block" >
+                                            <li><a href="grid.html"> Categoria Tazas originales </a> <span class="subDropdown plus"></span>
+                                                <ul class="level1">
+                                                    <li><a href="grid.html"> SubCategoria Tazas originales </a></li>
+                                                    <li><a href="grid.html"> SubCategoria Tazas originales  </a></li>
+                                                    <li><a href="grid.html"> SubCategoria Tazas originales  </a></li>
                                                     <!--end for-each -->
                                                 </ul>
                                                 <!--level1-->
                                             </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Jewellery </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Bracelets </a></li>
-                                                    <li><a href="grid.html"> Necklaces &amp; Pendants </a></li>
-                                                    <li><a href="grid.html"> Pins &amp; Brooches </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Dresses </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Casual Dresses </a></li>
-                                                    <li><a href="grid.html"> Evening </a></li>
-                                                    <li><a href="grid.html"> Designer </a></li>
-                                                    <li><a href="grid.html"> Party </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Jackets </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Coats </a></li>
-                                                    <li><a href="grid.html"> Jackets </a></li>
-                                                    <li><a href="grid.html"> Leather Jackets </a></li>
-                                                    <li><a href="grid.html"> Blazers </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Swimwear </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Swimsuits </a></li>
-                                                    <li><a href="grid.html"> Beach Clothing </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
                                         </ul>
                                         <!--level0-->
                                     </li>
-                                    <!--level 0-->
-                                    <li><a href="grid.html">Electronics</a> <span class="subDropdown plus"></span>
-                                        <ul class="level0_482" style="display:none">
-                                            <li><a href="grid.html"> Smartphones </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Samsung </a></li>
-                                                    <li><a href="grid.html"> Apple </a></li>
-                                                    <li><a href="grid.html"> Blackberry </a></li>
-                                                    <li><a href="grid.html"> Nokia </a></li>
-                                                    <li><a href="grid.html"> HTC </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Cameras </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> Digital Cameras </a></li>
-                                                    <li><a href="grid.html"> Camcorders </a></li>
-                                                    <li><a href="grid.html"> Lenses </a></li>
-                                                    <li><a href="grid.html"> Filters </a></li>
-                                                    <li><a href="grid.html"> Tripod </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Accesories </a> <span
-                                                        class="subDropdown minus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> HeadSets </a></li>
-                                                    <li><a href="grid.html"> Batteries </a></li>
-                                                    <li><a href="grid.html"> Screen Protectors </a></li>
-                                                    <li><a href="grid.html"> Memory Cards </a></li>
-                                                    <li><a href="grid.html"> Cases </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                        </ul>
-                                        <!--level0-->
-                                    </li>
-                                    <!--level 0-->
-                                    <li><a href="grid.html">Furniture</a></li>
-                                    <!--level 0-->
-                                    <li class="last"><a href="grid.html">Kids</a></li>
-                                    <!--level 0-->
                                 </ul>
                             </div>
                             <!--box-content box-category-->
                         </div>
-                        <div class="hot-banner"><img alt="banner" src="images/hot-trends-banner.jpg"></div>
+                        <div class="hot-banner"><img alt="banner" src="images/0004.jpg"></div>
                         <div class="block block-layered-nav">
-                            <div class="block-title">Shop By</div>
+                            <div class="block-title">{{ trans('frontend/articles.shop_by.title') }}</div>
                             <div class="block-content">
-                                <p class="block-subtitle">Shopping Options</p>
                                 <dl id="narrow-by-list">
-                                    <dt class="odd">Price</dt>
+                                    <dt class="odd">{{ trans('frontend/articles.shop_by.price') }}</dt>
                                     <dd class="odd">
                                         <ol>
                                             <li><a href="#"><span class="price">$0.00</span> - <span class="price">$99.99</span></a>
-                                                (6)
+                                                (4)
                                             </li>
-                                            <li><a href="#"><span class="price">$100.00</span> and above</a> (6)</li>
+                                            <li><a href="#"><span class="price">Más de $100.00</span> </a> (6)</li>
                                         </ol>
                                     </dd>
-                                    <dt class="even">Manufacturer</dt>
+                                    <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
                                     <dd class="even">
                                         <ol>
                                             <li><a href="#">TheBrand</a> (9)</li>
@@ -802,43 +659,41 @@
                                             <li><a href="#">LogoFashion</a> (1)</li>
                                         </ol>
                                     </dd>
-                                    <dt class="odd">Color</dt>
+                                    <dt class="odd">{{ trans('frontend/articles.shop_by.color') }}</dt>
                                     <dd class="odd">
                                         <ol>
-                                            <li><a href="#">Green</a> (1)</li>
-                                            <li><a href="#">White</a> (5)</li>
-                                            <li><a href="#">Black</a> (5)</li>
-                                            <li><a href="#">Gray</a> (4)</li>
-                                            <li><a href="#">Dark Gray</a> (3)</li>
-                                            <li><a href="#">Blue</a> (1)</li>
+                                            <li><a href="#">Verde</a> (1)</li>
+                                            <li><a href="#">Blanco</a> (5)</li>
+                                            <li><a href="#">Negro</a> (5)</li>
+                                            <li><a href="#">Gris</a> (4)</li>
+                                            <li><a href="#">Gris oscuro</a> (3)</li>
+                                            <li><a href="#">Azul</a> (1)</li>
                                         </ol>
                                     </dd>
-                                    <dt class="last even">Size</dt>
+                                    <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
                                     <dd class="last even">
                                         <ol>
-                                            <li><a href="#">S</a> (6)</li>
-                                            <li><a href="#">M</a> (6)</li>
-                                            <li><a href="#">L</a> (4)</li>
-                                            <li><a href="#">XL</a> (4)</li>
+                                            <li><a href="#">Mickey Mouse</a> (6)</li>
+                                            <li><a href="#">Superman</a> (6)</li>
                                         </ol>
                                     </dd>
                                 </dl>
                             </div>
                         </div>
                         <div class="block block-cart">
-                            <div class="block-title ">My Cart</div>
+                            <div class="block-title ">{{ trans('frontend/articles.my_cart.title') }}</div>
                             <div class="block-content">
                                 <div class="summary">
-                                    <p class="amount">There are <a href="shopping_cart.html">3 items</a> in your cart.
+                                    <p class="amount">{{ trans('frontend/articles.my_cart.there_are') }} <a href="shopping_cart.html">{{ trans_choice('frontend/articles.my_cart.articles', ['quantity' => 1]) }}</a> {{ trans('frontend/articles.my_cart.in_your_cart') }}.
                                     </p>
-                                    <p class="subtotal"><span class="label">Cart Subtotal:</span> <span class="price">$42.99</span>
+                                    <p class="subtotal"><span class="label">{{ trans('frontend/articles.my_cart.subtotal') }}</span> <span class="price">$42.99</span>
                                     </p>
                                 </div>
                                 <div class="ajax-checkout">
                                     <button class="button button-checkout" title="Submit" type="submit">
-                                        <span>Checkout</span></button>
+                                        <span>{{ trans('frontend/articles.my_cart.checkout') }}</span></button>
                                 </div>
-                                <p class="block-subtitle">Recently added item(s) </p>
+                                <p class="block-subtitle">{{ trans('frontend/articles.my_cart.recently_added') }} </p>
                                 <ul>
                                     <li class="item"><a href="shopping_cart.html" title="iPhone 6 Plus"
                                                         class="product-image"><img src="products-images/product1.jpg"
@@ -882,49 +737,26 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="block block-compare">
-                            <div class="block-title ">Compare Products (2)</div>
-                            <div class="block-content">
-                                <ol id="compare-items">
-                                    <li class="item odd">
-                                        <input type="hidden" value="2173" class="compare-item-id">
-                                        <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#"
-                                                                                                         class="product-name">
-                                            ThinkPad X1 Ultrabook</a></li>
-                                    <li class="item last even">
-                                        <input type="hidden" value="2174" class="compare-item-id">
-                                        <a class="btn-remove1" title="Remove This Item" href="#"></a> <a href="#"
-                                                                                                         class="product-name">
-                                            QX30 Lens Camera</a></li>
-                                </ol>
-                                <div class="ajax-checkout">
-                                    <button type="submit" title="Submit" class="button button-compare">
-                                        <span>Compare</span></button>
-                                    <button type="submit" title="Submit" class="button button-clear"><span>Clear</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="block block-list block-viewed">
-                            <div class="block-title"> Recently Viewed</div>
+                            <div class="block-title"> {{ trans('frontend/articles.recently_viewed') }}</div>
                             <div class="block-content">
                                 <ol id="recently-viewed-items">
                                     <li class="item odd">
-                                        <p class="product-name"><a href="#"> ThinkPad X1 Ultrabook </a></p>
+                                        <p class="product-name"><a href="#"> Ositos de Gominola </a></p>
                                     </li>
                                     <li class="item even">
-                                        <p class="product-name"><a href="#"> Samsung GALAXY Note </a></p>
+                                        <p class="product-name"><a href="#"> Taza personalizada </a></p>
                                     </li>
                                     <li class="item last odd">
-                                        <p class="product-name"><a href="#"> QX30 Lens Camera </a></p>
+                                        <p class="product-name"><a href="#"> Caramelos gomita </a></p>
                                     </li>
                                 </ol>
                             </div>
                         </div>
 
                         <div class="block block-tags">
-                            <div class="block-title"> Popular Tags</div>
+                            <div class="block-title"> {{ trans('frontend/articles.popular_tags') }}</div>
                             <div class="block-content">
                                 <ul class="tags-list">
                                     <li><a href="#" style="font-size:98.3333333333%;">Camera</a></li>
@@ -948,7 +780,6 @@
                                     <li><a href="#" style="font-size:75%;">trendy</a></li>
                                     <li><a href="#" style="font-size:86.6666666667%;">young</a></li>
                                 </ul>
-                                <div class="actions"><a href="#" class="view-all">View All Tags</a></div>
                             </div>
                         </div>
                     </aside>

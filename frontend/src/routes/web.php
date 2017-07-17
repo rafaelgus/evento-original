@@ -31,12 +31,6 @@ Route::get('/'. trans('sections.contact'), function () {
     return view('frontend.contact_us');
 });
 
-Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
-
-//Route::get('/', function () {
-//    return view('backend.home');
-//});
-
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
     Route::post('/login', 'Auth\LoginController@managementLogin');
@@ -102,3 +96,5 @@ Route::group(['prefix' => '/management'], function () {
         });
     });
 });
+
+Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
