@@ -3,7 +3,7 @@
 return [
     'confirmation' => [
         'create' => [
-            'article' => 'El articulo se cargo con exito',
+            'article' => 'El articulo se cargo con exito. Ahora puede cargar las imagenes',
             'category' => 'Categoría guardada con éxito',
             'color' => 'Color guardado con éxito',
             'flavour' => 'Sabor guardado con éxito',
