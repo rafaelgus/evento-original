@@ -3,9 +3,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\StoreArticleRequest;
 use App\Http\Requests\Backend\UpdateArticleRequest;
-use App\Http\Requests\Backend\UpdateCategoryRequest;
 use EventoOriginal\Core\Entities\Article;
-use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Services\AllergenService;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\BrandService;
@@ -23,7 +21,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Yajra\Datatables\Datatables;
-use Intervention\Image\ImageManagerStatic as Image;
 
 class ArticleController
 {
