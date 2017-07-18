@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.licenses.title') }}
-            <small>{{ trans('texts.sections.licenses.edit') }}</small>
+            {{ trans('texts.sections.license.title') }}
+            <small>{{ trans('texts.sections.license.edit') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.licenses.title') }}</li>
-            <li class="active">{{ trans('texts.sections.licenses.edit') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.license.title') }}</li>
+            <li class="active">{{ trans('texts.sections.license.edit') }}</li>
         </ol>
     </section>
 @stop
