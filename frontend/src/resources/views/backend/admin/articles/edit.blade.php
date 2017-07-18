@@ -573,9 +573,6 @@
                     'articleId': '{{ $article->getId() }}'
                 }
             },
-            session: {
-                endpoint: '/management/articles/uploads/{{ $article->getId() }}'
-            },
             thumbnails: {
                 placeholders: {
                     waitingPath: '/source/placeholders/waiting-generic.png',

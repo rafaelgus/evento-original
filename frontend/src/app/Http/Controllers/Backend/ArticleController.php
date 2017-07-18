@@ -214,7 +214,7 @@ class ArticleController
         $images = [];
 
         foreach ($files as $file) {
-            $imageName = bcrypt($file->getFilename()). '.' .$file->getClientOriginalExtension();
+            $imageName = uniqid($file->getFilename()). '.' .$file->getClientOriginalExtension();
 
             $filePath = '/images/' . $imageName;
 
