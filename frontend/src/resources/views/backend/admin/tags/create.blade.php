@@ -1,31 +1,4 @@
-@section('scripts_body')
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': '{{csrf_token()}}'
-        }
-    });
-
-    $.ajax({
-        content: this,
-        url : '/management/users/roles',
-        type: 'GET'
-    }).done(function(result) {
-        $.each(result, function (i, option) {
-            $('#roles').append(
-                '<div class="form-group"> +' +
-                    '<div class="checkbox">' +
-                        '<label>' +
-                            '<input type="checkbox" value="'+ option.id +'" name="roles[]">' +
-                            + option.name +
-                        '</label>'+
-                    '</div>' +
-                '</div>'
-            );
-        })
-    });
-</script>
-@endsection@extends('backend.layouts.app')
+@extends('backend.layouts.app')
 
 @section('header')
     <!-- Content Header (Page header) -->
