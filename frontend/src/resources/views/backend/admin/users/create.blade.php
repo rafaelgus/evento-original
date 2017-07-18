@@ -96,7 +96,7 @@
                     '<div class="form-group"> +' +
                         '<div class="checkbox">' +
                             '<label>' +
-                                '<input type="checkbox" value="'+ option.id +'">' +
+                                '<input type="checkbox" value="'+ option.id +'" name="roles[]">' +
                                 + option.name +
                             '</label>'+
                         '</div>' +
