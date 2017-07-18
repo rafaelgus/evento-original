@@ -22,7 +22,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="{{ '/management/licenses/' . $licence->getId() }}" method="POST">
+                    <form role="form" class="form-horizontal" action="{{ '/management/licenses/' . $license->getId() }}" method="POST">
                         <div class="box-body">
                             @include('backend.messages.session')
 
