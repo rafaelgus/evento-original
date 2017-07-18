@@ -89,7 +89,8 @@ return [
           'image' => 'Imagen',
           'shortDescription' => 'Descripcion corta',
           'brand' => 'Marca',
-          'quantity' => 'Cantidad'
+          'quantity' => 'Cantidad',
+          'license' => 'Licencia'
       ],
       'license' => [
           'title' => 'Licencia',
