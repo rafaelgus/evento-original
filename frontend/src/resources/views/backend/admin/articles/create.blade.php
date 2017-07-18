@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.license') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="license" name="license"></select>
                                     {!! $errors->first('license', '<span class="help-block">* :message</span>') !!}
@@ -194,6 +194,8 @@
                                     <select multiple class="form-control select2" id="ingredients" name="ingredients[]"></select>
                                     {!! $errors->first('ingredients[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
+
+
                             </div>
                             <div class="form-group {{ $errors->has('flavours[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.flavours') }}</label>

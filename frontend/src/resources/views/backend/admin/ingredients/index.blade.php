@@ -66,7 +66,7 @@
                         "mData": null,
                         "bSortable": false,
                         "bSearchable": false,
-                        "mRender": function (o) { return '<a href="/management/licenses/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) { return '<a href="/management/ingredients/' + o.id +'/edit" class="danger">Editar</a>'}
                     }
                 ],
                 language: {

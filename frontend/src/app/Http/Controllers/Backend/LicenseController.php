@@ -32,7 +32,7 @@ class LicenseController
     public function edit(int $id)
     {
         $license = $this->licenseService->findOneById($id);
-        return view('backend.admin.license.edit')->with(['license' => $license]);
+        return view('backend.admin.licenses.edit')->with(['license' => $license]);
     }
 
     public function store(StoreLicenseRequest $request)
