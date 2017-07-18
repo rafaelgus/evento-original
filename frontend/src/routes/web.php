@@ -11,6 +11,8 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('frontend.home');
 });
@@ -27,9 +29,13 @@ Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
     return view('frontend.my_wishlist');
 });
 
-Route::get('/'. trans('sections.contact'), function () {
+Route::get('/' . trans('sections.contact'), function () {
     return view('frontend.contact_us');
 });
+
+Route::get('/mi-cuenta', function () {
+    return "asd";
+})->middleware('auth');
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
@@ -98,3 +104,5 @@ Route::group(['prefix' => '/management'], function () {
 });
 
 Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');

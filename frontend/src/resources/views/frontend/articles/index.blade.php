@@ -24,8 +24,10 @@
                     <div class="category-description std">
                         <div class="slider-items-products">
                             <h2 class="page-heading"><span class="page-heading-title">Tazas</span></h2>
+                            <p class="category-description">
                             Aqui iria la descripcion de la categoria como por ejemeplo ¿Querés comprar una taza? Aqui
                             econtraras las mejores tazas del mercado, no dudes y llevate las tazas que quieras.
+                            </p>
                         </div>
                         <div class="toolbar">
                             <div class="row">
@@ -703,7 +705,7 @@
                                                                    class="btn-remove1"> <span class="icon"></span>
                                                     Remove </a></div>
                                             <strong>1</strong> x <span class="price">$19.99</span>
-                                            <p class="product-name"><a href="shopping_cart.html">iPhone 6 Plus</a></p>
+                                            <p class="product-name"><a href="shopping_cart.html">Caramelos azules</a></p>
                                         </div>
                                     </li>
                                     <li class="item last"><a href="shopping_cart.html" title="ThinkPad X1 Ultrabook"
@@ -714,8 +716,7 @@
                                                                    class="btn-remove1"> <span class="icon"></span>
                                                     Remove </a></div>
                                             <strong>1</strong> x <span class="price">$8.00</span>
-                                            <p class="product-name"><a href="shopping_cart.html"> ThinkPad X1
-                                                    Ultrabook </a></p>
+                                            <p class="product-name"><a href="shopping_cart.html"> Taza de bebé </a></p>
 
                                             <!--access clearfix-->
                                         </div>
@@ -728,7 +729,7 @@
                                                                    class="btn-remove1"> <span class="icon"></span>
                                                     Remove </a></div>
                                             <strong>1</strong> x <span class="price">$15.00</span>
-                                            <p class="product-name"><a href="shopping_cart.html"> Smart Watch A9 </a>
+                                            <p class="product-name"><a href="shopping_cart.html"> Ositos  de gominola </a>
                                             </p>
 
                                             <!--access clearfix-->

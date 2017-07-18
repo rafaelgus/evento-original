@@ -5402,7 +5402,7 @@ figure.effect p {
 }
 
 .block .block-content .item {
-    padding: 8px 0;
+    padding: 2px 0;
 }
 
 .block .btn-remove, .block .btn-edit {
@@ -5523,7 +5523,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 
 .side-nav-categories .block-title {
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 1px;
     line-height: normal;
@@ -5605,7 +5605,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
     color: #413C5E;
     text-transform: uppercase;
     display: block;
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -5653,7 +5653,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 
 .box-category > ul > li ul > li > a {
     border-bottom: 0 solid #EAEAEA;
-    font-size: 13px;
+    font-size: 16px;
     margin: 0;
     padding: 3px 16px;
     text-decoration: none;
@@ -6056,7 +6056,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .col-left .block-cart .block-content ul li .product-name a {
-    font-size: 13px;
+    font-size: 18px;
 
 }
 
@@ -6365,7 +6365,7 @@ ol#compare-items li.last {
 
 #recently-viewed-items .product-name a {
     color: #e94d65;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: normal;
     text-decoration: none;
     padding: 0 0px;
@@ -11601,8 +11601,17 @@ a.button.wishlist {
 }
 
 .account-login strong {
-    font-size: 13px;
-    color: #000;
+    font-size: 18px;
+    color: #e94d65;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.account-login .error{
+    font-size: 12px;
+    color: red;
     margin-bottom: 15px;
     font-weight: bold;
     text-transform: uppercase;
@@ -11616,7 +11625,8 @@ a.button.wishlist {
 
 .account-login .content p {
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 16px;
+    color: #423d5f;
 }
 
 .account-login .content p.required {
@@ -11624,8 +11634,8 @@ a.button.wishlist {
 }
 
 .account-login .content .form-list label {
-    font-size: 13px;
-    color: #333;
+    font-size: 15px;
+    color: #e94d65;
     margin-bottom: 0px;
     font-weight: bold;
 }
@@ -17374,3 +17384,8 @@ a.button.wishlist {
 .rating-select > input:checked ~ label:hover ~ label { color: #FFED85;  }
 
 .rating > input:checked ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.category-description {
+    font-size: 16px;
+    font-family: 'Choplin-Medium', Sans-Serif;
+}
