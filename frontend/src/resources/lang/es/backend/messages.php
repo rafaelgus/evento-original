@@ -6,11 +6,13 @@ return [
             'category' => 'Categoría guardada con éxito',
             'color' => 'Color guardado con éxito',
             'flavour' => 'Sabor guardado con éxito',
-            'allergen' => 'El alergeno se guardo con exito'
+            'allergen' => 'El alergeno se guardo con exito',
+            'users' => 'El usuario se guardo con exito',
         ],
         'edit' => [
             'allergen' => 'El alergeno se modifico con exito',
-            'category' => 'La categoria se actualizo correctamente'
+            'category' => 'La categoria se actualizo correctamente',
+            'users' => 'El usuario se actualizo con exito',
         ],
     ]
 ];

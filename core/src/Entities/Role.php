@@ -1,4 +1,4 @@
-<?php
+$roles = $this->roleService-><?php
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\ORM\Mapping as ORM;

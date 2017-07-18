@@ -1,23 +1,9 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('frontend.home');
 });
 
-//Route::get('/', function () {
-//    return view('backend.home');
-//});
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
@@ -81,6 +67,15 @@ Route::group(['prefix' => '/management'], function () {
            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+        });
+        Route::group(['prefix' => '/users'], function () {
+           Route::get('/create', 'Backend\UserController@create');
+           Route::get('/{id}/edit', 'Backend\UserController@edit');
+           Route::get('/', 'Backend\UserController@index');
+           Route::get('/getUsers', 'Backend\UserController@getDataTables');
+           Route::post('/', 'Backend\UserController@store');
+           Route::put('/{id}', 'Backend\UserController@update');
+           Route::get('/roles', 'Backend\UserController@getRoles');
         });
     });
 });
