@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.flavours.title') }}
-            <small>{{ trans('texts.sections.flavours.view') }}</small>
+            {{ trans('texts.sections.license.title') }}
+            <small>{{ trans('texts.sections.license.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.flavours.title') }}</li>
-            <li class="active">{{ trans('texts.sections.flavours.view') }}</li>
+            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.license.title') }}</li>
+            <li class="active">{{ trans('texts.sections.license.view') }}</li>
         </ol>
     </section>
 @stop
