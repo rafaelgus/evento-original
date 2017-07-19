@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,7 +28,7 @@ class UpdateUserRequest extends FormRequest
             'password' => 'required|min:6',
             'confirm' => 'same:password',
             'email' => 'required',
-            'roles[]' => 'required'
+            'roles' => 'required'
         ];
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,7 +28,7 @@ class StoreUserRequest extends FormRequest
             'password' => 'required|min:6',
             'confirm' => 'same:password',
             'email' => 'required|unique:EventoOriginal\Core\Entities\User,email',
-            'roles[]' => 'required'
+            'roles' => 'required'
         ];
     }
 }
