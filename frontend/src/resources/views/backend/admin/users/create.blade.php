@@ -9,7 +9,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.users.title') }}</li>
-            <li class="active">{{ trans('texts.sections.users.edit') }}</li>
+            <li class="active">{{ trans('texts.sections.users.create') }}</li>
         </ol>
     </section>
 @stop
@@ -23,17 +23,16 @@
                 <div class="box box-danger">
                     <!-- form start -->
                     <form role="form" class="form-horizontal" action="{{ '/management/users/'}} " method="POST">
-                        <div class="box-body">
+                        <div class="box-body" id="formUsers">
                             @include('backend.messages.session')
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="_method" value="PUT">
 
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.name') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="name"
-                                           placeholder="{{ trans('texts.sections.users.name') }}" value="{{ old('name', $user->getName()) }}">
+                                           placeholder="{{ trans('texts.sections.users.name') }}" value="{{ old('name') }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -41,29 +40,34 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.password') }}</label>
                                 <div class="col-sm-10">
                                     <input type="password" class="form-control" id="inputName" name="password"
-                                           placeholder="{{ trans('texts.sections.users.password') }}" value="{{ old('name', $user->getPassword()) }}">
+                                           placeholder="{{ trans('texts.sections.users.password') }}" value="{{ old('name') }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('confirm') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.password') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputName" name="confirm">
-                                    placeholder="{{ trans('texts.sections.users.password') }}">
+                                    <input type="password" class="form-control" id="inputName" name="confirm" placeholder="{{ trans('texts.sections.users.password') }}">
                                     {!! $errors->first('confirm', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.email') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="inputName" name="email" value="{{ old('name', $user->getEmail()) }}">
-                                    placeholder="{{ trans('texts.sections.users.email') }}">
+                                    <input type="email" class="form-control" id="inputName" name="email" value="{{ old('name') }}" placeholder="{{ trans('texts.sections.users.email') }}">
                                     {!! $errors->first('email', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div id="roles">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group {{ $errors->has('roles[]') ? 'has-error' : '' }}" id="checkbox">
 
+                                    </div>
+                                    {!! $errors->first('roles[]', '<span class="help-block">* :message</span>') !!}
+                                </div>
                             </div>
+
                         </div>
 
                         <div class="box-footer">
@@ -91,15 +95,13 @@
             url : '/management/users/roles',
             type: 'GET'
         }).done(function(result) {
-            $.each(result, function (i, option) {
-                $('#roles').append(
-                    '<div class="form-group"> +' +
-                        '<div class="checkbox">' +
-                            '<label>' +
-                                '<input type="checkbox" value="'+ option.id +'" name="roles[]">' +
-                                + option.name +
-                            '</label>'+
-                        '</div>' +
+            $.each(result.roles, function (i, option) {
+                $('#checkbox').append(
+                    '<div class="checkbox">' +
+                        '<label>' +
+                            '<input type="checkbox" value="'+ option.id +'" name="roles[]">' +
+                             option.name +
+                        '</label>'+
                     '</div>'
                 );
             })

@@ -36,7 +36,9 @@ class UserController
 
     public function edit(int $id)
     {
-        return view('backend.admin.users.edit');
+        $user = $this->userService->findById($id);
+
+        return view('backend.admin.users.edit')->with(['user' => $user]);
     }
 
     public function store(StoreUserRequest $request)
@@ -67,8 +69,8 @@ class UserController
     {
         $user = $this->userService->findById($id);
 
-        $user->setPassword($request->input('name'));
-        $user->setName($request->input('password'));
+        $user->setPassword($request->input('password'));
+        $user->setName($request->input('name'));
         $user->setEmail($request->input('email'));
         $rolesIds = $request->input('roles');
 

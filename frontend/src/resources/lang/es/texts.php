@@ -58,6 +58,7 @@ return [
       ],
       'users' => [
           'title' => 'Usuarios',
+          'create' => 'Crear',
           'view' => 'Ver',
           'new' => 'Nuevo',
           'name' => 'Nombre',

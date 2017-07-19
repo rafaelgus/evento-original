@@ -25,7 +25,11 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:255',
+            'password' => 'required|min:6',
+            'confirm' => 'same:password',
+            'email' => 'required',
+            'roles[]' => 'required'
         ];
     }
 }

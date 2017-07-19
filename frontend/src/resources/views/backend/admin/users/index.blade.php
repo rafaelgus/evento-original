@@ -31,6 +31,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>{{ trans('texts.sections.users.name') }}</th>
+                                <th>{{ trans('texts.sections.users.email') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -63,6 +64,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
+                    { data: 'email', name: 'email' },
                     {
                         "mData": null,
                         "bSortable": false,
