@@ -676,7 +676,8 @@ header .header-top-links {
 }
 
 .welcome-msg p {
-    margin: 0px
+    margin: 0px;
+    color: #413C5E;
 }
 
 .rating .fa-stack {
@@ -10850,13 +10851,13 @@ button.button.btn-proceed-checkout span {
 .dashboard .welcome-msg {
     text-align: left;
     padding: 0px 0 5px;
-    color: #333;
+    color: #e94d65;
     margin: auto;
 }
 
 .dashboard .welcome-msg strong {
     font-weight: bold;
-    font-size: 13px;
+    font-size: 23px;
 }
 
 .box-account {
@@ -10871,7 +10872,7 @@ button.button.btn-proceed-checkout span {
 }
 
 .box-account .page-title h2 {
-    font-size: 14px;
+    font-size: 23px;
     text-transform: none;
     font-weight: bold;
     letter-spacing: normal;
@@ -10912,9 +10913,9 @@ button.button.btn-proceed-checkout span {
 }
 
 .recent-orders .title-buttons strong {
-    color: #333;
+    color: #413C5E;
     float: left;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: bold;
 }
 
@@ -12123,7 +12124,7 @@ a.button.wishlist {
 .data-table thead th, .data-table thead td, .data-table tfoot th, .data-table tfoot td, .cart .totals table th, .cart .totals table td {
     color: #e94d65;
     font-family: 'tt0142m', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
 
 }
 

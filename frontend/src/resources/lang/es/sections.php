@@ -11,4 +11,5 @@ return [
     'babies' => 'Bebés',
     'arrangements' => 'Arreglos',
     'others' => 'Otros',
+    'about_us' => 'Quiénes somos',
 ];

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <ul>
-                        <li class="home"><a title="Go to Home Page" href="index.html">Home</a> <span>/</span></li>
+                        <li class="home"><a title="Go to Home Page" href="/">Home</a> <span>/</span></li>
                         <li class="category1601"><strong>{{ trans('frontend/contact_us.title') }}</strong></li>
                     </ul>
                 </div>

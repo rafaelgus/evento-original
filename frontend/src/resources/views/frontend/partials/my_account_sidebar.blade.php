@@ -3,7 +3,7 @@
         <div class="block-title">{{ trans('frontend/my_account.title')}}</div>
         <div class="block-content">
             <ul>
-                <li><a href="#">{{ trans('frontend/my_account.dashboard')}}</a></li>
+                <li class="current"><a href="#">{{ trans('frontend/my_account.summary')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.account_information')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.my_orders')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.my_reviews')}}</a></li>

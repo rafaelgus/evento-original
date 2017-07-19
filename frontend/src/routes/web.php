@@ -33,8 +33,16 @@ Route::get('/' . trans('sections.contact'), function () {
     return view('frontend.contact_us');
 });
 
+Route::get('/' . trans('frontend/about_us.slug'), function () {
+    return view('frontend.about_us');
+});
+
+Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
+    return view('frontend.terms_and_conditions');
+});
+
 Route::get('/mi-cuenta', function () {
-    return "asd";
+    return view('frontend.profile.my_account');
 })->middleware('auth');
 
 Route::group(['prefix' => '/management'], function () {
