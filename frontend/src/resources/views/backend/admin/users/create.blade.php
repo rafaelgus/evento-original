@@ -62,7 +62,14 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <div class="form-group {{ $errors->has('roles[]') ? 'has-error' : '' }}" id="checkbox">
-
+                                        @foreach($roles as $role)
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="{{ $role->getId() }}" name="roles[]">
+                                                    {{ $role->getName() }}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                     </div>
                                     {!! $errors->first('roles[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -81,30 +88,4 @@
         </div>
         <!-- /.row -->
     </section><!-- /.content -->
-@endsection
-@section('scripts_body')
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': '{{csrf_token()}}'
-            }
-        });
-
-        $.ajax({
-            content: this,
-            url : '/management/users/roles',
-            type: 'GET'
-        }).done(function(result) {
-            $.each(result.roles, function (i, option) {
-                $('#checkbox').append(
-                    '<div class="checkbox">' +
-                        '<label>' +
-                            '<input type="checkbox" value="'+ option.id +'" name="roles[]">' +
-                             option.name +
-                        '</label>'+
-                    '</div>'
-                );
-            })
-        });
-    </script>
 @endsection

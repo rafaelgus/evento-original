@@ -31,14 +31,19 @@ class UserController
 
     public function create()
     {
-        return view('backend.admin.users.create');
+        $roles = $this->roleService->findAll();
+        return view('backend.admin.users.create')->with(['roles' => $roles]);
     }
 
     public function edit(int $id)
     {
         $user = $this->userService->findById($id);
+        $roles = $this->roleService->findAll();
 
-        return view('backend.admin.users.edit')->with(['user' => $user]);
+        return view('backend.admin.users.edit')->with([
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     public function store(StoreUserRequest $request)
