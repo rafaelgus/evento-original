@@ -17,5 +17,6 @@ return [
     'accept' => 'Aceptar',
     'deny' => 'Rechazar',
     'upload' => 'Cargar',
-    'change' => 'Cambiar'
+    'change' => 'Cambiar',
+    'submit' => 'Enviar',
 ];
