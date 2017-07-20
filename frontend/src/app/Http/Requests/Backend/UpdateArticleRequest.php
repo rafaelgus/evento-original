@@ -31,9 +31,7 @@ class UpdateArticleRequest extends FormRequest
             'barCode' => 'required|max:255',
             'internalCode' => 'required|max:255',
             'costPrice' => 'required',
-            'allergens' => 'required',
             'colors' => 'required',
-            'flavours' => 'required',
             'tags' => 'required'
         ];
     }
