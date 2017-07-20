@@ -13,6 +13,7 @@
 @yield('scripts_head')
 <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/backend/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -80,6 +81,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/backend/js/demo.js"></script>
 <script src="/backend/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
 
 @yield('scripts_body')
 

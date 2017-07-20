@@ -40,7 +40,7 @@
                             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.description') }}</label>
                                 <div class="col-sm-10">
-                                    <textarea rows="10" class="form-control" id="inputName" name="description" placeholder="{{ trans('texts.sections.article.description') }}">{{ old('description', $article->getDescription())}}</textarea>
+                                    <textarea rows="10" class="form-control" id="description" name="description" placeholder="{{ trans('texts.sections.article.description') }}">{{ old('description', $article->getDescription())}}</textarea>
 
                                     {!! $errors->first('description', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -263,12 +263,13 @@
         $('#brands').select2();
         loadTable();
 
+        $('#description').wysihtml5();
+
         if($('#priceType').val() == 1) {
             $('#agregar').hide();
             $('#granel').hide();
             $('#table-price').hide();
         }
-
 
         $('#addPrice').click(function() {
             var quantity = $('#quantity').val();

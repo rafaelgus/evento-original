@@ -69,7 +69,7 @@ return [
       ],
       'article' => [
           'title' => 'Artículos',
-          'view' => 'ver',
+          'view' => 'Ver',
           'new' => 'Nuevo',
           'edit' => 'Editar',
           'name' => 'Nombre',
