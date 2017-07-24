@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="inputName" class="col-sm-2 control-label">venta por</label>
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.priceType') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" id="priceType" name="priceType">
                                         <option value="1">Unidad</option>

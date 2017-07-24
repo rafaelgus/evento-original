@@ -90,7 +90,8 @@ return [
           'shortDescription' => 'Descripcion corta',
           'brand' => 'Marca',
           'quantity' => 'Cantidad',
-          'license' => 'Licencia'
+          'license' => 'Licencia',
+          'priceType' => 'Venta por'
       ],
       'license' => [
           'title' => 'Licencia',
