@@ -69,7 +69,7 @@
                         "mData": null,
                         "bSortable": false,
                         "bSearchable": false,
-                        "mRender": function (o) { return '<a href="/management/users/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) { return '<a href="/management/users/' + o.id +'/edit" class="danger">Editar</a>|<a href="/management/users/editPassword/'+ o.id+ '">Cambiar password</a> '}
                     }
                 ],
                 language: {

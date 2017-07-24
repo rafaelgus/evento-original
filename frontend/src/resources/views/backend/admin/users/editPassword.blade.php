@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('confirm') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.confirm') }}</label>
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.password') }}</label>
                                 <div class="col-sm-10">
                                     <input type="password" class="form-control" id="inputName" name="confirm" value="{{ old('confirm') }}">
                                     {!! $errors->first('email', '<span class="help-block">* :message</span>') !!}
