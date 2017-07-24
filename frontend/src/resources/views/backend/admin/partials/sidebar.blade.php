@@ -18,7 +18,27 @@
     <li class="treeview">
         <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.articles.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="#">{{ trans('texts.sections.articles.view') }}</a></li>
+            <li><a href='/management/articles/'>{{ trans('texts.sections.article.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href='/management/articles/create'>{{ trans('texts.sections.article.new') }}</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.license.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href='/management/licenses/'>{{ trans('texts.sections.license.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href='/management/licenses/create'>{{ trans('texts.sections.license.new') }}</a></li>
+        </ul>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.ingredients.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href='/management/ingredients/'>{{ trans('texts.sections.ingredients.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href='/management/ingredients/create'>{{ trans('texts.sections.ingredients.new') }}</a></li>
         </ul>
     </li>
     <li class="treeview">
@@ -30,7 +50,15 @@
             <li><a href="/management/category/create">{{ trans('texts.sections.categories.new') }}</a></li>
         </ul>
     </li>
-    <li><a href="#"><i class="fa fa-tags"></i> <span>{{ trans('texts.sections.tags.title') }}</span></a></li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-tags"></i> <span>{{ trans('texts.sections.tags.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/tags">{{ trans('texts.sections.tags.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/tags/create">{{ trans('texts.sections.tags.new') }}</a></li>
+        </ul>
+    </li>
     <li class="treeview">
         <a href="#"><i class="fa fa-tint"></i> <span>{{ trans('texts.sections.colors.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
@@ -59,7 +87,6 @@
         </ul>
 
     </li>
-    <li><a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span></a></li>
     <li class="treeview">
         <a href="#"><i class="fa fa-fire"></i> <span>{{ trans('texts.sections.brands.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">

@@ -79,4 +79,16 @@ class ColorService
     {
         $this->colorRepository->save($color);
     }
+
+    public function findByIds(array $ids)
+    {
+        $colors = [];
+
+        foreach ($ids as $id) {
+            $color = $this->colorRepository->findOneById($id, 'es');
+            $colors[] = $color;
+        }
+
+        return $colors;
+    }
 }

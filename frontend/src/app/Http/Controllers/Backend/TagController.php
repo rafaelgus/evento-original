@@ -75,4 +75,16 @@ class TagController
 
         return Datatables::of($tagsCollection)->make(true);
     }
+
+    public function getAllTags()
+    {
+        $tags = $this->tagService->findAll(App::getLocale());
+        $parsedTags = [];
+
+        foreach ($tags as $tag) {
+            $parsedTags[] = ['id' => $tag->getId(), 'name' => $tag->getName()];
+        }
+
+        return $parsedTags;
+    }
 }

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Validator;
 use Yajra\Datatables\Facades\Datatables;
 
 class AllergenController
@@ -70,5 +69,18 @@ class AllergenController
         }
 
         return Datatables::of($allergenCollection)->make(true);
+    }
+
+    public function getAllAllergens()
+    {
+        $allergens = $this->allergenService->findAll(App::getLocale());
+
+        $parsedAllergen = [];
+
+        foreach ($allergens as $allergen) {
+            $parsedAllergen[] = ['id' => $allergen->getId(), 'name' => $allergen->getName()];
+        }
+
+        return $parsedAllergen;
     }
 }

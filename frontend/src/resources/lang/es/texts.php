@@ -38,7 +38,11 @@ return [
           'view' => 'Ver'
       ],
       'tags' => [
-          'title' => 'Tags'
+          'title' => 'Tags',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'Edit',
+          'name' => 'Nombre'
       ],
       'brands' => [
           'title' => 'Marcas',
@@ -56,6 +60,46 @@ return [
       'stock_placements' => [
           'title' => 'Muebles'
       ],
+      'article' => [
+          'title' => 'Artículos',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'Editar',
+          'name' => 'Nombre',
+          'description' => 'Descripcion',
+          'costPrice' => 'Precio de costo',
+          'price' => 'Precio',
+          'barCode' => 'Codigo de barra',
+          'internalCode' => 'Codigo interno',
+          'tags' => 'Tags',
+          'colors' => 'Colores',
+          'ingredients' => 'Ingredientes',
+          'allergens' => 'Alérgenos',
+          'slug' => 'Slug',
+          'status' => 'Estado',
+          'flavours' => 'Sabores',
+          'categories' => 'Categorías',
+          'image' => 'Imagen',
+          'shortDescription' => 'Descripcion corta',
+          'brand' => 'Marca',
+          'quantity' => 'Cantidad',
+          'license' => 'Licencia',
+          'priceType' => 'Venta por'
+      ],
+      'license' => [
+          'title' => 'Licencia',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'Editar',
+          'name' => 'Nombre'
+      ],
+      'ingredients' => [
+          'title' => 'Ingredientes',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'edit' => 'Editar',
+          'name' => 'Nombre'
+          ],
       'users' => [
           'title' => 'Usuarios',
           'create' => 'Crear',

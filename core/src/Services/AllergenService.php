@@ -65,4 +65,16 @@ class AllergenService
     {
         $this->allergenRepository->save($allergen);
     }
+
+    public function findByIds(array $ids)
+    {
+        $allergens = [];
+
+        foreach ($ids as $id) {
+            $allergen = $this->allergenRepository->findOneById($id, 'es');
+            $allergens[] = $allergen;
+        }
+
+        return $allergens;
+    }
 }

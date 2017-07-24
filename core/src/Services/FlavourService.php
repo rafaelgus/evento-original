@@ -76,4 +76,16 @@ class FlavourService
     {
         $this->flavourRepository->save($flavour);
     }
+
+    public function findByIds(array $ids)
+    {
+        $flavours = [];
+
+        foreach ($ids as $id) {
+            $flavour = $this->flavourRepository->findOneById($id, 'es');
+            $flavours[] = $flavour;
+        }
+
+        return $flavours;
+    }
 }
