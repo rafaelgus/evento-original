@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,7 +25,7 @@ class UpdatePasswordRequest extends FormRequest
     {
         return [
             'password' => 'required|min:6',
-            'confirm' => 'same:password',
+            'confirm' => 'same:password'
         ];
     }
 }

@@ -65,7 +65,7 @@ class UserController
 
         Session::flash('message', trans('backend/messages.confirmation.edit.users'));
 
-        return redirect()->to('/management/users/updatePassword/'. $user->getId());
+        return redirect()->to('/management/users/editPassword/'. $user->getId());
     }
 
     public function store(StoreUserRequest $request)
