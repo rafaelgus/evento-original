@@ -153,56 +153,88 @@
                             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2" id="categories" name="category"></select>
+                                    <select class="form-control select2" id="categories" name="category">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->getId() }}">{{$category->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('brand') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.brand') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2" id="brands" name="brand"></select>
+                                    <select class="form-control select2" id="brands" name="brand">
+                                        @foreach($brands as $brand)
+                                            <option value="{{ $brand->getId() }}" >{{$brand->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.license') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2" id="license" name="license"></select>
+                                    <select class="form-control select2" id="license" name="license">
+                                        @foreach($licenses as $license)
+                                            <option value="{{ $license->getId() }}" >{{$license->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('license', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div class="form-group {{ $errors->has('tags[]') ? 'has-error' : '' }}">
+                            <div class="form-group {{ $errors->has('tags') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.tags') }}</label>
                                 <div class="col-sm-10">
-                                    <select multiple class="form-control select2" id="tags" name="tags[]"></select>
-                                    {!! $errors->first('tags[]', '<span class="help-block">* :message</span>') !!}
+                                    <select multiple class="form-control select2" id="tags" name="tags[]">
+                                        @foreach($tags as $tag)
+                                            <option value="{{ $tag->getId() }}" {{(in_array($tag, $article->getTags()->toArray())? 'selected' : '')}} >{{$tag->getName()}}</option>
+                                        @endforeach
+                                    </select>
+                                    {!! $errors->first('tags', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('allergens[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.allergens') }}</label>
                                 <div class="col-sm-10">
-                                    <select multiple class="form-control select2" id="allergens" name="allergens[]"></select>
+                                    <select multiple class="form-control select2" id="allergens" name="allergens[]">
+                                        @foreach($allergens as $allergen)
+                                            <option value="{{ $allergen->getId() }}" {{(in_array($allergen, $article->getAllergens()->toArray())? 'selected' : '')}} >{{$allergen->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('allergens[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('colors[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.colors') }}</label>
                                 <div class="col-sm-10">
-                                    <select multiple class="form-control select2" id="colors" name="colors[]"></select>
+                                    <select multiple class="form-control select2" id="colors" name="colors[]">
+                                        @foreach($colors as $color)
+                                            <option value="{{ $color->getId() }}" {{(in_array($color, $article->getColors()->toArray())? 'selected' : '')}} >{{$color->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('colors[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('ingredients[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
                                 <div class="col-sm-10">
-                                    <select multiple class="form-control select2" id="ingredients" name="ingredients[]"></select>
+                                    <select multiple class="form-control select2" id="ingredients" name="ingredients[]">
+                                        @foreach($ingredients as $ingredient)
+                                            <option value="{{ $ingredient->getId() }}" {{(in_array($ingredient, $article->getIngredients()->toArray())? 'selected' : '')}} >{{$ingredient->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('ingredients[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('flavours[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.flavours') }}</label>
                                 <div class="col-sm-10">
-                                    <select multiple class="form-control select2" id="flavours" name="flavours[]" style="width: 100%"></select>
+                                    <select multiple class="form-control select2" id="flavours" name="flavours[]" style="width: 100%">
+                                        @foreach($flavours as $flavour)
+                                            <option value="{{ $flavour->getId() }}" {{(in_array($flavour, $article->getFlavours()->toArray())? 'selected' : '')}}>{{$flavour->getName()}}</option>
+                                        @endforeach
+                                    </select>
                                     {!! $errors->first('flavours[]', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -331,112 +363,6 @@
                 })
             }
         }
-
-
-
-        $.ajax({
-            context: this,
-            url: '/management/category/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#categories').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/tags/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#tags').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/color/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#colors').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/flavour/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#flavours').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/allergen/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#allergens').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/licenses/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#license').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/ingredients/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#ingredients').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
-
-        $.ajax({
-            context: this,
-            url: '/management/brand/getAll',
-            type: 'GET'
-        }).done(function (result) {
-            $.each(result, function (i, option) {
-                $('#brands').append($('<option>', {
-                    value: option.id,
-                    text: option.name
-                }));
-            });
-        });
 
         $('#priceType').change(function() {
             var type = parseInt($('#priceType').val());

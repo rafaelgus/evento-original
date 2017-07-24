@@ -28,8 +28,8 @@ class UpdateArticleRequest extends FormRequest
             'name' => 'required|max:255',
             'description' => 'required|max:500',
             'category' => 'required',
-            'barCode' => 'required|max:255',
-            'internalCode' => 'required|max:255',
+            'barCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,barCode,'. $this->input('barCode').',barCode',
+            'internalCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,internalCode,'. $this->input('internalCode').',internalCode',
             'costPrice' => 'required',
             'colors' => 'required',
             'tags' => 'required'

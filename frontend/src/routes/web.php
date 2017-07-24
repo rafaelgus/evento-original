@@ -117,7 +117,5 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
-
-
     });
 });

@@ -86,10 +86,28 @@ class ArticleController
         } else {
             $priceType = 1;
         }
+
+        $allergens = $this->allergenService->findAll(App::getLocale());
+        $flavours = $this->flavourService->findAll(App::getLocale());
+        $colors = $this->colorService->findAll(App::getLocale());
+        $tags = $this->tagsService->findAll(App::getLocale());
+        $ingredients = $this->ingredientService->findAll(App::getLocale());
+        $licenses = $this->licenseService->findAll();
+        $categories = $this->categoryService->findAll(App::getLocale());
+        $brands = $this->brandService->findAll();
+
         return view('backend.admin.articles.edit')
             ->with([
                 'article' => $article,
-                'priceType' => $priceType
+                'priceType' => $priceType,
+                'allergens' => $allergens,
+                'flavours' => $flavours,
+                'colors' => $colors,
+                'tags' => $tags,
+                'ingredients' => $ingredients,
+                'licenses' => $licenses,
+                'categories' => $categories,
+                'brands' => $brands
             ]);
     }
 
