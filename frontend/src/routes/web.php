@@ -76,6 +76,8 @@ Route::group(['prefix' => '/management'], function () {
            Route::post('/', 'Backend\UserController@store');
            Route::put('/{id}', 'Backend\UserController@update');
            Route::get('/roles', 'Backend\UserController@getRoles');
+           Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
+           Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
     });
 });

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\StoreUserRequest;
+use App\Http\Requests\Backend\UpdatePasswordRequest;
 use App\Http\Requests\Backend\UpdateUserRequest;
 use EventoOriginal\Core\Services\RoleService;
 use EventoOriginal\Core\Services\UserService;
@@ -44,6 +45,27 @@ class UserController
             'user' => $user,
             'roles' => $roles
         ]);
+    }
+
+    public function editPassword(int $id)
+    {
+        $user = $this->userService->findById($id);
+
+        return view('backend.admin.users.editPassword')->with([
+            'user' => $user,
+        ]);
+    }
+
+    public function updatePassword(int $id, UpdatePasswordRequest $request)
+    {
+        $user = $this->userService->findById($id);
+
+        $user->setPassword($request->input('password'));
+        $this->userService->update($user);
+
+        Session::flash('message', trans('backend/messages.confirmation.edit.users'));
+
+        return redirect()->to('/management/users/updatePassword/'. $user->getId());
     }
 
     public function store(StoreUserRequest $request)

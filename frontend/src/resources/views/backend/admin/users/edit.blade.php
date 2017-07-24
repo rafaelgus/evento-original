@@ -36,20 +36,6 @@
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.password') }}</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputName" name="password" placeholder="{{ trans('texts.sections.users.password') }}" value="{{ old('password') }}">
-                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
-                                </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('confirm') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.password') }}</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputName" name="confirm" placeholder="{{ trans('texts.sections.users.password') }}">
-                                    {!! $errors->first('confirm', '<span class="help-block">* :message</span>') !!}
-                                </div>
-                            </div>
                             <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.users.email') }}</label>
                                 <div class="col-sm-10">
@@ -60,7 +46,7 @@
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
-                                    <div class="form-group {{ $errors->has('roles[]') ? 'has-error' : '' }}" id="checkbox">
+                                    <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}" id="checkbox">
                                         @foreach($roles as $role)
                                             <div class="checkbox">
                                                 <label>
@@ -70,7 +56,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    {!! $errors->first('roles[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('roles', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                         <div class="box-footer">

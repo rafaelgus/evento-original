@@ -61,7 +61,7 @@
                             <div class="row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
-                                    <div class="form-group {{ $errors->has('roles[]') ? 'has-error' : '' }}" id="checkbox">
+                                    <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}" id="checkbox">
                                         @foreach($roles as $role)
                                             <div class="checkbox">
                                                 <label>
@@ -71,7 +71,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    {!! $errors->first('roles[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('roles', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
 
