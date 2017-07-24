@@ -8,34 +8,34 @@
         <div class="our-features-box">
             <div class="row">
                 <div class="col-lg-3 space">
-                    <div class="feature-box first"> <span class="fa fa-truck"></span>
+                    <div class="feature-box first"> <span class="fa fa-truck pantone1"></span>
                         <div class="content">
-                            <h3>Worldwide Delivery</h3>
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <h3 class="text-pantone1">ENVIOS</h3>
+                            <p>ENTREGA EN 24HRS</p>
                         </div>
                     </div>
                 </div>
                 <div class=" col-lg-3 space">
-                    <div class="feature-box"> <span class="fa fa-headphones"></span>
+                    <div class="feature-box"> <span class="fa fa-truck pantone2"></span>
                         <div class="content">
-                            <h3>Help Center</h3>
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <h3 class="text-pantone2">ENVIOS</h3>
+                            <p>ENTREGA EN 24HRS</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 space">
-                    <div class="feature-box"> <span class="fa fa-share"></span>
+                    <div class="feature-box"> <span class="fa fa-truck pantone1"></span>
                         <div class="content">
-                            <h3>Easy RETURNS</h3>
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <h3 class="text-pantone1">ENVIOS</h3>
+                            <p>ENTREGA EN 24HRS</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 space">
-                    <div class="feature-box last"> <span class="fa fa-phone"></span>
+                    <div class="feature-box last"> <span class="fa fa-phone pantone2"></span>
                         <div class="content">
-                            <h3>Helpline  +0800 567 345</h3>
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <h3 class="text-pantone2">LLAMANOS</h3>
+                            <p>ATENCION PERSONALIZADA</p>
                         </div>
                     </div>
                 </div>

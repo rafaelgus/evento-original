@@ -1,8 +1,50 @@
 <?php
 
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Auth::routes();
+
 Route::get('/', function () {
     return view('frontend.home');
 });
+
+Route::get('/articulo/detalle', function () {
+    return view('frontend.articles.show');
+});
+
+Route::get('/' . trans('frontend/shopping_cart.slug'), function () {
+    return view('frontend.shopping_cart');
+});
+
+Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
+    return view('frontend.my_wishlist');
+});
+
+Route::get('/' . trans('sections.contact'), function () {
+    return view('frontend.contact_us');
+});
+
+Route::get('/' . trans('frontend/about_us.slug'), function () {
+    return view('frontend.about_us');
+});
+
+Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
+    return view('frontend.terms_and_conditions');
+});
+
+Route::get('/mi-cuenta', function () {
+    return view('frontend.profile.my_account');
+})->middleware('auth');
 
 
 Route::group(['prefix' => '/management'], function () {
@@ -57,16 +99,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('getAllergens', 'Backend\AllergenController@getDataTables');
         });
         Route::group(['prefix' => '/category'], function () {
-           Route::get('/create', 'Backend\CategoryController@create');
-           Route::get('{id}/edit', 'Backend\CategoryController@edit');
-           Route::get('/', 'Backend\CategoryController@index');
-           Route::post('/', 'Backend\CategoryController@store');
-           Route::put('/{id}', 'Backend\CategoryController@update');
-           Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
-           Route::get('/{parentId}/createSubCategory','Backend\CategoryController@createSubCategory');
-           Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
-           Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
-           Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+            Route::get('/create', 'Backend\CategoryController@create');
+            Route::get('{id}/edit', 'Backend\CategoryController@edit');
+            Route::get('/', 'Backend\CategoryController@index');
+            Route::post('/', 'Backend\CategoryController@store');
+            Route::put('/{id}', 'Backend\CategoryController@update');
+            Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
+            Route::get('/{parentId}/createSubCategory', 'Backend\CategoryController@createSubCategory');
+            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
+            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
+            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
         });
         Route::group(['prefix' => '/users'], function () {
            Route::get('/create', 'Backend\UserController@create');
@@ -81,3 +123,7 @@ Route::group(['prefix' => '/management'], function () {
         });
     });
 });
+
+Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
+
+Route::get('/home', 'HomeController@index')->name('home');
