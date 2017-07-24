@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,7 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 Route::get('/mi-cuenta', function () {
     return view('frontend.profile.my_account');
 })->middleware('auth');
+
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
@@ -107,6 +109,17 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
             Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
             Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+        });
+        Route::group(['prefix' => '/users'], function () {
+           Route::get('/create', 'Backend\UserController@create');
+           Route::get('/{id}/edit', 'Backend\UserController@edit');
+           Route::get('/', 'Backend\UserController@index');
+           Route::get('/getUsers', 'Backend\UserController@getDataTables');
+           Route::post('/', 'Backend\UserController@store');
+           Route::put('/{id}', 'Backend\UserController@update');
+           Route::get('/roles', 'Backend\UserController@getRoles');
+           Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
+           Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
     });
 });

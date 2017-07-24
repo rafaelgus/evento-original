@@ -137,9 +137,9 @@ class User implements Authenticatable, CanResetPassword
     /**
      * @return ArrayCollection
      */
-    public function getRoles(): ArrayCollection
+    public function getRoles()
     {
-        return $this->roles;
+        return $this->roles->toArray();
     }
 
     /**
