@@ -18,8 +18,6 @@ Route::get('/', function () {
     return view('frontend.home');
 });
 
-<<<<<<< HEAD
-=======
 Route::get('/articulo/detalle', function () {
     return view('frontend.articles.show');
 });
@@ -49,7 +47,6 @@ Route::get('/mi-cuenta', function () {
 })->middleware('auth');
 
 
->>>>>>> master
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
     Route::post('/login', 'Auth\LoginController@managementLogin');
@@ -100,7 +97,6 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getAll', 'Backend\AllergenController@getAllAllergens');
         });
         Route::group(['prefix' => '/category'], function () {
-<<<<<<< HEAD
            Route::get('/create', 'Backend\CategoryController@create');
            Route::get('{id}/edit', 'Backend\CategoryController@edit');
            Route::get('/', 'Backend\CategoryController@index');
@@ -152,17 +148,6 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/{id}', 'Backend\LicenseController@update');
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
-=======
-            Route::get('/create', 'Backend\CategoryController@create');
-            Route::get('{id}/edit', 'Backend\CategoryController@edit');
-            Route::get('/', 'Backend\CategoryController@index');
-            Route::post('/', 'Backend\CategoryController@store');
-            Route::put('/{id}', 'Backend\CategoryController@update');
-            Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
-            Route::get('/{parentId}/createSubCategory', 'Backend\CategoryController@createSubCategory');
-            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
-            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
-            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
         });
         Route::group(['prefix' => '/users'], function () {
            Route::get('/create', 'Backend\UserController@create');
@@ -174,7 +159,6 @@ Route::group(['prefix' => '/management'], function () {
            Route::get('/roles', 'Backend\UserController@getRoles');
            Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
            Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
->>>>>>> master
         });
     });
 });
