@@ -31,8 +31,8 @@ return [
     'help' => [
         'title' => 'Ayuda',
         'about_us' => '¿Quiénes somos?',
-        'terms_and_conditions_of_purchase' => 'Términos y Condiciones de compra',
-        'contact_us' => 'Contacte con nosotros'
+        'terms_and_conditions_of_purchase' => 'Términos y Condiciones',
+        'contact_us' => 'Contacte con nosotros',
+        'company' => 'Evento Original'
     ],
-
 ];

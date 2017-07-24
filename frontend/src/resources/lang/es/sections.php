@@ -1,11 +1,15 @@
 <?php
 
 return [
-
-    'candies' => 'Golosinas',
-    'pies' => 'Tartas',
-    'chocolates_and_cookies' => 'Chocolates y Galletas',
-    'nuts_and_snacks' => 'Frutos secos y Aperitivos',
-    'trading_cars_and_toys' => 'Cromos y juguetes',
-    'events_and_parties' => 'Eventos y fiestas'
+    'home' => 'Home',
+    'mugs' => 'Tazas',
+    'wedding' => 'Bodas',
+    'personalized_gifts' => 'Regalos personalizados',
+    'original_candy' => 'Dulces originales',
+    'contact' => 'Contacto',
+    'candies' => 'Dulces',
+    'babies' => 'Bebés',
+    'arrangements' => 'Arreglos',
+    'others' => 'Otros',
+    'about_us' => 'Quiénes somos',
 ];

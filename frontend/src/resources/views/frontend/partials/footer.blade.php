@@ -42,12 +42,12 @@
                     <div class="footer-column pull-left" style="width: initial">
                         <h4>{{ trans('frontend/footer.help.title') }}</h4>
                         <ul class="links">
-                            <li class="first"><a href="#">{{ trans('frontend/footer.help.about_us') }}</a></li>
-                            <li><a href="#">{{ trans('frontend/footer.help.terms_and_conditions_of_purchase') }}</a></li>
-                            <li><a href="#">{{ trans('frontend/footer.help.contact_us') }}</a></li>
+                            <li class="first"><a href="/{{ trans('frontend/about_us.slug') }}">{{ trans('frontend/footer.help.about_us') }}</a></li>
+                            <li><a href="/{{trans('frontend/terms_and_conditions.slug')}}">{{ trans('frontend/footer.help.terms_and_conditions_of_purchase') }}</a></li>
+                            <li><a href="/{{ trans('sections.contact') }}">{{ trans('frontend/footer.help.contact_us') }}</a></li>
                         </ul>
                         <div class="payment-accept">
-                            <div><img src="images/payment-1.png" alt="payment1"> <img src="images/payment-2.png" alt="payment2"> <img src="images/payment-3.png" alt="payment3"> <img src="images/payment-4.png" alt="payment4"> </div>
+                            <div><img src="/images/payment-1.png" alt="payment1"> <img src="/images/payment-2.png" alt="payment2"> <img src="/images/payment-3.png" alt="payment3"> <img src="/images/payment-4.png" alt="payment4"> </div>
                         </div>
                     </div>
                 </div>

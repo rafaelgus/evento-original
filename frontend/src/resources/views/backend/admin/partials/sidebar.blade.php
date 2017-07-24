@@ -6,13 +6,10 @@
     <li class="treeview">
         <a href="#"><i class="fa fa-users"></i><span>{{ trans('texts.sections.users.title') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="/management/admin/users">{{ trans('texts.sections.users.view') }}</a></li>
+            <li><a href="/management/users">{{ trans('texts.sections.users.view') }}</a></li>
         </ul>
         <ul class="treeview-menu">
-            <li><a href="/management/admin/users">{{ trans('texts.sections.users.new') }}</a></li>
-        </ul>
-        <ul class="treeview-menu">
-            <li><a href="/management/admin/users">{{ trans('texts.sections.roles.title') }}</a></li>
+            <li><a href="/management/users/create">{{ trans('texts.sections.users.new') }}</a></li>
         </ul>
     </li>
 

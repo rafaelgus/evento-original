@@ -10,12 +10,14 @@ return [
             'allergen' => 'El alergeno se guardo con exito',
             'licenses' => 'La licencia se guardo con exito',
             'ingredient' => 'El ingrediente se actualizo con exito',
-            'brand' => 'La marca se gruado con exito'
+            'brand' => 'La marca se gruado con exito',
+            'users' => 'El usuario se guardo con exito'
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
             'allergen' => 'El alergeno se modifico con exito',
-            'category' => 'La categoria se actualizo correctamente'
+            'category' => 'La categoria se actualizo correctamente',
+            'users' => 'El usuario se actualizo con exito',
         ],
     ]
 ];

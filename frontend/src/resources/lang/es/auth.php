@@ -31,5 +31,10 @@ return [
     'error' => [
         'please_fix' => 'Solucione los siguientes inconvenientes',
         'unauthorized' => 'No autorizado',
-    ]
+    ],
+    'create_an_account' => 'Crear una cuenta',
+    'new_customers' => 'Nuevos clientes',
+    'new_customers_benefits' => 'Creando una cuenta en Evento Original, obtendrás muchos beneficios como concretar las compras mas rápido, ver y seguir las órdenes de compras y más',
+    'registered_users' => 'Usuarios registrados',
+    'registered_users_message' => 'Si ya tienes una cuenta creada, por favor ingresa los datos:'
 ];

@@ -14,16 +14,25 @@
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    
+<link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+<link rel="manifest" href="/favicons/manifest.json">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+
+<meta name="theme-color" content="#ffffff">
+
     <!-- CSS Style -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
-    <link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
-    <link rel="stylesheet" type="text/css" href="css/revslider.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/simple-line-icons.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.mobile-menu.css">
+    <link rel="stylesheet" type="text/css" href="/css/revslider.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet' type='text/css'>
@@ -32,10 +41,6 @@
 <body class="cms-index-index cms-home-page">
 <div id="page">
     @include('frontend.partials.header')
-
-    @include('frontend.partials.slider')
-
-    {{--@include('frontend.partials.our-features')--}}
 
     @yield('content')
 </div>
@@ -47,6 +52,8 @@
 @include('frontend.partials.mobile-menu')
 
 @include('frontend.partials.scripts')
+
+@yield('scripts_body')
 
 </body>
 </html>

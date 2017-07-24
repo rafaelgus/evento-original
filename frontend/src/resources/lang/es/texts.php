@@ -2,13 +2,6 @@
 
 return [
   'sections' => [
-      'users' => [
-          'title' => 'Usuarios',
-          'view' => 'Ver',
-          'new' => 'Nuevo',
-          'image' => 'Imagen de perfil',
-          'change_avatar' => 'Cambiar imagen de perfil'
-      ],
       'roles' => [
           'title' => 'Roles'
       ],
@@ -106,6 +99,23 @@ return [
           'new' => 'Nuevo',
           'edit' => 'Editar',
           'name' => 'Nombre'
+          ],
+      'users' => [
+          'title' => 'Usuarios',
+          'create' => 'Crear',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'email' => 'Email',
+          'password' => 'Contraseña',
+          'roles' => 'Roles',
+          'edit' => 'Editar'
+      ],
+      'errors' => [
+          '404' => [
+            'message' => '¡Lo sentimos! La página requerida no existe.',
+            'back_message' => 'Volver al inicio',
+          ]
       ]
   ]
 ];

@@ -8,5 +8,5 @@ return [
     'contact' => 'Contáctanos',
     'search' => 'Buscar',
     'my_cart' => 'Mi carrito',
-    'empty_cart' => '¡Tu carrito está vacío!'
+    'empty_cart' => '¡Tu carrito está vacío!',
 ];
