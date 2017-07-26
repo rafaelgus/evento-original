@@ -27,6 +27,18 @@ class Category
     private $name;
 
     /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
+    /**
      * @ORM\OneToMany(
      *   targetEntity="CategoryTranslation",
      *   mappedBy="object",
@@ -76,6 +88,7 @@ class Category
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     /**
@@ -100,6 +113,38 @@ class Category
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description)
+    {
+        $this->description = $description;
     }
 
     public function getTranslations()
@@ -163,4 +208,18 @@ class Category
         $this->parent = $parent;
     }
 
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    public function setChildren(array $children)
+    {
+        $this->children = $children;
+    }
+
+    public function addChild(array $child)
+    {
+        $this->children[] = $child;
+    }
 }

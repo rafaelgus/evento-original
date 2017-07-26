@@ -10,7 +10,9 @@ return [
           'view' => 'Ver',
           'new' => 'Nueva',
           'edit' => 'editar',
-          'name' => 'Nombre'
+          'name' => 'Nombre',
+          'slug' => 'Slug',
+          'description' => 'Descripción',
       ],
       'colors' => [
           'title' => 'Colores',

@@ -24,7 +24,9 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Category,name'
+            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Category,name',
+            'slug' => 'max:255|unique:EventoOriginal\Core\Entities\Category,slug',
+            'description' => 'required'
         ];
     }
 }

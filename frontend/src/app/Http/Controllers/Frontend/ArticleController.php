@@ -2,15 +2,26 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use EventoOriginal\Core\Services\CategoryService;
+use Illuminate\Support\Facades\App;
 
 class ArticleController extends Controller
 {
+    private $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
     public function index(string $categorySlug = null)
     {
-        if ($categorySlug) {
-            return view('frontend.articles.index');
-        }
+        $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
 
-        return view('frontend.home');
+        if ($category) {
+            return view('frontend.articles.index')->with('category', $category);
+        } else {
+            return abort(404);
+        }
     }
 }

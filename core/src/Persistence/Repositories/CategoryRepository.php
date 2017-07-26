@@ -78,4 +78,26 @@ class CategoryRepository extends NestedTreeRepository
 
         return $subcategories;
     }
+
+    public function findBySlug(string $slug, string $locale)
+    {
+        $qb = $this->createQueryBuilder('category')
+            ->select('category')
+            ->where('category.slug = :slug')
+            ->setMaxResults(1)
+            ->setParameter('slug', $slug);
+
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getOneOrNullResult();
+    }
 }

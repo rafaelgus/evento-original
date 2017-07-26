@@ -46,22 +46,26 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
-        $this->categoryService->create($request->input('name'));
+        $name = $request->input('name');
+        $slug = ($request->input('slug') ?: str_slug($name));
+
+        $this->categoryService->create($name, $slug, $request->input('description'));
 
         Session::flash('message', trans('backend/messages.confirmation.create.category'));
 
         return redirect()->to(self::CATEGORY_CREATE_ROUTE);
     }
 
-    public function update(int $id, UpdateCategoryRequest $request)
+    public function update(UpdateCategoryRequest $request, int $id)
     {
         $category = $this->categoryService->findOneById($id, App::getLocale());
-
-        $this->categoryService->update($category, $request->input('name'));
+        $name = $request->input('name');
+        $slug = ($request->input('slug') ?: str_slug($name));
+        $this->categoryService->update($category, $name, $slug, $request->input('description'));
 
         Session::flash('message', trans('backend/messages.confirmation.edit.category'));
 
-        return redirect()->to('/management/category/'. $category->getId() . '/edit');
+        return redirect()->to('/management/category/' . $category->getId() . '/edit');
     }
 
     public function getDataTables()
@@ -72,7 +76,7 @@ class CategoryController extends Controller
         foreach ($categories as $category) {
             $allergenCollection->push([
                 'id' => $category->getId(),
-                'name' => $category->getName()
+                'name' => $category->getName(),
             ]);
         }
 
@@ -126,14 +130,19 @@ class CategoryController extends Controller
             throw new \Exception('No se pueden agregar mas niveles');
         }
 
-        $this->categoryService
-            ->createChildren($category,
-                $request->input('name')
-            );
+        $name = $request->input('name');
+        $slug = ($request->input('slug') ?: str_slug($name));
+
+        $this->categoryService->createChildren(
+            $category,
+            $name,
+            $slug,
+            $request->input('description')
+        );
 
         Session::flash('message', trans('backend/messages.confirmation.edit.category'));
 
-        return redirect()->to('/management/category/'. $category->getId() .'/createSubCategory');
+        return redirect()->to('/management/category/' . $category->getId() . '/createSubCategory');
     }
 
 }

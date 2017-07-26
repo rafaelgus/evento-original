@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+@section('scripts_header')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
+@stop
+
 @section('content')
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
@@ -8,7 +12,7 @@
                 <div class="col-xs-12">
                     <ul>
                         <li class="home"><a href="index.html" title="Go to Home Page">Home</a> <span>/</span></li>
-                        <li class="category1601"><strong>Tazas</strong></li>
+                        <li class="category1601"><strong>{{ $category->getName() }}</strong></li>
                     </ul>
                 </div>
             </div>
@@ -23,10 +27,9 @@
                 <div class="col-sm-9 col-sm-push-3">
                     <div class="category-description std">
                         <div class="slider-items-products">
-                            <h2 class="page-heading"><span class="page-heading-title">Tazas</span></h2>
+                            <h2 class="page-heading"><span class="page-heading-title">{{ $category->getName() }}</span></h2>
                             <p class="category-description">
-                            Aqui iria la descripcion de la categoria como por ejemeplo ¿Querés comprar una taza? Aqui
-                            econtraras las mejores tazas del mercado, no dudes y llevate las tazas que quieras.
+                            {{ $category->getDescription() }}
                             </p>
                         </div>
                         <div class="toolbar">
@@ -592,49 +595,10 @@
                             <!-- BEGIN BOX-CATEGORY -->
                             <div class="box-content box-category">
                                 <ul>
-                                    <li><a  href="grid.html">Tazas de ensueño</a> <span
-                                                class="subDropdown minus"></span>
-                                        <ul class="level0_415" style="display:block">
-                                            <li><a href="grid.html"> Categoria taza ensueño 1 </a> <span class="subDropdown plus"></span>
-                                                <ul class="level1" style="display:none">
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño</a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                            <!--level1-->
-                                            <li><a href="grid.html"> Categoria taza ensueño 2 </a> <span
-                                                        class="subDropdown plus"></span>
-                                                <ul class="level1" >
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <li><a href="grid.html"> SubCategoria taza ensueño </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                        </ul>
-                                        <!--level0-->
-                                    </li>
-                                    <!--level 0-->
-                                    <li><a href="grid.html">Tazas originales</a> <span class="subDropdown minus"></span>
-                                        <ul class="level0_415" style="display:block" >
-                                            <li><a href="grid.html"> Categoria Tazas originales </a> <span class="subDropdown plus"></span>
-                                                <ul class="level1">
-                                                    <li><a href="grid.html"> SubCategoria Tazas originales </a></li>
-                                                    <li><a href="grid.html"> SubCategoria Tazas originales  </a></li>
-                                                    <li><a href="grid.html"> SubCategoria Tazas originales  </a></li>
-                                                    <!--end for-each -->
-                                                </ul>
-                                                <!--level1-->
-                                            </li>
-                                        </ul>
-                                        <!--level0-->
-                                    </li>
+                                @foreach($category->getChildren() as $category)
+                                        <li>
+                                            <input type="checkbox" name="category-filter"  class="" value="{{ $category->getSlug() }}"> {{ $category->getName() }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <!--box-content box-category-->
@@ -646,12 +610,11 @@
                                 <dl id="narrow-by-list">
                                     <dt class="odd">{{ trans('frontend/articles.shop_by.price') }}</dt>
                                     <dd class="odd">
-                                        <ol>
-                                            <li><a href="#"><span class="price">$0.00</span> - <span class="price">$99.99</span></a>
-                                                (4)
-                                            </li>
-                                            <li><a href="#"><span class="price">Más de $100.00</span> </a> (6)</li>
-                                        </ol>
+                                        <p>
+                                            <label for="price-filter-value">{{ trans('frontend/articles.range') }}: </label>
+                                            <input type="text" value="€0,00-€1000" id="price-filter-value" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                        </p>
+                                        <input id="price_filter" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[0,1000]"/>
                                     </dd>
                                     <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
                                     <dd class="even">
@@ -790,3 +753,15 @@
     </section>
     <!-- Main Container End -->
 @endsection
+
+@section('scripts_body')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#price_filter").slider({}).on('slide', function() {
+                $( "#price-filter-value" ).val( "€" + $('#price_filter').slider('getValue')[0] + " - €" + $('#price_filter').slider('getValue')[1] );
+            });
+        });
+    </script>
+@stop
