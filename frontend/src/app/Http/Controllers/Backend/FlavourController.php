@@ -72,4 +72,16 @@ class FlavourController extends Controller
 
         return Datatables::of($flavoursCollection)->make(true);
     }
+
+    public function getAllFlavours()
+    {
+        $flavours = $this->flavourService->findAll('es');
+        $parsedFlavours = [];
+
+        foreach ($flavours as $flavour) {
+            $parsedFlavours[] = ['id' => $flavour->getId(), 'name' => $flavour->getName()];
+        }
+
+        return $parsedFlavours;
+    }
 }

@@ -64,7 +64,7 @@
                     {
                         "mData": null,
                         "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/allergen/' + o.id +'/edit" class="danger">Editar</a> | <a href="/management/category/'+ o.id + '/subcategories">Subcategorias</a> | <a href="/management/category/'+ o.id + '/createSubCategory">Nueva Subcategorias</a>'}
+                        "mRender": function (o) { return '<a href="/management/category/' + o.id +'/edit" class="danger">Editar</a> | <a href="/management/category/'+ o.id + '/subcategories">Subcategorias</a> | <a href="/management/category/'+ o.id + '/createSubCategory">Nueva Subcategorias</a>'}
                     }
                 ],
                 language: {

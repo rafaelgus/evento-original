@@ -72,4 +72,16 @@ class ColorController extends Controller
 
         return Datatables::of($colorsCollection)->make(true);
     }
+
+    public function getAllColors()
+    {
+        $colors = $this->colorService->findAll('es');
+        $parsedColors = [];
+
+        foreach ($colors as $color) {
+            $parsedColors[] = ['id' => $color->getId(), 'name' => $color->getName()];
+        }
+
+        return $parsedColors;
+    }
 }

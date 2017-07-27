@@ -78,4 +78,16 @@ class TagService
     {
         $this->tagRepository->save($tag);
     }
+
+    public function findByIds(array $ids)
+    {
+        $tags = [];
+
+        foreach ($ids as $id) {
+            $tag = $this->tagRepository->findOneById($id, 'es');
+            $tags[] = $tag;
+        }
+
+        return $tags;
+    }
 }

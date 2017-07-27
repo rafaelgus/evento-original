@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
 use Illuminate\Support\ServiceProvider;
@@ -36,6 +37,9 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
         });
+        $this->app->singleton(Repositories\ImageRepository::class, function () {
+            return EntityManager::getRepository(Entities\Image::class);
+        });
         $this->app->singleton(Repositories\ColorRepository::class, function () {
             return EntityManager::getRepository(Entities\Color::class);
         });
@@ -65,6 +69,15 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\CategoryRepository::class, function () {
             return EntityManager::getRepository(Entities\Category::class);
+        });
+        $this->app->singleton(Repositories\LicenseRepository::class, function() {
+           return EntityManager::getRepository(Entities\License::class);
+        });
+        $this->app->singleton(Repositories\IngredientRepository::class, function(){
+           return EntityManager::getRepository(Entities\Ingredient::class);
+        });
+        $this->app->singleton(Repositories\PriceRepository::class, function() {
+            return EntityManager::getRepository(Entities\Price::class);
         });
         $this->app->singleton(Repositories\RoleRepository::class, function () {
            return EntityManager::getRepository(Entities\Role::class);

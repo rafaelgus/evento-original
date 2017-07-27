@@ -72,4 +72,16 @@ class BrandController extends Controller
 
         return Datatables::of($brandsCollection)->make(true);
     }
+
+    public function getAllBrands()
+    {
+        $brands = $this->brandService->findAll();
+        $parsedBrands = [];
+
+        foreach ($brands as $brand){
+            $parsedBrands[] = ['id' => $brand->getId(), 'name' => $brand->getName()];
+        }
+
+        return $parsedBrands;
+    }
 }

@@ -96,7 +96,6 @@ class UserController
     {
         $user = $this->userService->findById($id);
 
-        $user->setPassword($request->input('password'));
         $user->setName($request->input('name'));
         $user->setEmail($request->input('email'));
         $rolesIds = $request->input('roles');

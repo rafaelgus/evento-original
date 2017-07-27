@@ -64,10 +64,10 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'barCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'internalCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'priceCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tax', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'costPrice', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'publishedOn', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'ingredients', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'brand', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tags', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'colors', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'flavours', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'allergens', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'translations'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'shortDescription', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'barCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'internalCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'pricePerQuantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'priceCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tax', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'costPrice', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'publishedOn', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'ingredients', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'licenses', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'brand', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tags', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'colors', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'flavours', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'allergens', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'slug', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'images'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'barCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'internalCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'priceCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tax', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'costPrice', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'publishedOn', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'ingredients', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'brand', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tags', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'colors', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'flavours', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'allergens', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'translations'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'shortDescription', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'barCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'internalCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'pricePerQuantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'priceCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tax', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'costPrice', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'publishedOn', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'ingredients', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'licenses', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'brand', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'tags', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'colors', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'flavours', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'allergens', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'slug', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Article' . "\0" . 'images'];
     }
 
     /**
@@ -411,7 +411,7 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function getIngredients(): string
+    public function getIngredients()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIngredients', []);
@@ -422,12 +422,23 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setIngredients(string $ingredients)
+    public function setIngredients(array $ingredients)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIngredients', [$ingredients]);
 
         return parent::setIngredients($ingredients);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addIngredient(\EventoOriginal\Core\Entities\Ingredient $ingredient)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addIngredient', [$ingredient]);
+
+        return parent::addIngredient($ingredient);
     }
 
     /**
@@ -626,6 +637,127 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTranslation', [$t]);
 
         return parent::addTranslation($t);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSlug()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSlug', []);
+
+        return parent::getSlug();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSlug(string $slug)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlug', [$slug]);
+
+        return parent::setSlug($slug);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getImages()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getImages', []);
+
+        return parent::getImages();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addImage(\EventoOriginal\Core\Entities\Image $images)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addImage', [$images]);
+
+        return parent::addImage($images);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setImages(array $images)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setImages', [$images]);
+
+        return parent::setImages($images);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLicenses()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLicenses', []);
+
+        return parent::getLicenses();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setLicense(\EventoOriginal\Core\Entities\License $license)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setLicense', [$license]);
+
+        return parent::setLicense($license);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getShortDescription(): string
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getShortDescription', []);
+
+        return parent::getShortDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setShortDescription(string $shortDescription)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setShortDescription', [$shortDescription]);
+
+        return parent::setShortDescription($shortDescription);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPricePerQuantity()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPricePerQuantity', []);
+
+        return parent::getPricePerQuantity();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPricePerQuantity(array $pricePerQuantity)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPricePerQuantity', [$pricePerQuantity]);
+
+        return parent::setPricePerQuantity($pricePerQuantity);
     }
 
 }

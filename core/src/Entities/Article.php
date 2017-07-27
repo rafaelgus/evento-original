@@ -5,6 +5,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Support\Arr;
 use InvalidArgumentException;
 
 /**
@@ -17,6 +18,8 @@ class Article
     const STATUS_DRAFT = 'draft';
     const STATUS_PUBLISHED = 'published';
     const STATUS_DISCONTINUED = 'discontinued';
+    const PRICE_TYPE_UNIT = 'unit';
+    const PRICE_TYPE_IN_BULK = 'in bulk';
 
     public static $allowedStatus = [self::STATUS_DRAFT, self::STATUS_PUBLISHED, self::STATUS_DISCONTINUED];
 
@@ -40,6 +43,12 @@ class Article
     private $description;
 
     /**
+     * @Gedmo\Translatable
+     * @ORM\Column(type="string")
+     */
+    private $shortDescription;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $barCode;
@@ -55,9 +64,19 @@ class Article
     private $status;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="decimal", nullable=true)
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $priceType;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Price", mappedBy="article")
+     */
+    private $pricePerQuantity;
 
     /**
      * @ORM\Column(type="string")
@@ -81,10 +100,19 @@ class Article
     private $publishedOn;
 
     /**
-     * @Gedmo\Translatable
-     * @ORM\Column(type="text")
+     * @ORM\ManyToMany(targetEntity="Ingredient")
+     * @ORM\JoinTable(name="article_ingredients",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")}
+     *      )
      */
     private $ingredients;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="License", inversedBy="articles")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
+     */
+    private $licenses;
 
     /**
      * @ORM\ManyToOne(targetEntity="Brand", inversedBy="articles")
@@ -143,6 +171,16 @@ class Article
      */
     private $translations;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="article")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -152,6 +190,9 @@ class Article
         $this->flavours = new ArrayCollection();
         $this->allergens = new ArrayCollection();
         $this->translations = new ArrayCollection();
+        $this->images = new ArrayCollection();
+        $this->ingredients = new ArrayCollection();
+        $this->pricePerQuantity = new ArrayCollection();
     }
 
     /**
@@ -327,19 +368,24 @@ class Article
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getIngredients(): string
+    public function getIngredients()
     {
         return $this->ingredients;
     }
 
     /**
-     * @param string $ingredients
+     * @param array $ingredients
      */
-    public function setIngredients(string $ingredients)
+    public function setIngredients(array $ingredients)
     {
         $this->ingredients = $ingredients;
+    }
+
+    public function addIngredient(Ingredient $ingredient)
+    {
+        $this->ingredients[] = $ingredient;
     }
 
     /**
@@ -399,7 +445,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getColors()
     {
@@ -488,4 +534,131 @@ class Article
             $t->setObject($this);
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $images
+     */
+    public function addImage(Image $images)
+    {
+        $this->images[] = $images;
+    }
+
+    public function setImages(array $images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAllowedStatus(): array
+    {
+        return self::$allowedStatus;
+    }
+
+    /**
+     * @param array $allowedStatus
+     */
+    public static function setAllowedStatus(array $allowedStatus)
+    {
+        self::$allowedStatus = $allowedStatus;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLicenses()
+    {
+        return $this->licenses;
+    }
+
+    /**
+     * @param License $license
+     */
+    public function setLicense(License $license)
+    {
+        $this->licenses = $license;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortDescription(): string
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param mixed $shortDescription
+     */
+    public function setShortDescription(string $shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPricePerQuantity()
+    {
+        return $this->pricePerQuantity;
+    }
+
+    /**
+     * @param array $pricePerQuantity
+     */
+    public function setPricePerQuantity(array $pricePerQuantity)
+    {
+        $this->pricePerQuantity[] = $pricePerQuantity;
+    }
+
+    /**
+     * @param Price $pricePerQuantity
+     */
+    public function addPricePerQuantity(Price $pricePerQuantity)
+    {
+        $this->pricePerQuantity[] = $pricePerQuantity;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceType(): string
+    {
+        return $this->priceType;
+    }
+
+    /**
+     * @param string $priceType
+     */
+    public function setPriceType(string $priceType)
+    {
+        $this->priceType = $priceType;
+    }
+
+
 }
