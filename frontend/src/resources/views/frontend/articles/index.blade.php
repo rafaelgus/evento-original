@@ -619,9 +619,9 @@
                                     <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
                                     <dd class="even">
                                         <ol>
-                                            <li><a href="#">TheBrand</a> (9)</li>
-                                            <li><a href="#">Company</a> (4)</li>
-                                            <li><a href="#">LogoFashion</a> (1)</li>
+                                            @foreach($brands as $brand)
+                                                <li>{{ $brand->getName() }}</li>
+                                            @endforeach()
                                         </ol>
                                     </dd>
                                     <dt class="odd">{{ trans('frontend/articles.shop_by.color') }}</dt>
