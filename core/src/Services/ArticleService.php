@@ -118,7 +118,9 @@ class ArticleService
         }
         $article->setCostPrice($costPrice);
         $article->setIngredients($ingredients);
-        $article->setLicense($license);
+        if ($license) {
+            $article->setLicense($license);
+        }
         $article->setPriceType($priceType);
 
         if ($brand) {

@@ -1,7 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('scripts_header')
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
 @stop
 
 @section('content')
@@ -27,9 +28,10 @@
                 <div class="col-sm-9 col-sm-push-3">
                     <div class="category-description std">
                         <div class="slider-items-products">
-                            <h2 class="page-heading"><span class="page-heading-title">{{ $category->getName() }}</span></h2>
+                            <h2 class="page-heading"><span class="page-heading-title">{{ $category->getName() }}</span>
+                            </h2>
                             <p class="category-description">
-                            {{ $category->getDescription() }}
+                                {{ $category->getDescription() }}
                             </p>
                         </div>
                         <div class="toolbar">
@@ -112,18 +114,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -170,18 +198,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -223,18 +277,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -278,18 +358,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -336,18 +442,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -387,33 +519,59 @@
                                                         Sports Watch</a></div>
                                                 <div class="item-content">
 
-                                                        <div class="rating-item">
-                                                            <div class="ratings">
-                                                                <fieldset class="rating">
-                                                                    <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                    <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                </fieldset>
-                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                            </div>
+                                                    <div class="rating-item">
+                                                        <div class="ratings">
+                                                            <fieldset class="rating">
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
+                                                            </fieldset>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"><span class="regular-price"><span
-                                                                        class="price">$125.00</span> </span></div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
+                                                </div>
+                                                <div class="item-price">
+                                                    <div class="price-box"><span class="regular-price"><span
+                                                                    class="price">$125.00</span> </span></div>
+                                                </div>
+                                                <div class="action">
+                                                    <button class="button btn-cart" type="button" title=""
+                                                            data-original-title="Comprar">
+                                                        <span>Comprar</span></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -445,18 +603,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -503,18 +687,44 @@
                                                     <div class="rating-item">
                                                         <div class="ratings">
                                                             <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5" checked /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating" value="half"/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                                                <input type="radio" id="star5" name="rating" value="5"
+                                                                       checked/><label class="full" for="star5"
+                                                                                       title="Awesome - 5 stars"></label>
+                                                                <input type="radio" id="star4half" name="rating"
+                                                                       value="4 and a half"/><label class="half"
+                                                                                                    for="star4half"
+                                                                                                    title="Pretty good - 4.5 stars"></label>
+                                                                <input type="radio" id="star4" name="rating" value="4"/><label
+                                                                        class="full" for="star4"
+                                                                        title="Pretty good - 4 stars"></label>
+                                                                <input type="radio" id="star3half" name="rating"
+                                                                       value="3 and a half"/><label class="half"
+                                                                                                    for="star3half"
+                                                                                                    title="Meh - 3.5 stars"></label>
+                                                                <input type="radio" id="star3" name="rating" value="3"/><label
+                                                                        class="full" for="star3"
+                                                                        title="Meh - 3 stars"></label>
+                                                                <input type="radio" id="star2half" name="rating"
+                                                                       value="2 and a half"/><label class="half"
+                                                                                                    for="star2half"
+                                                                                                    title="Kinda bad - 2.5 stars"></label>
+                                                                <input type="radio" id="star2" name="rating" value="2"/><label
+                                                                        class="full" for="star2"
+                                                                        title="Kinda bad - 2 stars"></label>
+                                                                <input type="radio" id="star1half" name="rating"
+                                                                       value="1 and a half"/><label class="half"
+                                                                                                    for="star1half"
+                                                                                                    title="Meh - 1.5 stars"></label>
+                                                                <input type="radio" id="star1" name="rating" value="1"/><label
+                                                                        class="full" for="star1"
+                                                                        title="Sucks big time - 1 star"></label>
+                                                                <input type="radio" id="starhalf" name="rating"
+                                                                       value="half"/><label class="half" for="starhalf"
+                                                                                            title="Sucks big time - 0.5 stars"></label>
                                                             </fieldset>
-                                                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
+                                                                        class="separator">|</span> <a href="#">Add
+                                                                    Review</a></p>
                                                         </div>
                                                     </div>
                                                     <div class="item-price">
@@ -595,9 +805,10 @@
                             <!-- BEGIN BOX-CATEGORY -->
                             <div class="box-content box-category">
                                 <ul>
-                                @foreach($category->getChildren() as $category)
+                                    @foreach($category->getChildren() as $category)
                                         <li>
-                                            <input type="checkbox" name="category-filter"  class="" value="{{ $category->getSlug() }}"> {{ $category->getName() }}</li>
+                                            <input type="checkbox" name="category-filter" class=""
+                                                   value="{{ $category->getSlug() }}"> {{ $category->getName() }}</li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -611,37 +822,53 @@
                                     <dt class="odd">{{ trans('frontend/articles.shop_by.price') }}</dt>
                                     <dd class="odd">
                                         <p>
-                                            <label for="price-filter-value">{{ trans('frontend/articles.range') }}: </label>
-                                            <input type="text" value="€0,00-€1000" id="price-filter-value" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                            <label for="price-filter-value">{{ trans('frontend/articles.range') }}
+                                                : </label>
+                                            <input type="text" value="€0,00-€1000" id="price-filter-value" readonly
+                                                   style="border:0; color:#f6931f; font-weight:bold;">
                                         </p>
-                                        <input id="price_filter" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[0,1000]"/>
+                                        <input id="price_filter" type="text" class="span2" value="" data-slider-min="10"
+                                               data-slider-max="1000" data-slider-step="5"
+                                               data-slider-value="[0,1000]"/>
                                     </dd>
-                                    <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
-                                    <dd class="even">
-                                        <ol>
-                                            @foreach($brands as $brand)
-                                                <li>{{ $brand->getName() }}</li>
-                                            @endforeach()
-                                        </ol>
-                                    </dd>
-                                    <dt class="odd">{{ trans('frontend/articles.shop_by.color') }}</dt>
-                                    <dd class="odd">
-                                        <ol>
-                                            <li><a href="#">Verde</a> (1)</li>
-                                            <li><a href="#">Blanco</a> (5)</li>
-                                            <li><a href="#">Negro</a> (5)</li>
-                                            <li><a href="#">Gris</a> (4)</li>
-                                            <li><a href="#">Gris oscuro</a> (3)</li>
-                                            <li><a href="#">Azul</a> (1)</li>
-                                        </ol>
-                                    </dd>
-                                    <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
-                                    <dd class="last even">
-                                        <ol>
-                                            <li><a href="#">Mickey Mouse</a> (6)</li>
-                                            <li><a href="#">Superman</a> (6)</li>
-                                        </ol>
-                                    </dd>
+
+                                    @if(count($brands) > 0)
+                                        <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
+                                        <dd class="even">
+                                            <ol>
+                                                @foreach($brands as $brand)
+                                                    <li>
+                                                        <input type="checkbox" name="brand-filter" class="" value="{{ $brand->getId() }}"> {{ $brand->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
+
+                                    @if(count($colors) > 0)
+                                        <dt class="odd">{{ trans('frontend/articles.shop_by.color') }}</dt>
+                                        <dd class="odd">
+                                            <ol>
+                                                @foreach($colors as $color)
+                                                    <li>
+                                                        <input type="checkbox" name="color-filter" class="" value="{{ $color->getId() }}"> {{ $color->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
+                                    @if(count($licenses) > 0)
+                                        <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
+                                        <dd class="last even">
+                                            <ol>
+                                                @foreach($licenses as $license)
+                                                    <li>
+                                                        <input type="checkbox" name="color-filter" class="" value="{{ $license->getId() }}"> {{ $license->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
                                 </dl>
                             </div>
                         </div>
@@ -649,9 +876,13 @@
                             <div class="block-title ">{{ trans('frontend/articles.my_cart.title') }}</div>
                             <div class="block-content">
                                 <div class="summary">
-                                    <p class="amount">{{ trans('frontend/articles.my_cart.there_are') }} <a href="shopping_cart.html">{{ trans_choice('frontend/articles.my_cart.articles', ['quantity' => 1]) }}</a> {{ trans('frontend/articles.my_cart.in_your_cart') }}.
+                                    <p class="amount">{{ trans('frontend/articles.my_cart.there_are') }} <a
+                                                href="shopping_cart.html">{{ trans_choice('frontend/articles.my_cart.articles', ['quantity' => 1]) }}</a> {{ trans('frontend/articles.my_cart.in_your_cart') }}
+                                        .
                                     </p>
-                                    <p class="subtotal"><span class="label">{{ trans('frontend/articles.my_cart.subtotal') }}</span> <span class="price">$42.99</span>
+                                    <p class="subtotal"><span
+                                                class="label">{{ trans('frontend/articles.my_cart.subtotal') }}</span>
+                                        <span class="price">$42.99</span>
                                     </p>
                                 </div>
                                 <div class="ajax-checkout">
@@ -668,7 +899,8 @@
                                                                    class="btn-remove1"> <span class="icon"></span>
                                                     Remove </a></div>
                                             <strong>1</strong> x <span class="price">$19.99</span>
-                                            <p class="product-name"><a href="shopping_cart.html">Caramelos azules</a></p>
+                                            <p class="product-name"><a href="shopping_cart.html">Caramelos azules</a>
+                                            </p>
                                         </div>
                                     </li>
                                     <li class="item last"><a href="shopping_cart.html" title="ThinkPad X1 Ultrabook"
@@ -692,7 +924,8 @@
                                                                    class="btn-remove1"> <span class="icon"></span>
                                                     Remove </a></div>
                                             <strong>1</strong> x <span class="price">$15.00</span>
-                                            <p class="product-name"><a href="shopping_cart.html"> Ositos  de gominola </a>
+                                            <p class="product-name"><a href="shopping_cart.html"> Ositos de
+                                                    gominola </a>
                                             </p>
 
                                             <!--access clearfix-->
@@ -758,9 +991,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $("#price_filter").slider({}).on('slide', function() {
-                $( "#price-filter-value" ).val( "€" + $('#price_filter').slider('getValue')[0] + " - €" + $('#price_filter').slider('getValue')[1] );
+        $(document).ready(function () {
+            $("#price_filter").slider({}).on('slide', function () {
+                $("#price-filter-value").val("€" + $('#price_filter').slider('getValue')[0] + " - €" + $('#price_filter').slider('getValue')[1]);
             });
         });
     </script>

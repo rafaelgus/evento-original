@@ -72,8 +72,9 @@ class ArticleController
     public function create()
     {
         return view('backend.admin.articles.create')
-            ->with(['ableToLoad' => false,
-                    'articleId' => false
+            ->with([
+                'ableToLoad' => false,
+                'articleId' => false
             ]);
     }
 
@@ -116,44 +117,47 @@ class ArticleController
         $allergens = $this
             ->allergenService
             ->findByIds(
-                $request->input('allergens')
+                ($request->input('allergens') ?: [])
             );
 
         $tags = $this
             ->tagsService
             ->findByIds(
-                $request->input('tags')
+                ($request->input('tags') ?: [])
             );
 
         $colors = $this
             ->colorService
             ->findByIds(
-                $request->input('colors')
+                ($request->input('colors') ?: [])
             );
 
         $flavours = $this
             ->flavourService
             ->findByIds(
-                $request->input('flavours')
+                ($request->input('flavours') ?: [])
             );
 
         $category = $this
             ->categoryService
             ->findOneById(
                 $request->input('category'),
-                    App::getLocale()
+                App::getLocale()
             );
 
-        $license = $this
-            ->licenseService
-            ->findOneById(
-                $request->input('license')
-            );
+        $license = null;
+        if ($request->input('license')) {
+            $license = $this
+                ->licenseService
+                ->findOneById(
+                    $request->input('license')
+                );
+        }
 
         $ingredients = $this
             ->ingredientService
             ->findByIds(
-                $request->input('ingredients')
+                ($request->input('ingredients') ?: [])
             );
 
         $brand = $this
@@ -163,7 +167,7 @@ class ArticleController
             );
 
         $priceType = null;
-        if($request->input('priceType') == 1) {
+        if ($request->input('priceType') == 1) {
             $priceType = Article::PRICE_TYPE_UNIT;
         } elseif ($request->input('priceType') == 2) {
             $priceType = Article::PRICE_TYPE_IN_BULK;
@@ -172,7 +176,7 @@ class ArticleController
         $prices = [];
 
         if ($request->has('quantities') and $request->has('prices')) {
-            for ($i = 0 ; $i < count($request->input('quantities')); $i++) {
+            for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
                     ->create(17,
@@ -193,7 +197,7 @@ class ArticleController
             $data['barCode'],
             $data['internalCode'],
             $data['status'],
-            $data['slug'],
+            ($request->input('slug') ?: str_slug($request->input('name'))),
             $data['price'],
             $priceType,
             'EUR',
@@ -232,7 +236,7 @@ class ArticleController
         $images = [];
 
         foreach ($files as $file) {
-            $imageName = uniqid($file->getFilename()). '.' .$file->getClientOriginalExtension();
+            $imageName = uniqid($file->getFilename()) . '.' . $file->getClientOriginalExtension();
 
             $filePath = '/images/' . $imageName;
 
@@ -266,25 +270,25 @@ class ArticleController
         $allergens = $this
             ->allergenService
             ->findByIds(
-                $request->input('allergens')
+                ($request->input('allergens') ?: [])
             );
 
         $tags = $this
             ->tagsService
             ->findByIds(
-                $request->input('tags')
+                ($request->input('tags') ?: [])
             );
 
         $colors = $this
             ->colorService
             ->findByIds(
-                $request->input('colors')
+                ($request->input('colors') ?: [])
             );
 
         $flavours = $this
             ->flavourService
             ->findByIds(
-                $request->input('flavours')
+                ($request->input('flavours') ?: [])
             );
 
         $category = $this
@@ -294,16 +298,19 @@ class ArticleController
                 App::getLocale()
             );
 
-        $license = $this
-            ->licenseService
-            ->findOneById(
-                $request->input('license')
-            );
+        $license = null;
+        if ($request->input('license')) {
+            $license = $this
+                ->licenseService
+                ->findOneById(
+                    $request->input('license')
+                );
+        }
 
         $ingredients = $this
             ->ingredientService
             ->findByIds(
-                $request->input('ingredients')
+                ($request->input('ingredients') ?: [])
             );
 
         $brand = $this
@@ -323,9 +330,12 @@ class ArticleController
         $article->setDescription($request->input('description'));
         $article->setBarCode($request->input('barCode'));
         $article->setInternalCode($request->input('internalCode'));
+        $article->setLicense($license);
+        $article->setBrand($brand);
+        $article->setIngredients($ingredients);
 
         $priceType = null;
-        if($request->input('priceType') == 1) {
+        if ($request->input('priceType') == 1) {
             $priceType = Article::PRICE_TYPE_UNIT;
             $article->setPrice($request->input('price'));
         } elseif ($request->input('priceType') == 2) {
@@ -336,7 +346,7 @@ class ArticleController
         $prices = [];
 
         if ($request->has('quantities') and $request->has('prices')) {
-            for ($i = 0 ; $i < count($request->input('quantities')); $i++) {
+            for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
                     ->create(17,
@@ -354,7 +364,7 @@ class ArticleController
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
 
-        return redirect()->to('/management/articles/'. $id . '/edit');
+        return redirect()->to('/management/articles/' . $id . '/edit');
     }
 
     public function getDataTables()
@@ -399,7 +409,7 @@ class ArticleController
         $files = [];
 
         foreach ($images as $image) {
-            $file = Storage::disk('s3')->get('/images/'. $image->getPath());
+            $file = Storage::disk('s3')->get('/images/' . $image->getPath());
             $files[] = $file;
         }
         return $files;
@@ -407,7 +417,7 @@ class ArticleController
 
     public function getImage(string $filename)
     {
-        $image = Storage::disk('s3')->get('/images/'. $filename);
+        $image = Storage::disk('s3')->get('/images/' . $filename);
 
         return $image;
     }
@@ -416,8 +426,8 @@ class ArticleController
     {
         $image = $this->imageService->findById($imageId);
 
-        if (Storage::disk('s3')->exists('/images/'. $image->getPath())) {
-            Storage::disk('s3')->delete('/images/'. $image->getPath());
+        if (Storage::disk('s3')->exists('/images/' . $image->getPath())) {
+            Storage::disk('s3')->delete('/images/' . $image->getPath());
 
             $this->imageService->delete($image);
         } else {
@@ -434,7 +444,7 @@ class ArticleController
 
         $parsedPrices = [];
 
-        foreach($prices as $price) {
+        foreach ($prices as $price) {
             $parsedPrices[] = [
                 'id' => $price->getId(),
                 'quantity' => $price->getGramme(),

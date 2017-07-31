@@ -55,4 +55,9 @@ class LicenseService
     {
         return $this->licenseRepository->findAll();
     }
+
+    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    {
+        return $this->licenseRepository->getByCategorySlug($categorySlug, $locale);
+    }
 }

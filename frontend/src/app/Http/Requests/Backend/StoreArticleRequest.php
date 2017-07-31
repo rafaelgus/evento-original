@@ -33,8 +33,6 @@ class StoreArticleRequest extends FormRequest
             'internalCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,internalCode',
             'price' => 'required',
             'costPrice' => 'required',
-            'colors' => 'required',
-            'tags' => 'required'
         ];
     }
 }

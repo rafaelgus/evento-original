@@ -109,10 +109,10 @@ class Article
     private $ingredients;
 
     /**
-     * @ORM\ManyToOne(targetEntity="License", inversedBy="articles")
-     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="License")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id", nullable=true)
      */
-    private $licenses;
+    private $license;
 
     /**
      * @ORM\ManyToOne(targetEntity="Brand", inversedBy="articles")
@@ -593,7 +593,7 @@ class Article
      */
     public function getLicenses()
     {
-        return $this->licenses;
+        return $this->license;
     }
 
     /**
@@ -601,7 +601,7 @@ class Article
      */
     public function setLicense(License $license)
     {
-        $this->licenses = $license;
+        $this->license = $license;
     }
 
     /**
@@ -659,6 +659,4 @@ class Article
     {
         $this->priceType = $priceType;
     }
-
-
 }

@@ -48,7 +48,7 @@
                             <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription')}}</textarea>
+                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}" value="{{ old('shortDescription')}}">
 
                                     {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -150,14 +150,14 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="categories" name="category"></select>
-                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('category', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('brand') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.brand') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="brands" name="brand"></select>
-                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('brand', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
@@ -171,28 +171,28 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.tags') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="tags" name="tags[]"></select>
-                                    {!! $errors->first('tags[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('tags', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('allergens[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.allergens') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="allergens" name="allergens[]"></select>
-                                    {!! $errors->first('allergens[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('allergens', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('colors[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.colors') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="colors" name="colors[]"></select>
-                                    {!! $errors->first('colors[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('colors', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('ingredients[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="ingredients" name="ingredients[]"></select>
-                                    {!! $errors->first('ingredients[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('ingredients', '<span class="help-block">* :message</span>') !!}
                                 </div>
 
 
@@ -201,7 +201,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.flavours') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="flavours" name="flavours[]" style="width: 100%"></select>
-                                    {!! $errors->first('flavours[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('flavours', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             @if($ableToLoad)

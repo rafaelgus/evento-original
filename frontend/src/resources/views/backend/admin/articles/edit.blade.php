@@ -155,7 +155,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="categories" name="category">
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->getId() }}">{{$category->getName()}}</option>
+                                            <option value="{{ $category->getId() }}" {{ ($category == $article->getCategory() ? 'selected' : '')  }}>{{$category->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
@@ -166,7 +166,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="brands" name="brand">
                                         @foreach($brands as $brand)
-                                            <option value="{{ $brand->getId() }}" >{{$brand->getName()}}</option>
+                                            <option value="{{ $brand->getId() }}" {{ ($brand == $article->getBrand() ? 'selected' : '') }}>{{$brand->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
@@ -177,7 +177,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="license" name="license">
                                         @foreach($licenses as $license)
-                                            <option value="{{ $license->getId() }}" >{{$license->getName()}}</option>
+                                            <option value="{{ $license->getId() }}" {{ ($license == $article->getLicense() ? 'selected' : '') }}>{{$license->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('license', '<span class="help-block">* :message</span>') !!}

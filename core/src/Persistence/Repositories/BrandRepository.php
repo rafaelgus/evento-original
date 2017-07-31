@@ -37,12 +37,18 @@ class BrandRepository extends BaseRepository
     {
         $qb = $this->createQueryBuilder('brand')
             ->select('brand')
-            ->join(Article::class, 'article', 'WITH', 'article.brand = brand.id')
             ->join(
                 Category::class,
                 'category',
                 'WITH',
-                'category.slug = :categorySlug AND category.id = article.category'
+                'category.slug = :categorySlug'
+            )
+            ->join('category.children', 'children')
+            ->join(
+                Article::class,
+                'article',
+                'WITH',
+                'article.brand = brand.id AND (article.category = category.id OR article.category = children.id)'
             )
             ->setParameters(['categorySlug' => $categorySlug]);
 

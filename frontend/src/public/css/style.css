@@ -5894,7 +5894,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .block-layered-nav dd ol li:before {
-    content: '\f105';
+    /*content: '\f105';*/
     font-family: FontAwesome;
     font-size: 12px;
     padding-right: 2px;
