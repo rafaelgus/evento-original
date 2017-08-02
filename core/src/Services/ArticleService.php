@@ -10,16 +10,19 @@ use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Entities\Tax;
 use EventoOriginal\Core\Persistence\Repositories\ArticleRepository;
 use Exception;
+use InvalidArgumentException;
 
 class ArticleService
 {
     const DEFAULT_LOCALE = 'es';
 
     private $articleRepository;
+    private $categoryService;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository, CategoryService $categoryService)
     {
         $this->articleRepository = $articleRepository;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -174,5 +177,16 @@ class ArticleService
     public function save(Article $article)
     {
         $this->articleRepository->save($article);
+    }
+
+    public function getFilteredArticles(string $categorySlug, array $brands, string $locale = 'es')
+    {
+        $category = $this->categoryService->findBySlug($categorySlug);
+
+        if ($category) {
+            return $this->articleRepository->getFilteredArticles($category, $brands, $locale);
+        }
+
+        throw new InvalidArgumentException("Invalid category slug");
     }
 }

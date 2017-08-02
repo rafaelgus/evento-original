@@ -697,12 +697,12 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function getLicenses()
+    public function getLicense()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLicenses', []);
 
-        return parent::getLicenses();
+        return parent::getLicense();
     }
 
     /**

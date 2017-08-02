@@ -88,737 +88,128 @@
                     <article class="col-main">
                         <div class="category-products">
                             <ul class="products-grid">
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Food Processor"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg" alt="Retis lapen casen"></a>
-                                                <div class="new-label new-top-left">New</div>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
+                                @foreach($articles as $article)
+                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                        <div class="item-inner">
+                                            <div class="item-img">
+                                                <div class="item-img-info"><a href="#" title="Food Processor"
+                                                                              class="product-image"><img
+                                                                src="products-images/product1.jpg"
+                                                                alt="Retis lapen casen"></a>
+                                                    <div class="new-label new-top-left">New</div>
+                                                    <div class="box-hover">
+                                                        <ul class="add-to-links">
+                                                            <li><a class="link-quickview" href="quick_view.html">Quick
+                                                                    View</a></li>
+                                                            <li><a class="link-wishlist"
+                                                                   href="wishlist.html">Wishlist</a>
+                                                            </li>
+                                                            <li><a class="link-compare" href="compare.html">Compare</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a title="Food Processor" href="#"> Food
-                                                        Processor </a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
+                                            <div class="item-info">
+                                                <div class="info-inner">
+                                                    <div class="item-title"><a title="Food Processor" href="#"> Food
+                                                            Processor </a></div>
+                                                    <div class="item-content">
+                                                        <div class="rating-item">
+                                                            <div class="ratings">
+                                                                <fieldset class="rating">
+                                                                    <input type="radio" id="star5" name="rating"
+                                                                           value="5"
+                                                                           checked/><label class="full" for="star5"
+                                                                                           title="Awesome - 5 stars"></label>
+                                                                    <input type="radio" id="star4half" name="rating"
+                                                                           value="4 and a half"/><label class="half"
+                                                                                                        for="star4half"
+                                                                                                        title="Pretty good - 4.5 stars"></label>
+                                                                    <input type="radio" id="star4" name="rating"
+                                                                           value="4"/><label
+                                                                            class="full" for="star4"
+                                                                            title="Pretty good - 4 stars"></label>
+                                                                    <input type="radio" id="star3half" name="rating"
+                                                                           value="3 and a half"/><label class="half"
+                                                                                                        for="star3half"
+                                                                                                        title="Meh - 3.5 stars"></label>
+                                                                    <input type="radio" id="star3" name="rating"
+                                                                           value="3"/><label
+                                                                            class="full" for="star3"
+                                                                            title="Meh - 3 stars"></label>
+                                                                    <input type="radio" id="star2half" name="rating"
+                                                                           value="2 and a half"/><label class="half"
+                                                                                                        for="star2half"
+                                                                                                        title="Kinda bad - 2.5 stars"></label>
+                                                                    <input type="radio" id="star2" name="rating"
+                                                                           value="2"/><label
+                                                                            class="full" for="star2"
+                                                                            title="Kinda bad - 2 stars"></label>
+                                                                    <input type="radio" id="star1half" name="rating"
+                                                                           value="1 and a half"/><label class="half"
+                                                                                                        for="star1half"
+                                                                                                        title="Meh - 1.5 stars"></label>
+                                                                    <input type="radio" id="star1" name="rating"
+                                                                           value="1"/><label
+                                                                            class="full" for="star1"
+                                                                            title="Sucks big time - 1 star"></label>
+                                                                    <input type="radio" id="starhalf" name="rating"
+                                                                           value="half"/><label class="half"
+                                                                                                for="starhalf"
+                                                                                                title="Sucks big time - 0.5 stars"></label>
+                                                                </fieldset>
+                                                                <p class="rating-links"><a href="#">1 Review(s)</a>
+                                                                    <span
+                                                                            class="separator">|</span> <a href="#">Add
+                                                                        Review</a></p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price"><span class="price-label">Regular Price:</span>
-                                                                <span class="price">$100.00 </span></p>
-                                                            <p class="special-price"><span class="price-label">Special Price</span>
-                                                                <span class="price">$90.00 </span></p>
+                                                        <div class="item-price">
+                                                            <div class="price-box">
+                                                                <p class="old-price"><span class="price-label">Regular Price:</span>
+                                                                    <span class="price">$100.00 </span></p>
+                                                                <p class="special-price"><span class="price-label">Special Price</span>
+                                                                    <span class="price">$90.00 </span></p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Samsung GALAXY Note"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg"
-                                                            alt="Samsung GALAXY Note"></a>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a href="#" title="Samsung GALAXY Note">Samsung
-                                                        GALAXY Note</a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"><span class="regular-price"><span
-                                                                        class="price">$125.00</span> </span></div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Retis lapen casen"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg" alt="Retis lapen casen"></a>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a href="#" title="Retis lapen casen">Retis
-                                                        lapen casen</a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"><span class="regular-price"><span
-                                                                        class="price">$125.00</span> </span></div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Canvas Tab P290"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg"
-                                                            alt="Canvas Tab P290"></a>
-                                                <div class="new-label new-top-left">New</div>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a title="Canvas Tab P290" href="#"> Canvas Tab
-                                                        P290 </a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price"><span class="price-label">Regular Price:</span>
-                                                                <span class="price">$100.00 </span></p>
-                                                            <p class="special-price"><span class="price-label">Special Price</span>
-                                                                <span class="price">$90.00 </span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="ZX110A Stereo Headphone"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg"
-                                                            alt="ZX110A Stereo Headphone"></a>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a href="#" title="ZX110A Stereo Headphone">ZX110A
-                                                        Stereo Headphone</a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"><span class="regular-price"><span
-                                                                        class="price">$125.00</span> </span></div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Pink Sports Watch"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg" alt="Pink Sports Watch"></a>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a href="#" title="Pink Sports Watch">Pink
-                                                        Sports Watch</a></div>
-                                                <div class="item-content">
-
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
+                                                        <div class="action">
+                                                            <button class="button btn-cart" type="button" title=""
+                                                                    data-original-title="Comprar">
+                                                                <span>Comprar</span></button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="item-price">
-                                                    <div class="price-box"><span class="regular-price"><span
-                                                                    class="price">$125.00</span> </span></div>
-                                                </div>
-                                                <div class="action">
-                                                    <button class="button btn-cart" type="button" title=""
-                                                            data-original-title="Comprar">
-                                                        <span>Comprar</span></button>
-                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="ThinkPad X1 Ultrabook"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg"
-                                                            alt="ThinkPad X1 Ultrabook"></a>
-                                                <div class="new-label new-top-left">New</div>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a title="ThinkPad X1 Ultrabook" href="#">
-                                                        ThinkPad X1 Ultrabook </a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box">
-                                                            <p class="old-price"><span class="price-label">Regular Price:</span>
-                                                                <span class="price">$100.00 </span></p>
-                                                            <p class="special-price"><span class="price-label">Special Price</span>
-                                                                <span class="price">$90.00 </span></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                    <div class="item-inner">
-                                        <div class="item-img">
-                                            <div class="item-img-info"><a href="#" title="Yellow Sports Watch"
-                                                                          class="product-image"><img
-                                                            src="products-images/product1.jpg"
-                                                            alt="Yellow Sports Watch"></a>
-                                                <div class="box-hover">
-                                                    <ul class="add-to-links">
-                                                        <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                View</a></li>
-                                                        <li><a class="link-wishlist" href="wishlist.html">Wishlist</a>
-                                                        </li>
-                                                        <li><a class="link-compare" href="compare.html">Compare</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="item-info">
-                                            <div class="info-inner">
-                                                <div class="item-title"><a href="#" title="Yellow Sports Watch">Yellow
-                                                        Sports Watch</a></div>
-                                                <div class="item-content">
-                                                    <div class="rating-item">
-                                                        <div class="ratings">
-                                                            <fieldset class="rating">
-                                                                <input type="radio" id="star5" name="rating" value="5"
-                                                                       checked/><label class="full" for="star5"
-                                                                                       title="Awesome - 5 stars"></label>
-                                                                <input type="radio" id="star4half" name="rating"
-                                                                       value="4 and a half"/><label class="half"
-                                                                                                    for="star4half"
-                                                                                                    title="Pretty good - 4.5 stars"></label>
-                                                                <input type="radio" id="star4" name="rating" value="4"/><label
-                                                                        class="full" for="star4"
-                                                                        title="Pretty good - 4 stars"></label>
-                                                                <input type="radio" id="star3half" name="rating"
-                                                                       value="3 and a half"/><label class="half"
-                                                                                                    for="star3half"
-                                                                                                    title="Meh - 3.5 stars"></label>
-                                                                <input type="radio" id="star3" name="rating" value="3"/><label
-                                                                        class="full" for="star3"
-                                                                        title="Meh - 3 stars"></label>
-                                                                <input type="radio" id="star2half" name="rating"
-                                                                       value="2 and a half"/><label class="half"
-                                                                                                    for="star2half"
-                                                                                                    title="Kinda bad - 2.5 stars"></label>
-                                                                <input type="radio" id="star2" name="rating" value="2"/><label
-                                                                        class="full" for="star2"
-                                                                        title="Kinda bad - 2 stars"></label>
-                                                                <input type="radio" id="star1half" name="rating"
-                                                                       value="1 and a half"/><label class="half"
-                                                                                                    for="star1half"
-                                                                                                    title="Meh - 1.5 stars"></label>
-                                                                <input type="radio" id="star1" name="rating" value="1"/><label
-                                                                        class="full" for="star1"
-                                                                        title="Sucks big time - 1 star"></label>
-                                                                <input type="radio" id="starhalf" name="rating"
-                                                                       value="half"/><label class="half" for="starhalf"
-                                                                                            title="Sucks big time - 0.5 stars"></label>
-                                                            </fieldset>
-                                                            <p class="rating-links"><a href="#">1 Review(s)</a> <span
-                                                                        class="separator">|</span> <a href="#">Add
-                                                                    Review</a></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="item-price">
-                                                        <div class="price-box"><span class="regular-price"><span
-                                                                        class="price">$125.00</span> </span></div>
-                                                    </div>
-                                                    <div class="action">
-                                                        <button class="button btn-cart" type="button" title=""
-                                                                data-original-title="Comprar">
-                                                            <span>Comprar</span></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforeach
                             </ul>
-                        </div>
-
-                        <div class="toolbar">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-4">
-                                    <div id="sort-by">
-                                        <label class="left">{{ trans('frontend/articles.sort_by') }}: </label>
-                                        <ul>
-                                            <li><a href="#">{{ trans('frontend/articles.position') }}<span
-                                                            class="right-arrow"></span></a>
-                                                <ul>
-                                                    <li><a href="#">{{ trans('frontend/articles.price_low') }}</a></li>
-                                                    <li><a href="#">{{ trans('frontend/articles.price_up') }}</a></li>
-                                                    <li><a href="#">{{ trans('frontend/articles.name') }}</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 col-sm-7 col-md-5">
-                                    <div class="pager">
-                                        <div class="pages">
-                                            <label>{{ trans('frontend/articles.page') }}:</label>
-                                            <ul class="pagination">
-                                                <li><a href="#">&laquo;</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li><a href="#">&raquo;</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-12 col-md-3">
-                                    <div id="limiter">
-                                        <label>{{ trans('frontend/articles.view') }}: </label>
-                                        <ul>
-                                            <li><a href="#">09<span class="right-arrow"></span></a>
-                                                <ul>
-                                                    <li><a href="#">15</a></li>
-                                                    <li><a href="#">20</a></li>
-                                                    <li><a href="#">30</a></li>
-                                                    <li><a href="#">35</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </article>
                     <!--	///*///======    End article  ========= //*/// -->
                 </div>
                 <div class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
                     <aside class="col-left sidebar">
-                        <div class="side-nav-categories">
-                            <div class="block-title">{{ trans('texts.sections.categories.title') }}</div>
-                            <!--block-title-->
-                            <!-- BEGIN BOX-CATEGORY -->
-                            <div class="box-content box-category">
-                                <ul>
-                                    @foreach($category->getChildren() as $category)
-                                        <li>
-                                            <input type="checkbox" name="category-filter" class=""
-                                                   value="{{ $category->getSlug() }}"> {{ $category->getName() }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <!--box-content box-category-->
-                        </div>
-                        <div class="hot-banner"><img alt="banner" src="images/0004.jpg"></div>
                         <div class="block block-layered-nav">
                             <div class="block-title">{{ trans('frontend/articles.shop_by.title') }}</div>
                             <div class="block-content">
                                 <dl id="narrow-by-list">
+
+                                    @if(count($category->getChildren()) > 0)
+                                        <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
+                                        <dd class="even">
+                                            <ol>
+                                                @foreach($category->getChildren() as $category)
+                                                    <li>
+                                                        <input type="checkbox" name="category-filter" class=""
+                                                               value="{{ $category->getSlug() }}"> {{ $category->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
+
                                     <dt class="odd">{{ trans('frontend/articles.shop_by.price') }}</dt>
                                     <dd class="odd">
                                         <p>
@@ -838,7 +229,8 @@
                                             <ol>
                                                 @foreach($brands as $brand)
                                                     <li>
-                                                        <input type="checkbox" name="brand-filter" class="" value="{{ $brand->getId() }}"> {{ $brand->getName() }}
+                                                        <input type="checkbox" name="brand-filter" class=""
+                                                               value="{{ $brand->getId() }}"> {{ $brand->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -851,7 +243,8 @@
                                             <ol>
                                                 @foreach($colors as $color)
                                                     <li>
-                                                        <input type="checkbox" name="color-filter" class="" value="{{ $color->getId() }}"> {{ $color->getName() }}
+                                                        <input type="checkbox" name="color-filter" class=""
+                                                               value="{{ $color->getId() }}"> {{ $color->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -863,7 +256,8 @@
                                             <ol>
                                                 @foreach($licenses as $license)
                                                     <li>
-                                                        <input type="checkbox" name="color-filter" class="" value="{{ $license->getId() }}"> {{ $license->getName() }}
+                                                        <input type="checkbox" name="color-filter" class=""
+                                                               value="{{ $license->getId() }}"> {{ $license->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -872,6 +266,7 @@
                                 </dl>
                             </div>
                         </div>
+
                         <div class="block block-cart">
                             <div class="block-title ">{{ trans('frontend/articles.my_cart.title') }}</div>
                             <div class="block-content">

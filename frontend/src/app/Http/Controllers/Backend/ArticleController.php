@@ -333,6 +333,7 @@ class ArticleController
         $article->setLicense($license);
         $article->setBrand($brand);
         $article->setIngredients($ingredients);
+        $article->setStatus($request->input('status'));
 
         $priceType = null;
         if ($request->input('priceType') == 1) {

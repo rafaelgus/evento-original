@@ -19,6 +19,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
     {
         //
     }
+
     /**
      * Register the application services.
      *
@@ -27,12 +28,12 @@ class EventoOriginalServiceProvider extends ServiceProvider
     public function register()
     {
         define('CORE_DIR', realpath(__DIR__ . '/../../../../core/src'));
-        define('API_DIR', realpath(__DIR__ . '/../../../../api/src'));
 
         AnnotationRegistry::registerAutoloadNamespace(
             'Gedmo\Mapping\Annotation',
             CORE_DIR . '/vendor/gedmo'
         );
+
 
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
@@ -70,17 +71,20 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\CategoryRepository::class, function () {
             return EntityManager::getRepository(Entities\Category::class);
         });
-        $this->app->singleton(Repositories\LicenseRepository::class, function() {
-           return EntityManager::getRepository(Entities\License::class);
+        $this->app->singleton(Repositories\LicenseRepository::class, function () {
+            return EntityManager::getRepository(Entities\License::class);
         });
-        $this->app->singleton(Repositories\IngredientRepository::class, function(){
-           return EntityManager::getRepository(Entities\Ingredient::class);
+        $this->app->singleton(Repositories\IngredientRepository::class, function () {
+            return EntityManager::getRepository(Entities\Ingredient::class);
         });
-        $this->app->singleton(Repositories\PriceRepository::class, function() {
+        $this->app->singleton(Repositories\PriceRepository::class, function () {
             return EntityManager::getRepository(Entities\Price::class);
         });
         $this->app->singleton(Repositories\RoleRepository::class, function () {
-           return EntityManager::getRepository(Entities\Role::class);
+            return EntityManager::getRepository(Entities\Role::class);
         });
+
+        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
+        $em->getFilters()->disable('article_brand');
     }
 }

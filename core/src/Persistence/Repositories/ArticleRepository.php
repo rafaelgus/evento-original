@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
 use EventoOriginal\Core\Entities\Article;
+use EventoOriginal\Core\Entities\Brand;
+use EventoOriginal\Core\Entities\Category;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
@@ -66,5 +68,41 @@ class ArticleRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getFilteredArticles(Category $category, array $brands, string $locale = 'es')
+    {
+        $em = $this->getEntityManager();
+
+        if (count($brands) > 0) {
+            $filter = $em->getFilters()->enable('article_brand');
+            $filter->setParameter('brands', json_encode($brands));
+        }
+
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->join(
+                Category::class,
+                'category',
+                'WITH',
+                'category.id = :categoryId'
+            )
+            ->join('category.children', 'children')
+            ->where('article.category = category.id OR article.category = children.id')
+            ->setParameters(['categoryId' => $category->getId()]);
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        $result = $query->getResult();
+
+        return $result;
     }
 }

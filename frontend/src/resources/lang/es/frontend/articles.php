@@ -29,5 +29,6 @@ return [
         'brand' => 'Marca',
         'licence' => 'Licencia',
         'allergen' => 'Alérgenos',
+        'category' => 'Categoría',
     ],
 ];

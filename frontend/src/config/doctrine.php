@@ -53,7 +53,9 @@ return [
                 'listeners'   => [],
                 'subscribers' => []
             ],
-            'filters'       => [],
+            'filters'       => [
+                'article_brand' => EventoOriginal\Core\Persistence\Filters\ArticleBrandFilter::class,
+            ],
             /*
             |--------------------------------------------------------------------------
             | Doctrine mapping types

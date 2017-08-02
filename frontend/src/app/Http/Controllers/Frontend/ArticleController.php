@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use DoctrineProxies\__CG__\EventoOriginal\Core\Entities\Flavour;
+use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\App;
 
 class ArticleController extends Controller
 {
+    private $articleService;
     private $categoryService;
     private $brandService;
     private $colorService;
@@ -19,12 +21,14 @@ class ArticleController extends Controller
     private $flavourService;
 
     public function __construct(
+        ArticleService $articleService,
         CategoryService $categoryService,
         BrandService $brandService,
         ColorService $colorService,
         LicenseService $licenseService,
         FlavourService $flavourService
     ) {
+        $this->articleService = $articleService;
         $this->categoryService = $categoryService;
         $this->brandService = $brandService;
         $this->colorService = $colorService;
@@ -34,6 +38,9 @@ class ArticleController extends Controller
 
     public function index(string $categorySlug = null)
     {
+        $brands = [];
+
+        $articles = $this->articleService->getFilteredArticles($categorySlug, $brands);
         $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
         $brands = $this->brandService->getByCategorySlug($categorySlug, App::getLocale());
         $colors = $this->colorService->getByCategorySlug($categorySlug, App::getLocale());
@@ -42,6 +49,7 @@ class ArticleController extends Controller
 
         if ($category) {
             return view('frontend.articles.index')
+                ->with('articles', $articles)
                 ->with('category', $category)
                 ->with('brands', $brands)
                 ->with('colors', $colors)

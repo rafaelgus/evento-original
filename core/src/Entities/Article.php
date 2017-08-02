@@ -591,7 +591,7 @@ class Article
     /**
      * @return ArrayCollection
      */
-    public function getLicenses()
+    public function getLicense()
     {
         return $this->license;
     }
