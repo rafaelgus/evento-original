@@ -89,6 +89,4 @@ class Image
     {
         $this->article = $article;
     }
-
-
 }

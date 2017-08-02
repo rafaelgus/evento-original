@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
@@ -66,5 +67,19 @@ class ArticleRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllPaginated(int $currentPage, int $maxItems)
+    {
+        $sql = 'SELECT *FROM articles';
+
+        $query = $this->getEntityManager()
+            ->createQuery($sql)
+            ->setFirstResult($maxItems * ($currentPage - 1))
+            ->setMaxResults($maxItems);
+
+        $pagination = new Paginator($query, true);
+
+        return $pagination;
     }
 }

@@ -14,9 +14,7 @@
 
 Auth::routes();
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', 'Frontend\ArticleController@getHome');
 
 Route::get('/articulo/detalle', function () {
     return view('frontend.articles.show');
@@ -41,6 +39,8 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
 });
+
+Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
 Route::get('/mi-cuenta', function () {
     return view('frontend.profile.my_account');

@@ -659,6 +659,4 @@ class Article
     {
         $this->priceType = $priceType;
     }
-
-
 }
