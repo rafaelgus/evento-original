@@ -15,10 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'Frontend\ArticleController@getHome');
-
-Route::get('/articulo/detalle', function () {
-    return view('frontend.articles.show');
-});
+Route::get('/articulo/detalle/{slug}','Frontend\ArticleController@articleDetail');
 
 Route::get('/' . trans('frontend/shopping_cart.slug'), function () {
     return view('frontend.shopping_cart');

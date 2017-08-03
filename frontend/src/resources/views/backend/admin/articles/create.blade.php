@@ -48,7 +48,7 @@
                             <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription')}}</textarea>
+                                    <input type="text" class="form-control" value="{{ old('shortDescription')}}" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">
 
                                     {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
                                 </div>

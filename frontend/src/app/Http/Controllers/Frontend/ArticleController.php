@@ -42,4 +42,12 @@ class ArticleController extends Controller
 
         return $image;
     }
+
+    public function articleDetail(string $slug)
+    {
+        $article = $this->articleService->findBySlug($slug);
+
+        return view('frontend.articles.show')
+            ->with('article', $article);
+    }
 }

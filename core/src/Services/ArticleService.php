@@ -178,4 +178,13 @@ class ArticleService
     {
         return $this->articleRepository->findAllPaginated($currentPage, $maxItems);
     }
+
+    /**
+     * @param string $slug
+     * @return null|Article
+     */
+    public function findBySlug(string $slug)
+    {
+        return $this->articleRepository->findBySlug($slug);
+    }
 }

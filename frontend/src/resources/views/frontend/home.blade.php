@@ -43,7 +43,7 @@
                                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                         <div class="item-inner">
                                                             <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/article/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}"> </a>
+                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}"> </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">
                                                                             <li><a class="link-quickview" href="quick_view.html"></a> </li>
@@ -55,7 +55,7 @@
                                                             </div>
                                                             <div class="item-info">
                                                                 <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle"> {{$article->getShortDescription()}} </a> </div>
+                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle/{{$article->getSlug()}}"> {{$article->getName()}} </a> </div>
                                                                     <div class="item-content">
                                                                         <div class="rating-item">
                                                                             <div class="ratings">

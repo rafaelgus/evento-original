@@ -82,4 +82,9 @@ class ArticleRepository extends BaseRepository
 
         return $pagination;
     }
+
+    public function findBySlug(string $slug)
+    {
+        return $this->findOneBy(['slug' => $slug]);
+    }
 }

@@ -113,11 +113,17 @@ class ArticleController
 
     public function store(StoreArticleRequest $request)
     {
-        $allergens = $this
-            ->allergenService
-            ->findByIds(
-                $request->input('allergens')
-            );
+        $flavours =  [];
+        $ingredients = [];
+        $allergens = [];
+
+        if ($request->has('allergens')) {
+            $allergens = $this
+                ->allergenService
+                ->findByIds(
+                    $request->input('allergens')
+                );
+        }
 
         $tags = $this
             ->tagsService
@@ -131,11 +137,13 @@ class ArticleController
                 $request->input('colors')
             );
 
-        $flavours = $this
-            ->flavourService
-            ->findByIds(
-                $request->input('flavours')
-            );
+        if ($request->has('flavours')) {
+            $flavours = $this
+                ->flavourService
+                ->findByIds(
+                    $request->input('flavours')
+                );
+        }
 
         $category = $this
             ->categoryService
@@ -150,11 +158,13 @@ class ArticleController
                 $request->input('license')
             );
 
-        $ingredients = $this
-            ->ingredientService
-            ->findByIds(
-                $request->input('ingredients')
-            );
+        if ($request->has('ingredients')) {
+            $ingredients = $this
+                ->ingredientService
+                ->findByIds(
+                    $request->input('ingredients')
+                );
+        }
 
         $brand = $this
             ->brandService
@@ -262,6 +272,7 @@ class ArticleController
         } else {
             $images = [];
         }
+
 
         $allergens = $this
             ->allergenService
