@@ -111,7 +111,7 @@ class ArticleService
         }
         if (count($prices) > 0 and $price == null) {
             $article->setPrice($prices);
-        } elseif(count($prices) == 0 and $price != null) {
+        } elseif (count($prices) == 0 and $price != null) {
             $article->setPrice($price);
         }
 
@@ -179,12 +179,31 @@ class ArticleService
         $this->articleRepository->save($article);
     }
 
-    public function getFilteredArticles(string $categorySlug, array $brands, string $locale = 'es')
-    {
+    public function getFilteredArticles(
+        string $categorySlug,
+        array $brands,
+        array $colors,
+        array $flavours,
+        array $licenses,
+        array $tags,
+        float $priceMin = null,
+        float $priceMax = null,
+        string $locale = 'es'
+    ) {
         $category = $this->categoryService->findBySlug($categorySlug);
 
         if ($category) {
-            return $this->articleRepository->getFilteredArticles($category, $brands, $locale);
+            return $this->articleRepository->getFilteredArticles(
+                $category,
+                $brands,
+                $colors,
+                $flavours,
+                $licenses,
+                $tags,
+                $priceMin,
+                $priceMax,
+                $locale
+            );
         }
 
         throw new InvalidArgumentException("Invalid category slug");

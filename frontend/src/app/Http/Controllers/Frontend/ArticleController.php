@@ -39,8 +39,23 @@ class ArticleController extends Controller
     public function index(string $categorySlug = null)
     {
         $brands = [];
+        $colors = [];
+        $flavours = [];
+        $licenses = [];
+        $tags = [];
+        $priceMin = 0;
+        $priceMax = 100;
 
-        $articles = $this->articleService->getFilteredArticles($categorySlug, $brands);
+        $articles = $this->articleService->getFilteredArticles(
+            $categorySlug,
+            $brands,
+            $colors,
+            $flavours,
+            $licenses,
+            $tags,
+            $priceMin,
+            $priceMax
+        );
         $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
         $brands = $this->brandService->getByCategorySlug($categorySlug, App::getLocale());
         $colors = $this->colorService->getByCategorySlug($categorySlug, App::getLocale());

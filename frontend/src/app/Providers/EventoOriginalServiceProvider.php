@@ -86,5 +86,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
         $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
         $em->getFilters()->disable('article_brand');
+        $em->getFilters()->disable('article_license');
     }
 }

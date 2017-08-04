@@ -92,7 +92,7 @@
                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                         <div class="item-inner">
                                             <div class="item-img">
-                                                <div class="item-img-info"><a href="#" title="Food Processor"
+                                                <div class="item-img-info"><a href="{{ "/articulo/" . $article->getSlug() }}" title="Food Processor"
                                                                               class="product-image"><img
                                                                 src="products-images/product1.jpg"
                                                                 alt="Retis lapen casen"></a>
