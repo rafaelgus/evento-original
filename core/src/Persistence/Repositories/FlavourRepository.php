@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Flavour;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
@@ -88,5 +89,36 @@ class FlavourRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    {
+        $qb = $this->createQueryBuilder('flavour')
+            ->join(
+                Category::class,
+                'category',
+                'WITH',
+                'category.slug = :categorySlug'
+            )
+            ->join('category.children', 'children')
+            ->join(
+                'flavour.articles',
+                'article',
+                'WITH',
+                'article.category = category.id OR article.category = children.id'
+            )
+            ->setParameters(['categorySlug' => $categorySlug]);
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
     }
 }

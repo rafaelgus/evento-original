@@ -31,4 +31,11 @@ return [
         'allergen' => 'Alérgenos',
         'category' => 'Categoría',
     ],
+    'quick_view' => 'Vista rápida',
+    'new' => 'Nuevo',
+    'wishlist' => 'Agregar a lista de deseados',
+    'add_review' => 'Agregar review',
+    'regular_price' => 'Precio normal',
+    'special_price' => 'Precio especial',
+    'buy' => 'Comprar',
 ];

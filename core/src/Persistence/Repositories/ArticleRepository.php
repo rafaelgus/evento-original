@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
@@ -73,6 +74,7 @@ class ArticleRepository extends BaseRepository
 
     public function getFilteredArticles(
         Category $category,
+        array $subCategories,
         array $brands,
         array $colors,
         array $flavours,
@@ -82,18 +84,6 @@ class ArticleRepository extends BaseRepository
         float $priceMax,
         string $locale = 'es'
     ) {
-        $em = $this->getEntityManager();
-
-        if (count($brands) > 0) {
-            $filter = $em->getFilters()->enable('article_brand');
-            $filter->setParameter('brands', json_encode($brands));
-        }
-
-        if (count($licenses) > 0) {
-            $filter = $em->getFilters()->enable('article_license');
-            $filter->setParameter('licenses', json_encode($licenses));
-        }
-
         $qb = $this->createQueryBuilder('article')
             ->select('article')
             ->join(
@@ -109,20 +99,33 @@ class ArticleRepository extends BaseRepository
             ->setParameters(['categoryId' => $category->getId()])
             ->where('article.category = category.id OR article.category = children.id');
 
+
+        if (count($subCategories) > 0) {
+            $qb->andWhere('children.id IN (' . implode(',', $subCategories) . ')');
+        }
+
+        if (count($brands) > 0) {
+            $qb->andWhere('article.brand IN (' . implode(',', $brands) . ')');
+        }
+
+        if (count($licenses) > 0) {
+            $qb->andWhere('article.license IN (' . implode(',', $licenses) . ')');
+        }
+
         if (count($colors) > 0) {
-            $qb->where('color.id IN (' . implode(',', $colors) . ')');
+            $qb->andWhere('color.id IN (' . implode(',', $colors) . ')');
         }
 
         if (count($flavours) > 0) {
-            $qb->where('flavour.id IN (' . implode(',', $flavours) . ')');
+            $qb->andWhere('flavour.id IN (' . implode(',', $flavours) . ')');
         }
 
         if (count($tags) > 0) {
-            $qb->where('tag.id IN (' . implode(',', $tags) . ')');
+            $qb->andWhere('tag.id IN (' . implode(',', $tags) . ')');
         }
 
         if ($priceMin) {
-            $qb->where('article.price >= ' . $priceMin . ($priceMax ? ' AND article.price <= ' . $priceMax : ''));
+            $qb->andWhere('article.price >= ' . $priceMin . ($priceMax ? ' AND article.price <= ' . $priceMax : ''));
         }
 
         $query = $qb->getQuery();
@@ -138,5 +141,32 @@ class ArticleRepository extends BaseRepository
         $result = $query->getResult();
 
         return $result;
+    }
+
+    public function findByCategory(Category $category, string $locale = 'es')
+    {
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->join(
+                Category::class,
+                'category',
+                'WITH',
+                'category.id = :categoryId'
+            )
+            ->join('category.children', 'children')
+            ->setParameters(['categoryId' => $category->getId()])
+            ->where('article.category = category.id OR article.category = children.id');
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
     }
 }

@@ -88,4 +88,9 @@ class FlavourService
 
         return $flavours;
     }
+
+    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    {
+        return $this->flavourRepository->getByCategorySlug($categorySlug, $locale);
+    }
 }

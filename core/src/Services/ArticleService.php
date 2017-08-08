@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Services;
 
 use DateTime;
@@ -181,6 +182,7 @@ class ArticleService
 
     public function getFilteredArticles(
         string $categorySlug,
+        array $subCategories,
         array $brands,
         array $colors,
         array $flavours,
@@ -195,6 +197,7 @@ class ArticleService
         if ($category) {
             return $this->articleRepository->getFilteredArticles(
                 $category,
+                $subCategories,
                 $brands,
                 $colors,
                 $flavours,
@@ -207,5 +210,32 @@ class ArticleService
         }
 
         throw new InvalidArgumentException("Invalid category slug");
+    }
+
+    public function toJson(array $articles)
+    {
+        $articlesArray = [];
+        foreach ($articles as $article) {
+            $articlesArray[] = [
+                'name' => $article->getName(),
+                'slug' => $article->getSlug(),
+                'price' => $article->getPrice(),
+                'price_currency' => '€',
+                'rating' => 4
+            ];
+        }
+
+        return json_encode($articlesArray);
+    }
+
+    public function findByCategorySlug(string $categorySlug)
+    {
+        $category = $this->categoryService->findBySlug($categorySlug);
+
+        if ($category) {
+            return $this->articleRepository->findByCategory($category);
+        } else {
+            throw new InvalidArgumentException("Invalid category slug");
+        }
     }
 }

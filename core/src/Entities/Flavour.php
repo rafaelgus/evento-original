@@ -34,9 +34,15 @@ class Flavour
      */
     private $translations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="flavours")
+     */
+    private $articles;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     /**
@@ -74,5 +80,21 @@ class Flavour
             $this->translations[] = $t;
             $t->setObject($this);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
     }
 }

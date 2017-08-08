@@ -88,102 +88,7 @@
                     <article class="col-main">
                         <div class="category-products">
                             <ul class="products-grid">
-                                @foreach($articles as $article)
-                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                        <div class="item-inner">
-                                            <div class="item-img">
-                                                <div class="item-img-info"><a href="{{ "/articulo/" . $article->getSlug() }}" title="Food Processor"
-                                                                              class="product-image"><img
-                                                                src="products-images/product1.jpg"
-                                                                alt="Retis lapen casen"></a>
-                                                    <div class="new-label new-top-left">New</div>
-                                                    <div class="box-hover">
-                                                        <ul class="add-to-links">
-                                                            <li><a class="link-quickview" href="quick_view.html">Quick
-                                                                    View</a></li>
-                                                            <li><a class="link-wishlist"
-                                                                   href="wishlist.html">Wishlist</a>
-                                                            </li>
-                                                            <li><a class="link-compare" href="compare.html">Compare</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="item-info">
-                                                <div class="info-inner">
-                                                    <div class="item-title"><a title="Food Processor" href="#"> Food
-                                                            Processor </a></div>
-                                                    <div class="item-content">
-                                                        <div class="rating-item">
-                                                            <div class="ratings">
-                                                                <fieldset class="rating">
-                                                                    <input type="radio" id="star5" name="rating"
-                                                                           value="5"
-                                                                           checked/><label class="full" for="star5"
-                                                                                           title="Awesome - 5 stars"></label>
-                                                                    <input type="radio" id="star4half" name="rating"
-                                                                           value="4 and a half"/><label class="half"
-                                                                                                        for="star4half"
-                                                                                                        title="Pretty good - 4.5 stars"></label>
-                                                                    <input type="radio" id="star4" name="rating"
-                                                                           value="4"/><label
-                                                                            class="full" for="star4"
-                                                                            title="Pretty good - 4 stars"></label>
-                                                                    <input type="radio" id="star3half" name="rating"
-                                                                           value="3 and a half"/><label class="half"
-                                                                                                        for="star3half"
-                                                                                                        title="Meh - 3.5 stars"></label>
-                                                                    <input type="radio" id="star3" name="rating"
-                                                                           value="3"/><label
-                                                                            class="full" for="star3"
-                                                                            title="Meh - 3 stars"></label>
-                                                                    <input type="radio" id="star2half" name="rating"
-                                                                           value="2 and a half"/><label class="half"
-                                                                                                        for="star2half"
-                                                                                                        title="Kinda bad - 2.5 stars"></label>
-                                                                    <input type="radio" id="star2" name="rating"
-                                                                           value="2"/><label
-                                                                            class="full" for="star2"
-                                                                            title="Kinda bad - 2 stars"></label>
-                                                                    <input type="radio" id="star1half" name="rating"
-                                                                           value="1 and a half"/><label class="half"
-                                                                                                        for="star1half"
-                                                                                                        title="Meh - 1.5 stars"></label>
-                                                                    <input type="radio" id="star1" name="rating"
-                                                                           value="1"/><label
-                                                                            class="full" for="star1"
-                                                                            title="Sucks big time - 1 star"></label>
-                                                                    <input type="radio" id="starhalf" name="rating"
-                                                                           value="half"/><label class="half"
-                                                                                                for="starhalf"
-                                                                                                title="Sucks big time - 0.5 stars"></label>
-                                                                </fieldset>
-                                                                <p class="rating-links"><a href="#">1 Review(s)</a>
-                                                                    <span
-                                                                            class="separator">|</span> <a href="#">Add
-                                                                        Review</a></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="item-price">
-                                                            <div class="price-box">
-                                                                <p class="old-price"><span class="price-label">Regular Price:</span>
-                                                                    <span class="price">$100.00 </span></p>
-                                                                <p class="special-price"><span class="price-label">Special Price</span>
-                                                                    <span class="price">$90.00 </span></p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action">
-                                                            <button class="button btn-cart" type="button" title=""
-                                                                    data-original-title="Comprar">
-                                                                <span>Comprar</span></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                @endforeach
+
                             </ul>
                         </div>
                     </article>
@@ -197,13 +102,12 @@
                                 <dl id="narrow-by-list">
 
                                     @if(count($category->getChildren()) > 0)
-                                        <dt class="even">{{ trans('frontend/articles.shop_by.brand') }}</dt>
+                                        <dt class="even">{{ trans('frontend/articles.shop_by.category') }}</dt>
                                         <dd class="even">
                                             <ol>
                                                 @foreach($category->getChildren() as $category)
                                                     <li>
-                                                        <input type="checkbox" name="category-filter" class=""
-                                                               value="{{ $category->getSlug() }}"> {{ $category->getName() }}
+                                                        <input type="checkbox" name="category-filter" class="" value="{{ $category->getSlug() }}" onchange="applyFilter()"> {{ $category->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -230,7 +134,7 @@
                                                 @foreach($brands as $brand)
                                                     <li>
                                                         <input type="checkbox" name="brand-filter" class=""
-                                                               value="{{ $brand->getId() }}"> {{ $brand->getName() }}
+                                                               value="{{ $brand->getId() }}" onchange="applyFilter()"> {{ $brand->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -244,7 +148,7 @@
                                                 @foreach($colors as $color)
                                                     <li>
                                                         <input type="checkbox" name="color-filter" class=""
-                                                               value="{{ $color->getId() }}"> {{ $color->getName() }}
+                                                               value="{{ $color->getId() }}" onchange="applyFilter()"> {{ $color->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -256,13 +160,26 @@
                                             <ol>
                                                 @foreach($licenses as $license)
                                                     <li>
-                                                        <input type="checkbox" name="color-filter" class=""
-                                                               value="{{ $license->getId() }}"> {{ $license->getName() }}
+                                                        <input type="checkbox" name="license-filter" class=""
+                                                               value="{{ $license->getId() }}" onchange="applyFilter()"> {{ $license->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
                                         </dd>
                                     @endif
+                                        @if(count($tags) > 0)
+                                            <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
+                                            <dd class="last even">
+                                                <ol>
+                                                    @foreach($tags as $tag)
+                                                        <li>
+                                                            <input type="checkbox" name="tag-filter" class=""
+                                                                   value="{{ $tag->getId() }}" onchange="applyFilter()"> {{ $tag->getName() }}
+                                                        </li>
+                                                    @endforeach()
+                                                </ol>
+                                            </dd>
+                                        @endif
                                 </dl>
                             </div>
                         </div>
@@ -380,10 +297,126 @@
         </div>
     </section>
     <!-- Main Container End -->
+
+    <div id="result"></div>
 @endsection
 
 @section('scripts_body')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.87/jsrender.min.js"></script>
+
+    <!-- Declare a JsRender template, in a script block: -->
+    <script id="articleTemplate" type="text/x-jsrender">
+
+    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
+        <div class="item-inner">
+            <div class="item-img">
+                <div class="item-img-info">
+                <a href="#" title="<%:name%>" class="product-image">
+                <img src="products-images/product1.jpg"
+                                alt="<%:name%>">
+
+</a>
+                    <div class="new-label new-top-left">{{ trans('frontend/articles.new') }}</div>
+                    <div class="box-hover">
+                        <ul class="add-to-links">
+                            <li><a class="link-quickview" href="#">{{ trans('frontend/articles.quick_view') }}</a></li>
+                            <li><a class="link-wishlist"
+                                   href="#">{{ trans('frontend/articles.wishlist') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item-info">
+                <div class="info-inner">
+                    <div class="item-title"><a title="<%:name%>" href="#"> <%:name%> </a></div>
+                    <div class="item-content">
+                        <div class="rating-item">
+                            <div class="ratings">
+                                <fieldset class="rating">
+                                    <input type="radio" id="star5" name="rating-<%:slug%>" value="5" <%if rating == 5%>checked<%/if%>/><label class="full" for="star5"></label>
+                                    <input type="radio" id="star4half" name="rating-<%:slug%>" value="4.5" <%if rating == 4.5%>checked<%/if%>/><label class="half" for="star4half"></label>
+                                    <input type="radio" id="star4" name="rating-<%:slug%>" value="4" <%if rating == 4%>checked<%/if%>/><label class="full" for="star4"></label>
+                                    <input type="radio" id="star3half" name="rating-<%:slug%>" value="3.5" <%if rating == 3.5%>checked<%/if%>/><label class="half" for="star3half"></label>
+                                    <input type="radio" id="star3" name="rating-<%:slug%>" value="3" <%if rating == 3%>checked<%/if%>/><label class="full" for="star3"></label>
+                                    <input type="radio" id="star2half" name="rating-<%:slug%>" value="2.5" <%if rating == 2.5%>checked<%/if%>/><label class="half" for="star2half"></label>
+                                    <input type="radio" id="star2" name="rating-<%:slug%>" value="2" <%if rating == 2%>checked<%/if%>/><label class="full" for="star2"></label>
+                                    <input type="radio" id="star1half" name="rating-<%:slug%>" value="1.5" <%if rating == 1.5%>checked<%/if%>/><label class="half" for="star1half"></label>
+                                    <input type="radio" id="star1" name="rating-<%:slug%>" value="1" <%if rating == 1%>checked<%/if%>/><label class="full" for="star1"></label>
+                                    <input type="radio" id="starhalf" name="rating-<%:slug%>" value="half" <%if rating == 0.5%>checked<%/if%>/><label class="half" for="starhalf"></label>
+                                </fieldset>
+                                <p class="rating-links"><a href="#">1 Review(s)</a>
+                                    <span class="separator">|</span> <a href="#">{{ trans('frontend/articles.add_review') }}</a></p>
+                            </div>
+                        </div>
+
+                        <div class="item-price">
+                            <div class="price-box"><span class="regular-price"><span class="price"><%:price_currency%> <%:price%></span> </span> </div>
+                          </div>
+                        <div class="action">
+                            <button class="button btn-cart" type="button" title=""
+                                    data-original-title="{{ trans('frontend/articles.buy') }}">
+                                <span>{{ trans('frontend/articles.buy') }}</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+
+
+    </script>
+
+    <script>
+        $.views.settings.delimiters("<%", "%>");
+
+        var categorySlug = "{{ $category->getSlug() }}"
+
+        $.ajax({
+            url: '/articles/' + categorySlug,
+            type: 'GET',
+            success: function (articles) {
+                renderArticleTemplate($.parseJSON(articles));
+            },
+            fail: function () {
+                renderArticleTemplate([]);
+            }
+        });
+
+        function renderArticleTemplate(data) {
+            var tmpl = $.templates("#articleTemplate");
+            var html = tmpl.render(data);
+            $(".products-grid").html(html);
+        }
+
+        function applyFilter() {
+            $.ajax({
+                url: '/articles/' + categorySlug,
+                type: 'GET',
+                data: {
+                    'subcategories': getCheckboxValues('category-filter'),
+                    'brands': getCheckboxValues('brand-filter')
+                },
+                success: function (articles) {
+                    renderArticleTemplate($.parseJSON(articles));
+                },
+                fail: function () {
+                    renderArticleTemplate([]);
+                }
+            });
+        }
+
+        function getCheckboxValues(name) {
+            var values = [];
+
+            $("input[name=" + name + "]:checked").each(function() {
+                values.push($(this).val());
+            });
+
+            return values;
+        }
+    </script>
 
     <script>
         $(document).ready(function () {
