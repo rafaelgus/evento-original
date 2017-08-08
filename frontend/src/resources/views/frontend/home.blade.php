@@ -1406,13 +1406,11 @@
 
             xhr.onreadystatechange = function () {
                 if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                    console.log('se agrego item');
 
                 }
             };
-
             xhr.send(params);
-            this.cartItems();
+            cartItems();
         }
     </script>
 @endsection
