@@ -60,7 +60,7 @@
           <div class="wish">{{ trans('frontend/my_wishlist.wishlist') }}</div>
           </a>
            <a href="/{{ trans('frontend/shopping_cart.slug') }}" title="{{ trans('frontend/shopping_cart.title') }}" class="top-link-shopping-cart hidden-xs"><img src="/images/cart.png" width="26" height="26">
-          <div class="shopping-cart">{{ trans('frontend/shopping_cart.cart') }}<br>({{ trans('frontend/shopping_cart.empty') }})</div>
+          <div class="shopping-cart">{{ trans('frontend/shopping_cart.cart') }}<br><div id="cartQty"></div></div>
 
           </a>
           </div>
@@ -73,3 +73,9 @@
 @include('frontend.partials.navbar')
 
 </header>
+
+@section('scripts_body')
+
+
+
+@endsection

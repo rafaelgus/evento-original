@@ -55,5 +55,28 @@
 
 @yield('scripts_body')
 
+<script>
+    cartItems();
+    function cartItems() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/cartItems', true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                var cartItems = JSON.parse(xhr.responseText);
+
+                if(cartItems['itemQuantity'] > 0) {
+                    document.getElementById('cartQty').textContent = cartItems['itemQuantity'];
+                } else {
+                    document.getElementById('cartQty').textContent = '{{ trans('frontend/shopping_cart.empty') }}';
+                }
+
+            }
+        };
+        xhr.send();
+    }
+
+</script>
+
 </body>
 </html>

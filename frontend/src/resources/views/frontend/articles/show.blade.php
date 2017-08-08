@@ -102,12 +102,12 @@
                       <div class="add-to-cart">
                         <div class="pull-left">
                           <div class="custom pull-left">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
-                            <input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+                            <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                            <input type="text" id="quantity" class="input-text qty" title="Qty" value="1" maxlength="12" name="qty">
+                            <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
-                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Comprar" type="button">Comprar</button>
+                        <button onClick="addToCart()" class="button btn-cart" title="Comprar" type="button">Comprar</button>
                       </div>
                       <div class="email-addto-box">
                         <ul class="add-to-links">
@@ -282,6 +282,29 @@
 @endsection
 
 @section('scripts_body')
-<script type="text/javascript" src="/js/jquery.flexslider.js"></script>
-<script type="text/javascript" src="/js/cloud-zoom.js"></script>
+  <script type="text/javascript" src="/js/jquery.flexslider.js"></script>
+  <script type="text/javascript" src="/js/cloud-zoom.js"></script>
+  <script type="text/javascript">
+      function addToCart() {
+          var quantity = document.getElementById('quantity').value;
+          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/addToCart', true);
+          xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+          xhr.onreadystatechange = function () {
+              if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                  console.log('se agrego item');
+
+              }
+          };
+
+          xhr.send(params);
+          this.cartItems();
+      }
+
+  </script>
+
+
 @endsection

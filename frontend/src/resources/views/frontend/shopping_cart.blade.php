@@ -37,28 +37,21 @@
                                     <tfoot>
                                     <tr class="first last">
                                         <td class="a-right last" colspan="50"><button onClick="setLocation('#')" class="button btn-continue" title="Continue Shopping" type="button"><span>{{ trans('frontend/shopping_cart.continue_shopping') }}</span></button>
-                                            <button id="empty_cart_button" class="button btn-empty" title="Clear Cart" value="empty_cart" name="update_cart_action" type="submit"><span>{{ trans('frontend/shopping_cart.clear_cart') }}</span></button></td>
+                                            <a id="empty_cart_button" class="button btn-empty" title="Clear Cart" href="/destroyCart" name="update_cart_action"><span>{{ trans('frontend/shopping_cart.clear_cart') }}</span></a></td>
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    @foreach($cart as $item)
                                     <tr class="first odd">
-                                        <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href="#/women-s-crepe-printed-black/"><img width="75" alt="ThinkPad Ultrabook" src="products-images/product1.jpg"></a></td>
-                                        <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">ThinkPad X1 Ultrabook</a> </h2></td>
+                                        <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="/articles/storage/{{($item->options->has('image') ? $item->options->image : '')}}"></a></td>
+                                        <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">{{$item->name}}</a> </h2></td>
                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                                        <td class="a-right"><span class="cart-price"> <span class="price">$70.00</span> </span></td>
-                                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="1" name="cart[15945][qty]" type="number"></td>
-                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$70.00</span> </span></td>
-                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="#"><span><span>Remove item</span></span></a></td>
+                                        <td class="a-right"><span class="cart-price"> <span class="price">{{$item->price}}</span> </span></td>
+                                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item->qty}}" name="cart[15945][qty]" type="number"></td>
+                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">{{$item->price}}</span> </span></td>
+                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="/removeToCart/{{$item->rowId}}"><span><span>Remove item</span></span></a></td>
                                     </tr>
-                                    <tr class="last even">
-                                        <td class="image"><a class="product-image" title="QX30 Lens Camera" href="#women-s-u-tank-top/"><img width="75" alt="Sample Product" src="products-images/product1.jpg"></a></td>
-                                        <td><h2 class="product-name"> <a href="#women-s-u-tank-top/"> QX30 Lens Camera </a> </h2></td>
-                                        <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15946/"></a></td>
-                                        <td class="a-right"><span class="cart-price"> <span class="price">$7.38</span> </span></td>
-                                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="1" name="cart[15946][qty]" type="number"></td>
-                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$7.38</span> </span></td>
-                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="#"><span><span>Remove item</span></span></a></td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </fieldset>
@@ -450,7 +443,7 @@
                                         <tfoot>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""><strong>{{ trans('frontend/shopping_cart.total') }}</strong></td>
-                                            <td class="a-right" style=""><strong><span class="price">$77.38</span></strong></td>
+                                            <td class="a-right" style=""><strong><span class="price">€{{$total}}</span></strong></td>
                                         </tr>
                                         </tfoot>
                                     </table>

@@ -27,8 +27,7 @@
   ],
   "require": {
     "vlucas/phpdotenv": "^2.4",
-    "cfrutos/flaubert": "dev-master",
-    "gloudemans/shoppingcart": "^2.3"
+    "cfrutos/flaubert": "dev-master"
   },
   "config": {
     "preferred-install": "dist",
