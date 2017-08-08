@@ -78,7 +78,7 @@
                                                                             <div class="price-box"> <span class="regular-price"> <span class="price">{{$article->getPrice()}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
+                                                                            <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1389,4 +1389,30 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts_body')
+    <script>
+        function addItemToCart(articleId, element) {
+            element.textContent = '¡AÑADIDO!';
+
+            var quantity = 1;
+            var params = encodeURI('articleId=' + articleId + '&quantity=' + quantity);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/addToCart', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                    console.log('se agrego item');
+
+                }
+            };
+
+            xhr.send(params);
+            this.cartItems();
+        }
+    </script>
 @endsection

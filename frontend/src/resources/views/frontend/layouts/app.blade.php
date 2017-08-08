@@ -57,6 +57,7 @@
 
 <script>
     cartItems();
+
     function cartItems() {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', '/cartItems', true);
