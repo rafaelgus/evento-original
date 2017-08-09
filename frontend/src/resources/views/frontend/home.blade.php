@@ -75,7 +75,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">{{$article->getPrice()}}</span> </span> </div>
+                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€ {{$article->getPrice()}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
                                                                             <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>
