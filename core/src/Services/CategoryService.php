@@ -78,9 +78,9 @@ class CategoryService
         $this->categoryRepository->save($category);
     }
 
-    public function getChildren(Category $category)
+    public function getChildren(Category $category, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
-        $children = $this->categoryRepository->findSubcategories($category);
+        $children = $this->categoryRepository->findSubcategories($category, $direct, $sortByField, $direction, $includeNode);
 
         return $children;
     }

@@ -105,9 +105,9 @@
                                         <dt class="even">{{ trans('frontend/articles.shop_by.category') }}</dt>
                                         <dd class="even">
                                             <ol>
-                                                @foreach($category->getChildren() as $category)
+                                                @foreach($category->getChildren() as $children)
                                                     <li>
-                                                        <input type="checkbox" name="category-filter" class="" value="{{ $category->getSlug() }}" onchange="applyFilter()"> {{ $category->getName() }}
+                                                        <input type="checkbox" name="category-filter" value="{{ $children->getId() }}" onchange="applyFilter()"> {{ $children->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -371,7 +371,7 @@
     <script>
         $.views.settings.delimiters("<%", "%>");
 
-        var categorySlug = "{{ $category->getSlug() }}"
+        var categorySlug = "{{ $category->getSlug() }}";
 
         $.ajax({
             url: '/articles/' + categorySlug,

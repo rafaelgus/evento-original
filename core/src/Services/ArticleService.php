@@ -193,11 +193,22 @@ class ArticleService
         string $locale = 'es'
     ) {
         $category = $this->categoryService->findBySlug($categorySlug);
+        $categories = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+
+        if (count($subCategories) > 0) {
+            $categories = [];
+            foreach ($subCategories as $subCategory) {
+                $c = $this->categoryService->findOneById($subCategory, $locale);
+                $categories = array_merge(
+                    $categories,
+                    $this->categoryService->getChildren($c, false, null, 'ASC', true)
+                );
+            }
+        }
 
         if ($category) {
             return $this->articleRepository->getFilteredArticles(
-                $category,
-                $subCategories,
+                $categories,
                 $brands,
                 $colors,
                 $flavours,

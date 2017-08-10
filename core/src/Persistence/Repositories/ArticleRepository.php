@@ -73,8 +73,7 @@ class ArticleRepository extends BaseRepository
     }
 
     public function getFilteredArticles(
-        Category $category,
-        array $subCategories,
+        array $categories,
         array $brands,
         array $colors,
         array $flavours,
@@ -84,25 +83,17 @@ class ArticleRepository extends BaseRepository
         float $priceMax,
         string $locale = 'es'
     ) {
+        $categoriesIds = array_map(function ($category) {
+            return $category->getId();
+        }, $categories);
+
+
         $qb = $this->createQueryBuilder('article')
             ->select('article')
-            ->join(
-                Category::class,
-                'category',
-                'WITH',
-                'category.id = :categoryId'
-            )
-            ->join('category.children', 'children')
             ->leftJoin('article.colors', 'color')
             ->leftJoin('article.flavours', 'flavour')
             ->leftJoin('article.tags', 'tag')
-            ->setParameters(['categoryId' => $category->getId()])
-            ->where('article.category = category.id OR article.category = children.id');
-
-
-        if (count($subCategories) > 0) {
-            $qb->andWhere('children.id IN (' . implode(',', $subCategories) . ')');
-        }
+            ->where('article.category IN (' . implode(',', $categoriesIds) . ')');
 
         if (count($brands) > 0) {
             $qb->andWhere('article.brand IN (' . implode(',', $brands) . ')');
@@ -153,9 +144,12 @@ class ArticleRepository extends BaseRepository
                 'WITH',
                 'category.id = :categoryId'
             )
-            ->join('category.children', 'children')
+            ->leftJoin('category.children', 'children1')
+            ->leftJoin('children1.children', 'children2')
+            ->leftJoin('children2.children', 'children3')
             ->setParameters(['categoryId' => $category->getId()])
-            ->where('article.category = category.id OR article.category = children.id');
+            ->where('article.category = category.id OR article.category = children1.id OR 
+            article.category = children2.id OR article.category = children3.id');
 
         $query = $qb->getQuery();
         $query->setHint(

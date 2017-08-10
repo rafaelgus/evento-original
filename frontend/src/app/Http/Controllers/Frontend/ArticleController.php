@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use DoctrineProxies\__CG__\EventoOriginal\Core\Entities\Flavour;
+use EventoOriginal\Core\Persistence\Repositories\CategoryRepository;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
@@ -24,6 +25,7 @@ class ArticleController extends Controller
     private $licenseService;
     private $flavourService;
     private $tagService;
+    private $categoryRepository;
 
     public function __construct(
         ArticleService $articleService,
@@ -32,7 +34,8 @@ class ArticleController extends Controller
         ColorService $colorService,
         LicenseService $licenseService,
         FlavourService $flavourService,
-        TagService $tagService
+        TagService $tagService,
+        CategoryRepository $categoryRepository
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -41,6 +44,7 @@ class ArticleController extends Controller
         $this->licenseService = $licenseService;
         $this->flavourService = $flavourService;
         $this->tagService = $tagService;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function index(string $categorySlug = null)
@@ -53,10 +57,7 @@ class ArticleController extends Controller
         $tags = $this->tagService->getByCategorySlug($categorySlug, App::getLocale());
 
         if ($category) {
-            $articles = $this->articleService->findByCategorySlug($categorySlug);
-
             return view('frontend.articles.index')
-                ->with('articles', $articles)
                 ->with('category', $category)
                 ->with('brands', $brands)
                 ->with('colors', $colors)
@@ -77,7 +78,7 @@ class ArticleController extends Controller
         $licenses = (isset($request->licenses) ? $request->licenses : []);
         $tags = (isset($request->tags) ? $request->tags : []);
         $priceMin = 0;
-        $priceMax = 500;
+        $priceMax = 99999;
 
         $articles = $this->articleService->getFilteredArticles(
             $categorySlug,
