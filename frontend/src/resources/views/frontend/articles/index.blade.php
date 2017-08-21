@@ -3,6 +3,8 @@
 @section('scripts_header')
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/loading.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/spinner.css"/>
 @stop
 
 @section('content')
@@ -39,16 +41,18 @@
                                 <div class="col-lg-4 col-md-5">
                                     <div id="sort-by">
                                         <label class="left">{{ trans('frontend/articles.sort_by') }}: </label>
-                                        <ul>
-                                            <li><a href="#">{{ trans('frontend/articles.position') }}<span
-                                                            class="right-arrow"></span></a>
-                                                <ul>
-                                                    <li><a href="#">{{ trans('frontend/articles.price_low') }}</a></li>
-                                                    <li><a href="#">{{ trans('frontend/articles.price_up') }}</a></li>
-                                                    <li><a href="#">{{ trans('frontend/articles.name') }}</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <select id="sort-by-filter">
+                                            <option>
+                                                {{ trans('frontend/articles.position') }}
+                                            </option>
+                                            <option>{{ trans('frontend/articles.price_low') }}</option>
+                                            <option>
+                                                {{ trans('frontend/articles.price_up') }}
+                                            </option>
+                                            <option>
+                                                {{ trans('frontend/articles.name') }}
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-sm-7 col-md-5">
@@ -57,11 +61,9 @@
                                             <label>{{ trans('frontend/articles.page') }}:</label>
                                             <ul class="pagination">
                                                 <li><a href="#">&laquo;</a></li>
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-                                                <li><a href="#">3</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <li><a id="page-{{$i}}" class="pagination-page">{{ $i }}</a></li>
+                                                @endfor
                                                 <li><a href="#">&raquo;</a></li>
                                             </ul>
                                         </div>
@@ -86,6 +88,8 @@
                         </div>
                     </div>
                     <article class="col-main">
+                        <img src="images/Spinner.gif" class="loader"/>
+
                         <div class="category-products">
                             <ul class="products-grid">
 
@@ -107,7 +111,9 @@
                                             <ol>
                                                 @foreach($category->getChildren() as $children)
                                                     <li>
-                                                        <input type="checkbox" name="category-filter" value="{{ $children->getId() }}" onchange="applyFilter()"> {{ $children->getName() }}
+                                                        <input type="checkbox" name="category-filter"
+                                                               value="{{ $children->getId() }}"
+                                                               onchange="applyFilter()"> {{ $children->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -134,7 +140,8 @@
                                                 @foreach($brands as $brand)
                                                     <li>
                                                         <input type="checkbox" name="brand-filter" class=""
-                                                               value="{{ $brand->getId() }}" onchange="applyFilter()"> {{ $brand->getName() }}
+                                                               value="{{ $brand->getId() }}"
+                                                               onchange="applyFilter()"> {{ $brand->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -148,38 +155,72 @@
                                                 @foreach($colors as $color)
                                                     <li>
                                                         <input type="checkbox" name="color-filter" class=""
-                                                               value="{{ $color->getId() }}" onchange="applyFilter()"> {{ $color->getName() }}
+                                                               value="{{ $color->getId() }}"
+                                                               onchange="applyFilter()"> {{ $color->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
                                         </dd>
                                     @endif
+
+                                    @if(count($flavours) > 0)
+                                        <dt class="odd">{{ trans('frontend/articles.shop_by.flavour') }}</dt>
+                                        <dd class="odd">
+                                            <ol>
+                                                @foreach($flavours as $flavour)
+                                                    <li>
+                                                        <input type="checkbox" name="flavour-filter" class=""
+                                                               value="{{ $flavour->getId() }}"
+                                                               onchange="applyFilter()"> {{ $flavour->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
+
+                                    @if(count($healthys) > 0)
+                                        <dt class="odd">{{ trans('frontend/articles.shop_by.healthy') }}</dt>
+                                        <dd class="odd">
+                                            <ol>
+                                                @foreach($healthys as $healthy)
+                                                    <li>
+                                                        <input type="checkbox" name="healthy-filter" class=""
+                                                               value="{{ $healthy->getId() }}"
+                                                               onchange="applyFilter()"> {{ $healthy->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
+
                                     @if(count($licenses) > 0)
-                                        <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
+                                        <dt class="last even">{{ trans('frontend/articles.shop_by.license') }}</dt>
                                         <dd class="last even">
                                             <ol>
                                                 @foreach($licenses as $license)
                                                     <li>
                                                         <input type="checkbox" name="license-filter" class=""
-                                                               value="{{ $license->getId() }}" onchange="applyFilter()"> {{ $license->getName() }}
+                                                               value="{{ $license->getId() }}"
+                                                               onchange="applyFilter()"> {{ $license->getName() }}
                                                     </li>
                                                 @endforeach()
                                             </ol>
                                         </dd>
                                     @endif
-                                        @if(count($tags) > 0)
-                                            <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
-                                            <dd class="last even">
-                                                <ol>
-                                                    @foreach($tags as $tag)
-                                                        <li>
-                                                            <input type="checkbox" name="tag-filter" class=""
-                                                                   value="{{ $tag->getId() }}" onchange="applyFilter()"> {{ $tag->getName() }}
-                                                        </li>
-                                                    @endforeach()
-                                                </ol>
-                                            </dd>
-                                        @endif
+                                    @if(count($tags) > 0)
+                                        <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
+                                        <dd class="last even">
+                                            <ol>
+                                                @foreach($tags as $tag)
+                                                    <li>
+                                                        <input type="checkbox" name="tag-filter" class=""
+                                                               value="{{ $tag->getId() }}"
+                                                               onchange="applyFilter()"> {{ $tag->getName() }}
+                                                    </li>
+                                                @endforeach()
+                                            </ol>
+                                        </dd>
+                                    @endif
                                 </dl>
                             </div>
                         </div>
@@ -299,88 +340,34 @@
     <!-- Main Container End -->
 
     <div id="result"></div>
+
 @endsection
 
 @section('scripts_body')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/bootstrap-slider.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/0.9.87/jsrender.min.js"></script>
 
-    <!-- Declare a JsRender template, in a script block: -->
-    <script id="articleTemplate" type="text/x-jsrender">
-
-    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-        <div class="item-inner">
-            <div class="item-img">
-                <div class="item-img-info">
-                <a href="#" title="<%:name%>" class="product-image">
-                <img src="products-images/product1.jpg"
-                                alt="<%:name%>">
-
-</a>
-                    <div class="new-label new-top-left">{{ trans('frontend/articles.new') }}</div>
-                    <div class="box-hover">
-                        <ul class="add-to-links">
-                            <li><a class="link-quickview" href="#">{{ trans('frontend/articles.quick_view') }}</a></li>
-                            <li><a class="link-wishlist"
-                                   href="#">{{ trans('frontend/articles.wishlist') }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="item-info">
-                <div class="info-inner">
-                    <div class="item-title"><a title="<%:name%>" href="#"> <%:name%> </a></div>
-                    <div class="item-content">
-                        <div class="rating-item">
-                            <div class="ratings">
-                                <fieldset class="rating">
-                                    <input type="radio" id="star5" name="rating-<%:slug%>" value="5" <%if rating == 5%>checked<%/if%>/><label class="full" for="star5"></label>
-                                    <input type="radio" id="star4half" name="rating-<%:slug%>" value="4.5" <%if rating == 4.5%>checked<%/if%>/><label class="half" for="star4half"></label>
-                                    <input type="radio" id="star4" name="rating-<%:slug%>" value="4" <%if rating == 4%>checked<%/if%>/><label class="full" for="star4"></label>
-                                    <input type="radio" id="star3half" name="rating-<%:slug%>" value="3.5" <%if rating == 3.5%>checked<%/if%>/><label class="half" for="star3half"></label>
-                                    <input type="radio" id="star3" name="rating-<%:slug%>" value="3" <%if rating == 3%>checked<%/if%>/><label class="full" for="star3"></label>
-                                    <input type="radio" id="star2half" name="rating-<%:slug%>" value="2.5" <%if rating == 2.5%>checked<%/if%>/><label class="half" for="star2half"></label>
-                                    <input type="radio" id="star2" name="rating-<%:slug%>" value="2" <%if rating == 2%>checked<%/if%>/><label class="full" for="star2"></label>
-                                    <input type="radio" id="star1half" name="rating-<%:slug%>" value="1.5" <%if rating == 1.5%>checked<%/if%>/><label class="half" for="star1half"></label>
-                                    <input type="radio" id="star1" name="rating-<%:slug%>" value="1" <%if rating == 1%>checked<%/if%>/><label class="full" for="star1"></label>
-                                    <input type="radio" id="starhalf" name="rating-<%:slug%>" value="half" <%if rating == 0.5%>checked<%/if%>/><label class="half" for="starhalf"></label>
-                                </fieldset>
-                                <p class="rating-links"><a href="#">1 Review(s)</a>
-                                    <span class="separator">|</span> <a href="#">{{ trans('frontend/articles.add_review') }}</a></p>
-                            </div>
-                        </div>
-
-                        <div class="item-price">
-                            <div class="price-box"><span class="regular-price"><span class="price"><%:price_currency%> <%:price%></span> </span> </div>
-                          </div>
-                        <div class="action">
-                            <button class="button btn-cart" type="button" title=""
-                                    data-original-title="{{ trans('frontend/articles.buy') }}">
-                                <span>{{ trans('frontend/articles.buy') }}</span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-
-
-    </script>
+    @include('frontend.articles.template')
 
     <script>
         $.views.settings.delimiters("<%", "%>");
 
         var categorySlug = "{{ $category->getSlug() }}";
 
+        $('.products-grid').hide();
+        $('.loader').show();
+
         $.ajax({
             url: '/articles/' + categorySlug,
             type: 'GET',
             success: function (articles) {
                 renderArticleTemplate($.parseJSON(articles));
+                $('.products-grid').show();
+                $('.loader').hide();
             },
             fail: function () {
                 renderArticleTemplate([]);
+                $('.products-grid').hide();
             }
         });
 
@@ -390,19 +377,42 @@
             $(".products-grid").html(html);
         }
 
+        $('.pagination-page').click(function(e) {
+            $('.pagination-page').parent().removeClass('active');
+            $(e.target).parent().addClass('active');
+
+            applyFilter();
+        });
+
         function applyFilter() {
+            $('.products-grid').hide();
+            $('.loader').show();
+
             $.ajax({
                 url: '/articles/' + categorySlug,
                 type: 'GET',
                 data: {
                     'subcategories': getCheckboxValues('category-filter'),
-                    'brands': getCheckboxValues('brand-filter')
+                    'brands': getCheckboxValues('brand-filter'),
+                    'colors': getCheckboxValues('color-filter'),
+                    'flavours': getCheckboxValues('flavour-filter'),
+                    'licenses': getCheckboxValues('license-filter'),
+                    'tags': getCheckboxValues('tag-filter'),
+                    'healthys': getCheckboxValues('healthy-filter'),
+                    'priceMin': $('#price_filter').slider('getValue')[0],
+                    'priceMax': $('#price_filter').slider('getValue')[1],
+                    'pageLimit': 2,
+                    'page': 1
                 },
                 success: function (articles) {
                     renderArticleTemplate($.parseJSON(articles));
+                    $('.products-grid').show();
+                    $('.loader').hide();
                 },
                 fail: function () {
                     renderArticleTemplate([]);
+                    $('.products-grid').show();
+                    $('.loader').hide();
                 }
             });
         }
@@ -410,7 +420,7 @@
         function getCheckboxValues(name) {
             var values = [];
 
-            $("input[name=" + name + "]:checked").each(function() {
+            $("input[name=" + name + "]:checked").each(function () {
                 values.push($(this).val());
             });
 
@@ -422,6 +432,8 @@
         $(document).ready(function () {
             $("#price_filter").slider({}).on('slide', function () {
                 $("#price-filter-value").val("€" + $('#price_filter').slider('getValue')[0] + " - €" + $('#price_filter').slider('getValue')[1]);
+            }).on('slideStop', function () {
+                applyFilter();
             });
         });
     </script>

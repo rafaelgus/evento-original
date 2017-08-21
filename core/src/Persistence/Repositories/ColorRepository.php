@@ -92,18 +92,14 @@ class ColorRepository extends BaseRepository
         }
     }
 
-    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    public function getByCategories(array $categories, string $locale = 'es')
     {
+        $categoriesIds = array_map(function ($category) {
+            return $category->getId();
+        }, $categories);
+
         $qb = $this->createQueryBuilder('color')
-            ->join(
-                Category::class,
-                'category',
-                'WITH',
-                'category.slug = :categorySlug'
-            )
-            ->join('category.children', 'children')
-            ->join('color.articles', 'article', 'WITH', 'article.category = category.id OR article.category = children.id')
-            ->setParameters(['categorySlug' => $categorySlug]);
+            ->join('color.articles', 'article', 'WITH', 'article.category IN (' . implode(',', $categoriesIds) . ')');
 
         $query = $qb->getQuery();
         $query->setHint(

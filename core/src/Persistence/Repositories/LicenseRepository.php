@@ -33,24 +33,20 @@ class LicenseRepository extends BaseRepository
         return $this->find($id);
     }
 
-    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    public function getByCategories(array $categories, string $locale = 'es')
     {
+        $categoriesIds = array_map(function ($category) {
+            return $category->getId();
+        }, $categories);
+
         $qb = $this->createQueryBuilder('license')
             ->select('license')
-            ->join(
-                Category::class,
-                'category',
-                'WITH',
-                'category.slug = :categorySlug'
-            )
-            ->join('category.children', 'children')
             ->join(
                 Article::class,
                 'article',
                 'WITH',
-                'article.license = license.id AND (article.category = category.id OR article.category = children.id)'
-            )
-            ->setParameters(['categorySlug' => $categorySlug]);
+                'article.license = license.id AND (article.category IN (' . implode(',', $categoriesIds) . '))'
+            );
 
         $query = $qb->getQuery();
         $query->setHint(

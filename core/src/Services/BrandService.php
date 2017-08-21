@@ -59,8 +59,8 @@ class BrandService
         $this->brandRepository->save($brand);
     }
 
-    public function getByCategorySlug(string $categorySlug, string $locale)
+    public function getByCategories(array $categories, string $locale)
     {
-        return $this->brandRepository->getByCategorySlug($categorySlug, $locale);
+        return $this->brandRepository->getByCategories($categories, $locale);
     }
 }

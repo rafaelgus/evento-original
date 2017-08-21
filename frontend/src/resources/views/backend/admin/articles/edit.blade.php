@@ -239,6 +239,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group {{ $errors->has('healthys[]') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.healthys') }}</label>
+                                <div class="col-sm-10">
+                                    <select multiple class="form-control select2" id="healthys" name="healthys[]" style="width: 100%">
+                                        @foreach($healthys as $healthy)
+                                            <option value="{{ $healthy->getId() }}" {{(in_array($healthy, $article->getHealthys()->toArray())? 'selected' : '')}}>{{$healthy->getName()}}</option>
+                                        @endforeach
+                                    </select>
+                                    {!! $errors->first('healthys[]', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="box-footer">
                                 @foreach($article->getImages() as $image)
                                 <ul class="mailbox-attachments clearfix">
@@ -292,6 +304,7 @@
         $('#allergens').select2();
         $('#colors').select2();
         $('#flavours').select2();
+        $('#healthys').select2();
         $('#brands').select2();
         loadTable();
 

@@ -92,8 +92,8 @@ class ColorService
         return $colors;
     }
 
-    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    public function getByCategories(array $categories, string $locale = 'es')
     {
-        return $this->colorRepository->getByCategorySlug($categorySlug, $locale);
+        return $this->colorRepository->getByCategories($categories, $locale);
     }
 }

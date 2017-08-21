@@ -10,6 +10,7 @@ use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
 use EventoOriginal\Core\Services\FlavourService;
+use EventoOriginal\Core\Services\HealthyService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\TagService;
 use function foo\func;
@@ -26,6 +27,7 @@ class ArticleController extends Controller
     private $flavourService;
     private $tagService;
     private $categoryRepository;
+    private $healthyService;
 
     public function __construct(
         ArticleService $articleService,
@@ -35,7 +37,8 @@ class ArticleController extends Controller
         LicenseService $licenseService,
         FlavourService $flavourService,
         TagService $tagService,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        HealthyService $healthyService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -45,16 +48,20 @@ class ArticleController extends Controller
         $this->flavourService = $flavourService;
         $this->tagService = $tagService;
         $this->categoryRepository = $categoryRepository;
+        $this->healthyService = $healthyService;
     }
 
     public function index(string $categorySlug = null)
     {
         $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
-        $brands = $this->brandService->getByCategorySlug($categorySlug, App::getLocale());
-        $colors = $this->colorService->getByCategorySlug($categorySlug, App::getLocale());
-        $licenses = $this->licenseService->getByCategorySlug($categorySlug, App::getLocale());
-        $flavours = $this->flavourService->getByCategorySlug($categorySlug, App::getLocale());
-        $tags = $this->tagService->getByCategorySlug($categorySlug, App::getLocale());
+        $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+
+        $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
+        $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
+        $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
+        $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
+        $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
+        $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
 
         if ($category) {
             return view('frontend.articles.index')
@@ -63,7 +70,8 @@ class ArticleController extends Controller
                 ->with('colors', $colors)
                 ->with('licenses', $licenses)
                 ->with('flavours', $flavours)
-                ->with('tags', $tags);
+                ->with('tags', $tags)
+                ->with('healthys', $healthys);
         } else {
             return abort(404);
         }
@@ -77,8 +85,11 @@ class ArticleController extends Controller
         $flavours = (isset($request->flavours) ? $request->flavours : []);
         $licenses = (isset($request->licenses) ? $request->licenses : []);
         $tags = (isset($request->tags) ? $request->tags : []);
-        $priceMin = 0;
-        $priceMax = 99999;
+        $healtyhs = (isset($request->healthys) ? $request->healthys : []);
+        $priceMin = (isset($request->priceMin) ? $request->priceMin : 0);
+        $priceMax = (isset($request->priceMax) ? $request->priceMax : null);
+        $pageLimit = (isset($request->pageLimit) ? $request->pageLimit : null);
+        $page = (isset($request->limit) ? $request->limit : null);
 
         $articles = $this->articleService->getFilteredArticles(
             $categorySlug,
@@ -88,8 +99,13 @@ class ArticleController extends Controller
             $flavours,
             $licenses,
             $tags,
+            $healtyhs,
             $priceMin,
-            $priceMax
+            $priceMax,
+            App::getLocale(),
+            true,
+            $pageLimit,
+            $page
         );
 
         return $this->articleService->toJson($articles);

@@ -97,7 +97,8 @@ class ArticleService
         array $flavours = [],
         array $allergens = [],
         array $ingredients = [],
-        array $prices = []
+        array $prices = [],
+        array $healthys = []
     ): Article {
         $article = new Article();
         $article->setName($name);
@@ -135,6 +136,7 @@ class ArticleService
         $article->setColors($colors);
         $article->setFlavours($flavours);
         $article->setAllergens($allergens);
+        $article->setHealthys($healthys);
 
         $this->save($article);
 
@@ -188,9 +190,13 @@ class ArticleService
         array $flavours,
         array $licenses,
         array $tags,
+        array $healtyhs,
         float $priceMin = null,
         float $priceMax = null,
-        string $locale = 'es'
+        string $locale = 'es',
+        bool $paginate = false,
+        ?int $pageLimit = 9,
+        ?int $page = 1
     ) {
         $category = $this->categoryService->findBySlug($categorySlug);
         $categories = $this->categoryService->getChildren($category, false, null, 'ASC', true);
@@ -214,9 +220,13 @@ class ArticleService
                 $flavours,
                 $licenses,
                 $tags,
+                $healtyhs,
                 $priceMin,
                 $priceMax,
-                $locale
+                $locale,
+                $paginate,
+                $pageLimit,
+                $page
             );
         }
 
@@ -226,13 +236,17 @@ class ArticleService
     public function toJson(array $articles)
     {
         $articlesArray = [];
+        $now = new DateTime('now');
         foreach ($articles as $article) {
+            $interval = date_diff($now, $article->getCreated());
+
             $articlesArray[] = [
                 'name' => $article->getName(),
                 'slug' => $article->getSlug(),
                 'price' => $article->getPrice(),
                 'price_currency' => '€',
-                'rating' => 4
+                'rating' => 4,
+                'isNew' => ($interval->format('%a') <= 15)
             ];
         }
 

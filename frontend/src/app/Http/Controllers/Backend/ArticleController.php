@@ -10,6 +10,7 @@ use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
 use EventoOriginal\Core\Services\FlavourService;
+use EventoOriginal\Core\Services\HealthyService;
 use EventoOriginal\Core\Services\ImageService;
 use EventoOriginal\Core\Services\IngredientService;
 use EventoOriginal\Core\Services\LicenseService;
@@ -37,6 +38,7 @@ class ArticleController
     protected $ingredientService;
     protected $brandService;
     protected $priceService;
+    protected $healthyService;
 
     public function __construct(
         ArticleService $articleService,
@@ -49,7 +51,8 @@ class ArticleController
         LicenseService $licenseService,
         IngredientService $ingredientService,
         BrandService $brandService,
-        PriceService $priceService
+        PriceService $priceService,
+        HealthyService $healthyService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -62,6 +65,7 @@ class ArticleController
         $this->ingredientService = $ingredientService;
         $this->brandService = $brandService;
         $this->priceService = $priceService;
+        $this->healthyService = $healthyService;
     }
 
     public function index()
@@ -96,6 +100,7 @@ class ArticleController
         $licenses = $this->licenseService->findAll();
         $categories = $this->categoryService->findAll(App::getLocale());
         $brands = $this->brandService->findAll();
+        $healthys = $this->healthyService->findAll(App::getLocale());
 
         return view('backend.admin.articles.edit')
             ->with([
@@ -108,7 +113,8 @@ class ArticleController
                 'ingredients' => $ingredients,
                 'licenses' => $licenses,
                 'categories' => $categories,
-                'brands' => $brands
+                'brands' => $brands,
+                'healthys' => $healthys
             ]);
     }
 
@@ -136,6 +142,12 @@ class ArticleController
             ->flavourService
             ->findByIds(
                 ($request->input('flavours') ?: [])
+            );
+
+        $healthys = $this
+            ->healthyService
+            ->findByIds(
+                ($request->input('healthys') ?: [])
             );
 
         $category = $this
@@ -211,7 +223,8 @@ class ArticleController
             $flavours,
             $allergens,
             $ingredients,
-            $prices
+            $prices,
+            $healthys
         );
 
         $this->articleService->save($article);
@@ -291,6 +304,12 @@ class ArticleController
                 ($request->input('flavours') ?: [])
             );
 
+        $healtyhs = $this
+            ->healthyService
+            ->findByIds(
+                ($request->input('healthys') ?: [])
+            );
+
         $category = $this
             ->categoryService
             ->findOneById(
@@ -322,6 +341,7 @@ class ArticleController
         $article->setAllergens($allergens);
         $article->setColors($colors);
         $article->setFlavours($flavours);
+        $article->setHealthys($healtyhs);
         $article->setTags($tags);
         $article->setCategory($category);
         $article->setName($request->input('name'));

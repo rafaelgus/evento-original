@@ -1,22 +1,20 @@
 <?php
-
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
-use EventoOriginal\Core\Entities\Category;
-use EventoOriginal\Core\Entities\Tag;
+use EventoOriginal\Core\Entities\Healthy;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
 
-class TagRepository extends BaseRepository
+class HealthyRepository extends BaseRepository
 {
     const DEFAULT_LOCALE = 'es';
 
     public function findOneById(int $id, string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('tag')
-            ->select('tag')
-            ->where('tag.id = :id')
+        $qb = $this->createQueryBuilder('healthy')
+            ->select('healthy')
+            ->where('healthy.id = :id')
             ->setMaxResults(1)
             ->setParameter('id', $id);
 
@@ -34,31 +32,9 @@ class TagRepository extends BaseRepository
         return $query->getOneOrNullResult();
     }
 
-    public function findOneByName(string $name, string $locale = self::DEFAULT_LOCALE)
-    {
-        $qb = $this->createQueryBuilder('tag')
-            ->select('tag')
-            ->where('tag.name = :name')
-            ->setMaxResults(1)
-            ->setParameter('name', $name);
-
-        $query = $qb->getQuery();
-
-        $query->setHint(
-            Query::HINT_CUSTOM_OUTPUT_WALKER,
-            TranslationWalker::class
-        );
-        $query->setHint(
-            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
-            $locale
-        );
-
-        return $query->getOneOrNullResult();
-    }
-
     public function findAll(string $locale = self::DEFAULT_LOCALE)
     {
-        $qb = $this->createQueryBuilder('tag')->select('tag');
+        $qb = $this->createQueryBuilder('healthy')->select('healthy');
 
         $query = $qb->getQuery();
 
@@ -74,18 +50,18 @@ class TagRepository extends BaseRepository
         return $query->getResult();
     }
 
-    public function save(Tag $tag, bool $flush = true)
+    public function save(Healthy $healthy, bool $flush = true)
     {
-        $this->getEntityManager()->persist($tag);
+        $this->getEntityManager()->persist($healthy);
 
         if ($flush) {
             $this->getEntityManager()->flush();
         }
     }
 
-    public function delete(Tag $tag, bool $flush = true)
+    public function delete(Healthy $healthy, bool $flush = true)
     {
-        $this->getEntityManager()->remove($tag);
+        $this->getEntityManager()->remove($healthy);
 
         if ($flush) {
             $this->getEntityManager()->flush();
@@ -98,9 +74,9 @@ class TagRepository extends BaseRepository
             return $category->getId();
         }, $categories);
 
-        $qb = $this->createQueryBuilder('tag')
+        $qb = $this->createQueryBuilder('healthy')
             ->join(
-                'tag.articles',
+                'healthy.articles',
                 'article',
                 'WITH',
                 'article.category IN (' . implode(',', $categoriesIds) . ')'

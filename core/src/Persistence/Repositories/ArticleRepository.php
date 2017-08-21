@@ -3,6 +3,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Brand;
 use EventoOriginal\Core\Entities\Category;
@@ -79,9 +80,13 @@ class ArticleRepository extends BaseRepository
         array $flavours,
         array $licenses,
         array $tags,
+        array $healtyhs,
         float $priceMin,
-        float $priceMax,
-        string $locale = 'es'
+        float $priceMax = null,
+        string $locale = 'es',
+        bool $paginate = false,
+        ?int $pageLimit = 9,
+        ?int $page = 1
     ) {
         $categoriesIds = array_map(function ($category) {
             return $category->getId();
@@ -93,6 +98,7 @@ class ArticleRepository extends BaseRepository
             ->leftJoin('article.colors', 'color')
             ->leftJoin('article.flavours', 'flavour')
             ->leftJoin('article.tags', 'tag')
+            ->leftJoin('article.healthys', 'healthy')
             ->where('article.category IN (' . implode(',', $categoriesIds) . ')');
 
         if (count($brands) > 0) {
@@ -109,6 +115,10 @@ class ArticleRepository extends BaseRepository
 
         if (count($flavours) > 0) {
             $qb->andWhere('flavour.id IN (' . implode(',', $flavours) . ')');
+        }
+
+        if (count($healtyhs) > 0) {
+            $qb->andWhere('healthy.id IN (' . implode(',', $healtyhs) . ')');
         }
 
         if (count($tags) > 0) {
@@ -129,9 +139,14 @@ class ArticleRepository extends BaseRepository
             $locale
         );
 
-        $result = $query->getResult();
+        dd($pageLimit);
 
-        return $result;
+        if ($paginate) {
+            $query->setFirstResult($pageLimit * ($page - 1));
+            $query->setMaxResults($pageLimit);
+        }
+
+        return $query->getResult();
     }
 
     public function findByCategory(Category $category, string $locale = 'es')
@@ -162,5 +177,17 @@ class ArticleRepository extends BaseRepository
         );
 
         return $query->getResult();
+    }
+
+    private function paginate($dql, $pageSize = 1, $currentPage = 1)
+    {
+        $paginator = new Paginator($dql, true);
+
+        $paginator
+            ->getQuery()
+            ->setFirstResult($pageSize * ($currentPage - 1))
+            ->setMaxResults($pageSize);
+
+        return $paginator;
     }
 }

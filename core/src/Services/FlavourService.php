@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Flavour;
 use EventoOriginal\Core\Entities\FlavourTranslation;
 use EventoOriginal\Core\Persistence\Repositories\FlavourRepository;
@@ -89,8 +90,8 @@ class FlavourService
         return $flavours;
     }
 
-    public function getByCategorySlug(string $categorySlug, string $locale = 'es')
+    public function getByCategories(array $categories, string $locale = 'es')
     {
-        return $this->flavourRepository->getByCategorySlug($categorySlug, $locale);
+        return $this->flavourRepository->getByCategories($categories, $locale);
     }
 }

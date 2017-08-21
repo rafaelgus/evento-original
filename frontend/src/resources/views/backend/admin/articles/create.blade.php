@@ -204,6 +204,13 @@
                                     {!! $errors->first('flavours', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            <div class="form-group {{ $errors->has('healthys[]') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.healthys') }}</label>
+                                <div class="col-sm-10">
+                                    <select multiple class="form-control select2" id="healthys" name="healthys[]" style="width: 100%"></select>
+                                    {!! $errors->first('healthys', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             @if($ableToLoad)
                                 <div id="fine-uploader-gallery"></div>
                             @endif
@@ -238,6 +245,7 @@
     $('#allergens').select2();
     $('#colors').select2();
     $('#flavours').select2();
+    $('#healthys').select2();
     $('#brands').select2();
 
     $('#agregar').hide();
@@ -316,6 +324,19 @@
     }).done(function (result) {
         $.each(result, function (i, option) {
             $('#flavours').append($('<option>', {
+                value: option.id,
+                text: option.name
+            }));
+        });
+    });
+
+    $.ajax({
+        context: this,
+        url: '/management/healthy/getAll',
+        type: 'GET'
+    }).done(function (result) {
+        $.each(result, function (i, option) {
+            $('#healthys').append($('<option>', {
                 value: option.id,
                 text: option.name
             }));

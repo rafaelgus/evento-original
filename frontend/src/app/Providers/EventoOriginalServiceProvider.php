@@ -83,6 +83,9 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\RoleRepository::class, function () {
             return EntityManager::getRepository(Entities\Role::class);
         });
+        $this->app->singleton(Repositories\HealthyRepository::class, function () {
+            return EntityManager::getRepository(Entities\Healthy::class);
+        });
 
         $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
         $em->getFilters()->disable('article_brand');

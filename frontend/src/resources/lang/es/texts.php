@@ -28,6 +28,13 @@ return [
           'name' => 'Nombre',
           'edit' => 'Editar',
       ],
+      'healthys' => [
+          'title' => 'Saludables',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'edit' => 'Editar',
+      ],
       'allergens' => [
           'title' => 'Alérgenos',
           'view' => 'Ver',
@@ -86,7 +93,8 @@ return [
           'brand' => 'Marca',
           'quantity' => 'Cantidad',
           'license' => 'Licencia',
-          'priceType' => 'Venta por'
+          'priceType' => 'Venta por',
+          'healthys' => 'Saludables',
       ],
       'license' => [
           'title' => 'Licencia',

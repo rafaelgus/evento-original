@@ -78,6 +78,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
             Route::get('/getAll', 'Backend\FlavourController@getAllFlavours');
         });
+        Route::group(['prefix' => '/healthy'], function () {
+            Route::get('/create', 'Backend\HealthyController@create');
+            Route::post('/', 'Backend\HealthyController@store');
+            Route::get('/', 'Backend\HealthyController@index');
+            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
+            Route::put('/{id}', 'Backend\HealthyController@update');
+            Route::get('/getDatatable', 'Backend\HealthyController@getDatatable');
+            Route::get('/getAll', 'Backend\HealthyController@getAllHealthy');
+        });
         Route::group(['prefix' => '/brand'], function () {
             Route::get('/create', 'Backend\BrandController@create');
             Route::post('/', 'Backend\BrandController@store');

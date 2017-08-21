@@ -6,11 +6,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ColorRepository")
- * @ORM\Table(name="colors")
- * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\ColorTranslation")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\HealthyRepository")
+ * @ORM\Table(name="healthy")
+ * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\HealthyTranslation")
  */
-class Color
+class Healthy
 {
     /**
      * @ORM\Id
@@ -25,15 +25,9 @@ class Color
      */
     private $name;
 
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $hexadecimalCode;
-
     /**
      * @ORM\OneToMany(
-     *   targetEntity="ColorTranslation",
+     *   targetEntity="HealthyTranslation",
      *   mappedBy="object",
      *   cascade={"persist", "remove"}
      * )
@@ -41,7 +35,7 @@ class Color
     private $translations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Article", mappedBy="colors")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="healthys")
      */
     private $articles;
 
@@ -80,7 +74,7 @@ class Color
         return $this->translations;
     }
 
-    public function addTranslation(ColorTranslation $t)
+    public function addTranslation(HealthyTranslation $t)
     {
         if (!$this->translations->contains($t)) {
             $this->translations[] = $t;
@@ -102,21 +96,5 @@ class Color
     public function setArticles($articles)
     {
         $this->articles = $articles;
-    }
-
-    /**
-     * @return string
-     */
-    public function getHexadecimalCode()
-    {
-        return $this->hexadecimalCode;
-    }
-
-    /**
-     * @param string $hexadecimalCode
-     */
-    public function setHexadecimalCode(string $hexadecimalCode)
-    {
-        $this->hexadecimalCode = $hexadecimalCode;
     }
 }
