@@ -40,16 +40,16 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-5">
                                     <div id="sort-by">
-                                        <label class="left">{{ trans('frontend/articles.sort_by') }}: </label>
-                                        <select id="sort-by-filter">
-                                            <option>
+                                        <label for="sort-by-filter" class="left">{{ trans('frontend/articles.sort_by') }}: </label>
+                                        <select id="sort-by-filter" name="sort-by-filter" class="select-filter">
+                                            <option value="position">
                                                 {{ trans('frontend/articles.position') }}
                                             </option>
-                                            <option>{{ trans('frontend/articles.price_low') }}</option>
-                                            <option>
+                                            <option value="price_low">{{ trans('frontend/articles.price_low') }}</option>
+                                            <option value="price_up">
                                                 {{ trans('frontend/articles.price_up') }}
                                             </option>
-                                            <option>
+                                            <option value="name">
                                                 {{ trans('frontend/articles.name') }}
                                             </option>
                                         </select>
@@ -60,28 +60,21 @@
                                         <div class="pages">
                                             <label>{{ trans('frontend/articles.page') }}:</label>
                                             <ul class="pagination">
-                                                <li><a href="#">&laquo;</a></li>
-                                                @for($i = 1; $i <= 5; $i++)
-                                                    <li><a id="page-{{$i}}" class="pagination-page">{{ $i }}</a></li>
-                                                @endfor
-                                                <li><a href="#">&raquo;</a></li>
+
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-sm-12 col-md-2">
                                     <div id="limiter">
-                                        <label>{{ trans('frontend/articles.view') }}: </label>
-                                        <ul>
-                                            <li><a href="#">09<span class="right-arrow"></span></a>
-                                                <ul>
-                                                    <li><a href="#">15</a></li>
-                                                    <li><a href="#">20</a></li>
-                                                    <li><a href="#">30</a></li>
-                                                    <li><a href="#">35</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
+                                        <label for="page-limit">{{ trans('frontend/articles.view') }}: </label>
+                                        <select id="page-limit" name="page-limit" class="select-filter">
+                                            <option value="9" selected>09</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30</option>
+                                            <option value="50">50</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -357,36 +350,17 @@
         $('.products-grid').hide();
         $('.loader').show();
 
-        $.ajax({
-            url: '/articles/' + categorySlug,
-            type: 'GET',
-            success: function (articles) {
-                renderArticleTemplate($.parseJSON(articles));
-                $('.products-grid').show();
-                $('.loader').hide();
-            },
-            fail: function () {
-                renderArticleTemplate([]);
-                $('.products-grid').hide();
-            }
-        });
-
         function renderArticleTemplate(data) {
             var tmpl = $.templates("#articleTemplate");
             var html = tmpl.render(data);
             $(".products-grid").html(html);
         }
 
-        $('.pagination-page').click(function(e) {
-            $('.pagination-page').parent().removeClass('active');
-            $(e.target).parent().addClass('active');
-
-            applyFilter();
-        });
-
         function applyFilter() {
             $('.products-grid').hide();
             $('.loader').show();
+
+            var pageSelected = 1;
 
             $.ajax({
                 url: '/articles/' + categorySlug,
@@ -401,11 +375,14 @@
                     'healthys': getCheckboxValues('healthy-filter'),
                     'priceMin': $('#price_filter').slider('getValue')[0],
                     'priceMax': $('#price_filter').slider('getValue')[1],
-                    'pageLimit': 2,
-                    'page': 1
+                    'pageLimit': $('#page-limit').val(),
+                    'page': pageSelected,
+                    'orderBy': $('#sort-by-filter').val()
                 },
                 success: function (articles) {
-                    renderArticleTemplate($.parseJSON(articles));
+                    renderArticleTemplate($.parseJSON(articles.data));
+                    renderPagination(articles.pages);
+
                     $('.products-grid').show();
                     $('.loader').hide();
                 },
@@ -415,6 +392,24 @@
                     $('.loader').hide();
                 }
             });
+
+            function renderPagination(pages) {
+                $('.pagination').empty();
+                $('.pagination').append('<li><a href="#">&laquo;</a></li>');
+                for(i = 1; i <= pages; i++) {
+                    var activeClass = "";
+
+                    if (pageSelected === i) {
+                        activeClass = "active";
+                    }
+
+                    $('.pagination').append('<li class="' + activeClass + '"><a id="page-' + i +'" class="pagination-page">' + i + '</a></li>')
+                }
+                $('.pagination').append('<li><a href="#">&raquo;</a></li>');
+                $('.pagination-page').click(function(e) {
+                    applyFilter();
+                });
+            }
         }
 
         function getCheckboxValues(name) {
@@ -433,6 +428,16 @@
             $("#price_filter").slider({}).on('slide', function () {
                 $("#price-filter-value").val("€" + $('#price_filter').slider('getValue')[0] + " - €" + $('#price_filter').slider('getValue')[1]);
             }).on('slideStop', function () {
+                applyFilter();
+            });
+
+            applyFilter();
+
+            $('#page-limit').on('change', function () {
+               applyFilter();
+            });
+
+            $('#sort-by-filter').on('change', function () {
                 applyFilter();
             });
         });

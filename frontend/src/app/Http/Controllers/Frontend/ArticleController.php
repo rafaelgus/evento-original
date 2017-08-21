@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\App;
 
 class ArticleController extends Controller
 {
+    const DEFAULT_ORDER_BY = 'position';
+
     private $articleService;
     private $categoryService;
     private $brandService;
@@ -90,8 +92,9 @@ class ArticleController extends Controller
         $priceMax = (isset($request->priceMax) ? $request->priceMax : null);
         $pageLimit = (isset($request->pageLimit) ? $request->pageLimit : null);
         $page = (isset($request->limit) ? $request->limit : null);
+        $orderBy = (isset($request->orderBy) ? $request->orderBy : 'position');
 
-        $articles = $this->articleService->getFilteredArticles(
+        $paginator = $this->articleService->getFilteredArticles(
             $categorySlug,
             $subCategories,
             $brands,
@@ -105,9 +108,16 @@ class ArticleController extends Controller
             App::getLocale(),
             true,
             $pageLimit,
-            $page
+            $page,
+            $orderBy
         );
 
-        return $this->articleService->toJson($articles);
+        $response = [
+            'total' => $paginator->count(),
+            'pages' => ceil($paginator->count() / $pageLimit),
+            'data' => $this->articleService->toJson($paginator->getQuery()->getResult()),
+        ];
+
+        return $response;
     }
 }

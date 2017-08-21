@@ -3,6 +3,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Brand;
@@ -73,6 +74,24 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+
+    /**
+     * @param array $categories
+     * @param array $brands
+     * @param array $colors
+     * @param array $flavours
+     * @param array $licenses
+     * @param array $tags
+     * @param array $healtyhs
+     * @param float $priceMin
+     * @param float|null $priceMax
+     * @param string $locale
+     * @param bool $paginate
+     * @param int $pageLimit
+     * @param int $page
+     * @param string $orderBy
+     * @return Paginator
+     */
     public function getFilteredArticles(
         array $categories,
         array $brands,
@@ -86,7 +105,8 @@ class ArticleRepository extends BaseRepository
         string $locale = 'es',
         bool $paginate = false,
         ?int $pageLimit = 9,
-        ?int $page = 1
+        ?int $page = 1,
+        string $orderBy = 'position'
     ) {
         $categoriesIds = array_map(function ($category) {
             return $category->getId();
@@ -129,6 +149,8 @@ class ArticleRepository extends BaseRepository
             $qb->andWhere('article.price >= ' . $priceMin . ($priceMax ? ' AND article.price <= ' . $priceMax : ''));
         }
 
+        $this->applyOrderBy($qb, $orderBy);
+
         $query = $qb->getQuery();
         $query->setHint(
             Query::HINT_CUSTOM_OUTPUT_WALKER,
@@ -139,14 +161,34 @@ class ArticleRepository extends BaseRepository
             $locale
         );
 
-        dd($pageLimit);
+        $firstResult = (($pageLimit * ($page - 1)) > 0 ? ($pageLimit * ($page - 1)) : 0);
 
-        if ($paginate) {
-            $query->setFirstResult($pageLimit * ($page - 1));
-            $query->setMaxResults($pageLimit);
+        $paginator = new Paginator($query, true);
+        $paginator
+            ->getQuery()
+            ->setFirstResult($firstResult)
+            ->setMaxResults($pageLimit);
+
+        return $paginator;
+    }
+
+    public function applyOrderBy(QueryBuilder $qb, string $orderBy)
+    {
+        switch ($orderBy) {
+            case 'position':
+                break;
+            case 'price_low':
+                $qb->orderBy('article.price', 'ASC');
+                break;
+            case 'price_up':
+                $qb->orderBy('article.price', 'DESC');
+                break;
+            case 'name':
+                $qb->orderBy('article.name', 'ASC');
+                break;
+            default:
+                break;
         }
-
-        return $query->getResult();
     }
 
     public function findByCategory(Category $category, string $locale = 'es')

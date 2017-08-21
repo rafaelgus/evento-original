@@ -182,6 +182,25 @@ class ArticleService
         $this->articleRepository->save($article);
     }
 
+
+    /**
+     * @param string $categorySlug
+     * @param array $subCategories
+     * @param array $brands
+     * @param array $colors
+     * @param array $flavours
+     * @param array $licenses
+     * @param array $tags
+     * @param array $healtyhs
+     * @param float|null $priceMin
+     * @param float|null $priceMax
+     * @param string $locale
+     * @param bool $paginate
+     * @param int|null $pageLimit
+     * @param int|null $page
+     * @param string $orderBy
+     * @return \Doctrine\ORM\Tools\Pagination\Paginator
+     */
     public function getFilteredArticles(
         string $categorySlug,
         array $subCategories,
@@ -196,7 +215,8 @@ class ArticleService
         string $locale = 'es',
         bool $paginate = false,
         ?int $pageLimit = 9,
-        ?int $page = 1
+        ?int $page = 1,
+        string $orderBy = 'position'
     ) {
         $category = $this->categoryService->findBySlug($categorySlug);
         $categories = $this->categoryService->getChildren($category, false, null, 'ASC', true);
@@ -226,7 +246,8 @@ class ArticleService
                 $locale,
                 $paginate,
                 $pageLimit,
-                $page
+                $page,
+                $orderBy
             );
         }
 

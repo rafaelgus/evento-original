@@ -10494,6 +10494,11 @@ input.input-text, select, textarea {
     color: #e94d65;
 }
 
+.select-filter {
+    background-color: white !important;
+    border-color: #eaeaea;
+}
+
 #wishlist-table textarea {
     padding: 8px 10px;
 }
