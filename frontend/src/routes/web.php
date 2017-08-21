@@ -78,6 +78,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
             Route::get('/getAll', 'Backend\FlavourController@getAllFlavours');
         });
+        Route::group(['prefix' => '/healthy'], function () {
+            Route::get('/create', 'Backend\HealthyController@create');
+            Route::post('/', 'Backend\HealthyController@store');
+            Route::get('/', 'Backend\HealthyController@index');
+            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
+            Route::put('/{id}', 'Backend\HealthyController@update');
+            Route::get('/getDatatable', 'Backend\HealthyController@getDatatable');
+            Route::get('/getAll', 'Backend\HealthyController@getAllHealthy');
+        });
         Route::group(['prefix' => '/brand'], function () {
             Route::get('/create', 'Backend\BrandController@create');
             Route::post('/', 'Backend\BrandController@store');
@@ -97,17 +106,17 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getAll', 'Backend\AllergenController@getAllAllergens');
         });
         Route::group(['prefix' => '/category'], function () {
-           Route::get('/create', 'Backend\CategoryController@create');
-           Route::get('{id}/edit', 'Backend\CategoryController@edit');
-           Route::get('/', 'Backend\CategoryController@index');
-           Route::post('/', 'Backend\CategoryController@store');
-           Route::put('/{id}', 'Backend\CategoryController@update');
-           Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
-           Route::get('/{parentId}/createSubCategory','Backend\CategoryController@createSubCategory');
-           Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
-           Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
-           Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
-           Route::get('/getAll', 'Backend\CategoryController@getAllCategories');
+            Route::get('/create', 'Backend\CategoryController@create');
+            Route::get('{id}/edit', 'Backend\CategoryController@edit');
+            Route::get('/', 'Backend\CategoryController@index');
+            Route::post('/', 'Backend\CategoryController@store');
+            Route::put('/{id}', 'Backend\CategoryController@update');
+            Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
+            Route::get('/{parentId}/createSubCategory', 'Backend\CategoryController@createSubCategory');
+            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
+            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
+            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+            Route::get('/getAll', 'Backend\CategoryController@getAllCategories');
         });
         Route::group(['prefix' => '/tags'], function () {
             Route::get('/create', 'Backend\TagController@create');
@@ -131,7 +140,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/prices/{articleId}', 'Backend\ArticleController@getPrices');
             Route::post('/prices/update', 'Backend\ArticleController@updatePrice');
         });
-        Route::group(['prefix' => '/ingredients'], function() {
+        Route::group(['prefix' => '/ingredients'], function () {
             Route::get('/create', 'Backend\IngredientController@create');
             Route::get('/{id}/edit', 'Backend\IngredientController@edit');
             Route::get('/', 'Backend\IngredientController@index');
@@ -140,7 +149,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\IngredientController@store');
             Route::get('/getAll', 'Backend\IngredientController@getAll');
         });
-        Route::group(['prefix' => '/licenses'], function() {
+        Route::group(['prefix' => '/licenses'], function () {
             Route::get('/create', 'Backend\LicenseController@create');
             Route::get('/{id}/edit', 'Backend\LicenseController@edit');
             Route::get('/getLicenses', 'Backend\LicenseController@getDataTables');
@@ -150,19 +159,20 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
         Route::group(['prefix' => '/users'], function () {
-           Route::get('/create', 'Backend\UserController@create');
-           Route::get('/{id}/edit', 'Backend\UserController@edit');
-           Route::get('/', 'Backend\UserController@index');
-           Route::get('/getUsers', 'Backend\UserController@getDataTables');
-           Route::post('/', 'Backend\UserController@store');
-           Route::put('/{id}', 'Backend\UserController@update');
-           Route::get('/roles', 'Backend\UserController@getRoles');
-           Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
-           Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
+            Route::get('/create', 'Backend\UserController@create');
+            Route::get('/{id}/edit', 'Backend\UserController@edit');
+            Route::get('/', 'Backend\UserController@index');
+            Route::get('/getUsers', 'Backend\UserController@getDataTables');
+            Route::post('/', 'Backend\UserController@store');
+            Route::put('/{id}', 'Backend\UserController@update');
+            Route::get('/roles', 'Backend\UserController@getRoles');
+            Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
+            Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
     });
 });
 
 Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
+Route::get('/articles/{categorySlug?}', 'Frontend\ArticleController@getFilteredArticles');
 
 Route::get('/home', 'HomeController@index')->name('home');

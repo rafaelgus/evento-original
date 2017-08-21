@@ -33,26 +33,36 @@ class CategoryService
         return $this->categoryRepository->findAll($locale);
     }
 
-    public function create(string $name)
+    public function create(string $name, string $slug, string $description)
     {
         $category = new Category();
         $category->setName($name);
+        $category->setSlug($slug);
+        $category->setDescription($description);
 
         $this->save($category, true);
 
         return $category;
     }
 
-    public function addTranslation(Category $category, string $translatedName, string $locale)
-    {
+    public function addTranslation(
+        Category $category,
+        string $translatedName,
+        string $translatedSlug,
+        string $translatedDescription,
+        string $locale
+    ) {
         $category->addTranslation(new CategoryTranslation($locale, 'name', $translatedName));
+        $category->addTranslation(new CategoryTranslation($locale, 'slug', $translatedSlug));
+        $category->addTranslation(new CategoryTranslation($locale, 'description', $translatedDescription));
         $this->save($category);
     }
 
-    public function update(Category $category, string $name)
+    public function update(Category $category, string $name, string $slug, string $description)
     {
         $category->setName($name);
-
+        $category->setSlug($slug);
+        $category->setDescription($description);
         $this->save($category);
 
         return $category;
@@ -68,20 +78,26 @@ class CategoryService
         $this->categoryRepository->save($category);
     }
 
-    public function getChildren(Category $category)
+    public function getChildren(Category $category, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
     {
-        $children = $this->categoryRepository->findSubcategories($category);
+        $children = $this->categoryRepository->findSubcategories($category, $direct, $sortByField, $direction, $includeNode);
 
         return $children;
     }
 
-    public function createChildren(Category $parent, string $childName)
+    public function createChildren(Category $parent, string $childName, string $childSlug, string $childDescription)
     {
         $category = new Category();
         $category->setName($childName);
+        $category->setSlug($childSlug);
+        $category->setDescription($childDescription);
         $category->setParent($parent);
 
         $this->save($category, true);
     }
 
+    public function findBySlug(string $slug, string $locale = 'es')
+    {
+        return $this->categoryRepository->findBySlug($slug, $locale);
+    }
 }

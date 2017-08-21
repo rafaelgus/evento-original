@@ -90,4 +90,9 @@ class TagService
 
         return $tags;
     }
+
+    public function getByCategories(array $categories, string $locale = 'es')
+    {
+        return $this->tagRepository->getByCategories($categories, $locale);
+    }
 }

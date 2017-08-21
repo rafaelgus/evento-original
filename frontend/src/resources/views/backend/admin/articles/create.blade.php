@@ -48,7 +48,7 @@
                             <div class="form-group {{ $errors->has('shortDescription') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.shortDescription') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}">{{ old('shortDescription')}}</textarea>
+                                    <input type="text" class="form-control" id="inputName" name="shortDescription" placeholder="{{ trans('texts.sections.article.shortDescription') }}" value="{{ old('shortDescription')}}">
 
                                     {!! $errors->first('shortDescription', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -145,19 +145,25 @@
                                     {!! $errors->first('status', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-
+                            <div class="form-group {{ $errors->has('isNew') ? 'has-error' : '' }}">
+                                <label for="inputIsNew" class="col-sm-2 control-label">{{ trans('texts.sections.article.isNew') }}</label>
+                                <div class="col-sm-10">
+                                   <input type="checkbox" name="isNew" id="isNew" checked class="checkbox">
+                                    {!! $errors->first('isNew', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="categories" name="category"></select>
-                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('category', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('brand') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.brand') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="brands" name="brand"></select>
-                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('brand', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('license') ? 'has-error' : '' }}">
@@ -171,28 +177,28 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.tags') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="tags" name="tags[]"></select>
-                                    {!! $errors->first('tags[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('tags', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('allergens[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.allergens') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="allergens" name="allergens[]"></select>
-                                    {!! $errors->first('allergens[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('allergens', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('colors[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.colors') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="colors" name="colors[]"></select>
-                                    {!! $errors->first('colors[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('colors', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('ingredients[]') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.ingredients') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="ingredients" name="ingredients[]"></select>
-                                    {!! $errors->first('ingredients[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('ingredients', '<span class="help-block">* :message</span>') !!}
                                 </div>
 
 
@@ -201,7 +207,14 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.flavours') }}</label>
                                 <div class="col-sm-10">
                                     <select multiple class="form-control select2" id="flavours" name="flavours[]" style="width: 100%"></select>
-                                    {!! $errors->first('flavours[]', '<span class="help-block">* :message</span>') !!}
+                                    {!! $errors->first('flavours', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('healthys[]') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.healthys') }}</label>
+                                <div class="col-sm-10">
+                                    <select multiple class="form-control select2" id="healthys" name="healthys[]" style="width: 100%"></select>
+                                    {!! $errors->first('healthys', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             @if($ableToLoad)
@@ -238,6 +251,7 @@
     $('#allergens').select2();
     $('#colors').select2();
     $('#flavours').select2();
+    $('#healthys').select2();
     $('#brands').select2();
 
     $('#agregar').hide();
@@ -316,6 +330,19 @@
     }).done(function (result) {
         $.each(result, function (i, option) {
             $('#flavours').append($('<option>', {
+                value: option.id,
+                text: option.name
+            }));
+        });
+    });
+
+    $.ajax({
+        context: this,
+        url: '/management/healthy/getAll',
+        type: 'GET'
+    }).done(function (result) {
+        $.each(result, function (i, option) {
+            $('#healthys').append($('<option>', {
                 value: option.id,
                 text: option.name
             }));

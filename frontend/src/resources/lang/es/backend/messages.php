@@ -11,7 +11,8 @@ return [
             'licenses' => 'La licencia se guardo con exito',
             'ingredient' => 'El ingrediente se actualizo con exito',
             'brand' => 'La marca se gruado con exito',
-            'users' => 'El usuario se guardo con exito'
+            'users' => 'El usuario se guardo con exito',
+            'healthy' => 'El saludable se guardó con éxito',
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',

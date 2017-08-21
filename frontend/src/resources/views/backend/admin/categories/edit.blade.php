@@ -37,6 +37,25 @@
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
+                                <label for="inputSlug" class="col-sm-2 control-label">{{ trans('texts.sections.categories.slug') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSlug" name="slug"
+                                           placeholder="{{ trans('texts.sections.categories.slug') }}" value="{{ old('slug', $category->getSlug()) }}">
+                                    {!! $errors->first('slug', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+                                <label for="inputDescription"
+                                       class="col-sm-2 control-label">{{ trans('texts.sections.categories.description') }}</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" id="inputDescription" name="description" rows="5"
+                                              placeholder="{{ trans('texts.sections.categories.description') }}">{{ old('description', $category->getDescription()) }}</textarea>
+                                    {!! $errors->first('description', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="box-footer">

@@ -33,7 +33,7 @@ class ColorController extends Controller
 
     public function store(StoreColorRequest $request)
     {
-        $this->colorService->create($request->input('name'));
+        $this->colorService->create($request->input('name'), $request->input('hexadecimalCode'));
 
         Session::flash('message', trans('backend/messages.confirmation.create.color'));
 
@@ -51,7 +51,7 @@ class ColorController extends Controller
     {
         $color = $this->colorService->findOneById($id, 'es');
 
-        $this->colorService->update($color, $request->input('name'));
+        $this->colorService->update($color, $request->input('name'), $request->input('hexadecimalCode'));
 
         Session::flash('message', trans('backend/messages.confirmation.create.color'));
 
@@ -66,7 +66,8 @@ class ColorController extends Controller
         foreach ($colors as $color) {
             $colorsCollection->push([
                 'id' => $color->getId(),
-                'name' => $color->getName()
+                'name' => $color->getName(),
+                'hexadecimalCode' => $color->getHexadecimalCode()
             ]);
         }
 

@@ -12,7 +12,7 @@
 </style>
 <header class="main-header">
     <!-- Logo -->
-    <a href="/home" class="logo">
+    <a href="/management" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini">E<b>O</b></span>

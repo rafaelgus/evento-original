@@ -58,4 +58,9 @@ class BrandService
     {
         $this->brandRepository->save($brand);
     }
+
+    public function getByCategories(array $categories, string $locale)
+    {
+        return $this->brandRepository->getByCategories($categories, $locale);
+    }
 }
