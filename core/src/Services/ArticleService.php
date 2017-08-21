@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Services;
 
 use DateTime;
@@ -10,16 +11,19 @@ use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Entities\Tax;
 use EventoOriginal\Core\Persistence\Repositories\ArticleRepository;
 use Exception;
+use InvalidArgumentException;
 
 class ArticleService
 {
     const DEFAULT_LOCALE = 'es';
 
     private $articleRepository;
+    private $categoryService;
 
-    public function __construct(ArticleRepository $articleRepository)
+    public function __construct(ArticleRepository $articleRepository, CategoryService $categoryService)
     {
         $this->articleRepository = $articleRepository;
+        $this->categoryService = $categoryService;
     }
 
     /**
@@ -80,7 +84,7 @@ class ArticleService
         string $internalCode,
         string $status,
         string $slug,
-        $price = null,
+        $price,
         string $priceType,
         $priceCurrency,
         Tax $tax = null,
@@ -93,7 +97,9 @@ class ArticleService
         array $flavours = [],
         array $allergens = [],
         array $ingredients = [],
-        array $prices = []
+        array $prices = [],
+        array $healthys = [],
+        bool $isNew = true
     ): Article {
         $article = new Article();
         $article->setName($name);
@@ -108,7 +114,7 @@ class ArticleService
         }
         if (count($prices) > 0 and $price == null) {
             $article->setPrice($prices);
-        } elseif(count($prices) == 0 and $price != null) {
+        } elseif (count($prices) == 0 and $price != null) {
             $article->setPrice($price);
         }
 
@@ -118,7 +124,9 @@ class ArticleService
         }
         $article->setCostPrice($costPrice);
         $article->setIngredients($ingredients);
-        $article->setLicense($license);
+        if ($license) {
+            $article->setLicense($license);
+        }
         $article->setPriceType($priceType);
 
         if ($brand) {
@@ -129,6 +137,8 @@ class ArticleService
         $article->setColors($colors);
         $article->setFlavours($flavours);
         $article->setAllergens($allergens);
+        $article->setHealthys($healthys);
+        $article->setIsNew($isNew);
 
         $this->save($article);
 
@@ -186,5 +196,107 @@ class ArticleService
     public function findBySlug(string $slug)
     {
         return $this->articleRepository->findBySlug($slug);
+    }
+
+    /**
+     * @param string $categorySlug
+     * @param array $subCategories
+     * @param array $brands
+     * @param array $colors
+     * @param array $flavours
+     * @param array $licenses
+     * @param array $tags
+     * @param array $healtyhs
+     * @param float|null $priceMin
+     * @param float|null $priceMax
+     * @param string $locale
+     * @param bool $paginate
+     * @param int|null $pageLimit
+     * @param int|null $page
+     * @param string $orderBy
+     * @return \Doctrine\ORM\Tools\Pagination\Paginator
+     */
+    public function getFilteredArticles(
+        string $categorySlug,
+        array $subCategories,
+        array $brands,
+        array $colors,
+        array $flavours,
+        array $licenses,
+        array $tags,
+        array $healtyhs,
+        float $priceMin = null,
+        float $priceMax = null,
+        string $locale = 'es',
+        bool $paginate = false,
+        ?int $pageLimit = 9,
+        ?int $page = 1,
+        string $orderBy = 'position'
+    ) {
+        $category = $this->categoryService->findBySlug($categorySlug);
+        $categories = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+
+        if (count($subCategories) > 0) {
+            $categories = [];
+            foreach ($subCategories as $subCategory) {
+                $c = $this->categoryService->findOneById($subCategory, $locale);
+                $categories = array_merge(
+                    $categories,
+                    $this->categoryService->getChildren($c, false, null, 'ASC', true)
+                );
+            }
+        }
+
+        if ($category) {
+            return $this->articleRepository->getFilteredArticles(
+                $categories,
+                $brands,
+                $colors,
+                $flavours,
+                $licenses,
+                $tags,
+                $healtyhs,
+                $priceMin,
+                $priceMax,
+                $locale,
+                $paginate,
+                $pageLimit,
+                $page,
+                $orderBy
+            );
+        }
+
+        throw new InvalidArgumentException("Invalid category slug");
+    }
+
+    public function toJson(array $articles)
+    {
+        $articlesArray = [];
+        $now = new DateTime('now');
+        foreach ($articles as $article) {
+            $interval = date_diff($now, $article->getCreated());
+
+            $articlesArray[] = [
+                'name' => $article->getName(),
+                'slug' => $article->getSlug(),
+                'price' => $article->getPrice(),
+                'price_currency' => '€',
+                'rating' => 4,
+                'isNew' => ($article->isNew() || $interval->format('%a') <= 15)
+            ];
+        }
+
+        return json_encode($articlesArray);
+    }
+
+    public function findByCategorySlug(string $categorySlug)
+    {
+        $category = $this->categoryService->findBySlug($categorySlug);
+
+        if ($category) {
+            return $this->articleRepository->findByCategory($category);
+        } else {
+            throw new InvalidArgumentException("Invalid category slug");
+        }
     }
 }

@@ -53,7 +53,10 @@ return [
                 'listeners'   => [],
                 'subscribers' => []
             ],
-            'filters'       => [],
+            'filters'       => [
+                'article_brand' => EventoOriginal\Core\Persistence\Filters\ArticleBrandFilter::class,
+                'article_license' => EventoOriginal\Core\Persistence\Filters\ArticleLicenseFilter::class,
+            ],
             /*
             |--------------------------------------------------------------------------
             | Doctrine mapping types

@@ -55,4 +55,9 @@ class LicenseService
     {
         return $this->licenseRepository->findAll();
     }
+
+    public function getByCategories(array $categories, string $locale = 'es')
+    {
+        return $this->licenseRepository->getByCategories($categories, $locale);
+    }
 }

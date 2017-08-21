@@ -11,6 +11,7 @@ use InvalidArgumentException;
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ArticleRepository")
  * @ORM\Table(name="articles")
+ * @ORM\HasLifecycleCallbacks
  * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\ArticleTranslation")
  */
 class Article
@@ -109,25 +110,25 @@ class Article
     private $ingredients;
 
     /**
-     * @ORM\ManyToOne(targetEntity="License", inversedBy="articles")
-     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="License")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id", nullable=true)
      */
-    private $licenses;
+    private $license;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Brand", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="Brand")
      * @ORM\JoinColumn(name="brand_id", referencedColumnName="id")
      */
     private $brand;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
      * @ORM\JoinTable(name="articles_tags",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
@@ -136,7 +137,7 @@ class Article
     private $tags;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Color")
+     * @ORM\ManyToMany(targetEntity="Color", inversedBy="articles")
      * @ORM\JoinTable(name="articles_colors",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="color_id", referencedColumnName="id")}
@@ -145,7 +146,7 @@ class Article
     private $colors;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Flavour")
+     * @ORM\ManyToMany(targetEntity="Flavour", inversedBy="articles")
      * @ORM\JoinTable(name="articles_flavours",
      *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="flavour_id", referencedColumnName="id")}
@@ -181,6 +182,34 @@ class Article
      */
     private $images;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Healthy", inversedBy="articles")
+     * @ORM\JoinTable(name="articles_healthy",
+     *      joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="healthy_id", referencedColumnName="id")}
+     *      )
+     */
+    private $healthys;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isNew;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated", type="datetime", nullable=true)
+     */
+    private $updated;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -193,6 +222,7 @@ class Article
         $this->images = new ArrayCollection();
         $this->ingredients = new ArrayCollection();
         $this->pricePerQuantity = new ArrayCollection();
+        $this->healthys = new ArrayCollection();
     }
 
     /**
@@ -485,11 +515,35 @@ class Article
     }
 
     /**
+     * @return mixed
+     */
+    public function getHealthys()
+    {
+        return $this->healthys;
+    }
+
+    /**
      * @param Flavour $flavour
      */
     public function addFlavour(Flavour $flavour)
     {
         $this->flavours[] = $flavour;
+    }
+
+    /**
+     * @param array $healthys
+     */
+    public function setHealthys(array $healthys)
+    {
+        $this->healthys = $healthys;
+    }
+
+    /**
+     * @param Healthy $healthy
+     */
+    public function addHealthy(Healthy $healthy)
+    {
+        $this->healthys[] = $healthy;
     }
 
     /**
@@ -591,9 +645,9 @@ class Article
     /**
      * @return ArrayCollection
      */
-    public function getLicenses()
+    public function getLicense()
     {
-        return $this->licenses;
+        return $this->license;
     }
 
     /**
@@ -601,7 +655,7 @@ class Article
      */
     public function setLicense(License $license)
     {
-        $this->licenses = $license;
+        $this->license = $license;
     }
 
     /**
@@ -658,5 +712,81 @@ class Article
     public function setPriceType(string $priceType)
     {
         $this->priceType = $priceType;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Article
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+        return $this;
+    }
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     *
+     * @return Article
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+        return $this;
+    }
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Triggered on insert
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created = new \DateTime("now");
+    }
+    /**
+     * Triggered on update
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated = new \DateTime("now");
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNew()
+    {
+        return $this->isNew;
+    }
+
+    /**
+     * @param bool $isNew
+     */
+    public function setIsNew(bool $isNew)
+    {
+        $this->isNew = $isNew;
     }
 }

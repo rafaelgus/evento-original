@@ -5894,7 +5894,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 }
 
 .block-layered-nav dd ol li:before {
-    content: '\f105';
+    /*content: '\f105';*/
     font-family: FontAwesome;
     font-size: 12px;
     padding-right: 2px;
@@ -6349,7 +6349,7 @@ ol#compare-items li.last {
     padding: 0;
     margin: 0;
     padding: 0;
-    color: #999
+    color: #e94d65;
 }
 
 #poll-answers {
@@ -10492,6 +10492,11 @@ input.input-text, select, textarea {
     padding: 8px 10px;
     outline: none;
     color: #e94d65;
+}
+
+.select-filter {
+    background-color: white !important;
+    border-color: #eaeaea;
 }
 
 #wishlist-table textarea {
@@ -17389,4 +17394,17 @@ a.button.wishlist {
 .category-description {
     font-size: 16px;
     font-family: 'Choplin-Medium', Sans-Serif;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    -webkit-box-shadow: inset 0px 0px 13px -6px rgba(0,0,0,0.93);
+    -moz-box-shadow: inset 0px 0px 13px -6px rgba(0,0,0,0.93);
+    box-shadow: inset 0px 0px 13px -6px rgba(0,0,0,0.93);
+}
+
+.circle.selected-circle {
+    border: 2px solid black;
 }

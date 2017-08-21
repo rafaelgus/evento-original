@@ -25,6 +25,12 @@ class Color
      */
     private $name;
 
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $hexadecimalCode;
+
     /**
      * @ORM\OneToMany(
      *   targetEntity="ColorTranslation",
@@ -34,9 +40,15 @@ class Color
      */
     private $translations;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="colors")
+     */
+    private $articles;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->articles = new ArrayCollection();
     }
 
     /**
@@ -74,5 +86,37 @@ class Color
             $this->translations[] = $t;
             $t->setObject($this);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
+
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHexadecimalCode()
+    {
+        return $this->hexadecimalCode;
+    }
+
+    /**
+     * @param string $hexadecimalCode
+     */
+    public function setHexadecimalCode(string $hexadecimalCode)
+    {
+        $this->hexadecimalCode = $hexadecimalCode;
     }
 }
