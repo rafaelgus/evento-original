@@ -145,7 +145,13 @@
                                     {!! $errors->first('status', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-
+                            <div class="form-group {{ $errors->has('isNew') ? 'has-error' : '' }}">
+                                <label for="inputIsNew" class="col-sm-2 control-label">{{ trans('texts.sections.article.isNew') }}</label>
+                                <div class="col-sm-10">
+                                   <input type="checkbox" name="isNew" id="isNew" checked class="checkbox">
+                                    {!! $errors->first('isNew', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">

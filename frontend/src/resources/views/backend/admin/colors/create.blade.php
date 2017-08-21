@@ -36,6 +36,15 @@
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('hexadecimalCode') ? 'has-error' : '' }}">
+                                <label for="inputHexadecimalCode" class="col-sm-2 control-label">{{ trans('texts.sections.colors.hexadecimalCode') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="color" class="form-control" id="inputHexadecimalCode" name="hexadecimalCode"
+                                           placeholder="{{ trans('texts.sections.colors.hexadecimalCode') }}" value="{{ old('hexadecimalCode') }}">
+                                    {!! $errors->first('hexadecimalCode', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="box-footer">

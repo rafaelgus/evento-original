@@ -224,7 +224,8 @@ class ArticleController
             $allergens,
             $ingredients,
             $prices,
-            $healthys
+            $healthys,
+            $data['isNew']
         );
 
         $this->articleService->save($article);
@@ -381,6 +382,7 @@ class ArticleController
 
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
+        $article->setIsNew($request->input('isNew'));
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));

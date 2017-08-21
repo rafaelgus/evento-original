@@ -84,7 +84,7 @@ class ArticleService
         string $internalCode,
         string $status,
         string $slug,
-        $price = null,
+        $price,
         string $priceType,
         $priceCurrency,
         Tax $tax = null,
@@ -98,7 +98,8 @@ class ArticleService
         array $allergens = [],
         array $ingredients = [],
         array $prices = [],
-        array $healthys = []
+        array $healthys = [],
+        bool $isNew = true
     ): Article {
         $article = new Article();
         $article->setName($name);
@@ -137,6 +138,7 @@ class ArticleService
         $article->setFlavours($flavours);
         $article->setAllergens($allergens);
         $article->setHealthys($healthys);
+        $article->setIsNew($isNew);
 
         $this->save($article);
 
@@ -267,7 +269,7 @@ class ArticleService
                 'price' => $article->getPrice(),
                 'price_currency' => '€',
                 'rating' => 4,
-                'isNew' => ($interval->format('%a') <= 15)
+                'isNew' => ($article->isNew() || $interval->format('%a') <= 15)
             ];
         }
 

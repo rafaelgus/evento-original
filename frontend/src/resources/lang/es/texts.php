@@ -20,6 +20,8 @@ return [
           'new' => 'Nuevo',
           'name' => 'Nombre',
           'edit' => 'Editar',
+          'hexadecimalCode' => 'Hexadecimal',
+          'preview' => 'Vista previa',
       ],
       'flavours' => [
           'title' => 'Sabores',
@@ -95,6 +97,7 @@ return [
           'license' => 'Licencia',
           'priceType' => 'Venta por',
           'healthys' => 'Saludables',
+          'isNew' => 'Marcar como nuevo'
       ],
       'license' => [
           'title' => 'Licencia',

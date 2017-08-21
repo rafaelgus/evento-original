@@ -180,10 +180,10 @@ return [
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
 
+        Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\EventoOriginalServiceProvider::class,
 
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 

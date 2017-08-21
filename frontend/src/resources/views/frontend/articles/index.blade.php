@@ -146,10 +146,11 @@
                                         <dd class="odd">
                                             <ol>
                                                 @foreach($colors as $color)
-                                                    <li>
-                                                        <input type="checkbox" name="color-filter" class=""
+                                                    <li style="display: inline;">
+                                                        <a href="#" title="{{ $color->getName() }}" class="circle" style="background-color: {{ $color->getHexadecimalCode() }};" onclick="selectColor(event, {{ $color->getId() }})"></a>
+                                                        <input style="display: none;" type="checkbox" name="color-filter" class="" id="color-filer"
                                                                value="{{ $color->getId() }}"
-                                                               onchange="applyFilter()"> {{ $color->getName() }}
+                                                               onchange="applyFilter()">
                                                     </li>
                                                 @endforeach()
                                             </ol>
@@ -356,11 +357,11 @@
             $(".products-grid").html(html);
         }
 
+        var pageSelected = 1;
+
         function applyFilter() {
             $('.products-grid').hide();
             $('.loader').show();
-
-            var pageSelected = 1;
 
             $.ajax({
                 url: '/articles/' + categorySlug,
@@ -399,14 +400,16 @@
                 for(i = 1; i <= pages; i++) {
                     var activeClass = "";
 
-                    if (pageSelected === i) {
+                    if (pageSelected == i) {
                         activeClass = "active";
                     }
 
-                    $('.pagination').append('<li class="' + activeClass + '"><a id="page-' + i +'" class="pagination-page">' + i + '</a></li>')
+                    $('.pagination').append('<li class="' + activeClass + '"><a id="' + i +'" class="pagination-page">' + i + '</a></li>')
                 }
                 $('.pagination').append('<li><a href="#">&raquo;</a></li>');
                 $('.pagination-page').click(function(e) {
+                    pageSelected = event.target.id;
+
                     applyFilter();
                 });
             }
@@ -420,6 +423,23 @@
             });
 
             return values;
+        }
+
+        function selectColor(event, colorId) {
+            event.preventDefault();
+            var checkboxColor = $('input[name="color-filter"][value=' + colorId +']');
+
+            var checked = checkboxColor.is(":checked");
+
+            if (checked) {
+                $(event.target).removeClass('selected-circle');
+            } else {
+                $(event.target).addClass('selected-circle');
+            }
+
+            checkboxColor.prop('checked', !checked);
+
+            applyFilter();
         }
     </script>
 

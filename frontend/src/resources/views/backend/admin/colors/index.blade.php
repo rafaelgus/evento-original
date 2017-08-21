@@ -1,8 +1,9 @@
 @extends('backend.layouts.app')
 
 @section('scripts_head')
-    <link href="/backend/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" >
-    <link href="/backend/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" >
+    <link href="/backend/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/backend/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"
+          type="text/css">
 @stop
 
 @section('header')
@@ -13,7 +14,7 @@
             <small>{{ trans('texts.sections.colors.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i>  {{ trans('texts.sections.colors.title') }}</li>
+            <li><i class="fa fa-tint"></i> {{ trans('texts.sections.colors.title') }}</li>
             <li class="active">{{ trans('texts.sections.colors.view') }}</li>
         </ol>
     </section>
@@ -23,18 +24,18 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-
-
-
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <table id="colors-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="colors-table" class="table table-striped table-bordered dt-responsive nowrap"
+                               cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                            <th>ID</th>
-                            <th>{{ trans('texts.sections.colors.name') }}</th>
-                            <th style="width: 120px">Accion</th>
+                                <th>ID</th>
+                                <th>{{ trans('texts.sections.colors.name') }}</th>
+                                <th>{{ trans('texts.sections.colors.hexadecimalCode') }}</th>
+                                <th>{{ trans('texts.sections.colors.preview') }}</th>
+                                <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -64,13 +65,24 @@
                 serverSide: true,
                 ajax: '/management/color/getDatatable',
                 columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'hexadecimalCode', name:'hexadecimalCode'},
                     {
                         "mData": null,
                         "bSortable": false,
                         "bSearchable": false,
-                        "mRender": function (o) { return '<a href="/management/color/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) {
+                            return '<div style="background-color: ' + o.hexadecimalCode +'; width: 100%px; height: 20px; border:1px solid black;"></div>'
+                        }
+                    },
+                    {
+                        "mData": null,
+                        "bSortable": false,
+                        "bSearchable": false,
+                        "mRender": function (o) {
+                            return '<a href="/management/color/' + o.id + '/edit" class="danger">Editar</a>'
+                        }
                     }
                 ],
                 language: {

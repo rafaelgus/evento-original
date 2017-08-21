@@ -192,6 +192,11 @@ class Article
     private $healthys;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isNew;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created", type="datetime")
@@ -767,5 +772,21 @@ class Article
     public function onPreUpdate()
     {
         $this->updated = new \DateTime("now");
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNew()
+    {
+        return $this->isNew;
+    }
+
+    /**
+     * @param bool $isNew
+     */
+    public function setIsNew(bool $isNew)
+    {
+        $this->isNew = $isNew;
     }
 }

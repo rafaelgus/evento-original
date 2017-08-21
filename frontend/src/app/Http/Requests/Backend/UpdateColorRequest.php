@@ -24,7 +24,8 @@ class UpdateColorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Color,id' . $this->get('id')
+            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Color,id' . $this->get('id'),
+            'hexadecimalCode' => 'required',
         ];
     }
 }
