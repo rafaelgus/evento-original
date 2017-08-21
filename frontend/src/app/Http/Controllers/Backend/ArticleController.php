@@ -382,7 +382,7 @@ class ArticleController
 
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
-        $article->setIsNew($request->input('isNew'));
+        $article->setIsNew(($request->input('isNew') ?: false));
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
