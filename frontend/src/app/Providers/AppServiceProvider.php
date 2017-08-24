@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use LaravelDoctrine\ORM\Configuration\Cache\CacheManager;
+use Redis;
 
 class AppServiceProvider extends ServiceProvider
 {

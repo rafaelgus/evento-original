@@ -9,7 +9,6 @@ use InvalidArgumentException;
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\MenuItemRepository")
  * @ORM\Table(name="menu_items")
- * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\MenuItemTranslation")
  */
 class Menu
 {

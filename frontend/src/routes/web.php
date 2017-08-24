@@ -169,6 +169,9 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
             Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
+        Route::group(['prefix' => '/menus'], function () {
+            Route::get('/create', 'Backend\MenuController@create');
+        });
     });
 });
 

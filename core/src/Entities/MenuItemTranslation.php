@@ -2,7 +2,7 @@
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Translatable\Document\MappedSuperclass\AbstractPersonalTranslation;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")

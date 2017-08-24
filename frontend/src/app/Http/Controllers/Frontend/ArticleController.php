@@ -16,6 +16,7 @@ use EventoOriginal\Core\Services\TagService;
 use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -51,6 +52,10 @@ class ArticleController extends Controller
         $this->tagService = $tagService;
         $this->categoryRepository = $categoryRepository;
         $this->healthyService = $healthyService;
+
+        Cache::store('redis')->put('Laradock', 'Awesome', 10);
+
+        dd(Cache::get('Larasdock'));
     }
 
     public function index(string $categorySlug = null)
