@@ -6,8 +6,11 @@ use App\Http\Requests\Backend\UpdateVoucherRequest;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\VoucherService;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
+
 
 class VoucherController
 {
@@ -74,8 +77,6 @@ class VoucherController
                 );
         }
         Session::flash('message', trans('backend/messages.confirmation.create.voucher'));
-
-
     }
 
     public function update(int $id, UpdateVoucherRequest $request)
@@ -93,5 +94,24 @@ class VoucherController
         $this->voucherService->save($voucher);
 
         Session::flash('message', trans('backend/messages.confirmation.create.voucher'));
+    }
+
+    public function getVouchers()
+    {
+        $vouchers = $this->voucherService->findAll();
+
+        $vouchersCollection = new Collection();
+
+        foreach ($vouchers as $voucher) {
+            $vouchersCollection->push([
+                'id' => $voucher->getId(),
+                'code' => $voucher->getCode(),
+                'category' => ($voucher->getCategory()) ? $voucher->getCategory()->getName() : '',
+                'amount' => ($voucher->getAmount()) ?  $voucher->getAmount() : '',
+                'value' => ($voucher->getValue()) ? $voucher->getValue() : ''
+            ]);
+        }
+
+        return Datatables::of($vouchersCollection)->make(true);
     }
 }

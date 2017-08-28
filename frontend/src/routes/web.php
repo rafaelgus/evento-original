@@ -153,6 +153,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/', 'Backend\VoucherController@index');
             Route::post('/', 'Backend\VoucherController@store');
             Route::put('/{id}', 'Backend\VoucherController@update');
+            Route::get('/getVouchers', 'Backend\VoucherController@getVouchers');
         });
     });
 });

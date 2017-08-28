@@ -1,6 +1,9 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\VoucherRepository")
  * @ORM\Table(name="vouchers")
@@ -35,13 +38,13 @@ class Voucher
     private $type;
 
     /**
-     * @ORM\Column(type="string", length="30")
+     * @ORM\Column(type="string", length=30)
      */
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="Vouchers", nullable=true)
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="Vouchers")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     private $category;
 

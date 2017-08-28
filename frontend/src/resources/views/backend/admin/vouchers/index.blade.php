@@ -24,11 +24,14 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-body">
-                        <table id="tags-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                        <table id="voucher-table" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>{{ trans('texts.sections.vouchers.code') }}</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Valor porcentual</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -53,18 +56,21 @@
     <!-- Page script -->
     <script>
         $(document).ready(function (e) {
-            $('#tags-table').DataTable({
+            $('#voucher-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/tags/getTags',
+                ajax: '/management/vouchers/getVouchers',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
+                    { data: 'code', name: 'code' },
+                    { data: 'category', name: 'category'},
+                    { date: 'amount', name: 'amount'},
+                    { data: 'value', name: 'value'},
                     {
                         "mData": null,
                         "bSortable": false,
                         "bSearchable": false,
-                        "mRender": function (o) { return '<a href="/management/tags/' + o.id +'/edit" class="danger">Editar</a>'}
+                        "mRender": function (o) { return '<a href="/management/vouchers/' + o.id +'/edit" class="danger">Editar</a>'}
                     }
                 ],
                 language: {

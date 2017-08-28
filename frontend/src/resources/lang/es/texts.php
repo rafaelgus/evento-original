@@ -111,6 +111,13 @@ return [
           'roles' => 'Roles',
           'edit' => 'Editar'
       ],
+      'vouchers' => [
+          'title' => 'Vocuchers',
+          'create' => 'Crear',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'code' => 'Codigo'
+      ],
       'errors' => [
           '404' => [
             'message' => '¡Lo sentimos! La página requerida no existe.',
