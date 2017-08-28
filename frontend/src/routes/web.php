@@ -147,6 +147,13 @@ Route::group(['prefix' => '/management'], function () {
            Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
            Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
+        Route::group(['prefix' => '/vouchers'], function () {
+            Route::get('/create', 'Backend\VoucherController@create');
+            Route::get('/{id}/edit', 'Backend\VoucherController@edit');
+            Route::get('/', 'Backend\VoucherController@index');
+            Route::post('/', 'Backend\VoucherController@store');
+            Route::put('/{id}', 'Backend\VoucherController@update');
+        });
     });
 });
 
