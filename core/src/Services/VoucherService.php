@@ -5,6 +5,7 @@ namespace EventoOriginal\Core\Services;
 use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Voucher;
 use EventoOriginal\Core\Persistence\Repositories\VoucherRepository;
+use Exception;
 
 class VoucherService
 {
@@ -77,5 +78,20 @@ class VoucherService
     public function save(Voucher $voucher)
     {
         $this->voucherRepository->save($voucher);
+    }
+
+    public function useVoucher(string $code)
+    {
+        $voucher = $this->voucherRepository->findByCode($code);
+
+        if ($voucher) {
+            if ($voucher->getStatus() != self::STATUS_USED) {
+                $voucher->setStatus(self::STATUS_USED);
+
+                $this->save($voucher);
+            } else {
+                throw new Exception('this vouchers is already used');
+            }
+        }
     }
 }

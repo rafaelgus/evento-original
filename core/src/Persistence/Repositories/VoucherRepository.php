@@ -14,11 +14,19 @@ class VoucherRepository extends BaseRepository
         }
     }
 
+    /**
+     * @param int $id
+     * @return null|Voucher
+     */
     public function findById(int $id)
     {
         return $this->find($id);
     }
 
+    /**
+     * @param string $code
+     * @return null|Voucher
+     */
     public function findByCode(string $code)
     {
         return $this->findOneBy(['code' => $code]);
