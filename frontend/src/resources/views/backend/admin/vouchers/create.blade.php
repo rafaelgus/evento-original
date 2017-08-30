@@ -32,7 +32,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.code') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="code"
-                                           placeholder="{{ trans('texts.sections.tags.code') }}" value="{{ old('code') }}">
+                                           placeholder="{{ trans('texts.sections.vouchers.code') }}" value="{{ old('code') }}">
                                     {!! $errors->first('code', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -40,17 +40,17 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.type') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" onchange="changeSelectType()" id="inputType" name="type">
-                                        <option id="1">Absoluto</option>
-                                        <option id="2">Relativo</option>
+                                        <option value="absoluto">Absoluto</option>
+                                        <option value="relativo">Relativo</option>
                                     </select>
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-                            <div class="form-group {{ $errors->has('value') ? 'has-error' : '' }}" id="valueForm">
+                            <div class="form-group {{ $errors->has('value') ? 'has-error' : '' }}" id="valueForm" style="display: none;">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.value') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="value"
-                                           placeholder="{{ trans('texts.sections.tags.code') }}" value="{{ old('value') }}">
+                                           placeholder="{{ trans('texts.sections.vouchers.value') }}" value="{{ old('value') }}">
                                     {!! $errors->first('value', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -58,20 +58,20 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.amount') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="amount"
-                                           placeholder="{{ trans('texts.sections.tags.amount') }}" value="{{ old('amount') }}">
+                                           placeholder="{{ trans('texts.sections.vouchers.amount') }}" value="{{ old('amount') }}">
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
-                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.type') }}</label>
+                                <label for="inputName" class="col-sm-2 control-label">Categoria?</label>
                                 <div class="col-sm-10">
-                                    <input type="checkbox" id="hasCategory" class="form-control" onchange="changeCheckBox()"><span>Categoria</span>
+                                    <input type="checkbox" id="hasCategory" onchange="changeCheckBox()">
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.type') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="category" name="category">
+                                    <select class="form-control" id="category" name="category" disabled>
                                         @foreach($categories as $category)
                                             <option id="{{$category->getId()}}">{{$category->getName()}}</option>
                                         @endforeach
@@ -96,20 +96,20 @@
         function changeSelectType() {
             var type = document.getElementById('inputType').value;
 
-            var formValue = document.getElementById('formValue');
-            var formAmount = document.getElementById('formAmount');
+            var formValue = document.getElementById('valueForm');
+            var formAmount = document.getElementById('amountForm');
 
-            if (type === 1) {
+            if (type === "absoluto") {
+                formValue.style.display = 'none';
                 formAmount.style.display = 'block';
-                formAmount.style.display = 'none';
             } else {
+                formValue.style.display = 'block';
                 formAmount.style.display = 'none';
-                formAmount.style.display = 'block';
             }
         }
         
         function changeCheckBox() {
-            var checked = document.getElementById('hasCategory').value;
+            var checked = document.getElementById('hasCategory').checked;
 
             if (checked) {
                 document.getElementById('category').disabled = false;

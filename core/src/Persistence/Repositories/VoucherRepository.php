@@ -19,11 +19,6 @@ class VoucherRepository extends BaseRepository
         return $this->find($id);
     }
 
-    public function findAll()
-    {
-        return $this->findAll();
-    }
-
     public function findByCode(string $code)
     {
         return $this->findOneBy(['code' => $code]);

@@ -25,7 +25,7 @@ class StoreVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:255|unique:EventoOriginal\Core\Entities\Vocuher,code'
+            'code' => 'required|max:255|unique:EventoOriginal\Core\Entities\Voucher,code'
         ];
     }
 }

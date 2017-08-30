@@ -33,40 +33,42 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.code') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="code"
-                                           placeholder="{{ trans('texts.sections.tags.code') }}" value="{{ old('code') }}">
+                                           placeholder="{{ trans('texts.sections.tags.code') }}" value="{{ old('code', $voucher->getCode()) }}">
                                     {!! $errors->first('code', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.type') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" onchange="changeSelectType()" id="inputType" name="type">
-                                        <option id="1">Absoluto</option>
-                                        <option id="2">Relativo</option>
-                                    </select>
+                                    <input type="text" class="form-control" value="{{ $voucher->getType() }}" disabled>
+                                    <input type="hidden" name="type" value="{{ $voucher->getType() }}">
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            @if ($voucher->getValue())
                             <div class="form-group {{ $errors->has('value') ? 'has-error' : '' }}" id="valueForm">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.value') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="value"
-                                           placeholder="{{ trans('texts.sections.tags.code') }}" value="{{ old('value') }}">
+                                           placeholder="{{ trans('texts.sections.vouchers.code') }}" value="{{ old('value', $voucher->getValue()) }}">
                                     {!! $errors->first('value', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            @endif
+                            @if ($voucher->getAmount())
                             <div class="form-group {{ $errors->has('amount') ? 'has-error' : '' }}" id="amountForm">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.amount') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="amount"
-                                           placeholder="{{ trans('texts.sections.tags.amount') }}" value="{{ old('amount') }}">
+                                           placeholder="{{ trans('texts.sections.vouchers.amount') }}" value="{{ old('amount', $voucher->getAmount()) }}">
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+                            @endif
                             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.vouchers.type') }}</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" id="inputName" name="category">
+                                    <select class="form-control" id="inputName" name="category" {{($voucher->getCategory()) ? '' :'disabled'}}>
                                         @foreach($categories as $category)
                                             <option id="{{$category->getId()}}" {{(in_array($voucher, $category->getVouchers()->toArray())? 'selected' : '')}}>{{$category->getName()}}</option>
                                         @endforeach
@@ -87,20 +89,5 @@
 @endsection
 
 @section('scripts_body')
-    <script type="text/javascript">
-        function changeSelectType() {
-            var type = document.getElementById('inputType').value;
 
-            var formValue = document.getElementById('formValue');
-            var formAmount = document.getElementById('formAmount');
-
-            if (type === 1) {
-                formAmount.style.display = 'block';
-                formAmount.style.display = 'none';
-            } else {
-                formAmount.style.display = 'none';
-                formAmount.style.display = 'block';
-            }
-        }
-    </script>
 @endsection

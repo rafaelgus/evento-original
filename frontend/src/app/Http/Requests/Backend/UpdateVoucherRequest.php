@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateVoucherRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateVoucherRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::user()->isAdmin();
     }
 
     /**
@@ -24,7 +25,7 @@ class UpdateVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:255|unique:EventoOriginal\Core\Entities\Vocuher,code'
+            'code' => 'required|max:255|unique:EventoOriginal\Core\Entities\Voucher,code,'. $this->input('code') . ',code'
         ];
     }
 }

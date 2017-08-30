@@ -32,6 +32,7 @@
                                 <th>Categoria</th>
                                 <th>Valor</th>
                                 <th>Valor porcentual</th>
+                                <th>Estado</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -64,8 +65,9 @@
                     { data: 'id', name: 'id' },
                     { data: 'code', name: 'code' },
                     { data: 'category', name: 'category'},
-                    { date: 'amount', name: 'amount'},
+                    { data: 'amount', name: 'amount'},
                     { data: 'value', name: 'value'},
+                    { data: 'status', name: 'status' },
                     {
                         "mData": null,
                         "bSortable": false,

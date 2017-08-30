@@ -116,7 +116,11 @@ return [
           'create' => 'Crear',
           'view' => 'Ver',
           'new' => 'Nuevo',
-          'code' => 'Codigo'
+          'code' => 'Codigo',
+          'type' => 'Tipo',
+          'value' => 'Valor porcentual',
+          'amount' => 'Monto',
+          'edit' => 'Editar'
       ],
       'errors' => [
           '404' => [

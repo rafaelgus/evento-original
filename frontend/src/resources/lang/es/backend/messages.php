@@ -11,13 +11,15 @@ return [
             'licenses' => 'La licencia se guardo con exito',
             'ingredient' => 'El ingrediente se actualizo con exito',
             'brand' => 'La marca se gruado con exito',
-            'users' => 'El usuario se guardo con exito'
+            'users' => 'El usuario se guardo con exito',
+            'voucher' => 'El voucher se creo con exito'
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
             'allergen' => 'El alergeno se modifico con exito',
             'category' => 'La categoria se actualizo correctamente',
             'users' => 'El usuario se actualizo con exito',
+            'voucher' => 'El voucher se edito con exito'
         ],
     ]
 ];

@@ -17,8 +17,9 @@ class VoucherController
     private $voucherService;
     private $categoryService;
 
-    const TYPE_RELATIVE = 'relative';
-    const TYPE_ABSOLUTE = 'absolute';
+    const TYPE_RELATIVE = 'relativo';
+    const TYPE_ABSOLUTE = 'absoluto';
+    const VOUCHER_CREATE_ROUTE = '/management/vouchers/create';
 
     public function __construct(
         VoucherService $voucherService,
@@ -44,9 +45,11 @@ class VoucherController
     public function edit(int $id)
     {
         $voucher = $this->voucherService->findById($id);
+        $categories = $this->categoryService->findAll(App::getLocale());
 
         return view('backend.admin.vouchers.edit')
-            ->with($voucher);
+            ->with('voucher', $voucher)
+            ->with('categories', $categories);
     }
 
     public function store(StoreVoucherRequest $request)
@@ -55,7 +58,7 @@ class VoucherController
 
         $hasCategory = $request->has('category');
 
-        if ($data['type'] === self::TYPE_ABSOLUTE )
+        if ($data['type'] === self::TYPE_ABSOLUTE)
         $this
             ->voucherService
             ->create(
@@ -77,6 +80,8 @@ class VoucherController
                 );
         }
         Session::flash('message', trans('backend/messages.confirmation.create.voucher'));
+
+        return redirect()->to(self::VOUCHER_CREATE_ROUTE);
     }
 
     public function update(int $id, UpdateVoucherRequest $request)
@@ -85,30 +90,31 @@ class VoucherController
 
         $voucher->setCode($request->input('code'));
 
-        if (self::TYPE_RELATIVE) {
+        if ($request->input('type') === self::TYPE_RELATIVE) {
             $voucher->setValue($request->input('value'));
-        } elseif (self::TYPE_ABSOLUTE) {
+        } elseif ($request->input('type') === self::TYPE_ABSOLUTE) {
             $voucher->setAmount($request->input('amount'));
         }
 
         $this->voucherService->save($voucher);
 
         Session::flash('message', trans('backend/messages.confirmation.create.voucher'));
+        return redirect()->to('/management/vouchers/'. $voucher->getId(). '/edit');
     }
 
     public function getVouchers()
     {
         $vouchers = $this->voucherService->findAll();
-
         $vouchersCollection = new Collection();
 
         foreach ($vouchers as $voucher) {
             $vouchersCollection->push([
                 'id' => $voucher->getId(),
                 'code' => $voucher->getCode(),
-                'category' => ($voucher->getCategory()) ? $voucher->getCategory()->getName() : '',
-                'amount' => ($voucher->getAmount()) ?  $voucher->getAmount() : '',
-                'value' => ($voucher->getValue()) ? $voucher->getValue() : ''
+                'category' => ($voucher->getCategory()) ? $voucher->getCategory()->getName() : 'sin categoria',
+                'amount' => ($voucher->getAmount()) ?  $voucher->getAmount() : '--',
+                'value' => ($voucher->getValue()) ? $voucher->getValue() : '--',
+                'status' => $voucher->getStatus()
             ]);
         }
 

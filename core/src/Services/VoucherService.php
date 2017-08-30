@@ -11,8 +11,8 @@ class VoucherService
     const STATUS_USED = 'used';
     const STATUS_ACTIVE = 'active';
 
-    const TYPE_RELATIVE = 'relative';
-    const TYPE_ABSOLUTE = 'absolute';
+    const TYPE_RELATIVE = 'relativo';
+    const TYPE_ABSOLUTE = 'absoluto';
 
     private $voucherRepository;
 
@@ -43,7 +43,7 @@ class VoucherService
         if ($category) {
             $voucher->setCategory($category);
         }
-        $this->voucherRepository->save($value);
+        $this->voucherRepository->save($voucher);
 
         return $voucher;
     }
