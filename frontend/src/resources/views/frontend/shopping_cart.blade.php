@@ -415,7 +415,7 @@
                                 <form method="post" action="#couponPost/" id="discount-coupon-form">
                                     <label for="coupon_code">{{ trans('frontend/shopping_cart.enter_discount_code') }}</label>
                                     <input type="hidden" value="0" id="remove-coupone" name="remove">
-                                    <input type="text" value="" name="coupon_code" id="coupon_code" class="input-text fullwidth">
+                                    <input type="text" value="" name="coupon_code" id="couponCode" class="input-text fullwidth">
                                     <button value="Apply Coupon" onClick="discountForm.submit(false)" class="button coupon " title="Apply Coupon" type="button"><span>{{ trans('frontend/shopping_cart.apply_coupon') }}</span></button>
                                 </form>
                             </div>
@@ -791,5 +791,23 @@
 @endsection
 
 @section('scripts_body')
+    <script type="text/javascript">
+        function useVoucher() {
+            var code = document.getElementById('couponCode').value;
 
+            var params = encodeURI('code=' + code);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/discount', true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    window.location.href = '{{ trans('frontend/shopping_cart.slug') }}'
+                }
+            };
+
+            xhr.send(params);
+        }
+    </script>
 @endsection

@@ -80,6 +80,11 @@ class VoucherService
         $this->voucherRepository->save($voucher);
     }
 
+    /**
+     * @param string $code
+     * @throws Exception
+     *
+     */
     public function useVoucher(string $code)
     {
         $voucher = $this->voucherRepository->findByCode($code);
@@ -92,6 +97,21 @@ class VoucherService
             } else {
                 throw new Exception('this vouchers is already used');
             }
+        }
+    }
+
+    public function getDiscountAmount(Voucher $voucher, $total)
+    {
+        if ($voucher->getType() === self::TYPE_ABSOLUTE) {
+            $discount = $total - $voucher->getAmount();
+
+            return $discount;
+        } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
+            $discount = $total * ($voucher->getValue() / 100);
+
+            return $discount;
+        } else {
+            throw new Exception('Invalid voucher');
         }
     }
 }

@@ -38,8 +38,6 @@ class CartController
 
         $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
 
-
-
         if ($quantity > 0) {
             Cart::instance('shopping')->add(
                 $article->getBarCode(),
