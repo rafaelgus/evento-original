@@ -18,9 +18,9 @@ class MenuService
         return $this->menuRepository->findAll();
     }
 
-    public function findByType(string $type)
+    public function findByType(string $type, bool $visible = true)
     {
-        return $this->menuRepository->findByType($type);
+        return $this->menuRepository->findByType($type, $visible);
     }
 
     public function create()

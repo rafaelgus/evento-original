@@ -28,8 +28,8 @@ class MenuRepository extends BaseRepository
         return $this->find($id);
     }
 
-    public function findByType(string $type)
+    public function findByType(string $type, bool $visible)
     {
-        return $this->findBy(['type' => $type]);
+        return $this->findOneBy(['type' => $type]);
     }
 }

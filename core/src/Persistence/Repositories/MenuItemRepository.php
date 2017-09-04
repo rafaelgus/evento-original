@@ -36,8 +36,8 @@ class MenuItemRepository extends BaseRepository
     {
         $qb = $this->createQueryBuilder('menu_item')
             ->select('menu_item')
-            ->where('menu_item.menu_id = :menu_id')
-            ->setParameter('name', $menu->getId());
+            ->where('menu_item.menu = :menu_id')
+            ->setParameter('menu_id', $menu->getId());
 
         $query = $qb->getQuery();
 
@@ -50,6 +50,6 @@ class MenuItemRepository extends BaseRepository
             $locale
         );
 
-        return $query->getOneOrNullResult();
+        return $query->getResult();
     }
 }

@@ -26,7 +26,7 @@
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                            <h4>Item</h4>
+                            <h4>Menu Item</h4>
 
                             <div class="form-group {{ $errors->has('menu_id') ? 'has-error' : '' }}">
                                 <label for="inputTitle" class="col-sm-2 control-label">{{ trans('backend/menu_item.menu') }}</label>
@@ -58,15 +58,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-                                <label for="inputImage" class="col-sm-2 control-label">{{ trans('backend/menu_item.image') }} (246x100)</label>
-                                <div class="col-sm-10">
-                                    <input type="file" class="form-control" id="inputImage" name="name"
-                                           placeholder="{{ trans('backend/menu_item.image') }}" value="{{ old('image') }}">
-                                    {!! $errors->first('image', '<span class="help-block">* :message</span>') !!}
-                                </div>
-                            </div>
-
                             <div class="form-group {{ $errors->has('position') ? 'has-error' : '' }}">
                                 <label for="inputPosition" class="col-sm-2 control-label">{{ trans('backend/menu_item.position') }}</label>
                                 <div class="col-sm-10">
@@ -83,43 +74,6 @@
                                     {!! $errors->first('position', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-
-                            <!-- Horizontal Form -->
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Subitems</h3>
-                                </div>
-                                <div class="box-body">
-                                    <div class="subitems" id="subitems">
-
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputTitle" class="col-sm-2 control-label">{{ trans('backend/menu_item.title') }}</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" id="inputTitle" name="sub_items_titles[]" required
-                                                           placeholder="{{ trans('backend/menu_item.title') }}" value="{{ old('title') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
-                                                <div class="col-sm-10">
-                                                    <input type="url" class="form-control" id="inputUrl" name="sub_items_urls[]" required
-                                                           placeholder="{{ trans('backend/menu_item.url') }}" value="{{ old('url') }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    {!! $errors->first('sub_items.title', '<span class="help-block">* :message</span>') !!}
-                                    {!! $errors->first('sub_items.url', '<span class="help-block">* :message</span>') !!}
-
-                                    <button type="button" class="btn btn-primary pull-right" id="add-sub-item"><i class="fa fa-plus"></i>Agregar subitem</button>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="box-footer">
@@ -131,12 +85,4 @@
             </div>
         </div>
     </section><!-- /.content -->
-@endsection
-
-@section('scripts_body')
-    <script>
-        $('#add-sub-item').click(function () {
-            $('#subitems').append("<div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputTitle>{{ trans('backend/menu_item.title') }}</label><div class=col-sm-10><input class=form-control id=inputTitle name=sub_items_titles[] required placeholder=\"{{ trans('backend/menu_item.title') }}\"value=\"{{ old('title') }}\"></div></div></div><div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputUrl>{{ trans('backend/menu_item.url') }}</label><div class=col-sm-10><input class=form-control id=inputUrl name=sub_items_urls[] required placeholder=\"{{ trans('backend/menu_item.url') }}\"value=\"{{ old('url') }}\"type=url></div></div></div>");
-        });
-    </script>
 @endsection

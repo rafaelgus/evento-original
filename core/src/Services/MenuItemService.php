@@ -9,15 +9,24 @@ use EventoOriginal\Core\Persistence\Repositories\MenuItemRepository;
 class MenuItemService
 {
     private $menuItemRepository;
+    private $menuService;
 
-    public function __construct(MenuItemRepository $menuItemRepository)
-    {
+    public function __construct(
+        MenuItemRepository $menuItemRepository,
+        MenuService $menuService
+    ) {
         $this->menuItemRepository = $menuItemRepository;
+        $this->menuService = $menuService;
     }
 
     public function findByMenu(Menu $menu, string $locale)
     {
         return $this->menuItemRepository->findByMenu($menu, $locale);
+    }
+
+    public function findById(int $id)
+    {
+        return $this->menuItemRepository->findById($id);
     }
 
     public function create(array $data)
@@ -29,6 +38,25 @@ class MenuItemService
         $menuItem->setLevel(1);
         $menuItem->setImage('test');
         $menuItem->setVisible(isset($data['visible']));
+
+        $menu = $this->menuService->findById($data['menu_id']);
+        $menuItem->setMenu($menu);
+
+        return $this->menuItemRepository->save($menuItem);
+    }
+
+    public function createSubitem(array $data)
+    {
+        $menuItem = new MenuItem();
+        $menuItem->setTitle($data['title']);
+        $menuItem->setUrl($data['url']);
+        $menuItem->setPosition($data['position']);
+        $menuItem->setLevel(1);
+        $menuItem->setImage('test');
+        $menuItem->setVisible(isset($data['visible']));
+
+        $parent = $this->findById($data['menu_item_id']);
+        $menuItem->setParent($parent);
 
         foreach ($data['sub_items_titles'] as $i => $title) {
             $subitem = new MenuItem();
