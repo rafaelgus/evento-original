@@ -13,6 +13,11 @@ class MenuService
         $this->menuRepository = $menuRepository;
     }
 
+    public function findAll()
+    {
+        return $this->menuRepository->findAll();
+    }
+
     public function findByType(string $type)
     {
         return $this->menuRepository->findByType($type);
@@ -23,5 +28,10 @@ class MenuService
         $menu = new Menu();
 
         return $menu;
+    }
+
+    public function findById(int $id)
+    {
+        return $this->menuRepository->find($id);
     }
 }

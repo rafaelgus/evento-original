@@ -4,6 +4,7 @@ namespace EventoOriginal\Core\Entities;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Parent_;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\MenuItemRepository")
@@ -36,7 +37,7 @@ class MenuItem
     private $url;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $image;
 
@@ -54,11 +55,17 @@ class MenuItem
     /**
      * @ORM\OneToMany(
      *   targetEntity="MenuItem",
-     *   mappedBy="menu",
+     *   mappedBy="parent",
      *   cascade={"persist", "remove"}
      * )
      */
     private $subitems;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MenuItem", inversedBy="subitems")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     */
+    private $parent;
 
     /**
      * @ORM\OneToMany(
@@ -68,6 +75,11 @@ class MenuItem
      * )
      */
     private $translations;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $visible;
 
     public function __construct()
     {
@@ -185,6 +197,43 @@ class MenuItem
     public function setSubitems(array $subitems)
     {
         $this->subitems = $subitems;
+    }
+
+    public function addSubitem(MenuItem $menuItem)
+    {
+        $this->subitems[] = $menuItem;
+    }
+
+    /**
+     * @return MenuItem
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param MenuItem $parent
+     */
+    public function setParent(MenuItem $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getVisible()
+    {
+        return $this->visible;
+    }
+
+    /**
+     * @param bool $visible
+     */
+    public function setVisible(bool $visible)
+    {
+        $this->visible = $visible;
     }
 
     /**

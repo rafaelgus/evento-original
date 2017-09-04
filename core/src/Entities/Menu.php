@@ -1,5 +1,4 @@
 <?php
-
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -7,8 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
 
 /**
- * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\MenuItemRepository")
- * @ORM\Table(name="menu_items")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\MenuRepository")
+ * @ORM\Table(name="menus")
  */
 class Menu
 {
@@ -37,15 +36,14 @@ class Menu
     /**
      * @ORM\OneToMany(
      *   targetEntity="MenuItem",
-     *   mappedBy="menu",
-     *   cascade={"persist", "remove"}
+     *   mappedBy="menu"
      * )
      */
     private $items;
 
     public function __construct()
     {
-        $this->subitems = new ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
@@ -90,5 +88,20 @@ class Menu
         } else {
             throw new InvalidArgumentException("Invalid menu type");
         }
+    }
+
+    public function addItem(MenuItem $menuItem)
+    {
+        $this->items[] = $menuItem;
+    }
+
+    public function setItems(array $menuItems)
+    {
+        $this->items = $menuItems;
+    }
+
+    public function getItems()
+    {
+        return $this->items;
     }
 }

@@ -30,7 +30,7 @@
                                             <li class="level1 nav-6-1 parent item">
                                                 <a href="#" class="nav-image"><img
                                                             src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/209.jpg"></a>
-                                                <a href="grid.html"><span>Living Room</span></a>
+                                                <a href="grid.html"><span>Caramelos</span></a>
                                                 <ul class="level1">
                                                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Racks &amp; Cabinets</span></a>
                                                     </li>
@@ -45,7 +45,7 @@
                                             <li class="level1 nav-6-1 parent item">
                                                 <a class="nav-image"><img
                                                             src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/207.jpg"></a>
-                                                <a href="grid.html"><span>Dining &amp; Bar</span></a>
+                                                <a href="grid.html"><span>Chocolates</span></a>
                                                 <ul class="level1">
                                                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Table Sets</span></a>
                                                     </li>
@@ -53,14 +53,12 @@
                                                     </li>
                                                     <li class="level2 nav-6-1-1"><a
                                                                 href="grid.html"><span>Bar Counters</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Dining Cabinets</span></a>
-                                                    </li>
                                                 </ul>
                                             </li>
                                             <li class="level1 nav-6-1 parent item">
                                                 <a class="nav-image"><img
                                                             src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/200.png"></a>
-                                                <a href="grid.html"><span>Kitchen</span></a>
+                                                <a href="grid.html"><span>Nubes</span></a>
                                                 <ul class="level1">
                                                     <li class="level2 nav-6-1-1"><a
                                                                 href="grid.html"><span>Kitchen Racks</span></a></li>
@@ -69,29 +67,14 @@
                                                     <li class="level2 nav-6-1-1"><a
                                                                 href="grid.html"><span>Wall Units</span></a></li>
                                                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Benches &amp; Stools</span></a>
+                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Benches &amp; Stools</span></a>
                                                     </li>
                                                 </ul>
                                             </li>
                                             <li class="level1 nav-6-1 parent item">
                                                 <a class="nav-image"><img
                                                             src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/205.png"></a>
-                                                <a href="grid.html"><span>Appliances</span></a>
-                                                <ul class="level1">
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Vaccum Cleaners</span></a>
-                                                    </li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Indoor Lighting</span></a>
-                                                    </li>
-                                                    <li class="level2 nav-6-1-1"><a
-                                                                href="grid.html"><span>Kitchen Tools</span></a></li>
-                                                    <li class="level2 nav-6-1-1"><a href="grid.html"><span>Water Purifier</span></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-
-                                            <li class="level1 nav-6-1 parent item">
-                                                <a class="nav-image"><img
-                                                            src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/205.png"></a>
-                                                <a href="grid.html"><span>Appliances</span></a>
+                                                <a href="grid.html"><span>Algodón de azucar</span></a>
                                                 <ul class="level1">
                                                     <li class="level2 nav-6-1-1"><a href="grid.html"><span>Vaccum Cleaners</span></a>
                                                     </li>

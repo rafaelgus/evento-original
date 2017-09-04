@@ -124,11 +124,11 @@ return [
           'roles' => 'Roles',
           'edit' => 'Editar'
       ],
-      'errors' => [
-          '404' => [
-            'message' => '¡Lo sentimos! La página requerida no existe.',
-            'back_message' => 'Volver al inicio',
-          ]
+  ],
+  'errors' => [
+      '404' => [
+          'message' => '¡Lo sentimos! La página requerida no existe.',
+          'back_message' => 'Volver al inicio',
       ]
   ]
 ];

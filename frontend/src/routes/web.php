@@ -170,7 +170,12 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
         Route::group(['prefix' => '/menus'], function () {
-            Route::get('/create', 'Backend\MenuController@create');
+            Route::get('/', 'Backend\MenuController@index');
+            Route::get('/{id}', 'Backend\MenuController@show');
+        });
+        Route::group(['prefix' => '/menu-item'], function () {
+            Route::get('/create', 'Backend\MenuItemController@create');
+            Route::post('/', 'Backend\MenuItemController@store');
         });
     });
 });
