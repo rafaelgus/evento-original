@@ -78,4 +78,9 @@ class CategoryRepository extends NestedTreeRepository
 
         return $subcategories;
     }
+
+    public function getParents(Category $category)
+    {
+        return $this->getPath($category);
+    }
 }

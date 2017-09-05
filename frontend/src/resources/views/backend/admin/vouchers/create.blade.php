@@ -73,7 +73,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" id="category" name="category" disabled>
                                         @foreach($categories as $category)
-                                            <option id="{{$category->getId()}}">{{$category->getName()}}</option>
+                                            <option value="{{$category->getId()}}">{{$category->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}

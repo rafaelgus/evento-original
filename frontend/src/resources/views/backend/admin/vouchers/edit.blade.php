@@ -70,7 +70,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" id="inputName" name="category" {{($voucher->getCategory()) ? '' :'disabled'}}>
                                         @foreach($categories as $category)
-                                            <option id="{{$category->getId()}}" {{(in_array($voucher, $category->getVouchers()->toArray())? 'selected' : '')}}>{{$category->getName()}}</option>
+                                            <option value="{{$category->getId()}}" {{(in_array($voucher, $category->getVouchers()->toArray())? 'selected' : '')}}>{{$category->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('amount', '<span class="help-block">* :message</span>') !!}

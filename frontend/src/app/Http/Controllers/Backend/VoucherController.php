@@ -56,7 +56,17 @@ class VoucherController
     {
         $data = $request->all();
 
+        $category = null;
         $hasCategory = $request->has('category');
+
+        if ($hasCategory) {
+            $category = $this
+                ->categoryService
+                ->findOneById(
+                    $request->input('category'),
+                        App::getLocale()
+                );
+        }
 
         if ($data['type'] === self::TYPE_ABSOLUTE)
         $this
@@ -66,7 +76,7 @@ class VoucherController
                 $data['type'],
                 null,
                 $data['amount'],
-                ($hasCategory)? $data['category']: null
+                ($category)? $category: null
             );
         elseif ($data['type'] === self::TYPE_RELATIVE) {
             $this
@@ -76,7 +86,7 @@ class VoucherController
                     $data['type'],
                     $data['value'],
                     null,
-                    ($hasCategory)? $data['category']: null
+                    ($category)? $category: null
                 );
         }
         Session::flash('message', trans('backend/messages.confirmation.create.voucher'));

@@ -74,10 +74,12 @@ class CartController
                 $article->getName(),
                 $quantity,
                 $article->getPrice(),
-                ['image'=> $articleImagesPath]
+                [
+                    'image'=> $articleImagesPath,
+                    'category' => $article->getCategory()->getId()
+                ]
             );
         }
-
         return ['message' => trans('frontend/shopping_cart.add_to_cart')];
     }
 

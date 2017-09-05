@@ -84,4 +84,14 @@ class CategoryService
         $this->save($category, true);
     }
 
+    public function isChildren(Category $parent, Category $children)
+    {
+        $parents = $this->categoryRepository->getPath($parent);
+
+        if (in_array($children , $parents)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
