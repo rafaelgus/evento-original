@@ -55,11 +55,16 @@ class ArticleController extends Controller
         $this->healthyService = $healthyService;
     }
 
-    public function index(string $categorySlug = null)
+    public function getHome()
     {
-
         $articles = $this->articleService->findAll(App::getLocale());
 
+        return view('frontend.home')
+            ->with('articles', $articles);
+    }
+
+    public function index(string $categorySlug = null)
+    {
         if ($categorySlug) {
             $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
             $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
