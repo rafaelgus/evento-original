@@ -180,6 +180,8 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/subitem', 'Backend\MenuItemController@storeSubitem');
             Route::get('/{id}', 'Backend\MenuItemController@show');
             Route::get('/{id}/edit-subitem', 'Backend\MenuItemController@editSubitem');
+            Route::put('/{id}/edit-subitem', 'Backend\MenuItemController@updateSubitem');
+            Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
         });
     });
 });

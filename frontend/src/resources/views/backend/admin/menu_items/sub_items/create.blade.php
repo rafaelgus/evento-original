@@ -20,7 +20,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="/management/menu-item/subitem" method="POST">
+                    <form role="form" class="form-horizontal" action="/management/menu-item/subitem" method="POST" enctype="multipart/form-data">
                         <div class="box-body">
                             @include('backend.messages.session')
 
@@ -51,7 +51,7 @@
                             <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                                 <label for="inputImage" class="col-sm-2 control-label">{{ trans('backend/menu_item.image') }} (246x100)</label>
                                 <div class="col-sm-10">
-                                    <input type="file" class="form-control" id="inputImage" name="name"
+                                    <input type="file" class="form-control" id="inputImage" name="image"
                                            placeholder="{{ trans('backend/menu_item.image') }}" value="{{ old('image') }}">
                                     {!! $errors->first('image', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -82,6 +82,8 @@
                                 <div class="box-body">
                                     <div class="subitems" id="subitems">
 
+                                        <div id="subitem">
+
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="inputTitle" class="col-sm-2 control-label">{{ trans('backend/menu_item.title') }}</label>
@@ -92,7 +94,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <div class="form-group">
                                                 <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
                                                 <div class="col-sm-10">
@@ -100,6 +102,12 @@
                                                            placeholder="{{ trans('backend/menu_item.url') }}" value="{{ old('url') }}">
                                                 </div>
                                             </div>
+                                        </div>
+
+                                            <div class="col-sm-1">
+                                                <button id="del" class="del btn btn-danger glyphicon glyphicon-remove row-remove" type="button"></button>
+                                            </div>
+
                                         </div>
 
                                     </div>
@@ -126,7 +134,16 @@
 @section('scripts_body')
     <script>
         $('#add-sub-item').click(function () {
-            $('#subitems').append("<div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputTitle>{{ trans('backend/menu_item.title') }}</label><div class=col-sm-10><input class=form-control id=inputTitle name=sub_items_titles[] required placeholder=\"{{ trans('backend/menu_item.title') }}\"value=\"{{ old('title') }}\"></div></div></div><div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputUrl>{{ trans('backend/menu_item.url') }}</label><div class=col-sm-10><input class=form-control id=inputUrl name=sub_items_urls[] required placeholder=\"{{ trans('backend/menu_item.url') }}\"value=\"{{ old('url') }}\"type=url></div></div></div>");
+            $('#subitems').append("<div id=\"subitem\"><div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputTitle>{{ trans('backend/menu_item.title') }}</label><div class=col-sm-10><input class=form-control id=inputTitle name=sub_items_titles[] required placeholder=\"{{ trans('backend/menu_item.title') }}\"value=\"{{ old('title') }}\"></div></div></div><div class=col-sm-5><div class=form-group><label class=\"col-sm-2 control-label\"for=inputUrl>{{ trans('backend/menu_item.url') }}</label><div class=col-sm-10><input class=form-control id=inputUrl name=sub_items_urls[] required placeholder=\"{{ trans('backend/menu_item.url') }}\"value=\"{{ old('url') }}\"type=url></div></div></div><div class=\"col-sm-1\">\n" +
+                "                                                <button class= \"del btn btn-danger glyphicon glyphicon-remove row-remove\" type=\"button\"></button>\n" +
+                "                                            </div></div>");
+            $('.del').on("click", function () {
+                $(this).closest("#subitem").remove();
+            });
+        });
+
+        $('.del').on("click", function () {
+            $(this).closest("#subitem").remove();
         });
     </script>
 @endsection

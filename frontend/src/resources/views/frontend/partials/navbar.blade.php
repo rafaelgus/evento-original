@@ -33,7 +33,7 @@
                                             @foreach($menuItem->getSubitems() as $subitem)
                                                 <li class="level1 nav-6-1 parent item">
                                                     <a href="{{ $subitem->getUrl() }}" class="nav-image"><img
-                                                                src="https://www.chuchesonline.com/modules/pm_advancedtopmenu/column_icons/209.jpg"></a>
+                                                                src="{{ Storage::disk('s3')->url('menu-images/' . $subitem->getImage()) }}"></a>
                                                     <a href="{{ $subitem->getUrl() }}"><span>{{ $subitem->getTitle() }}</span></a>
 
                                                         <ul class="level1">

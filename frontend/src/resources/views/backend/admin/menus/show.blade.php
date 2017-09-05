@@ -36,7 +36,13 @@
                             @forelse($menu->getItems() as $item)
                                 <tr>
                                     <td>{{ $item->getTitle() }}</td>
-                                    <td><a href="{{ "/management/menu-item/" . $item->getId(). "" }}">Ver</a></td>
+                                    <td><a class="btn btn-default" href="{{ "/management/menu-item/" . $item->getId(). "" }}">Ver</a>
+                                        <form method="POST" action={{"/management/menu-item/" . $item->getId()."/edit-subitem"}}>
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button class="btn btn-danger" type="submit">Eliminar</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
