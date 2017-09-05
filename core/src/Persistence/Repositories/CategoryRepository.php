@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\EntityManager;
@@ -71,16 +72,44 @@ class CategoryRepository extends NestedTreeRepository
         }
     }
 
-    public function findSubcategories(Category $category)
-    {
+    public function findSubcategories(
+        Category $category,
+        $direct = false,
+        $sortByField = null,
+        $direction = 'ASC',
+        $includeNode = false
+    ) {
         $subcategories = $this
-            ->children($category);
+            ->children($category, $direct, $sortByField, $direction, $includeNode);
 
         return $subcategories;
     }
 
+
     public function getParents(Category $category)
     {
         return $this->getPath($category);
+    }
+
+    public function findBySlug(string $slug, string $locale)
+    {
+        $qb = $this->createQueryBuilder('category')
+            ->select('category')
+            ->where('category.slug = :slug')
+            ->setMaxResults(1)
+            ->setParameter('slug', $slug);
+
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getOneOrNullResult();
     }
 }

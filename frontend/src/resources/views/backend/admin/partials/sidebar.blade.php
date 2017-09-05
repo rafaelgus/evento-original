@@ -78,7 +78,7 @@
         </ul>
     </li>
     <li class="treeview">
-        <a href="#"><i class="fa fa-apple"></i> <span>{{ trans('texts.sections.allergens.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <a href="#"><i class="fa fa-bug"></i> <span>{{ trans('texts.sections.allergens.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
             <li><a href="/management/allergen">{{ trans('texts.sections.allergens.view') }}</a></li>
         </ul>
@@ -94,6 +94,14 @@
         </ul>
         <ul class="treeview-menu">
             <li><a href="/management/vouchers/create">{{ trans('texts.sections.vouchers.new') }}</a></li>
+        </ul>
+    <li>
+        <a href="#"><i class="fa fa-heart"></i> <span>{{ trans('texts.sections.healthys.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/healthy">{{ trans('texts.sections.healthys.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/healthy/create">{{ trans('texts.sections.healthys.new') }}</a></li>
         </ul>
     </li>
     <li class="treeview">

@@ -1,7 +1,9 @@
 <?php
+
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Tag;
 use Gedmo\Translatable\Query\TreeWalker\TranslationWalker;
 use Gedmo\Translatable\TranslatableListener;
@@ -88,5 +90,32 @@ class TagRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getByCategories(array $categories, string $locale = 'es')
+    {
+        $categoriesIds = array_map(function ($category) {
+            return $category->getId();
+        }, $categories);
+
+        $qb = $this->createQueryBuilder('tag')
+            ->join(
+                'tag.articles',
+                'article',
+                'WITH',
+                'article.category IN (' . implode(',', $categoriesIds) . ')'
+            );
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
     }
 }

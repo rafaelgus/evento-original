@@ -45,10 +45,11 @@ class ColorService
         return $this->colorRepository->findAll($locale);
     }
 
-    public function create(string $name)
+    public function create(string $name, string $hexadecimalCode)
     {
         $color = new Color();
         $color->setName($name);
+        $color->setHexadecimalCode($hexadecimalCode);
 
         $this->save($color);
 
@@ -61,9 +62,10 @@ class ColorService
         $this->save($color);
     }
 
-    public function update(Color $color, string $name)
+    public function update(Color $color, string $name, string $hexadecimalCode)
     {
         $color->setName($name);
+        $color->setHexadecimalCode($hexadecimalCode);
 
         $this->save($color);
 
@@ -90,5 +92,10 @@ class ColorService
         }
 
         return $colors;
+    }
+
+    public function getByCategories(array $categories, string $locale = 'es')
+    {
+        return $this->colorRepository->getByCategories($categories, $locale);
     }
 }

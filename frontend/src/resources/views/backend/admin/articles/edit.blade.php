@@ -142,20 +142,26 @@
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.status') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="status" name="status">
-                                        <option value="draft">Borrador</option>
-                                        <option value="published">Publicado</option>
-                                        <option value="discontinued">Descontinuado</option>
+                                        <option value="draft" {{ ($article->getStatus() == 'draft' ? 'selected' : '') }}>Borrador</option>
+                                        <option value="published" {{ ($article->getStatus() == 'published' ? 'selected' : '') }}>Publicado</option>
+                                        <option value="discontinued" {{ ($article->getStatus() == 'discontinued' ? 'selected' : '') }}>Descontinuado</option>
                                     </select>
                                     {!! $errors->first('status', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
-
+                            <div class="form-group {{ $errors->has('isNew') ? 'has-error' : '' }}">
+                                <label for="inputIsNew" class="col-sm-2 control-label">{{ trans('texts.sections.article.isNew') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="checkbox" name="isNew" id="isNew" class="checkbox" {{ ($article->isNew() ? 'checked' : '') }}>
+                                    {!! $errors->first('isNew', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                             <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.categories') }}</label>
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="categories" name="category">
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->getId() }}">{{$category->getName()}}</option>
+                                            <option value="{{ $category->getId() }}" {{ ($category == old('category', $article->getCategory()) ? 'selected' : '')  }}>{{$category->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
@@ -166,7 +172,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="brands" name="brand">
                                         @foreach($brands as $brand)
-                                            <option value="{{ $brand->getId() }}" >{{$brand->getName()}}</option>
+                                            <option value="{{ $brand->getId() }}" {{ ($brand == old('brands', $article->getBrand()) ? 'selected' : '') }}>{{$brand->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
@@ -177,7 +183,7 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" id="license" name="license">
                                         @foreach($licenses as $license)
-                                            <option value="{{ $license->getId() }}" >{{$license->getName()}}</option>
+                                            <option value="{{ $license->getId() }}" {{ ($license == old('license', $article->getLicense()) ? 'selected' : '') }}>{{$license->getName()}}</option>
                                         @endforeach
                                     </select>
                                     {!! $errors->first('license', '<span class="help-block">* :message</span>') !!}
@@ -239,6 +245,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group {{ $errors->has('healthys[]') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.healthys') }}</label>
+                                <div class="col-sm-10">
+                                    <select multiple class="form-control select2" id="healthys" name="healthys[]" style="width: 100%">
+                                        @foreach($healthys as $healthy)
+                                            <option value="{{ $healthy->getId() }}" {{(in_array($healthy, $article->getHealthys()->toArray())? 'selected' : '')}}>{{$healthy->getName()}}</option>
+                                        @endforeach
+                                    </select>
+                                    {!! $errors->first('healthys[]', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="box-footer">
                                 @foreach($article->getImages() as $image)
                                 <ul class="mailbox-attachments clearfix">
@@ -292,6 +310,7 @@
         $('#allergens').select2();
         $('#colors').select2();
         $('#flavours').select2();
+        $('#healthys').select2();
         $('#brands').select2();
         loadTable();
 

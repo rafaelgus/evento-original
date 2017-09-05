@@ -10,7 +10,9 @@ return [
           'view' => 'Ver',
           'new' => 'Nueva',
           'edit' => 'editar',
-          'name' => 'Nombre'
+          'name' => 'Nombre',
+          'slug' => 'Slug',
+          'description' => 'Descripción',
       ],
       'colors' => [
           'title' => 'Colores',
@@ -18,9 +20,18 @@ return [
           'new' => 'Nuevo',
           'name' => 'Nombre',
           'edit' => 'Editar',
+          'hexadecimalCode' => 'Hexadecimal',
+          'preview' => 'Vista previa',
       ],
       'flavours' => [
           'title' => 'Sabores',
+          'view' => 'Ver',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'edit' => 'Editar',
+      ],
+      'healthys' => [
+          'title' => 'Saludables',
           'view' => 'Ver',
           'new' => 'Nuevo',
           'name' => 'Nombre',
@@ -84,7 +95,9 @@ return [
           'brand' => 'Marca',
           'quantity' => 'Cantidad',
           'license' => 'Licencia',
-          'priceType' => 'Venta por'
+          'priceType' => 'Venta por',
+          'healthys' => 'Saludables',
+          'isNew' => 'Marcar como nuevo'
       ],
       'license' => [
           'title' => 'Licencia',

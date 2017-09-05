@@ -31,8 +31,6 @@ class UpdateArticleRequest extends FormRequest
             'barCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,barCode,'. $this->input('barCode').',barCode',
             'internalCode' => 'required|max:255|unique:EventoOriginal\Core\Entities\Article,internalCode,'. $this->input('internalCode').',internalCode',
             'costPrice' => 'required',
-            'colors' => 'required',
-            'tags' => 'required'
         ];
     }
 }
