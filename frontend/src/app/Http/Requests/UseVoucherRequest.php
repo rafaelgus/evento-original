@@ -24,7 +24,7 @@ class UseVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|exist:EventoOriginal\Core\Entities\Voucher,code'
+            'code' => 'required|exists:EventoOriginal\Core\Entities\Voucher,code'
         ];
     }
 }

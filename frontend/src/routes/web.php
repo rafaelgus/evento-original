@@ -11,7 +11,7 @@ Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
 
-Route::post('/discount', 'Frontend\CartController@useVoucher');
+Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
 Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
     return view('frontend.my_wishlist');

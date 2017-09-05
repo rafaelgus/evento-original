@@ -103,7 +103,7 @@ class VoucherService
     public function getDiscountAmount(Voucher $voucher, $total)
     {
         if ($voucher->getType() === self::TYPE_ABSOLUTE) {
-            $discount = $total - $voucher->getAmount();
+            $discount = $voucher->getAmount();
 
             return $discount;
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {

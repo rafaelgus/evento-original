@@ -18,12 +18,42 @@ class CartController
     public function show()
     {
         $cart = Cart::instance('shopping')->content();
+        $discounts = Cart::instance('discount')->content();
 
-        $total = Cart::total();
+        $itemsAndDiscount = [];
+        $itemTotal = 0;
+        $discountsTotal = 0;
+
+        foreach ($cart as $item) {
+            $itemsAndDiscount[] = [
+                'id' => $item->rowId,
+                'name' => $item->name,
+                'qty' => $item->qty,
+                'price' => $item->price,
+                'image' => $item->options->has('image') ? $item->options->image : '',
+                'article' => true
+            ];
+
+            $itemTotal = $itemTotal + ($item->price * $item->qty);
+        }
+
+        foreach ($discounts as $discount) {
+            $itemsAndDiscount[] = [
+                'id' => $discount->rowId,
+                'name' => $discount->name,
+                'qty' => $discount->qty,
+                'price' => - $discount->price,
+                'image' => $discount->options->has('image') ? $discount->options->image : '',
+                'article' => false
+            ];
+
+            $discountsTotal = $discountsTotal + $discount->price;
+        }
 
         return view('frontend.shopping_cart')
-            ->with('cart', $cart)
-            ->with('total', $total);
+            ->with('cart', $itemsAndDiscount)
+            ->with('discounts', $discountsTotal)
+            ->with('total', $itemTotal - $discountsTotal);
     }
 
     public function addToCart(Request $request)

@@ -43,13 +43,13 @@
                                     <tbody>
                                     @foreach($cart as $item)
                                     <tr class="first odd">
-                                        <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="/articles/storage/{{($item->options->has('image') ? $item->options->image : '')}}"></a></td>
-                                        <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">{{$item->name}}</a> </h2></td>
+                                        <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="/articles/storage/{{$item['image']}}"></a></td>
+                                        <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">{{$item['name']}}</a> </h2></td>
                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                                        <td class="a-right"><span class="cart-price"> <span class="price">{{$item->price}}</span> </span></td>
-                                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item->qty}}" name="cart[15945][qty]" type="number"></td>
-                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">{{$item->price}}</span> </span></td>
-                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="/removeToCart/{{$item->rowId}}"><span><span>Remove item</span></span></a></td>
+                                        <td class="a-right"><span class="cart-price"> <span class="price">{{$item['price']}}</span> </span></td>
+                                        <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item['qty']}}" name="cart[15945][qty]" type="number"></td>
+                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">{{$item['price']}}</span> </span></td>
+                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="/removeToCart/{{$item['id']}}"><span><span>Remove item</span></span></a></td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -415,8 +415,8 @@
                                 <form method="post" action="#couponPost/" id="discount-coupon-form">
                                     <label for="coupon_code">{{ trans('frontend/shopping_cart.enter_discount_code') }}</label>
                                     <input type="hidden" value="0" id="remove-coupone" name="remove">
-                                    <input type="text" value="" name="coupon_code" id="couponCode" class="input-text fullwidth">
-                                    <button value="Apply Coupon" onClick="discountForm.submit(false)" class="button coupon " title="Apply Coupon" type="button"><span>{{ trans('frontend/shopping_cart.apply_coupon') }}</span></button>
+                                    <input type="text" value="" name="coupon_code" id="coupon_code" class="input-text fullwidth">
+                                    <button value="Apply Coupon" onClick="useVoucher()" class="button coupon " title="Apply Coupon" type="button"><span>{{ trans('frontend/shopping_cart.apply_coupon') }}</span></button>
                                 </form>
                             </div>
                         </div>
@@ -432,18 +432,18 @@
                                         <tbody>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> Subtotal </td>
-                                            <td class="a-right" style=""><span class="price">$77.38</span></td>
+                                            <td class="a-right" style=""><span class="price">${{$total}}</span></td>
                                         </tr>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> {{ trans('frontend/shopping_cart.discount') }} </td>
-                                            <td class="a-right" style=""><span class="price">$0.00</span></td>
+                                            <td class="a-right" style=""><span class="price">$ -{{  $discounts  }}</span></td>
                                         </tr>
                                         </tbody>
 
                                         <tfoot>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""><strong>{{ trans('frontend/shopping_cart.total') }}</strong></td>
-                                            <td class="a-right" style=""><strong><span class="price">€{{$total}}</span></strong></td>
+                                            <td class="a-right" style=""><strong><span class="price">${{$total}}</span></strong></td>
                                         </tr>
                                         </tfoot>
                                     </table>
@@ -793,17 +793,20 @@
 @section('scripts_body')
     <script type="text/javascript">
         function useVoucher() {
-            var code = document.getElementById('couponCode').value;
+            var code = document.getElementById('coupon_code').value;
 
             var params = encodeURI('code=' + code);
 
             var xhr = new XMLHttpRequest();
             xhr.open('POST', '/discount', true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                     window.location.href = '{{ trans('frontend/shopping_cart.slug') }}'
+                }
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 400) {
+                   alert('Voucher en uso o incorrecto');
                 }
             };
 
