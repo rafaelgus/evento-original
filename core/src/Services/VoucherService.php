@@ -1,7 +1,6 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
-
 use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Voucher;
 use EventoOriginal\Core\Persistence\Repositories\VoucherRepository;
@@ -36,9 +35,9 @@ class VoucherService
         $voucher->setStatus(self::STATUS_ACTIVE);
         $voucher->setType($type);
 
-        if (self::TYPE_ABSOLUTE) {
+        if ($type === self::TYPE_ABSOLUTE) {
             $voucher->setAmount($amount);
-        } elseif (self::TYPE_RELATIVE) {
+        } elseif ($type === self::TYPE_RELATIVE) {
             $voucher->setValue($value);
         }
         if ($category) {
@@ -100,6 +99,12 @@ class VoucherService
         }
     }
 
+    /**
+     * @param Voucher $voucher
+     * @param $total
+     * @return mixed
+     * @throws Exception
+     */
     public function getDiscountAmount(Voucher $voucher, $total)
     {
         if ($voucher->getType() === self::TYPE_ABSOLUTE) {
@@ -107,7 +112,7 @@ class VoucherService
 
             return $discount;
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
-            $discount = $total * ($voucher->getValue() / 100);
+            $discount = number_format($total * ($voucher->getValue() / 100), 2);
 
             return $discount;
         } else {

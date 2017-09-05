@@ -98,6 +98,7 @@ class CartController
     public function destroyCart()
     {
         Cart::instance('shopping')->destroy();
+        Cart::instance('discount')->destroy();
 
         return redirect()->to(trans('frontend/shopping_cart.slug'));
     }

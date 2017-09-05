@@ -46,10 +46,10 @@
                                         <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="/articles/storage/{{$item['image']}}"></a></td>
                                         <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">{{$item['name']}}</a> </h2></td>
                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
-                                        <td class="a-right"><span class="cart-price"> <span class="price">{{$item['price']}}</span> </span></td>
+                                        <td class="a-right"><span class="cart-price"> <span class="price">$ {{$item['price']}}</span> </span></td>
                                         <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item['qty']}}" name="cart[15945][qty]" type="number"></td>
-                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">{{$item['price']}}</span> </span></td>
-                                        <td class="a-center last"><a class="button remove-item" title="Remove item" href="/removeToCart/{{$item['id']}}"><span><span>Remove item</span></span></a></td>
+                                        <td class="a-right movewishlist"><span class="cart-price"> <span class="price">$ {{$item['price']}}</span> </span></td>
+                                        @if($item['article'])<td class="a-center last"><a class="button remove-item" title="Remove item" href="/removeToCart/{{$item['id']}}"><span><span>Remove item</span></span></a></td>@endif
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -432,7 +432,7 @@
                                         <tbody>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> Subtotal </td>
-                                            <td class="a-right" style=""><span class="price">${{$total}}</span></td>
+                                                <td class="a-right" style=""><span class="price">${{$total}}</span></td>
                                         </tr>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> {{ trans('frontend/shopping_cart.discount') }} </td>

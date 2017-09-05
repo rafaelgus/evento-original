@@ -22,7 +22,7 @@
                 <!-- Horizontal Form -->
                 <div class="box box-danger">
                     <!-- form start -->
-                    <form role="form" class="form-horizontal" action="/management/vouchers" method="POST">
+                    <form role="form" class="form-horizontal" onload="changeSelectType()" action="/management/vouchers" method="POST">
                         <div class="box-body">
                             @include('backend.messages.session')
 

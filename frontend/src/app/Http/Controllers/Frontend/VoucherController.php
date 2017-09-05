@@ -36,6 +36,5 @@ class VoucherController
         } catch (Exception $exception) {
             return response('voucher en uso o incorrecto',400);
         }
-
     }
 }
