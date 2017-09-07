@@ -5,6 +5,9 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 
@@ -17,7 +20,18 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
+        $em->getFilters()->disable('article_brand');
+        $em->getFilters()->disable('article_license');
+
+        $menuRepository = $this->app->make(Repositories\MenuRepository::class);
+        $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+
+        $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
+
+        $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+
+        View::share('navBarMenuItems', $navbarMenuItems);
     }
 
     /**
@@ -89,9 +103,11 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\HealthyRepository::class, function () {
             return EntityManager::getRepository(Entities\Healthy::class);
         });
-
-        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
-        $em->getFilters()->disable('article_brand');
-        $em->getFilters()->disable('article_license');
+        $this->app->singleton(Repositories\MenuRepository::class, function () {
+            return EntityManager::getRepository(Entities\Menu::class);
+        });
+        $this->app->singleton(Repositories\MenuItemRepository::class, function () {
+            return EntityManager::getRepository(Entities\MenuItem::class);
+        });
     }
 }

@@ -14,7 +14,6 @@ use EventoOriginal\Core\Services\FlavourService;
 use EventoOriginal\Core\Services\HealthyService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\TagService;
-use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;

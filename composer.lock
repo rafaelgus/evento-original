@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "fa7e08c62fb403acc9e50813ccefc094",
     "content-hash": "4736d1fc4f9512ae0a352c73a36e26ee",
     "packages": [
         {
@@ -51,7 +52,7 @@
                 "config",
                 "configuration"
             ],
-            "time": "2015-10-13T20:05:49+00:00"
+            "time": "2015-10-13 20:05:49"
         },
         {
             "name": "cfrutos/flaubert",
@@ -111,7 +112,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
-            "time": "2017-02-14T19:40:03+00:00"
+            "time": "2017-02-14 19:40:03"
         },
         {
             "name": "doctrine/inflector",
@@ -178,7 +179,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2017-07-22T12:18:28+00:00"
+            "time": "2017-07-22 12:18:28"
         },
         {
             "name": "illuminate/contracts",
@@ -222,7 +223,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "https://laravel.com",
-            "time": "2017-08-27T09:20:20+00:00"
+            "time": "2017-08-27 09:20:20"
         },
         {
             "name": "illuminate/filesystem",
@@ -272,7 +273,7 @@
             ],
             "description": "The Illuminate Filesystem package.",
             "homepage": "https://laravel.com",
-            "time": "2017-08-03T13:03:40+00:00"
+            "time": "2017-08-03 13:03:40"
         },
         {
             "name": "illuminate/support",
@@ -329,7 +330,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-09-04T14:00:07+00:00"
+            "time": "2017-09-04 14:00:07"
         },
         {
             "name": "nesbot/carbon",
@@ -382,7 +383,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-16T07:55:07+00:00"
+            "time": "2017-01-16 07:55:07"
         },
         {
             "name": "php-di/invoker",
@@ -425,7 +426,7 @@
                 "invoke",
                 "invoker"
             ],
-            "time": "2016-07-14T13:09:58+00:00"
+            "time": "2016-07-14 13:09:58"
         },
         {
             "name": "php-di/php-di",
@@ -487,7 +488,7 @@
                 "dependency injection",
                 "di"
             ],
-            "time": "2017-04-11T19:42:20+00:00"
+            "time": "2017-04-11 19:42:20"
         },
         {
             "name": "php-di/phpdoc-reader",
@@ -524,7 +525,7 @@
                 "phpdoc",
                 "reflection"
             ],
-            "time": "2015-11-29T10:34:25+00:00"
+            "time": "2015-11-29 10:34:25"
         },
         {
             "name": "psr/container",
@@ -573,7 +574,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "time": "2017-02-14 16:28:37"
         },
         {
             "name": "psr/simple-cache",
@@ -621,7 +622,7 @@
                 "psr-16",
                 "simple-cache"
             ],
-            "time": "2017-01-02T13:31:39+00:00"
+            "time": "2017-01-02 13:31:39"
         },
         {
             "name": "symfony/finder",
@@ -670,7 +671,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T21:01:25+00:00"
+            "time": "2017-06-01 21:01:25"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -729,7 +730,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-06-14T15:44:48+00:00"
+            "time": "2017-06-14 15:44:48"
         },
         {
             "name": "symfony/translation",
@@ -793,7 +794,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-24T16:45:17+00:00"
+            "time": "2017-06-24 16:45:17"
         },
         {
             "name": "symfony/yaml",
@@ -842,7 +843,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-06-01T20:52:29+00:00"
+            "time": "2017-06-01 20:52:29"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -892,7 +893,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2016-09-01T10:05:43+00:00"
+            "time": "2016-09-01 10:05:43"
         }
     ],
     "packages-dev": [],

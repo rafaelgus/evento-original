@@ -1457,7 +1457,7 @@ nav {
 }
 
 #nav ul.level1 > li a:hover {
-    color: #333
+    color: #413C5E;
 }
 
 /* 1st level only */
@@ -1884,8 +1884,8 @@ ul.level1 {
     padding-bottom: 20px;
     padding-top: 0;
     vertical-align: top;
-    width: 14.6%;
-    margin-left: 5px;
+    width: 22%;
+    margin-left: 10px;
 }
 
 #nav ul.level0 > li.last {
@@ -1898,8 +1898,8 @@ ul.level1 {
 }
 
 #nav ul.level0 > li > a {
-    color: #333;
-    font-size: 14px;
+    color: #413C5E;
+    font-size: 18px;
     font-weight: bold;
     padding: 8px 0px;
     letter-spacing: 0.5px;
@@ -1907,6 +1907,10 @@ ul.level1 {
     text-transform: uppercase;
     border-bottom: 2px #e94d65 solid;
 
+}
+
+#nav ul.level0 > li > a.nav-image {
+    border-bottom:none;
 }
 
 /* 2nd level+ */
@@ -1932,7 +1936,7 @@ ul.level1 {
     -moz-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: normal;
     letter-spacing: 0.5px;
     padding-left: 0px;
@@ -2053,7 +2057,7 @@ ul.level1 {
 }
 
 #nav .grid12-8 ul.level0 > li {
-    width: 21%;
+    width: 31%;
 }
 
 .grid13-8 {
