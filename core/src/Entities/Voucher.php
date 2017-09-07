@@ -5,7 +5,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-         * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\VoucherRepository")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\VoucherRepository")
  * @ORM\Table(name="vouchers")
  */
 class Voucher
@@ -43,7 +43,7 @@ class Voucher
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="Vouchers")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="vouchers")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
      */
     private $category;
