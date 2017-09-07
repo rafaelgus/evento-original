@@ -39,6 +39,6 @@ class MenuRepository extends BaseRepository
 
         $query->useResultCache(true, 3600, 'menus');
 
-        return $query->getSingleResult();
+        return $query->getOneOrNullResult();
     }
 }
