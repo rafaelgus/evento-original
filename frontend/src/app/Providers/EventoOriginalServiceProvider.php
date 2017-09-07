@@ -29,7 +29,10 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
         $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
 
-        $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+        $navbarMenuItems = [];
+        if ($navbarMenu) {
+            $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+        }
 
         View::share('navBarMenuItems', $navbarMenuItems);
     }
