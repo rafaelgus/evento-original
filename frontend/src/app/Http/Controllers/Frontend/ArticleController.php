@@ -16,6 +16,7 @@ use EventoOriginal\Core\Services\TagService;
 use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {

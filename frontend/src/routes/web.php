@@ -169,6 +169,20 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
             Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
         });
+        Route::group(['prefix' => '/menus'], function () {
+            Route::get('/', 'Backend\MenuController@index');
+            Route::get('/{id}', 'Backend\MenuController@show');
+        });
+        Route::group(['prefix' => '/menu-item'], function () {
+            Route::get('/create', 'Backend\MenuItemController@create');
+            Route::get('/create-subitem/{id}', 'Backend\MenuItemController@createSubitem');
+            Route::post('/', 'Backend\MenuItemController@store');
+            Route::post('/subitem', 'Backend\MenuItemController@storeSubitem');
+            Route::get('/{id}', 'Backend\MenuItemController@show');
+            Route::get('/{id}/edit-subitem', 'Backend\MenuItemController@editSubitem');
+            Route::put('/{id}/edit-subitem', 'Backend\MenuItemController@updateSubitem');
+            Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
+        });
     });
 });
 

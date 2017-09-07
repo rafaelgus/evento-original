@@ -13,6 +13,7 @@ return [
             'brand' => 'La marca se gruado con exito',
             'users' => 'El usuario se guardo con exito',
             'healthy' => 'El saludable se guardó con éxito',
+            'menu_item' => 'El item se guardó con éxito',
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
@@ -20,5 +21,8 @@ return [
             'category' => 'La categoria se actualizo correctamente',
             'users' => 'El usuario se actualizo con exito',
         ],
+    ],
+    'error' => [
+        'create' => 'Ha ocurrido un error al guardar'
     ]
 ];

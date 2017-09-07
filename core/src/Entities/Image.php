@@ -35,6 +35,11 @@ class Image
     private $article;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $type;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -90,5 +95,19 @@ class Image
         $this->article = $article;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 }
