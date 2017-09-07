@@ -3,6 +3,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
+
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
@@ -74,6 +75,25 @@ class ArticleRepository extends BaseRepository
         }
     }
 
+
+    public function findAllPaginated(int $currentPage, int $maxItems)
+    {
+        $sql = 'SELECT *FROM articles';
+
+        $query = $this->getEntityManager()
+            ->createQuery($sql)
+            ->setFirstResult($maxItems * ($currentPage - 1))
+            ->setMaxResults($maxItems);
+
+        $pagination = new Paginator($query, true);
+
+        return $pagination;
+    }
+
+    public function findBySlug(string $slug)
+    {
+        return $this->findOneBy(['slug' => $slug]);
+    }
 
     /**
      * @param array $categories

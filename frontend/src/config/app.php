@@ -179,12 +179,13 @@ return [
 
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
+        LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\EventoOriginalServiceProvider::class,
 
         Yajra\Datatables\DatatablesServiceProvider::class,
-
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
     ],
 
     /*
@@ -237,6 +238,7 @@ return [
         'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
         'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 

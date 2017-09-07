@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+
 use DoctrineProxies\__CG__\EventoOriginal\Core\Entities\Flavour;
 use EventoOriginal\Core\Persistence\Repositories\CategoryRepository;
 use EventoOriginal\Core\Services\ArticleService;
@@ -13,10 +14,9 @@ use EventoOriginal\Core\Services\FlavourService;
 use EventoOriginal\Core\Services\HealthyService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\TagService;
-use function foo\func;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -54,29 +54,39 @@ class ArticleController extends Controller
         $this->healthyService = $healthyService;
     }
 
+    public function getHome()
+    {
+        $articles = $this->articleService->findAll(App::getLocale());
+
+        return view('frontend.home')
+            ->with('articles', $articles);
+    }
+
     public function index(string $categorySlug = null)
     {
-        $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
-        $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+        if ($categorySlug) {
+            $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
+            $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
 
-        $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
-        $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
-        $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
-        $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
-        $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
-        $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
+            $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
+            $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
+            $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
+            $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
+            $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
+            $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
 
-        if ($category) {
-            return view('frontend.articles.index')
-                ->with('category', $category)
-                ->with('brands', $brands)
-                ->with('colors', $colors)
-                ->with('licenses', $licenses)
-                ->with('flavours', $flavours)
-                ->with('tags', $tags)
-                ->with('healthys', $healthys);
-        } else {
-            return abort(404);
+            if ($category) {
+                return view('frontend.articles.index')
+                    ->with('category', $category)
+                    ->with('brands', $brands)
+                    ->with('colors', $colors)
+                    ->with('licenses', $licenses)
+                    ->with('flavours', $flavours)
+                    ->with('tags', $tags)
+                    ->with('healthys', $healthys);
+            } else {
+                return abort(404);
+            }
         }
     }
 
@@ -120,5 +130,20 @@ class ArticleController extends Controller
         ];
 
         return $response;
+    }
+
+    public function getImage(string $filename)
+    {
+        $image = Storage::disk('s3')->get('/images/'. $filename);
+
+        return $image;
+    }
+
+    public function articleDetail(string $slug)
+    {
+        $article = $this->articleService->findBySlug($slug);
+
+        return view('frontend.articles.show')
+            ->with('article', $article);
     }
 }

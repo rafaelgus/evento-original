@@ -85,9 +85,15 @@ class Category
      */
     private $children;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Voucher", mappedBy="category")
+     */
+    private $vouchers;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+        $this->vouchers = new ArrayCollection();
         $this->children = new ArrayCollection();
     }
 
@@ -206,6 +212,31 @@ class Category
     public function setParent(Category $parent)
     {
         $this->parent = $parent;
+    }
+
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getVouchers()
+    {
+        return $this->vouchers;
+    }
+
+    /**
+     * @param array $vouchers
+     */
+    public function setVouchers(array $vouchers)
+    {
+        $this->vouchers = $vouchers;
+    }
+
+    /**
+     * @param Voucher $voucher
+     */
+    public function addVoucher(Voucher $voucher)
+    {
+        $this->vouchers[] = $voucher;
     }
 
     public function getChildren()

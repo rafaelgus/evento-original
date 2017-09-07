@@ -88,6 +88,14 @@
 
     </li>
     <li class="treeview">
+        <a href="#"><i class="fa fa-apple"></i> <span>{{ trans('texts.sections.vouchers.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/vouchers">{{ trans('texts.sections.vouchers.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/vouchers/create">{{ trans('texts.sections.vouchers.new') }}</a></li>
+        </ul>
+    <li>
         <a href="#"><i class="fa fa-heart"></i> <span>{{ trans('texts.sections.healthys.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
             <li><a href="/management/healthy">{{ trans('texts.sections.healthys.view') }}</a></li>

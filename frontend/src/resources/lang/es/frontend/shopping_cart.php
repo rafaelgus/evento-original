@@ -18,4 +18,7 @@ return [
     'slug' => 'carrito-de-compras',
     'cart' => 'Carrito',
     'empty' => 'Vacío',
+    'cart_deleted' => 'El carro esta vacio',
+    'delete_product' => 'El producto se ha eliminado',
+    'add_to_cart' => 'Se agrego el producto'
 ];

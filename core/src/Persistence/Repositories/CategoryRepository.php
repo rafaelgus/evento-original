@@ -85,6 +85,12 @@ class CategoryRepository extends NestedTreeRepository
         return $subcategories;
     }
 
+
+    public function getParents(Category $category)
+    {
+        return $this->getPath($category);
+    }
+
     public function findBySlug(string $slug, string $locale)
     {
         $qb = $this->createQueryBuilder('category')

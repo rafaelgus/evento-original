@@ -120,6 +120,17 @@ class ArticleController
 
     public function store(StoreArticleRequest $request)
     {
+        $flavours =  [];
+        $ingredients = [];
+        $allergens = [];
+
+        if ($request->has('allergens')) {
+            $allergens = $this
+                ->allergenService
+                ->findByIds(
+                    $request->input('allergens')
+                );
+        }
         $allergens = $this
             ->allergenService
             ->findByIds(
@@ -137,6 +148,14 @@ class ArticleController
             ->findByIds(
                 ($request->input('colors') ?: [])
             );
+
+        if ($request->has('flavours')) {
+            $flavours = $this
+                ->flavourService
+                ->findByIds(
+                    $request->input('flavours')
+                );
+        }
 
         $flavours = $this
             ->flavourService
@@ -166,6 +185,13 @@ class ArticleController
                 );
         }
 
+        if ($request->has('ingredients')) {
+            $ingredients = $this
+                ->ingredientService
+                ->findByIds(
+                    $request->input('ingredients')
+                );
+        }
         $ingredients = $this
             ->ingredientService
             ->findByIds(
@@ -280,6 +306,7 @@ class ArticleController
         } else {
             $images = [];
         }
+
 
         $allergens = $this
             ->allergenService

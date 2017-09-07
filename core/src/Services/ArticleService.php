@@ -185,6 +185,20 @@ class ArticleService
     }
 
 
+    public function findAllPaginated(int $currentPage = 1, int $maxItems = 10)
+    {
+        return $this->articleRepository->findAllPaginated($currentPage, $maxItems);
+    }
+
+    /**
+     * @param string $slug
+     * @return null|Article
+     */
+    public function findBySlug(string $slug)
+    {
+        return $this->articleRepository->findBySlug($slug);
+    }
+
     /**
      * @param string $categorySlug
      * @param array $subCategories

@@ -12,7 +12,7 @@ return [
             'ingredient' => 'El ingrediente se actualizo con exito',
             'brand' => 'La marca se gruado con exito',
             'users' => 'El usuario se guardo con exito',
-            'healthy' => 'El saludable se guardó con éxito',
+            'voucher' => 'El voucher se creo con exito',
             'menu_item' => 'El item se guardó con éxito',
         ],
         'edit' => [
@@ -20,6 +20,7 @@ return [
             'allergen' => 'El alergeno se modifico con exito',
             'category' => 'La categoria se actualizo correctamente',
             'users' => 'El usuario se actualizo con exito',
+            'voucher' => 'El voucher se edito con exito'
         ],
     ],
     'error' => [

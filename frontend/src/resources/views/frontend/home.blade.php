@@ -39,10 +39,11 @@
                                         <div class="tab-panel active" id="tab-1">
                                             <div class="category-products">
                                                 <ul class="products-grid">
+                                                    @foreach($articles as $article)
                                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                         <div class="item-inner">
                                                             <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/products-images/product1.jpg"> </a>
+                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; "> </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">
                                                                             <li><a class="link-quickview" href="quick_view.html"></a> </li>
@@ -54,7 +55,7 @@
                                                             </div>
                                                             <div class="item-info">
                                                                 <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle"> TAZA DE ENSUEÑO </a> </div>
+                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle/{{$article->getSlug()}}"> {{$article->getName()}} </a> </div>
                                                                     <div class="item-content">
                                                                         <div class="rating-item">
                                                                             <div class="ratings">
@@ -74,336 +75,17 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€155.00</span> </span> </div>
+                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€ {{$article->getPrice()}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
+                                                                            <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Bluetooth Smart Watch" href="product_detail.html"> <img alt="Bluetooth Smart Watch" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Bluetooth Smart Watch" href="product_detail.html"> MARGARITAS ROSAS MARSHMALLOW </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <div class="rating rating-item">
-                                                                                <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </div>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€225.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Samsung GALAXY Note" href="product_detail.html"> <img alt="Samsung GALAXY Note" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Samsung GALAXY Note" href="product_detail.html"> MELODY POPS FRESA LATA </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€99.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Epson L360 Printer" href="product_detail.html"> <img alt="Epson L360 Printer" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="new-label new-top-right">Oferta</div>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Epson L360 Printer" href="product_detail.html"> BESITO AZULES CHERRY HARIBO </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                    <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                    <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                    <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                    <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                    <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                    <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                    <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                    <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                    <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                    <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box">
-                                                                                <p class="special-price"> <span class="price-label">Special Price</span> <span class="price"> €156.00 </span> </p>
-                                                                                <p class="old-price"> <span class="price-label">Regular Price:</span> <span class="price"> €167.00 </span> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Samsung GALAXY Note" href="product_detail.html"> <img alt="Samsung GALAXY Note" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Samsung GALAXY Note" href="product_detail.html"> TAZA GRIS ESTRELLITAS </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                    <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                    <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                    <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                    <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                    <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                    <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                    <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                    <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                    <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                    <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€99.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Samsung GALAXY Note" href="product_detail.html"> <img alt="Samsung GALAXY Note" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Samsung GALAXY Note" href="product_detail.html"> NAZARENOS </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                    <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                    <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                    <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                    <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                    <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                    <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                    <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                    <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                    <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                    <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€99.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Samsung GALAXY Note" href="product_detail.html"> <img alt="Samsung GALAXY Note" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Samsung GALAXY Note" href="product_detail.html"> DOBLE ESFERA ESPEJOS </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                    <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                    <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                    <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                    <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                    <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                    <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                    <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                    <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                    <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                    <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€99.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
-                                                        <div class="item-inner">
-                                                            <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Samsung GALAXY Note" href="product_detail.html"> <img alt="Samsung GALAXY Note" src="/products-images/product1.jpg"> </a>
-                                                                    <div class="box-hover">
-                                                                        <ul class="add-to-links">
-                                                                            <li><a class="link-quickview" href="quick_view.html"></a> </li>
-                                                                            <li><a class="link-wishlist" href="wishlist.html"></a> </li>
-                                                                            <li><a class="link-compare" href="compare.html"></a> </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="item-info">
-                                                                <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Samsung GALAXY Note" href="product_detail.html"> EXPO MEGA ROULETTE </a> </div>
-                                                                    <div class="item-content">
-                                                                        <div class="rating-item">
-                                                                            <div class="ratings">
-                                                                                <fieldset class="rating rating-item">
-                                                                                    <input type="radio" id="star5" name="rating1" value="5" disabled /><label class="full" for="star5"></label>
-                                                                                    <input type="radio" id="star4half" name="rating1" value="4 and a half" disabled/><label class="half" for="star4half"></label>
-                                                                                    <input type="radio" id="star4" name="rating1" value="4" checked disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                                                                                    <input type="radio" id="star3half" name="rating1" value="3 and a half" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                                                                                    <input type="radio" id="star3" name="rating1" value="3" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                                                                                    <input type="radio" id="star2half" name="rating1" value="2 and a half" disabled/><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                                                                                    <input type="radio" id="star2" name="rating1" value="2" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                                                                                    <input type="radio" id="star1half" name="rating1" value="1 and a half" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                                                                                    <input type="radio" id="star1" name="rating1" value="1" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                                                                                    <input type="radio" id="starhalf" name="rating1" value="half" disabled/><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                                                                                </fieldset>
-                                                                                <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€99.00</span> </span> </div>
-                                                                        </div>
-                                                                        <div class="action">
-                                                                            <button class="button btn-cart" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span> </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -1707,4 +1389,28 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('scripts_body')
+    <script>
+        function addItemToCart(articleId, element) {
+            element.textContent = '¡AÑADIDO!';
+
+            var quantity = 1;
+            var params = encodeURI('articleId=' + articleId + '&quantity=' + quantity);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/addToCart', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+                }
+            };
+            xhr.send(params);
+            cartItems();
+        }
+    </script>
 @endsection

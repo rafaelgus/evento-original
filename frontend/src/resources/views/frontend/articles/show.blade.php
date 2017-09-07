@@ -9,7 +9,7 @@
         <div class="col-xs-12">
           <ul>
             <li class="home"> <a href="index.html" title="Go to Home Page">Tazas</a> <span>/</span> </li>
-            <li class="category1601"> <strong>Tazas originales</strong> </li>
+            <li class="category1601"> <strong>{{$article->getName()}}</strong> </li>
           </ul>
         </div>
       </div>
@@ -30,16 +30,14 @@
                   <div class="product-img-box col-lg-4 col-sm-4 col-xs-12">
                     <div class="new-label new-top-left"> New </div>
                     <div class="product-image">
-                      <div class="product-full"> <img id="product-zoom" src="/products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg" alt="product-image"/> </div>
+                      <div class="product-full"> <img id="product-zoom" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" data-zoom-image="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" alt="product-image"/> </div>
                       <div class="more-views">
                         <div class="slider-items-products">
                           <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                             <div class="slider-items slider-width-col4 block-content">
-                              <div class="more-views-items"> <a href="#" data-image="/products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg"> <img id="product-zoom"  src="/products-images/product1.jpg" alt="product-image"/> </a></div>
-                              <div class="more-views-items"> <a href="#" data-image="/products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg"> <img id="product-zoom"  src="/products-images/product1.jpg" alt="product-image"/> </a></div>
-                              <div class="more-views-items"> <a href="#" data-image="products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg"> <img id="product-zoom"  src="/products-images/product1.jpg" alt="product-image"/> </a></div>
-                              <div class="more-views-items"> <a href="#" data-image="products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg"> <img id="product-zoom"  src="/products-images/product1.jpg" alt="product-image"/> </a> </div>
-                              <div class="more-views-items"> <a href="#" data-image="products-images/product1.jpg" data-zoom-image="/products-images/product1.jpg"> <img id="product-zoom"  src="/products-images/product1.jpg" alt="product-image" /> </a></div>
+                              @foreach($article->getImages() as $image)
+                                  <div class="more-views-items"> <a href="#" data-image="/products-images/product1.jpg" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="/articles/storage/{{$image->getPath()}}" alt="product-image"/></a></div>
+                              @endforeach
                             </div>
                           </div>
                         </div>
@@ -49,7 +47,7 @@
                   </div>
                   <div class="product-shop col-lg-8 col-sm-8 col-xs-12">
                     <div class="product-name">
-                      <h1>Taza de ensueño</h1>
+                      <h1>{{$article->getName()}}</h1>
                     </div>
                     <div class="ratings">
                       {{--<div class="rating-box">--}}
@@ -71,46 +69,45 @@
                     </div>
                     <div class="price-block">
                       <div class="price-box">
-                        <p class="special-price"> <span class="price-label">Con Descuento:</span> <span id="product-price-48" class="price"> $309.99 </span> </p>
-                        <p class="old-price"> <span class="price-label">Precio Regular:</span> <span class="price"> $315.99 </span> </p>
+                        <p class="special-price"> <span class="price-label">Con Descuento:</span> <span id="product-price-48" class="price">€ {{$article->getPrice()}} </span> </p>
+                        <p class="old-price"> <span class="price-label">Precio Regular:</span> <span class="price">€ {{$article->getPrice()}} </span> </p>
                         <p class="availability in-stock pull-right"><span>En Stock</span></p>
                       </div>
                     </div>
                     <div class="short-description">
-                      <p>Regala esta taza personalizada a alguien especial, especialmente diseñada para regalar en ocasiones especiales.</p>
+                      <p>{{$article->getShortDescription()}}</p>
                       <br>
                       <p>
-                      <strong>Código:</strong> <label>8985623</label>
+                      <strong>Código: </strong> <label> {{$article->getBarCode()}}</label>
                       </p>
                       <p>
-                      <strong>Marca:</strong> <label>PICHICHU</label>
+                      <strong>Marca: </strong> <label> {{$article->getBrand()->getName()}}</label>
                       </p>
                       <p class="color-detail">
                       <strong>Color:</strong> <label><div class="circle red" title="Rojo"></div><div class="circle blue" title="Azul"></div></label>
                       </p>
                       <p>
-                      <strong>Sabor:</strong> <label>Fresa, Chocolate</label>
+                        @if(count($article->getFlavours()) > 0)
+                            <strong>Sabor: </strong><label> @foreach($article->getFlavours() as $flavour) {{$flavour->getName()}}, @endforeach</label>
+                        @endif
                       </p>
                       <p>
-                      <strong>Alérgenos:</strong> <label>Glúten</label>
+                      <strong>Alérgenos: </strong> <label>@foreach($article->getAllergens() as $allergen) {{$allergen->getName()}}, @endforeach</label>
                       </p>
                       <p>
                       <strong>IVA:</strong> <label>10%</label>
-                      </p>
-                      <p>
-                      <strong>Peso logístico:</strong> <label>500 gr.</label>
                       </p>
                     </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
                         <div class="pull-left">
                           <div class="custom pull-left">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
-                            <input type="text" class="input-text qty" title="Qty" value="1" maxlength="12" id="qty" name="qty">
-                            <button onClick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
+                            <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
+                            <input type="text" id="quantity" class="input-text qty" title="Qty" value="1" maxlength="12" name="qty">
+                            <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;" class="increase items-count" type="button"><i class="fa fa-plus">&nbsp;</i></button>
                           </div>
                         </div>
-                        <button onClick="productAddToCartForm.submit(this)" class="button btn-cart" title="Comprar" type="button">Comprar</button>
+                        <button onClick="addToCart()" class="button btn-cart" title="Comprar" type="button">Comprar</button>
                       </div>
                       <div class="email-addto-box">
                         <ul class="add-to-links">
@@ -135,7 +132,7 @@
               <div id="productTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="product_tabs_description">
                   <div class="std">
-                    <p>Taza de ensueño personalizada diseñada especialmente para ocasiones especiales como cumpleaños, casamientos y todo tipo de eventos. Evento Original te ayuda a quedar siempre bien en cualquier evento que hayas sido invitado.</p>
+                    {!! $article->getDescription() !!}
                   </div>
                 </div>
                 <div class="tab-pane fade" id="reviews_tabs">
@@ -285,6 +282,29 @@
 @endsection
 
 @section('scripts_body')
-<script type="text/javascript" src="/js/jquery.flexslider.js"></script>
-<script type="text/javascript" src="/js/cloud-zoom.js"></script>
+  <script type="text/javascript" src="/js/jquery.flexslider.js"></script>
+  <script type="text/javascript" src="/js/cloud-zoom.js"></script>
+  <script type="text/javascript">
+      function addToCart() {
+          var quantity = document.getElementById('quantity').value;
+          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity);
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/addToCart', true);
+          xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+          xhr.onreadystatechange = function () {
+              if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                  console.log('se agrego item');
+
+              }
+          };
+
+          xhr.send(params);
+          this.cartItems();
+      }
+
+  </script>
+
+
 @endsection

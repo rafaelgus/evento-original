@@ -96,6 +96,18 @@ class CategoryService
         $this->save($category, true);
     }
 
+
+    public function isChildren(Category $parent, Category $children)
+    {
+        $parents = $this->categoryRepository->getPath($parent);
+
+        if (in_array($children, $parents)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function findBySlug(string $slug, string $locale = 'es')
     {
         return $this->categoryRepository->findBySlug($slug, $locale);

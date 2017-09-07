@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use EventoOriginal\Core\Services\ArticleService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $articleService;
+
+    public function __construct(ArticleService $articleService)
     {
+        $this->articleService = $articleService;
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('home');
+        $articles = $this->articleService->findAll(App::getLocale());
+
+        return view('fronted.home')->with('articles', $articles);
     }
 }

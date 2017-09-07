@@ -1,30 +1,18 @@
 <?php
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+Route::get('/', 'Frontend\ArticleController@getHome');
 
-Route::get('/articulo/detalle', function () {
-    return view('frontend.articles.show');
-});
+Route::get('/articulo/detalle/{slug}','Frontend\ArticleController@articleDetail');
 
-Route::get('/' . trans('frontend/shopping_cart.slug'), function () {
-    return view('frontend.shopping_cart');
-});
+Route::get('/' . trans('frontend/shopping_cart.slug'), 'Frontend\CartController@show');
+Route::post('/addToCart', 'Frontend\CartController@addToCart');
+Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
+Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
+Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
+
+Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
 Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
     return view('frontend.my_wishlist');
@@ -41,6 +29,8 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
 });
+
+Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
 Route::get('/mi-cuenta', function () {
     return view('frontend.profile.my_account');
@@ -78,15 +68,6 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getDatatable', 'Backend\FlavourController@getDatatable');
             Route::get('/getAll', 'Backend\FlavourController@getAllFlavours');
         });
-        Route::group(['prefix' => '/healthy'], function () {
-            Route::get('/create', 'Backend\HealthyController@create');
-            Route::post('/', 'Backend\HealthyController@store');
-            Route::get('/', 'Backend\HealthyController@index');
-            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
-            Route::put('/{id}', 'Backend\HealthyController@update');
-            Route::get('/getDatatable', 'Backend\HealthyController@getDatatable');
-            Route::get('/getAll', 'Backend\HealthyController@getAllHealthy');
-        });
         Route::group(['prefix' => '/brand'], function () {
             Route::get('/create', 'Backend\BrandController@create');
             Route::post('/', 'Backend\BrandController@store');
@@ -106,17 +87,17 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getAll', 'Backend\AllergenController@getAllAllergens');
         });
         Route::group(['prefix' => '/category'], function () {
-            Route::get('/create', 'Backend\CategoryController@create');
-            Route::get('{id}/edit', 'Backend\CategoryController@edit');
-            Route::get('/', 'Backend\CategoryController@index');
-            Route::post('/', 'Backend\CategoryController@store');
-            Route::put('/{id}', 'Backend\CategoryController@update');
-            Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
-            Route::get('/{parentId}/createSubCategory', 'Backend\CategoryController@createSubCategory');
-            Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
-            Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
-            Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
-            Route::get('/getAll', 'Backend\CategoryController@getAllCategories');
+           Route::get('/create', 'Backend\CategoryController@create');
+           Route::get('{id}/edit', 'Backend\CategoryController@edit');
+           Route::get('/', 'Backend\CategoryController@index');
+           Route::post('/', 'Backend\CategoryController@store');
+           Route::put('/{id}', 'Backend\CategoryController@update');
+           Route::get('/getCategories', 'Backend\CategoryController@getDataTables');
+           Route::get('/{parentId}/createSubCategory','Backend\CategoryController@createSubCategory');
+           Route::post('/{parentId}/storeSubCategory', 'Backend\CategoryController@storeSubCategory');
+           Route::get('/{parentId}/subcategories', 'Backend\CategoryController@subcategories');
+           Route::get('/{parentId}/getSubCategory', 'Backend\CategoryController@getSubCategories');
+           Route::get('/getAll', 'Backend\CategoryController@getAllCategories');
         });
         Route::group(['prefix' => '/tags'], function () {
             Route::get('/create', 'Backend\TagController@create');
@@ -140,7 +121,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/prices/{articleId}', 'Backend\ArticleController@getPrices');
             Route::post('/prices/update', 'Backend\ArticleController@updatePrice');
         });
-        Route::group(['prefix' => '/ingredients'], function () {
+        Route::group(['prefix' => '/ingredients'], function() {
             Route::get('/create', 'Backend\IngredientController@create');
             Route::get('/{id}/edit', 'Backend\IngredientController@edit');
             Route::get('/', 'Backend\IngredientController@index');
@@ -149,7 +130,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\IngredientController@store');
             Route::get('/getAll', 'Backend\IngredientController@getAll');
         });
-        Route::group(['prefix' => '/licenses'], function () {
+        Route::group(['prefix' => '/licenses'], function() {
             Route::get('/create', 'Backend\LicenseController@create');
             Route::get('/{id}/edit', 'Backend\LicenseController@edit');
             Route::get('/getLicenses', 'Backend\LicenseController@getDataTables');
@@ -159,15 +140,23 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
         Route::group(['prefix' => '/users'], function () {
-            Route::get('/create', 'Backend\UserController@create');
-            Route::get('/{id}/edit', 'Backend\UserController@edit');
-            Route::get('/', 'Backend\UserController@index');
-            Route::get('/getUsers', 'Backend\UserController@getDataTables');
-            Route::post('/', 'Backend\UserController@store');
-            Route::put('/{id}', 'Backend\UserController@update');
-            Route::get('/roles', 'Backend\UserController@getRoles');
-            Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
-            Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
+           Route::get('/create', 'Backend\UserController@create');
+           Route::get('/{id}/edit', 'Backend\UserController@edit');
+           Route::get('/', 'Backend\UserController@index');
+           Route::get('/getUsers', 'Backend\UserController@getDataTables');
+           Route::post('/', 'Backend\UserController@store');
+           Route::put('/{id}', 'Backend\UserController@update');
+           Route::get('/roles', 'Backend\UserController@getRoles');
+           Route::get('/editPassword/{id}', 'Backend\UserController@editPassword');
+           Route::put('/updatePassword/{id}', 'Backend\UserController@updatePassword');
+        });
+        Route::group(['prefix' => '/vouchers'], function () {
+            Route::get('/create', 'Backend\VoucherController@create');
+            Route::get('/{id}/edit', 'Backend\VoucherController@edit');
+            Route::get('/', 'Backend\VoucherController@index');
+            Route::post('/', 'Backend\VoucherController@store');
+            Route::put('/{id}', 'Backend\VoucherController@update');
+            Route::get('/getVouchers', 'Backend\VoucherController@getVouchers');
         });
         Route::group(['prefix' => '/menus'], function () {
             Route::get('/', 'Backend\MenuController@index');
@@ -187,6 +176,5 @@ Route::group(['prefix' => '/management'], function () {
 });
 
 Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
-Route::get('/articles/{categorySlug?}', 'Frontend\ArticleController@getFilteredArticles');
 
 Route::get('/home', 'HomeController@index')->name('home');
