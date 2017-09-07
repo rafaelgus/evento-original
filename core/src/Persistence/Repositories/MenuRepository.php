@@ -30,6 +30,15 @@ class MenuRepository extends BaseRepository
 
     public function findByType(string $type, bool $visible)
     {
-        return $this->findOneBy(['type' => $type]);
+        $qb = $this->createQueryBuilder('menu')
+            ->select('menu')
+            ->where('menu.type = :type')
+            ->setParameter('type', $type);
+
+        $query = $qb->getQuery();
+
+        $query->useResultCache(true, 3600, 'menus');
+
+        return $query->getSingleResult();
     }
 }
