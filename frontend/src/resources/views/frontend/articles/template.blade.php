@@ -6,7 +6,7 @@
             <div class="item-img">
                 <div class="item-img-info">
                 <a href="#" title="<%:name%>" class="product-image">
-                <img src="{{ Storage::disk('s3')->url('images/')}}<%:image%>"
+                <img src="{{storage_url()}}/images/<%:image%>"
                                 alt="<%:name%>">
 </a>
 

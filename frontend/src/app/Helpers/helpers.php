@@ -17,3 +17,11 @@ if (!function_exists('current_user_is_admin')) {
         }
     }
 }
+
+
+if (!function_exists('storage_url')) {
+    function storage_url()
+    {
+        return "https://evento-original-s3.s3.us-east-2.amazonaws.com";
+    }
+}
