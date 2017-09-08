@@ -64,6 +64,7 @@ class ArticleController extends Controller
 
     public function index(string $categorySlug = null)
     {
+
         if ($categorySlug) {
             $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
             $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);

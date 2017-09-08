@@ -6,9 +6,8 @@
             <div class="item-img">
                 <div class="item-img-info">
                 <a href="#" title="<%:name%>" class="product-image">
-                <img src="products-images/product1.jpg"
+                <img src="{{ Storage::disk('s3')->url('menu-images/')}}<%:image%>"
                                 alt="<%:name%>">
-
 </a>
 
                     <%if isNew%><div class="new-label new-top-left">{{ trans('frontend/articles.new') }}</div><%/if%>
