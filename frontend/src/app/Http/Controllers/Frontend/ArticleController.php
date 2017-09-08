@@ -86,8 +86,6 @@ class ArticleController extends Controller
                     ->with('tags', $tags)
                     ->with('healthys', $healthys);
             } else {
-
-                dd(1);
                 return abort(404);
             }
         }
