@@ -64,30 +64,27 @@ class ArticleController extends Controller
 
     public function index(string $categorySlug = null)
     {
+        $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
+        $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
 
-        if ($categorySlug) {
-            $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
-            $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+        $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
+        $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
+        $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
+        $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
+        $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
+        $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
 
-            $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
-            $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
-            $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
-            $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
-            $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
-            $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
-
-            if ($category) {
-                return view('frontend.articles.index')
-                    ->with('category', $category)
-                    ->with('brands', $brands)
-                    ->with('colors', $colors)
-                    ->with('licenses', $licenses)
-                    ->with('flavours', $flavours)
-                    ->with('tags', $tags)
-                    ->with('healthys', $healthys);
-            } else {
-                return abort(404);
-            }
+        if ($category) {
+            return view('frontend.articles.index')
+                ->with('category', $category)
+                ->with('brands', $brands)
+                ->with('colors', $colors)
+                ->with('licenses', $licenses)
+                ->with('flavours', $flavours)
+                ->with('tags', $tags)
+                ->with('healthys', $healthys);
+        } else {
+            return abort(404);
         }
     }
 
@@ -127,7 +124,7 @@ class ArticleController extends Controller
         $response = [
             'total' => $paginator->count(),
             'pages' => ceil($paginator->count() / $pageLimit),
-            'data' => $this->articleService->toJson($paginator->getQuery()->getResult()),
+            'data'  => $this->articleService->toJson($paginator->getQuery()->getResult()),
         ];
 
         return $response;
@@ -135,7 +132,7 @@ class ArticleController extends Controller
 
     public function getImage(string $filename)
     {
-        $image = Storage::disk('s3')->get('/images/'. $filename);
+        $image = Storage::disk('s3')->get('/images/' . $filename);
 
         return $image;
     }
