@@ -65,16 +65,16 @@ class ArticleController extends Controller
     public function index(string $categorySlug = null)
     {
         $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
-        $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
-
-        $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
-        $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
-        $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
-        $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
-        $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
-        $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
-
         if ($category) {
+            $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+
+            $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
+            $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
+            $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
+            $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
+            $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
+            $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
+
             return view('frontend.articles.index')
                 ->with('category', $category)
                 ->with('brands', $brands)
