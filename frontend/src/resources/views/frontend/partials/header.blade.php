@@ -34,7 +34,7 @@
                                 <a title="{{trans('frontend/header.my_cart')}}" href="/{{trans('frontend/shopping_cart.slug')}}"><img src="/images/rombo.png" width="7px"></i> {{trans('frontend/header.my_cart')}}</a> |
                                 <a title="{{trans('frontend/header.my_account')}}" href="/{{trans('frontend/my_account.slug')}}">{{ trans('frontend/header.my_account')}}</a>
                                 @if(current_user_is_admin())
-                                    <a title="Admin" href="/management">Administración</a>
+                                    | <a title="Admin" href="/management">Administración</a>
                                 @endif()
                             </div>
                         </div>

@@ -283,7 +283,8 @@ class ArticleService
                 'price' => $article->getPrice(),
                 'price_currency' => '€',
                 'rating' => 4,
-                'isNew' => ($article->isNew() || $interval->format('%a') <= 15)
+                'isNew' => ($article->isNew() || $interval->format('%a') <= 15),
+                'image' => (count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): ''
             ];
         }
 

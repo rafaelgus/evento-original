@@ -43,7 +43,9 @@
                                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                         <div class="item-inner">
                                                             <div class="item-img">
-                                                                <div class="item-img-info"> <a class="product-image" title="Maharaja 450W Juicer" href="/articulo/detalle"> <img alt="Maharaja 450W Juicer" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; "> </a>
+                                                                <div class="item-img-info"> <a class="product-image" title="{{$article->getName()}}" href="{{route('article.detail', ['slug' => $article->getSlug()])}}">
+                                                                        <img alt="{{$article->getSlug()}}" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): '' }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; ">
+                                                                    </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">
                                                                             <li><a class="link-quickview" href="quick_view.html"></a> </li>
@@ -55,7 +57,7 @@
                                                             </div>
                                                             <div class="item-info">
                                                                 <div class="info-inner">
-                                                                    <div class="item-title"> <a title="Maharaja 450W Juicer" href="/articulo/detalle/{{$article->getSlug()}}"> {{$article->getName()}} </a> </div>
+                                                                    <div class="item-title"> <a title="{{$article->getName()}}" href="{{route('article.detail', ['slug' => $article->getSlug()])}}"> {{$article->getName()}} </a> </div>
                                                                     <div class="item-content">
                                                                         <div class="rating-item">
                                                                             <div class="ratings">
@@ -78,7 +80,7 @@
                                                                             <div class="price-box"> <span class="regular-price"> <span class="price">€ {{$article->getPrice()}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
-                                                                            <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>
+                                                                            <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>{{ strtoupper(trans('frontend/home.buy')) }}</span></button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
