@@ -5,7 +5,7 @@
         <div class="item-inner">
             <div class="item-img">
                 <div class="item-img-info">
-                <a href="#" title="<%:name%>" class="product-image">
+                <a href="/{{ trans('routes.article') . '/' . trans('routes.detail') . '/'}}<%:slug%>" title="<%:slug%>" class="product-image">
                 <img src="{{storage_url()}}/images/<%:image%>"
                                 alt="<%:name%>">
 </a>
@@ -16,7 +16,7 @@
                         <ul class="add-to-links">
                             <li><a class="link-quickview" href="#">{{ trans('frontend/articles.quick_view') }}</a></li>
                             <li><a class="link-wishlist"
-                                   href="#">{{ trans('frontend/articles.wishlist') }}</a>
+                                   href="/{{ trans('routes.article') . '/' . trans('routes.detail') . '/'}}<%:slug%>" title="<%:slug%>">{{ trans('frontend/articles.wishlist') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="item-info">
                 <div class="info-inner">
-                    <div class="item-title"><a title="<%:name%>" href="#"> <%:name%> </a></div>
+                    <div class="item-title"><a title="<%:name%>" href="/{{ trans('routes.article') . '/' . trans('routes.detail') . '/'}}<%:slug%>" title="<%:slug%>"> <%:name%> </a></div>
                     <div class="item-content">
                         <div class="rating-item">
                             <div class="ratings">
