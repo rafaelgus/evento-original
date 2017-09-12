@@ -1,0 +1,68 @@
+version: '2'
+services:
+  mysql:
+    image: lbanchio/mysql
+    hostname: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql-config:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: kiwing
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      USER: 1000
+    networks:
+      animaedu2:
+        ipv4_address: 172.1.0.2
+
+  beanstalkd:
+    image: schickling/beanstalkd
+    hostname: beanstalk
+    links:
+      - redis
+      - mysql
+    ports:
+      - "11300:11300"
+    networks:
+      animaedu2:
+        ipv4_address: 172.1.0.4  
+
+  redis:
+    image: redis
+    hostname: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+    networks:
+      animaedu2:
+        ipv4_address: 172.1.0.3
+
+  phpnginx:
+    image: lbanchio/docker-php-nginx:7.1-16.04
+    hostname: dev
+    links:
+      - redis
+      - mysql
+      - beanstalkd
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/sites-available
+      - ../:/var/www
+    environment:
+      TZ: "America/Argentina/Cordoba"
+      COMPOSER_CACHE_DIR: /var/www/.composer
+      COMPOSER_HOME: /var/www/.composer
+    networks:
+      - animaedu2
+
+networks:
+  animaedu2:
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.1.0.0/24

@@ -1,0 +1,1 @@
+{"name":"cfrutos\/flaubert","description":"Common package","type":"library","version":"1.0.0","authors":[{"name":"Carlos Frutos","email":"carlos@kiwing.it"}],"autoload":{"psr-4":{"Flaubert\\":"src\/"}},"require":{"illuminate\/filesystem":"^5.1","php-di\/php-di":"^5.1","container-interop\/container-interop":"^1.1","caseyamcl\/Configula":"^2.4"},"time":"2016-02-29T22:08:33+00:00"}

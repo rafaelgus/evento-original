@@ -20,10 +20,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
-        $em->getFilters()->disable('article_brand');
-        $em->getFilters()->disable('article_license');
-
         $menuRepository = $this->app->make(Repositories\MenuRepository::class);
         $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
 
@@ -48,7 +44,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
         AnnotationRegistry::registerAutoloadNamespace(
             'Gedmo\Mapping\Annotation',
-            CORE_DIR . '/vendor/gedmo'
+            __DIR__ . '/vendor/gedmo'
         );
 
 
