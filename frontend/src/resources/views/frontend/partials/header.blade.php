@@ -36,6 +36,9 @@
                                 @if(current_user_is_admin())
                                     | <a title="Admin" href="/management">Administración</a>
                                 @endif()
+                                @if(Auth::check())
+                                    | <a title="logout" href="/logout">{{ strtolower(trans('auth.sign_out')) }}</a>
+                                @endif()
                             </div>
                         </div>
                         <!-- End Header Top Links -->

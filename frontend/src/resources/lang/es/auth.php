@@ -36,5 +36,13 @@ return [
     'new_customers' => 'Nuevos clientes',
     'new_customers_benefits' => 'Creando una cuenta en Evento Original, obtendrás muchos beneficios como concretar las compras mas rápido, ver y seguir las órdenes de compras y más',
     'registered_users' => 'Usuarios registrados',
-    'registered_users_message' => 'Si ya tienes una cuenta creada, por favor ingresa los datos:'
+    'registered_users_message' => 'Si ya tienes una cuenta creada, por favor ingresa los datos:',
+    'register' => 'Regístrarme',
+    'first_name' => 'Nombre',
+    'last_name' => 'Apellido',
+    'email' => 'Dirección de correo electrónico',
+    'password' => 'Contraseña',
+    'password_confirm' => 'Confirma tu contraseña',
+    'terms_accept' => 'Al registrarte aceptas nuestros',
+    'terms_and_conditions' => 'términos y condiciones.'
 ];

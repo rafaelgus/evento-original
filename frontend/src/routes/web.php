@@ -1,6 +1,8 @@
 <?php
 
 Auth::routes();
+Route::post('register-customer', 'Frontend\CustomerController@register');
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'Frontend\ArticleController@getHome');
 
@@ -31,7 +33,7 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
 
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
-});
+})->name('terms_and_conditions');
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 

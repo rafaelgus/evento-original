@@ -7,23 +7,24 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.4",
-        "cfrutos/flaubert": "dev-master",
         "gloudemans/shoppingcart": "^2.3",
         "intervention/image": "^2.4",
         "laravel-doctrine/extensions": "1.0.*",
         "laravel-doctrine/migrations": "1.0.*",
         "laravel-doctrine/orm": "1.3.*",
-        "laravel/framework": "5.4.*",
+        "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "vlucas/phpdotenv": "^2.4",
         "predis/predis": "^1.0",
-        "yajra/laravel-datatables-oracle": "^7.5"
+        "vlucas/phpdotenv": "^2.4",
+        "webpatser/laravel-uuid": "^3.0",
+        "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~6.0",
+        "filp/whoops": "~2.0"
     },
     "autoload": {
         "classmap": [
@@ -60,12 +61,5 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    },
-    "repositories": [
-        {
-            "name": "cfrutos/flaubert",
-            "type": "git",
-            "url": "git@github.com:cfrutos/flaubert.git"
-        }
-    ]
+    }
 }

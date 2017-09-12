@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -100,8 +101,8 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\RoleRepository::class, function () {
             return EntityManager::getRepository(Entities\Role::class);
         });
-        $this->app->singleton(Repositories\VoucherRepository::class, function() {
-           return EntityManager::getRepository(Entities\Voucher::class);
+        $this->app->singleton(Repositories\VoucherRepository::class, function () {
+            return EntityManager::getRepository(Entities\Voucher::class);
         });
         $this->app->singleton(Repositories\HealthyRepository::class, function () {
             return EntityManager::getRepository(Entities\Healthy::class);
@@ -111,6 +112,9 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\MenuItemRepository::class, function () {
             return EntityManager::getRepository(Entities\MenuItem::class);
+        });
+        $this->app->singleton(Repositories\CustomerRepository::class, function () {
+            return EntityManager::getRepository(Entities\Customer::class);
         });
     }
 }

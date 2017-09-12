@@ -65,6 +65,11 @@ class User implements Authenticatable, CanResetPassword
      */
     protected $clientSecret;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
+     */
+    protected $customer;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
@@ -276,5 +281,21 @@ class User implements Authenticatable, CanResetPassword
         }
 
         return false;
+    }
+
+    /**
+     * @return Affiliate
+     */
+    public function getAffiliate()
+    {
+        return $this->affiliate;
+    }
+
+    /**
+     * @param Affiliate $affiliate
+     */
+    public function setAffiliate(Affiliate $affiliate)
+    {
+        $this->affiliate = $affiliate;
     }
 }
