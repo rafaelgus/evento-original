@@ -29,4 +29,9 @@ class RoleService
     {
         return $this->roleRepository->findAll();
     }
+
+    public function findByName(string $name)
+    {
+        return $this->roleRepository->findByName($name);
+    }
 }

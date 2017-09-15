@@ -1,7 +1,7 @@
 <?php
 
 Auth::routes();
-Route::post('register-customer', 'Frontend\CustomerController@register');
+Route::post('register-customer', 'Frontend\CustomerController@register')->name('register_customer');
 Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'Frontend\ArticleController@getHome');
@@ -37,9 +37,9 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
-Route::get('/mi-cuenta', function () {
+Route::get('/' . trans('frontend/my_account.slug'), function () {
     return view('frontend.profile.my_account');
-})->middleware('auth');
+})->middleware('auth')->name('my_account');
 
 
 Route::group(['prefix' => '/management'], function () {

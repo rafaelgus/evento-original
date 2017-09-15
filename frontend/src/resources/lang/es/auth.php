@@ -44,5 +44,7 @@ return [
     'password' => 'Contraseña',
     'password_confirm' => 'Confirma tu contraseña',
     'terms_accept' => 'Al registrarte aceptas nuestros',
-    'terms_and_conditions' => 'términos y condiciones.'
+    'terms_and_conditions' => 'términos y condiciones.',
+    'register_error' => 'Ha ocurrido un error al intentar registrarse, por favor comuníquese con el administrador',
+    'register_success' => 'Se ha registrado con éxito. ¡Bienvenido!',
 ];

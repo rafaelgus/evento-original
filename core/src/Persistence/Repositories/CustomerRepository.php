@@ -5,8 +5,12 @@ use EventoOriginal\Core\Entities\Customer;
 
 class CustomerRepository extends BaseRepository
 {
-    public function save(Customer $customer)
+    public function save(Customer $customer, bool $flush = true)
     {
-        return $this->save($customer);
+        $this->getEntityManager()->persist($customer);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
     }
 }

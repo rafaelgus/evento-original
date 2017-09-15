@@ -4,8 +4,8 @@ namespace EventoOriginal\Core\Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\AffiliateRepository")
- * @ORM\Table(name="affiliates")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\CustomerRepository")
+ * @ORM\Table(name="customers")
  */
 class Customer
 {
@@ -43,7 +43,7 @@ class Customer
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="customer")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 

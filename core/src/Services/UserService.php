@@ -64,4 +64,9 @@ class UserService
     {
         return $this->userRepository->find($id);
     }
+
+    public function remove(User $user)
+    {
+        return $this->userRepository->remove($user);
+    }
 }

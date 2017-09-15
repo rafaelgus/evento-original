@@ -41,12 +41,7 @@ class User implements Authenticatable, CanResetPassword
     protected $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(
-     *     name="users_roles",
-     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     protected $roles;
 
@@ -144,7 +139,7 @@ class User implements Authenticatable, CanResetPassword
      */
     public function getRoles()
     {
-        return $this->roles->toArray();
+        return $this->roles;
     }
 
     /**
@@ -281,21 +276,5 @@ class User implements Authenticatable, CanResetPassword
         }
 
         return false;
-    }
-
-    /**
-     * @return Affiliate
-     */
-    public function getAffiliate()
-    {
-        return $this->affiliate;
-    }
-
-    /**
-     * @param Affiliate $affiliate
-     */
-    public function setAffiliate(Affiliate $affiliate)
-    {
-        $this->affiliate = $affiliate;
     }
 }

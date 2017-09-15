@@ -8,7 +8,9 @@
                 <div class="page-title">
                     <h2>{{ trans('auth.create_an_account') }}</h2>
                 </div>
-                    <div class="col-1 new-users">
+                @include('backend.messages.session')
+
+                <div class="col-1 new-users">
                         <div class="content">
                             <form class="form-list" role="form" method="POST" action="{{ route('register_customer') }}">
                                 {{ csrf_field() }}
