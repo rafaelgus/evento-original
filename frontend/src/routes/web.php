@@ -37,10 +37,16 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
-Route::get('/' . trans('frontend/my_account.slug'), function () {
-    return view('frontend.profile.my_account');
-})->middleware('auth')->name('my_account');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/' . trans('frontend/my_account.slug'), function () {
+        return view('frontend.profile.my_account');
+    })->name('my_account');
 
+    Route::get(
+        '/'. trans('frontend/affiliates.summary'),
+        'Frontend\CustomerController@affiliateSummary'
+    )->name('affiliates.summary');
+});
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');

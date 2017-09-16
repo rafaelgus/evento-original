@@ -11,4 +11,14 @@
             </ul>
         </div>
     </div>
+
+    <div class="block block-account">
+        <div class="block-title">{{ trans('frontend/affiliates.title')}}</div>
+        <div class="block-content">
+            <ul>
+                <li class="current"><a href="{{ route('affiliates.summary') }}">{{ trans('frontend/affiliates.summary')}}</a></li>
+            </ul>
+        </div>
+    </div>
+
 </aside>

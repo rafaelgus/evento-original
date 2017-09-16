@@ -58,4 +58,13 @@ class CustomerController extends Controller
             return redirect()->back()->with('error', trans('auth.register_error'));
         }
     }
+
+    public function affiliateSummary()
+    {
+        $customer = current_user()->getCustomer();
+
+        return view('frontend.profile.affiliates.summary')->with([
+            'customer' => $customer
+        ]);
+    }
 }

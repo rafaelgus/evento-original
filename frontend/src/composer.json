@@ -18,7 +18,10 @@
         "predis/predis": "^1.0",
         "vlucas/phpdotenv": "^2.4",
         "webpatser/laravel-uuid": "^3.0",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "myclabs/php-enum": "^1.5",
+        "gedmo/doctrine-extensions": "^2.4",
+        "moneyphp/money": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -32,7 +35,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "EventoOriginal\\Core\\": "../../core/src"
+            "EventoOriginal\\Core\\": "../../core/src",
+            "EventoOriginal\\Core\\Tests\\": "../../core/tests"
         },
         "files": ["app/Helpers/helpers.php"]
     },
