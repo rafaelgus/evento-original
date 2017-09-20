@@ -13,7 +13,7 @@ class UseVoucherRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin();
+        return Auth::user()->isUser();
     }
 
     /**

@@ -301,4 +301,9 @@ class ArticleService
             throw new InvalidArgumentException("Invalid category slug");
         }
     }
+
+    public function findByBarcode(string $barCode)
+    {
+        return $this->articleRepository->findOneByBarCode($barCode);
+    }
 }

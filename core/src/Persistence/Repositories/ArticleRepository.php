@@ -252,4 +252,9 @@ class ArticleRepository extends BaseRepository
 
         return $paginator;
     }
+
+    public function findOneByBarCode(string $barCode)
+    {
+        return $this->findOneBy(['barCode' => $barCode]);
+    }
 }

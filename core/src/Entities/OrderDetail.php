@@ -16,28 +16,33 @@ class OrderDetail
      * @ORM\GeneratedValue
      */
     private $id;
-    /**
-     * @ManyToOne(targetEntity="Article", inversedBy="ordersDetail")
-     * @JoinColumn(name="article_id", referencedColumnName="id")
-     */
-    private $article;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $quantity;
+
     /**
      * @ORM\Column(type="string")
      */
     private $currency;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $amount;
+
     /**
-     * @ManyToOne(targetEntity="Order", inversedBy="ordersDetail")
-     * @JoinColumn(name="order_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="ordersDetail")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $discount;
+
     /**
      * @return integer
      */
@@ -45,20 +50,7 @@ class OrderDetail
     {
         return $this->id;
     }
-    /**
-     * @return Article
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
-    /**
-     * @param Article $article
-     */
-    public function setArticle(Article $article)
-    {
-        $this->article = $article;
-    }
+
     /**
      * @return int
      */
@@ -66,6 +58,7 @@ class OrderDetail
     {
         return $this->quantity;
     }
+
     /**
      * @param int $quantity
      */
@@ -73,6 +66,7 @@ class OrderDetail
     {
         $this->quantity = $quantity;
     }
+
     /**
      * @return Order
      */
@@ -80,6 +74,7 @@ class OrderDetail
     {
         return $this->order;
     }
+
     /**
      * @param Order $order
      */
@@ -87,6 +82,7 @@ class OrderDetail
     {
         $this->order = $order;
     }
+
     /**
      * @return Money
      */
@@ -95,6 +91,7 @@ class OrderDetail
         $money = new Money($this->amount, $this->currency);
         return $money;
     }
+
     /**
      * @param Money $money
      */
@@ -103,4 +100,22 @@ class OrderDetail
         $this->amount = $money->getAmount();
         $this->currency = $money->getCurrency();
     }
+
+    /**
+     * @return bool
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param bool $discount
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+
+
 }
