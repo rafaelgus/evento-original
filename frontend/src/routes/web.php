@@ -43,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('my_account');
 
     Route::get(
-        '/'. trans('frontend/affiliates.summary'),
+        '/'. trans('frontend/affiliates.title'),
         'Frontend\CustomerController@affiliateSummary'
     )->name('affiliates.summary');
 });

@@ -3,7 +3,7 @@
         <div class="block-title">{{ trans('frontend/my_account.title')}}</div>
         <div class="block-content">
             <ul>
-                <li class="current"><a href="#">{{ trans('frontend/my_account.summary')}}</a></li>
+                <li><a href="#">{{ trans('frontend/my_account.summary')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.account_information')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.my_orders')}}</a></li>
                 <li><a href="#">{{ trans('frontend/my_account.my_reviews')}}</a></li>
@@ -16,7 +16,7 @@
         <div class="block-title">{{ trans('frontend/affiliates.title')}}</div>
         <div class="block-content">
             <ul>
-                <li class="current"><a href="{{ route('affiliates.summary') }}">{{ trans('frontend/affiliates.summary')}}</a></li>
+                <li><a href="{{ route('affiliates.summary') }}">{{ trans('frontend/affiliates.summary')}}</a></li>
             </ul>
         </div>
     </div>

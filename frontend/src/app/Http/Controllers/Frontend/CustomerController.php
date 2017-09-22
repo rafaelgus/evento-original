@@ -47,15 +47,15 @@ class CustomerController extends Controller
 
             Auth::guard()->login($user);
 
-            Log::info("Customer registerd");
+            Log::info("Customer registered");
 
-            return redirect()->route('my_account')->with('status', trans('auth.register_success'));
+            return redirect()->route('my_account')->with('message', trans('auth.register_success'));
         } catch (Exception $exception) {
             Auth::guard()->logout();
             Log::error("Error creating user: " . $exception->getMessage());
             $this->userService->remove($user);
 
-            return redirect()->back()->with('error', trans('auth.register_error'));
+            return redirect()->back()->with('message-error', trans('auth.register_error'));
         }
     }
 

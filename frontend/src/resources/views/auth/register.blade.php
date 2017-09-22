@@ -8,6 +8,7 @@
                 <div class="page-title">
                     <h2>{{ trans('auth.create_an_account') }}</h2>
                 </div>
+
                 @include('backend.messages.session')
 
                 <div class="col-1 new-users">

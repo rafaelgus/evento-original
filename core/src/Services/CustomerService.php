@@ -20,7 +20,6 @@ class CustomerService
         $customer->setFirstName($data['first_name']);
         $customer->setLastName($data['last_name']);
 
-
         if (isset($data['website_name'])) {
             $customer->setWebsiteName($data['website_name']);
         }

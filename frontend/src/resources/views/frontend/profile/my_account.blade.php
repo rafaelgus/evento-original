@@ -13,6 +13,8 @@
                                 <h2>Mi cuenta</h2>
                             </div>
                             <div class="dashboard">
+                                @include('backend.messages.session')
+
                                 <div class="welcome-msg"> <strong>Hola, {{ Auth::user()->getName() }}!</strong>
                                     {{--<p>Desde Mi Cuenta prodá ver toda tu actividad reciente y actualizar tus datos personales.</p>--}}
                                 </div>

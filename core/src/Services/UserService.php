@@ -9,10 +9,14 @@ use Exception;
 class UserService
 {
     private $userRepository;
+    private $walletService;
 
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        WalletService $walletService
+    ) {
         $this->userRepository = $userRepository;
+        $this->walletService = $walletService;
     }
 
     /**
@@ -33,6 +37,8 @@ class UserService
             $user->setPassword(bcrypt($password));
             $user->setRoles($roles);
             $this->userRepository->save($user);
+
+            $this->walletService->create($user);
         } else {
             throw new Exception('This email already exist');
         }

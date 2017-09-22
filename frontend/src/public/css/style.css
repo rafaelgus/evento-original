@@ -96,10 +96,9 @@ Tags: two-columns, left-sidebar, fixed-layout, responsive-layout, custom-backgro
 }
 
 body {
-    font-family: 'tt0142m', sans-serif;
+    font-family: 'ChoplinMedium', sans-serif;
     font-size: 14px;
     color: #333;
-
 }
 
 h2, .h2 {
@@ -10848,13 +10847,25 @@ button.button.btn-proceed-checkout span {
 .my-wishlist .buttons-set2 .btn-add {
     float: right;
     margin-left: 8px;
-
 }
 
 /* 23. Dashboard */
-
 .dashboard {
-    margin-top: 10px
+    margin-top: 10px;
+}
+
+.dashboard.affiliates {
+    font-family: 'ChoplinMedium', sans-serif;
+    font-size: 16px;
+}
+
+.domain {
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.dashboard .affiliate-code {
+    color: #e94d65;
 }
 
 .dashboard .welcome-msg {
