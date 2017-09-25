@@ -5,6 +5,7 @@ use App\Http\Requests\CheckoutRequest;
 use EventoOriginal\Core\Enums\PaymentGateway;
 use EventoOriginal\Core\Infrastructure\Payments\Checkout\WebCheckout\PaypalService;
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\CustomerService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\PaymentService;
@@ -17,19 +18,22 @@ class PaymentController
     private $paymentService;
     private $articleService;
     private $paypalService;
+    private $customerService;
 
     public function __construct(
         OrderService $orderService,
         OrderDetailService $orderDetailService,
         PaymentService $paymentService,
         ArticleService $articleService,
-        PaypalService $paypalService
+        PaypalService $paypalService,
+        CustomerService $customerService
     ) {
         $this->orderDetailService = $orderDetailService;
         $this->paymentService = $paymentService;
         $this->orderService = $orderService;
         $this->articleService = $articleService;
         $this->paypalService = $paypalService;
+        $this->customerService = $customerService;
     }
 
     public function checkout()
@@ -49,6 +53,9 @@ class PaymentController
     {
         $user = current_user();
 
+        $customer = $user->getCustomer();
+
+        $this->customerService->updateCheckoutInformation($customer, $request->all());
 
         $details = $this->getDetails();
         $order = $this->orderService->create($details, $user);
@@ -59,8 +66,13 @@ class PaymentController
                 PaymentGateway::PAYPAL,
                 $order
             );
-        $this->paypalService->preparePayment($payment);
+        $payment = $this->paypalService->preparePayment($payment);
 
+        if ($payment->getGateway() == PaymentGateway::PAYPAL) {
+            return redirect()->to($payment->getParam('redirectUrl'));
+        } else {
+            return abort(400, 'Invalid method');
+        }
     }
 
     public function getDetails()

@@ -6,7 +6,7 @@ use EventoOriginal\Core\Entities\Payment;
 
 class PaymentRepository extends BaseRepository
 {
-    public function save(Payment $payment, bool $flush)
+    public function save(Payment $payment, bool $flush = true)
     {
         $this->getEntityManager()->persist($payment);
 

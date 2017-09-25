@@ -23,13 +23,16 @@ class PaymentService
         $this->paymentRepository = $paymentRepository;
         $this->paymentGateway = $paymentGatewayFactory;
     }
+
     protected $acceptedGateway = [
         PaymentGateway::PAYPAL
     ];
+
     public function acceptedGateways()
     {
         return $this->acceptedGateway;
     }
+
     /**
      * @param string $gateway
      * @param Order $order
@@ -46,7 +49,9 @@ class PaymentService
         $payment->setOriginalMoney($order->getTotal());
         $payment->setPayer($order->getUser());
         $payment->setStatus(Payment::STATUS_PENDING);
+
         $this->paymentRepository->save($payment);
+
         return $payment;
     }
 

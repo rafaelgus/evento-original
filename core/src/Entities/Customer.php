@@ -49,7 +49,7 @@ class Customer
     /**
      * @ORM\Column(type="string")
      */
-    private $billingAdress;
+    private $billingAddress;
 
     /**
      * @ORM\Column(type="string")
@@ -164,4 +164,53 @@ class Customer
     {
         $this->user = $user;
     }
+
+    /**
+     * @return string
+     */
+    public function getBillingAddress()
+    {
+        return $this->billingAddress;
+    }
+
+    /**
+     * @param string $billingAddress
+     */
+    public function setBillingAddress(string $billingAddress)
+    {
+        $this->billingAddress = $billingAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress(string $address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber(string $phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
 }
