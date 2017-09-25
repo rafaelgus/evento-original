@@ -73,30 +73,38 @@ class PaypalService implements PaymentGatewayInterface
         $payment->setPaidMoney($payment->getOriginalMoney());
         $payer = new Payer();
         $payer->setPaymentMethod(self::METHOD);
+
         $item = new Item();
         $item->setDescription($payment->getDescription());
         $item->setCurrency(self::CURRENCY_EUR);
         $item->setQuantity(1);
         $item->setPrice($payment->getPaidMoney()->getAmount());
+
         $itemList = new ItemList();
         $itemList->setItems([$item]);
+
         $details = new Details();
         $details->setSubtotal($payment->getPaidMoney()->getAmount());
+
         $amount = new Amount();
         $amount->setCurrency(self::CURRENCY_EUR);
         $amount->setTotal($payment->getPaidMoney());
         $amount->setDetails($details);
+
         $transaction = new Transaction();
         $transaction->setAmount($amount);
         $transaction->setItemList($itemList);
         $transaction->setDescription($payment->getDescription());
+
         $redirectUrls = new RedirectUrls();
         $redirectUrls->setReturnUrl(self::URL_ACEPT);
         $redirectUrls->setCancelUrl(self::URL_CANCEL);
+
         $paypalPayment = new PaypalPayment();
         $paypalPayment->setPayer($payer);
         $paypalPayment->setRedirectUrls($redirectUrls);
         $paypalPayment->setTransactions([$transaction]);
+
         try {
             $paypalPayment->create($this->apiContext());
         } catch (Exception $exception) {

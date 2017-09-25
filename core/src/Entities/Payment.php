@@ -77,6 +77,12 @@ class Payment implements PaymentInterface
      * @ORM\Column(type="string")
      */
     private $data;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $param;
+
     /**
      * @return int
      */
@@ -265,5 +271,23 @@ class Payment implements PaymentInterface
     public function setData(string $data)
     {
         $this->data = $data;
+    }
+
+    public function setParams(array $params = [])
+    {
+        $this->params = json_encode($params);
+    }
+
+    public function getParam($key)
+    {
+        $params = $this->getParams();
+        return isset($params[$key]) ? $params[$key] : null;
+    }
+
+    public function setParam($key, $value)
+    {
+        $params = $this->getParams();
+        $params[$key] = $value;
+        $this->setParams($params);
     }
 }

@@ -66,6 +66,11 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
      */
     protected $clientSecret;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
+     */
+    protected $customer;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();

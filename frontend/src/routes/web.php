@@ -14,7 +14,8 @@ Route::post('/addToCart', 'Frontend\CartController@addToCart');
 Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
-Route::get('checkout', 'Frontend\PaymentController@checkout');
+Route::get('/checkout', 'Frontend\PaymentController@checkout');
+Route::post('/payment', 'Frontend\PaymentController@process');
 Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
 Route::get('/' . trans('frontend/my_wishlist.slug'), function () {

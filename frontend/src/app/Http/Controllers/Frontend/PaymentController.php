@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\CheckoutRequest;
+use EventoOriginal\Core\Enums\PaymentGateway;
+use EventoOriginal\Core\Infrastructure\Payments\Checkout\WebCheckout\PaypalService;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
@@ -14,22 +16,25 @@ class PaymentController
     private $orderDetailService;
     private $paymentService;
     private $articleService;
+    private $paypalService;
 
     public function __construct(
         OrderService $orderService,
         OrderDetailService $orderDetailService,
         PaymentService $paymentService,
-        ArticleService $articleService
+        ArticleService $articleService,
+        PaypalService $paypalService
     ) {
         $this->orderDetailService = $orderDetailService;
         $this->paymentService = $paymentService;
         $this->orderService = $orderService;
         $this->articleService = $articleService;
+        $this->paypalService = $paypalService;
     }
 
     public function checkout()
     {
-        $items = count($items = Cart::instance('sopping')->content());
+        $items = count($items = Cart::instance('shopping')->content());
 
         if ($items === 0) {
             abort(400, 'cart empty');
@@ -44,10 +49,18 @@ class PaymentController
     {
         $user = current_user();
 
+
         $details = $this->getDetails();
         $order = $this->orderService->create($details, $user);
 
-        
+        $payment = $this
+            ->paymentService
+            ->create(
+                PaymentGateway::PAYPAL,
+                $order
+            );
+        $this->paypalService->preparePayment($payment);
+
     }
 
     public function getDetails()
