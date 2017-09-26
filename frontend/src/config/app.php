@@ -184,7 +184,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\EventoOriginalServiceProvider::class,
 
-        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
     ],
 
@@ -240,6 +240,7 @@ return [
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

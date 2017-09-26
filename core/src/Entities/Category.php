@@ -90,6 +90,11 @@ class Category
      */
     private $vouchers;
 
+    /**
+     * @ORM\Column(name="affiliate_commission", type="integer")
+     */
+    private $affiliateCommission;
+
     public function __construct()
     {
         $this->translations = new ArrayCollection();
@@ -214,7 +219,6 @@ class Category
         $this->parent = $parent;
     }
 
-
     /**
      * @return ArrayCollection
      */
@@ -252,5 +256,21 @@ class Category
     public function addChild(array $child)
     {
         $this->children[] = $child;
+    }
+
+    /**
+     * @return int Commission percentage for affiliates
+     */
+    public function getAffiliateCommission()
+    {
+        return $this->affiliateCommission;
+    }
+
+    /**
+     * @param int $affiliateCommission
+     */
+    public function setAffiliateCommission(int $affiliateCommission)
+    {
+        $this->affiliateCommission = $affiliateCommission;
     }
 }
