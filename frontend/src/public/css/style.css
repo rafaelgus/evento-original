@@ -5818,6 +5818,10 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
     padding: 0;
 }
 
+.block-account .current-balance {
+    font-family: 'TradeGothicLTStd', sans-serif;
+}
+
 .block-account .block-content li {
     padding: 10px 0px;
     border-top: 1px #fff solid;
@@ -5839,6 +5843,8 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
     line-height: 19px;
     color: #333;
 }
+
+
 
 .sidebar .block-content li.last {
     border-bottom: none;

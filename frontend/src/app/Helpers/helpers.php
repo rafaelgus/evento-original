@@ -7,6 +7,13 @@ if (!function_exists('current_user')) {
     }
 }
 
+if (!function_exists('current_customer')) {
+    function current_customer()
+    {
+        return Auth::user()->getCustomer();
+    }
+}
+
 if (!function_exists('current_user_is_admin')) {
     function current_user_is_admin()
     {

@@ -1,5 +1,9 @@
 <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
     <div class="block block-account">
+        <div>
+            <h3 class="current-balance">Saldo: {{ current_user_balance() }} €</h3>
+        </div>
+
         <div class="block-title">{{ trans('frontend/my_account.title')}}</div>
         <div class="block-content">
             <ul>

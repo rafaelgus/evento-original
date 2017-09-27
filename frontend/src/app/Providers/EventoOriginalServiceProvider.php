@@ -45,14 +45,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        define('CORE_DIR', realpath(__DIR__ . '/../../../../core/src'));
-
-        AnnotationRegistry::registerAutoloadNamespace(
-            'Gedmo\Mapping\Annotation',
-            CORE_DIR . '/vendor/gedmo'
-        );
-
-
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
         });

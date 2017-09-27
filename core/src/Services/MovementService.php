@@ -5,7 +5,6 @@ use EventoOriginal\Core\Entities\Movement;
 use EventoOriginal\Core\Entities\Wallet;
 use DateTime;
 use EventoOriginal\Core\Persistence\Repositories\MovementRepository;
-use Money\Money;
 
 class MovementService
 {
@@ -16,11 +15,11 @@ class MovementService
         $this->movementRepository = $movementRepository;
     }
 
-    public function create(Wallet $wallet, string $type, Money $amountMoney, DateTime $date)
+    public function create(Wallet $wallet, string $type, $amount, DateTime $date)
     {
         $movement = new Movement();
         $movement->setType($type);
-        $movement->setAmount($amountMoney->getAmount());
+        $movement->setAmount($amount);
         $movement->setDate($date);
         $movement->setWallet($wallet);
 

@@ -61,8 +61,8 @@ class Movement
      */
     public function setType(string $type)
     {
-        if (!in_array($type, MovementType::values())) {
-            throw new InvalidArgumentException("Invalid type");
+        if (!MovementType::isValid($type)) {
+            throw new InvalidArgumentException("Invalid movement type");
         }
         $this->type = $type;
     }

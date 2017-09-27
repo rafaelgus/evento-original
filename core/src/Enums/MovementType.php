@@ -8,4 +8,5 @@ class MovementType extends Enum
     const DEBIT = "debit";
     const CREDIT = "credit";
     const EXTRACTION = "extraction";
+    const AFFILIATE_COMMISSION_CREDIT = "affiliate_commission_credit";
 }
