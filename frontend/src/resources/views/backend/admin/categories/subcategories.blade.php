@@ -34,6 +34,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>{{ trans('texts.sections.categories.name') }}</th>
+                                <th>{{ trans('texts.sections.categories.affiliate_commission') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -65,6 +66,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
+                    { data: 'affiliate_commission', name: 'affiliate_commission' },
                     {
                         "mData": null,
                         "bSortable": false,

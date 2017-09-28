@@ -6,6 +6,7 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
+use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
@@ -25,17 +26,21 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $em->getFilters()->disable('article_brand');
         $em->getFilters()->disable('article_license');
 
-        $menuRepository = $this->app->make(Repositories\MenuRepository::class);
-        $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+        try {
+            $menuRepository = $this->app->make(Repositories\MenuRepository::class);
+            $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
 
-        $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
+            $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
 
-        $navbarMenuItems = [];
-        if ($navbarMenu) {
-            $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+            $navbarMenuItems = [];
+            if ($navbarMenu) {
+                $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+            }
+
+            View::share('navBarMenuItems', $navbarMenuItems);
+        } catch (Exception $exception) {
+            logger()->error($exception->getMessage());
         }
-
-        View::share('navBarMenuItems', $navbarMenuItems);
     }
 
     /**

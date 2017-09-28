@@ -13,6 +13,7 @@ return [
           'name' => 'Nombre',
           'slug' => 'Slug',
           'description' => 'Descripción',
+          'affiliate_commission' => 'Comisión para afiliados (%)',
       ],
       'colors' => [
           'title' => 'Colores',

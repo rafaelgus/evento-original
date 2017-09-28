@@ -21,7 +21,8 @@
         "predis/predis": "^1.0",
         "vlucas/phpdotenv": "^2.4",
         "webpatser/laravel-uuid": "^3.0",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "pda/pheanstalk": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,9 +1,13 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
 
+use App\Events\PaymentAccepted;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\StoreCategoryRequest;
 use App\Http\Requests\Backend\UpdateCategoryRequest;
+use Entity\Category;
+use EventoOriginal\Core\Entities\Payment;
 use EventoOriginal\Core\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -49,7 +53,12 @@ class CategoryController extends Controller
         $name = $request->input('name');
         $slug = ($request->input('slug') ?: str_slug($name));
 
-        $this->categoryService->create($name, $slug, $request->input('description'));
+        $this->categoryService->create(
+            $name,
+            $slug,
+            $request->input('description'),
+            $request->input('affiliate_commission')
+        );
 
         Session::flash('message', trans('backend/messages.confirmation.create.category'));
 
@@ -61,7 +70,19 @@ class CategoryController extends Controller
         $category = $this->categoryService->findOneById($id, App::getLocale());
         $name = $request->input('name');
         $slug = ($request->input('slug') ?: str_slug($name));
-        $this->categoryService->update($category, $name, $slug, $request->input('description'));
+        $this->categoryService->update(
+            $category,
+            $name,
+            $slug,
+            $request->input('description'),
+            $request->input('affiliate_commission')
+        );
+
+        $applyCommissionToChildren = ($request->input('apply_commission_to_children') === 'on' ? true : false);
+
+        if ($applyCommissionToChildren) {
+            $this->categoryService->applyCommissionToChildren($category, $request->input('affiliate_commission'));
+        }
 
         Session::flash('message', trans('backend/messages.confirmation.edit.category'));
 
@@ -77,6 +98,7 @@ class CategoryController extends Controller
             $allergenCollection->push([
                 'id' => $category->getId(),
                 'name' => $category->getName(),
+                'affiliate_commission' => $category->getAffiliateCommission()
             ]);
         }
 
@@ -85,6 +107,8 @@ class CategoryController extends Controller
 
     public function createSubCategory(int $parentId)
     {
+        event(new PaymentAccepted(new Payment()));
+
         $category = $this->categoryService->findOneById($parentId, App::getLocale());
 
         if (!$category) {
@@ -110,7 +134,8 @@ class CategoryController extends Controller
         foreach ($subCategories as $subCategory) {
             $allergenCollection->push([
                 'id' => $subCategory->getId(),
-                'name' => $subCategory->getName()
+                'name' => $subCategory->getName(),
+                'affiliate_commission' => $subCategory->getAffiliateCommission()
             ]);
         }
 
@@ -137,7 +162,8 @@ class CategoryController extends Controller
             $category,
             $name,
             $slug,
-            $request->input('description')
+            $request->input('description'),
+            $request->input('affiliate_commission')
         );
 
         Session::flash('message', trans('backend/messages.confirmation.edit.category'));
@@ -156,5 +182,4 @@ class CategoryController extends Controller
 
         return $parsedCategories;
     }
-
 }
