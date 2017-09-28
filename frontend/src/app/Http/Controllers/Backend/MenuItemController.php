@@ -38,7 +38,7 @@ class MenuItemController extends Controller
     {
         $menuSelected = $this->menuItemService->findById($id);
 
-        return view('backend.admin.menu_items.sub_items.create')->withMenuSelected($menuSelected);
+        return view('backend.admin.menu_items.sub_items.create')->with(['menu_selected' => $menuSelected]);
     }
 
     public function store(StoreMenuItemRequest $request)
@@ -93,7 +93,7 @@ class MenuItemController extends Controller
     {
         $menuItem = $this->menuItemService->findById($id);
 
-        return view('backend.admin.menu_items.show')->withMenuItem($menuItem);
+        return view('backend.admin.menu_items.show')->with('menu_item', $menuItem);
     }
 
     public function updateSubitem(Request $request, int $id)
