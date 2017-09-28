@@ -52,7 +52,7 @@
                             <div class="form-group {{ $errors->has('url') ? 'has-error' : '' }}">
                                 <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="inputUrl" name="url"
+                                    <input type="text" class="form-control" id="inputUrl" name="url"
                                            placeholder="{{ trans('backend/menu_item.url') }}" required value="{{ old('url') }}">
                                     {!! $errors->first('url', '<span class="help-block">* :message</span>') !!}
                                 </div>
