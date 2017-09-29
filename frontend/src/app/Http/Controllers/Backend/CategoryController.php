@@ -29,6 +29,9 @@ class CategoryController extends Controller
 
     public function index()
     {
+        event(new PaymentAccepted(new Payment()));
+
+
         return view('backend.admin.categories.index');
     }
 

@@ -28,10 +28,6 @@ class LiquidateAffiliateCommission implements ShouldQueue
      */
     public function handle(PaymentAccepted $event)
     {
-        if (true) {
-            $this->release(30);
-        }
-
         logger()->info('Pago aceptado');
     }
 }
