@@ -1,13 +1,15 @@
 <?php
 namespace EventoOriginal\Core\Entities;
+
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Money\Currency;
 use Money\Money;
+
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\OrderRepository")
- * @ORM\Table(name="order")
+ * @ORM\Table(name="orders")
  */
 class Order
 {
@@ -18,11 +20,11 @@ class Order
      */
     private $id;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="create_date")
      */
-    private $date;
+    private $createDate;
     /**
-     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order")
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"})
      */
     private $ordersDetail;
     /**
@@ -52,16 +54,16 @@ class Order
     /**
      * @return datetime
      */
-    public function getDate()
+    public function getCreateDate()
     {
-        return $this->date;
+        return $this->createDate;
     }
     /**
      * @param datetime $date
      */
-    public function setDate(DateTime $date)
+    public function setCreateDate(DateTime $date)
     {
-        $this->date = $date;
+        $this->createDate = $date;
     }
     /**
      * @return ArrayCollection

@@ -47,7 +47,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
             __DIR__ . '/vendor/gedmo'
         );
 
-
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
         });
@@ -97,7 +96,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
             return EntityManager::getRepository(Entities\Role::class);
         });
         $this->app->singleton(Repositories\VoucherRepository::class, function() {
-           return EntityManager::getRepository(Entities\Voucher::class);
+            return EntityManager::getRepository(Entities\Voucher::class);
         });
         $this->app->singleton(Repositories\HealthyRepository::class, function () {
             return EntityManager::getRepository(Entities\Healthy::class);
@@ -116,6 +115,9 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\PaymentRepository::class, function() {
             return EntityManager::getRepository(Entities\Payment::class);
+        });
+        $this->app->singleton(Repositories\CustomerRepository::class, function () {
+            return EntityManager::getRepository(Entities\Customer::class);
         });
     }
 }

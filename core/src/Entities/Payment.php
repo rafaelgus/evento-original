@@ -24,9 +24,9 @@ class Payment implements PaymentInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date;
+    private $paidDate;
     /**
      * @ORM\Column(type="integer")
      */
@@ -36,11 +36,11 @@ class Payment implements PaymentInterface
      */
     private $originalCurrency;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $paidAmount;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $paidCurrency;
     /**
@@ -66,20 +66,20 @@ class Payment implements PaymentInterface
      */
     private $requestData;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $responseData;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $description;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $data;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private $param;
 
@@ -93,16 +93,16 @@ class Payment implements PaymentInterface
     /**
      * @return DateTime
      */
-    public function getDate()
+    public function getPaidDate()
     {
-        return $this->date;
+        return $this->paidDate;
     }
     /**
      * @param DateTime $date
      */
-    public function setDate(DateTime $date)
+    public function setPaidDate(DateTime $date)
     {
-        $this->date = $date;
+        $this->paidDate = $date;
     }
     /**
      * @return mixed

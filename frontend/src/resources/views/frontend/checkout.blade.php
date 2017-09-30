@@ -5,6 +5,7 @@
         <div class="main container">
             <div class="col-main">
                 <form method="post" action="/payment" id="frmCheckout">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="cart-collaterals row">
                         <div class="col-sm-4">
                             <div class="customer-information">

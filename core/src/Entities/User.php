@@ -293,4 +293,22 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     {
         // TODO: Implement getIdentification() method.
     }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+
 }

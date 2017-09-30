@@ -8,7 +8,7 @@ class CheckoutRequest extends FormRequest
 {
     public function authorize()
     {
-        return Auth::user()->isUser();
+        return Auth::user();
     }
 
     public function rules()
@@ -18,10 +18,7 @@ class CheckoutRequest extends FormRequest
             'addressNumber' => 'required',
             'billingAddress' => 'required',
             'billingAddressNumber' => 'required',
-            'phone' => 'required',
-            'postalCode' => 'required',
-            'city' => 'required',
-            'country' => 'required'
+            'phone' => 'required'
         ];
     }
 }

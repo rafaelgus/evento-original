@@ -52,12 +52,12 @@ class PaymentController
     public function process(CheckoutRequest $request)
     {
         $user = current_user();
+        //$customer = $user->getCustomer();
 
-        $customer = $user->getCustomer();
-
-        $this->customerService->updateCheckoutInformation($customer, $request->all());
+        //$this->customerService->updateCheckoutInformation($customer, $request->all());
 
         $details = $this->getDetails();
+
         $order = $this->orderService->create($details, $user);
 
         $payment = $this
@@ -66,9 +66,10 @@ class PaymentController
                 PaymentGateway::PAYPAL,
                 $order
             );
-        $payment = $this->paypalService->preparePayment($payment);
 
+        $payment = $this->paypalService->preparePayment($payment);
         if ($payment->getGateway() == PaymentGateway::PAYPAL) {
+            dd($payment->getParam('redirectUrl'));
             return redirect()->to($payment->getParam('redirectUrl'));
         } else {
             return abort(400, 'Invalid method');
@@ -77,7 +78,7 @@ class PaymentController
 
     public function getDetails()
     {
-        $items = Cart::instance('sopping')->content();
+        $items = Cart::instance('shopping')->content();
         $discounts = Cart::instance('discount')->content();
 
         $details = [];

@@ -19,8 +19,7 @@ class PaymentServiceTest extends TestCase
     {
         $paymentRepository = m::mock(PaymentRepository::class);
         $paymentGatewayFactory = m::mock(PaymentGatewayFactory::class);
-        $this->paymentService = $this->app->get(PaymentService::class);
-
+        $this->paymentService = $this->getService('PaymentService');
         $this->set($this->paymentService, 'paymentRepository', $paymentRepository);
         $this->set($this->paymentService, 'paymentGatewayFactory', $paymentGatewayFactory);
     }
@@ -29,9 +28,7 @@ class PaymentServiceTest extends TestCase
     {
         $data = [];
         $order = m::mock(Order::class);
-
         $this->expectException('Exception');
-
         $this->paymentService->prepare($data, $order);
     }
 }

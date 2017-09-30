@@ -33,7 +33,7 @@ class OrderDetail
     private $amount;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Order", inversedBy="ordersDetail")
+     * @ORM\ManyToOne(targetEntity="Order", inversedBy="ordersDetail", cascade={"persist"})
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;

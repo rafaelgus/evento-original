@@ -48,7 +48,7 @@ class PaymentService
         $payment->setGateway($gateway);
         $payment->setOriginalMoney($order->getTotal());
         $payment->setPayer($order->getUser());
-        $payment->setStatus(Payment::STATUS_PENDING);
+        $payment->setStatus(PaymentStatus::STATUS_CREATED);
 
         $this->paymentRepository->save($payment);
 
@@ -97,7 +97,7 @@ class PaymentService
         if ($payment->getStatus() != PaymentStatus::STATUS_PENDING) {
             throw new InvalidPaymentStatusException();
         }
-        $payment->setDate(new DateTime());
+        $payment->setPaidDate(new DateTime());
         $payment->setStatus(PaymentStatus::STATUS_PAID);
         $this->paymentRepository->save($payment);
         return $payment;

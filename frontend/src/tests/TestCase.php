@@ -1,11 +1,28 @@
 <?php
 namespace Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Contracts\Console\Kernel;
+use ReflectionClass;
+use Illuminate;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use CreatesApplication;
+    private $container;
+
+    const SERVICE_CORE_DIR = 'Autoahora\\Core\\Services\\';
+
+    public function setUp()
+    {
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $app->make(Kernel::class)->bootstrap();
+        $this->container = $app;
+        parent::setUp();
+    }
+
+    public function getService(string $servicePrefix)
+    {
+        return $this->container->make(self::SERVICE_CORE_DIR . $servicePrefix);
+    }
 
     public function set($subject, $propertyName, $value)
     {

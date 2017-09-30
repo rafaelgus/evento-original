@@ -24,11 +24,14 @@ class OrderService
     public function create(array $details, User $user)
     {
         $order = new Order();
+
         $order->setOrdersDetail($details);
-        $order->setDate(new DateTime());
+        $order->setCreateDate(new DateTime('now'));
         $order->setStatus(OrderStatus::STATUS_PENDING);
         $order->setUser($user);
+
         $this->orderRepository->save($order);
+
         return $order;
     }
     /**

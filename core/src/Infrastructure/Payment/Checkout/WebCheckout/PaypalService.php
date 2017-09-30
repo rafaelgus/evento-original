@@ -20,6 +20,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Api\Payment as PaypalPayment;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 
 class PaypalService implements PaymentGatewayInterface
@@ -27,8 +28,8 @@ class PaypalService implements PaymentGatewayInterface
     private const CURRENCY_USD = 'USD';
     private const CURRENCY_EUR = 'EUR';
     private const METHOD = 'paypal';
-    private const URL_ACEPT = '';
-    private const URL_CANCEL = '';
+    private const URL_ACEPT = 'http://www.evento-original.com.ar';
+    private const URL_CANCEL = 'http://www.evento-original.com.ar';
 
     const PAYMENT_STATE_APPROVED = 'approved';
     const RESOURCE_STATE_COMPLETED = 'completed';
@@ -56,18 +57,12 @@ class PaypalService implements PaymentGatewayInterface
      * @return Payment
      * @throws Exception
      */
-    public function preparePayment(Payment $payment, array $params)
+    public function preparePayment(Payment $payment, array $params = [])
     {
-        if (!in_array($payment->getOriginalMoney()->getCurrency()->getCode(), $this->acceptedCurrencies)) {
-            throw new Exception('Invalid currency');
-        }
         if ($payment->getOriginalMoney()->isZero()) {
             throw new Exception('The amount cannot zero');
         }
-        if ($payment->getGateway() != PaymentGateway::PAYPAL) {
-            throw new InvalidGatewayException('Gateway invalid');
-        }
-        if ($payment->getStatus() != PaymentStatus::STATUS_CREATED) {
+        if ($payment->getStatus() ==! PaymentStatus::STATUS_CREATED) {
             throw new Exception('invalid state of payment');
         }
         $payment->setPaidMoney($payment->getOriginalMoney());
@@ -79,6 +74,8 @@ class PaypalService implements PaymentGatewayInterface
         $item->setCurrency(self::CURRENCY_EUR);
         $item->setQuantity(1);
         $item->setPrice($payment->getPaidMoney()->getAmount());
+        $item->setName('payment');
+        $item->setSku('sku');
 
         $itemList = new ItemList();
         $itemList->setItems([$item]);
@@ -88,7 +85,7 @@ class PaypalService implements PaymentGatewayInterface
 
         $amount = new Amount();
         $amount->setCurrency(self::CURRENCY_EUR);
-        $amount->setTotal($payment->getPaidMoney());
+        $amount->setTotal($payment->getPaidMoney()->getAmount());
         $amount->setDetails($details);
 
         $transaction = new Transaction();
@@ -107,8 +104,9 @@ class PaypalService implements PaymentGatewayInterface
 
         try {
             $paypalPayment->create($this->apiContext());
-        } catch (Exception $exception) {
-            throw new Exception('Error to prepare payment');
+
+        } catch (PayPalConnectionException $exception) {
+            dd($exception);
         }
         if (isset($redirectUrl)) {
             $token = $this->token($redirectUrl);
@@ -191,15 +189,16 @@ class PaypalService implements PaymentGatewayInterface
     {
         if (empty($this->apiContext)) {
             $apiContext = new ApiContext(
-                new OAuthTokenCredential($this->config['client_id'], $this->config['client_secret'])
+                new OAuthTokenCredential(
+                    $this->config['client_id'],
+                    $this->config['client_secret']
+                )
             );
             $apiContext->setConfig([
-                'mode' => $this->config['sandbox_mode'] ? 'sandbox' : 'live',
-                'http.ConnectionTimeOut' => 30,
+                'mode' => 'sandbox',
                 'log.LogEnabled'   => true,
                 'log.FileName'     => '../PayPal.log',
-                'log.LogLevel'     => 'FINE',
-                'validation.level' => 'log'
+                'log.LogLevel'     => 'DEBUG'
             ]);
             $this->apiContext = $apiContext;
         }
