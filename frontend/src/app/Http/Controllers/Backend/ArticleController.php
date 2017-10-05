@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class ArticleController
 {
@@ -192,17 +192,22 @@ class ArticleController
                     $request->input('ingredients')
                 );
         }
+
         $ingredients = $this
             ->ingredientService
             ->findByIds(
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+
+        }
 
         $priceType = null;
         if ($request->input('priceType') == 1) {

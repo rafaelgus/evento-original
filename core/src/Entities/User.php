@@ -70,6 +70,11 @@ class User implements Authenticatable, CanResetPassword
      */
     private $wallet;
 
+    /**
+     * @ORM\OneToOne(targetEntity="VisitorLanding", mappedBy="user")
+     */
+    private $visitorLanding;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
@@ -313,5 +318,21 @@ class User implements Authenticatable, CanResetPassword
     public function setWallet(Wallet $wallet)
     {
         $this->wallet = $wallet;
+    }
+
+    /**
+     * @return VisitorLanding
+     */
+    public function getVisitorLanding()
+    {
+        return $this->visitorLanding;
+    }
+
+    /**
+     * @param VisitorLanding $visitorLanding
+     */
+    public function setVisitorLanding(VisitorLanding $visitorLanding)
+    {
+        $this->visitorLanding = $visitorLanding;
     }
 }
