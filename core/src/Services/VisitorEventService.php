@@ -4,6 +4,7 @@ namespace EventoOriginal\Core\Services;
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Country;
 use EventoOriginal\Core\Entities\VisitorEvent;
+use EventoOriginal\Core\Entities\VisitorLanding;
 use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
 use EventoOriginal\Core\Persistence\Repositories\VisitorLandingRepository;
 
@@ -26,6 +27,7 @@ class VisitorEventService
         $event->setType(array_get($data, 'type'));
         $event->setUrl(array_get($data, 'url'));
         $event->setUserAgent(array_get($data, 'user_agent'));
+        $event->setIp(array_get($data, 'ip'));
 
         if (!empty($data['visitor_landing_id'])) {
             $visitorLandingId = $data['visitor_landing_id'];
@@ -49,5 +51,10 @@ class VisitorEventService
         }
 
         $this->visitorEventRepository->save($event);
+    }
+
+    public function assignEvents(VisitorLanding $oldVisitorLanding, VisitorLanding $newVisitorLanding)
+    {
+        $this->visitorEventRepository->assignEvents($oldVisitorLanding, $newVisitorLanding);
     }
 }

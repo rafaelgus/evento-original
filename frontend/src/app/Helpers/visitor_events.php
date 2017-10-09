@@ -1,7 +1,6 @@
 <?php
 
 use EventoOriginal\Core\Persistence\Repositories\VisitorLandingRepository;
-use EventoOriginal\Core\Services\VisitorLandingService;
 
 function visitor_landing_id()
 {
@@ -15,18 +14,14 @@ function user_agent()
 
 function visitor_url()
 {
-    return $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . $_SERVER['QUERY_STRING'];
+    return request()->fullUrl();
 }
 
 function visitor_ip()
 {
     return array_get(
         $_SERVER,
-        'HTTP_CF_/**
-     * Hook timestampable behavior
-     * updates createdAt, updatedAt fields
-     */
-    use TimestampableEntity;CONNECTING_IP',
+        'HTTP_CF_CONNECTING_IP',
         array_get(
             $_SERVER,
             'HTTP_X_FORWARDED_FOR',

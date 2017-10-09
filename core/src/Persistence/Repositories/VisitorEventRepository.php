@@ -23,12 +23,16 @@ class VisitorEventRepository extends BaseRepository
     public function assignEvents(VisitorLanding $oldVisitorLanding, VisitorLanding $newVisitorLanding)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $q = $qb->update('visitor_event', 've')
-            ->set('ve.visitor_landing', '?new_visitor_landing_id')
-            ->where('ve.visitor_landing = ?old_visitor_landing_id')
+        $q = $qb->update(VisitorEvent::class, 've')
+            ->set('ve.visitorLanding', ':new_visitor_landing_id')
+            ->where('ve.visitorLanding = :old_visitor_landing_id')
+            ->andWhere('ve.type != :visitor_type')
             ->setParameter('new_visitor_landing_id', $newVisitorLanding->getId())
             ->setParameter('old_visitor_landing_id', $oldVisitorLanding->getId())
+            ->setParameter('visitor_type', 'VisitorLandingCreated')
             ->getQuery();
+
+        logger()->info($q->getSQL());
 
         return $q->execute();
     }

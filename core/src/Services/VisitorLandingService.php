@@ -87,13 +87,11 @@ class VisitorLandingService
     public function assign(VisitorLanding $visitorLanding)
     {
         if (visitor_landing_id() !== $visitorLanding->getId()) {
-            $oldVisitorLanding = visitor_landing_id();
+            $this->visitorEventService->assignEvents(current_visitor_landing(), $visitorLanding);
 
             session()->put('visitorLandingId', $visitorLanding->getId());
             logger()->info(sprintf('Assing %s visitor_landing_id', $visitorLanding->getId()));
             $this->visitorEventService->create(array_merge(['type' => VisitorEventType::VISITOR_LANDING_REASSIGNED], visitorData()));
-
-
         }
 
         return $visitorLanding;

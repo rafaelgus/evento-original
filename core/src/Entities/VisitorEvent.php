@@ -52,6 +52,11 @@ class VisitorEvent
      */
     private $affiliateCodeReferral;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $ip;
+
     public function __construct()
     {
     }
@@ -182,5 +187,21 @@ class VisitorEvent
     public function setAffiliateCodeReferral($affiliateCodeReferral)
     {
         $this->affiliateCodeReferral = $affiliateCodeReferral;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @param mixed $ip
+     */
+    public function setIp(string $ip)
+    {
+        $this->ip = $ip;
     }
 }
