@@ -28,8 +28,8 @@ class PaypalService implements PaymentGatewayInterface
     private const CURRENCY_USD = 'USD';
     private const CURRENCY_EUR = 'EUR';
     private const METHOD = 'paypal';
-    private const URL_ACEPT = 'http://localhost/paypalConfirm';
-    private const URL_CANCEL = 'http://localhost/paypalCancel';
+    private const URL_ACEPT = 'http://18.221.232.49/paypalConfirm';
+    private const URL_CANCEL = 'http://18.221.232.49/paypalCancel';
 
     const PAYMENT_STATE_APPROVED = 'approved';
     const RESOURCE_STATE_COMPLETED = 'completed';
