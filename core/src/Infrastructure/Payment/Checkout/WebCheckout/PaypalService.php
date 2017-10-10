@@ -28,8 +28,8 @@ class PaypalService implements PaymentGatewayInterface
     private const CURRENCY_USD = 'USD';
     private const CURRENCY_EUR = 'EUR';
     private const METHOD = 'paypal';
-    private const URL_ACEPT = 'http://www.evento-original.com.ar';
-    private const URL_CANCEL = 'http://www.evento-original.com.ar';
+    private const URL_ACEPT = 'http://localhost/paypalConfirm';
+    private const URL_CANCEL = 'http://localhost/paypalCancel';
 
     const PAYMENT_STATE_APPROVED = 'approved';
     const RESOURCE_STATE_COMPLETED = 'completed';
@@ -101,13 +101,23 @@ class PaypalService implements PaymentGatewayInterface
         $paypalPayment->setPayer($payer);
         $paypalPayment->setRedirectUrls($redirectUrls);
         $paypalPayment->setTransactions([$transaction]);
+        $paypalPayment->setIntent('sale');
 
         try {
             $paypalPayment->create($this->apiContext());
-
         } catch (PayPalConnectionException $exception) {
-            dd($exception);
+            throw $exception;
+        } catch (Exception $exception) {
+            throw new Exception('Error at prepare payment');
         }
+
+        foreach ($paypalPayment->getLinks() as $link) {
+            if ($link->getRel() === 'approval_url') {
+                $redirectUrl = $link->getHref();
+                break;
+            }
+        }
+
         if (isset($redirectUrl)) {
             $token = $this->token($redirectUrl);
             $payment->setExternalId($token);

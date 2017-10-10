@@ -117,4 +117,14 @@ class PaymentService
         $this->paymentRepository->save($payment);
         return $payment;
     }
+
+    public function save(Payment $payment)
+    {
+        $this->paymentRepository->save($payment);
+    }
+
+    public function findByToken(string $token)
+    {
+        return $this->findByToken($token);
+    }
 }

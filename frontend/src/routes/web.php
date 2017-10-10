@@ -16,6 +16,8 @@ Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
 Route::get('/checkout', 'Frontend\PaymentController@checkout');
 Route::post('/payment', 'Frontend\PaymentController@process');
+Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
+Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');
 Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
 Route::get('/' . trans('frontend/my_wishlist.slug'), function () {

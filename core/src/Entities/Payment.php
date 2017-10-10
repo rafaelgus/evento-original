@@ -57,22 +57,27 @@ class Payment implements PaymentInterface
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
     /**
      * @ORM\Column(type="string")
      */
     private $gateway;
+
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $requestData;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $responseData;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $description;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -82,6 +87,11 @@ class Payment implements PaymentInterface
      * @ORM\Column(type="json", nullable=true)
      */
     private $param;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $externalId;
 
     /**
      * @return int
@@ -118,6 +128,7 @@ class Payment implements PaymentInterface
     {
         $this->order = $order;
     }
+
     /**
      * @return string
      */
@@ -157,7 +168,7 @@ class Payment implements PaymentInterface
      */
     public function getGateway()
     {
-        return $this->getGateway();
+        return $this->gateway;
     }
     /**
      * Set payment gateway
@@ -266,11 +277,11 @@ class Payment implements PaymentInterface
         return $this->data;
     }
     /**
-     * @param string $data
+     * @param array $data
      */
-    public function setData(string $data)
+    public function setData(array $data)
     {
-        $this->data = $data;
+        $this->data = json_encode($data);
     }
 
     public function setParams(array $params = [])
@@ -290,4 +301,27 @@ class Payment implements PaymentInterface
         $params[$key] = $value;
         $this->setParams($params);
     }
+
+    public function getParams()
+    {
+        return !empty($this->params) ? json_decode($this->params, true) : [];
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * @param string $externalId
+     */
+    public function setExternalId(string $externalId)
+    {
+        $this->externalId = $externalId;
+    }
+
+
 }

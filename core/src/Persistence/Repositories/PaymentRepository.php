@@ -14,4 +14,9 @@ class PaymentRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findByToken(string $token)
+    {
+        return $this->findOneBy(['externalId' => $token]);
+    }
 }

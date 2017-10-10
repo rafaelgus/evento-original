@@ -67,7 +67,8 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     protected $clientSecret;
 
     /**
-     * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Customer", inversedBy="user")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $customer;
 

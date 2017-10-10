@@ -41,8 +41,8 @@ class Customer
     private $affiliateCode;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="customer")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     * One Customer has One Cart.
+     * @ORM\OneToOne(targetEntity="User", mappedBy="user")
      */
     private $user;
 

@@ -9,7 +9,10 @@ use EventoOriginal\Core\Services\CustomerService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\PaymentService;
+use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController
 {
@@ -52,9 +55,9 @@ class PaymentController
     public function process(CheckoutRequest $request)
     {
         $user = current_user();
-        //$customer = $user->getCustomer();
+        $customer = $user->getCustomer();
 
-        //$this->customerService->updateCheckoutInformation($customer, $request->all());
+        $this->customerService->updateCheckoutInformation($customer, $request->all());
 
         $details = $this->getDetails();
 
@@ -68,11 +71,31 @@ class PaymentController
             );
 
         $payment = $this->paypalService->preparePayment($payment);
-        if ($payment->getGateway() == PaymentGateway::PAYPAL) {
-            dd($payment->getParam('redirectUrl'));
+        $this->paymentService->save($payment);
+
+        if ($payment->getGateway() === PaymentGateway::PAYPAL) {
             return redirect()->to($payment->getParam('redirectUrl'));
         } else {
             return abort(400, 'Invalid method');
+        }
+    }
+
+    public function getPaypalConfirm(Request $request)
+    {
+        if ($request->has('token')) {
+            try {
+                $payment = $this->paymentService->findByToken($request->input('token'));
+
+                $data['payerId'] = $request->input('payerId');
+                $this->paypalService->processPayment($payment, $data);
+
+                return view('frontend.payment.success');
+
+            } catch (Exception $exception) {
+                Log::error('PAYPAL', $exception->getMessage());
+
+                return abort(400, 'Error to process payment');
+            }
         }
     }
 
@@ -136,6 +159,7 @@ class PaymentController
                 'article' => false
             ];
         }
+
         return $itemsAndDiscount;
     }
 }

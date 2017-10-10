@@ -23,6 +23,12 @@ class OrderDetail
     private $quantity;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="OrderDetails")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    private $article;
+
+    /**
      * @ORM\Column(type="string")
      */
     private $currency;
@@ -115,6 +121,22 @@ class OrderDetail
     public function setDiscount($discount)
     {
         $this->discount = $discount;
+    }
+
+    /**
+     * @return Article
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param Article $article
+     */
+    public function setArticle(Article $article)
+    {
+        $this->article = $article;
     }
 
 

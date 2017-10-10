@@ -210,6 +210,13 @@ class Article
      */
     private $updated;
 
+
+    /**
+     * One Product has Many Features.
+     * @OneToMany(targetEntity="OrderDetail", mappedBy="article")
+     */
+    private $orderDetails;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -789,4 +796,22 @@ class Article
     {
         $this->isNew = $isNew;
     }
+
+    /**
+     * @return OrderDetail
+     */
+    public function getOrderDetails()
+    {
+        return $this->orderDetails;
+    }
+
+    /**
+     * @param OrderDetail $orderDetails
+     */
+    public function setOrderDetails(OrderDetail $orderDetails)
+    {
+        $this->orderDetails = $orderDetails;
+    }
+
+
 }
