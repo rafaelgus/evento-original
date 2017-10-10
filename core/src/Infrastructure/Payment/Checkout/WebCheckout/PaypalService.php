@@ -122,7 +122,7 @@ class PaypalService implements PaymentGatewayInterface
             $token = $this->token($redirectUrl);
             $payment->setExternalId($token);
             $payment->setParam('redirectUrl', $redirectUrl);
-            $payment->setParam('paypalId', $payment->getId());
+            $payment->setParam('paypalId', $paypalPayment->getId());
             $payment->setData(json_decode($paypalPayment->toJson(), true));
             $payment->setStatus(PaymentStatus::STATUS_PENDING);
         }
@@ -142,19 +142,23 @@ class PaypalService implements PaymentGatewayInterface
             'payerId' => null
         ];
         $paypalId = $payment->getParam('paypalId');
+
         if (empty($paypalId)) {
-            throw new PaypalGatewayException('Missing Paypal Id');
+            throw new Exception('Missing Paypal Id');
         }
         $payerId = $params['payerId'];
+
         if (empty($payerId)) {
             throw new PaypalGatewayException('Missing Payer Id');
         }
+
         if (!$payment->getStatus() === PaymentStatus::STATUS_PENDING) {
             throw new Exception('Only can process a payment with pending status');
         }
+
         $paypalPayment = $this->getPaypalPayment($paypalId);
         if ($this->isApproved($paypalPayment)) {
-            return json_decode($payment->toJson(), true);
+            return json_decode($paypalPayment->toJson(), true);
         }
         $paypalPayment = $this->executePayment($paypalPayment, $payerId);
         if (!$this->isApproved($paypalPayment)) {
@@ -239,7 +243,9 @@ class PaypalService implements PaymentGatewayInterface
         $urlComponents = parse_url($url);
         $queryString = $urlComponents['query'];
         $queryParams = [];
+
         parse_str($queryString, $queryParams);
+
         return $queryParams['token'];
     }
 

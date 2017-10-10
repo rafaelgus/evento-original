@@ -98,7 +98,7 @@ class PaymentService
             throw new InvalidPaymentStatusException();
         }
         $payment->setPaidDate(new DateTime());
-        $payment->setStatus(PaymentStatus::STATUS_PAID);
+        $payment->setStatus(PaymentStatus::STATUS_PAYMENT_APPROVE);
         $this->paymentRepository->save($payment);
         return $payment;
     }
@@ -125,6 +125,6 @@ class PaymentService
 
     public function findByToken(string $token)
     {
-        return $this->findByToken($token);
+        return $this->paymentRepository->findByToken($token);
     }
 }

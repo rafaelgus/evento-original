@@ -84,7 +84,7 @@ class Payment implements PaymentInterface
     private $data;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="json", nullable=true, length=2000)
      */
     private $param;
 
@@ -286,7 +286,7 @@ class Payment implements PaymentInterface
 
     public function setParams(array $params = [])
     {
-        $this->params = json_encode($params);
+        $this->param = json_encode($params);
     }
 
     public function getParam($key)
@@ -304,7 +304,7 @@ class Payment implements PaymentInterface
 
     public function getParams()
     {
-        return !empty($this->params) ? json_decode($this->params, true) : [];
+        return !empty($this->param) ? json_decode($this->param, true) : [];
     }
 
     /**

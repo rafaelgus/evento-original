@@ -213,7 +213,7 @@ class Article
 
     /**
      * One Product has Many Features.
-     * @OneToMany(targetEntity="OrderDetail", mappedBy="article")
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="article")
      */
     private $orderDetails;
 
@@ -230,6 +230,7 @@ class Article
         $this->ingredients = new ArrayCollection();
         $this->pricePerQuantity = new ArrayCollection();
         $this->healthys = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
     /**

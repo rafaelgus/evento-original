@@ -42,7 +42,7 @@ class Customer
 
     /**
      * One Customer has One Cart.
-     * @ORM\OneToOne(targetEntity="User", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="User", mappedBy="customer")
      */
     private $user;
 

@@ -86,14 +86,17 @@ class PaymentController
             try {
                 $payment = $this->paymentService->findByToken($request->input('token'));
 
-                $data['payerId'] = $request->input('payerId');
+                $data['payerId'] = $request->input('PayerID');
                 $this->paypalService->processPayment($payment, $data);
+
+                Cart::instance('shopping')->destroy();
+                Cart::instance('discount')->destroy();
 
                 return view('frontend.payment.success');
 
             } catch (Exception $exception) {
-                Log::error('PAYPAL', $exception->getMessage());
-
+                Log::error('PAYPAL '. $exception->getMessage());
+                dd($exception->getMessage());
                 return abort(400, 'Error to process payment');
             }
         }
