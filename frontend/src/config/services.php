@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'mandrill' => [
+        'secret' => env('MANDRILL_PRODUCTION'),
+        'test' => env('MANDRILL_TEST'),
+    ],
+
 ];

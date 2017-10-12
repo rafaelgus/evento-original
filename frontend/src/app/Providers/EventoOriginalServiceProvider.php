@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
+use Mandrill;
 
 class EventoOriginalServiceProvider extends ServiceProvider
 {
@@ -124,6 +125,16 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\VisitorEventRepository::class, function () {
             return EntityManager::getRepository(Entities\VisitorEvent::class);
+        });
+
+        $this->app->bind(Mandrill::class, function() {
+            if (env('MANDRILL_SANDBOX', false)) {
+                $apiKey = config('services.mandrill.test');
+            } else {
+                $apiKey = config('services.mandrill.secret');
+            }
+
+            return new Mandrill($apiKey);
         });
     }
 }
