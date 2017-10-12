@@ -75,4 +75,13 @@ class UserService
     {
         return $this->userRepository->remove($user);
     }
+
+    /**
+     * @param string $code
+     * @return null|User
+     */
+    public function findByAffiliateCode(string $code)
+    {
+        return $this->userRepository->findOneByAffiliateCode($code);
+    }
 }
