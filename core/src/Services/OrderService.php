@@ -49,4 +49,9 @@ class OrderService
     {
         return $this->orderRepository->findAll();
     }
+
+    public function findAllByUser(User $user)
+    {
+        return $this->orderRepository->findAllByUser($user);
+    }
 }

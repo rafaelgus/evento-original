@@ -28,7 +28,7 @@ class Order
      */
     private $ordersDetail;
     /**
-     * @ORM\OneToOne(targetEntity="Payment", mappedBy="payment")
+     * @ORM\OneToOne(targetEntity="Payment", mappedBy="order")
      */
     private $payment;
     /**
@@ -107,6 +107,7 @@ class Order
     {
         $this->user = $user;
     }
+
     public function getTotal()
     {
         $details = $this->getOrdersDetail();

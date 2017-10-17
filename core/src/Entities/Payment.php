@@ -43,11 +43,13 @@ class Payment implements PaymentInterface
      * @ORM\Column(type="string", nullable=true)
      */
     private $paidCurrency;
+
     /**
-     * @ORM\OneToOne(targetEntity="Payment", inversedBy="payment")
+     * @ORM\OneToOne(targetEntity="Order", inversedBy="payment")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;
+
     /**
      * @ORM\Column(type="string")
      */
