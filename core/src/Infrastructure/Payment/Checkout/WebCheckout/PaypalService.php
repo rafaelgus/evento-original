@@ -108,7 +108,7 @@ class PaypalService implements PaymentGatewayInterface
         } catch (PayPalConnectionException $exception) {
             throw $exception;
         } catch (Exception $exception) {
-            throw $exception;
+            throw new Exception('Error at prepare payment');
         }
 
         foreach ($paypalPayment->getLinks() as $link) {
