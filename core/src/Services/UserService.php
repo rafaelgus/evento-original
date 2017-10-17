@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use App\Events\UserRegistered;
 use DateTime;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Persistence\Repositories\UserRepository;
@@ -39,6 +40,8 @@ class UserService
             $this->userRepository->save($user);
 
             $this->walletService->create($user);
+
+            event(new UserRegistered($user));
         } else {
             throw new Exception('This email already exist');
         }

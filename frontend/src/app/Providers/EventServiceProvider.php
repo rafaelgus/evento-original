@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\PaymentAccepted;
+use App\Events\UserRegistered;
 use App\Listeners\LiquidateAffiliateCommission;
+use App\Listeners\SendWelcomeEmail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         PaymentAccepted::class => [
             LiquidateAffiliateCommission::class,
         ],
+        UserRegistered::class => [
+            SendWelcomeEmail::class
+        ]
     ];
 
     /**

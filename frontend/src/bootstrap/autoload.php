@@ -14,3 +14,5 @@ define('LARAVEL_START', microtime(true));
 |
 */
 require __DIR__.'/../vendor/autoload.php';
+
+require __DIR__.'/../vendor/mailin-api/mailin-api-php/V2.0/Mailin.php';

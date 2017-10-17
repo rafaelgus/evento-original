@@ -50,7 +50,11 @@ class LiquidateAffiliateCommission implements ShouldQueue
             $seller = $this->userService->findByAffiliateCode($affiliateReferralEvent->getAffiliateCodeReferral);
 
             if ($seller) {
-                $this->orderService->liquidateAffiliateCommission($order, $seller, $affiliateReferralEvent->getArticle());
+                $this->orderService->liquidateAffiliateCommission(
+                    $order,
+                    $seller,
+                    $affiliateReferralEvent->getArticle()
+                );
             }
         }
     }

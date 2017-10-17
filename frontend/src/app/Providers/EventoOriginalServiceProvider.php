@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
+use Mailin;
 use Mandrill;
 
 class EventoOriginalServiceProvider extends ServiceProvider
@@ -127,14 +128,8 @@ class EventoOriginalServiceProvider extends ServiceProvider
             return EntityManager::getRepository(Entities\VisitorEvent::class);
         });
 
-        $this->app->bind(Mandrill::class, function() {
-            if (env('MANDRILL_SANDBOX', false)) {
-                $apiKey = config('services.mandrill.test');
-            } else {
-                $apiKey = config('services.mandrill.secret');
-            }
-
-            return new Mandrill($apiKey);
+        $this->app->bind(Mailin::class, function() {
+            return new Mailin(config('services.sendinblue.url'), config('services.sendinblue.key'));
         });
     }
 }
