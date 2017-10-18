@@ -13,4 +13,9 @@ class OrderDetailRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function flushRepository()
+    {
+        $this->getEntityManager()->flush();
+    }
 }

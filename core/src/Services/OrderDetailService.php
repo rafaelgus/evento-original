@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
 use EventoOriginal\Core\Persistence\Repositories\OrderDetailRepository;
 use Exception;
@@ -43,6 +44,17 @@ class OrderDetailService
 
         $detail->setDiscount($discount);
         return $detail;
+    }
+
+    public function setOrder(array $orderDetails, Order $order)
+    {
+        foreach ($orderDetails as $detail) {
+            $detail->setOrder($order);
+
+            $this->orderDetailRepository->save($detail, false);
+        }
+
+        $this->orderDetailRepository->flushRepository();
     }
 
     public function findById(int $id)

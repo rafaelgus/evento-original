@@ -49,6 +49,7 @@ class PaymentService
         $payment->setOriginalMoney($order->getTotal());
         $payment->setPayer($order->getUser());
         $payment->setStatus(PaymentStatus::STATUS_CREATED);
+        $payment->setOrder($order);
 
         $this->paymentRepository->save($payment);
 
@@ -99,6 +100,8 @@ class PaymentService
         }
         $payment->setPaidDate(new DateTime());
         $payment->setStatus(PaymentStatus::STATUS_PAYMENT_APPROVE);
+        $payment->getOrder()->setStatus(OrderStatus::STATUS_PAYMENT_APPROVE);
+
         $this->paymentRepository->save($payment);
         return $payment;
     }

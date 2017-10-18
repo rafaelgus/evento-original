@@ -17,28 +17,34 @@ class Payment implements PaymentInterface
     const STATUS_PENDING = 'pending';
     const STATUS_APPROVE = 'approve';
     const STATUS_REFUSED = 'refused';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
      */
     private $id;
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $paidDate;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $originalAmount;
+
     /**
      * @ORM\Column(type="string")
      */
     private $originalCurrency;
+
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $paidAmount;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -54,6 +60,7 @@ class Payment implements PaymentInterface
      * @ORM\Column(type="string")
      */
     private $status;
+
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -81,7 +88,7 @@ class Payment implements PaymentInterface
     private $description;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, length=5000)
      */
     private $data;
 
@@ -102,6 +109,7 @@ class Payment implements PaymentInterface
     {
         return $this->id;
     }
+
     /**
      * @return DateTime
      */
@@ -109,6 +117,7 @@ class Payment implements PaymentInterface
     {
         return $this->paidDate;
     }
+
     /**
      * @param DateTime $date
      */
@@ -123,6 +132,7 @@ class Payment implements PaymentInterface
     {
         return $this->order;
     }
+
     /**
      * @param Order $order
      */
@@ -172,6 +182,7 @@ class Payment implements PaymentInterface
     {
         return $this->gateway;
     }
+
     /**
      * Set payment gateway
      *
@@ -181,6 +192,7 @@ class Payment implements PaymentInterface
     {
         $this->gateway = $gateway;
     }
+
     /**
      * Get original money of the payment
      *
@@ -191,6 +203,7 @@ class Payment implements PaymentInterface
         $money = new Money($this->originalAmount, $this->originalCurrency);
         return $money;
     }
+
     /**
      * Set original money of the payment
      *
@@ -201,6 +214,7 @@ class Payment implements PaymentInterface
         $this->originalCurrency = $money->getCurrency();
         $this->originalAmount = $money->getAmount();
     }
+
     /**
      * Get paid money of the payment
      *
@@ -211,6 +225,7 @@ class Payment implements PaymentInterface
         $money = new Money($this->paidAmount, $this->paidCurrency);
         return $money;
     }
+
     /**
      * Set paid money of the payment
      *
@@ -221,6 +236,7 @@ class Payment implements PaymentInterface
         $this->paidAmount = $money->getAmount();
         $this->paidCurrency = $money->getCurrency();
     }
+
     /**
      * Get data to request the payment
      *
@@ -230,6 +246,7 @@ class Payment implements PaymentInterface
     {
         return json_decode($this->requestData);
     }
+
     /**
      * Set data to request the payment
      *
@@ -239,6 +256,7 @@ class Payment implements PaymentInterface
     {
         $this->requestData = json_encode($data);
     }
+
     /**
      * Get response data of the payment
      *
@@ -248,6 +266,7 @@ class Payment implements PaymentInterface
     {
         return json_decode($this->responseData);
     }
+
     /**
      * Set response data of the payment
      *
@@ -257,6 +276,7 @@ class Payment implements PaymentInterface
     {
         $this->responseData = json_encode($data);
     }
+
     /**
      * @return mixed
      */
@@ -264,6 +284,7 @@ class Payment implements PaymentInterface
     {
         return $this->description;
     }
+
     /**
      * @param string $description
      */
@@ -271,6 +292,7 @@ class Payment implements PaymentInterface
     {
         $this->description = $description;
     }
+
     /**
      * @return mixed
      */
@@ -278,6 +300,7 @@ class Payment implements PaymentInterface
     {
         return $this->data;
     }
+
     /**
      * @param array $data
      */
@@ -324,6 +347,4 @@ class Payment implements PaymentInterface
     {
         $this->externalId = $externalId;
     }
-
-
 }

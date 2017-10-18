@@ -10,10 +10,12 @@ use EventoOriginal\Core\Persistence\Repositories\OrderRepository;
 class OrderService
 {
     private $orderRepository;
+    private $orderDetailService;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(OrderRepository $orderRepository, OrderDetailService $orderDetailService)
     {
         $this->orderRepository = $orderRepository;
+        $this->orderDetailService = $orderDetailService;
     }
 
     /**
@@ -31,9 +33,11 @@ class OrderService
         $order->setUser($user);
 
         $this->orderRepository->save($order);
+        $this->orderDetailService->setOrder($details, $order);
 
         return $order;
     }
+
     /**
      * @param int $orderId
      * @return null|Order
@@ -42,6 +46,7 @@ class OrderService
     {
         return $this->orderRepository->find($orderId);
     }
+
     /**
      * @return array
      */
