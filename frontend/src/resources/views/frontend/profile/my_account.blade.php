@@ -42,7 +42,7 @@
                                                 <td>{{$order->getCreateDate()->format('Y-m-d H:i:s')}}</td>
                                                 <td><span class="price">{{$order->getTotal()->getAmount()}}</span></td>
                                                 <td><em>{{$order->getStatus()}}</em></td>
-                                                <td class="a-center last"><span class="nobr"> <a href="#">Ver Órden</a></span></td>
+                                                <td class="a-center last"><span class="nobr"> <a href="/{{$order->getId()}}/detalle">Ver Órden</a></span></td>
                                             </tr>
                                             @endforeach
                                             </tbody>

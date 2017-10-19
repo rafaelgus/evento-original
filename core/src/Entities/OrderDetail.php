@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Entities;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Money\Currency;
 use Money\Money;
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\OrderDetailRepository")
@@ -94,7 +95,7 @@ class OrderDetail
      */
     public function getMoney()
     {
-        $money = new Money($this->amount, $this->currency);
+        $money = new Money($this->amount, new Currency($this->currency));
         return $money;
     }
 

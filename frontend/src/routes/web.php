@@ -39,6 +39,7 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
 Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->middleware('auth');
+Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails')->middleware('auth');
 
 
 Route::group(['prefix' => '/management'], function () {

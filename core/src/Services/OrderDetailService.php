@@ -62,8 +62,20 @@ class OrderDetailService
         return $this->orderDetailRepository->find($id);
     }
 
+    /**
+     * @return array
+     */
     public function findAll()
     {
         return $this->orderDetailRepository->findAll();
+    }
+
+    /**
+     * @param int $orderId
+     * @return null|array
+     */
+    public function findByOrder(int $orderId)
+    {
+        return $this->orderDetailRepository->findBy(['order' => $orderId]);
     }
 }
