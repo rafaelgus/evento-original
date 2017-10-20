@@ -14,6 +14,8 @@ use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use Mailin;
 use Mandrill;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
 
 class EventoOriginalServiceProvider extends ServiceProvider
 {
@@ -130,6 +132,22 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
         $this->app->bind(Mailin::class, function() {
             return new Mailin(config('services.sendinblue.url'), config('services.sendinblue.key'));
+        });
+
+        $this->app->singleton(ApiContext::class, function() {
+            $apiContext = new ApiContext(
+                new OAuthTokenCredential(
+                    config('paypal.client_id'),
+                    config('paypal.client_secret')
+                )
+            );
+            $apiContext->setConfig([
+                'mode' => 'sandbox',
+                'log.LogEnabled'   => true,
+                'log.FileName'     => '../PayPal.log',
+                'log.LogLevel'     => 'DEBUG'
+            ]);
+            $this->apiContext = $apiContext;
         });
     }
 }

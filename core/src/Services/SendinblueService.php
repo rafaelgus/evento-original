@@ -2,6 +2,8 @@
 
 namespace EventoOriginal\Core\Services;
 
+use Exception;
+use InvalidArgumentException;
 use Mailin;
 
 class SendinblueService
@@ -17,24 +19,47 @@ class SendinblueService
 
     public function sendTemplate(int $templateId, array $data)
     {
-        $data = [
-            "id" => $templateId,
-            "to" => $data['to'],
-            "cc" => $data['cc'],
-            "bcc" => $data['bcc'],
-            "replyto" => $data['reply_to'],
-            "attr" => $data['attr'],
-            "attachment_url" => $data['attachment_url'],
-            "attachment" => $data['attachment'],
-            "headers" => [
-                "Content-Type" => "text/html;charset=iso-8859-1",
-                "X-param1" => "value1",
-                "X-param2" => "value2",
-                "X-Mailin-custom" => "my custom value",
-                "X-Mailin-tag" => "my tag value"
-            ]
-        ];
+        $emailData = [];
+        $emailData['id'] = $templateId;
 
-        logger()->info($this->client->send_transactional_template($data));
+        if (isset($data['to']) || array_key_exists('to', $data)) {
+            $emailData['to'] =  $data['to'];
+        } else {
+            throw new InvalidArgumentException("Receiver is required");
+        }
+
+        if (isset($data['cc']) || array_key_exists('cc', $data)) {
+            $emailData['cc'] =  $data['cc'];
+        }
+
+        if (isset($data['bcc']) || array_key_exists('bcc', $data)) {
+            $emailData['bcc'] =  $data['bcc'];
+        }
+
+        if (isset($data['replyto']) || array_key_exists('replyto', $data)) {
+            $emailData['replyto'] =  $data['replyto'];
+        }
+
+        if (isset($data['attachment']) || array_key_exists('attachment', $data)) {
+            $emailData['attachment'] =  $data['attachment'];
+        }
+
+        $emailData["headers"] = [];
+        $emailData["headers"]["Content-Type"] = "text/html;charset=iso-8859-1";
+
+        //TODO Implementar envio de parametros
+
+        try {
+            $response = $this->client->send_transactional_template($emailData);
+
+            logger()->info($response);
+
+            return $response;
+
+        } catch (Exception $exception) {
+            logger()->error("Error sending welcome email: " . $exception->getMessage());
+
+            throw $exception;
+        }
     }
 }
