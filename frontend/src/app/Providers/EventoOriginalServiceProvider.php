@@ -147,7 +147,8 @@ class EventoOriginalServiceProvider extends ServiceProvider
                 'log.FileName'     => '../PayPal.log',
                 'log.LogLevel'     => 'DEBUG'
             ]);
-            $this->apiContext = $apiContext;
+
+            return $apiContext;
         });
     }
 }

@@ -21,16 +21,16 @@ class PaypalPayoutServiceTest extends TestCase
         $this->paypalPayoutService = $this->app->make(PaypalPayoutService::class);
     }
 
-    public function testPrepare()
+    public function testSend()
     {
+        $userMock = m::mock(User::class);
+        $userMock->shouldReceive('getEmail')->times(1)->andReturn('test@eventooriginal.com');
+
         $payoutMock = m::mock(Payout::class);
         $payoutMock->shouldReceive('getOriginalAmount')->times(1)->andReturn(110);
-
-        $userMock = m::mock(User::class);
-        $userMock->shouldReceive('getEmail')->times(1)->andReturn('emiliano.rodriguez26@gmail.com');
-
+        $payoutMock->shouldReceive('getOriginalCurrency')->times(1)->andReturn('EUR');
         $payoutMock->shouldReceive('getUser')->times(1)->andReturn($userMock);
 
-        $this->paypalPayoutService->prepare($payoutMock);
+        $this->paypalPayoutService->send($payoutMock);
     }
 }

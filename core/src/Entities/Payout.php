@@ -3,12 +3,16 @@ namespace EventoOriginal\Core\Entities;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\PayoutInterface;
+use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\ReceiverInterface;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PaymentRepository")
  * @ORM\Table(name="payments")
  */
-class Payout
+class Payout implements PayoutInterface
 {
     /**
      * @ORM\Id
@@ -255,5 +259,49 @@ class Payout
     public function setDate(DateTime $date)
     {
         $this->date = $date;
+    }
+
+    /**
+     * Get receiver of the payout
+     *
+     * @return User
+     */
+    public function getReceiver()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set receiver of the payout
+     *
+     * @param User $receiver
+     */
+    public function setReceiver(User $receiver)
+    {
+        $this->user = $receiver;
+    }
+
+    /**
+     * Get original money of the payout
+     *
+     * @return Money
+     */
+    public function getOriginalMoney()
+    {
+        return new Money(
+            $this->getOriginalAmount(),
+            new Currency($this->getOriginalCurrency())
+        );
+    }
+
+    /**
+     * Set original money of the payout
+     *
+     * @param Money $originalMoney
+     */
+    public function setOriginalMoney(Money $originalMoney)
+    {
+        $this->setOriginalAmount($originalMoney->getAmount());
+        $this->setOriginalCurrency($originalMoney->getCurrency()->getCode());
     }
 }
