@@ -36,6 +36,7 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.mobile-menu.css">
     <link rel="stylesheet" type="text/css" href="/css/revslider.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'

@@ -799,7 +799,7 @@ class Article
     }
 
     /**
-     * @return OrderDetail
+     * @return ArrayCollection
      */
     public function getOrderDetails()
     {

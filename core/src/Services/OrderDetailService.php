@@ -38,7 +38,7 @@ class OrderDetailService
             throw new Exception('Invalid detail');
         }
 
-        if (in_array('artice', $data)) {
+        if (in_array('article', $data)) {
             $detail->setArticle($data['article']);
         }
 

@@ -5,6 +5,7 @@ use App\Http\Requests\CheckoutRequest;
 use EventoOriginal\Core\Enums\PaymentGateway;
 use EventoOriginal\Core\Infrastructure\Payments\Checkout\WebCheckout\PaypalService;
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\CountryService;
 use EventoOriginal\Core\Services\CustomerService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
@@ -22,6 +23,7 @@ class PaymentController
     private $articleService;
     private $paypalService;
     private $customerService;
+    private $countryService;
 
     public function __construct(
         OrderService $orderService,
@@ -29,7 +31,8 @@ class PaymentController
         PaymentService $paymentService,
         ArticleService $articleService,
         PaypalService $paypalService,
-        CustomerService $customerService
+        CustomerService $customerService,
+        CountryService $countryService
     ) {
         $this->orderDetailService = $orderDetailService;
         $this->paymentService = $paymentService;
@@ -37,6 +40,7 @@ class PaymentController
         $this->articleService = $articleService;
         $this->paypalService = $paypalService;
         $this->customerService = $customerService;
+        $this->countryService = $countryService;
     }
 
     public function checkout()
@@ -48,8 +52,16 @@ class PaymentController
         }
         $cartItems = $this->getSummary();
 
+        $user = current_user();
+        $customer = $user->getCustomer();
+
+        $countries = $this->countryService->findAll();
+
         return view('frontend.checkout')
-            ->with('cartItems', $cartItems);
+            ->with('cartItems', $cartItems)
+            ->with('customer', $customer)
+            ->with('addresses', $customer->getAddresses())
+            ->with('countries', $countries);
     }
 
     public function process(CheckoutRequest $request)
@@ -96,10 +108,28 @@ class PaymentController
 
             } catch (Exception $exception) {
                 Log::error('PAYPAL '. $exception->getMessage());
-                dd($exception->getMessage());
                 return abort(400, 'Error to process payment');
             }
         }
+    }
+
+    public function getPaypalCancel(Request $request)
+    {
+        try {
+            if ($request->has('token')) {
+                $payment = $this->paymentService->findByToken($request->input('token'));
+                $this->paymentService->cancel($payment);
+
+                Cart::instance('shopping')->destroy();
+                Cart::instance('discount')->destroy();
+
+                return view('frontend.payment.cancel');
+            }
+        } catch (Exception $exception) {
+            Log::error('PAYPAL '. $exception->getMessage());
+            return abort(400, 'Error to process payment');
+        }
+
     }
 
     public function getDetails()

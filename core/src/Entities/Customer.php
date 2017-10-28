@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\CustomerRepository")
@@ -47,22 +48,23 @@ class Customer
     private $user;
 
     /**
-     * @ORM\Column(type="string")
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="customer")
      */
-    private $billingAddress;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $address;
+    private $addresses;
 
     /**
      * @ORM\Column(type="string")
      */
     private $phoneNumber;
 
+    public function __construct()
+    {
+        $this->addresses = new ArrayCollection();
+    }
+
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -168,38 +170,6 @@ class Customer
     /**
      * @return string
      */
-    public function getBillingAddress()
-    {
-        return $this->billingAddress;
-    }
-
-    /**
-     * @param string $billingAddress
-     */
-    public function setBillingAddress(string $billingAddress)
-    {
-        $this->billingAddress = $billingAddress;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     */
-    public function setAddress(string $address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * @return string
-     */
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
@@ -211,6 +181,28 @@ class Customer
     public function setPhoneNumber(string $phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddresses()
+    {
+        if (!$this->addresses) {$this->addresses = new ArrayCollection();}
+        return $this->addresses;
+    }
+
+    /**
+     * @param mixed $addresses
+     */
+    public function setAddresses(array $addresses)
+    {
+        $this->addresses = $addresses;
+    }
+
+    public function addAddress(Address $address)
+    {
+        $this->addresses[] = $address;
     }
 
 }

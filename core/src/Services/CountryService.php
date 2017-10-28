@@ -11,4 +11,12 @@ class CountryService
     {
         $this->countryRepository = $countryRepository;
     }
+
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->countryRepository->findAll();
+    }
 }

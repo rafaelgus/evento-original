@@ -1,0 +1,30 @@
+<?php
+namespace EventoOriginal\Core\Services;
+
+use EventoOriginal\Core\Entities\Address;
+use EventoOriginal\Core\Entities\Billing;
+use EventoOriginal\Core\Persistence\Repositories\BillingRepository;
+
+class BillingService
+{
+    protected $billingRepository;
+
+    public function __construct(BillingRepository $billingRepository)
+    {
+        $this->billingRepository = $billingRepository;
+    }
+
+    public function create(array $data, Address $address)
+    {
+        $billing = new Billing();
+
+        $billing->setName($data['name']);
+        $billing->setAddress($address);
+        $billing->setLastName($data['lastName']);
+        $billing->setCompany($data['company']);
+
+        $this->billingRepository->save($billing);
+
+        return $billing;
+    }
+}
