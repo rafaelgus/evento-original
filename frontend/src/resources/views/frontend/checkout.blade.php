@@ -15,7 +15,7 @@
                                 <!--<a href="#">Edit</a> -->
                             </div>
                             <div id="checkout-step-billing" class="step a-item" style="">
-                                <form id="co-billing-form" action="">
+
                                     <fieldset class="group-select">
                                         <ul>
                                             <li id="billing-new-address-form">
@@ -101,17 +101,10 @@
                                                     </ul>
                                                 </fieldset>
                                             </li>
-                                            <li>
-                                                <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1" onclick="$('shipping:same_as_billing').checked = true;" class="radio">
-                                                <label for="billing:use_for_shipping_yes">Ship to this address</label>
-                                                <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0" checked="checked" onclick="$('shipping:same_as_billing').checked = false;" class="radio">
-                                                <label for="billing:use_for_shipping_no">Ship to different address</label>
-                                            </li>
                                         </ul>
                                         <p class="require"><em class="required">* </em>Required Fields</p>
                                         <button type="button" class="button continue" onclick="billing.save()"><span>Continue</span></button>
                                     </fieldset>
-                                </form>
                             </div>
                         </li>
                         <li id="opc-shipping" class="section">
@@ -120,7 +113,6 @@
                                 <!--<a href="#">Edit</a>-->
                             </div>
                             <div id="checkout-step-shipping" class="step a-item">
-                                <form action="" id="co-shipping-form">
                                     <fieldset class="group-select">
                                         <ul>
                                             <li>
@@ -132,7 +124,7 @@
                                                 </select>
                                             </li>
 
-                                            <div class="new-directio">
+                                            <div class="new-directio" style="display: none;">
                                                 <li>
                                                     <label for="billing-address-select">Seleccione una direccion</label>
                                                     <br>
@@ -186,16 +178,15 @@
                                             <button type="button" class="button continue"><span>Continue</span></button>
                                         </div>
                                     </fieldset>
-                                </form>
                             </div>
                         </li>
                         <li id="opc-review" class="section">
                             <div class="step-title"> <span class="number">3</span>
-                                <h3 class="one_page_heading">Order Review</h3>
+                                <h3 class="one_page_heading">Resumen</h3>
                                 <!--<a href="#">Edit</a>-->
                             </div>
                             <div id="checkout-step-review" class="step a-item">
-                                <table class="data-table cart-table" id="shopping-cart-table">
+                                <table class="data-table cart-table table-responsive" id="shopping-cart-table">
                                     <colgroup>
                                         <col width="1">
                                         <col width="1">
@@ -239,6 +230,19 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                <ul>
+                                    <li>
+                                        <label for="shipping-address-select">vouchers de descuento</label>
+                                        <br>
+                                        <input type="text" name="voucher" class="input-text required-entry" placeholder="agregar voucher">
+                                        <button type="button" class="button continue" ><span>Agregar voucher</span></button>
+                                    </li>
+                                </ul>
+                                <br>
+                                <div class="buttons-set1" id="shipping-buttons-container">
+                                    <button type="button" class="button continue"><span>Volver</span></button>
+                                    <button type="button" class="button continue"><span>Pagar</span></button>
+                                </div>
                             </div>
                         </li>
                     </ol>
@@ -251,6 +255,6 @@
 
 @section('scripts_body')
     <script type="text/javascript">
-        
+
     </script>
 @endsection

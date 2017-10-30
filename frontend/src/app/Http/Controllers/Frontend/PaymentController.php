@@ -5,6 +5,7 @@ use App\Http\Requests\CheckoutRequest;
 use EventoOriginal\Core\Enums\PaymentGateway;
 use EventoOriginal\Core\Infrastructure\Payments\Checkout\WebCheckout\PaypalService;
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\BillingService;
 use EventoOriginal\Core\Services\CountryService;
 use EventoOriginal\Core\Services\CustomerService;
 use EventoOriginal\Core\Services\OrderDetailService;
@@ -24,6 +25,7 @@ class PaymentController
     private $paypalService;
     private $customerService;
     private $countryService;
+    private $billingService;
 
     public function __construct(
         OrderService $orderService,
@@ -32,7 +34,8 @@ class PaymentController
         ArticleService $articleService,
         PaypalService $paypalService,
         CustomerService $customerService,
-        CountryService $countryService
+        CountryService $countryService,
+        BillingService $billingService
     ) {
         $this->orderDetailService = $orderDetailService;
         $this->paymentService = $paymentService;
@@ -41,6 +44,7 @@ class PaymentController
         $this->paypalService = $paypalService;
         $this->customerService = $customerService;
         $this->countryService = $countryService;
+        $this->billingService = $billingService;
     }
 
     public function checkout()

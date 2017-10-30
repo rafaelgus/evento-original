@@ -14,6 +14,11 @@ class BillingService
         $this->billingRepository = $billingRepository;
     }
 
+    /**
+     * @param array $data
+     * @param Address $address
+     * @return Billing
+     */
     public function create(array $data, Address $address)
     {
         $billing = new Billing();
