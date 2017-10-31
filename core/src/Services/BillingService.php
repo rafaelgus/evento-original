@@ -32,4 +32,13 @@ class BillingService
 
         return $billing;
     }
+
+    /**
+     * @param int $id
+     * @return null|Billing
+     */
+    public function findById(int $id)
+    {
+        return $this->billingRepository->find($id);
+    }
 }

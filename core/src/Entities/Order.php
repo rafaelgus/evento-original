@@ -19,27 +19,47 @@ class Order
      * @ORM\GeneratedValue
      */
     private $id;
+
     /**
      * @ORM\Column(type="datetime", name="create_date")
      */
     private $createDate;
+
     /**
      * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"})
      */
     private $ordersDetail;
+
     /**
      * @ORM\OneToOne(targetEntity="Payment", mappedBy="order")
      */
     private $payment;
+
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
     /**
      * @ORM\Column(type="string")
      */
     private $status;
+
+    /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="Billing")
+     * @ORM\JoinColumn(name="billing_id", referencedColumnName="id")
+     */
+    private $billing;
+
+    /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="Shipping", inversedBy="order")
+     * @ORM\JoinColumn(name="shipping_id", referencedColumnName="id")
+     */
+    private $shipping;
+
     public function __construct()
     {
         $this->ordersDetail = new ArrayCollection();
@@ -138,4 +158,38 @@ class Order
     {
         $this->ordersDetail[] = $orderDetail;
     }
+
+    /**
+     * @return Billing
+     */
+    public function getBilling()
+    {
+        return $this->billing;
+    }
+
+    /**
+     * @param Billing $billing
+     */
+    public function setBilling(Billing $billing)
+    {
+        $this->billing = $billing;
+    }
+
+    /**
+     * @return Shipping
+     */
+    public function getShipping()
+    {
+        return $this->shipping;
+    }
+
+    /**
+     * @param Shipping $shipping
+     */
+    public function setShipping(Shipping $shipping)
+    {
+        $this->shipping = $shipping;
+    }
+
+
 }

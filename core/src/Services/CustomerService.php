@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Country;
 use EventoOriginal\Core\Entities\Customer;
 use EventoOriginal\Core\Persistence\Repositories\CustomerRepository;
 
@@ -20,5 +21,14 @@ class CustomerService
         $customer->setPhoneNumber($data['phone']);
 
         $this->customerRepository->save($customer);
+    }
+
+    /**
+     * @param int $id
+     * @return null|Country
+     */
+    public function findById(int $id)
+    {
+        return $this->customerRepository->find($id);
     }
 }

@@ -815,7 +815,7 @@
             xhr.send(params);
         }
         function checkout() {
-            window.location.href = '/checkout';
+            window.location.href = '/checkout/billing';
         }
     </script>
 @endsection

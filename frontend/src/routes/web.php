@@ -14,10 +14,16 @@ Route::post('/addToCart', 'Frontend\CartController@addToCart');
 Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
-Route::get('/checkout', 'Frontend\PaymentController@checkout');
-Route::post('/payment', 'Frontend\PaymentController@process');
-Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
-Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
+    Route::post('/checkout/shipping', 'Frontend\PaymentController@shippingInformation');
+    Route::post('/checkout/order','Frontend\PaymentController@checkout');
+    Route::post('/payment/{id}', 'Frontend\PaymentController@process');
+    Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
+    Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');
+});
+
 Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
 Route::get('/' . trans('frontend/my_wishlist.slug'), function () {
