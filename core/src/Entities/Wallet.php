@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\WalletRepository")
@@ -24,7 +26,7 @@ class Wallet
     private $user;
 
     /**
-     * @ORM\Column(type="decimal", precision=7, scale=2)
+     * @ORM\Column(type="integer")
      */
     private $balance;
 
@@ -101,5 +103,16 @@ class Wallet
     public function addMovement(Movement $movement)
     {
         $this->movements[] = $movement;
+    }
+
+    /**
+     * @return Money $balance
+     */
+    public function getBalanceMoney()
+    {
+        return new Money(
+            $this->getBalance(),
+            new Currency('EUR')
+        );
     }
 }

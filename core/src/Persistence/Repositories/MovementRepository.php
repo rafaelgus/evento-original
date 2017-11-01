@@ -12,5 +12,7 @@ class MovementRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+
+        return $movement;
     }
 }

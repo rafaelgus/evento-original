@@ -37,6 +37,8 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
+Route::post('/paypal-payouts-webhook', 'Backend\PaypalController@payoutWebhook');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/' . trans('frontend/my_account.slug'), function () {
         return view('frontend.profile.my_account');

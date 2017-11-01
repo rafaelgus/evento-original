@@ -16,6 +16,6 @@ class SendWelcomeEmail implements ShouldQueue
 
     public function handle(UserRegistered $userRegistered)
     {
-        $this->mailService->sendWelcome();
+        $this->mailService->sendWelcome($userRegistered->user);
     }
 }

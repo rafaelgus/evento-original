@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Services;
 
 use DateTime;
@@ -58,13 +59,51 @@ class PayoutService
 
         try {
             $payout = $this->payoutGatewayFactory->create($payout->getGateway())
-                        ->send($payout);
+                ->send($payout);
         } catch (Exception $exception) {
             logger()->error($exception->getMessage());
+
+            throw $exception;
         }
 
         $this->payoutRepository->save($payout);
 
         return $payout;
+    }
+
+    public function processWebhook(Payout $payout, array $data)
+    {
+        try {
+            $payout = $this->payoutGatewayFactory->create($payout->getGateway())
+                ->processWebhook($payout, $data);
+
+            if ()
+
+        } catch (Exception $exception) {
+            logger()->error($exception->getMessage());
+
+            throw $exception;
+        }
+
+        $this->payoutRepository->save($payout);
+
+        return $payout;
+    }
+
+    private function haveToRefundPayout(Payout $payout)
+    {
+        $haveToRefund = false;
+
+        if ($payout->getStatus() === P)
+    }
+
+    public function findByExternalId(string $externalId): ?Payout
+    {
+        return $this->payoutRepository->findByExternalId($externalId);
+    }
+
+    public function refundPayoutAmount(Payout $payout)
+    {
+
     }
 }

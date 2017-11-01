@@ -1,0 +1,158 @@
+[30-10-2017 18:58:26] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 18:58:27 GMT, Server: Apache, paypal-debug-id: 549098abf7a8, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 549098abf7a8, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T18:15:48ZEMVrQUAUgDkdeUCDH9v1oEakZdENeCw_Dv5mvrf2q3k","access_token":"A21AAHK77ZVvCGvXNxALF0vLiY1_XvMQDUt_8eGE2FWiFD3MCT_TENqVCGvW4YGP4GrAfsw1o3Mr9vckyHXxE4ul0FmFBHdPw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29841}
+
+================================================================================================================================
+
+[30-10-2017 18:58:27] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/59f776312e678
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/59f776312e678 HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAHK77ZVvCGvXNxALF0vLiY1_XvMQDUt_8eGE2FWiFD3MCT_TENqVCGvW4YGP4GrAfsw1o3Mr9vckyHXxE4ul0FmFBHdPw, , 
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 404
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 18:58:28 GMT, Server: Apache, paypal-debug-id: 28a9c24c5c43, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 28a9c24c5c43, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 211, Connection: close, Content-Type: application/json, 
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 404 when accessing https://api.sandbox.paypal.com/v1/payments/payouts-item/59f776312e678. {"name":"INVALID_RESOURCE_ID","debug_id":"28a9c24c5c43","message":"The requested resource ID was not found","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]}
+[30-10-2017 18:58:29] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[30-10-2017 18:58:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 18:58:57 GMT, Server: Apache, paypal-debug-id: fd00382068f2d, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: fd00382068f2d, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T18:15:48ZEMVrQUAUgDkdeUCDH9v1oEakZdENeCw_Dv5mvrf2q3k","access_token":"A21AAHK77ZVvCGvXNxALF0vLiY1_XvMQDUt_8eGE2FWiFD3MCT_TENqVCGvW4YGP4GrAfsw1o3Mr9vckyHXxE4ul0FmFBHdPw","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":29811}
+
+================================================================================================================================
+
+[30-10-2017 18:58:57] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/59f77659d13b4
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/59f77659d13b4 HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAHK77ZVvCGvXNxALF0vLiY1_XvMQDUt_8eGE2FWiFD3MCT_TENqVCGvW4YGP4GrAfsw1o3Mr9vckyHXxE4ul0FmFBHdPw, , 
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 404
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 18:58:58 GMT, Server: Apache, paypal-debug-id: 152a38786fe80, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 152a38786fe80, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 212, Connection: close, Content-Type: application/json, 
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 404 when accessing https://api.sandbox.paypal.com/v1/payments/payouts-item/59f77659d13b4. {"name":"INVALID_RESOURCE_ID","debug_id":"152a38786fe80","message":"The requested resource ID was not found","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]}
+[30-10-2017 18:58:58] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[30-10-2017 19:00:46] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 19:00:47 GMT, Server: Apache, paypal-debug-id: 9cd5563b3c8cd, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9cd5563b3c8cd, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T19:00:20ZzsSvxnObtsMRese4CfT_74X-9PedhboZ6Mxrxp36W9Q","access_token":"A21AAGy0ZHMmeFXxZf67kQZ3skZfPzx-FrHG_YHZ4BLucazD3TRcqSWrQShafgBi5aiONnoOO8XmhmztyCeFkchNKIGoWMotg","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32373}
+
+================================================================================================================================
+
+[30-10-2017 19:00:47] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/59f776c335655
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/59f776c335655 HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAGy0ZHMmeFXxZf67kQZ3skZfPzx-FrHG_YHZ4BLucazD3TRcqSWrQShafgBi5aiONnoOO8XmhmztyCeFkchNKIGoWMotg, , 
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 404
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 19:00:48 GMT, Server: Apache, paypal-debug-id: e497fe2044400, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: e497fe2044400, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 212, Connection: close, Content-Type: application/json, 
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 404 when accessing https://api.sandbox.paypal.com/v1/payments/payouts-item/59f776c335655. {"name":"INVALID_RESOURCE_ID","debug_id":"e497fe2044400","message":"The requested resource ID was not found","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]}
+[30-10-2017 19:00:48] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[30-10-2017 23:10:06] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:10:07 GMT, Server: Apache, paypal-debug-id: 6fba7f264cfc4, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 6fba7f264cfc4, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T23:09:44ZPaB5OORJzY7RE9ymrtugszYb3o2mMaxSF8C3sG38M_Q","access_token":"A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32377}
+
+================================================================================================================================
+
+[30-10-2017 23:10:07] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/59f7b13577247
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/59f7b13577247 HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A, , 
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 404
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:10:08 GMT, Server: Apache, paypal-debug-id: 9c862dcd7c5a1, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9c862dcd7c5a1, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 212, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 404 when accessing https://api.sandbox.paypal.com/v1/payments/payouts-item/59f7b13577247. {"name":"INVALID_RESOURCE_ID","debug_id":"9c862dcd7c5a1","message":"The requested resource ID was not found","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]}
+[30-10-2017 23:10:08] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[30-10-2017 23:22:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:22:57 GMT, Server: Apache, paypal-debug-id: 1f0f2f2b1f42a, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1f0f2f2b1f42a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T23:09:44ZPaB5OORJzY7RE9ymrtugszYb3o2mMaxSF8C3sG38M_Q","access_token":"A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31607}
+
+================================================================================================================================
+
+[30-10-2017 23:22:57] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/KWS3VUZ4M8QVQ
+[30-10-2017 23:22:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/KWS3VUZ4M8QVQ HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A, , 
+[30-10-2017 23:22:58] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:22:58] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 23:22:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:22:58 GMT, Server: Apache, paypal-debug-id: 8ad63a3b1e4e8, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 8ad63a3b1e4e8, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 883, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:22:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"payout_item_id":"KWS3VUZ4M8QVQ","transaction_id":"9LU966613Y700722T","transaction_status":"UNCLAIMED","payout_item_fee":{"currency":"EUR","value":"0.22"},"payout_batch_id":"VVGVSYGYBQUF6","payout_item":{"recipient_type":"EMAIL","amount":{"currency":"EUR","value":"2.22"},"note":"Nuevo pago de Evento Original","receiver":"emi_r26@hotmail.com","sender_item_id":"59f7b4336347f"},"time_processed":"2017-10-30T23:22:45Z","errors":{"name":"RECEIVER_UNREGISTERED","message":"Receiver is unregistered","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts-item/KWS3VUZ4M8QVQ","rel":"self","method":"GET","encType":"application/json"},{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/VVGVSYGYBQUF6","rel":"batch","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[30-10-2017 23:25:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:25:57 GMT, Server: Apache, paypal-debug-id: eba3c4405c907, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: eba3c4405c907, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-30T23:09:44ZPaB5OORJzY7RE9ymrtugszYb3o2mMaxSF8C3sG38M_Q","access_token":"A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31427}
+
+================================================================================================================================
+
+[30-10-2017 23:25:57] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/FA34T5AZ6DA2N
+[30-10-2017 23:25:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/FA34T5AZ6DA2N HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAFxoLmZhYPiyfuGFFDrrZhtDpJV_c5_SQsv5UKlmONdWEUeBhY4PeGOxKHtldLKYYb4yxBTpsaFXBTo8OnBrk6hiB4R7A, , 
+[30-10-2017 23:25:58] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[30-10-2017 23:25:58] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[30-10-2017 23:25:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Mon, 30 Oct 2017 23:25:58 GMT, Server: Apache, paypal-debug-id: ca38da5f65520, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ca38da5f65520, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 884, Connection: close, Content-Type: application/json, 
+[30-10-2017 23:25:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"payout_item_id":"FA34T5AZ6DA2N","transaction_id":"5UY87134WA8297252","transaction_status":"UNCLAIMED","payout_item_fee":{"currency":"EUR","value":"0.22"},"payout_batch_id":"9D343X36J5YUU","payout_item":{"recipient_type":"EMAIL","amount":{"currency":"EUR","value":"23.12"},"note":"Nuevo pago de Evento Original","receiver":"emi_r26@hotmail.com","sender_item_id":"59f7b4e21b839"},"time_processed":"2017-10-30T23:25:43Z","errors":{"name":"RECEIVER_UNREGISTERED","message":"Receiver is unregistered","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts-item/FA34T5AZ6DA2N","rel":"self","method":"GET","encType":"application/json"},{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/9D343X36J5YUU","rel":"batch","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+
+[31-10-2017 00:23:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 31 Oct 2017 00:23:57 GMT, Server: Apache, paypal-debug-id: 1221584758bc9, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1221584758bc9, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-10-31T00:23:38Z3-k66AtksVAll4eGYkJM9iiFmu4EgP_iNR87WBue3g0","access_token":"A21AAGUr-4IttKohdnisZ3kaZuyVVjUX6QckrMEYPPnDsuoaHAD9kr0xvJ7yYRNdc8J7BP7F_16VQ0Kum0TVUn4CPM5gUc3ug","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32372}
+
+================================================================================================================================
+
+[31-10-2017 00:24:06] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payouts-item/K5P52TTAS7RX8
+[31-10-2017 00:24:07] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: GET /v1/payments/payouts-item/K5P52TTAS7RX8 HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4; bit=64; os=Linux_4.10.0-37-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAGUr-4IttKohdnisZ3kaZuyVVjUX6QckrMEYPPnDsuoaHAD9kr0xvJ7yYRNdc8J7BP7F_16VQ0Kum0TVUn4CPM5gUc3ug, , 
+[31-10-2017 00:24:07] PayPal\Core\PayPalHttpConnection : DEBUG: No Request Payload
+--------------------------------------------------------------------------------------------------------------------------------
+
+[31-10-2017 00:24:07] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[31-10-2017 00:24:07] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 31 Oct 2017 00:24:07 GMT, Server: Apache, paypal-debug-id: ba0a187e564f8, Pragma: No-cache, Cache-Control: no-cache, Expires: Wed, 31 Dec 1969 16:00:00 PST, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ba0a187e564f8, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 883, Connection: close, Content-Type: application/json, 
+[31-10-2017 00:24:07] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"payout_item_id":"K5P52TTAS7RX8","transaction_id":"18T36279KU194902J","transaction_status":"UNCLAIMED","payout_item_fee":{"currency":"EUR","value":"0.22"},"payout_batch_id":"YEKUUMTP7D3GL","payout_item":{"recipient_type":"EMAIL","amount":{"currency":"EUR","value":"1.33"},"note":"Nuevo pago de Evento Original","receiver":"emi_r26@hotmail.com","sender_item_id":"59f7c288b56e2"},"time_processed":"2017-10-31T00:23:45Z","errors":{"name":"RECEIVER_UNREGISTERED","message":"Receiver is unregistered","information_link":"https://developer.paypal.com/docs/api/payments.payouts-batch/#errors","details":[]},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts-item/K5P52TTAS7RX8","rel":"self","method":"GET","encType":"application/json"},{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/YEKUUMTP7D3GL","rel":"batch","method":"GET","encType":"application/json"}]}
+
+================================================================================================================================
+

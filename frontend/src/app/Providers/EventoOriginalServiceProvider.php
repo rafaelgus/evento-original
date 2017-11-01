@@ -129,6 +129,9 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\VisitorEventRepository::class, function () {
             return EntityManager::getRepository(Entities\VisitorEvent::class);
         });
+        $this->app->singleton(Repositories\PayoutRepository::class, function() {
+            return EntityManager::getRepository(Entities\Payout::class);
+        });
 
         $this->app->bind(Mailin::class, function() {
             return new Mailin(config('services.sendinblue.url'), config('services.sendinblue.key'));

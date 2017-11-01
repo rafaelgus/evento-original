@@ -103,4 +103,15 @@ interface PayoutInterface
      * @param string $data
      */
     public function setResponseData(string $data);
+
+    /**
+     * @return string
+     */
+    public function getExternalId();
+
+    /**
+     * @param string $externalId
+     */
+    public function setExternalId(string $externalId);
 }
+

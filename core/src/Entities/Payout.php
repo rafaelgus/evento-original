@@ -4,13 +4,12 @@ namespace EventoOriginal\Core\Entities;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\PayoutInterface;
-use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\ReceiverInterface;
 use Money\Currency;
 use Money\Money;
 
 /**
- * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PaymentRepository")
- * @ORM\Table(name="payments")
+ * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PayoutRepository")
+ * @ORM\Table(name="payouts")
  */
 class Payout implements PayoutInterface
 {
@@ -52,7 +51,7 @@ class Payout implements PayoutInterface
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -63,12 +62,12 @@ class Payout implements PayoutInterface
     private $gateway;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $requestData;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $responseData;
 
@@ -76,6 +75,11 @@ class Payout implements PayoutInterface
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\Column(name="external_id", type="string", nullable=true)
+     */
+    private $externalId;
 
     /**
      * @return int
@@ -303,5 +307,21 @@ class Payout implements PayoutInterface
     {
         $this->setOriginalAmount($originalMoney->getAmount());
         $this->setOriginalCurrency($originalMoney->getCurrency()->getCode());
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * @param string $externalId
+     */
+    public function setExternalId(string $externalId)
+    {
+        $this->externalId = $externalId;
     }
 }

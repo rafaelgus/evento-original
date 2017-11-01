@@ -2,9 +2,11 @@
 namespace EventoOriginal\Core\Infrastructure\Payouts\Services;
 
 use EventoOriginal\Core\Enums\PayoutStatus;
+use EventoOriginal\Core\Infrastructure\Payouts\Enums\PaypalPayoutStatus;
 use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\PayoutGatewayInterface;
 use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\PayoutInterface;
 use Exception;
+use PayPal\Api\PayoutItem;
 use PayPal\Rest\ApiContext;
 
 class PaypalPayoutService implements PayoutGatewayInterface
@@ -32,10 +34,13 @@ class PaypalPayoutService implements PayoutGatewayInterface
         $amount = $payout->getOriginalMoney()->getAmount() / 100;
         $currency = $payout->getOriginalMoney()->getCurrency();
 
+        $externalId = uniqid();
+        $payout->setExternalId($externalId);
+
         $senderItem->setRecipientType('EMAIL')
             ->setNote('Nuevo pago de Evento Original')
             ->setReceiver($payout->getUser()->getEmail())
-            ->setSenderItemId(uniqid())
+            ->setSenderItemId($externalId)
             ->setAmount(new \PayPal\Api\Currency('{"value":"' . $amount . '","currency":"' . $currency .'"}'));
 
         $payouts->setSenderBatchHeader($senderBatchHeader)->addItem($senderItem);
@@ -43,9 +48,11 @@ class PaypalPayoutService implements PayoutGatewayInterface
         $payout->setRequestData($payouts->toJSON());
 
         try {
-            $output = $payouts->createSynchronous($this->apiContext);
+            $output = $payouts->create(null, $this->apiContext);
 
-            $payout->setStatus(PayoutStatus::SUCCESS);
+            logger()->info($output);
+
+            $payout->setStatus(PayoutStatus::PENDING);
             $payout->setResponseData($output);
 
             logger()->info("Paypal Payout Sent to " . $payout->getReceiver()->getEmail() .
@@ -57,6 +64,17 @@ class PaypalPayoutService implements PayoutGatewayInterface
             logger()->error("Error sending Paypal Payout to " . $payout->getReceiver()->getEmail() .
                 ": " . $ex->getMessage());
         }
+
+        return $payout;
+    }
+
+    public function processWebhook(PayoutInterface $payout, array $data)
+    {
+        $response = PayoutItem::get($data['resource']['payout_item_id'], $this->apiContext);
+
+        $paypalStatus = $response['transaction_status'];
+
+        $payout->setStatus($paypalStatus);
 
         return $payout;
     }

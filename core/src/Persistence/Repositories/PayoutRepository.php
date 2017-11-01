@@ -13,4 +13,9 @@ class PayoutRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findByExternalId(string $externalId)
+    {
+        return $this->findOneBy(['externalId' => $externalId]);
+    }
 }
