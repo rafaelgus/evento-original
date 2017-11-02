@@ -48,7 +48,6 @@ class Customer
     private $user;
 
     /**
-     * One Product has Many Features.
      * @ORM\OneToMany(targetEntity="Address", mappedBy="customer")
      */
     private $addresses;
@@ -188,8 +187,8 @@ class Customer
      */
     public function getAddresses()
     {
-        if (!$this->addresses) {$this->addresses = new ArrayCollection();}
-        return $this->addresses;
+        if (!$this->addresses) { $this->addresses = new ArrayCollection();}
+        return $this->addresses->toArray();
     }
 
     /**

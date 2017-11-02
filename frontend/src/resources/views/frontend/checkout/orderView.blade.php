@@ -97,3 +97,10 @@
         </div>
     </section>
 @endsection
+
+@section('scripts_body')
+    <script>
+
+
+    </script>
+@endsection

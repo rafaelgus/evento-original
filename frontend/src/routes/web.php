@@ -18,7 +18,7 @@ Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
     Route::post('/checkout/shipping', 'Frontend\PaymentController@shippingInformation');
-    Route::post('/checkout/order','Frontend\PaymentController@checkout');
+    Route::post('/checkout/order', 'Frontend\PaymentController@checkout');
     Route::post('/payment/{id}', 'Frontend\PaymentController@process');
     Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
     Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');

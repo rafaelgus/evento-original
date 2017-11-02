@@ -14,7 +14,7 @@ class ShippingInformationRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user();
+        return Auth::check();
     }
 
     /**
@@ -25,7 +25,7 @@ class ShippingInformationRequest extends FormRequest
     public function rules()
     {
         return [
-            'delivery' => 'required',
+            'method' => 'required',
             'addressId' => 'required_if:newAddress,==,false',
             'address' => 'required_if:newAddress,==,true',
             'city' => 'required_if:newAddress,==,true',

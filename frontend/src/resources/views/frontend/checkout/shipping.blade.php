@@ -7,9 +7,12 @@
                 <div class="page-title">
                     <h1>Checkout</h1>
                 </div>
-                <form method="post" action="/payment" id="frmCheckout">
+                <form method="post" action="/checkout/order">
+                    <input type="hidden" name="billingId" value="{{$billingId}}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <ol class="one-page-checkout" id="checkoutSteps">
-                        <li id="opc-billing" class="section allow active">
+                        <li id="opc-billing" class="section">
                             <div class="step-title"> <span class="number">1</span>
                                 <h3>{{ trans('frontend/checkout.billing-information') }}</h3>
                                 <!--<a href="#">Edit</a> -->
@@ -29,23 +32,28 @@
                                         <li>
                                             <label for="shipping-address-select">Seleccione envio, o retiro en la sucursal</label>
                                             <br>
-                                            <select name="shipping_address_id" id="shipping-address-select" class="address-select" title="" onchange="shipping.newAddress(!this.value)">
-                                                <option>Retiro sucursal</option>
-                                                <option>Envio a domicilio</option>
+                                            <select name="method" id="method" class="address-select" onchange="changeShippingType()">
+                                                <option value="branch_withdrawal">Retiro sucursal</option>
+                                                <option value="home_delivery">Envio a domicilio</option>
                                             </select>
                                         </li>
 
-                                        <div class="new-directio" style="display: none;">
-                                            <li>
-                                                <label for="billing-address-select">Seleccione una direccion</label>
-                                                <br>
-                                                <select name="billingAddress" id="billing-address-select" class="address-select" title="" onchange="billing.newAddress(!this.value)">
-                                                    @foreach($addresses as $address)
-                                                        <option value="{{$address->getId()}}">{{$address->getAddress() . ', ' . $address->getCountry()->getName() . ', ' .  $address->getProvince(). ', ' .$address->getPostalCode()}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <button type="button" class="button continue"><span>Nueva</span></button>
-                                            </li>
+                                        <li id="addressSelect" style="display: none;">
+                                            <label for="billing-address-select">Seleccione una direccion</label>
+                                            <br>
+                                            <select name="billingAddress" id="billing-address-select" class="address-select">
+                                                @foreach($addresses as $address)
+                                                    <option value="{{$address->getId()}}">{{$address->getAddress() . ', ' . $address->getCountry()->getName() . ', ' .  $address->getProvince(). ', ' .$address->getPostalCode()}}</option>
+                                                @endforeach
+                                            </select>
+                                        </li>
+                                        <li id="buttonNewAddress" style="display: none;">
+                                            <button type="button" class="button continue" onclick="showFormAddress()"><span>Nueva</span></button>
+                                            <input type="hidden" id="newAddress" name="newAddress" value="0">
+                                        </li>
+
+                                        <div id="newAddressForm" style="display: none;">
+                                            
                                             <li>
                                                 <div class="input-box">
                                                     <label for="billing:city">{{trans('frontend/checkout.address')}} <span class="required">*</span></label>
@@ -85,7 +93,7 @@
                                     </ul>
                                     <p class="require"><em class="required">* </em>Required Fields</p>
                                     <div class="buttons-set1" id="shipping-buttons-container">
-                                        <button type="button" class="button continue"><span>Continue</span></button>
+                                        <button type="submit" class="button continue"><span>Continue</span></button>
                                     </div>
                                 </fieldset>
                             </div>
@@ -104,4 +112,41 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts_body')
+    <script>
+
+        function showFormAddress() {
+            var div = document.getElementById('newAddressForm');
+
+            if (div.style.display === "block") {
+                div.style.display = 'none';
+                document.getElementById('newAddress').value = 0;
+
+            } else {
+                div.style.display = 'block';
+                document.getElementById('newAddress').value = 1;
+            }
+        }
+
+
+        function changeShippingType() {
+            var select = document.getElementById('method').value;
+
+            var li = document.getElementById('addressSelect');
+
+            var liButton = document.getElementById('buttonNewAddress');
+
+
+            if (select === "branch_withdrawal") {
+                li.style.display = 'none';
+                liButton.style.display = 'none';
+            }
+            if (select === "home_delivery") {
+                li.style.display = 'block';
+                liButton.style.display = 'block';
+            }
+        }
+    </script>
 @endsection

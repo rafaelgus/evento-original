@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\BillingInformationRequest;
 use App\Http\Requests\ShippingInformationRequest;
+use EventoOriginal\Core\Entities\Voucher;
 use EventoOriginal\Core\Enums\PaymentGateway;
 use EventoOriginal\Core\Infrastructure\Payments\Checkout\WebCheckout\PaypalService;
 use EventoOriginal\Core\Services\AddressService;
@@ -14,6 +15,7 @@ use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\PaymentService;
 use EventoOriginal\Core\Services\ShippingService;
+use EventoOriginal\Core\Services\VoucherService;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -22,6 +24,8 @@ use Illuminate\Support\Facades\Log;
 class PaymentController
 {
 
+    const NEW_ADDRESS_TRUE = 1;
+    const NEW_ADDRESS_FALSE = 0;
     const DELIVERY_IN_STORE = 'branch_withdrawal';
     const DELIVERY_HOME = 'home_delivery';
 
@@ -35,6 +39,7 @@ class PaymentController
     private $billingService;
     private $addressService;
     private $shippingService;
+    private $voucherService;
 
     public function __construct(
         OrderService $orderService,
@@ -46,7 +51,8 @@ class PaymentController
         CountryService $countryService,
         BillingService $billingService,
         AddressService $addressService,
-        ShippingService $shippingService
+        ShippingService $shippingService,
+        VoucherService $voucherService
     ) {
         $this->orderDetailService = $orderDetailService;
         $this->paymentService = $paymentService;
@@ -58,6 +64,7 @@ class PaymentController
         $this->billingService = $billingService;
         $this->addressService = $addressService;
         $this->shippingService = $shippingService;
+        $this->voucherService = $voucherService;
     }
 
     public function billingInformation()
@@ -66,8 +73,10 @@ class PaymentController
 
         $countries = $this->countryService->findAll();
 
+        $addresses = $this->addressService->findByCustomer($customer);
+
         return view('frontend.checkout.billing')
-            ->with('addresses', $customer->getAddresses())
+            ->with('addresses', $addresses)
             ->with('customer', $customer)
             ->with('countries', $countries);
     }
@@ -76,22 +85,25 @@ class PaymentController
     {
         $customer = current_user()->getCustomer();
 
-        if ($request->input('newAddress')) {
+        $addresses = $this->addressService->findByCustomer($customer);
+
+        if ($request->input('newAddress') == self::NEW_ADDRESS_TRUE) {
             $countryId = $request->input('country');
 
             $country = $this->countryService->findById($countryId);
 
             $address = $this->addressService->create($customer, $country, $request->all());
 
-            $billing = $this->billingService->create($address, $request->all());
+            $billing = $this->billingService->create($request->all(), $address);
         } else {
-            $address = $this->addressService->findById($request->input('addressId'));
-            $billing = $this->billingService->findById($address, $request->all());
+            $address = $this->addressService->findById(intval($request->input('addressId')));
+            $billing = $this->billingService->create($request->all(), $address);
         }
 
         return view('frontend.checkout.shipping')
             ->with('billingId', $billing->getId())
-            ->with('address', $customer->getAddresses());
+            ->with('addresses', $addresses)
+            ->with('countries', $this->countryService->findAll());
     }
 
     public function checkout(ShippingInformationRequest $request)
@@ -104,25 +116,25 @@ class PaymentController
         $billing = $this->billingService->findById($request->input('billingId'));
         $details = $this->getDetails();
 
-        if ($request->input('newAddress')) {
-            $country = $this->countryService->findById($request->input('countryId'));
-            $address = $this->addressService->create($customer, $country, $request->all());
-        } else {
-            $address = $this->addressService->findById($request->input('addressId'));
+        if (!$request->input('method') === self::DELIVERY_IN_STORE) {
+            if ($request->input('newAddress')) {
+                $country = $this->countryService->findById($request->input('countryId'));
+                $address = $this->addressService->create($customer, $country, $request->all());
+            } else {
+                $address = $this->addressService->findById($request->input('addressId'));
+            }
         }
-
-        if ($request->input('delivery') === self::DELIVERY_HOME) {
-            $shipping = $this->shippingService->create($address, $request->input('delivery'));
+        if ($request->input('method') === self::DELIVERY_HOME) {
+            $shipping = $this->shippingService->create($address, $request->input('method'));
 
             $order = $this->orderService->create($details, $user, $billing, $shipping);
+        } else {
+            $order = $this->orderService->create($details, $user, $billing);
         }
-
-        $order = $this->orderService->create($details, $user, $billing);
 
         return view('frontend.checkout.orderView')
             ->with('cartItems', $cartItems)
             ->with('order', $order);
-
     }
 
     public function process(int $id)
@@ -183,7 +195,6 @@ class PaymentController
             Log::error('PAYPAL '. $exception->getMessage());
             return abort(400, 'Error to process payment');
         }
-
     }
 
     public function getDetails()
@@ -248,5 +259,47 @@ class PaymentController
         }
 
         return $itemsAndDiscount;
+    }
+
+    public function addVoucherInCheckout(Request $request)
+    {
+        $voucher = $this->voucherService->findByCode($request->input('voucherCode'));
+
+        if ($voucher) {
+            $order = $this->orderService->findById($request->input('orderId'));
+
+            if ($voucher->getType() === VoucherService::TYPE_RELATIVE) {
+                $voucherAmount = $order->getTotal() * ($voucher->getValue() / 100);
+            } else {
+                $voucherAmount = $voucher->getAmount();
+            }
+
+            $detail = $this->orderDetailService->create([
+                'price' => $voucherAmount,
+                'quantitiy' => 1,
+            ], true);
+
+            $order->addOrderDetail($detail);
+            $this->orderService->save($order);
+
+            $this->voucherService->useVoucher($voucher->getCode());
+            $discount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
+
+            Cart::instance('discount')->add(
+                $voucher->getCode(),
+                'Descuento',
+                1,
+                $discount
+            );
+
+            $cartItems = $this->getSummary();
+
+            return view('frontend.checkout.orderView')
+                ->with('cartItems', $cartItems)
+                ->with('order', $order);
+        } else {
+            return abort(400, 'Error voucher not exist');
+        }
+
     }
 }

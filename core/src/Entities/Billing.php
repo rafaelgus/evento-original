@@ -37,7 +37,6 @@ class Billing
      */
     protected $address;
 
-
     /**
      * @return int
      */

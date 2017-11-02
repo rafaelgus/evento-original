@@ -9,6 +9,8 @@
                     <h1>Checkout</h1>
                 </div>
                 <form method="post" action="/checkout/shipping" id="frmCheckout">
+
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <ol class="one-page-checkout" id="checkoutSteps">
                         <li id="opc-billing" class="section allow active">
                             <div class="step-title"> <span class="number">1</span>
@@ -49,20 +51,21 @@
                                                         <div class="input-box">
                                                             <label for="billing:telephone">{{trans('frontend/checkout.phone')}}<span class="required">*</span></label>
                                                             <br>
-                                                            <input type="text" name="phone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone">
+                                                            <input type="text" name="telephone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone">
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <label for="billing-address-select">Seleccione una direccion</label>
                                                         <br>
-                                                        <select name="billingAddress" id="billing-address-select" class="address-select" title="" onchange="billing.newAddress(!this.value)">
+                                                        <select name="addressId" id="billing-address-select" class="address-select" title="" onchange="billing.newAddress(!this.value)">
                                                             @foreach($addresses as $address)
                                                                 <option value="{{$address->getId()}}">{{$address->getAddress() . ', ' . $address->getCountry()->getName() . ', ' .  $address->getProvince(). ', ' .$address->getPostalCode()}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <button type="button" class="button continue"><span>Nueva</span></button>
+                                                        <button type="button" class="button continue" onclick="showFormAddress();"><span>Nueva</span></button>
+                                                        <input type="hidden" value="0" name="newAddress" id="newAddress">
                                                     </li>
-                                                    <div class="new-directio" style="display: none;">
+                                                    <div id="newAddressForm" style="display: none;">
                                                         <li>
                                                             <div class="input-box">
                                                                 <label for="billing:city">{{trans('frontend/checkout.address')}} <span class="required">*</span></label>
@@ -104,7 +107,7 @@
                                         </li>
                                     </ul>
                                     <p class="require"><em class="required">* </em>Required Fields</p>
-                                    <button type="button" class="button continue" onclick="billing.save()"><span>Continue</span></button>
+                                    <button type="submit" class="button continue"><span>Continue</span></button>
                                 </fieldset>
                             </div>
                         </li>
@@ -130,4 +133,21 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts_body')
+    <script>
+
+        function showFormAddress() {
+            var div = document.getElementById('newAddressForm');
+
+            if (div.style.display === "block") {
+                document.getElementById('newAddress').value = 0;
+                div.style.display = 'none';
+            } else {
+                div.style.display = 'block';
+                document.getElementById('newAddress').value = 1;
+            }
+        }
+    </script>
 @endsection

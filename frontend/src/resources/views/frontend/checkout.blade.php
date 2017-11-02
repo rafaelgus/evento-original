@@ -253,8 +253,3 @@
 @endsection
 
 
-@section('scripts_body')
-    <script type="text/javascript">
-
-    </script>
-@endsection

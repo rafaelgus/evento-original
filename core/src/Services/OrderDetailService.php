@@ -34,7 +34,7 @@ class OrderDetailService
 
         $detail->setMoney($money);
 
-        if (!in_array('artice', $data) and $discount === true) {
+        if (!in_array('artice', $data) and $discount === false) {
             throw new Exception('Invalid detail');
         }
 

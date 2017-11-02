@@ -60,7 +60,6 @@ class VoucherController
         if (!$total) {
             $total = Cart::instance('shopping')->total();
         }
-
         $this->voucherService->useVoucher($voucher->getCode());
         $discount = $this->voucherService->getDiscountAmount($voucher, $total);
 

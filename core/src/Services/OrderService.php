@@ -68,4 +68,9 @@ class OrderService
     {
         return $this->orderRepository->findAllByUser($user);
     }
+
+    public function save(Order $order)
+    {
+        $this->orderRepository->save($order);
+    }
 }

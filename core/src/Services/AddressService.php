@@ -26,6 +26,8 @@ class AddressService
         $address->setCustomer($customer);
         $address->setCountry($country);
 
+        $this->addressRepository->save($address);
+
         return $address;
 
     }
@@ -33,5 +35,10 @@ class AddressService
     public function findById(int $id)
     {
         return $this->addressRepository->find($id);
+    }
+
+    public function findByCustomer(Customer $customer)
+    {
+        return $this->addressRepository->findBy(['customer' => $customer]);
     }
 }
