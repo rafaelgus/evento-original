@@ -34,11 +34,11 @@ class OrderDetailService
 
         $detail->setMoney($money);
 
-        if (!in_array('artice', $data) and $discount === false) {
+        if (!array_has($data, 'article') and $discount === false) {
             throw new Exception('Invalid detail');
         }
 
-        if (in_array('article', $data)) {
+        if (array_has($data, 'article')) {
             $detail->setArticle($data['article']);
         }
 
@@ -53,7 +53,6 @@ class OrderDetailService
 
             $this->orderDetailRepository->save($detail, false);
         }
-
         $this->orderDetailRepository->flushRepository();
     }
 

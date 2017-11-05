@@ -116,19 +116,18 @@ class PaymentController
         $billing = $this->billingService->findById($request->input('billingId'));
         $details = $this->getDetails();
 
-        if (!$request->input('method') === self::DELIVERY_IN_STORE) {
+        if ($request->input('method') === self::DELIVERY_HOME) {
             if ($request->input('newAddress')) {
                 $country = $this->countryService->findById($request->input('countryId'));
                 $address = $this->addressService->create($customer, $country, $request->all());
             } else {
                 $address = $this->addressService->findById($request->input('addressId'));
             }
-        }
-        if ($request->input('method') === self::DELIVERY_HOME) {
             $shipping = $this->shippingService->create($address, $request->input('method'));
 
             $order = $this->orderService->create($details, $user, $billing, $shipping);
-        } else {
+        }
+        if ($request->input('method') === self::DELIVERY_IN_STORE) {
             $order = $this->orderService->create($details, $user, $billing);
         }
 
@@ -139,7 +138,7 @@ class PaymentController
 
     public function process(int $id)
     {
-        $order = $this->orderDetailService->findById($id);
+        $order = $this->orderService->findById($id);
 
         $payment = $this
             ->paymentService
@@ -263,7 +262,7 @@ class PaymentController
 
     public function addVoucherInCheckout(Request $request)
     {
-        $voucher = $this->voucherService->findByCode($request->input('voucherCode'));
+        $voucher = $this->voucherService->findByCode($request->input('voucher'));
 
         if ($voucher) {
             $order = $this->orderService->findById($request->input('orderId'));
@@ -276,7 +275,7 @@ class PaymentController
 
             $detail = $this->orderDetailService->create([
                 'price' => $voucherAmount,
-                'quantitiy' => 1,
+                'quantity' => 1,
             ], true);
 
             $order->addOrderDetail($detail);

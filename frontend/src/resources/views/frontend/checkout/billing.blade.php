@@ -8,7 +8,7 @@
                 <div class="page-title">
                     <h1>Checkout</h1>
                 </div>
-                <form method="post" action="/checkout/shipping" id="frmCheckout">
+                <form method="post" action="/checkout/shipping" id="frmBilling">
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <ol class="one-page-checkout" id="checkoutSteps">
@@ -31,12 +31,12 @@
                                                             <div class="input-box name-firstname">
                                                                 <label for="billing:firstname">{{ trans('frontend/checkout.name')}} <span class="required">*</span> </label>
                                                                 <br>
-                                                                <input type="text" id="billing:firstname" name="name" value="{{ old('name', $customer->getFirstName()) }}" title="First Name" class="input-text required-entry">
+                                                                <input type="text" id="name" name="name" value="{{ old('name', $customer->getFirstName()) }}" title="First Name" class="input-text required-entry">
                                                             </div>
                                                             <div class="input-box name-lastname">
                                                                 <label for="billing:lastname"> {{ trans('frontend/checkout.lastName') }} <span class="required">*</span> </label>
                                                                 <br>
-                                                                <input type="text" id="billing:lastname" name="lastName" value="{{old('lastName', $customer->getLastName())}}" title="Last Name" class="input-text required-entry">
+                                                                <input type="text" id="lastName" name="lastName" value="{{old('lastName', $customer->getLastName())}}" title="Last Name" class="input-text required-entry">
                                                             </div>
                                                         </div>
                                                     </li>
@@ -44,14 +44,14 @@
                                                         <div class="input-box">
                                                             <label for="billing:company">{{trans('frontend/checkout.company')}}</label>
                                                             <br>
-                                                            <input type="text" id="billing:company" name="company" value="" title="Company" class="input-text">
+                                                            <input type="text" id="company" name="company" value="" title="Company" class="input-text">
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="input-box">
                                                             <label for="billing:telephone">{{trans('frontend/checkout.phone')}}<span class="required">*</span></label>
                                                             <br>
-                                                            <input type="text" name="telephone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone">
+                                                            <input type="text" id="telephone" name="telephone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone">
                                                         </div>
                                                     </li>
                                                     <li>
@@ -106,8 +106,8 @@
                                             </fieldset>
                                         </li>
                                     </ul>
-                                    <p class="require"><em class="required">* </em>Required Fields</p>
-                                    <button type="submit" class="button continue"><span>Continue</span></button>
+                                    <p class="require"><em class="required">* </em>Campos obligatorios</p>
+                                    <button type="button" onclick="postForm()" class="button continue"><span>Continue</span></button>
                                 </fieldset>
                             </div>
                         </li>
@@ -147,6 +147,19 @@
             } else {
                 div.style.display = 'block';
                 document.getElementById('newAddress').value = 1;
+            }
+        }
+        
+        function postForm() {
+            var name = document.getElementById('name').value;
+            var lastName = document.getElementById('lastName').value;
+            var company = document.getElementById('company').value;
+            var telephone = document.getElementById('telephone').value;
+
+            if (name === '' || lastName === '' || company === '' || telephone === '') {
+                alert('Complete todos los campos requeridos (*)');
+            } else {
+                document.getElementById('frmBilling').submit();
             }
         }
     </script>
