@@ -14,9 +14,6 @@ class MailService
 
     public function sendWelcome(User $user)
     {
-        $data = [];
-        $data['to'] = $user->getEmail();
-
-        $this->sendinblueService->sendTemplate(SendinblueService::WELCOME_ADMIN_TEMPLATE_ID, $data);
+        $this->sendinblueService->sendWelcome($user);
     }
 }

@@ -24,7 +24,7 @@ class VisitorLanding
 
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="visitorLanding")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $user;
 

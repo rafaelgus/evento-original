@@ -27,7 +27,7 @@ class VisitorEvent
 
     /**
      * @ORM\ManyToOne(targetEntity="VisitorLanding", inversedBy="visitorEvents")
-     * @ORM\JoinColumn(name="visitor_landing_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="visitor_landing_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $visitorLanding;
 

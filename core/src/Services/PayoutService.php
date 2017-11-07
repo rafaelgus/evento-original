@@ -2,6 +2,7 @@
 
 namespace EventoOriginal\Core\Services;
 
+use App\Events\PayoutRefunded;
 use DateTime;
 use EventoOriginal\Core\Entities\Payout;
 use EventoOriginal\Core\Entities\User;
@@ -15,6 +16,8 @@ class PayoutService
 {
     private $payoutRepository;
     private $payoutGatewayFactory;
+
+    public static $statusToRefund = [PayoutStatus::DENIED, PayoutStatus::BLOCKED, PayoutStatus::FAILED];
 
     public function __construct(
         PayoutRepository $payoutRepository,
@@ -77,8 +80,13 @@ class PayoutService
             $payout = $this->payoutGatewayFactory->create($payout->getGateway())
                 ->processWebhook($payout, $data);
 
-            if ()
+            if ($this->haveToRefundPayout($payout)) {
+                $payout->setStatus(PayoutStatus::REFUNDED);
 
+                event(new PayoutRefunded($payout));
+            }
+
+            $this->payoutRepository->save($payout);
         } catch (Exception $exception) {
             logger()->error($exception->getMessage());
 
@@ -94,16 +102,15 @@ class PayoutService
     {
         $haveToRefund = false;
 
-        if ($payout->getStatus() === P)
+        if (in_array($payout->getStatus(), self::$statusToRefund)) {
+            $haveToRefund = true;
+        }
+
+        return $haveToRefund;
     }
 
     public function findByExternalId(string $externalId): ?Payout
     {
         return $this->payoutRepository->findByExternalId($externalId);
-    }
-
-    public function refundPayoutAmount(Payout $payout)
-    {
-
     }
 }

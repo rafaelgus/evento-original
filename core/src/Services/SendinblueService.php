@@ -2,6 +2,7 @@
 
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\User;
 use Exception;
 use InvalidArgumentException;
 use Mailin;
@@ -10,14 +11,27 @@ class SendinblueService
 {
     private $client;
 
-    public const WELCOME_ADMIN_TEMPLATE_ID = 1;
+    public const WELCOME_TEMPLATE_ID = 1;
 
     public function __construct(Mailin $client)
     {
         $this->client = $client;
     }
 
-    public function sendTemplate(int $templateId, array $data)
+    public function sendWelcome(User $user)
+    {
+        $data = [
+            'to' => $user->getEmail(),
+        ];
+
+        $params = [
+            'NOMBRE' => $user->getName()
+        ];
+
+        $this->sendTemplate(self::WELCOME_TEMPLATE_ID, $data, $params);
+    }
+
+    public function sendTemplate(int $templateId, array $data, array $params = [])
     {
         $emailData = [];
         $emailData['id'] = $templateId;
@@ -46,10 +60,11 @@ class SendinblueService
 
         $emailData["headers"] = [];
         $emailData["headers"]["Content-Type"] = "text/html;charset=iso-8859-1";
-
-        //TODO Implementar envio de parametros
+        $emailData["attr"] = $params;
 
         try {
+            logger()->info($emailData);
+
             $response = $this->client->send_transactional_template($emailData);
 
             logger()->info($response);

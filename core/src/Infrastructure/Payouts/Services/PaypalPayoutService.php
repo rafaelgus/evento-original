@@ -70,12 +70,11 @@ class PaypalPayoutService implements PayoutGatewayInterface
 
     public function processWebhook(PayoutInterface $payout, array $data)
     {
-        $response = PayoutItem::get($data['resource']['payout_item_id'], $this->apiContext);
+        $paypalPayoutItem = PayoutItem::get($data['resource']['payout_item_id'], $this->apiContext);
 
-        $paypalStatus = $response['transaction_status'];
-
-        $payout->setStatus($paypalStatus);
-
+        $payout->setStatus(strtolower($paypalPayoutItem->getTransactionStatus()));
+        $payout->setResponseData($paypalPayoutItem->toJSON());
+        
         return $payout;
     }
 }

@@ -82,6 +82,11 @@ class Payout implements PayoutInterface
     private $externalId;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $refunded;
+
+    /**
      * @return int
      */
     public function getId()
@@ -323,5 +328,21 @@ class Payout implements PayoutInterface
     public function setExternalId(string $externalId)
     {
         $this->externalId = $externalId;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRefunded()
+    {
+        return $this->refunded;
+    }
+
+    /**
+     * @param bool $refunded
+     */
+    public function setRefunded(bool $refunded)
+    {
+        $this->refunded = $refunded;
     }
 }
