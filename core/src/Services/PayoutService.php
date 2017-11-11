@@ -113,4 +113,9 @@ class PayoutService
     {
         return $this->payoutRepository->findByExternalId($externalId);
     }
+
+    public function getAllByUser(User $user)
+    {
+        return $this->payoutRepository->findByUser($user);
+    }
 }

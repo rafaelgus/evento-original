@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use EventoOriginal\Core\Entities\Payout;
+use EventoOriginal\Core\Entities\User;
 
 class PayoutRepository extends BaseRepository
 {
@@ -17,5 +18,10 @@ class PayoutRepository extends BaseRepository
     public function findByExternalId(string $externalId)
     {
         return $this->findOneBy(['externalId' => $externalId]);
+    }
+
+    public function findByUser(User $user)
+    {
+        return $this->findBy(['user' => $user]);
     }
 }

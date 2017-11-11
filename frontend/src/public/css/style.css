@@ -10945,6 +10945,22 @@ button.button.btn-proceed-checkout span {
     font-weight: bold;
 }
 
+.title-buttons {
+    margin-bottom: 8px;
+    text-align: right;
+}
+
+strong.title-buttons {
+    color: #413C5E;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.recent-payouts .table-responsive {
+    width: 100%;
+}
+
 /* 24. checkout pages */
 
 .block-progress dl {

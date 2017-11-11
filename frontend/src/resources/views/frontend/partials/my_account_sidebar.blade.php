@@ -21,6 +21,7 @@
         <div class="block-content">
             <ul>
                 <li><a href="{{ route('affiliates.summary') }}">{{ trans('frontend/affiliates.summary')}}</a></li>
+                <li><a href="{{ route('profile.payouts') }}">{{ trans('frontend/payouts.title')}}</a></li>
             </ul>
         </div>
     </div>
