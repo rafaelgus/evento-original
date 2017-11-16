@@ -1,7 +1,8 @@
 <?php
 
 Auth::routes();
-
+Route::get('/odoo', 'Frontend\OdooController@showToken');
+Route::get('/odoo2', 'Frontend\OdooController@showNotSyncArticles');
 Route::get('/', 'Frontend\ArticleController@getHome');
 
 Route::get(
