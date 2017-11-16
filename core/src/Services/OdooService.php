@@ -59,5 +59,13 @@ class OdooService
         }
     }
 
+    public function getSyncArticles()
+    {
+        $token = $this->getToken();
+        $uri =  "/api/product.template/search?token". $token ."=&domain=[('sale_ok','=', True),('rm_sync','=', False)]&limit=10000&fields=['name','default_code','type','categ_id','pos_categ_id','rm_sync','product_id']";
 
+        $articles = $this->connect(self::HTTP_METHOD_GET, $uri);
+
+        return json_decode($articles, true);
+    }
 }
