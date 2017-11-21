@@ -1,8 +1,0 @@
-[core]
-	repositoryformatversion = 0
-	filemode = true
-	bare = true
-[remote "origin"]
-	url = https://0f1dbe92172c9cf37c858cd57ab793843b7e9b2b:x-oauth-basic@github.com/cfrutos/flaubert.git
-	fetch = +refs/*:refs/*
-	mirror = true
