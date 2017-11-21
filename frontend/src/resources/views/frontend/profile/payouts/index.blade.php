@@ -49,7 +49,9 @@
                                             </tbody>
                                         </table>
 
-                                        {{ $payouts->links() }}
+                                        <div class="pages center-pagination">
+                                            {{ $payouts->links() }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

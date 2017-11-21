@@ -161,7 +161,7 @@ button {
 }
 
 /* list/grid toolbar*/
-.toolbar span.button-active.button-grid, {
+.toolbar span.button-active.button-grid {
     background-color: #e94d65;
 }
 
@@ -188,9 +188,33 @@ button {
     background: #e94d65;
 }
 
+.pagination>li>a, .pagination>li>span {
+    background: none;
+    color: #333;
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover {
+    /* border: none; */
+    color: #fff;
+    background: #e94d65;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+    border-radius: 0px;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    border-radius: 0px;
+}
+
 .pages .pagination > .active > a, .pages .pagination > .active > span, .pages .pagination > .active > a:hover, .pages .pagination > .active > span:hover, .pages .pagination > .active > a:focus, .pages .pagination > .active > span:focus {
     background-color: #e94d65;
     color: #fff;
+}
+
+.center-pagination {
+    text-align: center;
+    padding: 1rem;
 }
 
 #limiter .button-asc {
@@ -6978,9 +7002,18 @@ ol#compare-items li.last {
     border: 1px #eaeaea solid;
 }
 
+.pager .pages li span {
+    box-shadow: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0px;
+    border: 1px #eaeaea solid;
+}
+
 .pages .pagination > .active > a, .pages .pagination > .active > span, .pages .pagination > .active > a:hover, .pages .pagination > .active > span:hover, .pages .pagination > .active > a:focus, .pages .pagination > .active > span:focus {
     z-index: 2;
     cursor: default;
+    border: 1px #eaeaea solid;
 }
 
 /* Sorter */
@@ -17445,3 +17478,4 @@ a.button.wishlist {
 .circle.selected-circle {
     border: 2px solid black;
 }
+

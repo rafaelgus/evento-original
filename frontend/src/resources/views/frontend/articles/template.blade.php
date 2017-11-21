@@ -6,7 +6,7 @@
             <div class="item-img">
                 <div class="item-img-info">
                 <a href="/{{ trans('routes.article') . '/' . trans('routes.detail') . '/'}}<%:slug%>" title="<%:slug%>" class="product-image">
-                <img src="{{storage_url()}}/images/<%:image%>"
+                <img src="<%if image != ''%>{{ storage_url()}}/images/<%:image%><%else%>/images/article_no_image.png<%/if%>"
                                 alt="<%:name%>">
 </a>
 

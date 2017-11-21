@@ -120,17 +120,6 @@ class ArticleController
 
     public function store(StoreArticleRequest $request)
     {
-        $flavours =  [];
-        $ingredients = [];
-        $allergens = [];
-
-        if ($request->has('allergens')) {
-            $allergens = $this
-                ->allergenService
-                ->findByIds(
-                    $request->input('allergens')
-                );
-        }
         $allergens = $this
             ->allergenService
             ->findByIds(
@@ -148,14 +137,6 @@ class ArticleController
             ->findByIds(
                 ($request->input('colors') ?: [])
             );
-
-        if ($request->has('flavours')) {
-            $flavours = $this
-                ->flavourService
-                ->findByIds(
-                    $request->input('flavours')
-                );
-        }
 
         $flavours = $this
             ->flavourService
@@ -182,14 +163,6 @@ class ArticleController
                 ->licenseService
                 ->findOneById(
                     $request->input('license')
-                );
-        }
-
-        if ($request->has('ingredients')) {
-            $ingredients = $this
-                ->ingredientService
-                ->findByIds(
-                    $request->input('ingredients')
                 );
         }
 
@@ -365,11 +338,14 @@ class ArticleController
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+        }
 
         $article->setAllergens($allergens);
         $article->setColors($colors);
@@ -383,8 +359,12 @@ class ArticleController
         $article->setDescription($request->input('description'));
         $article->setBarCode($request->input('barCode'));
         $article->setInternalCode($request->input('internalCode'));
-        $article->setLicense($license);
-        $article->setBrand($brand);
+        if ($brand) {
+            $article->setBrand($brand);
+        }
+        if ($license) {
+            $article->setLicense($license);
+        }
         $article->setIngredients($ingredients);
         $article->setStatus($request->input('status'));
 

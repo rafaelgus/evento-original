@@ -25,11 +25,18 @@ if (!function_exists('current_user_is_admin')) {
     }
 }
 
+if (!function_exists('article_image_url')) {
+    function article_image_url(string $filename)
+    {
+        return storage_url() . "/images/" . $filename;
+    }
+}
+
 
 if (!function_exists('storage_url')) {
     function storage_url()
     {
-        return "https://evento-original-s3.s3.us-east-2.amazonaws.com";
+        return env('AWS_S3_URL');
     }
 }
 
