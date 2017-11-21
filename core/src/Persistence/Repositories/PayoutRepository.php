@@ -37,6 +37,6 @@ class PayoutRepository extends BaseRepository
             ->setParameter('user', $user->getId())
             ->getQuery();
 
-        return $this->paginate($query, 1, $currentPage);
+        return $this->paginate($query, $maxItems, $currentPage);
     }
 }
