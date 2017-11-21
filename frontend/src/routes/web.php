@@ -31,8 +31,6 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
     return view('frontend.about_us');
 });
 
-Route::get('/' . trans('frontend/payouts.slug'), 'Frontend\PayoutController@getAll')->name('profile.payouts');
-
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
 })->name('terms_and_conditions');
@@ -50,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
         '/'. trans('frontend/affiliates.title'),
         'Frontend\CustomerController@affiliateSummary'
     )->name('affiliates.summary');
+
+    Route::get('/' . trans('frontend/payouts.slug'), 'Frontend\PayoutController@getAllPaginated')->name('profile.payouts');
 });
 
 Route::group(['prefix' => '/management'], function () {

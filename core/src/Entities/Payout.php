@@ -5,7 +5,9 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Infrastructure\Payouts\Interfaces\PayoutInterface;
 use Money\Currency;
+use Money\Formatter\IntlMoneyFormatter;
 use Money\Money;
+use Symfony\Component\Intl\Intl;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PayoutRepository")

@@ -118,4 +118,9 @@ class PayoutService
     {
         return $this->payoutRepository->findByUser($user);
     }
+
+    public function getAllByUserPaginated(User $user, int $currentPage = 1, int $maxItems = 10)
+    {
+        return $this->payoutRepository->findAllByUserPaginated($user, $currentPage, $maxItems);
+    }
 }

@@ -97,7 +97,7 @@ class ArticleController extends Controller
         $flavours = (isset($request->flavours) ? $request->flavours : []);
         $licenses = (isset($request->licenses) ? $request->licenses : []);
         $tags = (isset($request->tags) ? $request->tags : []);
-        $healtyhs = (isset($request->healthys) ? $request->healthys : []);
+        $healthys = (isset($request->healthys) ? $request->healthys : []);
         $priceMin = (isset($request->priceMin) ? $request->priceMin : 0);
         $priceMax = (isset($request->priceMax) ? $request->priceMax : null);
         $pageLimit = (isset($request->pageLimit) ? $request->pageLimit : null);
@@ -112,7 +112,7 @@ class ArticleController extends Controller
             $flavours,
             $licenses,
             $tags,
-            $healtyhs,
+            $healthys,
             $priceMin,
             $priceMax,
             App::getLocale(),

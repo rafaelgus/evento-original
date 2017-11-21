@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Services\PayoutService;
+use Illuminate\Http\Request;
 
 class PayoutController extends Controller
 {
@@ -14,9 +16,11 @@ class PayoutController extends Controller
         $this->payoutService = $payoutService;
     }
 
-    public function getAll(User $user)
+    public function getAllPaginated(Request $request)
     {
-        $payouts = $this->payoutService->getAllByUser(current_user());
+        $page = $request->input('page') ?: 1;
+
+        $payouts = $this->payoutService->getAllByUserPaginated(current_user(), $page);
 
         return view('frontend/profile.payouts.index')->with(['payouts' => $payouts]);
     }

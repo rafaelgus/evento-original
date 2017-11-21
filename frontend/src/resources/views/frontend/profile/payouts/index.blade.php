@@ -36,11 +36,10 @@
                                             <tbody>
                                             @forelse($payouts as $payout)
                                                 <tr class="first odd">
-                                                    <td>{{ $payout->getDate() }}</td>
-                                                    <td><span class="price">{{ $payout->getOriginalMoney()->getAmount() / 100 }}</span></td>
-                                                    <td><em>{{ $payout->getStatus() }}</em></td>
-                                                    <td class="a-center last"><span class="nobr"> <a href="#">Ver Órden</a> </span>
-                                                    </td>
+                                                    <td>{{ $payout->getDate()->format('d-m-Y') }}</td>
+
+                                                    <td><span class="price">{{ formatted_money($payout->getOriginalMoney()) }}</span></td>
+                                                    <td><em>{{ trans('payouts.status.' . $payout->getStatus() ) }}</em></td>
                                                 </tr>
                                             @empty
                                                 <tr>
@@ -49,6 +48,8 @@
                                             @endforelse
                                             </tbody>
                                         </table>
+
+                                        {{ $payouts->links() }}
                                     </div>
                                 </div>
                             </div>
