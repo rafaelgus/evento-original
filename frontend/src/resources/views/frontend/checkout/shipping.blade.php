@@ -93,7 +93,7 @@
                                     </ul>
                                     <p class="require"><em class="required">* </em>Required Fields</p>
                                     <div class="buttons-set1" id="shipping-buttons-container">
-                                        <button type="submit" class="button continue"><span>Continue</span></button>
+                                        <button type="submit" class="button continue"><span>{{ trans('buttons.continue') }}</span></button>
                                     </div>
                                 </fieldset>
                             </div>

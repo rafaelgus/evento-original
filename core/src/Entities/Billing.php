@@ -27,7 +27,7 @@ class Billing
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $company;
 
@@ -89,7 +89,7 @@ class Billing
     /**
      * @param string $company
      */
-    public function setCompany(string $company)
+    public function setCompany(?string $company)
     {
         $this->company = $company;
     }

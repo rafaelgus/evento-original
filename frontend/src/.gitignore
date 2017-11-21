@@ -14,3 +14,4 @@ composer.phar
 composer.phar
 /.composer
 error.log
+adminer.php

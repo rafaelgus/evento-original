@@ -19,4 +19,5 @@ return [
     'upload' => 'Cargar',
     'change' => 'Cambiar',
     'submit' => 'Enviar',
+    'continue' => 'Continuar'
 ];

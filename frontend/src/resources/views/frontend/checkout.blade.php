@@ -175,7 +175,7 @@
                                         <p class="require"><em class="required">* </em>Required Fields</p>
                                         <div class="buttons-set1" id="shipping-buttons-container">
                                             <button type="button" class="button continue"><span>Volver</span></button>
-                                            <button type="button" class="button continue"><span>Continue</span></button>
+                                            <button type="button" class="button continue"><span>{{ trans('buttons.continue') }}</span></button>
                                         </div>
                                     </fieldset>
                             </div>
