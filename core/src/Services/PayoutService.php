@@ -17,7 +17,13 @@ class PayoutService
     private $payoutRepository;
     private $payoutGatewayFactory;
 
-    public static $statusToRefund = [PayoutStatus::DENIED, PayoutStatus::BLOCKED, PayoutStatus::FAILED];
+    public static $statusToRefund = [
+        PayoutStatus::DENIED,
+        PayoutStatus::BLOCKED,
+        PayoutStatus::FAILED,
+        PayoutStatus::REFUNDED,
+        PayoutStatus::RETURNED
+    ];
 
     public function __construct(
         PayoutRepository $payoutRepository,

@@ -34,6 +34,5 @@ class PaypalController extends Controller
                 $this->payoutService->processWebhook($payout, $data);
             }
         }
-
     }
 }

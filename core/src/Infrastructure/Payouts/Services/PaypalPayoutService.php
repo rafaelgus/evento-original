@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Infrastructure\Payouts\Services;
 
 use EventoOriginal\Core\Enums\PayoutStatus;
@@ -41,7 +42,7 @@ class PaypalPayoutService implements PayoutGatewayInterface
             ->setNote('Nuevo pago de Evento Original')
             ->setReceiver($payout->getUser()->getEmail())
             ->setSenderItemId($externalId)
-            ->setAmount(new \PayPal\Api\Currency('{"value":"' . $amount . '","currency":"' . $currency .'"}'));
+            ->setAmount(new \PayPal\Api\Currency('{"value":"' . $amount . '","currency":"' . $currency . '"}'));
 
         $payouts->setSenderBatchHeader($senderBatchHeader)->addItem($senderItem);
 
@@ -72,9 +73,13 @@ class PaypalPayoutService implements PayoutGatewayInterface
     {
         $paypalPayoutItem = PayoutItem::get($data['resource']['payout_item_id'], $this->apiContext);
 
-        $payout->setStatus(strtolower($paypalPayoutItem->getTransactionStatus()));
-        $payout->setResponseData($paypalPayoutItem->toJSON());
-        
+        $status = strtolower($paypalPayoutItem->getTransactionStatus());
+
+        if (PayoutStatus::isValid($status)) {
+            $payout->setStatus($status);
+            $payout->setResponseData(json_encode($data));
+        }
+
         return $payout;
     }
 }
