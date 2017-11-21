@@ -18,4 +18,5 @@ bootstrap/cache/
 
 docae/mysql-data/
 docae/redis-data/
+laradock/logs/
 .composer/

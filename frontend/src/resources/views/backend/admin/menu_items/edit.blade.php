@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="url" class="form-control" id="inputUrl" name="name"
+                                    <input type="text" class="form-control" id="inputUrl" name="name"
                                            placeholder="{{ trans('backend/menu_item.url') }}" value="{{ old('url') }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
