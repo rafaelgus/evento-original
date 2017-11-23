@@ -27,7 +27,7 @@ class OrderService
      * @param Billing $billing
      * @return Order
      */
-    public function create(array $details, User $user, Billing $billing, Shipping $shipping = null)
+    public function create(array $details, User $user, Billing $billing = null, Shipping $shipping = null)
     {
         $order = new Order();
 
@@ -35,8 +35,10 @@ class OrderService
         $order->setCreateDate(new DateTime('now'));
         $order->setStatus(OrderStatus::STATUS_PENDING);
         $order->setUser($user);
-        $order->setBilling($billing);
 
+        if ($billing) {
+            $order->setBilling($billing);
+        }
         if ($shipping) {
             $order->setShipping($shipping);
         }
@@ -45,6 +47,22 @@ class OrderService
         $this->orderDetailService->setOrder($details, $order);
 
         return $order;
+    }
+
+    public function addShipping(Order $order, Shipping $shipping)
+    {
+        $order->setShipping($shipping);
+        $this->save($order);
+    }
+
+    /**
+     * @param Order $order
+     * @param Billing $billing
+     */
+    public function addBilling(Order $order, Billing $billing)
+    {
+        $order->setBilling($billing);
+        $this->save($order);
     }
 
     /**

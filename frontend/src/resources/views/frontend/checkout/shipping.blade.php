@@ -10,6 +10,7 @@
                 <form method="post" action="/checkout/order">
                     <input type="hidden" name="billingId" value="{{$billingId}}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="orderId" value="{{$orderId}}}">
 
                     <ol class="one-page-checkout" id="checkoutSteps">
                         <li id="opc-billing" class="section">

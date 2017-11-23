@@ -25,11 +25,11 @@ use PayPal\Rest\ApiContext;
 
 class PaypalService implements PaymentGatewayInterface
 {
-    private const CURRENCY_USD = 'USD';
-    private const CURRENCY_EUR = 'EUR';
-    private const METHOD = 'paypal';
-    private const URL_ACEPT = 'http://localhost/paypalConfirm';
-    private const URL_CANCEL = 'http://localhost/paypalCancel';
+    const CURRENCY_USD = 'USD';
+    const CURRENCY_EUR = 'EUR';
+    const METHOD = 'paypal';
+    const URL_ACCEPT = 'http://localhost/paypalConfirm';
+    const URL_CANCEL = 'http://localhost/paypalCancel';
 
     const PAYMENT_STATE_APPROVED = 'approved';
     const RESOURCE_STATE_COMPLETED = 'completed';
@@ -49,6 +49,7 @@ class PaypalService implements PaymentGatewayInterface
         $this->config = $paypalConfig['paypal'];
         $this->paymentService = $paymentService;
     }
+
     /**
      * Prepare a payment to checkout
      *
@@ -94,7 +95,7 @@ class PaypalService implements PaymentGatewayInterface
         $transaction->setDescription($payment->getDescription());
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(self::URL_ACEPT);
+        $redirectUrls->setReturnUrl(self::URL_ACCEPT);
         $redirectUrls->setCancelUrl(self::URL_CANCEL);
 
         $paypalPayment = new PaypalPayment();

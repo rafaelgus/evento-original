@@ -312,7 +312,7 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setPrice($price)
+    public function setPrice(int $price)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPrice', [$price]);
@@ -378,7 +378,7 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setCostPrice($costPrice)
+    public function setCostPrice(int $costPrice)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCostPrice', [$costPrice]);
@@ -934,6 +934,17 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOrderDetails', [$orderDetails]);
 
         return parent::setOrderDetails($orderDetails);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMoneyPrice()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMoneyPrice', []);
+
+        return parent::getMoneyPrice();
     }
 
 }

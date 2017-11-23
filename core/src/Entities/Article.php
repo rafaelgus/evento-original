@@ -7,6 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ArticleRepository")
@@ -65,7 +67,7 @@ class Article
     private $status;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
@@ -91,7 +93,7 @@ class Article
     private $tax;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="integer")
      */
     private $costPrice;
 
@@ -326,17 +328,17 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPrice()
     {
-        return $this->price;
+        return floatval($this->price /100);
     }
 
     /**
-     * @param mixed $price
+     * @param int $price
      */
-    public function setPrice($price)
+    public function setPrice(int $price)
     {
         $this->price = $price;
     }
@@ -374,7 +376,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getCostPrice()
     {
@@ -384,7 +386,7 @@ class Article
     /**
      * @param mixed $costPrice
      */
-    public function setCostPrice($costPrice)
+    public function setCostPrice(int $costPrice)
     {
         $this->costPrice = $costPrice;
     }
@@ -814,5 +816,11 @@ class Article
         $this->orderDetails = $orderDetails;
     }
 
+    public function getMoneyPrice()
+    {
+        $price = new Money($this->getPrice(), new Currency($this->getPriceCurrency()));
+
+        return $price;
+    }
 
 }

@@ -69,7 +69,11 @@ class PaymentController
 
     public function billingInformation()
     {
-        $customer = current_user()->getCustomer();
+        $details = $this->getDetails();
+        $user = current_user();
+        $customer = $user->getCustomer();
+
+        $order = $this->orderService->create($details, $user);
 
         $countries = $this->countryService->findAll();
 
@@ -78,7 +82,8 @@ class PaymentController
         return view('frontend.checkout.billing')
             ->with('addresses', $addresses)
             ->with('customer', $customer)
-            ->with('countries', $countries);
+            ->with('countries', $countries)
+            ->with('orderId', $order->getId());
     }
 
     public function shippingInformation(BillingInformationRequest $request)
@@ -86,6 +91,8 @@ class PaymentController
         $customer = current_user()->getCustomer();
 
         $addresses = $this->addressService->findByCustomer($customer);
+
+        $order = $this->orderService->findById($request->input('orderId'));
 
         if ($request->input('newAddress') == self::NEW_ADDRESS_TRUE) {
             $countryId = $request->input('country');
@@ -103,7 +110,8 @@ class PaymentController
         return view('frontend.checkout.shipping')
             ->with('billingId', $billing->getId())
             ->with('addresses', $addresses)
-            ->with('countries', $this->countryService->findAll());
+            ->with('countries', $this->countryService->findAll())
+            ->with('orderId', $order->getId());
     }
 
     public function checkout(ShippingInformationRequest $request)
@@ -111,10 +119,11 @@ class PaymentController
         $cartItems = $this->getSummary();
         $user = current_user();
 
+        $order = $this->orderService->findById(intval($request->input('orderId')));
+
         $customer = $user->getCustomer();
 
         $billing = $this->billingService->findById($request->input('billingId'));
-        $details = $this->getDetails();
 
         if ($request->input('method') === self::DELIVERY_HOME) {
             if ($request->input('newAddress')) {
@@ -125,10 +134,11 @@ class PaymentController
             }
             $shipping = $this->shippingService->create($address, $request->input('method'));
 
-            $order = $this->orderService->create($details, $user, $billing, $shipping);
+            $this->orderService->addBilling($order, $billing);
+            $this->orderService->addShipping($order, $shipping);
         }
         if ($request->input('method') === self::DELIVERY_IN_STORE) {
-            $order = $this->orderService->create($details, $user, $billing);
+            $this->orderService->addBilling($order, $billing);
         }
 
         return view('frontend.checkout.orderView')
