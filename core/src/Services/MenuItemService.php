@@ -36,7 +36,6 @@ class MenuItemService
         $menuItem->setUrl($data['url']);
         $menuItem->setPosition($data['position']);
         $menuItem->setLevel(1);
-        $menuItem->setImage('test');
         $menuItem->setVisible(isset($data['visible']));
 
         $menu = $this->menuService->findById($data['menu_id']);
@@ -52,7 +51,9 @@ class MenuItemService
         $menuItem->setUrl($data['url']);
         $menuItem->setPosition($data['position']);
         $menuItem->setLevel(1);
-        $menuItem->setImage($data['imageUrl']);
+        if (isset($data['imageUrl'])) {
+            $menuItem->setImage($data['imageUrl']);
+        }
         $menuItem->setVisible(isset($data['visible']));
 
         $parent = $this->findById($data['menu_item_id']);

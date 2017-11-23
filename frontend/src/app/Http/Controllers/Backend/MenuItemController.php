@@ -59,7 +59,9 @@ class MenuItemController extends Controller
     {
         try {
             $data = $request->all();
-            $data['imageUrl'] = $this->storeImage($request->file('image'));
+            if ($request->hasFile('image')) {
+                $data['imageUrl'] = $this->storeImage($request->file('image'));
+            }
 
             $this->menuItemService->createSubitem($data);
 

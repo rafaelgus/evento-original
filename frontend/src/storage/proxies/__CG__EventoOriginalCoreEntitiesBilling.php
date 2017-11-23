@@ -246,7 +246,7 @@ class Billing extends \EventoOriginal\Core\Entities\Billing implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setCompany(string $company)
+    public function setCompany(?string $company)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCompany', [$company]);

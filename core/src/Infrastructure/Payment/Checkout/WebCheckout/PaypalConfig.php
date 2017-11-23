@@ -2,8 +2,8 @@
 
 return [
     'paypal' => [
-        'client_id' => 'AcvOSFT5bHvwU9bU-HArS8ZrxWUDGI_k2FPbmI0sdeZdlaHZSwG2wAlywn3dx31FRNfhK-DX3Nk9CTBj',
-        'client_secret' => 'EMBWaSjAulElmEvpeEYepbxl9sTcFhld_Zq0gpxvc7z2Y7GWZDSwMBLrlrrB95koxmQa3fJBU9BsBfGv',
-        'sandbox_mode' => 'true'
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'client_secret' => env('PAYPAL_CLIENT_SECRET'),
+        'sandbox_mode' => env('PAYPAL_SANDBOX_MODE'),
     ]
 ];

@@ -27,7 +27,6 @@ class BillingInformationRequest extends FormRequest
             'name' => 'required',
             'lastName' => 'required',
             'telephone' => 'required',
-            'company' => 'required',
             'addressId' => 'required_if:newAddress,==,false',
             'address' => 'required_if:newAddress,==,true',
             'city' => 'required_if:newAddress,==,true',

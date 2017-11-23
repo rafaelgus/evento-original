@@ -33,12 +33,12 @@
                                                             <div class="input-box name-firstname">
                                                                 <label for="billing:firstname">{{ trans('frontend/checkout.name')}} <span class="required">*</span> </label>
                                                                 <br>
-                                                                <input type="text" id="name" name="name" value="{{ old('name', $customer->getFirstName()) }}" title="First Name" class="input-text required-entry">
+                                                                <input type="text" id="name" name="name" value="{{ old('name', $customer->getFirstName()) }}" title="First Name" class="input-text required-entry" required>
                                                             </div>
                                                             <div class="input-box name-lastname">
                                                                 <label for="billing:lastname"> {{ trans('frontend/checkout.lastName') }} <span class="required">*</span> </label>
                                                                 <br>
-                                                                <input type="text" id="lastName" name="lastName" value="{{old('lastName', $customer->getLastName())}}" title="Last Name" class="input-text required-entry">
+                                                                <input type="text" id="lastName" name="lastName" value="{{old('lastName', $customer->getLastName())}}" title="Last Name" class="input-text required-entry" required>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -53,7 +53,7 @@
                                                         <div class="input-box">
                                                             <label for="billing:telephone">{{trans('frontend/checkout.phone')}}<span class="required">*</span></label>
                                                             <br>
-                                                            <input type="text" id="telephone" name="telephone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone">
+                                                            <input type="text" id="telephone" name="telephone" value="{{ old('phoneNumber', $customer->getPhoneNumber()) }}" title="Telephone" class="input-text required-entry" id="billing:telephone" required>
                                                         </div>
                                                     </li>
                                                     <li>
@@ -109,7 +109,7 @@
                                         </li>
                                     </ul>
                                     <p class="require"><em class="required">* </em>Campos obligatorios</p>
-                                    <button type="button" onclick="postForm()" class="button continue"><span>Continue</span></button>
+                                    <button type="button" onclick="postForm()" class="button continue"><span>{{ trans('buttons.continue') }}</span></button>
                                 </fieldset>
                             </div>
                         </li>
@@ -158,7 +158,7 @@
             var company = document.getElementById('company').value;
             var telephone = document.getElementById('telephone').value;
 
-            if (name === '' || lastName === '' || company === '' || telephone === '') {
+            if (name === '' || lastName === '' || telephone === '') {
                 alert('Complete todos los campos requeridos (*)');
             } else {
                 document.getElementById('frmBilling').submit();

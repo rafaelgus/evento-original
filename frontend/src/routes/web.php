@@ -151,6 +151,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
+        Route::group(['prefix' => '/healthy'], function () {
+            Route::get('/create', 'Backend\HealthyController@create');
+            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
+            Route::get('/getLicenses', 'Backend\HealthyController@getDataTables');
+            Route::get('/', 'Backend\HealthyController@index');
+            Route::put('/{id}', 'Backend\HealthyController@update');
+            Route::post('/', 'Backend\HealthyController@store');
+            Route::get('/getAll', 'Backend\HealthyController@getAll');
+        });
         Route::group(['prefix' => '/users'], function () {
             Route::get('/create', 'Backend\UserController@create');
             Route::get('/{id}/edit', 'Backend\UserController@edit');
