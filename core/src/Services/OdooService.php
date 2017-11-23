@@ -68,4 +68,26 @@ class OdooService
 
         return json_decode($articles, true);
     }
+
+    public function getAllergen()
+    {
+        $token = $this->getToken();
+        $uri = "/api/rm.productos.tipo.alergenos/search?token=".$token."&domain=[]&limit=10000&fields=['rm_nombre']";
+
+        $allergens = $this->connect(self::HTTP_METHOD_GET, $uri);
+
+        return json_decode($allergens);
+    }
+
+    public function getWebCategories()
+    {
+        $token = $this->getToken();
+        $uri = "/api/product.public.category/search?token=".$token."&domain=[]&limit=10000&fields=['name','parent_id']";
+
+        $webCategories =  $this->connect(self::HTTP_METHOD_GET, $uri);
+
+        return json_decode($webCategories);
+    }
+    
+
 }
