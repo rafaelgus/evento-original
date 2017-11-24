@@ -74,7 +74,8 @@ class PaypalService implements PaymentGatewayInterface
         $item->setDescription($payment->getDescription());
         $item->setCurrency(self::CURRENCY_EUR);
         $item->setQuantity(1);
-        $item->setPrice($payment->getPaidMoney()->getAmount());
+        $price = floatval($payment->getPaidMoney()->getAmount() /100);
+        $item->setPrice($price);
         $item->setName('payment');
         $item->setSku('sku');
 
@@ -82,11 +83,13 @@ class PaypalService implements PaymentGatewayInterface
         $itemList->setItems([$item]);
 
         $details = new Details();
-        $details->setSubtotal($payment->getPaidMoney()->getAmount());
+        $price = floatval($payment->getPaidMoney()->getAmount() / 100);
+        $details->setSubtotal($price);
 
         $amount = new Amount();
         $amount->setCurrency(self::CURRENCY_EUR);
-        $amount->setTotal($payment->getPaidMoney()->getAmount());
+        $price = floatval($payment->getPaidMoney()->getAmount() / 100);
+        $amount->setTotal($price);
         $amount->setDetails($details);
 
         $transaction = new Transaction();
