@@ -22,7 +22,8 @@ class PayoutService
         PayoutStatus::BLOCKED,
         PayoutStatus::FAILED,
         PayoutStatus::REFUNDED,
-        PayoutStatus::RETURNED
+        PayoutStatus::RETURNED,
+        PayoutStatus::REVERSED,
     ];
 
     public function __construct(
@@ -71,8 +72,12 @@ class PayoutService
                 ->send($payout);
         } catch (Exception $exception) {
             logger()->error($exception->getMessage());
+        }
 
-            throw $exception;
+        if ($this->haveToRefundPayout($payout)) {
+            $payout->setStatus(PayoutStatus::REFUNDED);
+
+            event(new PayoutRefunded($payout));
         }
 
         $this->payoutRepository->save($payout);

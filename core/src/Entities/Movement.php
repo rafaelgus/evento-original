@@ -37,7 +37,7 @@ class Movement
     private $currency;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date;
 

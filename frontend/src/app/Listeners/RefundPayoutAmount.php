@@ -37,7 +37,7 @@ class RefundPayoutAmount
 
         $this->walletService->addBalance(
             $payout->getUser()->getWallet(),
-            $payout->getOriginalAmount(),
+            $payout->getOriginalMoney(),
             MovementType::PAYOUT_REFUND
         );
 

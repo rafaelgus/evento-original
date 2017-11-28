@@ -75,6 +75,8 @@ class PaypalPayoutService implements PayoutGatewayInterface
 
         $status = strtolower($paypalPayoutItem->getTransactionStatus());
 
+        logger()->info($status);
+
         if (PayoutStatus::isValid($status)) {
             $payout->setStatus($status);
             $payout->setResponseData(json_encode($data));

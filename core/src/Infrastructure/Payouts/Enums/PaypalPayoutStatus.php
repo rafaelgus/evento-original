@@ -16,4 +16,5 @@ class PaypalPayoutStatus extends Enum
     const RETURNED = 'returned';
     const SUCCESS = 'success';
     const UNCLAIMED = 'unclaimed';
+    const REVERSED = 'reversed';
 }

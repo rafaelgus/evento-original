@@ -1785,3 +1785,269 @@
 
 ================================================================================================================================
 
+[28-11-2017 18:09:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:09:24 GMT, Server: Apache, paypal-debug-id: 6d346b87601d5, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 6d346b87601d5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:09:24] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:15:57] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:15:58 GMT, Server: Apache, paypal-debug-id: 53c1684ea8f25, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 53c1684ea8f25, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:15:58] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:16:45] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:16:46 GMT, Server: Apache, paypal-debug-id: cd16f69acbbf6, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: cd16f69acbbf6, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:16:53] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:23:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:23:03 GMT, Server: Apache, paypal-debug-id: c13b031ea5705, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c13b031ea5705, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:23:10] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:24:08] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:24:11 GMT, Server: Apache, paypal-debug-id: cdef84e4b70, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: cdef84e4b70, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:24:11] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:28:03] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:28:04 GMT, Server: Apache, paypal-debug-id: 18d56226ec176, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 18d56226ec176, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:28:05] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:31:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:31:01 GMT, Server: Apache, paypal-debug-id: 8c2c9731c006a, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 8c2c9731c006a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:31:01] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:32:21] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:32:22 GMT, Server: Apache, paypal-debug-id: 77920dd5435dd, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 77920dd5435dd, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:32:24] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:36:02] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:36:03 GMT, Server: Apache, paypal-debug-id: 98d0b137c93ed, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 98d0b137c93ed, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:36:03] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:36:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:36:45 GMT, Server: Apache, paypal-debug-id: 7a9db15e6ed91, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 7a9db15e6ed91, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:36:47] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:37:35] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:37:36 GMT, Server: Apache, paypal-debug-id: 427d67e9311f1, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 427d67e9311f1, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:37:36] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:42:29] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:42:30 GMT, Server: Apache, paypal-debug-id: c60f69cce6e94, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c60f69cce6e94, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:42:31] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 18:50:23] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic Og==, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 401
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 18:50:24 GMT, Server: Apache, paypal-debug-id: b37aca05a9e34, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: b37aca05a9e34, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 77, Connection: close, Content-Type: application/json, 
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : ERROR: Got Http response code 401 when accessing https://api.sandbox.paypal.com/v1/oauth2/token. {"error":"invalid_client","error_description":"Client Authentication failed"}
+[28-11-2017 18:50:24] PayPal\Core\PayPalHttpConnection : DEBUG: 
+
+================================================================================================================================
+
+[28-11-2017 19:04:32] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:04:33 GMT, Server: Apache, paypal-debug-id: 9da27cd8aae03, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 9da27cd8aae03, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-11-28T19:04:33ZXUEzXaGGaUwmWVfvVKTnw4DtvEIvOgEX6TBvzUXpujw","access_token":"A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32398}
+
+================================================================================================================================
+
+[28-11-2017 19:04:36] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[28-11-2017 19:04:37] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Bearer A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A, Content-Length: 329, , 
+[28-11-2017 19:04:37] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5a1db3407ab50","email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL"},"items":[{"recipient_type":"EMAIL","note":"Nuevo pago de Evento Original","receiver":"emiliano.rodriguez26@gmail.com","sender_item_id":"5a1db3407ac89","amount":{"value":"11.52","currency":"EUR"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:04:37] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[28-11-2017 19:04:37] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:04:36 GMT, Server: Apache, paypal-debug-id: ed53276ed348e, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ed53276ed348e, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 322, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:04:37] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"EEK358G69WP4A","batch_status":"PENDING","sender_batch_header":{"email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL","sender_batch_id":"5a1db3407ab50"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/EEK358G69WP4A","rel":"self","method":"GET"}]}
+
+================================================================================================================================
+
+[28-11-2017 19:13:38] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:13:39 GMT, Server: Apache, paypal-debug-id: 83c697395dd23, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 83c697395dd23, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-11-28T19:04:33ZXUEzXaGGaUwmWVfvVKTnw4DtvEIvOgEX6TBvzUXpujw","access_token":"A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31851}
+
+================================================================================================================================
+
+[28-11-2017 19:13:42] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[28-11-2017 19:13:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Bearer A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A, Content-Length: 329, , 
+[28-11-2017 19:13:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5a1db56290279","email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL"},"items":[{"recipient_type":"EMAIL","note":"Nuevo pago de Evento Original","receiver":"emiliano.rodriguez26@gmail.com","sender_item_id":"5a1db562903ec","amount":{"value":"62.11","currency":"EUR"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:13:44] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[28-11-2017 19:13:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:13:43 GMT, Server: Apache, paypal-debug-id: 36e42b76bec65, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 36e42b76bec65, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 322, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:13:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"W7LSVMPY5D5X4","batch_status":"PENDING","sender_batch_header":{"email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL","sender_batch_id":"5a1db56290279"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/W7LSVMPY5D5X4","rel":"self","method":"GET"}]}
+
+================================================================================================================================
+
+[28-11-2017 19:14:29] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:14:30 GMT, Server: Apache, paypal-debug-id: 5c22cf26133b6, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 5c22cf26133b6, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-11-28T19:04:33ZXUEzXaGGaUwmWVfvVKTnw4DtvEIvOgEX6TBvzUXpujw","access_token":"A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":31803}
+
+================================================================================================================================
+
+[28-11-2017 19:14:30] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[28-11-2017 19:14:32] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Bearer A21AAGu_K8xmCXMrpzKoQN9WkRbiYekKs1_mxThJstZU8i4SeDBt33sHV948rq9OmBUIyanlE-MnlPqzKFa2iFn67L29pPY4A, Content-Length: 329, , 
+[28-11-2017 19:14:32] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5a1db59516fae","email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL"},"items":[{"recipient_type":"EMAIL","note":"Nuevo pago de Evento Original","receiver":"emiliano.rodriguez26@gmail.com","sender_item_id":"5a1db59517140","amount":{"value":"10.55","currency":"EUR"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 19:14:32] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[28-11-2017 19:14:32] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 19:14:31 GMT, Server: Apache, paypal-debug-id: 1f1d0b066d79f, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1f1d0b066d79f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 322, Connection: close, Content-Type: application/json, 
+[28-11-2017 19:14:32] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"7WVNCU5RFV8ZU","batch_status":"PENDING","sender_batch_header":{"email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL","sender_batch_id":"5a1db59516fae"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/7WVNCU5RFV8ZU","rel":"self","method":"GET"}]}
+
+================================================================================================================================
+
+[28-11-2017 20:46:10] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 20:46:11 GMT, Server: Apache, paypal-debug-id: 6ec32f1d3ed1, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 6ec32f1d3ed1, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-11-28T20:46:12ZvbQYmtdJvb32q_PPyfB0oC9Ra3Vjx2g5XAHvcecVZ3U","access_token":"A21AAEpJCk6v64vi26faZCm9snQ4p8MOwJpIjJlgfIVnuHhgw2t4lBOVDrFeT3knt5t11qveOM_xhriAmy4fQFUTeRbrmqfFQ","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400}
+
+================================================================================================================================
+
+[28-11-2017 20:46:12] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[28-11-2017 20:46:13] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Bearer A21AAEpJCk6v64vi26faZCm9snQ4p8MOwJpIjJlgfIVnuHhgw2t4lBOVDrFeT3knt5t11qveOM_xhriAmy4fQFUTeRbrmqfFQ, Content-Length: 329, , 
+[28-11-2017 20:46:13] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5a1dcb128159d","email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL"},"items":[{"recipient_type":"EMAIL","note":"Nuevo pago de Evento Original","receiver":"emiliano.rodriguez26@gmail.com","sender_item_id":"5a1dcb12816d4","amount":{"value":"12.34","currency":"EUR"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 20:46:13] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[28-11-2017 20:46:13] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 20:46:13 GMT, Server: Apache, paypal-debug-id: 7517cb74486a5, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 7517cb74486a5, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 322, Connection: close, Content-Type: application/json, 
+[28-11-2017 20:46:13] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"QE6F3SFFSR9R2","batch_status":"PENDING","sender_batch_header":{"email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL","sender_batch_id":"5a1dcb128159d"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/QE6F3SFFSR9R2","rel":"self","method":"GET"}]}
+
+================================================================================================================================
+
+[28-11-2017 21:11:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 21:11:42 GMT, Server: Apache, paypal-debug-id: ea2a7ccd7fa0f, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: ea2a7ccd7fa0f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2017-11-28T21:11:44ZnfQBf3df67AtkfRO1bMHvHD1lNBv_B2IWfx_YRAxmOU","access_token":"A21AAH0w21kn46JUPiiTiBEqOXVEUKltJCIi3MxY2KdED0jSgCpKrnb4XVsyz7frzXs531WLRZbma7t-nnESE_vXmq2V0gNtQ","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400}
+
+================================================================================================================================
+
+[28-11-2017 21:11:44] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payouts?
+[28-11-2017 21:11:49] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payouts? HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.12.0 (platform-ver=7.1.4-1+deb.sury.org~xenial+1; bit=64; os=Linux_4.13.0-17-generic; machine=x86_64; crypto-lib-ver=1.0.2k; curl=7.47.0), Authorization: Bearer A21AAH0w21kn46JUPiiTiBEqOXVEUKltJCIi3MxY2KdED0jSgCpKrnb4XVsyz7frzXs531WLRZbma7t-nnESE_vXmq2V0gNtQ, Content-Length: 329, , 
+[28-11-2017 21:11:49] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"sender_batch_header":{"sender_batch_id":"5a1dd10d92d20","email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL"},"items":[{"recipient_type":"EMAIL","note":"Nuevo pago de Evento Original","receiver":"emiliano.rodriguez26@gmail.com","sender_item_id":"5a1dd10d92e58","amount":{"value":"51.23","currency":"EUR"}}]}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[28-11-2017 21:11:49] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[28-11-2017 21:11:49] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 28 Nov 2017 21:11:45 GMT, Server: Apache, paypal-debug-id: 55623151b9f69, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 55623151b9f69, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 322, Connection: close, Content-Type: application/json, 
+[28-11-2017 21:11:49] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"batch_header":{"payout_batch_id":"MJNTEZJ3E847C","batch_status":"PENDING","sender_batch_header":{"email_subject":"Nuevo pago de Evento Original","recipient_type":"EMAIL","sender_batch_id":"5a1dd10d92d20"}},"links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payouts/MJNTEZJ3E847C","rel":"self","method":"GET"}]}
+
+================================================================================================================================
+

@@ -7,6 +7,7 @@ use EventoOriginal\Core\Entities\Movement;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\Wallet;
 use EventoOriginal\Core\Enums\MovementType;
+use EventoOriginal\Core\Enums\PayoutStatus;
 use EventoOriginal\Core\Persistence\Repositories\UserRepository;
 use EventoOriginal\Core\Persistence\Repositories\WalletRepository;
 use Exception;
@@ -49,6 +50,8 @@ class WalletService
         $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime());
         $wallet->addMovement($movement);
 
+        logger()->info($wallet->getBalance());
+
         $wallet->setBalance($wallet->getBalance() + $money->getAmount());
 
         $this->walletRepository->save($wallet);
@@ -67,6 +70,7 @@ class WalletService
 
             if ($amount > 0) {
                 $payout = $this->payoutService->create($user, 'paypal', $amount);
+                $wallet->setBalance(0);
 
                 try {
                     $this->payoutService->send($payout);
@@ -74,8 +78,6 @@ class WalletService
                     throw new Exception("Error liquidating user balance: " . $user->getId() . " " .
                         $exception->getMessage());
                 }
-
-                $wallet->setBalance(0);
 
                 $this->walletRepository->save($wallet);
             }
