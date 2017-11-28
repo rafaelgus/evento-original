@@ -50,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     )->name('affiliates.summary');
 
     Route::get('/' . trans('frontend/payouts.slug'), 'Frontend\PayoutController@getAllPaginated')->name('profile.payouts');
+    Route::get('/' . trans('movements.slug'), 'Frontend\MovementController@getAllPaginated')->name('profile.movements');
 });
 
 Route::group(['prefix' => '/management'], function () {

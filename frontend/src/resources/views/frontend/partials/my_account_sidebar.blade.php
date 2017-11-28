@@ -1,7 +1,7 @@
 <aside class="col-right sidebar col-sm-3 wow bounceInUp animated">
     <div class="block block-account">
         <div>
-            <h3 class="current-balance">Saldo: {{ current_user_balance() }} €</h3>
+            <h3 class="current-balance">Saldo: {{ current_user_balance() }} </h3>
         </div>
 
         <div class="block-title">{{ trans('frontend/my_account.title')}}</div>
@@ -22,6 +22,8 @@
             <ul>
                 <li><a href="{{ route('affiliates.summary') }}">{{ trans('frontend/affiliates.summary')}}</a></li>
                 <li><a href="{{ route('profile.payouts') }}">{{ trans('frontend/payouts.title')}}</a></li>
+                <li><a href="{{ route('profile.movements') }}">{{ trans('movements.title')}}</a></li>
+
             </ul>
         </div>
     </div>

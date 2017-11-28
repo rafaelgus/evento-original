@@ -6,9 +6,11 @@ use DateTime;
 use EventoOriginal\Core\Entities\Movement;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\Wallet;
+use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Persistence\Repositories\UserRepository;
 use EventoOriginal\Core\Persistence\Repositories\WalletRepository;
 use Exception;
+use Money\Currency;
 use Money\Money;
 
 class WalletService
@@ -42,12 +44,12 @@ class WalletService
         return $this->walletRepository->save($wallet);
     }
 
-    public function addBalance(Wallet $wallet, $amount, string $movementType)
+    public function addBalance(Wallet $wallet, Money $money, string $movementType)
     {
-        $movement = $this->movementService->create($wallet, $movementType, $amount, new DateTime());
+        $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime());
         $wallet->addMovement($movement);
 
-        $wallet->setBalance($wallet->getBalance() + $amount);
+        $wallet->setBalance($wallet->getBalance() + $money->getAmount());
 
         $this->walletRepository->save($wallet);
     }
@@ -56,21 +58,27 @@ class WalletService
     {
         $wallet = $user->getWallet();
 
-        $amount = ($wallet ? $wallet->getBalanceMoney()->getAmount() : 0);
+        if ($wallet) {
+            $amount = $wallet->getBalanceMoney()->getAmount();
 
-        if ($amount > 0) {
-            $payout = $this->payoutService->create($user, 'paypal', $amount);
+            $movementMoneyAmount = new Money(-$amount, $wallet->getBalanceMoney()->getCurrency());
 
-            try {
-                $this->payoutService->send($payout);
-            } catch (Exception $exception) {
-                throw new Exception("Error liquidating user balance: " . $user->getId() . " " .
-                    $exception->getMessage());
+            $this->movementService->create($wallet, MovementType::PAYOUT, $movementMoneyAmount, new DateTime());
+
+            if ($amount > 0) {
+                $payout = $this->payoutService->create($user, 'paypal', $amount);
+
+                try {
+                    $this->payoutService->send($payout);
+                } catch (Exception $exception) {
+                    throw new Exception("Error liquidating user balance: " . $user->getId() . " " .
+                        $exception->getMessage());
+                }
+
+                $wallet->setBalance(0);
+
+                $this->walletRepository->save($wallet);
             }
-
-            $wallet->setBalance(0);
-
-            $this->walletRepository->save($wallet);
         }
     }
 

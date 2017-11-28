@@ -5,6 +5,8 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Enums\MovementType;
 use InvalidArgumentException;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\MovementRepository")
@@ -25,9 +27,14 @@ class Movement
     private $type;
 
     /**
-     * @ORM\Column(type="decimal", precision=7, scale=2)
+     * @ORM\Column(type="integer")
      */
     private $amount;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $currency;
 
     /**
      * @ORM\Column(type="date")
@@ -81,6 +88,30 @@ class Movement
     public function setAmount($amount)
     {
         $this->amount = $amount;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    public function getAmountMoney()
+    {
+        return new Money(
+            $this->getAmount(),
+            new Currency($this->getCurrency())
+        );
+    }
+
+    /**
+     * @param string $currency
+     */
+    public function setCurrency(string $currency)
+    {
+        $this->currency = $currency;
     }
 
     /**

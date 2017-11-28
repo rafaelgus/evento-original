@@ -6,7 +6,7 @@ if (!function_exists('current_customer_balance')) {
         $wallet = current_user()->getWallet();
 
         if ($wallet) {
-            return $wallet->getBalance();
+            return formatted_money($wallet->getBalanceMoney());
         }
 
         return 0;
