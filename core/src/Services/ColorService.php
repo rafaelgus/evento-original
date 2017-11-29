@@ -45,12 +45,14 @@ class ColorService
         return $this->colorRepository->findAll($locale);
     }
 
-    public function create(string $name, string $hexadecimalCode)
+    public function create(string $name, string $hexadecimalCode = null)
     {
         $color = new Color();
         $color->setName($name);
-        $color->setHexadecimalCode($hexadecimalCode);
 
+        if ($hexadecimalCode) {
+            $color->setHexadecimalCode($hexadecimalCode);
+        }
         $this->save($color);
 
         return $color;
