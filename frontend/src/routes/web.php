@@ -188,6 +188,12 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/{id}/edit-subitem', 'Backend\MenuItemController@updateSubitem');
             Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
         });
+        Route::group(['prefix' => '/payouts'], function () {
+            Route::get('/', 'Backend\PayoutController@index')->name('admin.payouts.index');
+            Route::get('/{id}', 'Backend\PayoutController@show')->name('admin.payouts.show');
+            Route::post('/send/{id}', 'Backend\PayoutController@send')->name('admin.payouts.send');
+            Route::post('/cancel/{id}', 'Backend\PayoutController@cancel')->name('admin.payouts.cancel');
+        });
     });
 });
 

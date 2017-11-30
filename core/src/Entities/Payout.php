@@ -53,7 +53,7 @@ class Payout implements PayoutInterface
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", fetch="EAGER")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

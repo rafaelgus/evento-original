@@ -18,6 +18,7 @@ class PayoutService
     private $payoutGatewayFactory;
 
     public static $statusToRefund = [
+        PayoutStatus::CANCELLED,
         PayoutStatus::DENIED,
         PayoutStatus::BLOCKED,
         PayoutStatus::FAILED,
@@ -38,6 +39,11 @@ class PayoutService
         PayoutGateways::PAYPAL
     ];
 
+    public function findById(int $id)
+    {
+        return $this->payoutRepository->findById($id);
+    }
+
     public function create(User $user, string $gateway, $amount)
     {
         if (!in_array($gateway, $this->acceptedGateways)) {
@@ -49,7 +55,7 @@ class PayoutService
         $payout->setDate(new DateTime());
         $payout->setDescription("Payout of wallet balance");
         $payout->setGateway($gateway);
-        $payout->setStatus(PayoutStatus::PENDING);
+        $payout->setStatus(PayoutStatus::PENDING_APPROVAL);
         $payout->setOriginalAmount($amount);
         $payout->setOriginalCurrency('EUR');
 
@@ -60,7 +66,7 @@ class PayoutService
 
     public function send(Payout $payout)
     {
-        if ($payout->getStatus() !== PayoutStatus::PENDING) {
+        if ($payout->getStatus() !== PayoutStatus::PENDING_APPROVAL) {
             throw new Exception("Invalid payout status to send");
         }
 
@@ -79,6 +85,21 @@ class PayoutService
 
             event(new PayoutRefunded($payout));
         }
+
+        $this->payoutRepository->save($payout);
+
+        return $payout;
+    }
+
+    public function cancel(Payout $payout)
+    {
+        if ($payout->getStatus() !== PayoutStatus::PENDING_APPROVAL) {
+            throw new Exception("Invalid payout status to cancel");
+        }
+
+        $payout->setStatus(PayoutStatus::CANCELLED);
+
+        event(new PayoutRefunded($payout));
 
         $this->payoutRepository->save($payout);
 

@@ -152,25 +152,6 @@ class Payment
         $this->status = $status;
     }
 
-    /**
-     * Get payer of the payment
-     *
-     * @return PayerInterface
-     */
-    public function getPayer()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Set payer of the payment
-     *
-     * @param PayerInterface $payer
-     */
-    public function setPayer(PayerInterface $payer)
-    {
-        $this->user = $payer;
-    }
 
     /**
      * Get payment gateway

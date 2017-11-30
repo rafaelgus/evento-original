@@ -140,6 +140,7 @@ return [
           'title' => 'Pagos a usuarios',
           'view' => 'Ver',
           'pendent_to_approve' => 'Pendientes de aprobacion',
+          'show' => 'Ver pago enviado'
       ]
   ],
   'errors' => [

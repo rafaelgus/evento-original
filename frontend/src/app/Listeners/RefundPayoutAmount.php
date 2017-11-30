@@ -35,6 +35,8 @@ class RefundPayoutAmount
             throw new Exception("Invalid status to refund payout " . $payout->getId());
         }
 
+        $user = $payout->getUser();
+
         $this->walletService->addBalance(
             $payout->getUser()->getWallet(),
             $payout->getOriginalMoney(),

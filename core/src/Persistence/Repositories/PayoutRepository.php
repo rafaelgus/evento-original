@@ -10,6 +10,11 @@ class PayoutRepository extends BaseRepository
 {
     use PaginatesFromParams;
 
+    public function findById(int $id)
+    {
+        return $this->find($id);
+    }
+
     public function save(Payout $payout, bool $flush = true)
     {
         $this->getEntityManager()->persist($payout);
@@ -42,7 +47,10 @@ class PayoutRepository extends BaseRepository
 
     public function findAllPaginated(int $currentPage = 1, int $maxItems = 10): LengthAwarePaginator
     {
-        $query = $this->createQueryBuilder('p')->select('p')->getQuery();
+        $query = $this->createQueryBuilder('p')
+            ->select('p')
+            ->orderBy('p.date', 'desc')
+            ->getQuery();
 
         return $this->paginate($query, $maxItems, $currentPage);
     }

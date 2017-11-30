@@ -64,10 +64,10 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret'];
+            return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret'];
+        return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding'];
     }
 
     /**
@@ -268,7 +268,7 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function getRoles(): \Doctrine\Common\Collections\ArrayCollection
+    public function getRoles()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoles', []);
@@ -439,6 +439,72 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAdmin', []);
 
         return parent::isAdmin();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCustomer()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCustomer', []);
+
+        return parent::getCustomer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCustomer(\EventoOriginal\Core\Entities\Customer $customer)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCustomer', [$customer]);
+
+        return parent::setCustomer($customer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getWallet()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getWallet', []);
+
+        return parent::getWallet();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setWallet(\EventoOriginal\Core\Entities\Wallet $wallet)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWallet', [$wallet]);
+
+        return parent::setWallet($wallet);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVisitorLanding()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVisitorLanding', []);
+
+        return parent::getVisitorLanding();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVisitorLanding(\EventoOriginal\Core\Entities\VisitorLanding $visitorLanding)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVisitorLanding', [$visitorLanding]);
+
+        return parent::setVisitorLanding($visitorLanding);
     }
 
 }

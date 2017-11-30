@@ -64,10 +64,10 @@ class Image extends \EventoOriginal\Core\Entities\Image implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'path', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'article'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'path', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'type'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'path', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'article'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'path', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Image' . "\0" . 'type'];
     }
 
     /**
@@ -252,6 +252,28 @@ class Image extends \EventoOriginal\Core\Entities\Image implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArticle', [$article]);
 
         return parent::setArticle($article);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', []);
+
+        return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType($type)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', [$type]);
+
+        return parent::setType($type);
     }
 
 }

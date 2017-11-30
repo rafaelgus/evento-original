@@ -64,10 +64,10 @@ class Category extends \EventoOriginal\Core\Entities\Category implements \Doctri
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'lft', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'rgt', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'root', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'children'];
+            return ['__isInitialized__', 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'slug', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'lft', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'rgt', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'root', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'children', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'vouchers', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'affiliateCommission'];
         }
 
-        return ['__isInitialized__', 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'lft', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'rgt', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'root', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'children'];
+        return ['__isInitialized__', 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'slug', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'lft', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'rgt', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'root', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'children', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'vouchers', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Category' . "\0" . 'affiliateCommission'];
     }
 
     /**
@@ -213,6 +213,50 @@ class Category extends \EventoOriginal\Core\Entities\Category implements \Doctri
     /**
      * {@inheritDoc}
      */
+    public function getSlug()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSlug', []);
+
+        return parent::getSlug();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSlug($slug)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlug', [$slug]);
+
+        return parent::setSlug($slug);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDescription()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', []);
+
+        return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDescription(string $description)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDescription', [$description]);
+
+        return parent::setDescription($description);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getTranslations()
     {
 
@@ -296,6 +340,94 @@ class Category extends \EventoOriginal\Core\Entities\Category implements \Doctri
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParent', [$parent]);
 
         return parent::setParent($parent);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVouchers()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVouchers', []);
+
+        return parent::getVouchers();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVouchers(array $vouchers)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVouchers', [$vouchers]);
+
+        return parent::setVouchers($vouchers);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addVoucher(\EventoOriginal\Core\Entities\Voucher $voucher)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addVoucher', [$voucher]);
+
+        return parent::addVoucher($voucher);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getChildren()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChildren', []);
+
+        return parent::getChildren();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setChildren(array $children)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setChildren', [$children]);
+
+        return parent::setChildren($children);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addChild(array $child)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addChild', [$child]);
+
+        return parent::addChild($child);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAffiliateCommission()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAffiliateCommission', []);
+
+        return parent::getAffiliateCommission();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAffiliateCommission(int $affiliateCommission)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAffiliateCommission', [$affiliateCommission]);
+
+        return parent::setAffiliateCommission($affiliateCommission);
     }
 
 }

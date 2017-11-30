@@ -185,7 +185,8 @@ return [
         \App\Providers\EventoOriginalServiceProvider::class,
 
         Yajra\DataTables\DataTablesServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class
     ],
 
     /*
@@ -241,6 +242,8 @@ return [
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];
