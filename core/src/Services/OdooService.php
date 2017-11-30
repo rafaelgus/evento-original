@@ -28,7 +28,7 @@ class OdooService
     const ID = 'id';
 
     //web categories
-    const BRANDS = 'marcas';
+    const BRANDS = 'MARCAS';
     const COLORS = 'COLOR';
     const FLAVOURS = 'SABOR';
     const TYPE = 'TIPO';
@@ -41,19 +41,25 @@ class OdooService
     private $flavourService;
     private $colorService;
     private $tagService;
+    private $categoryService;
+    private $brandService;
 
     public function __construct(
         ArticleService $articleService,
         AllergenService $allergenService,
         ColorService $colorService,
         FlavourService $flavourService,
-        TagService $tagService
+        TagService $tagService,
+        CategoryService $categoryService,
+        BrandService $brandService
     ) {
         $this->articleService = $articleService;
         $this->allergenService = $allergenService;
         $this->colorService = $colorService;
         $this->flavourService = $flavourService;
         $this->tagService = $tagService;
+        $this->categoryService = $categoryService;
+        $this->brandService = $brandService;
     }
 
     public function connect(string $method, string $parameterUrl, string $data = '')
@@ -198,18 +204,26 @@ class OdooService
         $articles = $this->getNotSyncArticles();
 
         $allergensId = $articles[self::ALLERGENS];
+
         $webCategoriesId = $articles[self::CATEGORIES];
+
+        if (count($allergensId) == 0 and count($webCategoriesId) == 0) {
+            return;
+        }
 
         $allergens = $this->syncAllergens($allergensId);
         $categories = $this->syncWebCategories($webCategoriesId);
+
+        $category =  $this->categoryService->findOneById(1, App::getLocale());
+        $brand = $this->brandService->findOneById(1);
 
         foreach ($articles as $article) {
             $this->buildArticle(
                 $article,
                 $categories['colors'],
-                [],
+                $brand,
                 $allergens,
-                null,
+                $category,
                 $categories['flavours'],
                 $categories['tags']
             );

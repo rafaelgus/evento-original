@@ -12,15 +12,9 @@ class OdooController
         $this->odooService = $odooService;
     }
 
-    public function showToken()
-    {
-        return '';
-    }
 
     public function showNotSyncArticles()
     {
-        $articles = $this->odooService->getNotSyncArticles();
-
-        return $articles;
+        $this->odooService->syncArticles();
     }
 }
