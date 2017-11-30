@@ -134,4 +134,9 @@ class PayoutService
     {
         return $this->payoutRepository->findAllByUserPaginated($user, $currentPage, $maxItems);
     }
+
+    public function getAllPaginated(int $currentPage = 1, int $maxItems = 10)
+    {
+        return $this->payoutRepository->findAllPaginated($currentPage, $maxItems);
+    }
 }

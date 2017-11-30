@@ -136,6 +136,11 @@ return [
           'amount' => 'Monto',
           'edit' => 'Editar'
       ],
+      'payouts' => [
+          'title' => 'Pagos a usuarios',
+          'view' => 'Ver',
+          'pendent_to_approve' => 'Pendientes de aprobacion',
+      ]
   ],
   'errors' => [
       '404' => [

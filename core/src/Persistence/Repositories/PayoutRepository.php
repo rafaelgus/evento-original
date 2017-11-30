@@ -39,4 +39,11 @@ class PayoutRepository extends BaseRepository
 
         return $this->paginate($query, $maxItems, $currentPage);
     }
+
+    public function findAllPaginated(int $currentPage = 1, int $maxItems = 10): LengthAwarePaginator
+    {
+        $query = $this->createQueryBuilder('p')->select('p')->getQuery();
+
+        return $this->paginate($query, $maxItems, $currentPage);
+    }
 }

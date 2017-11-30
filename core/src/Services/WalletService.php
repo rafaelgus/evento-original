@@ -61,26 +61,24 @@ class WalletService
     {
         $wallet = $user->getWallet();
 
-        if ($wallet) {
+        if ($wallet && $wallet->getBalance() > 0) {
             $amount = $wallet->getBalanceMoney()->getAmount();
 
             $movementMoneyAmount = new Money(-$amount, $wallet->getBalanceMoney()->getCurrency());
 
             $this->movementService->create($wallet, MovementType::PAYOUT, $movementMoneyAmount, new DateTime());
 
-            if ($amount > 0) {
-                $payout = $this->payoutService->create($user, 'paypal', $amount);
-                $wallet->setBalance(0);
+            $payout = $this->payoutService->create($user, 'paypal', $amount);
+            $wallet->setBalance(0);
 
-                try {
-                    $this->payoutService->send($payout);
-                } catch (Exception $exception) {
-                    throw new Exception("Error liquidating user balance: " . $user->getId() . " " .
-                        $exception->getMessage());
-                }
+//            try {
+//                $this->payoutService->send($payout);
+//            } catch (Exception $exception) {
+//                throw new Exception("Error liquidating user balance: " . $user->getId() . " " .
+//                    $exception->getMessage());
+//            }
 
-                $this->walletRepository->save($wallet);
-            }
+            $this->walletRepository->save($wallet);
         }
     }
 

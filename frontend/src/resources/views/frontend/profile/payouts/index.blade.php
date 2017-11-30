@@ -39,7 +39,7 @@
                                                     <td>{{ $payout->getDate()->format('d-m-Y') }}</td>
 
                                                     <td><span class="price">{{ formatted_money($payout->getOriginalMoney()) }}</span></td>
-                                                    <td><em>{{ trans('payouts.status.' . $payout->getStatus() ) }}</em></td>
+                                                    <td><em>{{ trans('payouts.status_enum.' . $payout->getStatus() ) }}</em></td>
                                                 </tr>
                                             @empty
                                                 <tr>

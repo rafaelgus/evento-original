@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'status' => [
+    'status_enum' => [
         'created' => 'Iniciado',
         'pending' => 'Pendiente',
         'processing' => 'Procesando',
@@ -14,5 +14,9 @@ return [
         'returned' => 'Retornado',
         'success' => 'Completado',
         'unclaimed' => 'Sin reclamar'
-    ]
+    ],
+    'date' => 'Fecha',
+    'status' => 'Estado',
+    'amount' => 'Monto',
+    'receiver' => 'Destinatario',
 ];
