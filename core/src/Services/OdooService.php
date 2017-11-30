@@ -29,23 +29,31 @@ class OdooService
 
     //web categories
     const BRANDS = 'marcas';
-    const COLORS = 'colors';
-    const FLAVOURS = 'sabores';
+    const COLORS = 'COLOR';
+    const FLAVOURS = 'SABOR';
+    const TYPE = 'TIPO';
+    const OTHER = 'OTROS';
 
     const ATTR_PARENT = 'parent_id';
 
     private $articleService;
     private $allergenService;
+    private $flavourService;
     private $colorService;
+    private $tagService;
 
     public function __construct(
         ArticleService $articleService,
         AllergenService $allergenService,
-        ColorService $colorService
+        ColorService $colorService,
+        FlavourService $flavourService,
+        TagService $tagService
     ) {
         $this->articleService = $articleService;
         $this->allergenService = $allergenService;
         $this->colorService = $colorService;
+        $this->flavourService = $flavourService;
+        $this->tagService = $tagService;
     }
 
     public function connect(string $method, string $parameterUrl, string $data = '')
@@ -151,7 +159,8 @@ class OdooService
         Brand $brand,
         array $allergens,
         Category $category,
-        array $flavours
+        array $flavours,
+        array $tags
     ) {
         $article = $this
             ->articleService
@@ -189,10 +198,22 @@ class OdooService
         $articles = $this->getNotSyncArticles();
 
         $allergensId = $articles[self::ALLERGENS];
-        $webCategories = $articles[self::CATEGORIES];
+        $webCategoriesId = $articles[self::CATEGORIES];
 
-        $allerges = $this->syncAllergens($allergensId);
-        $colors = $this->syncColors($webCategories);
+        $allergens = $this->syncAllergens($allergensId);
+        $categories = $this->syncWebCategories($webCategoriesId);
+
+        foreach ($articles as $article) {
+            $this->buildArticle(
+                $article,
+                $categories['colors'],
+                [],
+                $allergens,
+                null,
+                $categories['flavours'],
+                $categories['tags']
+            );
+        }
     }
 
     public function syncAllergens(array $allergensId)
@@ -214,33 +235,89 @@ class OdooService
         return $allergens;
     }
 
-    public function syncColors(array $webCategoriesId)
+    public function syncWebCategories(array $webCategoriesId)
     {
         $webCategories = $this->getWebCategories();
 
-        $colorParent = array_filter(
-            $webCategories, function($webCategory) {
-                return $webCategory->name = self::COLORS;
-        });
+        $colorParent = $this->getColorParents($webCategories);
+        $flavoursParent = $this->getFlavoursParent($webCategories);
+        $typeParent = $this->getTypeParent($webCategories);
+        $otherParents = $this->getOtherParents($webCategories);
 
-        $colors = [];
+        $categories = [];
 
         foreach ($webCategories as $webCategory) {
-            if ($webCategory[self::ATTR_PARENT] == $colorParent[self::ID] and $webCategory[self::ID] == $webCategoriesId) {
-                $color = $this->colorService->findOneByName($webCategory[self::NAME], App::getLocale());
+            if ($webCategory[self::ATTR_PARENT] == $colorParent[self::ID]) {
+                if (in_array($webCategory[self::ID], $webCategoriesId)) {
+                    $color = $this->colorService->findOneByName($webCategory[self::NAME], App::getLocale());
 
-                if (!$color) {
-                    $color = $this->colorService->create($webCategory[self::NAME]);
+                    if (!$color) {
+                        $color = $this->colorService->create($webCategory[self::NAME]);
+                    }
+                    $categories['colors'] = $color;
+                } elseif ($webCategory[self::ATTR_PARENT] == $flavoursParent[self::ID]) {
+                    if (in_array($webCategory[self::ID], $webCategoriesId)) {
+                        $flavour = $this->flavourService->findOneByName($webCategory[self::NAME], App::getLocale());
+
+                        if (!$flavour) {
+                            $flavour = $this->flavourService->create($webCategory[self::NAME]);
+                        }
+                        $categories['flavours'] = $flavour;
+                    }
+                } elseif ($webCategory[self::ATTR_PARENT] == $typeParent[self::ID] or
+                    $webCategory[self::ATTR_PARENT] == $otherParents[self::ID]) {
+                    if (in_array($webCategory[self::ID], $webCategoriesId)) {
+                        $tag = $this->tagService->findOneByName($webCategory[self::NAME], App::getLocale());
+
+                        if (!$tag) {
+                            $tag = $this->tagService->create($webCategory[self::NAME]);
+                        }
+                        $categories['tags'] = $tag;
+                    }
                 }
-                $colors[] = $color;
             }
         }
 
-        return $colors;
+        return $categories;
     }
 
-    public function syncBrand(array $webCategoriesId)
+    public function getColorParents(array $webCategories)
     {
+        $colorParent = array_filter(
+            $webCategories, function($webCategory) {
+            return $webCategory->name == self::COLORS;
+        });
 
+        return $colorParent;
+    }
+
+    public function getFlavoursParent(array $webCategories)
+    {
+        $flavour = array_filter(
+            $webCategories, function($webCategory) {
+            return $webCategory->name == self::FLAVOURS;
+        });
+
+        return $flavour;
+    }
+
+    public function getTypeParent(array $webCategories)
+    {
+        $type = array_filter(
+            $webCategories, function($webCategory) {
+            return $webCategory->name == self::FLAVOURS;
+        });
+
+        return $type;
+    }
+
+    public function getOtherParents(array $webCategories)
+    {
+        $others = array_filter(
+            $webCategories, function($webCategory) {
+                return $webCategory->name == self::OTHER;
+        });
+
+        return $others;
     }
 }
