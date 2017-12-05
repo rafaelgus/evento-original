@@ -53,7 +53,7 @@ class LiquidateAffiliateCommission implements ShouldQueue
                 $this->orderService->liquidateAffiliateCommission(
                     $order,
                     $seller,
-                    $affiliateReferralEvent->getArticle()
+                    $affiliateReferralEvent
                 );
             }
         }

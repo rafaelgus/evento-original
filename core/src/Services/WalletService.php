@@ -5,6 +5,7 @@ namespace EventoOriginal\Core\Services;
 use DateTime;
 use EventoOriginal\Core\Entities\Movement;
 use EventoOriginal\Core\Entities\User;
+use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\Wallet;
 use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Enums\PayoutStatus;
@@ -45,9 +46,9 @@ class WalletService
         return $this->walletRepository->save($wallet);
     }
 
-    public function addBalance(Wallet $wallet, Money $money, string $movementType)
+    public function addBalance(Wallet $wallet, Money $money, string $movementType, VisitorEvent $visitorEvent = null)
     {
-        $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime());
+        $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime(), $visitorEvent);
         $wallet->addMovement($movement);
 
         logger()->info($wallet->getBalance());

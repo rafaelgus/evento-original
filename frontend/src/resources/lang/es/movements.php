@@ -16,4 +16,5 @@ return [
     'slug' => 'movimientos',
     'all' => 'Ultimos movimientos',
     'title' => 'Movimientos de la cuenta',
+    'observations' => 'Observaciones'
 ];

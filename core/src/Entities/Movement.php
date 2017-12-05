@@ -48,6 +48,12 @@ class Movement
     private $wallet;
 
     /**
+     * @ORM\ManyToOne(targetEntity="VisitorEvent")
+     * @ORM\JoinColumn(name="visitor_event_id", referencedColumnName="id", nullable=true)
+     */
+    private $visitorEvent;
+
+    /**
      * @return int
      */
     public function getId()
@@ -144,5 +150,15 @@ class Movement
     public function setWallet(Wallet $wallet)
     {
         $this->wallet = $wallet;
+    }
+
+    public function getVisitorEvent()
+    {
+        return $this->visitorEvent;
+    }
+
+    public function setVisitorEvent(VisitorEvent $visitorEvent)
+    {
+        $this->visitorEvent = $visitorEvent;
     }
 }

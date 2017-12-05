@@ -6,8 +6,11 @@ use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
 use EventoOriginal\Core\Entities\User;
+use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Enums\PaymentStatus;
+use Money\Currency;
+use Money\Money;
 
 class OrderService
 {
@@ -18,8 +21,10 @@ class OrderService
         $this->walletService = $walletService;
     }
 
-    public function liquidateAffiliateCommission(Order $order, User $seller, Article $article)
+    public function liquidateAffiliateCommission(Order $order, User $seller, VisitorEvent $visitorEvent)
     {
+        $article = $visitorEvent->getArticle();
+
         $articleCommission = $article->getCategory()->getAffiliateCommission();
 
         if ($order->getPayment()->getStatus() === PaymentStatus::APPROVE) {
@@ -32,10 +37,13 @@ class OrderService
 
                 $sellerCommission = $amount * ($articleCommission / 100);
 
+                $moneyCommission = new Money($sellerCommission, new Currency('EUR'));
+
                 $this->walletService->addBalance(
                     $seller->getWallet(),
-                    $sellerCommission,
-                    MovementType::AFFILIATE_COMMISSION_CREDIT
+                    $moneyCommission,
+                    MovementType::AFFILIATE_COMMISSION_CREDIT,
+                    $visitorEvent
                 );
             }
         }

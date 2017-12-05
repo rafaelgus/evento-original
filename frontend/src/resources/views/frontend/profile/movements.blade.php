@@ -30,6 +30,7 @@
                                                 <th>{{ trans('movements.date') }}</th>
                                                 <th>{{ trans('movements.type') }}</th>
                                                 <th><span class="nobr">{{ trans('movements.amount') }}</span></th>
+                                                <th>{{ trans('movements.observations')  }}</th>
                                                 <th>&nbsp;</th>
                                             </tr>
                                             </thead>
@@ -39,6 +40,12 @@
                                                     <td>{{ $movement->getDate()->format('d-m-Y') }}</td>
                                                     <td>{{ trans('movements.types.' . $movement->getType()) }}</td>
                                                     <td><span class="price">{{ formatted_money($movement->getAmountMoney()) }}</span></td>
+                                                    @if($movement->getVisitorEvent() && $movement->getVisitorEvent()->getType() == \EventoOriginal\Core\Enums\VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL)
+                                                        <td><b>{{ $movement->getVisitorEvent()->getArticle()->getName() }}</b> <br/> {{ $movement->getVisitorEvent()->getCreatedAt()->format('d-m-Y H:i:s') }}
+                                                            <br/> {{ ($movement->getVisitorEvent()->getVisitorLanding()->getUser() ? $movement->getVisitorEvent()->getVisitorLanding()->getUser()->getEmail() : "") }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
                                                 </tr>
                                             @empty
                                                 <tr>

@@ -8,6 +8,8 @@ use EventoOriginal\Core\Persistence\Repositories\WalletRepository;
 use EventoOriginal\Core\Services\MovementService;
 use EventoOriginal\Core\Services\WalletService;
 use Mockery as m;
+use Money\Currency;
+use Money\Money;
 use Tests\TestCase;
 
 class WalletServiceTest extends TestCase
@@ -40,17 +42,17 @@ class WalletServiceTest extends TestCase
 
         $this->set($this->walletService, 'movementService', $movementServiceMock);
 
-        $amount = 50;
+        $money = new Money(50, new Currency('EUR'));
 
-        $this->walletService->addBalance($wallet, $amount, MovementType::AFFILIATE_COMMISSION_CREDIT);
+        $this->walletService->addBalance($wallet, $money, MovementType::AFFILIATE_COMMISSION_CREDIT);
 
-        $this->assertEquals($wallet->getBalance(), $amount);
+        $this->assertEquals($wallet->getBalanceMoney()->getAmount(), $money->getAmount());
     }
 
     public function testAddBalanceWithCents()
     {
         $wallet = new Wallet();
-        $initialBalance = 1.23;
+        $initialBalance = 1023;
         $wallet->setBalance($initialBalance);
 
         $movementMock = m::mock(Movement::class);
@@ -60,10 +62,10 @@ class WalletServiceTest extends TestCase
 
         $this->set($this->walletService, 'movementService', $movementServiceMock);
 
-        $amount = 50.35;
+        $money = new Money(5053, new Currency('EUR'));
 
-        $this->walletService->addBalance($wallet, $amount, MovementType::AFFILIATE_COMMISSION_CREDIT);
+        $this->walletService->addBalance($wallet, $money, MovementType::AFFILIATE_COMMISSION_CREDIT);
 
-        $this->assertEquals($wallet->getBalance(), $amount + $initialBalance);
+        $this->assertEquals($wallet->getBalanceMoney()->getAmount(), $money->getAmount() + $initialBalance);
     }
 }
