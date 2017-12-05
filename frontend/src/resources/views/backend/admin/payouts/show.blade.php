@@ -109,6 +109,34 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="panel-last-movements">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#panel-last-movements-colapse" aria-expanded="true" aria-controls="panel-data-colapse">
+                                            {{trans('payouts.last_movements')}}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="panel-last-movements-colapse" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="panel-data">
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered dt-responsive nowrap"
+                                               cellspacing="0" width="100%">
+                                            <tbody>
+                                                @foreach($lastMovements as $movement)
+                                                    <tr>
+                                                        <td>{{ $movement->getDate()->format('Y-m-d H:i:s') }}</td>
+                                                        <td>{{ trans('movements.types.' . $movement->getType()) }}</td>
+                                                        <td>{{ formatted_money($movement->getAmountMoney()) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

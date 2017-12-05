@@ -33,4 +33,9 @@ class MovementService
     {
         return $this->movementRepository->findAllByUserPaginated($user, $currentPage, $maxItems);
     }
+
+    public function findLastMovementsByUser(User $user, int $days)
+    {
+        return $this->movementRepository->findLastMovementsByUser($user, $days);
+    }
 }

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use EventoOriginal\Core\Services\MovementService;
 use EventoOriginal\Core\Services\PayoutService;
 use Exception;
 use Illuminate\Http\Request;
@@ -10,10 +11,12 @@ use Illuminate\Support\Facades\Session;
 class PayoutController extends Controller
 {
     private $payoutService;
+    private $movementService;
 
-    public function __construct(PayoutService $payoutService)
+    public function __construct(PayoutService $payoutService, MovementService $movementService)
     {
         $this->payoutService = $payoutService;
+        $this->movementService = $movementService;
     }
 
     public function index(Request $request)
@@ -25,6 +28,15 @@ class PayoutController extends Controller
         return view('backend/admin.payouts.index')->with(['payouts' => $payouts]);
     }
 
+    public function showPendents(Request $request)
+    {
+        $page = $request->input('page') ?: 1;
+
+        $payouts = $this->payoutService->getAllPendentsPaginated($page);
+
+        return view('backend/admin.payouts.pendents')->with(['payouts' => $payouts]);
+    }
+
     public function show(int $id)
     {
         $payout = $this->payoutService->findById($id);
@@ -33,7 +45,9 @@ class PayoutController extends Controller
            abort(404);
         }
 
-        return view('backend/admin.payouts.show')->with(['payout' => $payout]);
+        $lastMovements = $this->movementService->findLastMovementsByUser($payout->getUser(), 30);
+
+        return view('backend/admin.payouts.show')->with(['payout' => $payout, 'lastMovements' => $lastMovements]);
     }
 
     public function send(Request $request, int $id)
@@ -43,8 +57,6 @@ class PayoutController extends Controller
         if (!$payout) {
             abort(400);
         }
-
-        dd($payout);
 
         try {
             $this->payoutService->send($payout);

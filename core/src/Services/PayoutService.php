@@ -160,4 +160,9 @@ class PayoutService
     {
         return $this->payoutRepository->findAllPaginated($currentPage, $maxItems);
     }
+
+    public function getAllPendentsPaginated(int $currentPage = 1, int $maxItems = 10)
+    {
+        return $this->payoutRepository->findAllPendentPaginated($currentPage, $maxItems);
+    }
 }

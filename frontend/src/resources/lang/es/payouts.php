@@ -31,4 +31,6 @@ return [
     'cancel_payout_dialog_title' => 'Cancelar pago a usuario',
     'cancel_payout_dialog_question' => 'Esta seguro que desea cancelar el pago al usuario? Se le devolvera el dinero a la cuenta',
     'approve' => 'Aprobar',
+    'view_pendents' => 'Ver pagos pendientes de aprobación',
+    'last_movements' => 'Últimos movimientos',
 ];
