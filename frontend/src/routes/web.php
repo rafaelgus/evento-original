@@ -195,6 +195,9 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/send/{id}', 'Backend\PayoutController@send')->name('admin.payouts.send');
             Route::post('/cancel/{id}', 'Backend\PayoutController@cancel')->name('admin.payouts.cancel');
         });
+        Route::group(['prefix' => '/orders'], function () {
+            Route::get('/{id}', 'Backend\OrderController@show')->name('admin.orders.show');
+        });
     });
 });
 

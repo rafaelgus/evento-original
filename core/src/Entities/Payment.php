@@ -50,7 +50,7 @@ class Payment
     private $paidCurrency;
 
     /**
-     * @ORM\OneToOne(targetEntity="Payment", inversedBy="payment")
+     * @ORM\OneToOne(targetEntity="Order", inversedBy="payment")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;
@@ -61,7 +61,7 @@ class Payment
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

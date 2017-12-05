@@ -129,6 +129,19 @@
                                                         <td>{{ $movement->getDate()->format('Y-m-d H:i:s') }}</td>
                                                         <td>{{ trans('movements.types.' . $movement->getType()) }}</td>
                                                         <td>{{ formatted_money($movement->getAmountMoney()) }}</td>
+                                                        @if($movement->getReferralOrder() && $movement->getReferralOrder()->getReferralVisitorEvent())
+                                                            @php
+                                                                $visitorEvent = $movement->getReferralOrder()->getReferralVisitorEvent();
+                                                            @endphp
+
+                                                            <td><b>{{ $visitorEvent->getArticle()->getName() }}</b> <br/> {{ $visitorEvent->getCreatedAt()->format('d-m-Y H:i:s') }}
+                                                                <br/> {{ ($visitorEvent->getVisitorLanding()->getUser() ? $visitorEvent->getVisitorLanding()->getUser()->getEmail() : "") }}
+                                                                <br/>
+                                                                <a href="{{ route('admin.orders.show', ['id' => $movement->getReferralOrder()->getId()]) }}">Ver órden</a>
+                                                            </td>
+                                                        @else
+                                                            <td></td>
+                                                        @endif
                                                     </tr>
                                                 @endforeach
                                             </tbody>

@@ -64,10 +64,10 @@ class Movement extends \EventoOriginal\Core\Entities\Movement implements \Doctri
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'type', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'date', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'wallet'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'type', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'date', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'referralOrder'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'type', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'date', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'wallet'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'type', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'date', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Movement' . "\0" . 'referralOrder'];
     }
 
     /**
@@ -307,6 +307,28 @@ class Movement extends \EventoOriginal\Core\Entities\Movement implements \Doctri
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setWallet', [$wallet]);
 
         return parent::setWallet($wallet);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getReferralOrder()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReferralOrder', []);
+
+        return parent::getReferralOrder();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setReferralOrder(\EventoOriginal\Core\Entities\Order $referralOrder)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReferralOrder', [$referralOrder]);
+
+        return parent::setReferralOrder($referralOrder);
     }
 
 }

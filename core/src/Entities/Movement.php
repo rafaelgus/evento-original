@@ -48,10 +48,10 @@ class Movement
     private $wallet;
 
     /**
-     * @ORM\ManyToOne(targetEntity="VisitorEvent")
-     * @ORM\JoinColumn(name="visitor_event_id", referencedColumnName="id", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Order", fetch="EAGER")
+     * @ORM\JoinColumn(name="referral_order_id", referencedColumnName="id", nullable=true)
      */
-    private $visitorEvent;
+    private $referralOrder;
 
     /**
      * @return int
@@ -152,13 +152,19 @@ class Movement
         $this->wallet = $wallet;
     }
 
-    public function getVisitorEvent()
+    /**
+     * @return Order
+     */
+    public function getReferralOrder()
     {
-        return $this->visitorEvent;
+        return $this->referralOrder;
     }
 
-    public function setVisitorEvent(VisitorEvent $visitorEvent)
+    /**
+     * @param Order $referralOrder
+     */
+    public function setReferralOrder(Order $referralOrder)
     {
-        $this->visitorEvent = $visitorEvent;
+        $this->referralOrder = $referralOrder;
     }
 }

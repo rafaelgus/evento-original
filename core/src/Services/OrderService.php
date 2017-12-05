@@ -9,16 +9,26 @@ use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Enums\PaymentStatus;
+use EventoOriginal\Core\Persistence\Repositories\OrderRepository;
 use Money\Currency;
 use Money\Money;
 
 class OrderService
 {
+    private $orderRepository;
     private $walletService;
 
-    public function __construct(WalletService $walletService)
-    {
+    public function __construct(
+        OrderRepository $orderRepository,
+        WalletService $walletService
+    ) {
+        $this->orderRepository = $orderRepository;
         $this->walletService = $walletService;
+    }
+
+    public function findById(int $id)
+    {
+        return $this->orderRepository->findById($id);
     }
 
     public function liquidateAffiliateCommission(Order $order, User $seller, VisitorEvent $visitorEvent)
@@ -43,8 +53,11 @@ class OrderService
                     $seller->getWallet(),
                     $moneyCommission,
                     MovementType::AFFILIATE_COMMISSION_CREDIT,
-                    $visitorEvent
+                    $order
                 );
+
+                $order->setReferralVisitorEvent($visitorEvent);
+                $this->orderRepository->save($order);
             }
         }
 

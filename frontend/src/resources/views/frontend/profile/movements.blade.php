@@ -40,9 +40,13 @@
                                                     <td>{{ $movement->getDate()->format('d-m-Y') }}</td>
                                                     <td>{{ trans('movements.types.' . $movement->getType()) }}</td>
                                                     <td><span class="price">{{ formatted_money($movement->getAmountMoney()) }}</span></td>
-                                                    @if($movement->getVisitorEvent() && $movement->getVisitorEvent()->getType() == \EventoOriginal\Core\Enums\VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL)
-                                                        <td><b>{{ $movement->getVisitorEvent()->getArticle()->getName() }}</b> <br/> {{ $movement->getVisitorEvent()->getCreatedAt()->format('d-m-Y H:i:s') }}
-                                                            <br/> {{ ($movement->getVisitorEvent()->getVisitorLanding()->getUser() ? $movement->getVisitorEvent()->getVisitorLanding()->getUser()->getEmail() : "") }}</td>
+                                                    @if($movement->getReferralOrder() && $movement->getReferralOrder()->getReferralVisitorEvent()->getType() == \EventoOriginal\Core\Enums\VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL)
+                                                        @php
+                                                            $visitorEvent = $movement->getReferralOrder()->getReferralVisitorEvent();
+                                                        @endphp
+
+                                                        <td><b>{{ $visitorEvent->getArticle()->getName() }}</b> <br/> {{ $visitorEvent->getCreatedAt()->format('d-m-Y H:i:s') }}
+                                                            <br/> {{ ($visitorEvent->getVisitorLanding()->getUser() ? $visitorEvent->getVisitorLanding()->getUser()->getEmail() : "") }}</td>
                                                     @else
                                                         <td></td>
                                                     @endif

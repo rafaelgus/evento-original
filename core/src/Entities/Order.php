@@ -25,12 +25,14 @@ class Order
      * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"})
      */
     private $ordersDetail;
+
     /**
-     * @ORM\OneToOne(targetEntity="Payment", mappedBy="payment")
+     * @ORM\OneToOne(targetEntity="Payment", mappedBy="order")
      */
     private $payment;
+
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -39,6 +41,12 @@ class Order
      * @ORM\Column(type="string")
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="VisitorEvent")
+     * @ORM\JoinColumn(name="referral_visitor_event_id", referencedColumnName="id", nullable=true)
+     */
+    private $referralVisitorEvent;
 
     public function __construct()
     {
@@ -137,4 +145,21 @@ class Order
     {
         $this->ordersDetail[] = $orderDetail;
     }
+
+    /**
+     * @return VisitorEvent
+     */
+    public function getReferralVisitorEvent()
+    {
+        return $this->referralVisitorEvent;
+    }
+
+    /**
+     * @param VisitorEvent $referralVisitorEvent
+     */
+    public function setReferralVisitorEvent(VisitorEvent $referralVisitorEvent)
+    {
+        $this->referralVisitorEvent = $referralVisitorEvent;
+    }
+
 }

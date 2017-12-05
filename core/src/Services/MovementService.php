@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\Movement;
+use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\Wallet;
@@ -18,7 +19,7 @@ class MovementService
         $this->movementRepository = $movementRepository;
     }
 
-    public function create(Wallet $wallet, string $type, Money $amount, DateTime $date, VisitorEvent $visitorEvent = null)
+    public function create(Wallet $wallet, string $type, Money $amount, DateTime $date, Order $referralOrder = null)
     {
         $movement = new Movement();
         $movement->setType($type);
@@ -26,7 +27,7 @@ class MovementService
         $movement->setCurrency($amount->getCurrency());
         $movement->setDate($date);
         $movement->setWallet($wallet);
-        $movement->setVisitorEvent($visitorEvent);
+        $movement->setReferralOrder($referralOrder);
 
         return $this->movementRepository->save($movement);
     }
