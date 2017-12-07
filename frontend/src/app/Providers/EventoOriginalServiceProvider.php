@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
+use Throwable;
 
 class EventoOriginalServiceProvider extends ServiceProvider
 {
@@ -22,10 +23,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
-        $em->getFilters()->disable('article_brand');
-        $em->getFilters()->disable('article_license');
-
         $this->shareNavbarsInViews();
     }
 
@@ -137,7 +134,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
                 $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
             }
             View::share('navBarMenuItems', $navbarMenuItems);
-        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
             logger()->error($exception->getMessage());
         }
     }
