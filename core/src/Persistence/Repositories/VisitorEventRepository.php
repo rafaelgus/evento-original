@@ -5,6 +5,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
+use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\VisitorLanding;
 use EventoOriginal\Core\Enums\VisitorEventType;
@@ -57,5 +58,26 @@ WHERE ve.visitor_landing_id = :visitor_landing__id', $rsm);
         $visitorEvent = $query->getOneOrNullResult();
 
         return $visitorEvent;
+    }
+
+    public function getAllIps(VisitorEvent $visitorEvent)
+    {
+        $qb = $this->createQueryBuilder('ve')
+            ->select('ve.ip')
+            ->where('ve.visitorLanding = :visitor_landing_id')
+            ->setParameter('visitor_landing_id', $visitorEvent->getVisitorLanding()->getId());
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getAllIpsByUser(User $user)
+    {
+        $qb = $this->createQueryBuilder('ve')
+            ->select('ve.ip')
+            ->join('ve.visitorLanding', 'vl', 'WITH', 've.visitorLanding = vl.id')
+            ->where('vl.user = :user_id')
+            ->setParameter('user_id', $user->getId());
+
+        return $qb->getQuery()->getResult();
     }
 }
