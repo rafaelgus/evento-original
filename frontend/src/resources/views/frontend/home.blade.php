@@ -1408,11 +1408,10 @@
 
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
+                    cartItems();
                 }
             };
             xhr.send(params);
-            cartItems();
         }
     </script>
 @endsection
