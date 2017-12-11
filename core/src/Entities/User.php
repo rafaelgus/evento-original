@@ -65,6 +65,11 @@ class User implements Authenticatable, CanResetPassword
      */
     protected $clientSecret;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Designer", mappedBy="user")
+     */
+    private $designer;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
@@ -156,6 +161,22 @@ class User implements Authenticatable, CanResetPassword
     public function addRole(Role $role)
     {
         $this->roles[] = $role;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesigner()
+    {
+        return $this->designer;
+    }
+
+    /**
+     * @param Designer $designer
+     */
+    public function setDesigner(Designer $designer): void
+    {
+        $this->designer = $designer;
     }
 
     /**
