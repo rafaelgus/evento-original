@@ -70,13 +70,13 @@ WHERE ve.visitor_landing_id = :visitor_landing__id', $rsm);
         return $qb->getQuery()->getResult();
     }
 
-    public function getAllIpsByUser(User $user)
+    public function getAllIpsByVisitorLanding(VisitorLanding $visitorLanding)
     {
         $qb = $this->createQueryBuilder('ve')
             ->select('ve.ip')
             ->join('ve.visitorLanding', 'vl', 'WITH', 've.visitorLanding = vl.id')
-            ->where('vl.user = :user_id')
-            ->setParameter('user_id', $user->getId());
+            ->where('vl.id = :visitor_landing_id')
+            ->setParameter('visitor_landing_id', $visitorLanding->getId());
 
         return $qb->getQuery()->getResult();
     }

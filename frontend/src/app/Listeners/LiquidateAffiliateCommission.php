@@ -50,15 +50,20 @@ class LiquidateAffiliateCommission implements ShouldQueue
             $seller = $this->userService->findByAffiliateCode($affiliateReferralEvent->getAffiliateCodeReferral);
 
             if ($seller) {
-                $userIps = $this->visitorEventRepository->getAllIps($affiliateReferralEvent);
+                $userVisitorLanding = $affiliateReferralEvent->getVisitorLanding();
+                $userIps = $this->visitorEventRepository->getAllIpsByVisitorLanding($userVisitorLanding);
+                $sellerIps = $this->visitorEventRepository->getAllIpsByVisitorLanding($seller->getVisitorLanding());
 
-                $sellerIps = $this->visitorEventRepository->getAllIpsByUser($seller);
-
-                $this->orderService->liquidateAffiliateCommission(
-                    $order,
-                    $seller,
-                    $affiliateReferralEvent
-                );
+                if (!empty(array_intersect($userIps, $sellerIps))) {
+                    $this->orderService->liquidateAffiliateCommission(
+                        $order,
+                        $seller,
+                        $affiliateReferralEvent
+                    );
+                } else {
+                    logger()->warning("[FRAUD AFFILIATE CODE] User " . $userVisitorLanding->getUser()->getId() . " and 
+                    seller " . $seller->getId());
+                }
             }
         }
     }

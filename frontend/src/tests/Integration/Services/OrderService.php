@@ -1,5 +1,5 @@
 <?php
-namespace Integration\Unit\Services;
+namespace Integration\Integration\Services;
 
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Order;

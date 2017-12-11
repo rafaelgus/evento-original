@@ -45,7 +45,13 @@
             "EventoOriginal\\Core\\": "../../core/src",
             "EventoOriginal\\Core\\Tests\\": "../../core/tests"
         },
-        "files": ["app/Helpers/helpers.php"]
+        "files": [
+            "app/Helpers/helpers.php",
+            "app/Helpers/beautifier.php",
+            "app/Helpers/customer.php",
+            "app/Helpers/money.php",
+            "app/Helpers/visitor_events.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

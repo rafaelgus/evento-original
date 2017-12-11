@@ -23,6 +23,7 @@ class MailServiceTest extends TestCase
     public function testSendWelcome()
     {
         $userMock = m::mock(User::class);
+        $userMock->shouldReceive('getName')->times(1)->andReturn('emi');
         $userMock->shouldReceive('getEmail')->times(1)->andReturn('emiliano.rodriguez26@gmail.com');
 
         $this->mailService->sendWelcome($userMock);

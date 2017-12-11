@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Country;
+use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\VisitorLanding;
 use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
@@ -50,11 +51,16 @@ class VisitorEventService
             $event->setAffiliateCodeReferral($data['affiliate_code_referral']);
         }
 
-        $this->visitorEventRepository->save($event);
+        return $this->visitorEventRepository->save($event);
     }
 
     public function assignEvents(VisitorLanding $oldVisitorLanding, VisitorLanding $newVisitorLanding)
     {
         $this->visitorEventRepository->assignEvents($oldVisitorLanding, $newVisitorLanding);
+    }
+
+    public function getAllIpsByVisitorLanding(VisitorLanding $visitorLanding)
+    {
+        return $this->visitorEventRepository->getAllIpsByVisitorLanding($visitorLanding);
     }
 }
