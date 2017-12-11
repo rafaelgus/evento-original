@@ -1,5 +1,4 @@
 <?php
-
 namespace EventoOriginal\Core\Entities;
 
 use DateTime;

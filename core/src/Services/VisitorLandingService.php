@@ -3,11 +3,9 @@
 namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\User;
-use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\VisitorLanding;
 use EventoOriginal\Core\Enums\VisitorEventType;
 use EventoOriginal\Core\Persistence\Repositories\UserRepository;
-use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
 use EventoOriginal\Core\Persistence\Repositories\VisitorLandingRepository;
 use Exception;
 
@@ -21,8 +19,7 @@ class VisitorLandingService
         VisitorLandingRepository $visitorLandingRepository,
         VisitorEventService $visitorEventService,
         UserRepository $userRepository
-    )
-    {
+    ) {
         $this->visitorLandingRepository = $visitorLandingRepository;
         $this->visitorEventService = $visitorEventService;
         $this->userRepository = $userRepository;

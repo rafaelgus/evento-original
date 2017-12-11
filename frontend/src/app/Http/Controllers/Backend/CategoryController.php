@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Backend;
 
 use App\Events\PaymentAccepted;
@@ -9,6 +8,7 @@ use App\Http\Requests\Backend\UpdateCategoryRequest;
 use Entity\Category;
 use EventoOriginal\Core\Entities\Payment;
 use EventoOriginal\Core\Services\CategoryService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
@@ -29,9 +29,6 @@ class CategoryController extends Controller
 
     public function index()
     {
-        event(new PaymentAccepted(new Payment()));
-
-
         return view('backend.admin.categories.index');
     }
 
@@ -45,7 +42,7 @@ class CategoryController extends Controller
         $category = $this->categoryService->findOneById($id, App::getLocale());
 
         if (!$category) {
-            throw new \Exception('La categoria no existe');
+            throw new Exception('La categoria no existe');
         }
 
         return view('backend.admin.categories.edit', ['category' => $category]);
