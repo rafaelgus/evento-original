@@ -39,6 +39,7 @@ Route::get('/mi-cuenta', function () {
     return view('frontend.profile.my_account');
 })->middleware('auth');
 
+Route::get('/editor', 'Frontend\DesignerController@showEditor');
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
