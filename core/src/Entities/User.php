@@ -298,4 +298,15 @@ class User implements Authenticatable, CanResetPassword
 
         return false;
     }
+
+    public function isDesigner()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->getName() === self::DESIGNER_ROLE) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

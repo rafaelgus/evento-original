@@ -27,10 +27,15 @@ class Design
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Designer")
+     * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs")
      * @ORM\JoinColumn(name="designer_id", referencedColumnName="id")
      */
     private $designer;
+
+    /**
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $json;
 
     /**
      * @return int
@@ -86,5 +91,21 @@ class Design
     public function setDesigner(Designer $designer): void
     {
         $this->designer = $designer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJson()
+    {
+        return $this->json;
+    }
+
+    /**
+     * @param mixed $json
+     */
+    public function setJson($json): void
+    {
+        $this->json = $json;
     }
 }

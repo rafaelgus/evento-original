@@ -41,6 +41,10 @@ Route::get('/mi-cuenta', function () {
 
 Route::get('/editor', 'Frontend\DesignerController@showEditor');
 
+Route::group(['middleware' => ['auth', 'designer']], function () {
+    Route::post('/save-design', 'Frontend\DesignerController@storeDesign')->name('save_design');
+});
+
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
     Route::post('/login', 'Auth\LoginController@managementLogin');

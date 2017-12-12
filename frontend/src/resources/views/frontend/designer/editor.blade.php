@@ -1,20 +1,68 @@
 @extends('frontend.layouts.app')
 
+@section('scripts_header')
+    <style>
+        .canvas-container {
+            background-color: #EBEBEB;
+            text-align: center;
+            margin: 0px auto;
+            width: 100%;
+            height: 700px;
+        }
+
+        .canvas-paper-a4 {
+            margin-top: 50px;
+        }
+
+        .fa-rotate-45 {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .fa-rotate--45 {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        .popover {
+            background: #2C3E50 !important;
+        }
+
+        .popover-content {
+            color: white;
+        }
+
+        .popover.right .arrow:after {
+            border-right-color: #2C3E50;
+        }
+    </style>
+
+    <!-- Custom Fonts -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.6/jquery.minicolors.min.css"/>
+    <link href="css/bootstrap-tour.min.css" rel="stylesheet">
+@endsection
+
 @section('content')
     <section id="papel-comestible">
         <div class="container">
             <div class="row">
-                <br>
                 <div class="col-lg-12 text-center">
                     <h2>Papel comestible A4 - Diseño libre</h2>
-                    <hr class="star-primary">
                 </div>
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-md-2" style="width: 235px;">
-                    <h3>herramientas</h3>
                     <div class="btn-group-vertical btn-block">
-                        <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary" id="add-text">Agregar
+                        <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary" id="add-text">
+                            Agregar
                             Texto
                         </button>
 
@@ -25,7 +73,6 @@
                             Agregar Imagen
                         </button>
                     </div>
-                    <h3>Propiedades</h3>
                     <div id="canvas-tools">
                         <div class="form-group">
                             <label for="canvas-color">Color de fondo:</label>
@@ -45,18 +92,34 @@
                     <br>
                     <div>
                         <div class="btn-group-vertical btn-block">
-                            <button type="button" class="btn btn-lg btn-info" id="save-image">Guardar como imagen</button>
+                            <button type="button" class="btn btn-lg btn-info" id="save-image">Guardar como imagen
+                            </button>
                             <button type="button" class="btn btn-lg btn-warning" id="save-svg">Guardar como SVG</button>
                             <button type="button" class="btn btn-lg btn-danger" id="save-json">JSON</button>
                         </div>
                     </div>
+                    <br>
+
+                    <form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}" method="POST">
+                        @include('backend.messages.session')
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="json" id="json" value="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Nombre del diseño"/>
+                            <button type="button" class="btn btn-lg btn-success form-control" id="save-design">
+                                Guardar diseño
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="col-md-7" style="position:relative;">
                     <div class="canvas-container">
-                        <canvas class="canvas-paper-a4" id="canvas-paper-a4" width="3124" height="3124" style="width:600px;height:600px;"></canvas>
+                        <canvas class="canvas-paper-a4" id="canvas-paper-a4" width="3124" height="3124"
+                                style="width:600px;height:600px;"></canvas>
                     </div>
-                    <span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>
+                    {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
                 </div>
 
                 <div class="col-md-2">
@@ -85,16 +148,28 @@
                             <!--</div>-->
                             <div class="form-group">
                                 <label>Alineación:</label><br>
-                                <button class="btn-primary btn-xs" id="btn-align-left"><i class="fa fa-align-left" data-toggle="tooltip" title="Alinear a la izquierda"></i></button>
-                                <button class="btn-primary btn-xs" id="btn-align-center"><i class="fa fa-align-center" data-toggle="tooltip" title="Centrar"></i>
+                                <button class="btn-primary btn-xs" id="btn-align-left"><i class="fa fa-align-left"
+                                                                                          data-toggle="tooltip"
+                                                                                          title="Alinear a la izquierda"></i>
                                 </button>
-                                <button class="btn-primary btn-xs" id="btn-align-right"><i class="fa fa-align-right" data-toggle="tooltip" title="Alinear a la derecha"></i></button>
+                                <button class="btn-primary btn-xs" id="btn-align-center"><i class="fa fa-align-center"
+                                                                                            data-toggle="tooltip"
+                                                                                            title="Centrar"></i>
+                                </button>
+                                <button class="btn-primary btn-xs" id="btn-align-right"><i class="fa fa-align-right"
+                                                                                           data-toggle="tooltip"
+                                                                                           title="Alinear a la derecha"></i>
+                                </button>
                             </div>
                             <div class="form-group">
                                 <label>Estilo:</label><br>
-                                <button class="btn-primary btn-xs" id="btn-bold" data-toggle="tooltip" title="Negrita"><i class="fa fa-bold"></i></button>
-                                <button class="btn-primary btn-xs" id="btn-italic" data-toggle="tooltip" title="Cursiva"><i class="fa fa-italic"></i></button>
-                                <button class="btn-primary btn-xs" id="btn-underline"><i class="fa fa-underline" data-toggle="tooltip" title="Subrayado"></i></button>
+                                <button class="btn-primary btn-xs" id="btn-bold" data-toggle="tooltip" title="Negrita">
+                                    <i class="fa fa-bold"></i></button>
+                                <button class="btn-primary btn-xs" id="btn-italic" data-toggle="tooltip"
+                                        title="Cursiva"><i class="fa fa-italic"></i></button>
+                                <button class="btn-primary btn-xs" id="btn-underline"><i class="fa fa-underline"
+                                                                                         data-toggle="tooltip"
+                                                                                         title="Subrayado"></i></button>
                             </div>
                             <div class="form-group">
                                 <label><input type="checkbox" name="text-curved" id="text-curved">Texto Curvado</label>
@@ -138,10 +213,14 @@
                             <button class="btn-primary btn-xs" id="btn-to-back">to back</button>
                             <button class="btn-primary btn-xs" id="btn-to-front">to front</button>
                             <br>
-                            <button class="btn-primary btn-xs" id="btn-center-vertically" data-toggle="tooltip" title="Centrar verticalmente"><i class="fa fa-compress fa-rotate--45"></i></button>
-                            <button class="btn-primary btn-xs" id="btn-center-horizontally" data-toggle="tooltip" title="Centrar horizontalmente"><i class="fa fa-compress fa-rotate-45"></i></button>
-                            <button class="btn-primary btn-xs" id="btn-flip-vertically" data-toggle="tooltip" title="Voltear verticalmente"><i class="fa fa-arrow-up"></i></button>
-                            <button class="btn-primary btn-xs" id="btn-flip-horizontally" data-toggle="tooltip" title="Voltear horizontalmente"><i class="fa fa-arrow-right"></i></button>
+                            <button class="btn-primary btn-xs" id="btn-center-vertically" data-toggle="tooltip"
+                                    title="Centrar verticalmente"><i class="fa fa-compress fa-rotate--45"></i></button>
+                            <button class="btn-primary btn-xs" id="btn-center-horizontally" data-toggle="tooltip"
+                                    title="Centrar horizontalmente"><i class="fa fa-compress fa-rotate-45"></i></button>
+                            <button class="btn-primary btn-xs" id="btn-flip-vertically" data-toggle="tooltip"
+                                    title="Voltear verticalmente"><i class="fa fa-arrow-up"></i></button>
+                            <button class="btn-primary btn-xs" id="btn-flip-horizontally" data-toggle="tooltip"
+                                    title="Voltear horizontalmente"><i class="fa fa-arrow-right"></i></button>
                         </div>
                         <div class="form-group">
                             <label><input type="checkbox" name="block" id="block">Bloquear</label>
@@ -161,5 +240,45 @@
     <script src="/editor-assets/js/FileSaver.min.js"></script>
     <script src="/editor-assets/js/canvas-to-blob.min.js"></script>
     <script src="/editor-assets/js/fabric.curvedText.js"></script>
-    <script src="/editor-assets/js/designer.js">
+    <script src="/editor-assets/js/designer.js"></script>
+
+    <script src="/editor-assets/js/bootstrap-tour.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Instance the tour
+            var tour = new Tour({
+                name: 'tour1',
+                steps: [
+                    {
+                        element: "#add-text",
+                        title: "Agregar Texto",
+                        content: "Haga click aquí si desea agregar un texto al diseño."
+                    },
+                    {
+                        element: "#add-image",
+                        title: "Agregar imagen",
+                        content: "Si desea agregar una imagen haga click aquí."
+                    },
+                    {
+                        element: "#canvas-tools",
+                        title: "Color de fondo",
+                        content: "Seleccione el color de fondo del diseño."
+                    },
+                    {
+                        element: "#layers",
+                        title: "Capas",
+                        content: "Gestione las capas del diseño seleccionando una de ellas."
+                    }
+                ],
+                template: "<div class='popover tour'><div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <button class='btn btn-default btn-sm' data-role='prev'>« Ant</button> <span data-role='separator'>|</span> <button class='btn btn-default btn-sm' data-role='next'>Sig »</button>  <button class='btn btn-default btn-sm' data-role='end' style='margin-left: 5px'>Cerrar</button> </div> </div>"
+            });
+
+            tour.init();
+
+            tour.start();
+        });
+    </script>
 @endsection

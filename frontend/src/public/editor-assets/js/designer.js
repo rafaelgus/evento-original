@@ -507,13 +507,13 @@ $(document).ready(function () {
                     cornerPadding: 10
                 },
                 bl: {
-                    icon: 'icons/remove.svg'
+                    icon: '../editor-assets/icons/remove.svg'
                 },
                 tr: {
-                    icon: 'icons/resize.svg'
+                    icon: '../editor-assets/icons/resize.svg'
                 },
                 tl: {
-                    icon: 'icons/rotate.svg'
+                    icon: '../editor-assets/icons/rotate.svg'
                 }
             }, function () {
                 canvas.renderAll();
@@ -629,6 +629,16 @@ $(document).ready(function () {
 
     $('#save-json').click(function () {
         alert(JSON.stringify(canvas));
+    });
+
+    $('#save-design').click(function (event) {
+        event.preventDefault();
+
+        var json = JSON.stringify(canvas);
+
+        $('#save-design-form #json').val(json);
+
+        $('#save-design-form').submit();
     });
 
     function onObjectRemoved(e) {
