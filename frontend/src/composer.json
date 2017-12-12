@@ -19,15 +19,21 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
+<<<<<<< HEAD
         "moneyphp/money": "^3.0",
         "myclabs/php-enum": "^1.5",
+=======
+        "mockery/mockery": "^0.9.9",
+        "moneyphp/money": "^3.0",
+        "myclabs/php-enum": "^1.5",
+        "paypal/rest-api-sdk-php": "*",
+>>>>>>> web_checkout_paypal
         "php-di/php-di": "^5.4",
         "predis/predis": "^1.0",
         "vlucas/phpdotenv": "^2.4",
         "yajra/laravel-datatables-oracle": "^7.5"
     },
     "require-dev": {
-        "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5.7",
         "fzaninotto/faker": "^1.6",
         "doctrine/data-fixtures": "^1.2",

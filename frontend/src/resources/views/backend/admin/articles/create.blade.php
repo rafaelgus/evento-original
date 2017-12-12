@@ -81,7 +81,7 @@
                             <div id="granel" class="form-group">
                                 <label for="inputName" class="col-sm-2 control-label">cantidad</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="quantity" name="price"
+                                    <input type="number" step=".01" class="form-control" id="quantity" name="price"
                                            placeholder="{{ trans('texts.sections.article.quantity') }}" value="{{ old('price') }}">
                                     {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -89,7 +89,7 @@
                             <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}" id="priceInput">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.price') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="price" name="price"
+                                    <input type="number" step=".01" class="form-control" id="price" name="price"
                                            placeholder="{{ trans('texts.sections.article.price') }}" value="{{ old('price') }}">
                                     {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
                                 </div>

@@ -24,6 +24,8 @@ class CartController
         $itemTotal = 0;
         $discountsTotal = 0;
 
+        $proceedCheckout = count($cart) > 0 ? true : false;
+
         foreach ($cart as $item) {
             $itemsAndDiscount[] = [
                 'id' => $item->rowId,
@@ -33,7 +35,6 @@ class CartController
                 'image' => $item->options->has('image') ? $item->options->image : '',
                 'article' => true
             ];
-
             $itemTotal = $itemTotal + ($item->price * $item->qty);
         }
 
@@ -51,6 +52,7 @@ class CartController
         }
 
         return view('frontend.shopping_cart')
+            ->with('proceedCheckout', $proceedCheckout)
             ->with('cart', $itemsAndDiscount)
             ->with('discounts', $discountsTotal)
             ->with('total', $itemTotal - $discountsTotal);

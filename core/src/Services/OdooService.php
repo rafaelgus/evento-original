@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 
 class OdooService
 {
-    const BASE_URL = 'http://alfonso.romilax.com:8070';
+    const BASE_URL = 'http://alfonso.movilcrm.com:8070';
     const EMAIL = 'rest@gmail.com';
     const PASSWORD = '123456';
 
@@ -87,7 +87,7 @@ class OdooService
     public function getNotSyncArticles()
     {
         $token = $this->getToken();
-        $uri =  "/api/product.template/search?token". $token ."=&domain=[('sale_ok','=', True),('rm_sync','=', False)]&limit=10000&fields=['name','default_code','type','categ_id','pos_categ_id','rm_sync','product_id']";
+        $uri =  "/api/product.template/search?token". $token ."=&domain=[('sale_ok','=', True),('rm_sync','=', False)]&limit=10000&fields=['name','type','default_code','public_categ_ids','barcode','list_price','rm_ingredientes','rm_alergenos','rm_sync','qty_available']";
 
         $articles = $this->connect(self::HTTP_METHOD_GET, $uri);
 
@@ -141,7 +141,7 @@ class OdooService
     {
         $token = $this->getToken();
 
-        $uri = "http://alfonso.romilax.com:8070/api/product.public.category/search?token=". $token."&domain=[('id','=',". $id. ")]&limit=10000&fields=['id','name','parent_id']";
+        $uri = "http://alfonso.movilcrm.com:8070/api/product.public.category/search?token=". $token."&domain=[('id','=',". $id. ")]&limit=10000&fields=['id','name','parent_id']";
 
         $webCategory = $this->connect(self::HTTP_METHOD_GET, $uri);
 
@@ -152,7 +152,7 @@ class OdooService
     {
         $token = $this->getToken();
 
-        $uri = "http://alfonso.romilax.com:8070/api/rm.productos.tipo.alergenos/search?token=". $token ."&domain=[]&limit=10000&fields=['rm_nombre']";
+        $uri = "http://alfonso.movilcrm.com:8070/api/rm.productos.tipo.alergenos/search?token=". $token ."&domain=[]&limit=10000&fields=['rm_nombre']";
 
         $allergens = $this->connect(self::HTTP_METHOD_GET, $uri);
 
@@ -165,8 +165,8 @@ class OdooService
         Brand $brand,
         array $allergens,
         Category $category,
-        array $flavours,
-        array $tags
+        array $flavours = [],
+        array $tags = []
     ) {
         $article = $this
             ->articleService
@@ -176,7 +176,7 @@ class OdooService
                 'description',
                 self::BARCODE,
                 self::DEFAULT_CODES,
-                'new',
+                'draft',
                 $data[self::NAME],
                 $data[self::LIST_PRICE],
                 'type',
@@ -186,15 +186,16 @@ class OdooService
                 $brand,
                 $category,
                 null,
-                null,
+                $tags,
                 $colors,
                 $flavours,
                 $allergens,
-                null,
-                null,
-                null,
+                [],
+                [],
+                [],
                 true
             );
+        $this->articleService->save($article);
 
         return $article;
     }
@@ -203,30 +204,44 @@ class OdooService
     {
         $articles = $this->getNotSyncArticles();
 
-        $allergensId = $articles[self::ALLERGENS];
-
-        $webCategoriesId = $articles[self::CATEGORIES];
-
-        if (count($allergensId) == 0 and count($webCategoriesId) == 0) {
-            return;
-        }
-
-        $allergens = $this->syncAllergens($allergensId);
-        $categories = $this->syncWebCategories($webCategoriesId);
-
-        $category =  $this->categoryService->findOneById(1, App::getLocale());
-        $brand = $this->brandService->findOneById(1);
-
         foreach ($articles as $article) {
-            $this->buildArticle(
-                $article,
-                $categories['colors'],
-                $brand,
-                $allergens,
-                $category,
-                $categories['flavours'],
-                $categories['tags']
-            );
+            $webCategoriesId = $article[self::CATEGORIES];
+            $allergensId = $article[self::ALLERGENS];
+
+            if (count($webCategoriesId) != 0) {
+                $allergens = $this->syncAllergens($allergensId);
+
+                $categories = $this->syncWebCategories($webCategoriesId);
+
+                if (count($categories) > 0) {
+                    $category =  $this->categoryService->findOneById(1, App::getLocale());
+                    $brand = $this->brandService->findOneById(1);
+
+                    $color = [];
+                    $flavours = [];
+                    $tag = [];
+
+                    if (array_key_exists('colors', $categories)) {
+                        $color[] = $categories['colors'];
+                    }
+                    if (array_key_exists('flavours', $categories)) {
+                        $flavours[] = $categories['flavours'];
+                    }
+                    if (array_key_exists('tags', $categories)) {
+                        $tag[] = $categories['tags'];
+                    }
+
+                    $this->buildArticle(
+                        $article,
+                        $color,
+                        $brand,
+                        $allergens,
+                        $category,
+                        $flavours,
+                        $tag
+                    );
+                }
+            }
         }
     }
 
@@ -235,13 +250,12 @@ class OdooService
         $odooAllergens = $this->getAllergens();
 
         $allergens = [];
-
         foreach ($odooAllergens as $odooAllergen) {
             if(in_array($odooAllergen[self::ID], $allergensId)) {
-                $allergen = $this->allergenService->findByName($odooAllergen[self::NAME]);
+                $allergen = $this->allergenService->findByName($odooAllergen['rm_nombre']);
 
                 if (!$allergen) {
-                    $allergen = $this->allergenService->create($odooAllergen[self::NAME]);
+                    $allergen = $this->allergenService->create($odooAllergen['rm_nombre']);
                 }
                 $allergens[] = $allergen;
             }
@@ -261,15 +275,17 @@ class OdooService
         $categories = [];
 
         foreach ($webCategories as $webCategory) {
-            if ($webCategory[self::ATTR_PARENT] == $colorParent[self::ID]) {
-                if (in_array($webCategory[self::ID], $webCategoriesId)) {
-                    $color = $this->colorService->findOneByName($webCategory[self::NAME], App::getLocale());
+            if ($webCategory[self::ATTR_PARENT] != false) {
+                if ($webCategory[self::ATTR_PARENT][0] == $colorParent[self::ID]) {
+                    if (in_array($webCategory[self::ID], $webCategoriesId)) {
+                        $color = $this->colorService->findOneByName($webCategory[self::NAME], App::getLocale());
 
-                    if (!$color) {
-                        $color = $this->colorService->create($webCategory[self::NAME]);
+                        if (!$color) {
+                            $color = $this->colorService->create($webCategory[self::NAME]);
+                        }
+                        $categories['colors'] = $color;
                     }
-                    $categories['colors'] = $color;
-                } elseif ($webCategory[self::ATTR_PARENT] == $flavoursParent[self::ID]) {
+                } elseif ($webCategory[self::ATTR_PARENT][0] == $flavoursParent[self::ID]) {
                     if (in_array($webCategory[self::ID], $webCategoriesId)) {
                         $flavour = $this->flavourService->findOneByName($webCategory[self::NAME], App::getLocale());
 
@@ -278,8 +294,8 @@ class OdooService
                         }
                         $categories['flavours'] = $flavour;
                     }
-                } elseif ($webCategory[self::ATTR_PARENT] == $typeParent[self::ID] or
-                    $webCategory[self::ATTR_PARENT] == $otherParents[self::ID]) {
+                } elseif ($webCategory[self::ATTR_PARENT][0] == $typeParent[self::ID] or
+                    $webCategory[self::ATTR_PARENT][0] == $otherParents[self::ID]) {
                     if (in_array($webCategory[self::ID], $webCategoriesId)) {
                         $tag = $this->tagService->findOneByName($webCategory[self::NAME], App::getLocale());
 
@@ -291,7 +307,6 @@ class OdooService
                 }
             }
         }
-
         return $categories;
     }
 
@@ -299,39 +314,47 @@ class OdooService
     {
         $colorParent = array_filter(
             $webCategories, function($webCategory) {
-            return $webCategory->name == self::COLORS;
+            return $webCategory[self::NAME] == self::COLORS;
         });
 
-        return $colorParent;
+        return array_first($colorParent);
     }
 
     public function getFlavoursParent(array $webCategories)
     {
         $flavour = array_filter(
             $webCategories, function($webCategory) {
-            return $webCategory->name == self::FLAVOURS;
+            return $webCategory[self::NAME] == self::FLAVOURS;
         });
 
-        return $flavour;
+        return array_first($flavour);
     }
 
     public function getTypeParent(array $webCategories)
     {
         $type = array_filter(
             $webCategories, function($webCategory) {
-            return $webCategory->name == self::FLAVOURS;
+            return $webCategory[self::NAME] == self::FLAVOURS;
         });
 
-        return $type;
+        return array_first($type);
     }
 
     public function getOtherParents(array $webCategories)
     {
         $others = array_filter(
             $webCategories, function($webCategory) {
-                return $webCategory->name == self::OTHER;
+                return $webCategory[self::NAME] == self::OTHER;
         });
 
-        return $others;
+        return array_first($others);
+    }
+
+    public function setSync(int $articleId)
+    {
+        $token = $this->getToken();
+
+        $uri ="/api/product.template/update/9274?token=dc1b51f7876c4ed49b1521cb72b21c2f&update_vals={'rm_sync':'True'}";
+
     }
 }

@@ -7,6 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ArticleRepository")
@@ -65,7 +67,7 @@ class Article
     private $status;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
@@ -91,7 +93,7 @@ class Article
     private $tax;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="integer")
      */
     private $costPrice;
 
@@ -210,6 +212,12 @@ class Article
      */
     private $updated;
 
+    /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="article")
+     */
+    private $orderDetails;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -223,6 +231,7 @@ class Article
         $this->ingredients = new ArrayCollection();
         $this->pricePerQuantity = new ArrayCollection();
         $this->healthys = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
     /**
@@ -318,17 +327,17 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPrice()
     {
-        return $this->price;
+        return floatval($this->price /100);
     }
 
     /**
-     * @param mixed $price
+     * @param int $price
      */
-    public function setPrice($price)
+    public function setPrice(int $price)
     {
         $this->price = $price;
     }
@@ -366,7 +375,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getCostPrice()
     {
@@ -376,7 +385,7 @@ class Article
     /**
      * @param mixed $costPrice
      */
-    public function setCostPrice($costPrice)
+    public function setCostPrice(int $costPrice)
     {
         $this->costPrice = $costPrice;
     }
@@ -789,4 +798,28 @@ class Article
     {
         $this->isNew = $isNew;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrderDetails()
+    {
+        return $this->orderDetails;
+    }
+
+    /**
+     * @param OrderDetail $orderDetails
+     */
+    public function setOrderDetails(OrderDetail $orderDetails)
+    {
+        $this->orderDetails = $orderDetails;
+    }
+
+    public function getMoneyPrice()
+    {
+        $price = new Money($this->getPrice(), new Currency($this->getPriceCurrency()));
+
+        return $price;
+    }
+
 }

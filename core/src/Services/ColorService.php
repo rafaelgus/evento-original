@@ -33,10 +33,6 @@ class ColorService
     {
         $color = $this->colorRepository->findOneByName($name, $locale);
 
-        if (!$color) {
-            throw new Exception("Doesn't exist a color with this name");
-        }
-
         return $color;
     }
 

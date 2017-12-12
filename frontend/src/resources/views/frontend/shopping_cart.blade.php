@@ -449,7 +449,9 @@
                                     </table>
                                     <ul class="checkout">
                                         <li>
-                                            <button class="button btn-proceed-checkout" title="{{ trans('frontend/shopping_cart.proceed_to_checkout') }}" type="button"><span>{{ trans('frontend/shopping_cart.proceed_to_checkout') }}</span></button>
+                                            @if($proceedCheckout)
+                                            <button class="button btn-proceed-checkout" onclick="checkout()" title="{{ trans('frontend/shopping_cart.proceed_to_checkout') }}" type="button"><span>{{ trans('frontend/shopping_cart.proceed_to_checkout') }}</span></button>
+                                            @endif
                                         </li>
                                         <br>
                                     </ul>
@@ -811,6 +813,9 @@
             };
 
             xhr.send(params);
+        }
+        function checkout() {
+            window.location.href = '/checkout/billing';
         }
     </script>
 @endsection

@@ -64,10 +64,10 @@ class Tag extends \EventoOriginal\Core\Entities\Tag implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'translations'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'articles'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'translations'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Tag' . "\0" . 'articles'];
     }
 
     /**
@@ -230,6 +230,28 @@ class Tag extends \EventoOriginal\Core\Entities\Tag implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTranslation', [$t]);
 
         return parent::addTranslation($t);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArticles()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArticles', []);
+
+        return parent::getArticles();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setArticles($articles)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArticles', [$articles]);
+
+        return parent::setArticles($articles);
     }
 
 }

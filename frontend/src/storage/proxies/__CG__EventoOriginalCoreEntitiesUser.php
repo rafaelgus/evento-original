@@ -64,10 +64,10 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret'];
+            return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret', 'customer'];
         }
 
-        return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret'];
+        return ['__isInitialized__', 'id', 'name', 'email', 'password', 'roles', 'rememberToken', 'clientId', 'clientSecret', 'customer'];
     }
 
     /**
@@ -268,7 +268,7 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function getRoles(): \Doctrine\Common\Collections\ArrayCollection
+    public function getRoles()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoles', []);
@@ -439,6 +439,50 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'isAdmin', []);
 
         return parent::isAdmin();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhone()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhone', []);
+
+        return parent::getPhone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIdentification()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentification', []);
+
+        return parent::getIdentification();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCustomer()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCustomer', []);
+
+        return parent::getCustomer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCustomer(\EventoOriginal\Core\Entities\Customer $customer)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCustomer', [$customer]);
+
+        return parent::setCustomer($customer);
     }
 
 }

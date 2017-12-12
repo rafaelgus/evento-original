@@ -47,7 +47,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
             __DIR__ . '/vendor/gedmo'
         );
 
-
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
         });
@@ -97,7 +96,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
             return EntityManager::getRepository(Entities\Role::class);
         });
         $this->app->singleton(Repositories\VoucherRepository::class, function() {
-           return EntityManager::getRepository(Entities\Voucher::class);
+            return EntityManager::getRepository(Entities\Voucher::class);
         });
         $this->app->singleton(Repositories\HealthyRepository::class, function () {
             return EntityManager::getRepository(Entities\Healthy::class);
@@ -107,6 +106,27 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\MenuItemRepository::class, function () {
             return EntityManager::getRepository(Entities\MenuItem::class);
+        });
+        $this->app->singleton(Repositories\OrderDetailRepository::class, function () {
+            return EntityManager::getRepository(Entities\OrderDetail::class);
+        });
+        $this->app->singleton(Repositories\OrderRepository::class, function () {
+            return EntityManager::getRepository(Entities\Order::class);
+        });
+        $this->app->singleton(Repositories\PaymentRepository::class, function() {
+            return EntityManager::getRepository(Entities\Payment::class);
+        });
+        $this->app->singleton(Repositories\CustomerRepository::class, function () {
+            return EntityManager::getRepository(Entities\Customer::class);
+        });
+        $this->app->singleton(Repositories\BillingRepository::class, function () {
+            return EntityManager::getRepository(Entities\Billing::class);
+        });
+        $this->app->singleton(Repositories\ShippingRepository::class, function() {
+            return EntityManager::getRepository(Entities\Shipping::class);
+        });
+        $this->app->singleton(Repositories\AddressRepository::class, function() {
+            return EntityManager::getRepository(Entities\Address::class);
         });
     }
 }

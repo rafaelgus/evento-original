@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\UserRepository")
  * @ORM\Table(name="users")
  */
-class User implements Authenticatable, CanResetPassword
+class User implements Authenticatable, CanResetPassword, PayerInterface
 {
     const ADMIN_ROLE = 'admin';
     const CUSTOMER_ROLE = 'customer';
@@ -64,6 +65,12 @@ class User implements Authenticatable, CanResetPassword
      * @ORM\Column(type="string", name="client_secret", nullable=true)
      */
     protected $clientSecret;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Customer", inversedBy="user")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $customer;
 
     public function __construct()
     {
@@ -277,4 +284,32 @@ class User implements Authenticatable, CanResetPassword
 
         return false;
     }
+
+    public function getPhone()
+    {
+        // TODO: Implement getPhone() method.
+    }
+
+    public function getIdentification()
+    {
+        // TODO: Implement getIdentification() method.
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+
 }
