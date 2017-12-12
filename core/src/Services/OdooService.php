@@ -354,7 +354,7 @@ class OdooService
     {
         $token = $this->getToken();
 
-        $uri ="/api/product.template/update/9274?token=dc1b51f7876c4ed49b1521cb72b21c2f&update_vals={'rm_sync':'True'}";
+        $uri = "/api/product.template/update/9274?token=dc1b51f7876c4ed49b1521cb72b21c2f&update_vals={'rm_sync':'True'}";
 
     }
 }
