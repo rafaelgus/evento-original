@@ -1,15 +1,18 @@
 <?php
+
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
+use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
+use Throwable;
 
 class EventoOriginalServiceProvider extends ServiceProvider
 {
@@ -20,17 +23,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $menuRepository = $this->app->make(Repositories\MenuRepository::class);
-        $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
-
-        $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
-
-        $navbarMenuItems = [];
-        if ($navbarMenu) {
-            $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
-        }
-
-        View::share('navBarMenuItems', $navbarMenuItems);
+        $this->shareNavbarsInViews();
     }
 
     /**
@@ -95,7 +88,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\RoleRepository::class, function () {
             return EntityManager::getRepository(Entities\Role::class);
         });
-        $this->app->singleton(Repositories\VoucherRepository::class, function() {
+        $this->app->singleton(Repositories\VoucherRepository::class, function () {
             return EntityManager::getRepository(Entities\Voucher::class);
         });
         $this->app->singleton(Repositories\HealthyRepository::class, function () {
@@ -113,7 +106,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\OrderRepository::class, function () {
             return EntityManager::getRepository(Entities\Order::class);
         });
-        $this->app->singleton(Repositories\PaymentRepository::class, function() {
+        $this->app->singleton(Repositories\PaymentRepository::class, function () {
             return EntityManager::getRepository(Entities\Payment::class);
         });
         $this->app->singleton(Repositories\CustomerRepository::class, function () {
@@ -122,11 +115,27 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\BillingRepository::class, function () {
             return EntityManager::getRepository(Entities\Billing::class);
         });
-        $this->app->singleton(Repositories\ShippingRepository::class, function() {
+        $this->app->singleton(Repositories\ShippingRepository::class, function () {
             return EntityManager::getRepository(Entities\Shipping::class);
         });
-        $this->app->singleton(Repositories\AddressRepository::class, function() {
+        $this->app->singleton(Repositories\AddressRepository::class, function () {
             return EntityManager::getRepository(Entities\Address::class);
         });
+    }
+
+    private function shareNavbarsInViews()
+    {
+        try {
+            $menuRepository = $this->app->make(Repositories\MenuRepository::class);
+            $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+            $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
+            $navbarMenuItems = [];
+            if ($navbarMenu) {
+                $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+            }
+            View::share('navBarMenuItems', $navbarMenuItems);
+        } catch (Throwable $exception) {
+            logger()->error($exception->getMessage());
+        }
     }
 }

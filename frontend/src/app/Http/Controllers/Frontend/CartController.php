@@ -82,7 +82,10 @@ class CartController
                 ]
             );
         }
-        return ['message' => trans('frontend/shopping_cart.add_to_cart')];
+
+        return [
+            'message' => trans('frontend/shopping_cart.add_to_cart'),
+        ];
     }
 
     public function removeToCart(string $rowId)

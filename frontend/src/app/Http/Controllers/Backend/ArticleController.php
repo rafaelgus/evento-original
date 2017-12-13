@@ -406,7 +406,6 @@ class ArticleController
                 $article->addPricePerQuantity($price);
             }
         }
-
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
         $article->setIsNew(($request->input('isNew') ?: false));
