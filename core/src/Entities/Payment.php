@@ -10,7 +10,7 @@ use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PaymentRepository")
- * @ORM\Table(name="payment")
+ * @ORM\Table(name="payments")
  */
 class Payment implements PaymentInterface
 {
@@ -88,7 +88,7 @@ class Payment implements PaymentInterface
     private $description;
 
     /**
-     * @ORM\Column(type="string", nullable=true, length=5000)
+     * @ORM\Column(type="text", nullable=true, length=5000)
      */
     private $data;
 

@@ -141,8 +141,15 @@ class PaymentController
             $this->orderService->addBilling($order, $billing);
         }
 
+        $total = 0;
+
+        foreach ($cartItems as $item) {
+            $total = $total + ($item['qty'] * $item['price']);
+        }
+
         return view('frontend.checkout.orderView')
             ->with('cartItems', $cartItems)
+            ->with('total', $total)
             ->with('order', $order);
     }
 

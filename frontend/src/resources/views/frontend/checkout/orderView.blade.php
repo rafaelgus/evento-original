@@ -52,7 +52,7 @@
                                     <td></td>
                                     <td></td>
                                     <td class="a-right last" colspan="50">
-                                        Total: {{array_sum(array_column($cartItems, 'price'))}}
+                                        Total: {{$total}}
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -91,7 +91,7 @@
                             <div class="buttons-set1" id="shipping-buttons-container">
                                 <form method="post" action="/payment/{{$order->getId()}}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="button continue"><span>Pagar</span></button>
+                                    <button type="submit" id="btnPay" onclick="disabledButton()" class="button continue"><span>Pagar</span></button>
                                 </form>
                             </div>
                         </div>
@@ -104,7 +104,8 @@
 
 @section('scripts_body')
     <script>
-
-
+        function disabledButton() {
+            document.getElementById("btnPay").disabled = false;
+        }
     </script>
 @endsection
