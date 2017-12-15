@@ -1412,6 +1412,7 @@
                 }
             };
             xhr.send(params);
+            cartItems();
         }
     </script>
 @endsection

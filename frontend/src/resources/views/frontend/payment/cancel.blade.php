@@ -4,7 +4,7 @@
     <section class="main-container col1-layout">
         <div class="col-sm-4"></div>
         <div class="col-sm-4 discount">
-            <div style="border-bottom: 5px solid; text-align: center"><h3>La compra se realizo con exito</h3></div>
+            <div style="border-bottom: 5px solid; text-align: center"><h3>El pago fue cancelado</h3></div>
             <div class="col-sm-4"></div>
             <div class="col-sm-4" style="height: 100%; text-align: center;">
                 <img src="/images/cancel.png" style="margin-top: 80px">

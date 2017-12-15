@@ -322,6 +322,5 @@ class PaymentController
         } else {
             return abort(400, 'Error voucher not exist');
         }
-
     }
 }
