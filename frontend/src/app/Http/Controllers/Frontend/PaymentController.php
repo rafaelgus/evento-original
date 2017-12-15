@@ -20,10 +20,10 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController
 {
-
     const NEW_ADDRESS_TRUE = 1;
     const NEW_ADDRESS_FALSE = 0;
     const DELIVERY_IN_STORE = 'branch_withdrawal';
@@ -92,9 +92,11 @@ class PaymentController
 
         $addresses = $this->addressService->findByCustomer($customer);
 
-        $order = $this->orderService->findById($request->input('orderId'));
+        $orderId = Session::get('orderId');
 
-        if ($request->input('newAddress') == self::NEW_ADDRESS_TRUE) {
+        $order = $this->orderService->findById($orderId);
+
+        if ($request->input('newAddress') === self::NEW_ADDRESS_TRUE) {
             $countryId = $request->input('country');
 
             $country = $this->countryService->findById($countryId);
@@ -157,20 +159,24 @@ class PaymentController
     {
         $order = $this->orderService->findById($id);
 
-        $payment = $this
-            ->paymentService
-            ->create(
-                PaymentGateway::PAYPAL,
-                $order
-            );
+        if(!$order->getPayment()) {
+            $payment = $this
+                ->paymentService
+                ->create(
+                    PaymentGateway::PAYPAL,
+                    $order
+                );
 
-        $payment = $this->paypalService->preparePayment($payment);
-        $this->paymentService->save($payment);
+            $payment = $this->paypalService->preparePayment($payment);
+            $this->paymentService->save($payment);
 
-        if ($payment->getGateway() === PaymentGateway::PAYPAL) {
-            return redirect()->to($payment->getParam('redirectUrl'));
+            if ($payment->getGateway() === PaymentGateway::PAYPAL) {
+
+            } else {
+                return abort(400, 'Invalid method');
+            }
         } else {
-            return abort(400, 'Invalid method');
+            return redirect()->to($order->getPayment()->getParam('redirectUrl'));
         }
     }
 

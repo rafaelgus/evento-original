@@ -2,17 +2,30 @@
 namespace App\Http\Controllers\Frontend;
 
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\OrderDetailService;
+use EventoOriginal\Core\Services\OrderService;
+use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 
 class CartController
 {
-    protected $articleService;
+    private $articleService;
+    private $orderDetailService;
+    private $orderService;
+    private $voucherService;
+    private $categoryService;
 
-    public function __construct(ArticleService $articleService)
-    {
+    public function __construct(
+        ArticleService $articleService,
+        OrderDetailService $orderDetailService,
+        OrderService $orderService
+    ) {
         $this->articleService = $articleService;
+        $this->orderService = $orderService;
+        $this->orderDetailService = $orderDetailService;
     }
 
     public function show()
@@ -81,6 +94,8 @@ class CartController
                     'category' => $article->getCategory()->getId()
                 ]
             );
+
+            $this->modifyOrder($article->getBarCode(), $quantity);
         }
 
         return [
@@ -107,6 +122,38 @@ class CartController
         Cart::instance('shopping')->destroy();
         Cart::instance('discount')->destroy();
 
+        Session::put('orderId', null);
+
         return redirect()->to(trans('frontend/shopping_cart.slug'));
+    }
+
+    public function modifyOrder(int $barCode, int $quantity, bool $discount = false)
+    {
+        $article = $this->articleService->findByBarcode($barCode);
+
+        $orderDetail = $this->orderDetailService->create([
+            'quantity' => $quantity,
+            'article' => $article,
+            'price' => $article->getPrice()
+        ], $discount);
+
+        $orderId = Session::get('orderId');
+
+        if ($orderId) {
+            $order = $this->orderService->findById($orderId);
+
+            if (!$order) {
+                throw new Exception('Error to add item');
+            }
+            $order->addOrderDetail($orderDetail);
+
+            $this->orderService->save($order);
+        } else {
+            $order = $this->orderService->create(
+                [$orderDetail],
+                current_user()
+            );
+            Session::put('orderId', $order->getId());
+        }
     }
 }

@@ -75,14 +75,14 @@ class PaymentService
         try {
             $payment = $paymentMethod->process($payment, $data);
         } catch (Exception $exception) {
-            $payment->setStatus(PaymentStatus::STATUS_CANCELLED);
+            $payment->setStatus(PaymentStatus::STATUS_CANCELED);
             $payment = $this->cancel($payment);
         }
-        if ($payment->getStatus() === PaymentStatus::STATUS_APPROVE) {
+        if ($payment->getStatus() === PaymentStatus::STATUS_PAYMENT_APPROVE) {
             $payment->setStatus(PaymentStatus::STATUS_PENDING);
             $payment = $this->pay($payment);
         }
-        if ($payment->getStatus() === PaymentStatus::STATUS_CANCELLED) {
+        if ($payment->getStatus() === PaymentStatus::STATUS_CANCELED) {
             $payment = $this->cancel($payment);
         }
         $this->paymentRepository->save($payment);
@@ -116,7 +116,7 @@ class PaymentService
         if ($payment->getStatus() === PaymentStatus::STATUS_PAID) {
             throw new InvalidPaymentStatusException();
         }
-        $payment->setStatus(PaymentStatus::STATUS_CANCELLED);
+        $payment->setStatus(PaymentStatus::STATUS_CANCELED);
         $this->paymentRepository->save($payment);
         return $payment;
     }

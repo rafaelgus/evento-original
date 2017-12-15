@@ -52,7 +52,7 @@
                                     <td></td>
                                     <td></td>
                                     <td class="a-right last" colspan="50">
-                                        Total: {{$total}}
+                                        Total: ${{$total}}
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -69,7 +69,7 @@
                                             {{$item['qty']}}
                                         </td>
                                         <td>
-                                            {{$item['price']}}
+                                            ${{$item['price']}}
                                         </td>
                                     </tr>
                                 @endforeach
