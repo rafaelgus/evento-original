@@ -268,7 +268,7 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     /**
      * {@inheritDoc}
      */
-    public function getRoles(): \Doctrine\Common\Collections\ArrayCollection
+    public function getRoles()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoles', []);

@@ -25,3 +25,14 @@ if (!function_exists('storage_url')) {
         return "https://evento-original-s3.s3.us-east-2.amazonaws.com";
     }
 }
+
+if (!function_exists('menu_item_url')) {
+    function menu_item_url(\EventoOriginal\Core\Entities\MenuItem $menuItem)
+    {
+        if ($menuItem->getCategory()) {
+            return "/" . $menuItem->getCategory()->getName();
+        }
+
+        return $menuItem->getUrl();
+    }
+}
