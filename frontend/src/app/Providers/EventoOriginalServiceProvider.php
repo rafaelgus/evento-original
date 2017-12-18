@@ -125,6 +125,8 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
     private function shareNavbarsInViews()
     {
+        $navbarMenuItems = [];
+
         try {
             $menuRepository = $this->app->make(Repositories\MenuRepository::class);
             $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
@@ -133,9 +135,10 @@ class EventoOriginalServiceProvider extends ServiceProvider
             if ($navbarMenu) {
                 $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
             }
-            View::share('navBarMenuItems', $navbarMenuItems);
         } catch (Throwable $exception) {
             logger()->error($exception->getMessage());
         }
+
+        View::share('navBarMenuItems', $navbarMenuItems);
     }
 }

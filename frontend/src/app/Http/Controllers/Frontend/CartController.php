@@ -56,7 +56,7 @@ class CartController
                 'id' => $discount->rowId,
                 'name' => $discount->name,
                 'qty' => $discount->qty,
-                'price' => - $discount->price,
+                'price' => -$discount->price,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
                 'article' => false
             ];
@@ -78,10 +78,17 @@ class CartController
             ->articleService
             ->findOneById(
                 $request->input('articleId'),
-                    App::getLocale()
+                App::getLocale()
             );
 
-        $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
+
+        $articleImages = $article->getImages()->toArray();
+
+        if (count($articleImages) > 0) {
+            $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
+        } else {
+            $articleImagesPath = default_article_image_path();
+        }
 
         if ($quantity > 0) {
             Cart::instance('shopping')->add(
@@ -90,7 +97,7 @@ class CartController
                 $quantity,
                 $article->getPrice(),
                 [
-                    'image'=> $articleImagesPath,
+                    'image' => $articleImagesPath,
                     'category' => $article->getCategory()->getId()
                 ]
             );
