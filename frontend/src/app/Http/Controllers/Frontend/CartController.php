@@ -97,7 +97,7 @@ class CartController
                 $quantity,
                 $article->getPrice(),
                 [
-                    'image' => $articleImagesPath,
+                    'image' => storage_url() . '/images/' . $articleImagesPath,
                     'category' => $article->getCategory()->getId()
                 ]
             );
