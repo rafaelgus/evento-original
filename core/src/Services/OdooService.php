@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 
 class OdooService
 {
+
     const BASE_URL = 'http://alfonso.movilcrm.com:8070';
     const EMAIL = 'rest@gmail.com';
     const PASSWORD = '123456';
@@ -94,18 +95,6 @@ class OdooService
         return json_decode($articles, true);
     }
 
-    public function SyncArticle(int $articleId)
-    {
-        $uri = "/api/product.template/update/". $articleId ."?token=". $this->getToken() ."&update_vals={'rm_sync':'True'}";
-
-        $response = $this->connect(self::HTTP_METHOD_GET, $uri);
-
-        if ($response->getStatusCode() === self::STATUS_CODE_OK) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public function getSyncArticles()
     {
@@ -174,8 +163,8 @@ class OdooService
                 $data[self::NAME],
                 'description',
                 'description',
-                self::BARCODE,
-                self::DEFAULT_CODES,
+                $data[self::BARCODE],
+                $data[self::DEFAULT_CODES],
                 'draft',
                 $data[self::NAME],
                 $data[self::LIST_PRICE],
@@ -240,7 +229,52 @@ class OdooService
                         $flavours,
                         $tag
                     );
+
+                    $this->setSync($article[self::ID]);
                 }
+            }
+        }
+    }
+
+    public function syncArticle(array $article)
+    {
+        $webCategoriesId = $article[self::CATEGORIES];
+        $allergensId = $article[self::ALLERGENS];
+
+        if (count($webCategoriesId) != 0) {
+            $allergens = $this->syncAllergens($allergensId);
+
+            $categories = $this->syncWebCategories($webCategoriesId);
+
+            if (count($categories) > 0) {
+                $category =  $this->categoryService->findOneById(1, App::getLocale());
+                $brand = $this->brandService->findOneById(1);
+
+                $color = [];
+                $flavours = [];
+                $tag = [];
+
+                if (array_key_exists('colors', $categories)) {
+                    $color[] = $categories['colors'];
+                }
+                if (array_key_exists('flavours', $categories)) {
+                    $flavours[] = $categories['flavours'];
+                }
+                if (array_key_exists('tags', $categories)) {
+                    $tag[] = $categories['tags'];
+                }
+
+                $this->buildArticle(
+                    $article,
+                    $color,
+                    $brand,
+                    $allergens,
+                    $category,
+                    $flavours,
+                    $tag
+                );
+
+                //$this->setSync($article[self::ID]);
             }
         }
     }
@@ -354,7 +388,13 @@ class OdooService
     {
         $token = $this->getToken();
 
-        $uri = "/api/product.template/update/9274?token=dc1b51f7876c4ed49b1521cb72b21c2f&update_vals={'rm_sync':'True'}";
+        $uri = "/api/product.template/update/". $articleId ."?token=". $token ."&update_vals={'rm_sync':'True'}";
+
+        $this->connect(self::HTTP_METHOD_GET, $uri);
+    }
+
+    public function handle()
+    {
 
     }
 }

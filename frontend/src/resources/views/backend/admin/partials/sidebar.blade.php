@@ -121,6 +121,13 @@
             <li><a href="/management/menus">{{ trans('backend/menus.view') }}</a></li>
         </ul>
     </li>
+    <li class="header">Odoo</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-list"></i> <span>Articulos</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/odoo/articles">Sync articulos </a></li>
+        </ul>
+    </li>
 
     <li class="header">{{ trans('texts.sections.stock.title') }}</li>
     <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>

@@ -1,8 +1,7 @@
 <?php
 
 Auth::routes();
-Route::get('/odoo', 'Frontend\OdooController@showToken');
-Route::get('/odoo2', 'Frontend\OdooController@showNotSyncArticles');
+
 Route::get('/', 'Frontend\ArticleController@getHome');
 
 Route::get(
@@ -193,6 +192,10 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit-subitem', 'Backend\MenuItemController@editSubitem');
             Route::put('/{id}/edit-subitem', 'Backend\MenuItemController@updateSubitem');
             Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
+        });
+        Route::group(['prefix' => '/odoo'], function () {
+            Route::get('/articles', 'Backend\OdooController@showNotSyncArticles');
+            Route::post('/articles/sync', 'Backend\OdooController@syncArticles');
         });
     });
 });
