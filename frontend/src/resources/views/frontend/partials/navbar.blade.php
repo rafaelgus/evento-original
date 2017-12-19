@@ -57,7 +57,7 @@
                     </div>
                 </li>
 
-                @endforeach'9m
+                @endforeach
                 <li class="mega-menu"><a href="/{{ trans('sections.contact') }}"
                                          class="level-top"><span>{{ trans('sections.contact') }}</span></a>
                 </li>
