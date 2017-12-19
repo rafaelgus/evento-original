@@ -20,7 +20,7 @@ class DesignerController
 
     public function showEditor()
     {
-        return view('frontend/designer.editor');
+        return view('frontend/designer.editor_edible_paper_a4');
     }
 
     public function storeDesign(StoreDesignRequest $request)

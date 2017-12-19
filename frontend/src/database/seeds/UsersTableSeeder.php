@@ -14,7 +14,12 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@eventooriginal.com',
-            'password' => bcrypt('secret')
+            'password' => bcrypt('secret'),
+        ]);
+
+        DB::table('users_roles')->insert([
+            'user_id' => 1,
+            'role_id' => 1,
         ]);
     }
 }

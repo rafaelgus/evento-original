@@ -39,7 +39,7 @@ Route::get('/mi-cuenta', function () {
     return view('frontend.profile.my_account');
 })->middleware('auth');
 
-Route::get('/editor', 'Frontend\DesignerController@showEditor');
+Route::get('/editor-edible-paper-a4', 'Frontend\DesignerController@showEditor');
 
 Route::group(['middleware' => ['auth', 'designer']], function () {
     Route::post('/save-design', 'Frontend\DesignerController@storeDesign')->name('save_design');

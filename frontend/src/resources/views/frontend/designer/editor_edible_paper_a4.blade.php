@@ -2,17 +2,17 @@
 
 @section('scripts_header')
     <style>
-        .canvas-container {
-            background-color: #EBEBEB;
-            text-align: center;
-            margin: 0px auto;
-            width: 100%;
-            height: 700px;
-        }
+        /*.canvas-container {*/
+        /*background-color: #EBEBEB;*/
+        /*text-align: center;*/
+        /*margin: 0px auto;*/
+        /*width: 100%;*/
+        /*height: 700px;*/
+        /*}*/
 
-        .canvas-paper-a4 {
-            margin-top: 50px;
-        }
+        /*.canvas-paper-a4 {*/
+        /*margin-top: 50px;*/
+        /*}*/
 
         .fa-rotate-45 {
             -webkit-transform: rotate(45deg);
@@ -47,35 +47,41 @@
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.6/jquery.minicolors.min.css"/>
-    <link href="css/bootstrap-tour.min.css" rel="stylesheet">
+    <link href="/editor-assets/css/bootstrap-tour.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
-    <section id="papel-comestible">
+    <section class="editor" id="editor">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Papel comestible A4 - Diseño libre</h2>
+                    <h2 class="title">Papel Comestible A4</h2>
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <div class="col-md-2" style="width: 235px;">
-                    <div class="btn-group-vertical btn-block">
-                        <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary" id="add-text">
-                            Agregar
-                            Texto
-                        </button>
-
-                        <div style="height:0px;overflow:hidden">
-                            <input type="file" id="imageInput" name="imageInput"/>
-                        </div>
-                        <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary" id="add-image">
-                            Agregar Imagen
-                        </button>
+                <div class="col-md-7" style="position:relative;">
+                    <div class="canvas-container">
+                        <canvas class="canvas-paper-a4" id="canvas-paper-a4"></canvas>
                     </div>
+                    {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
+                </div>
+
+                <div class="col-md-5 editor-tools">
+                    <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary add-button" id="add-text">
+                        <i class="fa fa-pencil"></i> {{ trans('editor.add_text') }}
+                    </button>
+
+                    <div style="height:0px;overflow:hidden">
+                        <input type="file" id="imageInput" name="imageInput"/>
+                    </div>
+
+                    <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary add-button" id="add-image">
+                        <i class="fa fa-camera"></i> {{ trans('editor.add_image') }}
+                    </button>
+
                     <div id="canvas-tools">
                         <div class="form-group">
-                            <label for="canvas-color">Color de fondo:</label>
+                            <label for="canvas-color">{{ trans('editor.background_color') }}:</label>
                             <input type="text" id="canvas-color" class="form-control" value="#ffffff">
                         </div>
                     </div>
@@ -100,7 +106,8 @@
                     </div>
                     <br>
 
-                    <form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}" method="POST">
+                    <form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}"
+                          method="POST">
                         @include('backend.messages.session')
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="json" id="json" value="">
@@ -114,15 +121,7 @@
                     </form>
                 </div>
 
-                <div class="col-md-7" style="position:relative;">
-                    <div class="canvas-container">
-                        <canvas class="canvas-paper-a4" id="canvas-paper-a4" width="3124" height="3124"
-                                style="width:600px;height:600px;"></canvas>
-                    </div>
-                    {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
-                </div>
-
-                <div class="col-md-2">
+                <div class="col-md-12">
                     <div class="" id="text-tools" hidden>
                         <div id="text-controls">
                             <div class="form-group">
