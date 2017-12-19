@@ -25,7 +25,7 @@ class StoreMenuItemRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'url' => 'required|max:255',
+            'url' => 'required_if:category_id,null|max:255',
             'position' => 'required|numeric',
         ];
     }

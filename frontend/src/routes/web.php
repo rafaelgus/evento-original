@@ -192,6 +192,8 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit-subitem', 'Backend\MenuItemController@editSubitem');
             Route::put('/{id}/edit-subitem', 'Backend\MenuItemController@updateSubitem');
             Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
+            Route::get('/{id}/edit', 'Backend\MenuItemController@edit');
+            Route::put('/{id}', 'Backend\MenuItemController@update');
         });
         Route::group(['prefix' => '/odoo'], function () {
             Route::get('/articles', 'Backend\OdooController@showNotSyncArticles');

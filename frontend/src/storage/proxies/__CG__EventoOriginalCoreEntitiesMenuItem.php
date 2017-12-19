@@ -64,10 +64,17 @@ class MenuItem extends \EventoOriginal\Core\Entities\MenuItem implements \Doctri
     public function __sleep()
     {
         if ($this->__isInitialized__) {
+<<<<<<< HEAD
             return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'title', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'position', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'url', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'menu', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'subitems', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'visible'];
         }
 
         return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'title', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'position', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'url', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'menu', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'subitems', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'visible'];
+=======
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'title', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'position', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'url', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'menu', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'subitems', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'visible', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'category'];
+        }
+
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'title', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'position', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'url', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'level', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'menu', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'subitems', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'parent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'translations', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'visible', '' . "\0" . 'EventoOriginal\\Core\\Entities\\MenuItem' . "\0" . 'category'];
+>>>>>>> master
     }
 
     /**
@@ -430,4 +437,29 @@ class MenuItem extends \EventoOriginal\Core\Entities\MenuItem implements \Doctri
         return parent::setMenu($menu);
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * {@inheritDoc}
+     */
+    public function getCategory()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCategory', []);
+
+        return parent::getCategory();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCategory(?\EventoOriginal\Core\Entities\Category $category): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCategory', [$category]);
+
+        parent::setCategory($category);
+    }
+
+>>>>>>> master
 }

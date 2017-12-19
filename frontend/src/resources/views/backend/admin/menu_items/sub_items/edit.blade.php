@@ -39,11 +39,26 @@
                                 </div>
                             </div>
 
+                            <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
+                                <label for="inputCategory" class="col-sm-2 control-label">{{ trans('backend/menu_item.category') }}</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" name="category_id" id="inputCategory" style="width: 100%">
+                                        <option></option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->getId() }}"  {{ (old('category_id', ($subitem->getCategory() ? $subitem->getCategory()->getId() : '')) == $category->getId() ? "selected" : "") }}>
+                                                {{ $category->getName() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    {!! $errors->first('category_id', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('url') ? 'has-error' : '' }}">
                                 <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputUrl" name="url"
-                                           placeholder="{{ trans('backend/menu_item.url') }}" required value="{{ old('url', $subitem->getUrl()) }}">
+                                           placeholder="{{ trans('backend/menu_item.url') }}" value="{{ old('url', $subitem->getUrl()) }}">
                                     {!! $errors->first('url', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
@@ -85,7 +100,7 @@
 
                                         @foreach($subitem->getSubitems() as $subsubitem)
                                             <div id="subitem">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="inputTitle" class="col-sm-2 control-label">{{ trans('backend/menu_item.title') }}</label>
                                                     <div class="col-sm-10">
@@ -94,16 +109,31 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
+                                                    <label for="inputCategory" class="col-sm-2 control-label">{{ trans('backend/menu_item.category') }}</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="inputUrl" name="sub_items_urls[]" required
-                                                               placeholder="{{ trans('backend/menu_item.url') }}" value="{{ $subsubitem->getUrl() }}">
+                                                        <select class="form-control select2" name="sub_items_categories[]" id="inputCategory" style="width: 100%">
+                                                            <option></option>
+                                                            @foreach($categories as $category)
+                                                                <option value="{{ $category->getId() }}" {{ (($subsubitem->getCategory() ? $subsubitem->getCategory()->getId() : '') == $category->getId() ? "selected" : "") }}>
+                                                                    {{ $category->getName() }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
 
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="inputUrl" class="col-sm-2 control-label">{{ trans('backend/menu_item.url') }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="inputUrl" name="sub_items_urls[]"
+                                                               placeholder="{{ trans('backend/menu_item.url') }}" value="{{ $subsubitem->getUrl() }}">
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                             <div class="col-sm-1">
@@ -137,9 +167,49 @@
 @section('scripts_body')
     <script>
         $('#add-sub-item').click(function () {
-            $('#subitems').append("<div id=\"subitem\"><div class=col-sm-6><div class=form-group><label class=\"col-sm-2 control-label\"for=inputTitle>{{ trans('backend/menu_item.title') }}</label><div class=col-sm-10><input class=form-control id=inputTitle name=sub_items_titles[] required placeholder=\"{{ trans('backend/menu_item.title') }}\"value=\"{{ old('title') }}\"></div></div></div><div class=col-sm-5><div class=form-group><label class=\"col-sm-2 control-label\"for=inputUrl>{{ trans('backend/menu_item.url') }}</label><div class=col-sm-10><input class=form-control id=inputUrl name=sub_items_urls[] required placeholder=\"{{ trans('backend/menu_item.url') }}\"value=\"{{ old('url') }}\"type=text></div></div></div><div class=\"col-sm-1\">\n" +
-                "                                                <button class= \"del btn btn-danger glyphicon glyphicon-remove row-remove\" type=\"button\"></button>\n" +
-                "                                            </div></div>");
+            $('#subitems').append("<div id=\"subitem\">\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-4\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputTitle\" class=\"col-sm-2 control-label\">{{ trans('backend/menu_item.title') }}</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <input type=\"text\" class=\"form-control\" id=\"inputTitle\" name=\"sub_items_titles[]\" required\n" +
+                "                                                           placeholder=\"{{ trans('backend/menu_item.title') }}\" value=\"{{ old('title') }}\">\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-4\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputCategory\" class=\"col-sm-2 control-label\">{{ trans('backend/menu_item.category') }}</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <select class=\"form-control select2\" name=\"sub_items_categories[]\" id=\"inputCategory\" style=\"width: 100%\">\n" +
+                "                                                        <option></option>\n" +
+                "                                                        @foreach($categories as $category)\n" +
+                "                                                            <option value=\"{{ $category->getId() }}\">\n" +
+                "                                                                {{ $category->getName() }}\n" +
+                "                                                            </option>\n" +
+                "                                                        @endforeach\n" +
+                "                                                    </select>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-3\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputUrl\" class=\"col-sm-2 control-label\">{{ trans('backend/menu_item.url') }}</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <input type=\"text\" class=\"form-control\" id=\"inputUrl\" name=\"sub_items_urls[]\"\n" +
+                "                                                           placeholder=\"{{ trans('backend/menu_item.url') }}\" value=\"{{ old('url') }}\">\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-1\">\n" +
+                "                                            <button id=\"del\" class=\"del btn btn-danger glyphicon glyphicon-remove row-remove\" type=\"button\"></button>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        </div>");
             $('.del').on("click", function () {
                 $(this).closest("#subitem").remove();
             });
