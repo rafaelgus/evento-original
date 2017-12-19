@@ -392,9 +392,4 @@ class OdooService
 
         $this->connect(self::HTTP_METHOD_GET, $uri);
     }
-
-    public function handle()
-    {
-
-    }
 }
