@@ -59,7 +59,8 @@
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <div class="col-md-7" style="position:relative;">
+                <div class="col-md-1"></div>
+                <div class="col-md-5" style="position:relative;">
                     <div class="canvas-container">
                         <canvas class="canvas-paper-a4" id="canvas-paper-a4"></canvas>
                     </div>
@@ -67,79 +68,49 @@
                 </div>
 
                 <div class="col-md-5 editor-tools">
-                    <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary add-button" id="add-text">
-                        <i class="fa fa-pencil"></i> {{ trans('editor.add_text') }}
-                    </button>
+                    <div id="canvas-tools" class="canvas-tools">
+                        <div class="form-group row">
+                            <label for="canvas-color" class="col-sm-4 col-form-label">{{ trans('editor.background_color') }}:</label>
 
-                    <div style="height:0px;overflow:hidden">
-                        <input type="file" id="imageInput" name="imageInput"/>
-                    </div>
-
-                    <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary add-button" id="add-image">
-                        <i class="fa fa-camera"></i> {{ trans('editor.add_image') }}
-                    </button>
-
-                    <div id="canvas-tools">
-                        <div class="form-group">
-                            <label for="canvas-color">{{ trans('editor.background_color') }}:</label>
-                            <input type="text" id="canvas-color" class="form-control" value="#ffffff">
-                        </div>
-                    </div>
-                    <h3>Capas</h3>
-                    <div id="layers">
-                        <span id="no-layer">Cuando agregue texto o imagenes apareceran aquí</span>
-                        <div class="list-group" id="container-layers">
+                            <div class="col-sm-8">
+                                <input type="text" id="canvas-color" class="form-control" value="#ffffff">
+                            </div>
                         </div>
 
-                        <button type="button" class="btn btn-xs btn-primary" id="deselect-all" style="display:none">
-                            Deseleccionar todas
+                        <button data-target="#tools-text" type="button" class="btn btn-lg btn-primary add-button" id="add-text">
+                            <i class="fa fa-pencil"></i> {{ trans('editor.add_text') }}
+                        </button>
+
+                        <div style="height:0px;overflow:hidden">
+                            <input type="file" id="imageInput" name="imageInput"/>
+                        </div>
+
+                        <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary add-button" id="add-image">
+                            <i class="fa fa-camera"></i> {{ trans('editor.add_image') }}
                         </button>
                     </div>
-                    <br>
-                    <div>
-                        <div class="btn-group-vertical btn-block">
-                            <button type="button" class="btn btn-lg btn-info" id="save-image">Guardar como imagen
-                            </button>
-                            <button type="button" class="btn btn-lg btn-warning" id="save-svg">Guardar como SVG</button>
-                            <button type="button" class="btn btn-lg btn-danger" id="save-json">JSON</button>
-                        </div>
-                    </div>
-                    <br>
 
-                    <form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}"
-                          method="POST">
-                        @include('backend.messages.session')
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="json" id="json" value="">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="Nombre del diseño"/>
-                            <button type="button" class="btn btn-lg btn-success form-control" id="save-design">
-                                Guardar diseño
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-12">
-                    <div class="" id="text-tools" hidden>
+                    <div class="text-tools" id="text-tools" hidden>
                         <div id="text-controls">
                             <div class="form-group">
-                                <label for="text">Texto:</label>
-                                <textarea rows="2" class="form-control" id="text"></textarea>
+                                <textarea rows="3" class="form-control" id="text"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="text-color">Color:</label>
-                                <input type="text" id="text-color" class="form-control" value="#70c24a">
+                                <label for="text-color" class="col-sm-4 col-form-label">{{ trans('editor.color') }}:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="text-color" class="form-control" value="#70c24a">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="text-font">Fuente:</label>
-                                <select class="form-control" id="text-font">
-                                    <option value="Arial" class="Arial">Arial</option>
-                                    <option value="Courier" class="Courier">Courier</option>
-                                    <option value="Comic Sans MS" class="ComicSansMS">Cairo</option>
-                                    <option style="font-family: 'Fascinate Inline' !important;">Courgette</option>
-                                </select>
+                                <label for="text-font" class="col-sm-4 col-form-label">Fuente:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="text-font">
+                                        <option value="Arial" class="Arial">Arial</option>
+                                        <option value="Courier" class="Courier">Courier</option>
+                                        <option value="Comic Sans MS" class="ComicSansMS">Cairo</option>
+                                        <option style="font-family: 'Fascinate Inline' !important;">Courgette</option>
+                                    </select>
+                                </div>
                             </div>
                             <!--<div class="form-group">-->
                             <!--<label for="text-line-height">Altura de la línea:</label>-->
@@ -225,6 +196,45 @@
                             <label><input type="checkbox" name="block" id="block">Bloquear</label>
                         </div>
                     </div>
+
+
+                    {{--<h3>Capas</h3>--}}
+                    {{--<div id="layers">--}}
+                        {{--<span id="no-layer">Cuando agregue texto o imagenes apareceran aquí</span>--}}
+                        {{--<div class="list-group" id="container-layers">--}}
+                        {{--</div>--}}
+
+                        {{--<button type="button" class="btn btn-xs btn-primary" id="deselect-all" style="display:none">--}}
+                            {{--Deseleccionar todas--}}
+                        {{--</button>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+                    {{--<div>--}}
+                        {{--<div class="btn-group-vertical btn-block">--}}
+                            {{--<button type="button" class="btn btn-lg btn-info" id="save-image">Guardar como imagen--}}
+                            {{--</button>--}}
+                            {{--<button type="button" class="btn btn-lg btn-warning" id="save-svg">Guardar como SVG</button>--}}
+                            {{--<button type="button" class="btn btn-lg btn-danger" id="save-json">JSON</button>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<br>--}}
+
+                    {{--<form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}"--}}
+                          {{--method="POST">--}}
+                        {{--@include('backend.messages.session')--}}
+                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                        {{--<input type="hidden" name="json" id="json" value="">--}}
+                        {{--<div class="form-group">--}}
+                            {{--<input type="text" class="form-control" id="name" name="name"--}}
+                                   {{--placeholder="Nombre del diseño"/>--}}
+                            {{--<button type="button" class="btn btn-lg btn-success form-control" id="save-design">--}}
+                                {{--Guardar diseño--}}
+                            {{--</button>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                </div>
+
+                <div class="col-md-1">
                 </div>
             </div>
         </div>

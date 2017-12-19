@@ -5,10 +5,14 @@ section.editor
     font-size: 3rem
 
   div.canvas-container
+    margin: auto
     canvas.canvas-paper-a4
       border: 1px solid #0c0c0c
 
   div.editor-tools
+    label
+      line-height: 34px
+      font-size: 1.8rem
     button
       margin: 1rem 0
 
@@ -17,7 +21,16 @@ section.editor
       font-size: 2rem
       @extend .futura-medium
 
-    #add-text
+    button.#add-text
+      margin-top: 0
       background-color: $primary-color
-    #add-image
+    button.#add-image
       background-color: $secondary-color
+
+    div.canvas-tools
+      label
+        color: $primary-color
+
+    div.text-tools
+      label
+        color: $secondary-color

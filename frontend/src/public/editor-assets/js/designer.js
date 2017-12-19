@@ -122,11 +122,11 @@ $(document).ready(function () {
         canvas.setActiveObject(text);
 
         $('#text').focus();
+        $('#canvas-tools').hide();
 
         addLayer('Texto' + objectId, objectId);
         id++;
 
-        // Instance the tour
         var tour1 = new Tour({
             name: 'tour2',
             steps: [
@@ -143,11 +143,7 @@ $(document).ready(function () {
             ],
             template: "<div class='popover tour'> <div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <button class='btn btn-default btn-sm' data-role='prev'>« Ant</button> <span data-role='separator'>|</span> <button class='btn btn-default btn-sm' data-role='next'>Sig »</button>  <button class='btn btn-default btn-sm' data-role='end' style='margin-left: 5px'>Cerrar</button> </div> </div>"
         });
-
-// Initialize the tour
         tour1.init();
-
-// Start the tour
         tour1.start();
     });
 
@@ -194,10 +190,11 @@ $(document).ready(function () {
 
                 canvas.setActiveObject(oImg);
 
+                $('#canvas-tools').hide();
+
                 addLayer('Imagen' + objectId, objectId)
                 id++;
 
-                // Instance the tour
                 var tour2 = new Tour({
                     name: 'tour35',
                     backdropPadding: 'left',
@@ -218,10 +215,7 @@ $(document).ready(function () {
                     template: "<div class='popover tour'> <div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <button class='btn btn-default btn-sm' data-role='prev'>« Ant</button> <span data-role='separator'>|</span> <button class='btn btn-default btn-sm' data-role='next'>Sig »</button>  <button class='btn btn-default btn-sm' data-role='end' style='margin-left: 5px'>Cerrar</button> </div> </div>"
                 });
 
-// Initialize the tour
                 tour2.init();
-
-// Start the tour
                 tour2.start();
             });
         };

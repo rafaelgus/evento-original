@@ -985,7 +985,7 @@ var app = new Vue({
 /* 10 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: ModuleBuildError: Module build failed: \n    button.#add-text\n   ^\n      Property \"button\" must be followed by a ':'\n      in /home/emirodriguez/Code/evento-original/frontend/src/resources/assets/sass/_editor.sass (line 24, column 5)\n    at runLoaders (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/webpack/lib/NormalModule.js:192:19)\n    at /home/emirodriguez/Code/evento-original/frontend/src/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /home/emirodriguez/Code/evento-original/frontend/src/node_modules/loader-runner/lib/LoaderRunner.js:230:18\n    at context.callback (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at Object.asyncSassJobQueue.push [as callback] (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/sass-loader/lib/loader.js:55:13)\n    at Object.<anonymous> (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/sass-loader/node_modules/async/dist/async.js:2257:31)\n    at Object.callback (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/sass-loader/node_modules/async/dist/async.js:958:16)\n    at options.error (/home/emirodriguez/Code/evento-original/frontend/src/node_modules/node-sass/lib/index.js:294:32)");
 
 /***/ }),
 /* 11 */
