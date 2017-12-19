@@ -32,7 +32,7 @@ class MenuItem
     private $position;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $url;
 
@@ -80,6 +80,12 @@ class MenuItem
      * @ORM\Column(type="boolean")
      */
     private $visible;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     */
+    private $category;
 
     public function __construct()
     {
@@ -146,7 +152,7 @@ class MenuItem
     /**
      * @param string $url
      */
-    public function setUrl(string $url)
+    public function setUrl(?string $url)
     {
         $this->url = $url;
     }
@@ -266,5 +272,21 @@ class MenuItem
     public function setMenu($menu)
     {
         $this->menu = $menu;
+    }
+
+    /**
+     * @return Category|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory(?Category $category): void
+    {
+        $this->category = $category;
     }
 }

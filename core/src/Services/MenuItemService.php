@@ -10,13 +10,16 @@ class MenuItemService
 {
     private $menuItemRepository;
     private $menuService;
+    private $categoryService;
 
     public function __construct(
         MenuItemRepository $menuItemRepository,
-        MenuService $menuService
+        MenuService $menuService,
+        CategoryService $categoryService
     ) {
         $this->menuItemRepository = $menuItemRepository;
         $this->menuService = $menuService;
+        $this->categoryService = $categoryService;
     }
 
     public function findByMenu(Menu $menu, string $locale)
@@ -33,13 +36,40 @@ class MenuItemService
     {
         $menuItem = new MenuItem();
         $menuItem->setTitle($data['title']);
-        $menuItem->setUrl($data['url']);
         $menuItem->setPosition($data['position']);
         $menuItem->setLevel(1);
         $menuItem->setVisible(isset($data['visible']));
 
         $menu = $this->menuService->findById($data['menu_id']);
         $menuItem->setMenu($menu);
+
+        if (array_get($data, 'category_id')) {
+            $category = $this->categoryService->findOneById($data['category_id']);
+
+            $menuItem->setCategory($category);
+        } else {
+            $menuItem->setUrl(array_get($data, 'url'));
+        }
+
+        return $this->menuItemRepository->save($menuItem);
+    }
+
+    public function update(MenuItem $menuItem, array $data)
+    {
+        $menuItem->setTitle($data['title']);
+        $menuItem->setPosition($data['position']);
+        $menuItem->setVisible(isset($data['visible']));
+
+        $menu = $this->menuService->findById($data['menu_id']);
+        $menuItem->setMenu($menu);
+
+        if (array_get($data, 'category_id')) {
+            $category = $this->categoryService->findOneById($data['category_id']);
+
+            $menuItem->setCategory($category);
+        } else {
+            $menuItem->setUrl(array_get($data, 'url'));
+        }
 
         return $this->menuItemRepository->save($menuItem);
     }
@@ -48,7 +78,15 @@ class MenuItemService
     {
         $menuItem = new MenuItem();
         $menuItem->setTitle($data['title']);
-        $menuItem->setUrl($data['url']);
+
+        if (array_key_exists('category_id', $data)) {
+            $category = $this->categoryService->findOneById($data['category_id']);
+
+            $menuItem->setCategory($category);
+        } else {
+            $menuItem->setUrl(array_get($data, 'url'));
+        }
+
         $menuItem->setPosition($data['position']);
         $menuItem->setLevel(1);
         if (isset($data['imageUrl'])) {
@@ -62,7 +100,15 @@ class MenuItemService
         foreach ($data['sub_items_titles'] as $i => $title) {
             $subitem = new MenuItem();
             $subitem->setTitle($title);
-            $subitem->setUrl($data['sub_items_urls'][$i]);
+
+            $subitemCategoryId = $data['sub_items_categories'][$i];
+            $subitemCategory = $this->categoryService->findOneById($subitemCategoryId);
+            if ($subitemCategory) {
+                $subitem->setCategory($subitemCategory);
+            } else {
+                $subitem->setUrl($data['sub_items_urls'][$i]);
+            }
+
             $subitem->setLevel(2);
             $subitem->setPosition($i);
             $subitem->setParent($menuItem);
@@ -77,9 +123,16 @@ class MenuItemService
     public function updateSubitem(MenuItem $menuItem, array $data)
     {
         $menuItem->setTitle($data['title']);
-        $menuItem->setUrl($data['url']);
         $menuItem->setPosition($data['position']);
         $menuItem->setLevel(1);
+
+        if (array_key_exists('category_id', $data)) {
+            $category = $this->categoryService->findOneById($data['category_id']);
+
+            $menuItem->setCategory($category);
+        } else {
+            $menuItem->setUrl($data['url']);
+        }
 
         if (isset($data['imageUrl'])) {
             $menuItem->setImage($data['imageUrl']);
@@ -94,7 +147,18 @@ class MenuItemService
         foreach ($data['sub_items_titles'] as $i => $title) {
             $subitem = new MenuItem();
             $subitem->setTitle($title);
+
+            $subitemCategoryId = $data['sub_items_categories'][$i];
+            $subitemCategory = null;
+
+            if ($subitemCategoryId) {
+                $subitemCategory = $this->categoryService->findOneById($subitemCategoryId);
+                $subitem->setCategory($subitemCategory);
+            }
+
+            $subitem->setCategory($subitemCategory);
             $subitem->setUrl($data['sub_items_urls'][$i]);
+
             $subitem->setLevel(2);
             $subitem->setPosition($i);
             $subitem->setParent($menuItem);
