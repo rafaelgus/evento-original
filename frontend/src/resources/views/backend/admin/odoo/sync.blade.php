@@ -51,6 +51,7 @@
                 }
             };
             xhr.send();
+            alert('Los articulos se sincronizaran en segundo plano');
         }
     </script>
 @endsection

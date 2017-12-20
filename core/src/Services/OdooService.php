@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\App;
 
 class OdooService
 {
-
     const BASE_URL = 'http://alfonso.movilcrm.com:8070';
     const EMAIL = 'rest@gmail.com';
     const PASSWORD = '123456';
