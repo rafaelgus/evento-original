@@ -37,6 +37,9 @@
                                 <tr>
                                     <td>{{ $item->getTitle() }}</td>
                                     <td><a class="btn btn-default" href="{{ "/management/menu-item/" . $item->getId(). "" }}">Ver</a>
+
+                                        <a class="btn btn-primary" href="{{ "/management/menu-item/" . $item->getId(). "/edit" }}">Editar</a>
+
                                         <form method="POST" action={{"/management/menu-item/" . $item->getId()."/edit-subitem"}}>
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="_method" value="DELETE">

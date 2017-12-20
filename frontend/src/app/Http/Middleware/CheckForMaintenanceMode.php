@@ -45,7 +45,13 @@ class CheckForMaintenanceMode
      */
     public function handle($request, Closure $next)
     {
-        if ($this->app->isDownForMaintenance() && !$this->inExceptArray($request)) {
+        $currentUserIsAdmin = false;
+
+        if (current_user()) {
+            $currentUserIsAdmin = current_user()->isAdmin();
+        }
+
+        if ($this->app->isDownForMaintenance() && !$currentUserIsAdmin && !$this->inExceptArray($request)) {
             $data = json_decode(file_get_contents($this->app->storagePath().'/framework/down'), true);
 
             throw new MaintenanceModeException($data['time'], $data['retry'], $data['message']);
