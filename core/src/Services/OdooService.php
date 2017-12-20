@@ -165,7 +165,7 @@ class OdooService
                 $data[self::BARCODE],
                 $data[self::DEFAULT_CODES],
                 'draft',
-                $data[self::NAME],
+                str_slug($data[self::NAME]),
                 $data[self::LIST_PRICE],
                 'type',
                 '0',
