@@ -274,7 +274,7 @@ class OdooService
                     $tag
                 );
 
-                //$this->setSync($article[self::ID]);
+                $this->setSync($article[self::ID]);
             }
         }
     }
