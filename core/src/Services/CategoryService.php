@@ -90,8 +90,9 @@ class CategoryService
         $category->setParent($parent);
 
         $this->save($category, true);
-    }
 
+        return $category;
+    }
 
     public function isChildren(Category $parent, Category $children)
     {
@@ -107,5 +108,10 @@ class CategoryService
     public function findBySlug(string $slug, string $locale = 'es')
     {
         return $this->categoryRepository->findBySlug($slug, $locale);
+    }
+
+    public function findByName(string $name)
+    {
+        return $this->categoryRepository->findOneBy(['name' => $name]);
     }
 }
