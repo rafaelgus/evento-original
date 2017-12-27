@@ -1,30 +1,49 @@
 section.editor
+  label
+    display: inline-block
+    vertical-align: middle
+    margin-bottom: 0
+    font-size: 1.8rem
+    color: $secondary-color
+  label.label-form
+    margin-left: 1rem
+
+  button.active
+    background-color: $secondary-color !important
+
   h2.title
     @extend .trade-gothic-20
     color: $secondary-color
     font-size: 3rem
 
   div.canvas-container
-    margin: auto
     canvas.canvas-paper-a4
       border: 1px solid #0c0c0c
 
-  div.editor-tools
-    label
-      line-height: 34px
-      font-size: 1.8rem
-    button
-      margin: 1rem 0
+  h2.tools-title
+    margin-top: 0
+    padding-bottom: 1rem
+    border-bottom: 1px solid #d2d1d1
+    text-align: left
+    text-transform: uppercase
+    @extend .choplin-medium
+    color: $primary-color
 
+  .col-form-label
+    line-height: 34px
+    font-size: 2rem
+    text-align: right
+
+  div.editor-tools
     .add-button
       width: 100%
       font-size: 2rem
       @extend .futura-medium
 
-    button.#add-text
-      margin-top: 0
+    #add-text
       background-color: $primary-color
-    button.#add-image
+    #add-image
+      margin: 1rem 0
       background-color: $secondary-color
 
     div.canvas-tools
@@ -34,3 +53,53 @@ section.editor
     div.text-tools
       label
         color: $secondary-color
+
+  .add-to-box
+    .add-to-cart
+      label
+        display: inline-block
+        float: left
+        line-height: 40px
+        text-align: left
+        text-transform: capitalize
+        font-weight: normal
+        color: $secondary-color !important
+      button.btn-cart
+        background-color: $primary-color
+        color: white
+        @extend .futura-bold
+        font-size: 2rem
+
+      button.items-count
+        line-height: 2rem
+        height: inherit
+        width: inherit
+        padding: 13px 14px 9px 14px
+      input.qty
+        line-height: 2rem
+        padding: 13px 0 9px 0
+        height: inherit
+
+      .quantity-label
+        @media (max-width: 768px)
+          display: none
+
+  div.text-tools
+    label
+      color: $secondary-color
+
+    div.other-text-tools
+      button
+        background-color: $primary-color
+        font-size: 1.8rem
+
+  div.common-tools
+    .icon-button
+      background-color: $primary-color
+      font-size: 1.8rem
+
+  .finalize-button
+    width: 100%
+    font-size: 1.9rem
+    @extend .futura-medium
+    background-color: $secondary-color

@@ -19,53 +19,53 @@ $(document).ready(function () {
     });
 
     fabric.Object.prototype.setControlsVisibility({
-        ml: false,
-        mr: false,
-        mb: false,
-        mtr: false,
-        mt: false,
-        br: false
+        ml: true,
+        mr: true,
+        mb: true,
+        mtr: true,
+        mt: true,
+        br: true
     });
-
-    fabric.Object.prototype.customiseCornerIcons({
-        settings: {
-            borderColor: '#0094dd',
-            cornerSize: 25,
-            cornerShape: 'rect'
-        },
-        tr: {
-            icon: '../editor-assets/icons/remove.svg'
-        },
-        br: {
-            icon: '../editor-assets/icons/resize.svg'
-        },
-        mt: {
-            icon: '../editor-assets/icons/rotate.svg'
-        }
-    }, function () {
-        canvas.renderAll();
-    });
-
-    fabric.Canvas.prototype.customiseControls({
-        bl: {
-            action: function () {
-                var selectedObject = canvas.getActiveObject();
-
-                selectedObject.visible = false;
-
-                canvas.remove(selectedObject);
-                canvas.renderAll();
-            },
-            cursor: 'pointer'
-        },
-        tr: {
-            action: 'scale'
-        },
-        tl: {
-            action: 'rotate',
-            cursor: 'pointer'
-        }
-    });
+    //
+    // fabric.Object.prototype.customiseCornerIcons({
+    //     settings: {
+    //         borderColor: '#0094dd',
+    //         cornerSize: 25,
+    //         cornerShape: 'rect'
+    //     },
+    //     tr: {
+    //         icon: '../editor-assets/icons/remove.svg'
+    //     },
+    //     br: {
+    //         icon: '../editor-assets/icons/resize.svg'
+    //     },
+    //     mt: {
+    //         icon: '../editor-assets/icons/rotate.svg'
+    //     }
+    // }, function () {
+    //     canvas.renderAll();
+    // });
+    //
+    // fabric.Canvas.prototype.customiseControls({
+    //     bl: {
+    //         action: function () {
+    //             var selectedObject = canvas.getActiveObject();
+    //
+    //             selectedObject.visible = false;
+    //
+    //             canvas.remove(selectedObject);
+    //             canvas.renderAll();
+    //         },
+    //         cursor: 'pointer'
+    //     },
+    //     tr: {
+    //         action: 'scale'
+    //     },
+    //     tl: {
+    //         action: 'rotate',
+    //         cursor: 'pointer'
+    //     }
+    // });
 
     canvas.on({
         'object:moving': function (e) {
@@ -79,6 +79,43 @@ $(document).ready(function () {
         'selection:cleared': onSelectedCleared
     });
 
+    var _prevActive = 0;
+    var _layer = 0;
+
+    fabric.util.addListener(canvas.upperCanvasEl, "dblclick", function (e) {
+        var _canvas = canvas;
+        //current mouse position
+        var _mouse = _canvas.getPointer(e);
+        //active object (that has been selected on click)
+        var _active = _canvas.getActiveObject();
+        //possible dblclick targets (objects that share mousepointer)
+        var _targets = _canvas.getObjects().filter(function (_obj) {
+            return _obj.containsPoint(_mouse) && !_canvas.isTargetTransparent(_obj, _mouse.x, _mouse.y);
+        });
+
+        _canvas.deactivateAll();
+
+        //new top layer target
+        if (_prevActive !== _active) {
+            //try to go one layer below current target
+            _layer = Math.max(_targets.length-2, 0);
+        }
+        //top layer target is same as before
+        else {
+            //try to go one more layer down
+            _layer = --_layer < 0 ? Math.max(_targets.length-2, 0) : _layer;
+        }
+
+        //get obj on current layer
+        var _obj = _targets[_layer];
+
+        if (_obj) {
+            _prevActive = _obj;
+            // _obj.bringToFront();
+            _canvas.setActiveObject(_obj).renderAll();
+        }
+    });
+
     canvas.setWidth(417);
     canvas.setHeight(590);
 
@@ -89,39 +126,40 @@ $(document).ready(function () {
             'Escriba el texto aquí',
             {
                 id: objectId,
-                hasRotatingPoint: false,
+                hasRotatingPoint: true,
                 originX: 'center',
                 originY: 'center'
             });
 
         canvas.centerObject(text);
 
-        text.customiseCornerIcons({
-            settings: {
-                borderColor: 'black',
-                cornerSize: 25,
-                cornerShape: 'rect',
-                cornerBackgroundColor: 'black',
-                cornerPadding: 10
-            },
-            bl: {
-                icon: '../editor-assets/icons/remove.svg'
-            },
-            tr: {
-                icon: '../editor-assets/icons/resize.svg'
-            },
-            tl: {
-                icon: '../editor-assets/icons/rotate.svg'
-            }
-        }, function () {
-            canvas.renderAll();
-        });
+        // text.customiseCornerIcons({
+        //     settings: {
+        //         borderColor: 'black',
+        //         cornerSize: 25,
+        //         cornerShape: 'rect',
+        //         cornerBackgroundColor: 'black',
+        //         cornerPadding: 10
+        //     },
+        //     bl: {
+        //         icon: '../editor-assets/icons/remove.svg'
+        //     },
+        //     tr: {
+        //         icon: '../editor-assets/icons/resize.svg'
+        //     },
+        //     tl: {
+        //         icon: '../editor-assets/icons/rotate.svg'
+        //     }
+        // }, function () {
+        //     canvas.renderAll();
+        // });
 
         canvas.add(text);
 
         canvas.setActiveObject(text);
 
         $('#text').focus();
+        $('#text').select();
         $('#canvas-tools').hide();
 
         addLayer('Texto' + objectId, objectId);
@@ -165,26 +203,26 @@ $(document).ready(function () {
 
                 canvas.centerObject(oImg);
 
-                oImg.customiseCornerIcons({
-                    settings: {
-                        borderColor: 'black',
-                        cornerSize: 25,
-                        cornerShape: 'rect',
-                        cornerBackgroundColor: 'black',
-                        cornerPadding: 10
-                    },
-                    bl: {
-                        icon: '../editor-assets/icons/remove.svg'
-                    },
-                    tr: {
-                        icon: '../editor-assets/icons/resize.svg'
-                    },
-                    tl: {
-                        icon: '../editor-assets/icons/rotate.svg'
-                    }
-                }, function () {
-                    canvas.renderAll();
-                });
+                // oImg.customiseCornerIcons({
+                //     settings: {
+                //         borderColor: 'black',
+                //         cornerSize: 25,
+                //         cornerShape: 'rect',
+                //         cornerBackgroundColor: 'black',
+                //         cornerPadding: 10
+                //     },
+                //     bl: {
+                //         icon: '../editor-assets/icons/remove.svg'
+                //     },
+                //     tr: {
+                //         icon: '../editor-assets/icons/resize.svg'
+                //     },
+                //     tl: {
+                //         icon: '../editor-assets/icons/rotate.svg'
+                //     }
+                // }, function () {
+                //     canvas.renderAll();
+                // });
 
                 canvas.add(oImg).renderAll();
 
@@ -309,6 +347,11 @@ $(document).ready(function () {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('left');
+
+            $(this).addClass("active");
+            $('#btn-align-center').removeClass('active');
+            $('#btn-align-right').removeClass('active');
+
             canvas.renderAll();
         }
     });
@@ -317,6 +360,11 @@ $(document).ready(function () {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('center');
+
+            $(this).addClass("active");
+            $('#btn-align-left').removeClass('active');
+            $('#btn-align-right').removeClass('active');
+
             canvas.renderAll();
         }
     });
@@ -325,6 +373,11 @@ $(document).ready(function () {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('right');
+
+            $(this).addClass("active");
+            $('#btn-align-center').removeClass('active');
+            $('#btn-align-left').removeClass('active');
+
             canvas.renderAll();
         }
     });
@@ -332,7 +385,13 @@ $(document).ready(function () {
     $('#btn-bold').click(function (e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
-            selectedObject.set('fontWeight', (selectedObject.fontWeight == 'bold' ? '' : 'bold'));
+            var isBold = (selectedObject.fontWeight === 'bold');
+            if (isBold) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active");
+            }
+            selectedObject.set('fontWeight', (isBold ? '' : 'bold'));
             canvas.renderAll();
         }
     });
@@ -340,7 +399,13 @@ $(document).ready(function () {
     $('#btn-italic').click(function (e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
-            selectedObject.set('fontStyle', (selectedObject.fontStyle == 'italic' ? '' : 'italic'));
+            var isItalic = (selectedObject.fontStyle === 'italic');
+            if (isItalic) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active");
+            }
+            selectedObject.set('fontStyle', (isItalic ? '' : 'italic'));
             canvas.renderAll();
         }
     });
@@ -348,7 +413,14 @@ $(document).ready(function () {
     $('#btn-underline').click(function (e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
-            selectedObject.setTextDecoration((selectedObject.textDecoration == 'underline' ? '' : 'underline'));
+            var isUnderline = (selectedObject.textDecoration === 'underline');
+            if (isUnderline) {
+                $(this).removeClass("active");
+            } else {
+                $(this).addClass("active");
+            }
+
+            selectedObject.setTextDecoration(isUnderline ? '' : 'underline');
             canvas.renderAll();
         }
     });
@@ -459,7 +531,19 @@ $(document).ready(function () {
         onSelectedCleared();
     });
 
-    $('#text-curved').change(function (e) {
+    $('#finalize-edit-text-button').click(function() {
+        canvas.deactivateAll().renderAll();
+
+        onSelectedCleared();
+    });
+
+    $('#finalize-edit-image-button').click(function() {
+        canvas.deactivateAll().renderAll();
+
+        onSelectedCleared();
+    });
+
+    $('#text-curved').on('change', function (e) {
         if (this.checked) {
             $('#input-radius').show();
             $('#input-spacing').show();
@@ -492,26 +576,26 @@ $(document).ready(function () {
 
             addLayer('Texto' + textSample.id, textSample.id);
 
-            textSample.customiseCornerIcons({
-                settings: {
-                    borderColor: 'black',
-                    cornerSize: 25,
-                    cornerShape: 'rect',
-                    cornerBackgroundColor: 'black',
-                    cornerPadding: 10
-                },
-                bl: {
-                    icon: '../editor-assets/icons/remove.svg'
-                },
-                tr: {
-                    icon: '../editor-assets/icons/resize.svg'
-                },
-                tl: {
-                    icon: '../editor-assets/icons/rotate.svg'
-                }
-            }, function () {
-                canvas.renderAll();
-            });
+            // textSample.customiseCornerIcons({
+            //     settings: {
+            //         borderColor: 'black',
+            //         cornerSize: 25,
+            //         cornerShape: 'rect',
+            //         cornerBackgroundColor: 'black',
+            //         cornerPadding: 10
+            //     },
+            //     bl: {
+            //         icon: '../editor-assets/icons/remove.svg'
+            //     },
+            //     tr: {
+            //         icon: '../editor-assets/icons/resize.svg'
+            //     },
+            //     tl: {
+            //         icon: '../editor-assets/icons/rotate.svg'
+            //     }
+            // }, function () {
+            //     canvas.renderAll();
+            // });
 
             canvas.add(textSample);
             canvas.renderAll();
@@ -532,6 +616,7 @@ $(document).ready(function () {
     function onObjectSelected(e) {
         var selectedObject = e.target;
         $("#text").val("");
+        $('#canvas-tools').hide();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             $("#text-tools").show();
             $("#image-tools").hide();
@@ -549,6 +634,47 @@ $(document).ready(function () {
                 $('#input-spacing').hide();
                 $("#text-curved").prop('checked', false);
             }
+
+            var isBold = (selectedObject.fontWeight === 'bold' );
+            if (isBold) {
+                $('#btn-bold').addClass("active");
+            } else {
+                $('#btn-bold').removeClass("active");
+            }
+
+            var isUnderline = (selectedObject.textDecoration === 'underline');
+            if (isUnderline) {
+                $('#btn-underline').addClass("active");
+            } else {
+                $('#btn-underline').removeClass("active");
+            }
+
+            var isItalic = (selectedObject.fontStyle === "italic");
+            if (isItalic) {
+                $('#btn-italic').addClass("active");
+            } else {
+                $('#btn-italic').removeClass("active");
+            }
+
+            $('#btn-align-left').removeClass("active");
+            $('#btn-align-center').removeClass('active');
+            $('#btn-align-right').removeClass('active');
+
+            var textAlign = selectedObject.getTextAlign();
+            switch (textAlign) {
+                case "left":
+                    $('#btn-align-left').addClass("active");
+                    break;
+                case "center":
+                    $('#btn-align-center').addClass("active");
+                    break;
+                case "right":
+                    $('#btn-align-right').addClass("active");
+                    break;
+            }
+
+            $('#finalize-edit-text-button').show();
+            $('#finalize-edit-image-button').hide();
         }
         else if (selectedObject && selectedObject.type === 'image') {
             $("#text-tools").hide();
@@ -561,6 +687,9 @@ $(document).ready(function () {
             } else {
                 $('#brightness').prop('checked', false);
             }
+
+            $('#finalize-edit-text-button').hide();
+            $('#finalize-edit-image-button').show();
         }
 
         $('#scale').val(selectedObject.getScaleX());
@@ -660,6 +789,7 @@ $(document).ready(function () {
         $("#text").val("");
         $('#common-tools').hide();
         $("#image-tools").hide();
+        $("#canvas-tools").show();
 
         $('.list-group-item').removeClass('active');
     }
@@ -671,9 +801,8 @@ $(document).ready(function () {
     $('#block').change(function () {
         var selectedObject = canvas.getActiveObject();
         selectedObject.set('selectable', !selectedObject.selectable);
+        selectedObject.set('evented', !selectedObject.evented);
         canvas.renderAll();
-
-        alert(1)
     });
 
     $('#clipping').change(function () {

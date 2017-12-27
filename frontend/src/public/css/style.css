@@ -17412,3 +17412,7 @@ a.button.wishlist {
 .circle.selected-circle {
     border: 2px solid black;
 }
+
+.bootstrap-switch-handle-on {
+    background-color: #413C5E !important;
+}
