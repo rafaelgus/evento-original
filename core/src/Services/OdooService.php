@@ -88,7 +88,7 @@ class OdooService
     public function getNotSyncArticles()
     {
         $token = $this->getToken();
-        $uri =  "/api/product.template/search?token". $token ."=&domain=[('sale_ok','=', True),('rm_sync','=', False)]&limit=10000&fields=['name','type','default_code','public_categ_ids','barcode','list_price','rm_ingredientes','rm_alergenos','rm_sync','qty_available']";
+        $uri =  "/api/product.template/search?token". $token ."=&domain=[('sale_ok','=', True),('rm_sync','=', False)]&limit=10000&fields=['name','type','default_code','public_categ_ids','pos_categ_id','barcode','list_price','rm_ingredientes','rm_alergenos','rm_sync','qty_available']";
 
         $articles = $this->connect(self::HTTP_METHOD_GET, $uri);
 
@@ -191,46 +191,53 @@ class OdooService
 
     public function syncArticles()
     {
-        $articles = $this->getNotSyncArticles();
+        $odooArticles = $this->getNotSyncArticles();
 
-        foreach ($articles as $article) {
-            $webCategoriesId = $article[self::CATEGORIES];
-            $allergensId = $article[self::ALLERGENS];
+        foreach ($odooArticles as $odooArticle) {
+            $article = $this->articleService->findByBarcode($odooArticle[self::BARCODE]);
 
-            if (count($webCategoriesId) != 0) {
-                $allergens = $this->syncAllergens($allergensId);
+            if ($article) {
+                $this->updateArticle($odooArticle);
+            } else {
 
-                $categories = $this->syncWebCategories($webCategoriesId);
+                $webCategoriesId = $odooArticle[self::CATEGORIES];
+                $allergensId = $odooArticle[self::ALLERGENS];
 
-                if (count($categories) > 0) {
-                    $category =  $this->syncCategories($article[self::POS_CATEGORIES][0]);
-                    $brand = $this->brandService->findOneById(1);
+                if (count($webCategoriesId) != 0) {
+                    $allergens = $this->syncAllergens($allergensId);
 
-                    $color = [];
-                    $flavours = [];
-                    $tag = [];
+                    $categories = $this->syncWebCategories($webCategoriesId);
 
-                    if (array_key_exists('colors', $categories)) {
-                        $color[] = $categories['colors'];
+                    if (count($categories) > 0) {
+                        $category = $this->syncCategories($odooArticle[self::POS_CATEGORIES][0]);
+                        $brand = $this->brandService->findOneById(1);
+
+                        $color = [];
+                        $flavours = [];
+                        $tag = [];
+
+                        if (array_key_exists('colors', $categories)) {
+                            $color[] = $categories['colors'];
+                        }
+                        if (array_key_exists('flavours', $categories)) {
+                            $flavours[] = $categories['flavours'];
+                        }
+                        if (array_key_exists('tags', $categories)) {
+                            $tag[] = $categories['tags'];
+                        }
+
+                        $this->buildArticle(
+                            $odooArticle,
+                            $color,
+                            $brand,
+                            $allergens,
+                            $category,
+                            $flavours,
+                            $tag
+                        );
                     }
-                    if (array_key_exists('flavours', $categories)) {
-                        $flavours[] = $categories['flavours'];
-                    }
-                    if (array_key_exists('tags', $categories)) {
-                        $tag[] = $categories['tags'];
-                    }
 
-                    $this->buildArticle(
-                        $article,
-                        $color,
-                        $brand,
-                        $allergens,
-                        $category,
-                        $flavours,
-                        $tag
-                    );
-
-                    $this->setSync($article[self::ID]);
+                    //$this->setSync($odooArticle[self::ID]);
                 }
             }
         }
@@ -279,7 +286,7 @@ class OdooService
                         $tag
                     );
 
-                    $this->setSync($odooArticle[self::ID]);
+                    //$this->setSync($odooArticle[self::ID]);
                 }
             }
         }
@@ -407,11 +414,19 @@ class OdooService
 
         $odooCategory = $this->connect(self::HTTP_METHOD_GET, $uri);
 
-        return $odooCategory;
+        $odooCategory = json_decode($odooCategory, true);
+
+        return $odooCategory[0];
     }
 
-    public function syncCategories(int $categoryId)
+    public function syncCategories(int $categoryId = null)
     {
+        if (!$categoryId) {
+            $category = $this->categoryService->findOneById(1);
+
+            return $category;
+        }
+
         $odooCategory = $this->getCategory($categoryId);
 
         $category = $this->categoryService->findByName($odooCategory[self::NAME]);
@@ -440,6 +455,7 @@ class OdooService
                             str_slug($odooCategoryParent[self::NAME]),
                             ''
                         );
+                    return $categoryParent;
                 } else {
                     $category = $this->categoryService->createChildren(
                         $categoryParent,
@@ -465,32 +481,32 @@ class OdooService
 
         if (count($webCategoriesId) > 0) {
             $webCategories = $this->syncWebCategories($odooArticle[self::CATEGORIES]);
-        }
-        $color = [];
-        $flavours = [];
-        $tag = [];
 
-        if (array_key_exists('colors', $webCategories)) {
-            $color[] = $webCategories['colors'];
-        }
-        if (array_key_exists('flavours', $webCategories)) {
-            $flavours[] = $webCategories['flavours'];
-        }
-        if (array_key_exists('tags', $webCategories)) {
-            $tag[] = $webCategories['tags'];
-        }
-        $article->setColors($color);
-        $article->setFlavours($flavours);
-        $article->setTags($tag);
-        $article->setPrice($odooArticle[self::LIST_PRICE] * 100);
-        $article->setName($odooArticle[self::NAME]);
-        $article->setSlug(str_slug($odooArticle[self::NAME]));
-        $article->setAllergens($allergens);
+            $color = [];
+            $flavours = [];
+            $tag = [];
 
+            if (array_key_exists('colors', $webCategories)) {
+                $color[] = $webCategories['colors'];
+            }
+            if (array_key_exists('flavours', $webCategories)) {
+                $flavours[] = $webCategories['flavours'];
+            }
+            if (array_key_exists('tags', $webCategories)) {
+                $tag[] = $webCategories['tags'];
+            }
+            //$article->setColors($color);
+            //$article->setFlavours($flavours);
+            //$article->setTags($tag);
+            $article->setPrice($odooArticle[self::LIST_PRICE] * 100);
+            $article->setName($odooArticle[self::NAME]);
+            $article->setSlug(str_slug($odooArticle[self::NAME]));
+            //$article->setAllergens($allergens);
 
-        $this->articleService->update($article);
+            $this->articleService->update($article);
 
-        $this->setSync($odooArticle[self::ID]);
+            //$this->setSync($odooArticle[self::ID]);
+        }
     }
 
     public function createUser()
