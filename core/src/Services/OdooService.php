@@ -286,7 +286,7 @@ class OdooService
                         $tag
                     );
 
-                    //$this->setSync($odooArticle[self::ID]);
+                    $this->setSync($odooArticle[self::ID]);
                 }
             }
         }
@@ -505,7 +505,7 @@ class OdooService
 
             $this->articleService->update($article);
 
-            //$this->setSync($odooArticle[self::ID]);
+            $this->setSync($odooArticle[self::ID]);
         }
     }
 
