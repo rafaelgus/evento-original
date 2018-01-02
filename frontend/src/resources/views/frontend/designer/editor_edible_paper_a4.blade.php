@@ -50,6 +50,7 @@
     <link href="/editor-assets/css/bootstrap-tour.min.css" rel="stylesheet">
     <link href="/css/bootstrap-switch.min.css" rel="stylesheet">
     <link href="/css/icheck-flat/red.css" rel="stylesheet">
+    <link rel="stylesheet" href="/editor-assets/css/fontselect-alternate.css">
 @endsection
 
 @section('content')
@@ -137,51 +138,56 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="text-color" class="col-sm-4 col-form-label">{{ trans('editor.color') }}:</label>
+                                <label for="text-color" class="col-sm-4 col-form-label">{{ trans('editor.color') }}
+                                    :</label>
                                 <div class="col-sm-8">
                                     <input type="text" id="text-color" class="form-control" value="#70c24a">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="text-font" class="col-sm-4 col-form-label">{{ trans('editor.font') }}:</label>
+                                <label for="text-font" class="col-sm-4 col-form-label">{{ trans('editor.font') }}
+                                    :</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control" id="text-font">
-                                        <option value="Arial" class="Arial">Arial</option>
-                                        <option value="Courier" class="Courier">Courier</option>
-                                        <option value="Comic Sans MS" class="ComicSansMS">Cairo</option>
-                                        <option style="font-family: 'Fascinate Inline' !important;">Courgette</option>
-                                    </select>
+                                    <input type="text" id="fonts">
+                                    {{--<select class="form-control" id="text-font">--}}
+                                        {{--<option value="Arial" class="Arial">Arial</option>--}}
+                                        {{--<option value="Courier" class="Courier">Courier</option>--}}
+                                        {{--<option value="Comic Sans MS" class="ComicSansMS">Cairo</option>--}}
+                                        {{--<option style="font-family: 'Fascinate Inline' !important;">Courgette</option>--}}
+                                    {{--</select>--}}
                                 </div>
                             </div>
                             <div class="form-group row other-text-tools">
-                                <div class="col-sm-6 text-right">
+                                <div class="col-sm-12">
                                     <button class="btn-primary btn-xs" id="btn-align-left"><i class="fa fa-align-left"
                                                                                               data-toggle="tooltip"
                                                                                               title="{{ trans('editor.align_left') }}"></i>
                                     </button>
-                                    <button class="btn-primary btn-xs" id="btn-align-center"><i class="fa fa-align-center"
-                                                                                                data-toggle="tooltip"
-                                                                                                title="{{ trans('editor.align_center') }}"></i>
+                                    <button class="btn-primary btn-xs" id="btn-align-center"><i
+                                                class="fa fa-align-center"
+                                                data-toggle="tooltip"
+                                                title="{{ trans('editor.align_center') }}"></i>
                                     </button>
                                     <button class="btn-primary btn-xs" id="btn-align-right"><i class="fa fa-align-right"
                                                                                                data-toggle="tooltip"
                                                                                                title="{{ trans('editor.align_right') }}"></i>
                                     </button>
-                                </div>
-                                <div class="col-sm-6 text-left">
-                                    <button class="btn-primary btn-xs" id="btn-bold" data-toggle="tooltip" title="{{ trans('editor.bold') }}">
+                                    <button class="btn-primary btn-xs" id="btn-bold" data-toggle="tooltip"
+                                            title="{{ trans('editor.bold') }}">
                                         <i class="fa fa-bold"></i></button>
                                     <button class="btn-primary btn-xs" id="btn-italic" data-toggle="tooltip"
                                             title="{{ trans('editor.italic') }}"><i class="fa fa-italic"></i></button>
                                     <button class="btn-primary btn-xs" id="btn-underline"><i class="fa fa-underline"
                                                                                              data-toggle="tooltip"
-                                                                                             title="{{ trans('editor.underline') }}"></i></button>
+                                                                                             title="{{ trans('editor.underline') }}"></i>
+                                    </button>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <input type="checkbox" name="text-curved" id="text-curved"><label class="label-form">{{ trans('editor.curved_text') }}</label>
+                                <input type="checkbox" name="text-curved" id="text-curved"><label
+                                        class="label-form">{{ trans('editor.curved_text') }}</label>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6" id="input-radius" style="display: none;">
@@ -190,7 +196,7 @@
                                 </div>
                                 <div class="form-group col-md-6" id="input-spacing" style="display: none">
                                     <label for="scale">{{ trans('editor.spacing') }}:</label>
-                                    <input type="range" min="1" max="20" id="spacing">
+                                    <input type="range" min="1" max="30" id="spacing">
                                 </div>
                             </div>
                         </div>
@@ -198,41 +204,87 @@
 
                     <div id="image-tools" hidden>
                         <div class="form-group">
-                            <input type="checkbox" id="remove-white">{{ trans('editor.remove_white') }}
-                        </div>
-                        <div class="form-group" id="input-brightness">
-                            <input type="checkbox" id="brightness"><label for="scale">{{ trans('editor.brightness') }}:</label>
-                            <input type="range" min="0" max="100" id="brightness-value">
-                        </div>
-                        <div class="form-group">
                             <div style="height:0px;overflow:hidden">
                                 <input type="file" id="changeImageInput" name="changeImageInput"/>
                             </div>
-                            <button data-target="#tools-image" type="button" class="btn btn-primary" id="change-image">
+                            <button data-target="#tools-image" type="button" class="btn btn-primary btn-change-image" id="change-image">
                                 {{ trans('editor.change_image') }}
                             </button>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="remove-white"><label
+                                    class="label-form">{{ trans('editor.remove_white') }}</label>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <button class="btn btn-primary btn-black-and-white" id="grayscale">{{ trans('editor.grayscale') }}</button>
+                                <button class="btn btn-primary btn-sepia" id="sepia">Sepia</button>
+                                <button class="btn btn-primary btn-enhancements">Mejoras</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="input-brightness">
+                            <label for="brightness-value" class="col-sm-4">{{ trans('editor.brightness') }}</label>
+                            <div class="col-sm-8">
+                                <input type="range" min="-50" max="50" value="0" id="brightness-value">
+                            </div>
                         </div>
                     </div>
                     <div class="common-tools" id="common-tools" hidden>
                         <hr>
-                        <div class="form-group">
-                            <label for="scale">{{ trans('editor.size') }}:</label>
-                            <input type="range" value="" min="0" max="10" step="0.1" id="scale">
+                        <div class="form-group row">
+                            <label for="scale" class="col-sm-4 col-form-label">{{ trans('editor.size') }}:</label>
+                            <div class="col-sm-8 text-left">
+                                <button class="btn-primary btn-xs icon-button" id="btn-decrease-size"
+                                        data-toggle="tooltip"
+                                        title="{{ trans('editor.decrease_size') }}"><i
+                                            class="fa fa-minus"></i></button>
+                                <button class="btn-primary btn-xs icon-button" id="btn-increase-size"
+                                        data-toggle="tooltip"
+                                        title="{{ trans('editor.increase_size') }}"><i
+                                            class="fa fa-plus"></i></button>
+                                {{--<input type="range" value="" min="0.1" max="10" step="0.1" id="scale">--}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="scale" class="col-sm-4 col-form-label">{{ trans('editor.rotate') }}:</label>
+
+                            <div class="col-sm-8 text-left">
+                                <button class="btn-primary btn-xs icon-button" id="btn-rotate-left"
+                                        data-toggle="tooltip"
+                                        title="{{ trans('editor.rotate_left') }}"><i
+                                            class="fa fa-rotate-left"></i></button>
+                                <button class="btn-primary btn-xs icon-button" id="btn-rotate-right"
+                                        data-toggle="tooltip"
+                                        title="{{ trans('editor.rotate_right') }}"><i
+                                            class="fa fa-rotate-right"></i></button>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <button class="btn-primary btn-xs icon-button" id="btn-to-back">{{ trans('editor.to_back') }}</button>
-                            <button class="btn-primary btn-xs icon-button" id="btn-to-front">{{ trans('editor.to_front') }}</button>
-                            <button class="btn-primary btn-xs icon-button" id="btn-center-vertically" data-toggle="tooltip"
-                                    title="{{ trans('editor.center_vertically') }}"><i class="fa fa-compress fa-rotate--45"></i></button>
-                            <button class="btn-primary btn-xs icon-button" id="btn-center-horizontally" data-toggle="tooltip"
-                                    title="{{ trans('editor.center_horizontally') }}"><i class="fa fa-compress fa-rotate-45"></i></button>
-                            <button class="btn-primary btn-xs icon-button" id="btn-flip-vertically" data-toggle="tooltip"
-                                    title="{{ trans('editor.flip_vertically') }}"><i class="fa fa-arrow-up"></i></button>
-                            <button class="btn-primary btn-xs icon-button" id="btn-flip-horizontally" data-toggle="tooltip"
-                                    title="{{ trans('editor.flip_horizontally') }}"><i class="fa fa-arrow-right"></i></button>
+                            <button class="btn-primary btn-xs icon-button"
+                                    id="btn-to-back">{{ trans('editor.to_back') }}</button>
+                            <button class="btn-primary btn-xs icon-button"
+                                    id="btn-to-front">{{ trans('editor.to_front') }}</button>
+                            <button class="btn-primary btn-xs icon-button" id="btn-center-vertically"
+                                    data-toggle="tooltip"
+                                    title="{{ trans('editor.center_vertically') }}"><i
+                                        class="fa fa-compress fa-rotate--45"></i></button>
+                            <button class="btn-primary btn-xs icon-button" id="btn-center-horizontally"
+                                    data-toggle="tooltip"
+                                    title="{{ trans('editor.center_horizontally') }}"><i
+                                        class="fa fa-compress fa-rotate-45"></i></button>
+                            <button class="btn-primary btn-xs icon-button" id="btn-flip-vertically"
+                                    data-toggle="tooltip"
+                                    title="{{ trans('editor.flip_vertically') }}"><i class="fa fa-arrow-up"></i>
+                            </button>
+                            <button class="btn-primary btn-xs icon-button" id="btn-flip-horizontally"
+                                    data-toggle="tooltip"
+                                    title="{{ trans('editor.flip_horizontally') }}"><i class="fa fa-arrow-right"></i>
+                            </button>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="block" id="block"><label class="label-form">{{ trans('editor.block') }}</label>
+                            <input type="checkbox" name="block" id="block"><label
+                                    class="label-form">{{ trans('editor.block') }}</label>
                         </div>
 
                         <button type="button" id="finalize-edit-text-button"
@@ -240,6 +292,11 @@
 
                         <button type="button" id="finalize-edit-image-button"
                                 class="btn btn-lg btn-primary finalize-button">{{ trans('editor.finalize_edit_image') }}</button>
+
+                        <button class="btn btn-primary btn-remove-object" id="btn-remove-object">
+                            <i class="fa fa-trash"></i>
+                            {{ trans('editor.remove') }}
+                        </button>
                     </div>
                 </div>
 
@@ -299,14 +356,17 @@
     <script src="/editor-assets/js/bootstrap-tour.min.js"></script>
     <script src="/js/bootstrap-switch.min.js"></script>
     <script src="/js/icheck.min.js"></script>
+    <script src="/editor-assets/js/jquery.fontselect.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-red',
                 radioClass: 'iradio_flat-red'
             });
-            $('input').on('ifChanged', function (event) { $(event.target).trigger('change'); });
+            $('input').on('ifChanged', function(event) {
+                $(event.target).trigger('change');
+            });
 
             $('[data-toggle="tooltip"]').tooltip();
 
@@ -341,6 +401,12 @@
             tour.init();
 
             tour.start();
+
+            $('#fonts').fontselect({
+                style: 'font-select',
+                placeholder: 'Select a font',
+                lookahead: 2
+            });
         });
     </script>
 @endsection

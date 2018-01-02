@@ -109,7 +109,7 @@ $(document).ready(function () {
         //get obj on current layer
         var _obj = _targets[_layer];
 
-        if (_obj) {
+        if (_obj && _obj.selectable) {
             _prevActive = _obj;
             // _obj.bringToFront();
             _canvas.setActiveObject(_obj).renderAll();
@@ -126,7 +126,7 @@ $(document).ready(function () {
             'Escriba el texto aquí',
             {
                 id: objectId,
-                hasRotatingPoint: true,
+                hasRotatingPoint: false,
                 originX: 'center',
                 originY: 'center'
             });
@@ -199,7 +199,7 @@ $(document).ready(function () {
                     hasRotatingPoint: false,
                     originX: 'center',
                     originY: 'center'
-                }).scale(0.9);
+                }).scale(0.25);
 
                 canvas.centerObject(oImg);
 
@@ -343,6 +343,37 @@ $(document).ready(function () {
         }
     });
 
+    $('#btn-remove-object').click(function(e) {
+        var selectedObject = canvas.getActiveObject();
+        canvas.remove(selectedObject);
+
+        canvas.renderAll();
+    });
+
+    $('#btn-decrease-size').click(function() {
+        var selectedObject = canvas.getActiveObject();
+
+        var scaleX = selectedObject.getScaleX();
+        var scaleY = selectedObject.getScaleY();
+
+        selectedObject.setScaleX(scaleX - 0.1);
+        selectedObject.setScaleY(scaleY - 0.1);
+
+        canvas.renderAll();
+    });
+
+    $('#btn-increase-size').click(function() {
+        var selectedObject = canvas.getActiveObject();
+
+        var scaleX = selectedObject.getScaleX();
+        var scaleY = selectedObject.getScaleY();
+
+        selectedObject.setScaleX(scaleX + 0.1);
+        selectedObject.setScaleY(scaleY + 0.1);
+
+        canvas.renderAll();
+    });
+
     $('#btn-align-left').click(function (e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
@@ -460,31 +491,51 @@ $(document).ready(function () {
         }
     });
 
-    $('#brightness').change(function (e) {
+    $('#brightness-value').on('input change', function (e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && activeObject.type === 'image') {
-            if (this.checked) {
+            if (!activeObject.filters[3]) {
                 var filter = new fabric.Image.filters.Brightness({
                     brightness: parseInt($('#brightness-value').val(), 10)
                 });
                 activeObject.filters[3] = filter;
-                activeObject.applyFilters(canvas.renderAll.bind(canvas));
-            } else {
-                activeObject.filters[3] = null;
-                activeObject.applyFilters(canvas.renderAll.bind(canvas));
             }
+
+            activeObject.filters[3]['brightness'] = parseInt($('#brightness-value').val(), 10);
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
 
             canvas.renderAll();
         }
     });
 
-    $('#brightness-value').on('input change', function (e) {
+    $('#sepia').click(function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && activeObject.type === 'image') {
-            if ($('#brightness').is(':checked')) {
-                activeObject.filters[3]['brightness'] = parseInt($('#brightness-value').val(), 10);
-                activeObject.applyFilters(canvas.renderAll.bind(canvas));
+            if (!activeObject.filters[4]) {
+                var filter = new fabric.Image.filters.Sepia2();
+                activeObject.filters[4] = filter;
+            } else {
+                activeObject.filters[4] = undefined;
             }
+
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
+            canvas.renderAll();
+        }
+    });
+
+    $('#grayscale').click(function(e) {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject && activeObject.type === 'image') {
+            if (!activeObject.filters[5]) {
+                var filter = new fabric.Image.filters.Grayscale();
+                activeObject.filters[5] = filter;
+            } else {
+                activeObject.filters[5] = undefined;
+            }
+
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
             canvas.renderAll();
         }
     });
@@ -531,6 +582,22 @@ $(document).ready(function () {
         onSelectedCleared();
     });
 
+    $('#btn-rotate-left').click(function() {
+       var selectedObject = canvas.getActiveObject();
+       var currentAngle = selectedObject.getAngle();
+
+       selectedObject.setAngle(currentAngle - 90);
+       canvas.renderAll();
+    });
+
+    $('#btn-rotate-right').click(function() {
+        var selectedObject = canvas.getActiveObject();
+        var currentAngle = selectedObject.getAngle();
+
+        selectedObject.setAngle(currentAngle + 90);
+        canvas.renderAll();
+    });
+
     $('#finalize-edit-text-button').click(function() {
         canvas.deactivateAll().renderAll();
 
@@ -562,6 +629,7 @@ $(document).ready(function () {
                 props = obj.toObject();
                 delete props['type'];
                 props['id'] = objectId;
+                props['hasRotatingPoint'] = false;
                 var textSample = new fabric.Text(default_text, props);
             } else if (/text/.test(obj.type)) {
                 var default_text = obj.getText();
@@ -570,6 +638,7 @@ $(document).ready(function () {
                 props['textAlign'] = 'center';
                 props['radius'] = 150;
                 props['id'] = objectId;
+                props['hasRotatingPoint'] = false;
                 var textSample = new fabric.CurvedText(default_text, props);
             }
             canvas.remove(obj);
