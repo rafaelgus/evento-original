@@ -23,7 +23,7 @@ class OdooController
 
     public function syncArticles()
     {
-        $articles = $this->odooService->syncCategories(106);
+        $articles = $this->odooService->getNotSyncArticles();
 
         foreach ($articles as $article) {
             SyncArticles::dispatch($article);
