@@ -432,7 +432,7 @@ class OdooService
         $category = $this->categoryService->findByName($odooCategory[self::NAME]);
 
         if (!$category) {
-            if (!$odooCategory[self::ATTR_PARENT]) {
+            if (count($odooCategory[self::ATTR_PARENT]) > 0) {
                 $category = $this
                     ->categoryService
                     ->create(
@@ -455,7 +455,14 @@ class OdooService
                             str_slug($odooCategoryParent[self::NAME]),
                             ''
                         );
-                    return $categoryParent;
+                    $category = $this->categoryService->createChildren(
+                        $categoryParent,
+                        $odooCategory[self::NAME],
+                        str_slug($odooCategory[self::NAME]),
+                        ''
+                    );
+
+                    return $category;
                 } else {
                     $category = $this->categoryService->createChildren(
                         $categoryParent,
@@ -507,10 +514,5 @@ class OdooService
 
             $this->setSync($odooArticle[self::ID]);
         }
-    }
-
-    public function createUser()
-    {
-
     }
 }

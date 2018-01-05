@@ -124,11 +124,16 @@ class CategoryRepository extends NestedTreeRepository
         $categoryQuery->execute();
         $categories = $categoryQuery->fetchAll();
 
-        $id = $categories[0]['id'];
+        try {
+            $id = $categories[0]['id'];
 
-        $category = $this->findOneById($id);
+            $category = $this->findOneById($id);
 
-        return $category;
+            return $category;
+        } catch (\Exception $exception) {
+            $category = null;
 
+            return $category;
+        }
     }
 }
