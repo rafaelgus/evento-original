@@ -112,4 +112,23 @@ class CategoryRepository extends NestedTreeRepository
 
         return $query->getOneOrNullResult();
     }
+
+
+    public function findOneByName(string $name, string $locale = self::DEFAULT_LOCALE)
+    {
+        $query = 'SELECT categories.* FROM categories where categories.name = "'. $name . '"';
+
+        $connection = $this->getEntityManager()->getConnection();
+        $categoryQuery = $connection
+            ->prepare($query);
+        $categoryQuery->execute();
+        $categories = $categoryQuery->fetchAll();
+
+        $id = $categories[0]['id'];
+
+        $category = $this->findOneById($id);
+
+        return $category;
+
+    }
 }

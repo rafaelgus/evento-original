@@ -112,6 +112,6 @@ class CategoryService
 
     public function findByName(string $name)
     {
-        return $this->categoryRepository->findOneBy(['name' => $name]);
+        return $this->categoryRepository->findOneByName($name);
     }
 }
