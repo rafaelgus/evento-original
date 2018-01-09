@@ -432,7 +432,7 @@ class OdooService
         $category = $this->categoryService->findByName($odooCategory[self::NAME]);
 
         if (!$category) {
-            if (count($odooCategory[self::ATTR_PARENT]) > 0) {
+            if (!$odooCategory[self::ATTR_PARENT]) {
                 $category = $this
                     ->categoryService
                     ->create(
