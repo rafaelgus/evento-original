@@ -219,14 +219,35 @@
                             <div class="col-sm-12">
                                 <button class="btn btn-primary btn-black-and-white" id="grayscale">{{ trans('editor.grayscale') }}</button>
                                 <button class="btn btn-primary btn-sepia" id="sepia">Sepia</button>
-                                <button class="btn btn-primary btn-enhancements">Mejoras</button>
+                                <button class="btn btn-primary btn-sepia2" id="sepia2">Sepia2</button>
                             </div>
                         </div>
 
-                        <div class="form-group" id="input-brightness">
+                        <div class="form-group row" id="input-brightness">
                             <label for="brightness-value" class="col-sm-4">{{ trans('editor.brightness') }}</label>
                             <div class="col-sm-8">
                                 <input type="range" min="-50" max="50" value="0" id="brightness-value">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="input-contrast">
+                            <label for="contrast-value" class="col-sm-4">{{ trans('editor.contrast') }}</label>
+                            <div class="col-sm-8">
+                                <input type="range" min="-100" max="100" value="0" id="contrast-value">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="input-saturation">
+                            <label for="saturation-value" class="col-sm-4">{{ trans('editor.saturation') }}</label>
+                            <div class="col-sm-8">
+                                <input type="range" min="-100" max="100" value="0" id="saturation-value">
+                            </div>
+                        </div>
+
+                        <div class="form-group row" id="input-pixelate">
+                            <label for="pixelate-value" class="col-sm-4">{{ trans('editor.pixelate') }}</label>
+                            <div class="col-sm-8">
+                                <input type="range" min="1" max="10" step="1" value="1" id="pixelate-value">
                             </div>
                         </div>
                     </div>
@@ -345,7 +366,7 @@
 
 @section('scripts_body')
     <script src="/editor-assets/js/fabric.js"></script>
-    {{--<script src="/editor-assets/js/customiseControls.js"></script>--}}
+    <script src="/editor-assets/js/customiseControls.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.6/jquery.minicolors.js"></script>
 
     <script src="/editor-assets/js/FileSaver.min.js"></script>

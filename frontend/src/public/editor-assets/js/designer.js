@@ -1,32 +1,64 @@
-$('#add-image').click(function () {
+$('#add-image').click(function() {
     $('#imageInput').click();
 });
 
-$('#change-image').click(function () {
+$('#change-image').click(function() {
     $('#changeImageInput').click();
 });
 
 var canvas;
 var id = 1;
 
-$(document).ready(function () {
+$(document).ready(function() {
     canvas = new fabric.Canvas('canvas-paper-a4', {
         hoverCursor: 'pointer',
-        selection: true,
+        selection: false,
         selectionBorderColor: 'blue',
         backgroundColor: 'white',
-        borderColor: 'black'
+        borderColor: 'black',
+        controlsAboveOverlay: true
     });
 
     fabric.Object.prototype.setControlsVisibility({
-        ml: true,
-        mr: true,
-        mb: true,
-        mtr: true,
-        mt: true,
+        ml: false,
+        mr: false,
+        mb: false,
+        mtr: false,
+        mt: false,
         br: true
     });
-    //
+
+    canvas.setOverlayImage(
+        '../editor-assets/bob constructor2.png',
+        canvas.renderAll.bind(canvas),
+        {
+            width: canvas.width,
+            height: canvas.height
+        }
+    );
+
+    var customizeControlsOptions = {
+        settings: {
+            borderColor: '#413C5E',
+            cornerSize: 25,
+            cornerShape: 'rect',
+            cornerBackgroundColor: '#e94d65',
+            cornerPadding: 10
+        },
+        bl: {
+            icon: '../editor-assets/icons/remove.svg'
+        },
+        tr: {
+            icon: '../editor-assets/icons/resize.svg'
+        },
+        tl: {
+            icon: '../editor-assets/icons/rotate.svg'
+        },
+        br: {
+            icon: '../editor-assets/icons/copy-content.svg'
+        }
+    };
+
     // fabric.Object.prototype.customiseCornerIcons({
     //     settings: {
     //         borderColor: '#0094dd',
@@ -45,33 +77,59 @@ $(document).ready(function () {
     // }, function () {
     //     canvas.renderAll();
     // });
-    //
-    // fabric.Canvas.prototype.customiseControls({
-    //     bl: {
-    //         action: function () {
-    //             var selectedObject = canvas.getActiveObject();
-    //
-    //             selectedObject.visible = false;
-    //
-    //             canvas.remove(selectedObject);
-    //             canvas.renderAll();
-    //         },
-    //         cursor: 'pointer'
-    //     },
-    //     tr: {
-    //         action: 'scale'
-    //     },
-    //     tl: {
-    //         action: 'rotate',
-    //         cursor: 'pointer'
-    //     }
-    // });
+
+    fabric.Canvas.prototype.customiseControls({
+        bl: {
+            action: function() {
+                var selectedObject = canvas.getActiveObject();
+
+                setTimeout(function() {
+                    selectedObject.visible = false;
+
+                    canvas.remove(selectedObject);
+                    canvas.renderAll();
+                }, 100);
+            },
+            cursor: 'pointer'
+        },
+        tr: {
+            action: 'scale'
+        },
+        tl: {
+            action: 'rotate',
+            cursor: 'pointer'
+        },
+        br: {
+            action: function() {
+                var selectedObject = canvas.getActiveObject();
+
+                selectedObject.clone(function(cloned) {
+                    cloned.set('top', cloned.top + 15);
+                    cloned.set('left', cloned.left + 15);
+                    cloned.set("id", id);
+
+                    setTimeout(function() {
+                        cloned.customiseCornerIcons(customizeControlsOptions, function() {
+                            canvas.renderAll();
+                        });
+
+                        canvas.add(cloned);
+
+                        canvas.setActiveObject(cloned);
+                    }, 100);
+
+                    id++;
+                });
+            },
+            cursor: 'pointer'
+        }
+    });
 
     canvas.on({
-        'object:moving': function (e) {
+        'object:moving': function(e) {
             e.target.opacity = 0.5;
         },
-        'object:modified': function (e) {
+        'object:modified': function(e) {
             e.target.opacity = 1;
         },
         'object:selected': onObjectSelected,
@@ -82,14 +140,14 @@ $(document).ready(function () {
     var _prevActive = 0;
     var _layer = 0;
 
-    fabric.util.addListener(canvas.upperCanvasEl, "dblclick", function (e) {
+    fabric.util.addListener(canvas.upperCanvasEl, "dblclick", function(e) {
         var _canvas = canvas;
         //current mouse position
         var _mouse = _canvas.getPointer(e);
         //active object (that has been selected on click)
         var _active = _canvas.getActiveObject();
         //possible dblclick targets (objects that share mousepointer)
-        var _targets = _canvas.getObjects().filter(function (_obj) {
+        var _targets = _canvas.getObjects().filter(function(_obj) {
             return _obj.containsPoint(_mouse) && !_canvas.isTargetTransparent(_obj, _mouse.x, _mouse.y);
         });
 
@@ -98,12 +156,12 @@ $(document).ready(function () {
         //new top layer target
         if (_prevActive !== _active) {
             //try to go one layer below current target
-            _layer = Math.max(_targets.length-2, 0);
+            _layer = Math.max(_targets.length - 2, 0);
         }
         //top layer target is same as before
         else {
             //try to go one more layer down
-            _layer = --_layer < 0 ? Math.max(_targets.length-2, 0) : _layer;
+            _layer = --_layer < 0 ? Math.max(_targets.length - 2, 0) : _layer;
         }
 
         //get obj on current layer
@@ -119,7 +177,7 @@ $(document).ready(function () {
     canvas.setWidth(417);
     canvas.setHeight(590);
 
-    $('#add-text').click(function () {
+    $('#add-text').click(function() {
         var objectId = id;
 
         var text = new fabric.Text(
@@ -133,26 +191,9 @@ $(document).ready(function () {
 
         canvas.centerObject(text);
 
-        // text.customiseCornerIcons({
-        //     settings: {
-        //         borderColor: 'black',
-        //         cornerSize: 25,
-        //         cornerShape: 'rect',
-        //         cornerBackgroundColor: 'black',
-        //         cornerPadding: 10
-        //     },
-        //     bl: {
-        //         icon: '../editor-assets/icons/remove.svg'
-        //     },
-        //     tr: {
-        //         icon: '../editor-assets/icons/resize.svg'
-        //     },
-        //     tl: {
-        //         icon: '../editor-assets/icons/rotate.svg'
-        //     }
-        // }, function () {
-        //     canvas.renderAll();
-        // });
+        text.customiseCornerIcons(customizeControlsOptions, function() {
+            canvas.renderAll();
+        });
 
         canvas.add(text);
 
@@ -185,15 +226,15 @@ $(document).ready(function () {
         tour1.start();
     });
 
-    $('#imageInput').on("change", function (e) {
+    $('#imageInput').on("change", function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
 
-        reader.onload = function (f) {
+        reader.onload = function(f) {
             var data = f.target.result;
             var objectId = id;
 
-            fabric.Image.fromURL(data, function (img) {
+            fabric.Image.fromURL(data, function(img) {
                 var oImg = img.set({
                     id: objectId,
                     hasRotatingPoint: false,
@@ -203,26 +244,9 @@ $(document).ready(function () {
 
                 canvas.centerObject(oImg);
 
-                // oImg.customiseCornerIcons({
-                //     settings: {
-                //         borderColor: 'black',
-                //         cornerSize: 25,
-                //         cornerShape: 'rect',
-                //         cornerBackgroundColor: 'black',
-                //         cornerPadding: 10
-                //     },
-                //     bl: {
-                //         icon: '../editor-assets/icons/remove.svg'
-                //     },
-                //     tr: {
-                //         icon: '../editor-assets/icons/resize.svg'
-                //     },
-                //     tl: {
-                //         icon: '../editor-assets/icons/rotate.svg'
-                //     }
-                // }, function () {
-                //     canvas.renderAll();
-                // });
+                oImg.customiseCornerIcons(customizeControlsOptions, function() {
+                    canvas.renderAll();
+                });
 
                 canvas.add(oImg).renderAll();
 
@@ -266,10 +290,10 @@ $(document).ready(function () {
         $(".list-group-item").removeClass("active");
         $("#container-layers").prepend('<li  id="' + objectId + '" href="#" class="list-group-item active">' + name + '</li>');
 
-        $("#" + objectId).click(function (e) {
+        $("#" + objectId).click(function(e) {
             $(".list-group-item").removeClass("active");
             $(this).addClass("active");
-            canvas.getObjects().forEach(function (o) {
+            canvas.getObjects().forEach(function(o) {
                 if (o.id == objectId) {
                     canvas.setActiveObject(o);
                 }
@@ -282,18 +306,18 @@ $(document).ready(function () {
         $('#deselect-all').show();
     }
 
-    $('#changeImageInput').on("change", function (e) {
+    $('#changeImageInput').on("change", function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
 
         var selectedObject = canvas.getActiveObject();
 
-        reader.onload = function (f) {
+        reader.onload = function(f) {
             var data = f.target.result;
 
             selectedObject.setSrc(data);
 
-            setTimeout(function () {
+            setTimeout(function() {
                 canvas.renderAll();
             }, 1000);
         };
@@ -302,13 +326,13 @@ $(document).ready(function () {
 
     $('#canvas-color').minicolors({
         theme: 'bootstrap',
-        change: function (hex) {
+        change: function(hex) {
             canvas.backgroundColor = hex;
             canvas.renderAll();
         }
     });
 
-    $('#text').on("change keyup paste", function (e) {
+    $('#text').on("change keyup paste", function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setText($('#text').val());
@@ -320,7 +344,7 @@ $(document).ready(function () {
 
     $('#text-color').minicolors({
         theme: 'bootstrap',
-        change: function (hex) {
+        change: function(hex) {
             var selectedObject = canvas.getActiveObject();
             if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
                 selectedObject.setColor(hex);
@@ -329,14 +353,14 @@ $(document).ready(function () {
         }
     });
 
-    $('#text-font').change(function (e) {
+    $('#text-font').change(function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && (activeObject.type === 'text' || activeObject.type === 'curvedText')) {
             activeObject.set('fontFamily', $(this).val());
             canvas.renderAll();
 
             if (activeObject.type === 'curvedText') {
-                setTimeout(function () {
+                setTimeout(function() {
                     $('#btn-align-center').click();
                 }, 10);
             }
@@ -374,7 +398,7 @@ $(document).ready(function () {
         canvas.renderAll();
     });
 
-    $('#btn-align-left').click(function (e) {
+    $('#btn-align-left').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('left');
@@ -387,7 +411,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-align-center').click(function (e) {
+    $('#btn-align-center').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('center');
@@ -400,7 +424,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-align-right').click(function (e) {
+    $('#btn-align-right').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             selectedObject.setTextAlign('right');
@@ -413,7 +437,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-bold').click(function (e) {
+    $('#btn-bold').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             var isBold = (selectedObject.fontWeight === 'bold');
@@ -427,7 +451,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-italic').click(function (e) {
+    $('#btn-italic').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             var isItalic = (selectedObject.fontStyle === 'italic');
@@ -441,7 +465,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-underline').click(function (e) {
+    $('#btn-underline').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             var isUnderline = (selectedObject.textDecoration === 'underline');
@@ -464,7 +488,7 @@ $(document).ready(function () {
     //     }
     // });
 
-    $('#scale').on('input change', function (e) {
+    $('#scale').on('input change', function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.setScaleX($('#scale').val());
         selectedObject.setScaleY($('#scale').val());
@@ -472,7 +496,7 @@ $(document).ready(function () {
         canvas.renderAll();
     });
 
-    $('#remove-white').change(function (e) {
+    $('#remove-white').change(function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && activeObject.type === 'image') {
             if (this.checked) {
@@ -491,7 +515,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#brightness-value').on('input change', function (e) {
+    $('#brightness-value').on('input change', function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && activeObject.type === 'image') {
             if (!activeObject.filters[3]) {
@@ -512,10 +536,26 @@ $(document).ready(function () {
         var activeObject = canvas.getActiveObject();
         if (activeObject && activeObject.type === 'image') {
             if (!activeObject.filters[4]) {
-                var filter = new fabric.Image.filters.Sepia2();
+                var filter = new fabric.Image.filters.Sepia();
                 activeObject.filters[4] = filter;
             } else {
                 activeObject.filters[4] = undefined;
+            }
+
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
+            canvas.renderAll();
+        }
+    });
+
+    $('#sepia2').click(function(e) {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject && activeObject.type === 'image') {
+            if (!activeObject.filters[9]) {
+                var filter = new fabric.Image.filters.Sepia2();
+                activeObject.filters[9] = filter;
+            } else {
+                activeObject.filters[9] = undefined;
             }
 
             activeObject.applyFilters(canvas.renderAll.bind(canvas));
@@ -540,54 +580,105 @@ $(document).ready(function () {
         }
     });
 
-    $('#btn-to-back').click(function (e) {
+    $('#contrast-value').on('input change', function(e) {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject && activeObject.type === 'image') {
+            if (!activeObject.filters[6]) {
+                var filter = new fabric.Image.filters.Contrast({
+                    contrast: parseInt($('#contrast-value').val(), 10)
+                });
+                activeObject.filters[6] = filter;
+            }
+
+            activeObject.filters[6]['contrast'] = parseInt($('#contrast-value').val(), 10);
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
+            canvas.renderAll();
+        }
+    });
+
+    $('#saturation-value').on('input change', function(e) {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject && activeObject.type === 'image') {
+            if (!activeObject.filters[7]) {
+                var filter = new fabric.Image.filters.Saturate({
+                    saturate: parseInt($('#saturation-value').val(), 10)
+                });
+                activeObject.filters[7] = filter;
+            }
+
+            activeObject.filters[7]['saturate'] = parseInt($('#saturation-value').val(), 10);
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
+            canvas.renderAll();
+        }
+    });
+
+    $('#pixelate-value').on('input change', function(e) {
+        var activeObject = canvas.getActiveObject();
+        if (activeObject && activeObject.type === 'image') {
+            if (!activeObject.filters[8]) {
+                var filter = new fabric.Image.filters.Pixelate({
+                    blocksize: parseInt($('#pixelate-value').val(), 10)
+                });
+                activeObject.filters[8] = filter;
+            }
+
+            activeObject.filters[8]['blocksize'] = parseInt($('#pixelate-value').val(), 10);
+            activeObject.applyFilters(canvas.renderAll.bind(canvas));
+
+            canvas.renderAll();
+        }
+    });
+
+    $('#btn-to-back').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.sendToBack();
         canvas.renderAll();
     });
 
-    $('#btn-to-front').click(function (e) {
+    $('#btn-to-front').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.bringToFront();
         canvas.renderAll();
     });
 
-    $('#btn-center-vertically').click(function (e) {
+    $('#btn-center-vertically').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.centerV();
         canvas.renderAll();
     });
 
-    $('#btn-center-horizontally').click(function (e) {
+    $('#btn-center-horizontally').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.centerH();
         canvas.renderAll();
     });
 
-    $('#btn-flip-vertically').click(function (e) {
+    $('#btn-flip-vertically').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.set('flipY', !selectedObject.flipY);
         canvas.renderAll();
     });
 
-    $('#btn-flip-horizontally').click(function (e) {
+    $('#btn-flip-horizontally').click(function(e) {
         var selectedObject = canvas.getActiveObject();
         selectedObject.set('flipX', !selectedObject.flipX);
         canvas.renderAll();
     });
 
-    $('#deselect-all').click(function () {
+    $('#deselect-all').click(function() {
         canvas.deactivateAll().renderAll();
 
         onSelectedCleared();
     });
 
     $('#btn-rotate-left').click(function() {
-       var selectedObject = canvas.getActiveObject();
-       var currentAngle = selectedObject.getAngle();
+        var selectedObject = canvas.getActiveObject();
+        var currentAngle = selectedObject.getAngle();
 
-       selectedObject.setAngle(currentAngle - 90);
-       canvas.renderAll();
+        selectedObject.setAngle(currentAngle - 90);
+        canvas.renderAll();
     });
 
     $('#btn-rotate-right').click(function() {
@@ -610,7 +701,7 @@ $(document).ready(function () {
         onSelectedCleared();
     });
 
-    $('#text-curved').on('change', function (e) {
+    $('#text-curved').on('change', function(e) {
         if (this.checked) {
             $('#input-radius').show();
             $('#input-spacing').show();
@@ -645,36 +736,36 @@ $(document).ready(function () {
 
             addLayer('Texto' + textSample.id, textSample.id);
 
-            // textSample.customiseCornerIcons({
-            //     settings: {
-            //         borderColor: 'black',
-            //         cornerSize: 25,
-            //         cornerShape: 'rect',
-            //         cornerBackgroundColor: 'black',
-            //         cornerPadding: 10
-            //     },
-            //     bl: {
-            //         icon: '../editor-assets/icons/remove.svg'
-            //     },
-            //     tr: {
-            //         icon: '../editor-assets/icons/resize.svg'
-            //     },
-            //     tl: {
-            //         icon: '../editor-assets/icons/rotate.svg'
-            //     }
-            // }, function () {
-            //     canvas.renderAll();
-            // });
+            textSample.customiseCornerIcons({
+                settings: {
+                    borderColor: 'black',
+                    cornerSize: 25,
+                    cornerShape: 'rect',
+                    cornerBackgroundColor: 'black',
+                    cornerPadding: 10
+                },
+                bl: {
+                    icon: '../editor-assets/icons/remove.svg'
+                },
+                tr: {
+                    icon: '../editor-assets/icons/resize.svg'
+                },
+                tl: {
+                    icon: '../editor-assets/icons/rotate.svg'
+                }
+            }, function() {
+                canvas.renderAll();
+            });
 
             canvas.add(textSample);
             canvas.renderAll();
-            setTimeout(function () {
+            setTimeout(function() {
                 canvas.setActiveObject(textSample);
             }, 10);
         }
     });
 
-    $('#radius, #spacing').change(function (e) {
+    $('#radius, #spacing').change(function(e) {
         var obj = canvas.getActiveObject();
         if (obj) {
             obj.set($(this).attr('id'), $(this).val());
@@ -704,7 +795,7 @@ $(document).ready(function () {
                 $("#text-curved").prop('checked', false);
             }
 
-            var isBold = (selectedObject.fontWeight === 'bold' );
+            var isBold = (selectedObject.fontWeight === 'bold');
             if (isBold) {
                 $('#btn-bold').addClass("active");
             } else {
@@ -779,14 +870,14 @@ $(document).ready(function () {
         }).popover('show');
     }
 
-    $('#save-image').click(function () {
-        $("#canvas-paper-a4").get(0).toBlob(function (blob) {
+    $('#save-image').click(function() {
+        $("#canvas-paper-a4").get(0).toBlob(function(blob) {
             saveAs(blob, "myIMG.png");
         });
     });
 
-    $('#save-image-circle').click(function () {
-        $("#canvas-paper-a4").get(0).toBlob(function (blob) {
+    $('#save-image-circle').click(function() {
+        $("#canvas-paper-a4").get(0).toBlob(function(blob) {
             //saveAs(blob, "myIMG.png");
 
             var image = new Image();
@@ -804,8 +895,8 @@ $(document).ready(function () {
                 }
             });
 
-            setTimeout(function () {
-                $('#circle-image').croppie('result', {type: 'blob'}).then(function (resp) {
+            setTimeout(function() {
+                $('#circle-image').croppie('result', {type: 'blob'}).then(function(resp) {
                     saveAs(resp, 'img.png')
                 });
             }, 1000)
@@ -813,17 +904,17 @@ $(document).ready(function () {
         });
     });
 
-    $('#save-svg').click(function () {
+    $('#save-svg').click(function() {
         var svgFile = new Blob([canvas.toSVG()], {type: "image/svg+xml;charset=utf-8"});
 
         saveAs(svgFile, "canvas.svg");
     });
 
-    $('#save-json').click(function () {
+    $('#save-json').click(function() {
         alert(JSON.stringify(canvas));
     });
 
-    $('#save-design').click(function (event) {
+    $('#save-design').click(function(event) {
         event.preventDefault();
 
         var json = JSON.stringify(canvas);
@@ -838,7 +929,7 @@ $(document).ready(function () {
 
         $('#' + objectRemoved.id).remove();
 
-        setTimeout(function () {
+        setTimeout(function() {
             $("#text-tools").hide();
             $("#text").val("");
             $("#image-tools").hide();
@@ -867,14 +958,14 @@ $(document).ready(function () {
      * Functions available to designers
      */
 
-    $('#block').change(function () {
+    $('#block').change(function() {
         var selectedObject = canvas.getActiveObject();
         selectedObject.set('selectable', !selectedObject.selectable);
         selectedObject.set('evented', !selectedObject.evented);
         canvas.renderAll();
     });
 
-    $('#clipping').change(function () {
+    $('#clipping').change(function() {
         var selectedImage = canvas.getActiveObject();
         if (selectedImage.type === 'image') {
             selectedImage.set('clipName', selectedImage.id);
@@ -896,7 +987,7 @@ $(document).ready(function () {
             clipFor: selectedImage.id
         });
 
-        selectedImage.set('clipTo', function (ctx) {
+        selectedImage.set('clipTo', function(ctx) {
             return _.bind(clipByName, selectedImage)(ctx)
         });
 
@@ -977,7 +1068,7 @@ $(document).ready(function () {
         return degrees * (Math.PI / 180);
     }
 
-    var clipByName = function (ctx) {
+    var clipByName = function(ctx) {
         var clipRect = findByClipName(this.clipName);
         var scaleXTo1 = (1 / this.scaleX);
         var scaleYTo1 = (1 / this.scaleY);

@@ -42,4 +42,7 @@ return [
     'remove' => 'Eliminar',
     'increase_size' => 'Agrandar',
     'decrease_size' => 'Achicar',
+    'contrast' => 'Contraste',
+    'saturation' => 'Saturación',
+    'pixelate' => 'Pixelado',
 ];
