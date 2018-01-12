@@ -2,6 +2,8 @@
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Enums\DesignOrientation;
+use Exception;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\DesignRepository")
@@ -36,6 +38,26 @@ class Design
      * @ORM\Column(type="json", nullable=true)
      */
     private $json;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $previewImage;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $orientation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $commission;
 
     /**
      * @return int
@@ -107,5 +129,74 @@ class Design
     public function setJson($json): void
     {
         $this->json = $json;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPreviewImage()
+    {
+        return $this->previewImage;
+    }
+
+    /**
+     * @param mixed $previewImage
+     */
+    public function setPreviewImage($previewImage): void
+    {
+        $this->previewImage = $previewImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrientation()
+    {
+        return $this->orientation;
+    }
+
+    /**
+     * @param mixed $orientation
+     * @throws Exception
+     */
+    public function setOrientation($orientation)
+    {
+        if (!DesignOrientation::isValid($orientation)) {
+            throw new Exception("Invalid orientation");
+        }
+
+        $this->orientation = $orientation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCommission()
+    {
+        return $this->commission;
+    }
+
+    /**
+     * @param mixed $commission
+     */
+    public function setCommission($commission)
+    {
+        $this->commission = $commission;
     }
 }

@@ -31,6 +31,16 @@ class User implements Authenticatable, CanResetPassword
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastName;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $email;
@@ -54,16 +64,6 @@ class User implements Authenticatable, CanResetPassword
      * @ORM\Column(type="string", length=100, name="remember_token", nullable=true)
      */
     protected $rememberToken;
-
-    /**
-     * @ORM\Column(type="string", name="client_id", nullable=true)
-     */
-    protected $clientId;
-
-    /**
-     * @ORM\Column(type="string", name="client_secret", nullable=true)
-     */
-    protected $clientSecret;
 
     /**
      * @ORM\OneToOne(targetEntity="Designer", mappedBy="user")
@@ -105,6 +105,38 @@ class User implements Authenticatable, CanResetPassword
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
     }
 
     /**
@@ -193,38 +225,6 @@ class User implements Authenticatable, CanResetPassword
     public function setRememberToken($rememberToken)
     {
         $this->rememberToken = $rememberToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClientId(): string
-    {
-        return $this->clientId;
-    }
-
-    /**
-     * @param string $clientId
-     */
-    public function setClientId(string $clientId)
-    {
-        $this->clientId = $clientId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClientSecret()
-    {
-        return $this->clientSecret;
-    }
-
-    /**
-     * @param mixed $clientSecret
-     */
-    public function setClientSecret($clientSecret)
-    {
-        $this->clientSecret = $clientSecret;
     }
 
     /**
