@@ -32,8 +32,8 @@ $(document).ready(function() {
         '../editor-assets/bob constructor2.png',
         canvas.renderAll.bind(canvas),
         {
-            width: canvas.width,
-            height: canvas.height
+            width: 417,
+            height: 590
         }
     );
 
@@ -736,24 +736,7 @@ $(document).ready(function() {
 
             addLayer('Texto' + textSample.id, textSample.id);
 
-            textSample.customiseCornerIcons({
-                settings: {
-                    borderColor: 'black',
-                    cornerSize: 25,
-                    cornerShape: 'rect',
-                    cornerBackgroundColor: 'black',
-                    cornerPadding: 10
-                },
-                bl: {
-                    icon: '../editor-assets/icons/remove.svg'
-                },
-                tr: {
-                    icon: '../editor-assets/icons/resize.svg'
-                },
-                tl: {
-                    icon: '../editor-assets/icons/rotate.svg'
-                }
-            }, function() {
+            textSample.customiseCornerIcons(customizeControlsOptions, function() {
                 canvas.renderAll();
             });
 

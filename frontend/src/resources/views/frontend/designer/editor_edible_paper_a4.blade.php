@@ -314,10 +314,10 @@
                         <button type="button" id="finalize-edit-image-button"
                                 class="btn btn-lg btn-primary finalize-button">{{ trans('editor.finalize_edit_image') }}</button>
 
-                        <button class="btn btn-primary btn-remove-object" id="btn-remove-object">
-                            <i class="fa fa-trash"></i>
-                            {{ trans('editor.remove') }}
-                        </button>
+                        {{--<button class="btn btn-primary btn-remove-object" id="btn-remove-object">--}}
+                            {{--<i class="fa fa-trash"></i>--}}
+                            {{--{{ trans('editor.remove') }}--}}
+                        {{--</button>--}}
                     </div>
                 </div>
 
