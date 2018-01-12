@@ -34,7 +34,7 @@ class Occasion
     private $parent;
 
     /**
-     * @OneToMany(targetEntity="Occasion", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Occasion", mappedBy="parent")
      */
     private $children;
 

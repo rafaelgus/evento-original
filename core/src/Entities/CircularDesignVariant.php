@@ -44,7 +44,7 @@ class CircularDesignVariant
     private $previewImage;
 
     /**
-     * @OneToMany(targetEntity="CircularDesignVariantDetail", mappedBy="circularDesignVariant")
+     * @ORM\OneToMany(targetEntity="CircularDesignVariantDetail", mappedBy="circularDesignVariant")
      */
     private $details;
 
