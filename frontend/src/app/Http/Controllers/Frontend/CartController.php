@@ -56,7 +56,7 @@ class CartController
                 'id' => $discount->rowId,
                 'name' => $discount->name,
                 'qty' => $discount->qty,
-                'price' => - $discount->price,
+                'price' => -$discount->price,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
                 'article' => false
             ];
@@ -78,7 +78,7 @@ class CartController
             ->articleService
             ->findOneById(
                 $request->input('articleId'),
-                    App::getLocale()
+                App::getLocale()
             );
 
         try {
@@ -87,7 +87,6 @@ class CartController
             $articleImagesPath = '';
         }
 
-
         if ($quantity > 0) {
             Cart::instance('shopping')->add(
                 $article->getBarCode(),
@@ -95,7 +94,7 @@ class CartController
                 $quantity,
                 $article->getPrice(),
                 [
-                    'image'=> $articleImagesPath,
+                    'image' => storage_url() . '/images/' . $articleImagesPath,
                     'category' => $article->getCategory()->getId()
                 ]
             );
