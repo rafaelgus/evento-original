@@ -42,7 +42,7 @@
                                         <li id="addressSelect" style="display: none;">
                                             <label for="billing-address-select">Seleccione una direccion</label>
                                             <br>
-                                            <select name="billingAddress" id="billing-address-select" class="address-select">
+                                            <select name="addressId" id="billing-address-select" class="address-select">
                                                 @foreach($addresses as $address)
                                                     <option value="{{$address->getId()}}">{{$address->getAddress() . ', ' . $address->getCountry()->getName() . ', ' .  $address->getProvince(). ', ' .$address->getPostalCode()}}</option>
                                                 @endforeach
@@ -82,7 +82,7 @@
                                                 <div class="input-box">
                                                     <label for="billing:country_id">{{trans('frontend/checkout.country')}}<span class="required">*</span></label>
                                                     <br>
-                                                    <select name="country" id="billing:country_id" class="validate-select" title="Country">
+                                                    <select name="countryId" id="billing:country_id" class="validate-select" title="Country">
                                                         <option>Seleccione un pais</option>
                                                         @foreach($countries as $country)
                                                             <option value="{{$country->getId()}}">{{$country->getName()}}</option>

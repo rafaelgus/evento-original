@@ -96,7 +96,13 @@ class PaymentController
 
         $order = $this->orderService->findById($orderId);
 
-        if ($request->input('newAddress') === self::NEW_ADDRESS_TRUE) {
+        if (!$order->getUser()) {
+            $order->setUser(current_user());
+
+            $this->orderService->save($order);
+        }
+
+        if (intval($request->input('newAddress')) === self::NEW_ADDRESS_TRUE) {
             $countryId = $request->input('country');
 
             $country = $this->countryService->findById($countryId);

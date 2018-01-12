@@ -59,7 +59,7 @@
                                                     <li>
                                                         <label for="billing-address-select">Seleccione una direccion</label>
                                                         <br>
-                                                        <select name="addressId" id="billing-address-select" class="address-select" title="" onchange="billing.newAddress(!this.value)">
+                                                        <select name="addressId" id="billing-address-select" required class="address-select" title="" onchange="billing.newAddress(!this.value)">
                                                             @foreach($addresses as $address)
                                                                 <option value="{{$address->getId()}}">{{$address->getAddress() . ', ' . $address->getCountry()->getName() . ', ' .  $address->getProvince(). ', ' .$address->getPostalCode()}}</option>
                                                             @endforeach
@@ -157,12 +157,24 @@
             var lastName = document.getElementById('lastName').value;
             var company = document.getElementById('company').value;
             var telephone = document.getElementById('telephone').value;
+            var address = document.getElementById('billing-address-select').value;
 
-            if (name === '' || lastName === '' || telephone === '') {
-                alert('Complete todos los campos requeridos (*)');
+            var newAddress = document.getElementById('newAddress').value;
+
+            if (newAddress === "1") {
+                if (name === '' || lastName === '' || telephone === '') {
+                    alert('Complete todos los campos requeridos (*)');
+                } else {
+                    document.getElementById('frmBilling').submit();
+                }
             } else {
-                document.getElementById('frmBilling').submit();
+                if (name === '' || lastName === '' || telephone === '' || address === '') {
+                    alert('Complete todos los campos requeridos (*)');
+                } else {
+                    document.getElementById('frmBilling').submit();
+                }
             }
+
         }
     </script>
 @endsection

@@ -426,8 +426,8 @@ class ArticleController
                 'id' => $article->getId(),
                 'name' => $article->getName(),
                 'category' => $article->getCategory()->getName(),
-                'price' => $article->getPrice() / 100,
-                'costPrice' => $article->getCostPrice() / 100,
+                'price' => $article->getPrice(),
+                'costPrice' => $article->getCostPrice(),
                 'barCode' => $article->getBarCode(),
                 'internalCode' => $article->getInternalCode()
             ]);

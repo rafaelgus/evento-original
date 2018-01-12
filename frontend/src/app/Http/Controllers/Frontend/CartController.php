@@ -81,7 +81,12 @@ class CartController
                     App::getLocale()
             );
 
-        $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
+        try {
+            $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
+        } catch (Exception $exception) {
+            $articleImagesPath = '';
+        }
+
 
         if ($quantity > 0) {
             Cart::instance('shopping')->add(
@@ -125,6 +130,13 @@ class CartController
         Session::put('orderId', null);
 
         return redirect()->to(trans('frontend/shopping_cart.slug'));
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        Cart::instance('shopping')->update($request->input('rowId'), $request->input('qty'));
+
+        return ['message' => 'El articulo se modifico la cantidad'];
     }
 
     public function modifyOrder(int $barCode, int $quantity, bool $discount = false)
