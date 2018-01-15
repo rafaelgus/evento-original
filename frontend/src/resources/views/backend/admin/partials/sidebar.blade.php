@@ -122,7 +122,9 @@
         </ul>
     </li>
 
-    <li class="header">{{ trans('texts.sections.stock.title') }}</li>
-    <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>
-    <li><a href="#"><i class="fa fa-archive"></i> <span>{{ trans('texts.sections.stock_placements.title') }}</span></a></li>
+    <li class="header">{{ trans('texts.sections.design.title') }}</li>
+    <li class="treeview">
+        <a href="/management/design-material-size"><i class="fa fa-crosshairs"></i> <span>{{ trans('texts.sections.design_material_sizes.title') }}</span></a>
+    </li>
+    </li>
 </ul>

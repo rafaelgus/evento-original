@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateLicenseRequest extends FormRequest
+class StoreMaterialDesignSizeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class UpdateLicenseRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin();
+        return current_user_is_admin();
     }
 
     /**
@@ -25,7 +24,9 @@ class UpdateLicenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\License,name'
+            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\DesignMaterialSize,name',
+            'horizontal_size' => 'required',
+            'vertical_size' => 'required',
         ];
     }
 }

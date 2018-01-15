@@ -182,6 +182,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit', 'Backend\MenuItemController@edit');
             Route::put('/{id}', 'Backend\MenuItemController@update');
         });
+
+        Route::group(['prefix' => '/design-material-size'], function () {
+            Route::get('/create', 'Backend\DesignMaterialSizeController@create');
+            Route::post('/', 'Backend\DesignMaterialSizeController@store');
+            Route::get('/', 'Backend\DesignMaterialSizeController@index');
+            Route::get('/{id}/edit', 'Backend\DesignMaterialSizeController@edit');
+            Route::put('/{id}', 'Backend\DesignMaterialSizeController@update');
+            Route::get('/{id}/remove', 'Backend\DesignMaterialSizeController@remove');
+            Route::get('/getDatatable', 'Backend\DesignMaterialSizeController@getDatatable');
+        });
     });
 });
 

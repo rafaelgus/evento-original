@@ -135,6 +135,19 @@ return [
           'amount' => 'Monto',
           'edit' => 'Editar'
       ],
+      'design' => [
+          'title' => 'Diseño',
+      ],
+      'design_material_sizes' => [
+          'title' => 'Tamaños',
+          'create' => 'Crear',
+          'view' => 'Ver',
+          'edit' => 'Editar',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'horizontal_size' => 'Tamaño horizontal (en cm)',
+          'vertical_size' => 'Tamaño vertical (en cm)',
+      ]
   ],
   'errors' => [
       '404' => [

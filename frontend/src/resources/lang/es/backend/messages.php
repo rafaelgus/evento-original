@@ -14,6 +14,7 @@ return [
             'users' => 'El usuario se guardo con exito',
             'voucher' => 'El voucher se creo con exito',
             'menu_item' => 'El item se guardó con éxito',
+            'design_material_size' => 'El tamaño se guardó con éxito',
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
@@ -22,8 +23,10 @@ return [
             'users' => 'El usuario se actualizo con exito',
             'voucher' => 'El voucher se edito con exito'
         ],
+        'remove' => 'Eliminado con éxito',
     ],
     'error' => [
-        'create' => 'Ha ocurrido un error al guardar'
+        'create' => 'Ha ocurrido un error al guardar',
+        'update' => 'Ha ocurrido un error al actualizar',
     ]
 ];
