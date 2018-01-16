@@ -237,7 +237,7 @@ class OdooService
                         );
                     }
 
-                    //$this->setSync($odooArticle[self::ID]);
+                    $this->setSync($odooArticle[self::ID]);
                 }
             }
         }
@@ -272,7 +272,6 @@ class OdooService
                 if (array_key_exists('tags', $categories)) {
                     $tag[] = $categories['tags'];
                 }
-
             }
 
             $category =  $this->syncCategories($odooArticle[self::POS_CATEGORIES][0]);
