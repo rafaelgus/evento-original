@@ -69,11 +69,12 @@ class PaymentController
 
     public function billingInformation()
     {
-        $details = $this->getDetails();
         $user = current_user();
         $customer = $user->getCustomer();
 
-        $order = $this->orderService->create($details, $user);
+        $orderId = Session::get('orderId');
+
+        $order = $this->orderService->findById($orderId);
 
         $countries = $this->countryService->findAll();
 
@@ -165,25 +166,21 @@ class PaymentController
     {
         $order = $this->orderService->findById($id);
 
-        if(!$order->getPayment()) {
-            $payment = $this
-                ->paymentService
-                ->create(
-                    PaymentGateway::PAYPAL,
-                    $order
-                );
+        $payment = $this
+            ->paymentService
+            ->create(
+                PaymentGateway::PAYPAL,
+                $order
+            );
 
-            $payment = $this->paypalService->preparePayment($payment);
-            $this->paymentService->save($payment);
+        $payment = $this->paypalService->preparePayment($payment);
+        $this->paymentService->save($payment);
 
-            if ($payment->getGateway() === PaymentGateway::PAYPAL) {
-
-            } else {
-                return abort(400, 'Invalid method');
-            }
-        } else {
-            return redirect()->to($order->getPayment()->getParam('redirectUrl'));
+        if ($payment->getGateway() === PaymentGateway::PAYPAL) {
+            return abort(400, 'Invalid method');
         }
+        return redirect()->to($order->getPayment()->getParam('redirectUrl'));
+
     }
 
     public function getPaypalConfirm(Request $request)
