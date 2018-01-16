@@ -8,6 +8,7 @@ use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\VoucherService;
 use Exception;
+use function foo\func;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -35,6 +36,8 @@ class VoucherController
     {
         try {
             $voucher = $this->voucherService->findByCode($request->input('code'));
+
+            $this->veryfyDiscount($voucher->getCode());
 
             if ($voucher->getCategory()) {
                 $cart = Cart::instance('shopping')->content();
@@ -70,7 +73,7 @@ class VoucherController
         if (!$total) {
             $total = Cart::instance('shopping')->total();
         }
-        $this->voucherService->useVoucher($voucher->getCode());
+        
         $discount = $this->voucherService->getDiscountAmount($voucher, $total);
 
         Cart::instance('discount')->add(
@@ -99,6 +102,20 @@ class VoucherController
             $this->orderService->save($order);
         } else {
             throw new Exception('Imposible to add discount');
+        }
+    }
+
+    /**
+     * @param string $code
+     */
+    public function veryfyDiscount(string $code)
+    {
+        $cartItmes = Cart::instance('discount')->content();
+
+        foreach ($cartItmes as $item) {
+            if ($item->id == $code) {
+                throw new Exception();
+            }
         }
     }
 }

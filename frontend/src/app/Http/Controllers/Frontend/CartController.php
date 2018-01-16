@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
+use EventoOriginal\Core\Services\VoucherService;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -21,11 +22,13 @@ class CartController
     public function __construct(
         ArticleService $articleService,
         OrderDetailService $orderDetailService,
-        OrderService $orderService
+        OrderService $orderService,
+        VoucherService $voucherService
     ) {
         $this->articleService = $articleService;
         $this->orderService = $orderService;
         $this->orderDetailService = $orderDetailService;
+        $this->voucherService = $voucherService;
     }
 
     public function show()
@@ -52,6 +55,10 @@ class CartController
         }
 
         foreach ($discounts as $discount) {
+            $voucher = $this->voucherService->findByCode($discount->id);
+
+            $discountAmount = $this->voucherService->getDiscountAmount($voucher, $itemTotal);
+
             $itemsAndDiscount[] = [
                 'id' => $discount->rowId,
                 'name' => $discount->name,
@@ -61,14 +68,20 @@ class CartController
                 'article' => false
             ];
 
-            $discountsTotal = $discountsTotal + $discount->price;
+            $discountsTotal = $discountsTotal + $discountAmount;
+        }
+
+        $total = $itemTotal - $discountsTotal;
+
+        if ($total < 0) {
+            $total = 0;
         }
 
         return view('frontend.shopping_cart')
             ->with('proceedCheckout', $proceedCheckout)
             ->with('cart', $itemsAndDiscount)
             ->with('discounts', $discountsTotal)
-            ->with('total', $itemTotal - $discountsTotal);
+            ->with('total', $total);
     }
 
     public function addToCart(Request $request)
