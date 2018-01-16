@@ -179,4 +179,6 @@ class CartController
             Session::put('orderId', $order->getId());
         }
     }
+
+
 }
