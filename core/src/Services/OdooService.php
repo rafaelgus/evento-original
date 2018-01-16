@@ -253,42 +253,42 @@ class OdooService
             $webCategoriesId = $odooArticle[self::CATEGORIES];
             $allergensId = $odooArticle[self::ALLERGENS];
 
+            $color = [];
+            $flavours = [];
+            $tag = [];
+            $allergens = [];
+
             if (count($webCategoriesId) != 0) {
                 $allergens = $this->syncAllergens($allergensId);
 
                 $categories = $this->syncWebCategories($webCategoriesId);
 
-                if (count($categories) > 0) {
-                    $category =  $this->syncCategories($odooArticle[self::POS_CATEGORIES][0]);
-                    $brand = $this->brandService->findOneById(1);
-
-                    $color = [];
-                    $flavours = [];
-                    $tag = [];
-
-                    if (array_key_exists('colors', $categories)) {
-                        $color[] = $categories['colors'];
-                    }
-                    if (array_key_exists('flavours', $categories)) {
-                        $flavours[] = $categories['flavours'];
-                    }
-                    if (array_key_exists('tags', $categories)) {
-                        $tag[] = $categories['tags'];
-                    }
-
-                    $this->buildArticle(
-                        $odooArticle,
-                        $color,
-                        $brand,
-                        $allergens,
-                        $category,
-                        $flavours,
-                        $tag
-                    );
-
-                    $this->setSync($odooArticle[self::ID]);
+                if (array_key_exists('colors', $categories)) {
+                    $color[] = $categories['colors'];
                 }
+                if (array_key_exists('flavours', $categories)) {
+                    $flavours[] = $categories['flavours'];
+                }
+                if (array_key_exists('tags', $categories)) {
+                    $tag[] = $categories['tags'];
+                }
+
             }
+
+            $category =  $this->syncCategories($odooArticle[self::POS_CATEGORIES][0]);
+            $brand = $this->brandService->findOneById(1);
+
+            $this->buildArticle(
+                $odooArticle,
+                $color,
+                $brand,
+                $allergens,
+                $category,
+                $flavours,
+                $tag
+            );
+
+            $this->setSync($odooArticle[self::ID]);
         }
     }
 
