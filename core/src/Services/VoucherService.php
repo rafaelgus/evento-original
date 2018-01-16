@@ -5,6 +5,8 @@ use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Voucher;
 use EventoOriginal\Core\Persistence\Repositories\VoucherRepository;
 use Exception;
+use Money\Currency;
+use Money\Money;
 
 class VoucherService
 {
@@ -36,7 +38,8 @@ class VoucherService
         $voucher->setType($type);
 
         if ($type === self::TYPE_ABSOLUTE) {
-            $voucher->setAmount($amount);
+            $money = new Money($amount, new Currency('EU'));
+            $voucher->setMoney($money);
         } elseif ($type === self::TYPE_RELATIVE) {
             $voucher->setValue($value);
         }
@@ -108,7 +111,7 @@ class VoucherService
     public function getDiscountAmount(Voucher $voucher, $total)
     {
         if ($voucher->getType() === self::TYPE_ABSOLUTE) {
-            $discount = $voucher->getAmount();
+            $discount = $voucher->getMoney()->getAmount();
 
             return $discount;
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
