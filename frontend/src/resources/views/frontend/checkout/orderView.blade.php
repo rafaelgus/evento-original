@@ -77,13 +77,15 @@
                             </table>
                             <ul>
                                 <form method="post" action="/checkout/addVoucher">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="orderId" value="{{$order->getId()}}">
 
                                     <li>
                                         <label for="shipping-address-select">vouchers de descuento</label>
                                         <br>
                                         <input type="text" name="voucher" class="input-text required-entry" placeholder="agregar voucher">
-                                        <button type="submit" class="button continue" ><span>Agregar voucher</span></button>
+                                        <button type="submit" class="button continue" ><span>Agregar voucher</span></button><br>
+                                        <label for="shipping-address-select" style="color: red;">{{$message}}</label>
                                     </li>
                                 </form>
                             </ul>

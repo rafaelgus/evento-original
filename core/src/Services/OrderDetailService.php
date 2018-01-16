@@ -82,4 +82,14 @@ class OrderDetailService
     {
         $this->orderDetailRepository->save($orderDetail);
     }
+
+    public function updateQty(OrderDetail $orderDetail, int $qty)
+    {
+        $money = new Money($orderDetail->getArticle()->getPrice(), new Currency(self::EUR_CURRENCY));
+
+        $orderDetail->setQuantity($qty);
+        $orderDetail->setMoney($money);
+
+        $this->orderDetailRepository->save($orderDetail);
+    }
 }

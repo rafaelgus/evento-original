@@ -72,30 +72,30 @@
                                                             <div class="input-box">
                                                                 <label for="billing:city">{{trans('frontend/checkout.address')}} <span class="required">*</span></label>
                                                                 <br>
-                                                                <input type="text" title="Address" name="address" value="" class="input-text required-entry" id="billing:city">
+                                                                <input type="text" title="Address" name="address" value="" class="input-text required-entry" id="address">
                                                             </div>
                                                             <div class="input-box">
                                                                 <label for="billing:city">{{trans('frontend/checkout.city')}} <span class="required">*</span></label>
                                                                 <br>
-                                                                <input type="text" title="City" name="city" value="" class="input-text required-entry" id="billing:city">
+                                                                <input type="text" title="City" name="city" value="" class="input-text required-entry" id="city">
                                                             </div>
                                                             <div id="" class="input-box">
                                                                 <label for="billing:region">{{trans('frontend/checkout.state')}}<span class="required">*</span></label>
                                                                 <br>
                                                                 <input type="text" name="state" class="input-text required-entry">
-                                                                <input type="text" id="billing:region" name="billing[region]" value="Alabama" title="State/Province" class="input-text required-entry" style="display: none;">
+                                                                <input type="text" id="province" name="billing[region]" value="Alabama" title="State/Province" class="input-text required-entry" style="display: none;">
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div class="input-box">
                                                                 <label for="billing:postcode">{{ trans('frontend/checkout.postal-code')  }}<span class="required">*</span></label>
                                                                 <br>
-                                                                <input type="text" title="Zip/Postal Code" name="postalCode" id="billing:postcode" value="46532" class="input-text validate-zip-international required-entry">
+                                                                <input type="text" title="Zip/Postal Code" name="postalCode" id="postalCode" value="46532"  class="input-text validate-zip-international required-entry">
                                                             </div>
                                                             <div class="input-box">
                                                                 <label for="billing:country_id">{{trans('frontend/checkout.country')}}<span class="required">*</span></label>
                                                                 <br>
-                                                                <select name="country" id="billing:country_id" class="validate-select" title="Country">
+                                                                <select name="country" id="country" class="validate-select" title="Country">
                                                                     <option>Seleccione un pais</option>
                                                                     @foreach($countries as $country)
                                                                         <option value="{{$country->getId()}}">{{$country->getName()}}</option>
@@ -158,17 +158,24 @@
             var company = document.getElementById('company').value;
             var telephone = document.getElementById('telephone').value;
             var address = document.getElementById('billing-address-select').value;
+            var addressBox = document.getElementById('address').value;
+            var province = document.getElementById('province').value;
+            var postalCode = document.getElementById('postalCode').value;
+            var city = document.getElementById('city').value;
+            var country = document.getElementById('country').value;
 
             var newAddress = document.getElementById('newAddress').value;
 
-            if (newAddress === "1") {
+            if (newAddress === "0") {
                 if (name === '' || lastName === '' || telephone === '') {
                     alert('Complete todos los campos requeridos (*)');
                 } else {
                     document.getElementById('frmBilling').submit();
                 }
             } else {
-                if (name === '' || lastName === '' || telephone === '' || address === '') {
+                if (name === '' || lastName === '' || telephone === '' || address === '' ||
+                addressBox === '' || city === '' || province === '' || country === '' || postalCode === ''
+            ) {
                     alert('Complete todos los campos requeridos (*)');
                 } else {
                     document.getElementById('frmBilling').submit();

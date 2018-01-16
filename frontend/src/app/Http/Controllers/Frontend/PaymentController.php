@@ -159,7 +159,8 @@ class PaymentController
         return view('frontend.checkout.orderView')
             ->with('cartItems', $cartItems)
             ->with('total', $total)
-            ->with('order', $order);
+            ->with('order', $order)
+            ->with('message', '');
     }
 
     public function process(int $id)
@@ -175,7 +176,6 @@ class PaymentController
                     PaymentGateway::PAYPAL,
                     $order
                 );
-
         }
 
         $payment = $this->paypalService->preparePayment($payment);
@@ -298,24 +298,30 @@ class PaymentController
     {
         $voucher = $this->voucherService->findByCode($request->input('voucher'));
 
-        if ($voucher) {
+        $cartItmes = Cart::instance('discount')->content();
+
+        $existVoucher = false;
+        foreach ($cartItmes as $item) {
+            if ($item->id == $request->input('voucher')) {
+                $existVoucher = true;
+            }
+        }
+
+        if ($voucher and !$existVoucher) {
             $order = $this->orderService->findById($request->input('orderId'));
 
-            if ($voucher->getType() === VoucherService::TYPE_RELATIVE) {
-                $voucherAmount = $order->getTotal() * ($voucher->getValue() / 100);
-            } else {
-                $voucherAmount = $voucher->getAmount();
-            }
+            $voucherAmount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             $detail = $this->orderDetailService->create([
                 'price' => $voucherAmount,
                 'quantity' => 1,
             ], true);
 
+            $this->orderDetailService->setOrder($detail, $order);
+
             $order->addOrderDetail($detail);
             $this->orderService->save($order);
 
-            $this->voucherService->useVoucher($voucher->getCode());
             $discount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             Cart::instance('discount')->add(
@@ -326,12 +332,32 @@ class PaymentController
             );
 
             $cartItems = $this->getSummary();
+            $total = 0;
+
+            foreach ($cartItems as $item) {
+                $total = $total + ($item['qty'] * $item['price']);
+            }
 
             return view('frontend.checkout.orderView')
                 ->with('cartItems', $cartItems)
-                ->with('order', $order);
+                ->with('total', $total)
+                ->with('order', $order)
+                ->with('message', '');
         } else {
-            return abort(400, 'Error voucher not exist');
+            $cartItems = $this->getSummary();
+            $order = $this->orderService->findById($request->input('orderId'));
+
+            $total = 0;
+
+            foreach ($cartItems as $item) {
+                $total = $total + ($item['qty'] * $item['price']);
+            }
+
+            return view('frontend.checkout.orderView')
+                ->with('cartItems', $cartItems)
+                ->with('total', $total)
+                ->with('order', $order)
+                ->with('message', 'El voucher no existe');
         }
     }
 }

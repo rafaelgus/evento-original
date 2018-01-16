@@ -38,7 +38,7 @@
                                                     <td>{{$detail->getQuantity()}}</td>
                                                     <td>{{$detail->getArticle()->getName()}}</td>
                                                     <td>{{$detail->getArticle()->getBarCode()}}</td>
-                                                    <td><span class="price">{{$detail->getMoney()->getAmount() / 100}}</span></td>
+                                                    <td><span class="price">{{formatted_money($detail->getMoney())}}</span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

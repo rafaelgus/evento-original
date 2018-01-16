@@ -193,10 +193,8 @@ class CartController
         $orderDetails = $order->getOrdersDetail();
 
         foreach ($orderDetails as $orderDetail) {
-            if ($orderDetail->getArticle()->getCode() == $code) {
-                $orderDetail->setQuantity($qty);
-
-                $this->orderService->save($order);
+            if ($orderDetail->getArticle()->getBarCode() == $code) {
+                $this->orderDetailService->updateQty($orderDetail, $qty);
             }
         }
     }
