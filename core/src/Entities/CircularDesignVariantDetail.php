@@ -84,9 +84,9 @@ class CircularDesignVariantDetail
     }
 
     /**
-     * @param integer $price
+     * @param int $price
      */
-    public function setPrice(integer $price): void
+    public function setPrice(int $price): void
     {
         $this->price = $price;
     }

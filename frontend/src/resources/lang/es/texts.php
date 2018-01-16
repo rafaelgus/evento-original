@@ -157,7 +157,7 @@ return [
           'name' => 'Nombre',
           'number_of_circles' => 'Número de círculos',
           'diameter_of_circles' => 'Diámetro de círculos',
-          'preview_image' => 'Imagen',
+          'image' => 'Imagen',
           'design_material_size' => 'Tamaño',
       ]
   ],

@@ -11,14 +11,22 @@ class CircularDesignVariantService
      * @var CircularDesignVariantRepository
      */
     private $circularDesignVariantRepository;
+    /**
+     * @var DesignMaterialSizeService
+     */
+    private $designMaterialSizeService;
 
     /**
      * CircularDesignVariantService constructor.
      * @param CircularDesignVariantRepository $circularDesignVariantRepository
+     * @param DesignMaterialSizeService $designMaterialSizeService
      */
-    public function __construct(CircularDesignVariantRepository $circularDesignVariantRepository)
-    {
+    public function __construct(
+        CircularDesignVariantRepository $circularDesignVariantRepository,
+        DesignMaterialSizeService $designMaterialSizeService
+    ) {
         $this->circularDesignVariantRepository = $circularDesignVariantRepository;
+        $this->designMaterialSizeService = $designMaterialSizeService;
     }
 
     public function findOneById(int $id)
@@ -35,7 +43,15 @@ class CircularDesignVariantService
     {
         $circularDesignVariant = new CircularDesignVariant();
         $circularDesignVariant->setName(array_get($data, 'name'));
-        //TODO: faltan atributos
+
+        $designMaterialSize = $this->designMaterialSizeService->findOneById(
+            array_get($data, 'design_material_size_id')
+        );
+        $circularDesignVariant->setDesignMaterialSize($designMaterialSize);
+
+        if (array_has($data, 'preview_image')) {
+            $circularDesignVariant->setPreviewImage(array_get($data, 'preview_image'));
+        }
 
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
@@ -48,6 +64,16 @@ class CircularDesignVariantService
     public function update(CircularDesignVariant $circularDesignVariant, array $data)
     {
         $circularDesignVariant->setName(array_get($data, 'name'));
+
+        $designMaterialSize = $this->designMaterialSizeService->findOneById(
+            array_get($data, 'design_material_size_id')
+        );
+        $circularDesignVariant->setDesignMaterialSize($designMaterialSize);
+
+        if (array_has($data, 'preview_image')) {
+            $circularDesignVariant->setPreviewImage(array_get($data, 'preview_image'));
+        }
+
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
 

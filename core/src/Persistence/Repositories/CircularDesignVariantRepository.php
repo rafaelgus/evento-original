@@ -5,7 +5,7 @@ use EventoOriginal\Core\Entities\CircularDesignVariant;
 
 class CircularDesignVariantRepository extends BaseRepository
 {
-    public function save(CircularDesignVariant $circularDesignVariant, bool $flush = null)
+    public function save(CircularDesignVariant $circularDesignVariant, bool $flush = true)
     {
         $this->getEntityManager()->persist($circularDesignVariant);
 

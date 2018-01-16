@@ -10,12 +10,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            {{ trans('texts.sections.design_material_sizes.title') }}
-            <small>{{ trans('texts.sections.design_material_sizes.view') }}</small>
+            {{ trans('texts.sections.circular_design_variants.title') }}
+            <small>{{ trans('texts.sections.circular_design_variants.view') }}</small>
         </h1>
         <ol class="breadcrumb">
-            <li><i class="fa fa-tint"></i> {{ trans('texts.sections.design_material_sizes.title') }}</li>
-            <li class="active">{{ trans('texts.sections.design_material_sizes.view') }}</li>
+            <li><i class="fa fa-tint"></i> {{ trans('texts.sections.circular_design_variants.title') }}</li>
+            <li class="active">{{ trans('texts.sections.circular_design_variants.view') }}</li>
         </ol>
     </section>
 @stop
@@ -30,7 +30,7 @@
                         @include('backend.messages.session')
 
                         <div>
-                            <a href="/management/design-material-size/create" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar</a>
+                            <a href="/management/circular-design-variant/create" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Agregar</a>
                             <br>
                             <br>
                         </div>
@@ -40,9 +40,10 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>{{ trans('texts.sections.design_material_sizes.name') }}</th>
-                                <th>{{ trans('texts.sections.design_material_sizes.horizontal_size') }}</th>
-                                <th>{{ trans('texts.sections.design_material_sizes.vertical_size') }}</th>
+                                <th>{{ trans('texts.sections.circular_design_variants.name') }}</th>
+                                <th>{{ trans('texts.sections.circular_design_variants.design_material_size') }}</th>
+                                <th>{{ trans('texts.sections.circular_design_variants.number_of_circles') }}</th>
+                                <th>{{ trans('texts.sections.circular_design_variants.diameter_of_circles') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -76,8 +77,9 @@
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},
-                    {data: 'horizontalSize', name:'horizontalSize'},
-                    {data: 'verticalSize', name:'verticalSize'},
+                    {data: 'designMaterialSize', name:'designMaterialSize'},
+                    {data: 'numberOfCircles', name:'numberOfCircles'},
+                    {data: 'diameterOfCircles', name:'diameterOfCircles'},
                     {
                         "mData": null,
                         "bSortable": false,

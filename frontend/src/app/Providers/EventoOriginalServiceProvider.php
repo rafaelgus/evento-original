@@ -124,5 +124,8 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\DesignMaterialSizeRepository::class, function () {
             return EntityManager::getRepository(Entities\DesignMaterialSize::class);
         });
+        $this->app->singleton(Repositories\CircularDesignVariantRepository::class, function () {
+            return EntityManager::getRepository(Entities\CircularDesignVariant::class);
+        });
     }
 }

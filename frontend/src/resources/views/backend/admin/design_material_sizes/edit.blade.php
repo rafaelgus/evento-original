@@ -41,7 +41,7 @@
                             <div class="form-group {{ $errors->has('horizontal_size') ? 'has-error' : '' }}">
                                 <label for="inputHorizontalSize" class="col-sm-2 control-label">{{ trans('texts.sections.design_material_sizes.horizontal_size') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputHorizontalSize" name="horizontal_size"
+                                    <input type="number" step="0.01" class="form-control" id="inputHorizontalSize" name="horizontal_size"
                                            placeholder="{{ trans('texts.sections.design_material_sizes.horizontal_size') }}" value="{{ old('horizontal_size', $designMaterialSize->getHorizontalSize()) }}">
                                     {!! $errors->first('horizontal_size', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -50,7 +50,7 @@
                             <div class="form-group {{ $errors->has('vertical_size') ? 'has-error' : '' }}">
                                 <label for="inputVerticalSize" class="col-sm-2 control-label">{{ trans('texts.sections.design_material_sizes.vertical_size') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputVerticalSize" name="vertical_size"
+                                    <input type="number" step="0.01" class="form-control" id="inputVerticalSize" name="vertical_size"
                                            placeholder="{{ trans('texts.sections.design_material_sizes.vertical_size') }}" value="{{ old('vertical_size', $designMaterialSize->getVerticalSize()) }}">
                                     {!! $errors->first('vertical_size', '<span class="help-block">* :message</span>') !!}
                                 </div>

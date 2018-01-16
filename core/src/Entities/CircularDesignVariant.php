@@ -34,7 +34,7 @@ class CircularDesignVariant
     private $numberOfCircles;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $diameterOfCircles;
 

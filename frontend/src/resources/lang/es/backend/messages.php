@@ -15,6 +15,7 @@ return [
             'voucher' => 'El voucher se creo con exito',
             'menu_item' => 'El item se guardó con éxito',
             'design_material_size' => 'El tamaño se guardó con éxito',
+            'circular_design_variant' => 'El diseño circular se guardó con éxito',
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
