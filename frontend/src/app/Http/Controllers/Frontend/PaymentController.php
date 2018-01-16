@@ -185,6 +185,9 @@ class PaymentController
             return abort(400, 'Invalid method');
         }
 
+        $order->setPayment($payment);
+        $this->orderService->save($order);
+
         return redirect()->to($order->getPayment()->getParam('redirectUrl'));
     }
 

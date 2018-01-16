@@ -133,7 +133,7 @@ class Order
         $details = $this->getOrdersDetail();
         $total = 0;
         foreach ($details->toArray() as $detail) {
-            $total = $detail->getMoney()->getAmount();
+            $total = $detail->getMoney()->getAmount() * $detail->getQuantity();
         }
         return new Money($total, new Currency('EU'));
     }
