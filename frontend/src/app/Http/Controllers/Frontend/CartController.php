@@ -17,7 +17,6 @@ class CartController
     private $orderDetailService;
     private $orderService;
     private $voucherService;
-    private $categoryService;
 
     public function __construct(
         ArticleService $articleService,
