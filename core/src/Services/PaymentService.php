@@ -56,6 +56,29 @@ class PaymentService
         return $payment;
     }
 
+    /**
+     * @param string $gateway
+     * @param Order $order
+     * @throws Exception
+     * @return Payment
+     */
+    public function update(string $gateway, Order $order)
+    {
+        if (!in_array($gateway, $this->acceptedGateways())) {
+            throw new Exception('Invalid gateway');
+        }
+        $payment = $order->getPayment();
+        $payment->setGateway($gateway);
+        $payment->setOriginalMoney($order->getTotal());
+        $payment->setPayer($order->getUser());
+        $payment->setStatus(PaymentStatus::STATUS_CREATED);
+        $payment->setOrder($order);
+
+        $this->paymentRepository->save($payment);
+
+        return $payment;
+    }
+
     public function prepare(Order $order, array $data)
     {
         if (!array_has($data, 'gateway')) {
@@ -129,5 +152,10 @@ class PaymentService
     public function findByToken(string $token)
     {
         return $this->paymentRepository->findByToken($token);
+    }
+
+    public function remove(Payment $payment)
+    {
+        $this->paymentRepository->remove($payment);
     }
 }

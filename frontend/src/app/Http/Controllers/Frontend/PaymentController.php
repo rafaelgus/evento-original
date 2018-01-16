@@ -166,21 +166,26 @@ class PaymentController
     {
         $order = $this->orderService->findById($id);
 
-        $payment = $this
-            ->paymentService
-            ->create(
-                PaymentGateway::PAYPAL,
-                $order
-            );
+        if ($order->getPayment()) {
+            $payment = $this->paymentService->update(PaymentGateway::PAYPAL, $order);
+        } else {
+            $payment = $this
+                ->paymentService
+                ->create(
+                    PaymentGateway::PAYPAL,
+                    $order
+                );
+
+        }
 
         $payment = $this->paypalService->preparePayment($payment);
         $this->paymentService->save($payment);
 
-        if ($payment->getGateway() === PaymentGateway::PAYPAL) {
+        if ($payment->getGateway() !== PaymentGateway::PAYPAL) {
             return abort(400, 'Invalid method');
         }
-        return redirect()->to($order->getPayment()->getParam('redirectUrl'));
 
+        return redirect()->to($order->getPayment()->getParam('redirectUrl'));
     }
 
     public function getPaypalConfirm(Request $request)
@@ -198,7 +203,7 @@ class PaymentController
                 return view('frontend.payment.success');
 
             } catch (Exception $exception) {
-                Log::error('PAYPAL '. $exception->getMessage());
+                Log::error('PAYPAL ' . $exception->getMessage());
                 return abort(400, 'Error to process payment');
             }
         }
@@ -217,7 +222,7 @@ class PaymentController
                 return view('frontend.payment.cancel');
             }
         } catch (Exception $exception) {
-            Log::error('PAYPAL '. $exception->getMessage());
+            Log::error('PAYPAL ' . $exception->getMessage());
             return abort(400, 'Error to process payment');
         }
     }
