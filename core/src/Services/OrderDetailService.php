@@ -77,4 +77,9 @@ class OrderDetailService
     {
         return $this->orderDetailRepository->findBy(['order' => $orderId]);
     }
+
+    public function save(OrderDetail $orderDetail)
+    {
+        $this->orderDetailRepository->save($orderDetail);
+    }
 }

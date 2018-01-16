@@ -147,6 +147,10 @@ class CartController
     {
         Cart::instance('shopping')->update($request->input('rowId'), $request->input('qty'));
 
+        $item = Cart::instance('shopping')->get($request->input('rowId'));
+
+        $this->updateOrderDetailQuantity($item->id, $request->input('qty'));
+
         return ['message' => 'El articulo se modifico la cantidad'];
     }
 
@@ -180,5 +184,20 @@ class CartController
         }
     }
 
+    public function updateOrderDetailQuantity(string $code, int $qty)
+    {
+        $orderId = Session::get('orderId');
 
+        $order = $this->orderService->findById($orderId);
+
+        $orderDetails = $order->getOrdersDetail();
+
+        foreach ($orderDetails as $orderDetail) {
+            if ($orderDetail->getArticle()->getCode() == $code) {
+                $orderDetail->setQuantity($qty);
+
+                $this->orderService->save($order);
+            }
+        }
+    }
 }
