@@ -192,6 +192,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/remove', 'Backend\DesignMaterialSizeController@remove');
             Route::get('/getDatatable', 'Backend\DesignMaterialSizeController@getDatatable');
         });
+
+        Route::group(['prefix' => '/circular-design-variant'], function () {
+            Route::get('/create', 'Backend\CircularDesignVariantController@create');
+            Route::post('/', 'Backend\CircularDesignVariantController@store');
+            Route::get('/', 'Backend\CircularDesignVariantController@index');
+            Route::get('/{id}/edit', 'Backend\CircularDesignVariantController@edit');
+            Route::put('/{id}', 'Backend\CircularDesignVariantController@update');
+            Route::get('/{id}/remove', 'Backend\CircularDesignVariantController@remove');
+            Route::get('/getDatatable', 'Backend\CircularDesignVariantController@getDatatable');
+        });
     });
 });
 

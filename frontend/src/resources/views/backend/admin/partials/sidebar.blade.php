@@ -125,6 +125,7 @@
     <li class="header">{{ trans('texts.sections.design.title') }}</li>
     <li class="treeview">
         <a href="/management/design-material-size"><i class="fa fa-crosshairs"></i> <span>{{ trans('texts.sections.design_material_sizes.title') }}</span></a>
+        <a href="/management/circular-design-variant"><i class="fa fa-circle-o"></i> <span>{{ trans('texts.sections.circular_design_variants.title') }}</span></a>
     </li>
     </li>
 </ul>

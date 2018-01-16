@@ -147,6 +147,18 @@ return [
           'name' => 'Nombre',
           'horizontal_size' => 'Tamaño horizontal (en cm)',
           'vertical_size' => 'Tamaño vertical (en cm)',
+      ],
+      'circular_design_variants' => [
+          'title' => 'Diseños circulares',
+          'create' => 'Crear',
+          'view' => 'Ver',
+          'edit' => 'Editar',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'number_of_circles' => 'Número de círculos',
+          'diameter_of_circles' => 'Diámetro de círculos',
+          'preview_image' => 'Imagen',
+          'design_material_size' => 'Tamaño',
       ]
   ],
   'errors' => [

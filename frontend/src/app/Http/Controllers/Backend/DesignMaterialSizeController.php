@@ -73,7 +73,6 @@ class DesignMaterialSizeController extends Controller
 
             Session::flash('message', trans('backend/messages.confirmation.remove'));
         } catch (\Throwable $exception) {
-            dd($exception);
             Session::flash('message-error', trans('backend/messages.error.create.update'));
         }
 

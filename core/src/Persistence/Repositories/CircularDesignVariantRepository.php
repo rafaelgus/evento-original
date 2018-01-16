@@ -13,4 +13,9 @@ class CircularDesignVariantRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findOneById(int $id)
+    {
+        return $this->find($id);
+    }
 }
