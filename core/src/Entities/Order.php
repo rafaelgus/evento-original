@@ -195,6 +195,4 @@ class Order
     {
         $this->shipping = $shipping;
     }
-
-
 }
