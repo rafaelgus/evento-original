@@ -132,8 +132,13 @@ class Order
     {
         $details = $this->getOrdersDetail();
         $total = 0;
+
         foreach ($details->toArray() as $detail) {
-            $total = $detail->getMoney()->getAmount() * $detail->getQuantity();
+            if ($detail->getDiscount()) {
+                $total = $total - $detail->getMoney()->getAmount();
+            } else {
+                $total = $total + ($detail->getMoney()->getAmount() * $detail->getQuantity());
+            }
         }
         return new Money($total, new Currency('EU'));
     }

@@ -275,7 +275,7 @@ class PaymentController
                 'id' => $item->rowId,
                 'name' => $item->name,
                 'qty' => $item->qty,
-                'price' => $item->price,
+                'price' => $item->price /100,
                 'image' => $item->options->has('image') ? $item->options->image : '',
                 'article' => true
             ];
@@ -285,7 +285,7 @@ class PaymentController
                 'id' => $discount->rowId,
                 'name' => $discount->name,
                 'qty' => $discount->qty,
-                'price' => -$discount->price,
+                'price' => -$discount->price / 100,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
                 'article' => false
             ];
@@ -317,7 +317,7 @@ class PaymentController
                 'quantity' => 1,
             ], true);
 
-            $this->orderDetailService->setOrder($detail, $order);
+            $this->orderDetailService->setOrder([$detail], $order);
 
             $order->addOrderDetail($detail);
             $this->orderService->save($order);

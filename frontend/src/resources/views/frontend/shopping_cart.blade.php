@@ -86,7 +86,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> {{ trans('frontend/shopping_cart.discount') }} </td>
-                                            <td class="a-right" style=""><span class="price">$ - {{  $discounts  }}</span></td>
+                                            <td class="a-right" style=""><span class="price">$ - {{  ($discounts / 100)  }}</span></td>
                                         </tr>
                                         </tbody>
 

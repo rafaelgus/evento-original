@@ -140,6 +140,4 @@ class OrderDetail
     {
         $this->article = $article;
     }
-
-
 }

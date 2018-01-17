@@ -30,7 +30,7 @@ class OrderDetailService
         $detail = new OrderDetail();
         $detail->setQuantity($data['quantity']);
 
-        $money = new Money(($data['price'] * 100 ), new Currency(self::EUR_CURRENCY));
+        $money = new Money(($data['price']), new Currency(self::EUR_CURRENCY));
 
         $detail->setMoney($money);
 

@@ -83,7 +83,7 @@ class VoucherController
             $discount
         );
 
-        $this->addDiscountToOrder($discount * 100);
+        $this->addDiscountToOrder($discount);
     }
 
     public function addDiscountToOrder(int $discount)
@@ -97,6 +97,8 @@ class VoucherController
 
         if ($orderId) {
             $order = $this->orderService->findById($orderId);
+
+            $this->orderDetailService->setOrder([$orderDetail], $order);
 
             $order->addOrderDetail($orderDetail);
             $this->orderService->save($order);
