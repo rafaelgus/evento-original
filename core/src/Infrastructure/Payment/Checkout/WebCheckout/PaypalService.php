@@ -28,8 +28,6 @@ class PaypalService implements PaymentGatewayInterface
     const CURRENCY_USD = 'USD';
     const CURRENCY_EUR = 'EUR';
     const METHOD = 'paypal';
-    const URL_ACCEPT = 'http://localhost/paypalConfirm';
-    const URL_CANCEL = 'http://localhost/paypalCancel';
 
     const PAYMENT_STATE_APPROVED = 'approved';
     const RESOURCE_STATE_COMPLETED = 'completed';
@@ -42,12 +40,17 @@ class PaypalService implements PaymentGatewayInterface
     protected $apiContext;
     protected $config;
     protected $paymentService;
+    private $urlAccept;
+    private $urlCancel;
 
     public function __construct(PaymentService $paymentService)
     {
         $paypalConfig = require 'PaypalConfig.php';
         $this->config = $paypalConfig['paypal'];
         $this->paymentService = $paymentService;
+
+        $this->urlAccept = env('PAYPAL_CONFIRM_URL');
+        $this->urlCancel = env('PAYPAL_CANCEL_URL');
     }
 
     /**
@@ -98,8 +101,8 @@ class PaypalService implements PaymentGatewayInterface
         $transaction->setDescription($payment->getDescription());
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(self::URL_ACCEPT);
-        $redirectUrls->setCancelUrl(self::URL_CANCEL);
+        $redirectUrls->setReturnUrl($this->urlAccept);
+        $redirectUrls->setCancelUrl($this->urlCancel);
 
         $paypalPayment = new PaypalPayment();
         $paypalPayment->setPayer($payer);

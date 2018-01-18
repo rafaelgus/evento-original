@@ -25,7 +25,6 @@ class Color
      */
     private $name;
 
-
     /**
      * @ORM\Column(type="string", nullable=true)
      */

@@ -494,24 +494,25 @@ class OdooService
 
             if (array_key_exists('colors', $webCategories)) {
                 $color[] = $webCategories['colors'];
+                $article->setColors($color);
             }
             if (array_key_exists('flavours', $webCategories)) {
                 $flavours[] = $webCategories['flavours'];
+                $article->setFlavours($flavours);
             }
             if (array_key_exists('tags', $webCategories)) {
                 $tag[] = $webCategories['tags'];
+                $article->setTags($tag);
             }
-            //$article->setColors($color);
-            //$article->setFlavours($flavours);
-            //$article->setTags($tag);
-            $article->setPrice($odooArticle[self::LIST_PRICE] * 100);
-            $article->setName($odooArticle[self::NAME]);
-            $article->setSlug(str_slug($odooArticle[self::NAME]));
-            //$article->setAllergens($allergens);
-
-            $this->articleService->update($article);
-
-            $this->setSync($odooArticle[self::ID]);
         }
+
+        $article->setPrice($odooArticle[self::LIST_PRICE] * 100);
+        $article->setName($odooArticle[self::NAME]);
+        $article->setSlug(str_slug($odooArticle[self::NAME]));
+
+        $this->articleService->update($article);
+
+        $this->setSync($odooArticle[self::ID]);
+
     }
 }

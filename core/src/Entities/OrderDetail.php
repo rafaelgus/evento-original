@@ -1,5 +1,6 @@
 <?php
 namespace EventoOriginal\Core\Entities;
+
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,7 +25,7 @@ class OrderDetail
     private $quantity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article", inversedBy="OrderDetails")
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="orderDetails")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     private $article;
@@ -139,6 +140,4 @@ class OrderDetail
     {
         $this->article = $article;
     }
-
-
 }

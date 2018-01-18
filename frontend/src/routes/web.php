@@ -14,6 +14,7 @@ Route::post('/addToCart', 'Frontend\CartController@addToCart');
 Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
+Route::post('/updateQty', 'Frontend\CartController@updateQuantity');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');

@@ -40,8 +40,8 @@
                                             <tr class="first odd">
                                                 <td>{{$order->getId()}}</td>
                                                 <td>{{$order->getCreateDate()->format('Y-m-d H:i:s')}}</td>
-                                                <td><span class="price">$ {{ number_format(($order->getTotal()->getAmount() / 100), 2, ',', '.')}}</span></td>
-                                                <td><em>{{$order->getStatus()}}</em></td>
+                                                <td><span class="price">{{ formatted_money($order->getTotal())}}</span></td>
+                                                <td><em> {{ trans('frontend/order.status.' . $order->getStatus()) }}</em></td>
                                                 <td class="a-center last"><span class="nobr"> <a href="/{{$order->getId()}}/detalle">Ver Órden</a></span></td>
                                             </tr>
                                             @endforeach

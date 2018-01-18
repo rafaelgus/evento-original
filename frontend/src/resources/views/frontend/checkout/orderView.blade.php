@@ -52,7 +52,7 @@
                                     <td></td>
                                     <td></td>
                                     <td class="a-right last" colspan="50">
-                                        Total: {{array_sum(array_column($cartItems, 'price'))}}
+                                        Total: ${{$total}}
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -69,7 +69,7 @@
                                             {{$item['qty']}}
                                         </td>
                                         <td>
-                                            {{$item['price']}}
+                                            ${{$item['price']}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -77,13 +77,15 @@
                             </table>
                             <ul>
                                 <form method="post" action="/checkout/addVoucher">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="orderId" value="{{$order->getId()}}">
 
                                     <li>
                                         <label for="shipping-address-select">vouchers de descuento</label>
                                         <br>
                                         <input type="text" name="voucher" class="input-text required-entry" placeholder="agregar voucher">
-                                        <button type="submit" class="button continue" ><span>Agregar voucher</span></button>
+                                        <button type="submit" class="button continue" ><span>Agregar voucher</span></button><br>
+                                        <label for="shipping-address-select" style="color: red;">{{$message}}</label>
                                     </li>
                                 </form>
                             </ul>
@@ -91,7 +93,7 @@
                             <div class="buttons-set1" id="shipping-buttons-container">
                                 <form method="post" action="/payment/{{$order->getId()}}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="button continue"><span>Pagar</span></button>
+                                    <button type="submit" id="btnPay" onclick="disabledButton()" class="button continue"><span>Pagar</span></button>
                                 </form>
                             </div>
                         </div>
@@ -104,7 +106,8 @@
 
 @section('scripts_body')
     <script>
-
-
+        function disabledButton() {
+            document.getElementById("btnPay").disabled = false;
+        }
     </script>
 @endsection

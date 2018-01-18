@@ -331,7 +331,7 @@ class Article
      */
     public function getPrice()
     {
-        return floatval($this->price /100);
+        return $this->price;
     }
 
     /**

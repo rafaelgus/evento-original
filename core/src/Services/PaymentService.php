@@ -56,6 +56,29 @@ class PaymentService
         return $payment;
     }
 
+    /**
+     * @param string $gateway
+     * @param Order $order
+     * @throws Exception
+     * @return Payment
+     */
+    public function update(string $gateway, Order $order)
+    {
+        if (!in_array($gateway, $this->acceptedGateways())) {
+            throw new Exception('Invalid gateway');
+        }
+        $payment = $order->getPayment();
+        $payment->setGateway($gateway);
+        $payment->setOriginalMoney($order->getTotal());
+        $payment->setPayer($order->getUser());
+        $payment->setStatus(PaymentStatus::STATUS_CREATED);
+        $payment->setOrder($order);
+
+        $this->paymentRepository->save($payment);
+
+        return $payment;
+    }
+
     public function prepare(Order $order, array $data)
     {
         if (!array_has($data, 'gateway')) {
@@ -75,14 +98,14 @@ class PaymentService
         try {
             $payment = $paymentMethod->process($payment, $data);
         } catch (Exception $exception) {
-            $payment->setStatus(PaymentStatus::STATUS_CANCELLED);
+            $payment->setStatus(PaymentStatus::STATUS_CANCELED);
             $payment = $this->cancel($payment);
         }
-        if ($payment->getStatus() === PaymentStatus::STATUS_APPROVE) {
+        if ($payment->getStatus() === PaymentStatus::STATUS_PAYMENT_APPROVE) {
             $payment->setStatus(PaymentStatus::STATUS_PENDING);
             $payment = $this->pay($payment);
         }
-        if ($payment->getStatus() === PaymentStatus::STATUS_CANCELLED) {
+        if ($payment->getStatus() === PaymentStatus::STATUS_CANCELED) {
             $payment = $this->cancel($payment);
         }
         $this->paymentRepository->save($payment);
@@ -116,7 +139,7 @@ class PaymentService
         if ($payment->getStatus() === PaymentStatus::STATUS_PAID) {
             throw new InvalidPaymentStatusException();
         }
-        $payment->setStatus(PaymentStatus::STATUS_CANCELLED);
+        $payment->setStatus(PaymentStatus::STATUS_CANCELED);
         $this->paymentRepository->save($payment);
         return $payment;
     }
@@ -129,5 +152,10 @@ class PaymentService
     public function findByToken(string $token)
     {
         return $this->paymentRepository->findByToken($token);
+    }
+
+    public function remove(Payment $payment)
+    {
+        $this->paymentRepository->remove($payment);
     }
 }

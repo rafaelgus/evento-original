@@ -37,7 +37,7 @@ class Order
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;
 
@@ -132,10 +132,15 @@ class Order
     {
         $details = $this->getOrdersDetail();
         $total = 0;
+
         foreach ($details->toArray() as $detail) {
-            $total = $detail->getMoney()->getAmount();
+            if ($detail->getDiscount()) {
+                $total = $total - $detail->getMoney()->getAmount();
+            } else {
+                $total = $total + ($detail->getMoney()->getAmount() * $detail->getQuantity());
+            }
         }
-        return new Money($total, new Currency('EU'));
+        return new Money($total, new Currency('EUR'));
     }
     /**
      * @return string
@@ -190,6 +195,4 @@ class Order
     {
         $this->shipping = $shipping;
     }
-
-
 }

@@ -20,10 +20,10 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController
 {
-
     const NEW_ADDRESS_TRUE = 1;
     const NEW_ADDRESS_FALSE = 0;
     const DELIVERY_IN_STORE = 'branch_withdrawal';
@@ -69,11 +69,12 @@ class PaymentController
 
     public function billingInformation()
     {
-        $details = $this->getDetails();
         $user = current_user();
         $customer = $user->getCustomer();
 
-        $order = $this->orderService->create($details, $user);
+        $orderId = Session::get('orderId');
+
+        $order = $this->orderService->findById($orderId);
 
         $countries = $this->countryService->findAll();
 
@@ -92,9 +93,17 @@ class PaymentController
 
         $addresses = $this->addressService->findByCustomer($customer);
 
-        $order = $this->orderService->findById($request->input('orderId'));
+        $orderId = Session::get('orderId');
 
-        if ($request->input('newAddress') == self::NEW_ADDRESS_TRUE) {
+        $order = $this->orderService->findById($orderId);
+
+        if (!$order->getUser()) {
+            $order->setUser(current_user());
+
+            $this->orderService->save($order);
+        }
+
+        if (intval($request->input('newAddress')) === self::NEW_ADDRESS_TRUE) {
             $countryId = $request->input('country');
 
             $country = $this->countryService->findById($countryId);
@@ -141,30 +150,45 @@ class PaymentController
             $this->orderService->addBilling($order, $billing);
         }
 
+        $total = 0;
+
+        foreach ($cartItems as $item) {
+            $total = $total + ($item['qty'] * $item['price']);
+        }
+
         return view('frontend.checkout.orderView')
             ->with('cartItems', $cartItems)
-            ->with('order', $order);
+            ->with('total', $total)
+            ->with('order', $order)
+            ->with('message', '');
     }
 
     public function process(int $id)
     {
         $order = $this->orderService->findById($id);
 
-        $payment = $this
-            ->paymentService
-            ->create(
-                PaymentGateway::PAYPAL,
-                $order
-            );
+        if ($order->getPayment()) {
+            $payment = $this->paymentService->update(PaymentGateway::PAYPAL, $order);
+        } else {
+            $payment = $this
+                ->paymentService
+                ->create(
+                    PaymentGateway::PAYPAL,
+                    $order
+                );
+        }
 
         $payment = $this->paypalService->preparePayment($payment);
         $this->paymentService->save($payment);
 
-        if ($payment->getGateway() === PaymentGateway::PAYPAL) {
-            return redirect()->to($payment->getParam('redirectUrl'));
-        } else {
+        if ($payment->getGateway() !== PaymentGateway::PAYPAL) {
             return abort(400, 'Invalid method');
         }
+
+        $order->setPayment($payment);
+        $this->orderService->save($order);
+
+        return redirect()->to($order->getPayment()->getParam('redirectUrl'));
     }
 
     public function getPaypalConfirm(Request $request)
@@ -182,7 +206,7 @@ class PaymentController
                 return view('frontend.payment.success');
 
             } catch (Exception $exception) {
-                Log::error('PAYPAL '. $exception->getMessage());
+                Log::error('PAYPAL ' . $exception->getMessage());
                 return abort(400, 'Error to process payment');
             }
         }
@@ -201,7 +225,7 @@ class PaymentController
                 return view('frontend.payment.cancel');
             }
         } catch (Exception $exception) {
-            Log::error('PAYPAL '. $exception->getMessage());
+            Log::error('PAYPAL ' . $exception->getMessage());
             return abort(400, 'Error to process payment');
         }
     }
@@ -251,7 +275,7 @@ class PaymentController
                 'id' => $item->rowId,
                 'name' => $item->name,
                 'qty' => $item->qty,
-                'price' => $item->price,
+                'price' => $item->price /100,
                 'image' => $item->options->has('image') ? $item->options->image : '',
                 'article' => true
             ];
@@ -261,7 +285,7 @@ class PaymentController
                 'id' => $discount->rowId,
                 'name' => $discount->name,
                 'qty' => $discount->qty,
-                'price' => -$discount->price,
+                'price' => -$discount->price / 100,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
                 'article' => false
             ];
@@ -274,24 +298,30 @@ class PaymentController
     {
         $voucher = $this->voucherService->findByCode($request->input('voucher'));
 
-        if ($voucher) {
+        $cartItmes = Cart::instance('discount')->content();
+
+        $existVoucher = false;
+        foreach ($cartItmes as $item) {
+            if ($item->id == $request->input('voucher')) {
+                $existVoucher = true;
+            }
+        }
+
+        if ($voucher and !$existVoucher) {
             $order = $this->orderService->findById($request->input('orderId'));
 
-            if ($voucher->getType() === VoucherService::TYPE_RELATIVE) {
-                $voucherAmount = $order->getTotal() * ($voucher->getValue() / 100);
-            } else {
-                $voucherAmount = $voucher->getAmount();
-            }
+            $voucherAmount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             $detail = $this->orderDetailService->create([
                 'price' => $voucherAmount,
                 'quantity' => 1,
             ], true);
 
+            $this->orderDetailService->setOrder([$detail], $order);
+
             $order->addOrderDetail($detail);
             $this->orderService->save($order);
 
-            $this->voucherService->useVoucher($voucher->getCode());
             $discount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             Cart::instance('discount')->add(
@@ -302,12 +332,33 @@ class PaymentController
             );
 
             $cartItems = $this->getSummary();
+            $total = 0;
+
+            foreach ($cartItems as $item) {
+                $total = $total + ($item['qty'] * $item['price']);
+            }
 
             return view('frontend.checkout.orderView')
                 ->with('cartItems', $cartItems)
-                ->with('order', $order);
+                ->with('total', $total)
+                ->with('order', $order)
+                ->with('message', '');
         } else {
-            return abort(400, 'Error voucher not exist');
+
+            $cartItems = $this->getSummary();
+            $order = $this->orderService->findById($request->input('orderId'));
+
+            $total = 0;
+
+            foreach ($cartItems as $item) {
+                $total = $total + ($item['qty'] * $item['price']);
+            }
+
+            return view('frontend.checkout.orderView')
+                ->with('cartItems', $cartItems)
+                ->with('total', $total)
+                ->with('order', $order)
+                ->with('message', 'El voucher no existe');
         }
     }
 }

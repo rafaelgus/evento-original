@@ -77,7 +77,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€ {{$article->getPrice()}}</span> </span> </div>
+                                                                            <div class="price-box"> <span class="regular-price"> <span class="price"> {{formatted_money($article->getMoneyPrice())}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
                                                                             <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>{{ strtoupper(trans('frontend/home.buy')) }}</span></button>
@@ -1408,7 +1408,7 @@
 
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
+                    cartItems();
                 }
             };
             xhr.send(params);

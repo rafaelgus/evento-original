@@ -30,7 +30,7 @@ class OrderDetailService
         $detail = new OrderDetail();
         $detail->setQuantity($data['quantity']);
 
-        $money = new Money(($data['price'] * 100 ), new Currency(self::EUR_CURRENCY));
+        $money = new Money(($data['price']), new Currency(self::EUR_CURRENCY));
 
         $detail->setMoney($money);
 
@@ -76,5 +76,20 @@ class OrderDetailService
     public function findByOrder(int $orderId)
     {
         return $this->orderDetailRepository->findBy(['order' => $orderId]);
+    }
+
+    public function save(OrderDetail $orderDetail)
+    {
+        $this->orderDetailRepository->save($orderDetail);
+    }
+
+    public function updateQty(OrderDetail $orderDetail, int $qty)
+    {
+        $money = new Money($orderDetail->getArticle()->getPrice(), new Currency(self::EUR_CURRENCY));
+
+        $orderDetail->setQuantity($qty);
+        $orderDetail->setMoney($money);
+
+        $this->orderDetailRepository->save($orderDetail);
     }
 }
