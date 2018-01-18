@@ -189,8 +189,7 @@
 
     <script>
         $('#add-sub-item').click(function () {
-
-            var subitem = $('#subitem').html();
+            var subitem = document.getElementById('subitem').outerHTML;
 
             $('#subitems').append(subitem);
 
