@@ -82,7 +82,7 @@
                                         <tbody>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> Subtotal </td>
-                                                <td class="a-right" style=""><span class="price">${{ ($total / 100 )}}</span></td>
+                                                <td class="a-right" style=""><span class="price">${{ (($total + $discounts) / 100 )}}</span></td>
                                         </tr>
                                         <tr>
                                             <td colspan="1" class="a-left" style=""> {{ trans('frontend/shopping_cart.discount') }} </td>
