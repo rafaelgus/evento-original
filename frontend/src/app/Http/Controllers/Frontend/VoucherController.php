@@ -64,6 +64,7 @@ class VoucherController
 
             return response('voucher added', 200);
         } catch (Exception $exception) {
+            throw  $exception;
             return response('voucher en uso o incorrecto',400);
         }
     }
@@ -71,9 +72,14 @@ class VoucherController
     private function applyDiscount(Voucher $voucher, $total = null)
     {
         if (!$total) {
-            $total = Cart::instance('shopping')->total();
+            $items = Cart::instance('shopping')->content();
+            $total = 0;
+
+            foreach ($items as $item) {
+                $total = $total + ($item->price * $item->qty);
+            }
         }
-        
+
         $discount = $this->voucherService->getDiscountAmount($voucher, $total);
 
         Cart::instance('discount')->add(

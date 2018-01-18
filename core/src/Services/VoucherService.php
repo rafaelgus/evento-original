@@ -115,7 +115,7 @@ class VoucherService
 
             return $discount;
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
-            $discount = number_format($total * ($voucher->getValue() / 100), 2);
+            $discount = $total * ($voucher->getValue() / 100);
 
             return $discount;
         } else {

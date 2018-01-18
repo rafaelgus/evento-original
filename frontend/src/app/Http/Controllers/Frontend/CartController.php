@@ -58,6 +58,8 @@ class CartController
 
             $discountAmount = $this->voucherService->getDiscountAmount($voucher, $itemTotal);
 
+            Cart::instance('discount')->update($discount->rowId,['price' => $discountAmount]);
+
             $itemsAndDiscount[] = [
                 'id' => $discount->rowId,
                 'name' => $discount->name,
