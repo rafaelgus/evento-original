@@ -140,7 +140,7 @@ class Order
                 $total = $total + ($detail->getMoney()->getAmount() * $detail->getQuantity());
             }
         }
-        return new Money($total, new Currency('EU'));
+        return new Money($total, new Currency('EUR'));
     }
     /**
      * @return string
