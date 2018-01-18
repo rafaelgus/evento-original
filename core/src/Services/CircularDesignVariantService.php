@@ -2,6 +2,8 @@
 namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\CircularDesignVariant;
+use EventoOriginal\Core\Entities\CircularDesignVariantDetail;
+use EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository;
 use EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantRepository;
 use Exception;
 
@@ -15,18 +17,32 @@ class CircularDesignVariantService
      * @var DesignMaterialSizeService
      */
     private $designMaterialSizeService;
+    /**
+     * @var DesignMaterialTypeService
+     */
+    private $designMaterialTypeService;
+    /**
+     * @var CircularDesignVariantDetailRepository
+     */
+    private $circularDesignVariantDetailRepository;
 
     /**
      * CircularDesignVariantService constructor.
      * @param CircularDesignVariantRepository $circularDesignVariantRepository
+     * @param CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository
      * @param DesignMaterialSizeService $designMaterialSizeService
+     * @param DesignMaterialTypeService $designMaterialTypeService
      */
     public function __construct(
         CircularDesignVariantRepository $circularDesignVariantRepository,
-        DesignMaterialSizeService $designMaterialSizeService
+        CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository,
+        DesignMaterialSizeService $designMaterialSizeService,
+        DesignMaterialTypeService $designMaterialTypeService
     ) {
         $this->circularDesignVariantRepository = $circularDesignVariantRepository;
         $this->designMaterialSizeService = $designMaterialSizeService;
+        $this->designMaterialTypeService = $designMaterialTypeService;
+        $this->circularDesignVariantDetailRepository = $circularDesignVariantDetailRepository;
     }
 
     public function findOneById(int $id)
@@ -56,6 +72,18 @@ class CircularDesignVariantService
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
 
+        foreach ($data['material_types'] as $i => $design_material_type_id) {
+            $designMaterialType = $this->designMaterialTypeService->findOneById($design_material_type_id);
+            if ($designMaterialType) {
+                $detail = new CircularDesignVariantDetail();
+                $detail->setPrice($data['prices'][$i] * 100);
+                $detail->setDesignMaterialType($designMaterialType);
+                $detail->setCircularDesignVariant($circularDesignVariant);
+
+                $circularDesignVariant->addDetail($detail);
+            }
+        }
+
         $this->circularDesignVariantRepository->save($circularDesignVariant);
 
         return $circularDesignVariant;
@@ -76,6 +104,22 @@ class CircularDesignVariantService
 
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
+
+        foreach ($circularDesignVariant->getDetails() as $detail) {
+            $this->circularDesignVariantDetailRepository->remove($detail);
+        }
+
+        foreach ($data['material_types'] as $i => $design_material_type_id) {
+            $designMaterialType = $this->designMaterialTypeService->findOneById($design_material_type_id);
+            if ($designMaterialType) {
+                $detail = new CircularDesignVariantDetail();
+                $detail->setPrice($data['prices'][$i] * 100);
+                $detail->setDesignMaterialType($designMaterialType);
+                $detail->setCircularDesignVariant($circularDesignVariant);
+
+                $circularDesignVariant->addDetail($detail);
+            }
+        }
 
         $this->circularDesignVariantRepository->save($circularDesignVariant);
 

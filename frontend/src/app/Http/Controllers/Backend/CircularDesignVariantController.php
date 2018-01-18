@@ -7,6 +7,7 @@ use App\Http\Requests\Backend\UpdateCircularDesignVariantRequest;
 use EventoOriginal\Core\Entities\DesignMaterialSize;
 use EventoOriginal\Core\Services\CircularDesignVariantService;
 use EventoOriginal\Core\Services\DesignMaterialSizeService;
+use EventoOriginal\Core\Services\DesignMaterialTypeService;
 use EventoOriginal\Core\Services\StorageService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -29,21 +30,28 @@ class CircularDesignVariantController extends Controller
      * @var StorageService
      */
     private $storageService;
+    /**
+     * @var DesignMaterialTypeService
+     */
+    private $designMaterialTypeService;
 
     /**
      * CircularDesignVariantController constructor.
      * @param CircularDesignVariantService $circularDesignVariantService
      * @param DesignMaterialSizeService $designMaterialSizeService
      * @param StorageService $storageService
+     * @param DesignMaterialTypeService $designMaterialTypeService
      */
     public function __construct(
         CircularDesignVariantService $circularDesignVariantService,
         DesignMaterialSizeService $designMaterialSizeService,
-        StorageService $storageService
+        StorageService $storageService,
+        DesignMaterialTypeService $designMaterialTypeService
     ) {
         $this->circularDesignVariantService = $circularDesignVariantService;
         $this->designMaterialSizeService = $designMaterialSizeService;
         $this->storageService = $storageService;
+        $this->designMaterialTypeService = $designMaterialTypeService;
     }
 
     public function index()
@@ -54,9 +62,11 @@ class CircularDesignVariantController extends Controller
     public function create()
     {
         $designMaterialSizes = $this->designMaterialSizeService->findAll();
+        $designMaterialTypes = $this->designMaterialTypeService->findAll();
 
         return view('backend.admin.circular_design_variants.create')->with([
             'designMaterialSizes' => $designMaterialSizes,
+            'designMaterialTypes' => $designMaterialTypes,
         ]);
     }
 
@@ -81,12 +91,14 @@ class CircularDesignVariantController extends Controller
     {
         $circularDesignVariant = $this->circularDesignVariantService->findOneById($id);
         $designMaterialSizes = $this->designMaterialSizeService->findAll();
+        $designMaterialTypes = $this->designMaterialTypeService->findAll();
 
         return view('backend.admin.circular_design_variants.edit')
             ->with(
                 [
                     'circularDesignVariant' => $circularDesignVariant,
                     'designMaterialSizes' => $designMaterialSizes,
+                    'designMaterialTypes' => $designMaterialTypes,
                 ]
             );
     }

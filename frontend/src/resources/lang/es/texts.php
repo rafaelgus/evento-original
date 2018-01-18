@@ -145,8 +145,8 @@ return [
           'edit' => 'Editar',
           'new' => 'Nuevo',
           'name' => 'Nombre',
-          'horizontal_size' => 'Tamaño horizontal (en cm)',
-          'vertical_size' => 'Tamaño vertical (en cm)',
+          'horizontal_size' => 'Tamaño horizontal (en mm)',
+          'vertical_size' => 'Tamaño vertical (en mm)',
       ],
       'circular_design_variants' => [
           'title' => 'Diseños circulares',
@@ -156,9 +156,18 @@ return [
           'new' => 'Nuevo',
           'name' => 'Nombre',
           'number_of_circles' => 'Número de círculos',
-          'diameter_of_circles' => 'Diámetro de círculos',
+          'diameter_of_circles' => 'Diámetro de círculos (en mm)',
           'image' => 'Imagen',
           'design_material_size' => 'Tamaño',
+      ],
+      'design_material_types' => [
+          'title' => 'Tipos de material',
+          'create' =>  'Create',
+          'view' => 'Ver',
+          'edit' => 'Editar',
+          'new' => 'Nuevo',
+          'name' => 'Nombre',
+          'description' => 'Descripción',
       ]
   ],
   'errors' => [

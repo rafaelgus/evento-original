@@ -44,7 +44,11 @@ class CircularDesignVariant
     private $previewImage;
 
     /**
-     * @ORM\OneToMany(targetEntity="CircularDesignVariantDetail", mappedBy="circularDesignVariant")
+     * @ORM\OneToMany(
+     *     targetEntity="CircularDesignVariantDetail",
+     *     mappedBy="circularDesignVariant",
+     *     cascade={"persist", "remove"}
+     *     )
      */
     private $details;
 
@@ -142,5 +146,26 @@ class CircularDesignVariant
     public function setPreviewImage($previewImage): void
     {
         $this->previewImage = $previewImage;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param mixed $details
+     */
+    public function setDetails($details): void
+    {
+        $this->details = $details;
+    }
+
+    public function addDetail(CircularDesignVariantDetail $circularDesignVariantDetail)
+    {
+        $this->details[] = $circularDesignVariantDetail;
     }
 }

@@ -77,6 +77,56 @@
                             </div>
                         </div>
 
+                        <!-- Horizontal Form -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Variantes</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="subitems" id="subitems">
+
+                                    <div id="subitem">
+
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control select2" name="material_types[]" id="inputDesignMaterialType" style="width: 100%">
+                                                        @foreach($designMaterialTypes as $type)
+                                                            <option value="{{ $type->getId() }}">
+                                                                {{ $type->getName() }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="inputPrice" class="col-sm-2 control-label">Precio</label>
+                                                <div class="col-sm-10">
+                                                    <input type="number" step="0.01" class="form-control" id="inputUrl" name="prices[]"
+                                                           placeholder="Precio" value="{{ old('price') }}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-1">
+                                            <button id="del" class="del btn btn-danger glyphicon glyphicon-remove row-remove" type="button"></button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {!! $errors->first('design_material_types.price', '<span class="help-block">* :message</span>') !!}
+
+                                <br><br>
+                                <button type="button" class="btn btn-primary pull-right" id="add-sub-item"><i class="fa fa-plus"></i>Agregar</button>
+                            </div>
+                        </div>
+
                         <div class="box-footer">
                             <button type="submit" class="btn btn-danger pull-right">{{ trans('buttons.save') }}</button>
                         </div>
@@ -86,4 +136,25 @@
             </div>
         </div>
     </section><!-- /.content -->
+@endsection
+
+
+@section('scripts_body')
+
+    <script>
+        $('#add-sub-item').click(function () {
+
+            var subitem = $('#subitem').html();
+
+            $('#subitems').append(subitem);
+
+            $('.del').on("click", function () {
+                $(this).closest("#subitem").remove();
+            });
+        });
+
+        $('.del').on("click", function () {
+            $(this).closest("#subitem").remove();
+        });
+    </script>
 @endsection

@@ -78,13 +78,120 @@
                             </div>
                         </div>
 
+                        <!-- Horizontal Form -->
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Variantes</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="subitems" id="subitems">
+
+                                    @foreach($circularDesignVariant->getDetails() as $detail)
+                                        <div id="subitem">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control select2" name="material_types[]" id="inputCategory" style="width: 100%">
+                                                            @foreach($designMaterialTypes as $type)
+                                                                <option value="{{ $type->getId() }}" {{ (($detail->getDesignMaterialType() ? $detail->getDesignMaterialType()->getId() : '') == $type->getId() ? "selected" : "") }}>
+                                                                    {{ $type->getName() }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label for="inputPrice" class="col-sm-2 control-label">Precio</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control" id="inputPrice" name="prices[]"
+                                                               placeholder="Precio" value="{{ $detail->getPrice() / 100 }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-1">
+                                                <button id="del" class="del btn btn-danger glyphicon glyphicon-remove row-remove" type="button"></button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+
+                                {!! $errors->first('sub_items.title', '<span class="help-block">* :message</span>') !!}
+                                {!! $errors->first('sub_items.url', '<span class="help-block">* :message</span>') !!}
+
+                                <br><br>
+                                <button type="button" class="btn btn-primary pull-right" id="add-sub-item"><i class="fa fa-plus"></i>Agregar</button>
+                            </div>
+                        </div>
+
                         <div class="box-footer">
                             <button type="submit" class="btn btn-danger pull-right">{{ trans('buttons.save') }}</button>
                         </div>
                     </form>
+
+                    <div class="box-body">
+                        <h3>Vista previa</h3>
+                        <img src="{{ $circularDesignVariant->getPreviewImage() }}">
+                    </div>
                 </div>
                 <!-- /.box -->
             </div>
         </div>
     </section><!-- /.content -->
+@endsection
+
+@section('scripts_body')
+    <script>
+        $('#add-sub-item').click(function () {
+            $('#subitems').append("<div id=\"subitem\">\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-8\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputDesignMaterialType\" class=\"col-sm-2 control-label\">Material</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <select class=\"form-control select2\" name=\"material_types[]\" id=\"inputDesignMaterialType\" style=\"width: 100%\">\n" +
+                "                                                        @foreach($designMaterialTypes as $type)\n" +
+                "                                                            <option value=\"{{ $type->getId() }}\">\n" +
+                "                                                                {{ $type->getName() }}\n" +
+                "                                                            </option>\n" +
+                "                                                        @endforeach\n" +
+                "                                                    </select>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-3\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputPrice\" class=\"col-sm-2 control-label\">Precio</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <input type=\"number\" step=\"0.01\" class=\"form-control\" id=\"inputUrl\" name=\"prices[]\"\n" +
+                "                                                           placeholder=\"Precio\" value=\"{{ old('price') }}\">\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-1\">\n" +
+                "                                            <button id=\"del\" class=\"del btn btn-danger glyphicon glyphicon-remove row-remove\" type=\"button\"></button>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                    </div>");
+            $('.del').on("click", function () {
+                $(this).closest("#subitem").remove();
+            });
+        });
+
+
+        $(document).ready(function () {
+            $('.del').on("click", function () {
+                $(this).closest("#subitem").remove();
+            });
+        });
+    </script>
 @endsection

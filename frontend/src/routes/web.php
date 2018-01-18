@@ -202,6 +202,17 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/remove', 'Backend\CircularDesignVariantController@remove');
             Route::get('/getDatatable', 'Backend\CircularDesignVariantController@getDatatable');
         });
+
+
+        Route::group(['prefix' => '/design-material-type'], function () {
+            Route::get('/create', 'Backend\DesignMaterialTypeController@create');
+            Route::post('/', 'Backend\DesignMaterialTypeController@store');
+            Route::get('/', 'Backend\DesignMaterialTypeController@index');
+            Route::get('/{id}/edit', 'Backend\DesignMaterialTypeController@edit');
+            Route::put('/{id}', 'Backend\DesignMaterialTypeController@update');
+            Route::get('/{id}/remove', 'Backend\DesignMaterialTypeController@remove');
+            Route::get('/getDatatable', 'Backend\DesignMaterialTypeController@getDatatable');
+        });
     });
 });
 

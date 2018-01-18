@@ -56,7 +56,7 @@ class DesignMaterialSizeController extends Controller
             Session::flash('message-error', trans('backend/messages.error.create.update'));
         }
 
-        $this->designMaterialSizeService->update($designMaterialSize, request()->all());
+        $this->designMaterialSizeService->update($designMaterialSize, $request->all());
 
         Session::flash('message', trans('backend/messages.confirmation.create.design_material_size'));
 
