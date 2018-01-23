@@ -7,5 +7,6 @@ return [
     'position' => 'Posición',
     'subitems' => 'Subitems',
     'menu' => 'Menú',
-    'visible' => 'Visible'
+    'visible' => 'Visible',
+    'category' => 'Categoría',
 ];

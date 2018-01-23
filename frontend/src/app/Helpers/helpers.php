@@ -32,3 +32,13 @@ if (!function_exists('default_article_image_path')) {
         return "https://s3.us-east-2.amazonaws.com/evento-original-s3/img/product-default.png";
     }
 }
+
+if (!function_exists('menu_item_url')) {
+    function menu_item_url(\EventoOriginal\Core\Entities\MenuItem $menuItem)
+    {
+        if ($menuItem->getCategory()) {
+            return "/" . $menuItem->getCategory()->getName();
+        }
+        return $menuItem->getUrl();
+    }
+}

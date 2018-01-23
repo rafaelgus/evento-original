@@ -16,7 +16,7 @@
 
                 @foreach($navBarMenuItems as $menuItem)
 
-                <li class="mega-menu"><a class="level-top" href="/{{ $menuItem->getUrl() }}">
+                <li class="mega-menu"><a class="level-top" href="{{ menu_item_url($menuItem) }}">
                         <span>{{ $menuItem->getTitle() }}</span> </a>
                     <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
                         <div class="container">
@@ -32,16 +32,15 @@
                                         <ul class="level0">
                                             @foreach($menuItem->getSubitems() as $subitem)
                                                 <li class="level1 nav-6-1 parent item">
-                                                    <a href="{{ $subitem->getUrl() }}" class="nav-image"><img
+                                                    <a href="{{ menu_item_url($subitem) }}" class="nav-image"><img
                                                                 src="{{ Storage::disk('s3')->url('menu-images/' . $subitem->getImage()) }}"></a>
-                                                    <a href="{{ $subitem->getUrl() }}"><span>{{ $subitem->getTitle() }}</span></a>
+                                                    <a href="{{ menu_item_url($subitem) }}"><span>{{ $subitem->getTitle() }}</span></a>
 
                                                         <ul class="level1">
                                                             @foreach($subitem->getSubitems() as $subsubitem)
-                                                                <li class="level2 nav-6-1-1"><a href="{{ $subsubitem->getUrl() }}"><span>{{ $subsubitem->getTitle() }}</span></a>
+                                                                <li class="level2 nav-6-1-1"><a href="{{ menu_item_url($subsubitem) }}"><span>{{ $subsubitem->getTitle() }}</span></a>
                                                             @endforeach
                                                         </ul>
-
                                                 </li>
 
                                             @endforeach
