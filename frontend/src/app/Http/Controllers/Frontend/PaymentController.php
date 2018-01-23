@@ -296,7 +296,11 @@ class PaymentController
 
     public function addVoucherInCheckout(Request $request)
     {
-        $voucher = $this->voucherService->findByCode($request->input('voucher'));
+        if ($request->input('voucher')) {
+            $voucher = $this->voucherService->findByCode($request->input('voucher'));
+        } else {
+            $voucher = null;
+        }
 
         $cartItmes = Cart::instance('discount')->content();
 
@@ -313,7 +317,7 @@ class PaymentController
             $voucherAmount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             $detail = $this->orderDetailService->create([
-                'price' => $voucherAmount,
+                'price' => $voucherAmount->getAmount(),
                 'quantity' => 1,
             ], true);
 
@@ -328,7 +332,10 @@ class PaymentController
                 $voucher->getCode(),
                 'Descuento',
                 1,
-                $discount
+                $discount->getAmount(),
+                [
+                    'currency' => $discount->getCurrency()->getCode()
+                ]
             );
 
             $cartItems = $this->getSummary();

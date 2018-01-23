@@ -96,7 +96,7 @@ class OrderDetail
      */
     public function getMoney()
     {
-        $money = new Money($this->amount, new Currency($this->currency));
+        $money = new Money($this->amount, new Currency('EUR'));
         return $money;
     }
 
