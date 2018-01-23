@@ -10,6 +10,17 @@
         .products-grid .item .item-inner .item-img .item-img-info a.product-image img {
             max-height: 270px;
         }
+
+        .products-grid .item .item-inner .item-img {
+            min-height: 270px;
+            display: table;
+        }
+
+        .products-grid .item .item-inner .item-img .item-img-info {
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+        }
     </style>
 @stop
 

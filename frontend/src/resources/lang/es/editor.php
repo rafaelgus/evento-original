@@ -6,6 +6,7 @@ return [
     'background_color' => 'Color de fondo',
     'color' => 'Color',
     'quantity' => 'Cantidad',
+    'quantity_of_papers' => 'Hojas',
     'continue' => 'Continuar',
     'edible_paper_a4' => 'Papel Comestible A4',
     'curved_text' => 'Texto curvado',

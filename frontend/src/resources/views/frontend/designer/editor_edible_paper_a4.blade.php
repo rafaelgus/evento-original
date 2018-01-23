@@ -41,6 +41,10 @@
         .popover.right .arrow:after {
             border-right-color: #2C3E50;
         }
+
+        .canvas-container {
+            padding-bottom: 1rem;
+        }
     </style>
 
     <!-- Custom Fonts -->
@@ -62,14 +66,14 @@
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <div class="col-md-5" style="position:relative;">
+                <div class="col-md-5" style="position:relative; width: auto">
                     <div class="canvas-container">
                         <canvas class="canvas-paper-a4" id="canvas-paper-a4"></canvas>
                     </div>
                     {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
                 </div>
 
-                <div class="col-md-5 editor-tools">
+                <div class="col-md-5 editor-tools" id="editor-tools">
                     <div id="canvas-tools" class="canvas-tools">
                         <div class="form-group row">
                             <label for="canvas-color"
@@ -100,7 +104,7 @@
                             <div class="add-to-cart">
                                 <div class="form-group row">
                                     <label for="quantity-label"
-                                           class="col-sm-12 col-md-4 col-form-label quantity-label">{{ trans('editor.quantity') }}
+                                           class="col-sm-12 col-md-4 col-form-label quantity-label">{{ trans('editor.quantity_of_papers') }}
                                         :</label>
                                     <div class="col-sm-12 col-md-8">
                                         <div class="custom pull-left">
@@ -303,10 +307,10 @@
                                     title="{{ trans('editor.flip_horizontally') }}"><i class="fa fa-arrow-right"></i>
                             </button>
                         </div>
-                        <div class="form-group">
-                            <input type="checkbox" name="block" id="block"><label
-                                    class="label-form">{{ trans('editor.block') }}</label>
-                        </div>
+                        {{--<div class="form-group">--}}
+                            {{--<input type="checkbox" name="block" id="block"><label--}}
+                                    {{--class="label-form">{{ trans('editor.block') }}</label>--}}
+                        {{--</div>--}}
 
                         <button type="button" id="finalize-edit-text-button"
                                 class="btn btn-lg btn-primary finalize-button">{{ trans('editor.finalize_edit_text') }}</button>

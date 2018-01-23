@@ -204,7 +204,7 @@ $(document).ready(function() {
 
         $('#text').focus();
         $('#text').select();
-        $('#canvas-tools').hide();
+        $('#editor-tools').hide();
 
         addLayer('Texto' + objectId, objectId);
         id++;
@@ -255,7 +255,7 @@ $(document).ready(function() {
 
                 canvas.setActiveObject(oImg);
 
-                $('#canvas-tools').hide();
+                $('#editor-tools').hide();
 
                 addLayer('Imagen' + objectId, objectId)
                 id++;
@@ -762,7 +762,7 @@ $(document).ready(function() {
     function onObjectSelected(e) {
         var selectedObject = e.target;
         $("#text").val("");
-        $('#canvas-tools').hide();
+        $('#editor-tools').hide();
         if (selectedObject && (selectedObject.type === 'text' || selectedObject.type === 'curvedText')) {
             $("#text-tools").show();
             $("#image-tools").hide();
@@ -935,7 +935,7 @@ $(document).ready(function() {
         $("#text").val("");
         $('#common-tools').hide();
         $("#image-tools").hide();
-        $("#canvas-tools").show();
+        $("#editor-tools").show();
 
         $('.list-group-item').removeClass('active');
     }
