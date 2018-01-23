@@ -364,7 +364,7 @@ class PaymentController
                 ->with('cartItems', $cartItems)
                 ->with('total', $total)
                 ->with('order', $order)
-                ->with('message', 'El voucher no existe');
+                ->with('message', trans('frontend/shopping_cart.invalid_voucher'));
         }
     }
 }

@@ -20,5 +20,6 @@ return [
     'empty' => 'Vacío',
     'cart_deleted' => 'El carro esta vacio',
     'delete_product' => 'El producto se ha eliminado',
-    'add_to_cart' => 'Se agrego el producto'
+    'add_to_cart' => 'Se agrego el producto',
+    'invalid_voucher' => 'Voucher inválido',
 ];
