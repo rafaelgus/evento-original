@@ -28,14 +28,17 @@ $(document).ready(function() {
         br: true
     });
 
-    canvas.setOverlayImage(
-        '../editor-assets/bob constructor2.png',
-        canvas.renderAll.bind(canvas),
-        {
-            width: 417,
-            height: 590
-        }
-    );
+
+    if (overlayImage !== "") {
+        canvas.setOverlayImage(
+            overlayImage,
+            canvas.renderAll.bind(canvas),
+            {
+                width: parseInt(canvasWidth),
+                height: parseInt(canvasHeight)
+            }
+        );
+    }
 
     var customizeControlsOptions = {
         settings: {
@@ -46,16 +49,16 @@ $(document).ready(function() {
             cornerPadding: 10
         },
         bl: {
-            icon: '../editor-assets/icons/remove.svg'
+            icon: '../../../../editor-assets/icons/remove.svg'
         },
         tr: {
-            icon: '../editor-assets/icons/resize.svg'
+            icon: '../../../../editor-assets/icons/resize.svg'
         },
         tl: {
-            icon: '../editor-assets/icons/rotate.svg'
+            icon: '../../../../editor-assets/icons/rotate.svg'
         },
         br: {
-            icon: '../editor-assets/icons/copy-content.svg'
+            icon: '../../../../editor-assets/icons/copy-content.svg'
         }
     };
 
@@ -174,8 +177,8 @@ $(document).ready(function() {
         }
     });
 
-    canvas.setWidth(417);
-    canvas.setHeight(590);
+    canvas.setWidth(parseInt(canvasWidth));
+    canvas.setHeight(parseInt(canvasHeight));
 
     $('#add-text').click(function() {
         var objectId = id;

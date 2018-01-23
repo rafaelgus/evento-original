@@ -380,6 +380,10 @@
     <script src="/editor-assets/js/jquery.fontselect.min.js"></script>
 
     <script>
+        var overlayImage = '{{ $circularDesignVariant->getPreviewImage()}}';
+        var canvasHeight = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getVerticalSize() / (5/11)) }}';
+        var canvasWidth = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getHorizontalSize() / (5/11)) }}';
+
         $(document).ready(function() {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-red',

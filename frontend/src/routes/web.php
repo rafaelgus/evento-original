@@ -220,3 +220,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/articles/{categorySlug?}', 'Frontend\ArticleController@getFilteredArticles');
 Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
+
+Route::get('/diseñar/papel-comestible/desde-cero', 'Frontend\DesignController@circularDesignVariants');
+Route::get(
+    '/diseñar/papel-comestible/desde-cero/{circularDesignVariantId}',
+    'Frontend\DesignController@circularDesignVariantsEditor'
+)->name('circular_design_variant_editor');

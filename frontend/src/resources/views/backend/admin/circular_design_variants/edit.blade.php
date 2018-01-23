@@ -68,6 +68,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+                                <label for="inputPrice"
+                                       class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.price') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" step="0.01" class="form-control" id="inputPrice"
+                                           name="price"
+                                           placeholder="{{ trans('texts.sections.circular_design_variants.price') }}"
+                                           value="{{ old('price', $circularDesignVariant->getPrice() / 100) }}">
+                                    {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                                 <label for="inputImage" class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.image') }}</label>
                                 <div class="col-sm-10">

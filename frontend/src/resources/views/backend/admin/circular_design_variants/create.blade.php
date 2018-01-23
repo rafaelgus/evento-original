@@ -66,7 +66,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('diameter_of_circles') ? 'has-error' : '' }}">
+                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+                                <label for="inputPrice"
+                                       class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.price') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" step="0.01" class="form-control" id="inputPrice"
+                                           name="price"
+                                           placeholder="{{ trans('texts.sections.circular_design_variants.price') }}"
+                                           value="{{ old('price') }}">
+                                    {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                                 <label for="inputDiameterOfCircles"
                                        class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.diameter_of_circles') }}</label>
                                 <div class="col-sm-10">

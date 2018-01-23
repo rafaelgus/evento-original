@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantRepository")
@@ -51,6 +53,11 @@ class CircularDesignVariant
      *     )
      */
     private $details;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
 
     /**
      * CircularDesignVariant constructor.
@@ -167,5 +174,26 @@ class CircularDesignVariant
     public function addDetail(CircularDesignVariantDetail $circularDesignVariantDetail)
     {
         $this->details[] = $circularDesignVariantDetail;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     */
+    public function setPrice(int $price)
+    {
+        $this->price = $price;
+    }
+
+    public function getMoney()
+    {
+        return new Money($this->getPrice(), new Currency('EUR'));
     }
 }

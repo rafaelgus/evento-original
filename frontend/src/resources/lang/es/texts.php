@@ -159,6 +159,7 @@ return [
           'diameter_of_circles' => 'Diámetro de círculos (en mm)',
           'image' => 'Imagen',
           'design_material_size' => 'Tamaño',
+          'price' => 'Precio',
       ],
       'design_material_types' => [
           'title' => 'Tipos de material',

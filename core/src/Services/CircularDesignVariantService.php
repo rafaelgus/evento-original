@@ -71,6 +71,7 @@ class CircularDesignVariantService
 
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
+        $circularDesignVariant->setPrice(array_get($data, 'price') * 100);
 
         foreach ($data['material_types'] as $i => $design_material_type_id) {
             $designMaterialType = $this->designMaterialTypeService->findOneById($design_material_type_id);
@@ -104,6 +105,7 @@ class CircularDesignVariantService
 
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
+        $circularDesignVariant->setPrice(array_get($data, 'price') * 100);
 
         foreach ($circularDesignVariant->getDetails() as $detail) {
             $this->circularDesignVariantDetailRepository->remove($detail);

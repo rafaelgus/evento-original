@@ -28,6 +28,7 @@ class StoreCircularDesignVariantRequest extends FormRequest
             'design_material_size_id' => 'required',
             'number_of_circles' => 'required|numeric',
             'diameter_of_circles' => 'required|numeric',
+            'price' => 'required|numeric',
         ];
     }
 }
