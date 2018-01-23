@@ -257,7 +257,7 @@ class MenuItem extends \EventoOriginal\Core\Entities\MenuItem implements \Doctri
     /**
      * {@inheritDoc}
      */
-    public function setUrl(string $url)
+    public function setUrl(?string $url)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUrl', [$url]);

@@ -14,6 +14,17 @@ Route::post('/addToCart', 'Frontend\CartController@addToCart');
 Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
+Route::post('/updateQty', 'Frontend\CartController@updateQuantity');
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
+    Route::post('/checkout/shipping', 'Frontend\PaymentController@shippingInformation');
+    Route::post('/checkout/order', 'Frontend\PaymentController@checkout');
+    Route::post('/checkout/addVoucher', 'Frontend\PaymentController@addVoucherInCheckout');
+    Route::post('/payment/{id}', 'Frontend\PaymentController@process');
+    Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
+    Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');
+});
 
 Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
@@ -35,9 +46,8 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
-Route::get('/mi-cuenta', function () {
-    return view('frontend.profile.my_account');
-})->middleware('auth');
+Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->middleware('auth');
+Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails')->middleware('auth');
 
 
 Route::group(['prefix' => '/management'], function () {
@@ -141,6 +151,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::put('/{id}', 'Backend\LicenseController@update');
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
+        });
+        Route::group(['prefix' => '/healthy'], function () {
+            Route::get('/create', 'Backend\HealthyController@create');
+            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
+            Route::get('/getLicenses', 'Backend\HealthyController@getDataTables');
+            Route::get('/', 'Backend\HealthyController@index');
+            Route::put('/{id}', 'Backend\HealthyController@update');
+            Route::post('/', 'Backend\HealthyController@store');
+            Route::get('/getAll', 'Backend\HealthyController@getAll');
         });
         Route::group(['prefix' => '/users'], function () {
             Route::get('/create', 'Backend\UserController@create');

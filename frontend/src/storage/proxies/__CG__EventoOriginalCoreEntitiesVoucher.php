@@ -320,4 +320,26 @@ class Voucher extends \EventoOriginal\Core\Entities\Voucher implements \Doctrine
         return parent::setAmount($amount);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getMoney()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMoney', []);
+
+        return parent::getMoney();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMoney(\Money\Money $money)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMoney', [$money]);
+
+        return parent::setMoney($money);
+    }
+
 }

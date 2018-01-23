@@ -5,11 +5,14 @@ use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Voucher;
 use EventoOriginal\Core\Persistence\Repositories\VoucherRepository;
 use Exception;
+use Money\Currency;
+use Money\Money;
 
 class VoucherService
 {
     const STATUS_USED = 'used';
     const STATUS_ACTIVE = 'active';
+    const CURRENCY_EUR = 'EUR';
 
     const TYPE_RELATIVE = 'relativo';
     const TYPE_ABSOLUTE = 'absoluto';
@@ -36,7 +39,8 @@ class VoucherService
         $voucher->setType($type);
 
         if ($type === self::TYPE_ABSOLUTE) {
-            $voucher->setAmount($amount);
+            $money = new Money($amount, new Currency('EU'));
+            $voucher->setMoney($money);
         } elseif ($type === self::TYPE_RELATIVE) {
             $voucher->setValue($value);
         }
@@ -102,19 +106,19 @@ class VoucherService
     /**
      * @param Voucher $voucher
      * @param $total
-     * @return mixed
+     * @return Money
      * @throws Exception
      */
     public function getDiscountAmount(Voucher $voucher, $total)
     {
         if ($voucher->getType() === self::TYPE_ABSOLUTE) {
-            $discount = $voucher->getAmount();
-
-            return $discount;
+            return $voucher->getMoney();
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
-            $discount = number_format($total * ($voucher->getValue() / 100), 2);
+            $discount = $total * ($voucher->getValue() / 100);
 
-            return $discount;
+            $total = new Money($discount, new Currency(self::CURRENCY_EUR));
+
+            return $total;
         } else {
             throw new Exception('Invalid voucher');
         }
