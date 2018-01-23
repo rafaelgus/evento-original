@@ -45,6 +45,15 @@
         .canvas-container {
             padding-bottom: 1rem;
         }
+
+        .detail-select {
+            width: 100%;
+            border-radius: 5px;
+            border-color: initial;
+            margin: 1rem 0;
+        }
+
+
     </style>
 
     <!-- Custom Fonts -->
@@ -62,7 +71,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="title">{{ trans('editor.edible_paper_a4') }}</h2>
+                    <h2 class="title">{{ trans('editor.edible_paper') }} - {{ $circularDesignVariant->getName() }}</h2>
                 </div>
             </div>
             <div class="row" style="text-align: center">
@@ -103,6 +112,20 @@
                         <div class="add-to-box">
                             <div class="add-to-cart">
                                 <div class="form-group row">
+                                    <div>
+                                        {{ $circularDesignVariant->getDesignMaterialSize()->getName() }}
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12">
+                                        <select id="detail" name="detail" class="detail-select">
+                                            <option>{{ trans('editor.select_options') }}</option>
+                                            @foreach($circularDesignVariant->getDetails() as $detail)
+                                                <option value="{{ $detail->getId() }}">
+                                                    {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()). ")" }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <label for="quantity-label"
                                            class="col-sm-12 col-md-4 col-form-label quantity-label">{{ trans('editor.quantity_of_papers') }}
                                         :</label>
@@ -121,8 +144,8 @@
                                             </button>
                                         </div>
                                         <button onClick="addToCart()" class="button btn-cart pull-right"
-                                                title="{{ trans('editor.continue') }}"
-                                                type="button">{{ trans('editor.continue') }}</button>
+                                                title="{{ trans('editor.buy') }}"
+                                                type="button">{{ trans('editor.buy') }}</button>
                                     </div>
                                 </div>
                             </div>

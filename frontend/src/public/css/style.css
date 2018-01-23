@@ -10492,7 +10492,7 @@ address {
 
 input.input-text, select, textarea {
     /*background-color: #413C5E;*/
-    border: 1px #413C5E solid;
+    /*border: 1px #413C5E solid;*/
     padding: 8px 10px;
     outline: none;
     color: #e94d65;
@@ -11029,6 +11029,10 @@ select#billing-address-select {
 
 .one-page-checkout p.require {
     font-size: 11px;
+}
+
+select {
+    background-color: white;
 }
 
 select#billing-address-select:focus {

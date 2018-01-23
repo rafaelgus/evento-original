@@ -78,7 +78,7 @@
                                                     <div><span>({{ $variant->getDesignMaterialSize()->getName() }})</span></div>
                                                     <div class="item-content">
                                                         <div class="item-price">
-                                                            <div class="price-box"><span class="regular-price"><span class="price">{{ formatted_money($variant->getMoney()) }}</span> </span> </div>
+                                                            <div class="price-box"><span class="regular-price"><span class="price">~{{ formatted_money($variant->getMoney()) }}</span> </span> </div>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -6,8 +6,9 @@ return [
     'background_color' => 'Color de fondo',
     'color' => 'Color',
     'quantity' => 'Cantidad',
-    'quantity_of_papers' => 'Hojas',
+    'quantity_of_papers' => 'N° de Hojas',
     'continue' => 'Continuar',
+    'edible_paper' => 'Papel Comestible',
     'edible_paper_a4' => 'Papel Comestible A4',
     'curved_text' => 'Texto curvado',
     'underline' => 'Subrayado',
@@ -46,4 +47,6 @@ return [
     'contrast' => 'Contraste',
     'saturation' => 'Saturación',
     'pixelate' => 'Pixelado',
+    'buy' => 'Comprar',
+    'select_options' => 'Seleccionar opciones',
 ];
