@@ -2,11 +2,11 @@
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\OccasionRepository")
  * @ORM\Table(name="occasions")
+ * @Gedmo\TranslationEntity(class="EventoOriginal\Core\Entities\OccasionTranslation")
  */
 class Occasion
 {
@@ -18,29 +18,29 @@ class Occasion
     private $id;
 
     /**
+     * @Gedmo\Translatable
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @Gedmo\Translatable
+     * @ORM\Column(type="text")
      */
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Occasion", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_occasion_id", referencedColumnName="id", nullable=true)
+     * @ORM\OneToMany(
+     *   targetEntity="AllergenTranslation",
+     *   mappedBy="object",
+     *   cascade={"persist", "remove"}
+     * )
      */
-    private $parent;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Occasion", mappedBy="parent")
-     */
-    private $children;
+    private $translations;
 
     public function __construct()
     {
-        $this->children = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     /**
@@ -49,14 +49,6 @@ class Occasion
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
     }
 
     /**
@@ -94,32 +86,16 @@ class Occasion
     /**
      * @return mixed
      */
-    public function getParent()
+    public function getTranslations()
     {
-        return $this->parent;
+        return $this->translations;
     }
 
     /**
-     * @param mixed $parent
+     * @param mixed $translations
      */
-    public function setParent($parent): void
+    public function setTranslations($translations): void
     {
-        $this->parent = $parent;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param mixed $children
-     */
-    public function setChildren($children): void
-    {
-        $this->children = $children;
+        $this->translations = $translations;
     }
 }
