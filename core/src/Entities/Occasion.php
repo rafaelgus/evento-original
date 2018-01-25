@@ -1,6 +1,8 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -25,7 +27,7 @@ class Occasion
 
     /**
      * @Gedmo\Translatable
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -37,6 +39,21 @@ class Occasion
      * )
      */
     private $translations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Occasion", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
+     */
+    private $parent;
+
+    /**
+     * @ORM\OneToMany(
+     *   targetEntity="Occasion",
+     *   mappedBy="parent",
+     *   cascade={"persist", "remove"}
+     * )
+     */
+    private $children;
 
     public function __construct()
     {
@@ -97,5 +114,47 @@ class Occasion
     public function setTranslations($translations): void
     {
         $this->translations = $translations;
+    }
+
+    public function addTranslation(OccasionTranslation $translation)
+    {
+        $this->translations[] = $translation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param mixed $parent
+     */
+    public function setParent(Occasion $parent): void
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param mixed $children
+     */
+    public function setChildren(array $children): void
+    {
+        $this->children = $children;
+    }
+
+    public function addChild(Occasion $occasion)
+    {
+        $this->children[] = $occasion;
     }
 }

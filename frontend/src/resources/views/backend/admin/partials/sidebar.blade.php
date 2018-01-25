@@ -113,6 +113,15 @@
             <li><a href="/management/brand/create">{{ trans('texts.sections.brands.new') }}</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-smile-o"></i> <span>Ocasiones</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions">Ver</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions/create">Nuevo</a></li>
+        </ul>
+    </li>
 
     <li class="header">{{ trans('backend/menus.title') }}</li>
     <li class="treeview">

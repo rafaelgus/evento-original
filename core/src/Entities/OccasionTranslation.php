@@ -1,8 +1,21 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
+use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
+/**
+ * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\OccasionRepository")
+ * @ORM\Table(
+ *     name="occasion_translations",
+ *     uniqueConstraints={
+ *          @ORM\UniqueConstraint(
+ *              name="lookup_unique_idx",
+ *              columns={"locale", "object_id", "field"}
+ *          )
+ *     }
+ * )
+ */
 class OccasionTranslation extends AbstractPersonalTranslation
 {
     /**

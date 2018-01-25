@@ -10,7 +10,7 @@ class OccasionRepository extends BaseRepository
 {
     const DEFAULT_LOCALE = 'es';
 
-    public function save(Occasion $occasion, bool $flush = null)
+    public function save(Occasion $occasion, bool $flush = true)
     {
         $this->getEntityManager()->persist($occasion);
 

@@ -213,6 +213,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/remove', 'Backend\DesignMaterialTypeController@remove');
             Route::get('/getDatatable', 'Backend\DesignMaterialTypeController@getDatatable');
         });
+
+        Route::group(['prefix' => '/occasions'], function () {
+            Route::get('/create', 'Backend\OccasionController@create');
+            Route::post('/', 'Backend\OccasionController@store');
+            Route::get('/', 'Backend\OccasionController@index');
+            Route::get('/{id}/edit', 'Backend\OccasionController@edit');
+            Route::put('/{id}', 'Backend\OccasionController@update');
+            Route::get('/{id}/remove', 'Backend\OccasionController@remove');
+        });
     });
 });
 
