@@ -33,6 +33,12 @@ Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
 });
 
+/**
+ * Designer routes
+ */
+Route::get('/' . trans('designer.register.slug'), 'Frontend\DesignerController@register')->name('designer.getRegister');
+Route::post('/' . trans('designer.register.slug'), 'Frontend\DesignerController@postRegister')->name('designer.postRegister');
+
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
 Route::get('/mi-cuenta', function () {
@@ -235,3 +241,5 @@ Route::get(
     '/diseñar/papel-comestible/desde-cero/{circularDesignVariantId}',
     'Frontend\DesignController@circularDesignVariantsEditor'
 )->name('circular_design_variant_editor');
+
+

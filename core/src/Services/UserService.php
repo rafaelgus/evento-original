@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Services;
 
 use DateTime;
+use EventoOriginal\Core\Entities\Role;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Persistence\Repositories\UserRepository;
 use Exception;
@@ -9,10 +10,17 @@ use Exception;
 class UserService
 {
     private $userRepository;
+    private $roleService;
 
-    public function __construct(UserRepository $userRepository)
+    /**
+     * UserService constructor.
+     * @param UserRepository $userRepository
+     * @param RoleService $roleService
+     */
+    public function __construct(UserRepository $userRepository, RoleService $roleService)
     {
         $this->userRepository = $userRepository;
+        $this->roleService = $roleService;
     }
 
     /**
@@ -63,5 +71,12 @@ class UserService
     public function findById(int $id)
     {
         return $this->userRepository->find($id);
+    }
+
+    public function addRole(User $user, Role $role)
+    {
+        $user->addRole($role);
+
+        $this->userRepository->save($user);
     }
 }

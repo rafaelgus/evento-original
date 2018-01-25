@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\Backend\StoreDesignRequest;
 use EventoOriginal\Core\Services\DesignerService;
 use EventoOriginal\Core\Services\DesignService;
+use Illuminate\Http\Request;
 
 class DesignerController
 {
@@ -37,5 +38,19 @@ class DesignerController
         }
 
         return redirect()->back();
+    }
+
+    public function register()
+    {
+        return view('frontend/designer.register_user_as_designer');
+    }
+
+    public function postRegister(Request $request)
+    {
+        $user = current_user();
+
+        $designer = $this->designerService->create($user, $request->get('nickname'));
+
+        return redirect()->route('designer.my_account');
     }
 }
