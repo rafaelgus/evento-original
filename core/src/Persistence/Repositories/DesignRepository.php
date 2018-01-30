@@ -26,7 +26,7 @@ class DesignRepository extends BaseRepository
     ): LengthAwarePaginator {
         $query = $this->createQueryBuilder('d')
             ->where('d.designer = :designer_id')
-            ->orderBy('d.date', 'desc')
+            ->orderBy('d.createdAt', 'desc')
             ->setParameter('designer_id', $designer->getId())
             ->getQuery();
 

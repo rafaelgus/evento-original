@@ -1,9 +1,13 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Enums\DesignOrientation;
+use EventoOriginal\Core\Enums\DesignStatus;
 use Exception;
+use InvalidArgumentException;
+use LaravelDoctrine\Extensions\Timestamps\Timestamps;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\DesignRepository")
@@ -11,6 +15,8 @@ use Exception;
  */
 class Design
 {
+    use Timestamps;
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -58,6 +64,11 @@ class Design
      * @ORM\Column(type="integer", nullable=true)
      */
     private $commission;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $status;
 
     /**
      * @return int
@@ -198,5 +209,41 @@ class Design
     public function setCommission($commission)
     {
         $this->commission = $commission;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus(string $status): void
+    {
+        if (!DesignStatus::isValid($status)) {
+            throw new InvalidArgumentException("Invalid design status");
+        }
+
+        $this->status = $status;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
     }
 }

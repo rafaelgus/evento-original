@@ -49,6 +49,7 @@ Route::get('/editor-edible-paper-a4', 'Frontend\DesignerController@showEditor');
 
 Route::group(['middleware' => ['auth', 'designer']], function () {
     Route::post('/save-design', 'Frontend\DesignerController@storeDesign')->name('save_design');
+    Route::get('/' . trans('designer.my_designs.slug'), 'Frontend\DesignerController@showDesigns')->name('designer.myDesigns');
 });
 
 Route::group(['prefix' => '/management'], function () {

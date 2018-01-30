@@ -11,4 +11,14 @@
             </ul>
         </div>
     </div>
+
+    <div class="block block-account">
+        <div class="block-title">{{ trans('designer.title')}}</div>
+        <div class="block-content">
+            <ul>
+                <li><a href="#">{{ trans('designer.profile')}}</a></li>
+                <li><a href="{{ route('designer.myDesigns') }}">{{ trans('designer.my_designs.title')}}</a></li>
+            </ul>
+        </div>
+    </div>
 </aside>

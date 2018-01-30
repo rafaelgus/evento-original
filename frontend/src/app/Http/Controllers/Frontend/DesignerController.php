@@ -49,8 +49,25 @@ class DesignerController
     {
         $user = current_user();
 
-        $designer = $this->designerService->create($user, $request->get('nickname'));
+        $this->designerService->create($user, $request->get('nickname'));
 
-        return redirect()->route('designer.my_account');
+        return redirect()->route('designer.myDesigns');
+    }
+
+    public function showDesigns()
+    {
+        $user = current_user();
+
+        $designer = $user->getDesigner();
+
+        if (!$designer) {
+            abort(404);
+        }
+
+        $designs = $this->designService->getAllByDesignerPaginated($designer);
+
+        return view('frontend/designer.my_designs')->with([
+            'designs' => $designs,
+        ]);
     }
 }
