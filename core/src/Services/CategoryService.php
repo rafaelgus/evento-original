@@ -19,13 +19,9 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function findOneById(int $id, string $locale)
+    public function findOneById(int $id, string $locale = 'es')
     {
         $category = $this->categoryRepository->findOneById($id, $locale);
-
-        if (!$category) {
-            throw new Exception("This category doesn't exist");
-        }
 
         return $category;
     }

@@ -4,6 +4,7 @@ namespace EventoOriginal\Core\Services;
 use EventoOriginal\Core\Entities\Customer;
 use EventoOriginal\Core\Persistence\Repositories\CustomerRepository;
 use Webpatser\Uuid\Uuid;
+use EventoOriginal\Core\Entities\Country;
 
 class CustomerService
 {
@@ -14,6 +15,10 @@ class CustomerService
         $this->customerRepository = $customerRepository;
     }
 
+    /**
+     * @param array $data
+     * @throws \Exception
+     */
     public function create(array $data)
     {
         $customer = new Customer();
@@ -31,5 +36,23 @@ class CustomerService
         $customer->setUser($data['user']);
 
         $this->customerRepository->save($customer);
+    }
+
+    public function updateCheckoutInformation(Customer $customer, array $data)
+    {
+        $customer->setBillingAddress($data['billingAddress']. ' ' .$data['billingAddressNumber']);
+        $customer->setAddress($data['address']. ' ' . $data['addressNumber']);
+        $customer->setPhoneNumber($data['phone']);
+
+        $this->customerRepository->save($customer);
+    }
+
+    /**
+     * @param int $id
+     * @return null|Country
+     */
+    public function findById(int $id)
+    {
+        return $this->customerRepository->find($id);
     }
 }

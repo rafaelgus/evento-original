@@ -1,9 +1,12 @@
 <?php
 namespace EventoOriginal\Core\Entities;
+
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Money\Currency;
 use Money\Money;
+
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\OrderDetailRepository")
  * @ORM\Table(name="order_detail")
@@ -18,23 +21,26 @@ class OrderDetail
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\Column(type="integer")
+     */
+    private $quantity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Article", inversedBy="orderDetails")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
     private $article;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $quantity;
-    /**
      * @ORM\Column(type="string")
      */
     private $currency;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $amount;
+
     /**
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="ordersDetail", cascade={"persist"})
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
@@ -53,6 +59,7 @@ class OrderDetail
     {
         return $this->id;
     }
+
     /**
      * @return int
      */
@@ -60,6 +67,7 @@ class OrderDetail
     {
         return $this->quantity;
     }
+
     /**
      * @param int $quantity
      */
@@ -67,6 +75,7 @@ class OrderDetail
     {
         $this->quantity = $quantity;
     }
+
     /**
      * @return Order
      */
@@ -74,6 +83,7 @@ class OrderDetail
     {
         return $this->order;
     }
+
     /**
      * @param Order $order
      */
@@ -81,14 +91,16 @@ class OrderDetail
     {
         $this->order = $order;
     }
+
     /**
      * @return Money
      */
     public function getMoney()
     {
-        $money = new Money($this->amount, $this->currency);
+        $money = new Money($this->amount, new Currency('EUR'));
         return $money;
     }
+
     /**
      * @param Money $money
      */
@@ -97,6 +109,7 @@ class OrderDetail
         $this->amount = $money->getAmount();
         $this->currency = $money->getCurrency();
     }
+
     /**
      * @return bool
      */
@@ -104,6 +117,7 @@ class OrderDetail
     {
         return $this->discount;
     }
+
     /**
      * @param bool $discount
      */

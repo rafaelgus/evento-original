@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\CustomerRepository")
@@ -49,6 +50,22 @@ class Customer
 
     /**
      * @return mixed
+     * @ORM\OneToMany(targetEntity="Address", mappedBy="customer")
+     */
+    private $addresses;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $phoneNumber;
+
+    public function __construct()
+    {
+        $this->addresses = new ArrayCollection();
+    }
+
+    /**
+     * @return int
      */
     public function getId()
     {
@@ -149,5 +166,45 @@ class Customer
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     */
+    public function setPhoneNumber(string $phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddresses()
+    {
+        if (!$this->addresses) {
+            $this->addresses = new ArrayCollection();
+        }
+        return $this->addresses->toArray();
+    }
+
+    /**
+     * @param mixed $addresses
+     */
+    public function setAddresses(array $addresses)
+    {
+        $this->addresses = $addresses;
+    }
+
+    public function addAddress(Address $address)
+    {
+        $this->addresses[] = $address;
     }
 }

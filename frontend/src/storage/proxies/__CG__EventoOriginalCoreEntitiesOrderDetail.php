@@ -64,10 +64,10 @@ class OrderDetail extends \EventoOriginal\Core\Entities\OrderDetail implements \
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'quantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'discount'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'quantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'discount'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'quantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'discount'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'quantity', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'article', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'currency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'amount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\OrderDetail' . "\0" . 'discount'];
     }
 
     /**

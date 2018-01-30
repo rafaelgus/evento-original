@@ -12,4 +12,3 @@ function money_symbol(Money $money)
 {
     return Intl::getCurrencyBundle()->getCurrencySymbol($money->getCurrency()->getCode());
 }
-

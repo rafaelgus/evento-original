@@ -80,7 +80,7 @@ return [
           'name' => 'Nombre',
           'description' => 'Descripcion',
           'costPrice' => 'Precio de costo',
-          'price' => 'Precio',
+          'price' => 'Precio Ej: 1200 = 12,00',
           'barCode' => 'Codigo de barra',
           'internalCode' => 'Codigo interno',
           'tags' => 'Tags',

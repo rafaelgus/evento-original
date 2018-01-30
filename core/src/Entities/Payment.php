@@ -4,13 +4,15 @@ namespace EventoOriginal\Core\Entities;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PaymentInterface;
 use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\PaymentRepository")
  * @ORM\Table(name="payments")
  */
-class Payment
+class Payment implements PaymentInterface
 {
     const STATUS_PENDING = 'pending';
     const STATUS_APPROVE = 'approve';
@@ -60,7 +62,7 @@ class Payment
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -71,7 +73,7 @@ class Payment
     private $gateway;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $requestData;
 
@@ -86,7 +88,7 @@ class Payment
     private $description;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $data;
 
@@ -94,6 +96,11 @@ class Payment
      * @ORM\Column(type="json", nullable=true)
      */
     private $param;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $externalId;
 
     /**
      * @return int
@@ -151,6 +158,24 @@ class Payment
         $this->status = $status;
     }
 
+    /**
+     * Get payer of the payment
+     *
+     * @return PayerInterface
+     */
+    public function getPayer()
+    {
+        return $this->user;
+    }
+    /**
+     * Set payer of the payment
+     *
+     * @param PayerInterface $payer
+     */
+    public function setPayer(PayerInterface $payer)
+    {
+        $this->user = $payer;
+    }
 
     /**
      * Get payment gateway
@@ -159,7 +184,7 @@ class Payment
      */
     public function getGateway()
     {
-        return $this->getGateway();
+        return $this->gateway;
     }
 
     /**
@@ -280,17 +305,15 @@ class Payment
         return $this->data;
     }
 
-    /**
-     * @param string $data
-     */
-    public function setData(string $data)
+
+    public function setData(array $data)
     {
-        $this->data = $data;
+        $this->data = json_encode($data);
     }
 
     public function setParams(array $params = [])
     {
-        $this->params = json_encode($params);
+        $this->param = json_encode($params);
     }
 
     public function getParam($key)
@@ -304,5 +327,26 @@ class Payment
         $params = $this->getParams();
         $params[$key] = $value;
         $this->setParams($params);
+    }
+
+    public function getParams()
+    {
+        return !empty($this->param) ? json_decode($this->param, true) : [];
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * @param string $externalId
+     */
+    public function setExternalId(string $externalId)
+    {
+        $this->externalId = $externalId;
     }
 }

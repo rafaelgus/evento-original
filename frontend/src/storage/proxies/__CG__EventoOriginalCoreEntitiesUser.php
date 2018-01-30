@@ -507,4 +507,26 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
         return parent::setVisitorLanding($visitorLanding);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhone()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhone', []);
+
+        return parent::getPhone();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIdentification()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIdentification', []);
+
+        return parent::getIdentification();
+    }
+
 }

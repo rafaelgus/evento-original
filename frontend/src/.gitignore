@@ -9,3 +9,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 .env
+composer.phar
+/docae
+composer.phar
+/.composer
+error.log
+adminer.php
+Paypal.log

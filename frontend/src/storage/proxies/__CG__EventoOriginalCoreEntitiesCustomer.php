@@ -64,10 +64,10 @@ class Customer extends \EventoOriginal\Core\Entities\Customer implements \Doctri
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'lastName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteUrl', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'affiliateCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'user'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'lastName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteUrl', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'affiliateCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'addresses', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'phoneNumber'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'lastName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteUrl', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'affiliateCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'user'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'lastName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'websiteUrl', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'affiliateCode', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'addresses', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Customer' . "\0" . 'phoneNumber'];
     }
 
     /**
@@ -318,6 +318,61 @@ class Customer extends \EventoOriginal\Core\Entities\Customer implements \Doctri
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', [$user]);
 
         return parent::setUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPhoneNumber()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPhoneNumber', []);
+
+        return parent::getPhoneNumber();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPhoneNumber(string $phoneNumber)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPhoneNumber', [$phoneNumber]);
+
+        return parent::setPhoneNumber($phoneNumber);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAddresses()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAddresses', []);
+
+        return parent::getAddresses();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAddresses(array $addresses)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAddresses', [$addresses]);
+
+        return parent::setAddresses($addresses);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addAddress(\EventoOriginal\Core\Entities\Address $address)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAddress', [$address]);
+
+        return parent::addAddress($address);
     }
 
 }

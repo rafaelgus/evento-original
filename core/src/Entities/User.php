@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Enums\RoleType;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -11,13 +13,8 @@ use Illuminate\Notifications\Notifiable;
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\UserRepository")
  * @ORM\Table(name="users")
  */
-class User implements Authenticatable, CanResetPassword
+class User implements Authenticatable, CanResetPassword, PayerInterface
 {
-    const ADMIN_ROLE = 'admin';
-    const CUSTOMER_ROLE = 'customer';
-    const SELLER_ROLE = 'seller';
-    const DESIGNER_ROLE = 'designer';
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -280,7 +277,7 @@ class User implements Authenticatable, CanResetPassword
     public function isAdmin()
     {
         foreach ($this->roles as $role) {
-            if ($role->getName() === self::ADMIN_ROLE) {
+            if ($role->getName() === RoleType::ADMIN) {
                 return true;
             }
         }
@@ -334,5 +331,15 @@ class User implements Authenticatable, CanResetPassword
     public function setVisitorLanding(VisitorLanding $visitorLanding)
     {
         $this->visitorLanding = $visitorLanding;
+    }
+
+    public function getPhone()
+    {
+        // TODO: Implement getPhone() method.
+    }
+
+    public function getIdentification()
+    {
+        // TODO: Implement getIdentification() method.
     }
 }

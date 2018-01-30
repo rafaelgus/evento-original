@@ -7,8 +7,9 @@ use EventoOriginal\Core\Persistence\Repositories\PayoutRepository;
 use EventoOriginal\Core\Services\PayoutService;
 use EventoOriginal\Core\Services\WalletService;
 use Exception;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class RefundPayoutAmount
+class RefundPayoutAmount implements ShouldQueue
 {
     private $walletService;
     private $payoutRepository;
@@ -33,8 +34,6 @@ class RefundPayoutAmount
         if (!in_array($payout->getStatus(), PayoutService::$statusToRefund) && !$payout->isRefunded()) {
             throw new Exception("Invalid status to refund payout " . $payout->getId());
         }
-
-        $user = $payout->getUser();
 
         $this->walletService->addBalance(
             $payout->getUser()->getWallet(),

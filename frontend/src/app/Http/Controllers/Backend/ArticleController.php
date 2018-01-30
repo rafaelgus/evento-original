@@ -214,11 +214,11 @@ class ArticleController
             $data['internalCode'],
             $data['status'],
             ($request->input('slug') ?: str_slug($request->input('name'))),
-            $data['price'],
+            ($data['price'] * 100),
             $priceType,
             'EUR',
             null,
-            $data['costPrice'],
+            ($data['costPrice'] * 100),
             $brand,
             $category,
             $license,
@@ -391,7 +391,6 @@ class ArticleController
                 $article->addPricePerQuantity($price);
             }
         }
-
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
         $article->setIsNew(($request->input('isNew') ?: false));

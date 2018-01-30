@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\VoucherRepository")
@@ -28,7 +30,7 @@ class Voucher
     private $value;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $amount;
 
@@ -150,5 +152,16 @@ class Voucher
     public function setAmount($amount)
     {
         $this->amount = $amount;
+    }
+
+    public function getMoney()
+    {
+        $money = new Money($this->getAmount(), new Currency('EU'));
+        return $money;
+    }
+
+    public function setMoney(Money $money)
+    {
+        $this->amount = $money->getAmount();
     }
 }

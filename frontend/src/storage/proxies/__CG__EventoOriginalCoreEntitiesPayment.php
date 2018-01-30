@@ -64,10 +64,10 @@ class Payment extends \EventoOriginal\Core\Entities\Payment implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'gateway', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'requestData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'responseData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'data', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'param'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'gateway', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'requestData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'responseData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'data', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'param', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'externalId'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'gateway', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'requestData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'responseData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'data', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'param'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'originalCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidAmount', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'paidCurrency', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'order', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'gateway', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'requestData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'responseData', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'data', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'param', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Payment' . "\0" . 'externalId'];
     }
 
     /**
@@ -257,6 +257,28 @@ class Payment extends \EventoOriginal\Core\Entities\Payment implements \Doctrine
     /**
      * {@inheritDoc}
      */
+    public function getPayer()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPayer', []);
+
+        return parent::getPayer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPayer(\EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface $payer)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPayer', [$payer]);
+
+        return parent::setPayer($payer);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getGateway()
     {
 
@@ -400,7 +422,7 @@ class Payment extends \EventoOriginal\Core\Entities\Payment implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setData(string $data)
+    public function setData(array $data)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setData', [$data]);
@@ -440,6 +462,39 @@ class Payment extends \EventoOriginal\Core\Entities\Payment implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParam', [$key, $value]);
 
         return parent::setParam($key, $value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParams()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParams', []);
+
+        return parent::getParams();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExternalId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExternalId', []);
+
+        return parent::getExternalId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setExternalId(string $externalId)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setExternalId', [$externalId]);
+
+        return parent::setExternalId($externalId);
     }
 
 }

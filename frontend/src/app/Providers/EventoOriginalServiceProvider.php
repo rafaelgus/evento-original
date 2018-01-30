@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -12,9 +13,9 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
 use Mailin;
-use Mandrill;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
+use Throwable;
 
 class EventoOriginalServiceProvider extends ServiceProvider
 {
@@ -25,25 +26,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $em = $this->app->make(\Doctrine\ORM\EntityManager::class);
-        $em->getFilters()->disable('article_brand');
-        $em->getFilters()->disable('article_license');
-
-        try {
-            $menuRepository = $this->app->make(Repositories\MenuRepository::class);
-            $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
-
-            $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
-
-            $navbarMenuItems = [];
-            if ($navbarMenu) {
-                $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
-            }
-
-            View::share('navBarMenuItems', $navbarMenuItems);
-        } catch (Exception $exception) {
-            logger()->error($exception->getMessage());
-        }
+        $this->shareNavbarsInViews();
     }
 
     /**
@@ -53,6 +36,14 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+        define('CORE_DIR', realpath(__DIR__ . '/../../../../core/src'));
+
+        AnnotationRegistry::registerAutoloadNamespace(
+            'Gedmo\Mapping\Annotation',
+            __DIR__ . '/vendor/gedmo'
+        );
+
         $this->app->singleton(Repositories\UserRepository::class, function () {
             return EntityManager::getRepository(Entities\User::class);
         });
@@ -128,18 +119,39 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\VisitorEventRepository::class, function () {
             return EntityManager::getRepository(Entities\VisitorEvent::class);
         });
-        $this->app->singleton(Repositories\PayoutRepository::class, function() {
+        $this->app->singleton(Repositories\PayoutRepository::class, function () {
             return EntityManager::getRepository(Entities\Payout::class);
         });
-        $this->app->singleton(Repositories\OrderRepository::class, function() {
+        $this->app->singleton(Repositories\OrderRepository::class, function () {
             return EntityManager::getRepository(Entities\Order::class);
         });
-
-        $this->app->bind(Mailin::class, function() {
-            return new Mailin(config('services.sendinblue.url'), config('services.sendinblue.key'));
+        $this->app->singleton(Repositories\OrderDetailRepository::class, function () {
+            return EntityManager::getRepository(Entities\OrderDetail::class);
+        });
+        $this->app->singleton(Repositories\OrderRepository::class, function () {
+            return EntityManager::getRepository(Entities\Order::class);
+        });
+        $this->app->singleton(Repositories\PaymentRepository::class, function () {
+            return EntityManager::getRepository(Entities\Payment::class);
+        });
+        $this->app->singleton(Repositories\BillingRepository::class, function () {
+            return EntityManager::getRepository(Entities\Billing::class);
+        });
+        $this->app->singleton(Repositories\ShippingRepository::class, function () {
+            return EntityManager::getRepository(Entities\Shipping::class);
+        });
+        $this->app->singleton(Repositories\AddressRepository::class, function () {
+            return EntityManager::getRepository(Entities\Address::class);
         });
 
-        $this->app->singleton(ApiContext::class, function() {
+        $this->app->bind(Mailin::class, function () {
+            return new Mailin(
+                config('services.sendinblue.url'),
+                config('services.sendinblue.key')
+            );
+        });
+
+        $this->app->singleton(ApiContext::class, function () {
             $apiContext = new ApiContext(
                 new OAuthTokenCredential(
                     config('paypal.client_id'),
@@ -148,12 +160,31 @@ class EventoOriginalServiceProvider extends ServiceProvider
             );
             $apiContext->setConfig([
                 'mode' => 'sandbox',
-                'log.LogEnabled'   => true,
-                'log.FileName'     => '../PayPal.log',
-                'log.LogLevel'     => 'DEBUG'
+                'log.LogEnabled' => true,
+                'log.FileName' => '../PayPal.log',
+                'log.LogLevel' => 'DEBUG'
             ]);
 
             return $apiContext;
         });
+    }
+
+    private function shareNavbarsInViews()
+    {
+        $navbarMenuItems = [];
+
+        try {
+            $menuRepository = $this->app->make(Repositories\MenuRepository::class);
+            $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+            $navbarMenu = $menuRepository->findByType('navbar', App::getLocale());
+            $navbarMenuItems = [];
+            if ($navbarMenu) {
+                $navbarMenuItems = $menuItemRepository->findByMenu($navbarMenu);
+            }
+        } catch (Throwable $exception) {
+            logger()->error($exception->getMessage());
+        }
+
+        View::share('navBarMenuItems', $navbarMenuItems);
     }
 }
