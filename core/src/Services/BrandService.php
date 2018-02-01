@@ -14,6 +14,11 @@ class BrandService
         $this->brandRepository = $brandRepository;
     }
 
+    /**
+     * @param int $id
+     * @return null|object
+     * @throws Exception
+     */
     public function findOneById(int $id)
     {
         $brand = $this->brandRepository->findOneById($id);

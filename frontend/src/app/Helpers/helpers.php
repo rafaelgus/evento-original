@@ -40,13 +40,6 @@ if (!function_exists('storage_url')) {
     }
 }
 
-if (!function_exists('domain_url')) {
-    function domain_url()
-    {
-        return "https://evento-original.com";
-    }
-}
-
 if (!function_exists('default_article_image_path')) {
     function default_article_image_path()
     {

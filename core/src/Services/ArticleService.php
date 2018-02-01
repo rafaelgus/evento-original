@@ -302,6 +302,10 @@ class ArticleService
         }
     }
 
+    /**
+     * @param string $barCode
+     * @return null|Article
+     */
     public function findByBarcode(string $barCode)
     {
         return $this->articleRepository->findOneByBarCode($barCode);

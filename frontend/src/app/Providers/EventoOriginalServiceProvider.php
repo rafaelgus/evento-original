@@ -1,14 +1,10 @@
 <?php
-
 namespace App\Providers;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\ORM\Mapping\Entity;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
-use Exception;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
