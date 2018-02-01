@@ -111,10 +111,13 @@ class CartController
                 App::getLocale()
             );
 
-        try {
+
+
+        if ($article->getImages()->count() > 0) {
             $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
-        } catch (Exception $exception) {
-            $articleImagesPath = '';
+            $image = storage_url() . '/images/' . $articleImagesPath;
+        } else {
+            $image = default_article_image_path();
         }
 
         if ($quantity > 0) {
@@ -124,7 +127,7 @@ class CartController
                 $quantity,
                 $article->getPrice(),
                 [
-                    'image' => storage_url() . '/images/' . $articleImagesPath,
+                    'image' => $image,
                     'category' => $article->getCategory()->getId(),
                     'currency' => $article->getMoneyPrice()->getCurrency()->getCode()
                 ]

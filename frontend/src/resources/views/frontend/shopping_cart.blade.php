@@ -43,8 +43,8 @@
                                     <tbody>
                                     @foreach($cart as $item)
                                     <tr class="first odd">
-                                        <td class="image"><a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="{{ ($item['image'] != '')? '/articles/storage/'. $item['image']: '/images/logo.png'}}"></a></td>
-                                        <td><h2 class="product-name"> <a href="#/women-s-crepe-printed-black/">{{$item['name']}}</a> </h2></td>
+                                        <td class="image"><a class="product-image" title="{{$item['name']}}" href=""><img width="75" alt="{{$item['name']}}" src="{{ (!empty($item['image']) ? $item['image'] : '/images/logo.png')}}"></a></td>
+                                        <td><h2 class="product-name"> <a href="#">{{$item['name']}}</a> </h2></td>
                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
                                         <td class="a-right"><span class="cart-price"><span class="price">{{($item['price']/100)}} €</span> </span></td>
                                         <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item['qty']}}" onchange="changeQuantity('{{$item['id']}}')" name="cart[15945][qty]" id="productQty" type="number"></td>
