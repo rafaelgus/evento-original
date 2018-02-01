@@ -43,10 +43,6 @@ class CartController
 
     public function show()
     {
-        $order = $this->orderService->findById(20);
-
-        $this->visitorEventRepository->findAffiliateReferralInOrder($order);
-
         $cart = Cart::instance('shopping')->content();
         $discounts = Cart::instance('discount')->content();
 
