@@ -70,7 +70,7 @@ class CartController
 
             $discountAmount = $this->voucherService->getDiscountAmount($voucher, $itemTotal);
 
-            Cart::instance('discount')->update($discount->rowId,['price' => $discountAmount->getAmount()]);
+            Cart::instance('discount')->update($discount->rowId, ['price' => $discountAmount->getAmount()]);
 
             $itemsAndDiscount[] = [
                 'id' => $discount->rowId,
@@ -110,7 +110,6 @@ class CartController
                 $request->input('articleId'),
                 App::getLocale()
             );
-
 
 
         if ($article->getImages()->count() > 0) {

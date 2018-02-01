@@ -52,7 +52,7 @@
                                     <td></td>
                                     <td></td>
                                     <td class="a-right last" colspan="50">
-                                        Total: ${{$total}}
+                                        {{formatted_money($total)}}
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -60,7 +60,7 @@
                                 @foreach($cartItems as $item)
                                     <tr class="first odd">
                                         <td>
-                                            <a class="product-image" title="ThinkPad X1 Ultrabook" href=""><img width="75" alt="ThinkPad Ultrabook" src="{{$item['image'] ? '/articles/storage/'.$item['image'] : '/images/voucher.jpeg'}}"></a>
+                                            <a class="product-image" title="{{$item['name']}}" href=""><img width="75" alt="{{$item['name']}}" src="{{$item['image'] ?? '/images/voucher.jpeg'}}"></a>
                                         </td>
                                         <td>
                                             {{$item['name']}}
@@ -69,7 +69,7 @@
                                             {{$item['qty']}}
                                         </td>
                                         <td>
-                                            ${{$item['price']}}
+                                            {{formatted_money(new \Money\Money(($item['price']), new \Money\Currency($item['currency'])))}}
                                         </td>
                                     </tr>
                                 @endforeach

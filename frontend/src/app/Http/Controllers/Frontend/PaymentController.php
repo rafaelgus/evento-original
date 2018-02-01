@@ -21,6 +21,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Money\Currency;
+use Money\Money;
 
 class PaymentController
 {
@@ -28,6 +30,8 @@ class PaymentController
     const NEW_ADDRESS_FALSE = 0;
     const DELIVERY_IN_STORE = 'branch_withdrawal';
     const DELIVERY_HOME = 'home_delivery';
+
+    const CURRENCY_EUR = 'EUR';
 
     private $orderService;
     private $orderDetailService;
@@ -156,9 +160,11 @@ class PaymentController
             $total = $total + ($item['qty'] * $item['price']);
         }
 
+        $totalMoney = new Money($total, new Currency(self::CURRENCY_EUR));
+
         return view('frontend.checkout.orderView')
             ->with('cartItems', $cartItems)
-            ->with('total', $total)
+            ->with('total', $totalMoney)
             ->with('order', $order)
             ->with('message', '');
     }
@@ -208,7 +214,6 @@ class PaymentController
                 logger()->error($exception->getTraceAsString());
 
                 $this->destroyCart();
-
 
                 return abort(400, 'Error to process payment');
             }
@@ -287,8 +292,9 @@ class PaymentController
                 'id' => $item->rowId,
                 'name' => $item->name,
                 'qty' => $item->qty,
-                'price' => $item->price /100,
+                'price' => $item->price,
                 'image' => $item->options->has('image') ? $item->options->image : '',
+                'currency' => $item->options->has('currency') ? $item->options->currency : '',
                 'article' => true
             ];
         }
@@ -297,8 +303,9 @@ class PaymentController
                 'id' => $discount->rowId,
                 'name' => $discount->name,
                 'qty' => $discount->qty,
-                'price' => -$discount->price / 100,
+                'price' => -$discount->price,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
+                'currency' => $discount->options->has('currency') ? $discount->options->currency : '',
                 'article' => false
             ];
         }
@@ -357,13 +364,14 @@ class PaymentController
                 $total = $total + ($item['qty'] * $item['price']);
             }
 
+            $totalMoney = new Money($total, new Currency(self::CURRENCY_EUR));
+
             return view('frontend.checkout.orderView')
                 ->with('cartItems', $cartItems)
-                ->with('total', $total)
+                ->with('total', $totalMoney)
                 ->with('order', $order)
                 ->with('message', '');
         } else {
-
             $cartItems = $this->getSummary();
             $order = $this->orderService->findById($request->input('orderId'));
 
@@ -373,9 +381,11 @@ class PaymentController
                 $total = $total + ($item['qty'] * $item['price']);
             }
 
+            $totalMoney = new Money($total, new Currency(self::CURRENCY_EUR));
+
             return view('frontend.checkout.orderView')
                 ->with('cartItems', $cartItems)
-                ->with('total', $total)
+                ->with('total', $totalMoney)
                 ->with('order', $order)
                 ->with('message', trans('frontend/shopping_cart.invalid_voucher'));
         }
