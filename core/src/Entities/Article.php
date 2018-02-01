@@ -431,7 +431,7 @@ class Article
     /**
      * @return Brand
      */
-    public function getBrand(): Brand
+    public function getBrand(): ?Brand
     {
         return $this->brand;
     }

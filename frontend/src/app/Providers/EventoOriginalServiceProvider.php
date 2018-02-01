@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use LaravelDoctrine\ORM\Facades\EntityManager;
+use Mailin;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
 use Throwable;
 
 class EventoOriginalServiceProvider extends ServiceProvider
@@ -33,6 +36,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
         define('CORE_DIR', realpath(__DIR__ . '/../../../../core/src'));
 
         AnnotationRegistry::registerAutoloadNamespace(
@@ -100,17 +104,32 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\MenuItemRepository::class, function () {
             return EntityManager::getRepository(Entities\MenuItem::class);
         });
-        $this->app->singleton(Repositories\OrderDetailRepository::class, function () {
-            return EntityManager::getRepository(Entities\OrderDetail::class);
+        $this->app->singleton(Repositories\CustomerRepository::class, function () {
+            return EntityManager::getRepository(Entities\Customer::class);
+        });
+        $this->app->singleton(Repositories\WalletRepository::class, function () {
+            return EntityManager::getRepository(Entities\Wallet::class);
+        });
+        $this->app->singleton(Repositories\MovementRepository::class, function () {
+            return EntityManager::getRepository(Entities\Movement::class);
+        });
+        $this->app->singleton(Repositories\VisitorLandingRepository::class, function () {
+            return EntityManager::getRepository(Entities\VisitorLanding::class);
+        });
+        $this->app->singleton(Repositories\VisitorEventRepository::class, function () {
+            return EntityManager::getRepository(Entities\VisitorEvent::class);
+        });
+        $this->app->singleton(Repositories\PayoutRepository::class, function () {
+            return EntityManager::getRepository(Entities\Payout::class);
         });
         $this->app->singleton(Repositories\OrderRepository::class, function () {
             return EntityManager::getRepository(Entities\Order::class);
         });
+        $this->app->singleton(Repositories\OrderDetailRepository::class, function () {
+            return EntityManager::getRepository(Entities\OrderDetail::class);
+        });
         $this->app->singleton(Repositories\PaymentRepository::class, function () {
             return EntityManager::getRepository(Entities\Payment::class);
-        });
-        $this->app->singleton(Repositories\CustomerRepository::class, function () {
-            return EntityManager::getRepository(Entities\Customer::class);
         });
         $this->app->singleton(Repositories\BillingRepository::class, function () {
             return EntityManager::getRepository(Entities\Billing::class);
@@ -120,6 +139,30 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\AddressRepository::class, function () {
             return EntityManager::getRepository(Entities\Address::class);
+        });
+
+        $this->app->bind(Mailin::class, function () {
+            return new Mailin(
+                config('services.sendinblue.url'),
+                config('services.sendinblue.key')
+            );
+        });
+
+        $this->app->singleton(ApiContext::class, function () {
+            $apiContext = new ApiContext(
+                new OAuthTokenCredential(
+                    config('paypal.client_id'),
+                    config('paypal.client_secret')
+                )
+            );
+            $apiContext->setConfig([
+                'mode' => 'sandbox',
+                'log.LogEnabled' => true,
+                'log.FileName' => '../PayPal.log',
+                'log.LogLevel' => 'DEBUG'
+            ]);
+
+            return $apiContext;
         });
     }
 

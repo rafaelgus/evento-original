@@ -26,7 +26,7 @@ class Order
     private $createDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"}, fetch="EAGER")
      */
     private $ordersDetail;
 
@@ -36,7 +36,7 @@ class Order
     private $payment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;
@@ -47,7 +47,12 @@ class Order
     private $status;
 
     /**
-     * One Cart has One Customer.
+     * @ORM\ManyToOne(targetEntity="VisitorEvent")
+     * @ORM\JoinColumn(name="referral_visitor_event_id", referencedColumnName="id", nullable=true)
+     */
+    private $referralVisitorEvent;
+
+     /**
      * @ORM\OneToOne(targetEntity="Billing")
      * @ORM\JoinColumn(name="billing_id", referencedColumnName="id")
      */
@@ -140,8 +145,10 @@ class Order
                 $total = $total + ($detail->getMoney()->getAmount() * $detail->getQuantity());
             }
         }
+
         return new Money($total, new Currency('EUR'));
     }
+
     /**
      * @return string
      */
@@ -149,6 +156,7 @@ class Order
     {
         return $this->status;
     }
+
     /**
      * @param string $status
      */
@@ -156,12 +164,29 @@ class Order
     {
         $this->status = $status;
     }
+
     /**
      * @param OrderDetail $orderDetail
      */
     public function addOrderDetail(OrderDetail $orderDetail)
     {
         $this->ordersDetail[] = $orderDetail;
+    }
+
+    /**
+     * @return VisitorEvent
+     */
+    public function getReferralVisitorEvent()
+    {
+        return $this->referralVisitorEvent;
+    }
+
+    /**
+     * @param VisitorEvent $referralVisitorEvent
+     */
+    public function setReferralVisitorEvent(VisitorEvent $referralVisitorEvent)
+    {
+        $this->referralVisitorEvent = $referralVisitorEvent;
     }
 
     /**

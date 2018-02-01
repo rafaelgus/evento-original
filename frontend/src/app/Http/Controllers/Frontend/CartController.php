@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
+use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
@@ -21,21 +22,31 @@ class CartController
     private $orderDetailService;
     private $orderService;
     private $voucherService;
+    /**
+     * @var VisitorEventRepository
+     */
+    private $visitorEventRepository;
 
     public function __construct(
         ArticleService $articleService,
         OrderDetailService $orderDetailService,
         OrderService $orderService,
-        VoucherService $voucherService
+        VoucherService $voucherService,
+        VisitorEventRepository $visitorEventRepository
     ) {
         $this->articleService = $articleService;
         $this->orderService = $orderService;
         $this->orderDetailService = $orderDetailService;
         $this->voucherService = $voucherService;
+        $this->visitorEventRepository = $visitorEventRepository;
     }
 
     public function show()
     {
+        $order = $this->orderService->findById(20);
+
+        $this->visitorEventRepository->findAffiliateReferralInOrder($order);
+
         $cart = Cart::instance('shopping')->content();
         $discounts = Cart::instance('discount')->content();
 

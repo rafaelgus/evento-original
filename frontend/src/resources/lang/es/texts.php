@@ -13,6 +13,7 @@ return [
           'name' => 'Nombre',
           'slug' => 'Slug',
           'description' => 'Descripción',
+          'affiliate_commission' => 'Comisión para afiliados (%)',
       ],
       'colors' => [
           'title' => 'Colores',
@@ -135,6 +136,12 @@ return [
           'amount' => 'Monto',
           'edit' => 'Editar'
       ],
+      'payouts' => [
+          'title' => 'Pagos a usuarios',
+          'view' => 'Ver',
+          'pendent_to_approve' => 'Pendientes de aprobacion',
+          'show' => 'Ver pago enviado'
+      ]
   ],
   'errors' => [
       '404' => [

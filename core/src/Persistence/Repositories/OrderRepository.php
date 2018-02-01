@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Persistence\Repositories;
 
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\User;
+use EventoOriginal\Core\Entities\VisitorEvent;
 
 class OrderRepository extends BaseRepository
 {
@@ -13,6 +14,11 @@ class OrderRepository extends BaseRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findById(int $id)
+    {
+        return $this->find($id);
     }
 
     public function findAllByUser(User $user)

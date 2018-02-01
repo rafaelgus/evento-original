@@ -78,7 +78,7 @@ class ArticleRepository extends BaseRepository
 
     public function findAllPaginated(int $currentPage, int $maxItems)
     {
-        $sql = 'SELECT *FROM articles';
+        $sql = 'SELECT * FROM articles';
 
         $query = $this->getEntityManager()
             ->createQuery($sql)

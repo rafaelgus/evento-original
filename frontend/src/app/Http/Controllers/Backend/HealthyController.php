@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateHealthyRequest;
 use EventoOriginal\Core\Services\HealthyService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class HealthyController extends Controller
 {
