@@ -185,7 +185,8 @@ return [
 
         Yajra\DataTables\DataTablesServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class
+        Collective\Html\HtmlServiceProvider::class,
+        MaxBrokman\SafeQueue\DoctrineQueueProvider::class
     ],
 
     /*

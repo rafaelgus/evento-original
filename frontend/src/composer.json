@@ -20,6 +20,7 @@
         "league/flysystem-aws-s3-v3": "~1.0",
         "mailin-api/mailin-api-php": "^1.0",
         "mandrill/mandrill": "1.0.*",
+        "maxbrokman/safe-queue": "^0.3.0",
         "moneyphp/money": "^3.0",
         "myclabs/php-enum": "^1.5",
         "paypal/rest-api-sdk-php": "*",

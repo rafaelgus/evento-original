@@ -26,7 +26,7 @@ class Order
     private $createDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order", cascade={"persist"}, fetch="EAGER")
      */
     private $ordersDetail;
 
@@ -36,7 +36,7 @@ class Order
     private $payment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
     private $user;

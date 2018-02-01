@@ -20,15 +20,28 @@ class OrderService
     private $orderRepository;
     private $walletService;
     private $orderDetailService;
+    /**
+     * @var VisitorEventService
+     */
+    private $visitorEventService;
 
+    /**
+     * OrderService constructor.
+     * @param OrderRepository $orderRepository
+     * @param WalletService $walletService
+     * @param OrderDetailService $orderDetailService
+     * @param VisitorEventService $visitorEventService
+     */
     public function __construct(
         OrderRepository $orderRepository,
         WalletService $walletService,
-        OrderDetailService $orderDetailService
+        OrderDetailService $orderDetailService,
+        VisitorEventService $visitorEventService
     ) {
         $this->orderRepository = $orderRepository;
         $this->walletService = $walletService;
         $this->orderDetailService = $orderDetailService;
+        $this->visitorEventService = $visitorEventService;
     }
 
     /**
@@ -46,15 +59,18 @@ class OrderService
 
         $articleCommission = $article->getCategory()->getAffiliateCommission();
 
-        if ($order->getPayment()->getStatus() === PaymentStatus::STATUS_PAID) {
+        $order = $this->orderRepository->findById($order->getId());
+        
+        if ($order->getPayment()->getStatus() === PaymentStatus::STATUS_PAYMENT_APPROVE) {
             $orderDetail = $order->getOrdersDetail()->filter(function (OrderDetail $orderDetail) use ($article) {
-                return $orderDetail->getArticle() === $article;
+                return $orderDetail->getArticle()->getId() === $article->getId();
             });
 
-            if ($orderDetail) {
+            if (count($orderDetail) > 0) {
                 $amount = $orderDetail[0]->getMoney()->getAmount();
+                $quantity = $orderDetail[0]->getQuantity();
 
-                $sellerCommission = $amount * ($articleCommission / 100);
+                $sellerCommission = ($amount * $quantity) * ($articleCommission / 100);
 
                 $moneyCommission = new Money($sellerCommission, new Currency('EUR'));
 
@@ -67,10 +83,12 @@ class OrderService
 
                 $order->setReferralVisitorEvent($visitorEvent);
                 $this->orderRepository->save($order);
-            }
-        }
 
-        logger()->notice("Affiliate commission not valid, the payment is approve: Order " . $order->getId());
+                logger()->notice("Liquidate affiliate commission done: Order " . $order->getId());
+            }
+        } else {
+            logger()->notice("Affiliate commission not valid, the payment is not approve: Order " . $order->getId());
+        }
     }
 
     /**

@@ -128,9 +128,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
         $this->app->singleton(Repositories\OrderDetailRepository::class, function () {
             return EntityManager::getRepository(Entities\OrderDetail::class);
         });
-        $this->app->singleton(Repositories\OrderRepository::class, function () {
-            return EntityManager::getRepository(Entities\Order::class);
-        });
         $this->app->singleton(Repositories\PaymentRepository::class, function () {
             return EntityManager::getRepository(Entities\Payment::class);
         });

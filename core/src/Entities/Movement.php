@@ -163,7 +163,7 @@ class Movement
     /**
      * @param Order $referralOrder
      */
-    public function setReferralOrder(Order $referralOrder)
+    public function setReferralOrder(?Order $referralOrder)
     {
         $this->referralOrder = $referralOrder;
     }

@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
         'Frontend\CustomerController@affiliateSummary'
     )->name('affiliates.summary');
 
-    Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount');
+    Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
     Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails');
 
     Route::get(

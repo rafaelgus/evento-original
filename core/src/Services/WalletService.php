@@ -51,8 +51,6 @@ class WalletService
         $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime(), $referralOrder);
         $wallet->addMovement($movement);
 
-        logger()->info($wallet->getBalance());
-
         $wallet->setBalance($wallet->getBalance() + $money->getAmount());
 
         $this->walletRepository->save($wallet);

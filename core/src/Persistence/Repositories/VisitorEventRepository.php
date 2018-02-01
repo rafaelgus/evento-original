@@ -38,26 +38,27 @@ class VisitorEventRepository extends BaseRepository
             ->setParameter('visitor_type', 'VisitorLandingCreated')
             ->getQuery();
 
-        logger()->info($q->getSQL());
-
         return $q->execute();
     }
 
     public function findAffiliateReferralInOrder(Order $order)
     {
-        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
-        $rsm->addRootEntityFromClassMetadata(VisitorEvent::class, 've');
+        $articlesId = [];
 
-        $query = $this->getEntityManager()->createNativeQuery(
-            'SELECT * FROM visitor_events ve JOIN order_detail AS od ON 
-od.order_id = :order_id AND od.article_id = ve.article_id = od.article_id 
-WHERE ve.visitor_landing_id = :visitor_landing__id', $rsm);
-        $query->setParameter('order_id', $order->getId());
-        $query->setParameter('visitor_landing_id', $order->getUser()->getVisitorLanding()->getId());
+        foreach ($order->getOrdersDetail() as $orderDetail) {
+            $articlesId[] = $orderDetail->getArticle()->getId();
+        }
 
-        $visitorEvent = $query->getOneOrNullResult();
+        $qb = $this->createQueryBuilder('ve')
+            ->select('ve')
+            ->join('ve.visitorLanding', 'vl', 'WITH', 'vl.id = :visitor_landing_id')
+            ->where('ve.article IN (' . implode(',', $articlesId) . ')')
+            ->setParameter('visitor_landing_id', $order->getUser()->getVisitorLanding()->getId());
 
-        return $visitorEvent;
+
+        $result = $qb->getQuery()->getResult();
+
+        return  (count($result) > 0 ? $result[count($result) - 1] : null);
     }
 
     public function getAllIps(VisitorEvent $visitorEvent)
@@ -79,5 +80,10 @@ WHERE ve.visitor_landing_id = :visitor_landing__id', $rsm);
             ->setParameter('visitor_landing_id', $visitorLanding->getId());
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findOneById(int $id)
+    {
+        return $this->find($id);
     }
 }

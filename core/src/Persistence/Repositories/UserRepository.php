@@ -34,9 +34,4 @@ class UserRepository extends BaseRepository
         $this->getEntityManager()->remove($user);
         $this->getEntityManager()->flush();
     }
-
-    public function findOneByAffiliateCode(string $code)
-    {
-        return $this->findOneBy(['affiliate_code' => $code]);
-    }
 }

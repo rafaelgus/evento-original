@@ -200,13 +200,16 @@ class PaymentController
                 $data['payerId'] = $request->input('PayerID');
                 $this->paypalService->processPayment($payment, $data);
 
-                Cart::instance('shopping')->destroy();
-                Cart::instance('discount')->destroy();
+                $this->destroyCart();
 
                 return view('frontend.payment.success');
-
             } catch (Exception $exception) {
                 Log::error('PAYPAL ' . $exception->getMessage());
+                logger()->error($exception->getTraceAsString());
+
+                $this->destroyCart();
+
+
                 return abort(400, 'Error to process payment');
             }
         }
@@ -219,15 +222,24 @@ class PaymentController
                 $payment = $this->paymentService->findByToken($request->input('token'));
                 $this->paymentService->cancel($payment);
 
-                Cart::instance('shopping')->destroy();
-                Cart::instance('discount')->destroy();
+                $this->destroyCart();
 
                 return view('frontend.payment.cancel');
             }
         } catch (Exception $exception) {
             Log::error('PAYPAL ' . $exception->getMessage());
+
+            $this->destroyCart();
+
             return abort(400, 'Error to process payment');
         }
+    }
+
+    private function destroyCart()
+    {
+        Session::put('orderId', null);
+        Cart::instance('shopping')->destroy();
+        Cart::instance('discount')->destroy();
     }
 
     public function getDetails()

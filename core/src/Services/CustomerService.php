@@ -55,4 +55,9 @@ class CustomerService
     {
         return $this->customerRepository->find($id);
     }
+
+    public function findOneByAffiliateCode(string $code)
+    {
+        return $this->customerRepository->findOneByAffiliateCode($code);
+    }
 }

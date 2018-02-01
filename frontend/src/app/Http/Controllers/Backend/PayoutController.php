@@ -42,7 +42,7 @@ class PayoutController extends Controller
         $payout = $this->payoutService->findById($id);
 
         if (!$payout) {
-           abort(404);
+            abort(404);
         }
 
         $lastMovements = $this->movementService->findLastMovementsByUser($payout->getUser(), 30);

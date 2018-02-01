@@ -40,14 +40,13 @@ class VisitorEventService
 
         $event->setVisitorLanding($visitorLanding);
 
-        if (
-            array_has($data, 'article') &&
+        if (array_has($data, 'article') &&
             is_a($data['article'], Article::class)
         ) {
             $event->setArticle($data['article']);
         }
 
-        if(array_has($data,'affiliate_code_referral')) {
+        if (array_has($data, 'affiliate_code_referral')) {
             $event->setAffiliateCodeReferral($data['affiliate_code_referral']);
         }
 
@@ -62,5 +61,10 @@ class VisitorEventService
     public function getAllIpsByVisitorLanding(VisitorLanding $visitorLanding)
     {
         return $this->visitorEventRepository->getAllIpsByVisitorLanding($visitorLanding);
+    }
+
+    public function findOneById(int $id)
+    {
+        return $this->visitorEventRepository->findOneById($id);
     }
 }

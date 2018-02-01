@@ -40,7 +40,7 @@
                                                     <td>{{ $movement->getDate()->format('d-m-Y') }}</td>
                                                     <td>{{ trans('movements.types.' . $movement->getType()) }}</td>
                                                     <td><span class="price">{{ formatted_money($movement->getAmountMoney()) }}</span></td>
-                                                    @if($movement->getReferralOrder() && $movement->getReferralOrder()->getReferralVisitorEvent()->getType() == \EventoOriginal\Core\Enums\VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL)
+                                                    @if($movement->getReferralOrder() && $movement->getReferralOrder()->getReferralVisitorEvent() && $movement->getReferralOrder()->getReferralVisitorEvent()->getType() == \EventoOriginal\Core\Enums\VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL)
                                                         @php
                                                             $visitorEvent = $movement->getReferralOrder()->getReferralVisitorEvent();
                                                         @endphp

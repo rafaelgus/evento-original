@@ -134,7 +134,7 @@
                                                                 $visitorEvent = $movement->getReferralOrder()->getReferralVisitorEvent();
                                                             @endphp
 
-                                                            <td><b>{{ $visitorEvent->getArticle()->getName() }}</b> <br/> {{ $visitorEvent->getCreatedAt()->format('d-m-Y H:i:s') }}
+                                                            <td><b>{{ ($visitorEvent->getArticle() ? $visitorEvent->getArticle()->getName() : "") }}</b> <br/> {{ $visitorEvent->getCreatedAt()->format('d-m-Y H:i:s') }}
                                                                 <br/> {{ ($visitorEvent->getVisitorLanding()->getUser() ? $visitorEvent->getVisitorLanding()->getUser()->getEmail() : "") }}
                                                                 <br/>
                                                                 <a href="{{ route('admin.orders.show', ['id' => $movement->getReferralOrder()->getId()]) }}">Ver órden</a>

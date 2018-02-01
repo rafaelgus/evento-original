@@ -14,7 +14,7 @@ class LiquidateAffiliateCommissions extends Command
      *
      * @var string
      */
-    protected $signature = 'affiliates:liquidate-commission {user?}';
+    protected $signature = 'eventoriginal:liquidate-commission {user?}';
 
     /**
      * The console command description.
@@ -49,6 +49,8 @@ class LiquidateAffiliateCommissions extends Command
         if ($this->argument('user')) {
             $userId = $this->argument('user');
 
+            $this->info("Liquidate affiliate commission for user " . $userId);
+
             $user = $this->userService->findById($userId);
 
             if ($user) {
@@ -57,11 +59,13 @@ class LiquidateAffiliateCommissions extends Command
                 $this->error("User not found");
             }
 
-            logger()->info("Liquidate affiliate commission for user " . $userId);
+            $this->info("Done");
         } else {
+            $this->info("Liquidate all commissions");
+
             $this->walletService->liquidateAllUsersBalance();
 
-            logger()->info("Liquidate all");
+            $this->info("Done");
         }
     }
 }

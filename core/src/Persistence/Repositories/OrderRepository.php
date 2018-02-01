@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Persistence\Repositories;
 
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\User;
+use EventoOriginal\Core\Entities\VisitorEvent;
 
 class OrderRepository extends BaseRepository
 {
