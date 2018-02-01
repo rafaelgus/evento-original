@@ -444,7 +444,7 @@ class Article extends \EventoOriginal\Core\Entities\Article implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function getBrand(): \EventoOriginal\Core\Entities\Brand
+    public function getBrand(): ?\EventoOriginal\Core\Entities\Brand
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBrand', []);

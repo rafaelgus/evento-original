@@ -129,6 +129,14 @@
         </ul>
     </li>
 
+    <li class="header">{{ trans('payouts.title') }}</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-money"></i> <span>{{ trans('payouts.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/payouts">{{ trans('backend/menus.view') }}</a></li>
+        </ul>
+    </li>
+
     <li class="header">{{ trans('texts.sections.stock.title') }}</li>
     <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>
     <li><a href="#"><i class="fa fa-archive"></i> <span>{{ trans('texts.sections.stock_placements.title') }}</span></a></li>

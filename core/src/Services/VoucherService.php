@@ -12,6 +12,7 @@ class VoucherService
 {
     const STATUS_USED = 'used';
     const STATUS_ACTIVE = 'active';
+    const CURRENCY_EUR = 'EUR';
 
     const TYPE_RELATIVE = 'relativo';
     const TYPE_ABSOLUTE = 'absoluto';
@@ -105,19 +106,19 @@ class VoucherService
     /**
      * @param Voucher $voucher
      * @param $total
-     * @return mixed
+     * @return Money
      * @throws Exception
      */
     public function getDiscountAmount(Voucher $voucher, $total)
     {
         if ($voucher->getType() === self::TYPE_ABSOLUTE) {
-            $discount = $voucher->getMoney()->getAmount();
-
-            return $discount;
+            return $voucher->getMoney();
         } elseif ($voucher->getType() === self::TYPE_RELATIVE) {
             $discount = $total * ($voucher->getValue() / 100);
 
-            return $discount;
+            $total = new Money($discount, new Currency(self::CURRENCY_EUR));
+
+            return $total;
         } else {
             throw new Exception('Invalid voucher');
         }

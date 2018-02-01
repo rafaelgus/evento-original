@@ -86,10 +86,13 @@ class VoucherController
             $voucher->getCode(),
             'Descuento',
             1,
-            $discount
+            $discount->getAmount(),
+            [
+                'currency' => $discount->getCurrency()->getCode()
+            ]
         );
 
-        $this->addDiscountToOrder($discount);
+        $this->addDiscountToOrder($discount->getAmount());
     }
 
     public function addDiscountToOrder(int $discount)

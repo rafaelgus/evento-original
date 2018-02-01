@@ -1,8 +1,9 @@
 <?php
 namespace EventoOriginal\Core\Entities;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\CustomerRepository")
  * @ORM\Table(name="customers")
@@ -42,18 +43,19 @@ class Customer
     private $affiliateCode;
 
     /**
-     * One Customer has One Cart.
-     * @ORM\OneToOne(targetEntity="User", mappedBy="customer")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="customer")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 
     /**
+     * @return mixed
      * @ORM\OneToMany(targetEntity="Address", mappedBy="customer")
      */
     private $addresses;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $phoneNumber;
 
@@ -187,7 +189,9 @@ class Customer
      */
     public function getAddresses()
     {
-        if (!$this->addresses) { $this->addresses = new ArrayCollection();}
+        if (!$this->addresses) {
+            $this->addresses = new ArrayCollection();
+        }
         return $this->addresses->toArray();
     }
 
@@ -203,5 +207,4 @@ class Customer
     {
         $this->addresses[] = $address;
     }
-
 }

@@ -11,5 +11,4 @@ return [
     'personal_data' => 'Datos personales',
     'recent_orders' => 'Órdenes recientes',
     'view_all_orders' => 'Ver todas',
-
 ];

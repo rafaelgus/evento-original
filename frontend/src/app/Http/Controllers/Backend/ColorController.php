@@ -7,7 +7,7 @@ use App\Http\Requests\Backend\UpdateColorRequest;
 use EventoOriginal\Core\Services\ColorService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class ColorController extends Controller
 {

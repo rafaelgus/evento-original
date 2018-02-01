@@ -16,13 +16,11 @@ bootstrap/cache/
 
 .idea/
 
-<<<<<<< HEAD
 laradock/logs/
 
 .composer/
-=======
+
 docae/mysql-data/
 docae/redis-data/
-laradock/logs/
-.composer/
->>>>>>> web_checkout_paypal
+
+frontend/src/storage/proxies/

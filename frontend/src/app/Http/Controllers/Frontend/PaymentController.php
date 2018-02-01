@@ -200,13 +200,16 @@ class PaymentController
                 $data['payerId'] = $request->input('PayerID');
                 $this->paypalService->processPayment($payment, $data);
 
-                Cart::instance('shopping')->destroy();
-                Cart::instance('discount')->destroy();
+                $this->destroyCart();
 
                 return view('frontend.payment.success');
-
             } catch (Exception $exception) {
                 Log::error('PAYPAL ' . $exception->getMessage());
+                logger()->error($exception->getTraceAsString());
+
+                $this->destroyCart();
+
+
                 return abort(400, 'Error to process payment');
             }
         }
@@ -219,15 +222,24 @@ class PaymentController
                 $payment = $this->paymentService->findByToken($request->input('token'));
                 $this->paymentService->cancel($payment);
 
-                Cart::instance('shopping')->destroy();
-                Cart::instance('discount')->destroy();
+                $this->destroyCart();
 
                 return view('frontend.payment.cancel');
             }
         } catch (Exception $exception) {
             Log::error('PAYPAL ' . $exception->getMessage());
+
+            $this->destroyCart();
+
             return abort(400, 'Error to process payment');
         }
+    }
+
+    private function destroyCart()
+    {
+        Session::put('orderId', null);
+        Cart::instance('shopping')->destroy();
+        Cart::instance('discount')->destroy();
     }
 
     public function getDetails()
@@ -296,7 +308,11 @@ class PaymentController
 
     public function addVoucherInCheckout(Request $request)
     {
-        $voucher = $this->voucherService->findByCode($request->input('voucher'));
+        if ($request->input('voucher')) {
+            $voucher = $this->voucherService->findByCode($request->input('voucher'));
+        } else {
+            $voucher = null;
+        }
 
         $cartItmes = Cart::instance('discount')->content();
 
@@ -313,7 +329,7 @@ class PaymentController
             $voucherAmount = $this->voucherService->getDiscountAmount($voucher, $order->getTotal());
 
             $detail = $this->orderDetailService->create([
-                'price' => $voucherAmount,
+                'price' => $voucherAmount->getAmount(),
                 'quantity' => 1,
             ], true);
 
@@ -328,7 +344,10 @@ class PaymentController
                 $voucher->getCode(),
                 'Descuento',
                 1,
-                $discount
+                $discount->getAmount(),
+                [
+                    'currency' => $discount->getCurrency()->getCode()
+                ]
             );
 
             $cartItems = $this->getSummary();
@@ -358,7 +377,7 @@ class PaymentController
                 ->with('cartItems', $cartItems)
                 ->with('total', $total)
                 ->with('order', $order)
-                ->with('message', 'El voucher no existe');
+                ->with('message', trans('frontend/shopping_cart.invalid_voucher'));
         }
     }
 }

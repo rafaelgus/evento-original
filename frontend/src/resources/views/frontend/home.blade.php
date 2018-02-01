@@ -44,7 +44,7 @@
                                                         <div class="item-inner">
                                                             <div class="item-img">
                                                                 <div class="item-img-info"> <a class="product-image" title="{{$article->getName()}}" href="{{route('article.detail', ['slug' => $article->getSlug()])}}">
-                                                                        <img alt="{{$article->getSlug()}}" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): '' }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; ">
+                                                                        <img alt="{{$article->getSlug()}}" src="{{(count($article->getImages()) > 0)? "/articles/storage/" . $article->getImages()->toArray()[0]->getPath(): default_article_image_path() }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; ">
                                                                     </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">

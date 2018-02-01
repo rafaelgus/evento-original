@@ -13,4 +13,9 @@ class CustomerRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findOneByAffiliateCode(string $affiliateCode)
+    {
+        return $this->findOneBy(['affiliateCode' => $affiliateCode]);
+    }
 }

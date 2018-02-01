@@ -183,8 +183,10 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\EventoOriginalServiceProvider::class,
 
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        MaxBrokman\SafeQueue\DoctrineQueueProvider::class
     ],
 
     /*
@@ -238,6 +240,9 @@ return [
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use App\Events\PaymentAccepted;
 use DateTime;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\Payment;
@@ -12,6 +13,7 @@ use EventoOriginal\Core\Infrastructure\Payments\Exceptions\InvalidPaymentStatusE
 use EventoOriginal\Core\Infrastructure\Payments\PaymentGatewayFactory;
 use EventoOriginal\Core\Persistence\Repositories\PaymentRepository;
 use Exception;
+use Illuminate\Support\Facades\Event;
 
 class PaymentService
 {
@@ -124,6 +126,8 @@ class PaymentService
         $payment->setPaidDate(new DateTime());
         $payment->setStatus(PaymentStatus::STATUS_PAYMENT_APPROVE);
         $payment->getOrder()->setStatus(OrderStatus::STATUS_PAYMENT_APPROVE);
+
+        event(new PaymentAccepted($payment));
 
         $this->paymentRepository->save($payment);
         return $payment;
