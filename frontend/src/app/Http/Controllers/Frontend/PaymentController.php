@@ -363,6 +363,7 @@ class PaymentController
                 ->with('order', $order)
                 ->with('message', '');
         } else {
+
             $cartItems = $this->getSummary();
             $order = $this->orderService->findById($request->input('orderId'));
 

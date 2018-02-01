@@ -31,10 +31,6 @@ class FlavourService
     {
         $flavour = $this->flavourRepository->findOneByName($name, $locale);
 
-        if (!$flavour) {
-            throw new Exception("Doesn't exist a flavour with this name");
-        }
-
         return $flavour;
     }
 

@@ -212,7 +212,6 @@ class Article
      */
     private $updated;
 
-
     /**
      * One Product has Many Features.
      * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="article")
