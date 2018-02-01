@@ -30,9 +30,19 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'model' => \EventoOriginal\Core\Entities\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+    'mandrill' => [
+        'secret' => env('MANDRILL_PRODUCTION'),
+        'test' => env('MANDRILL_TEST'),
+    ],
+
+    'sendinblue' => [
+        'url' => 'https://api.sendinblue.com/v2.0',
+        'key' => 'Q1NGqa5nZ9dORYVP',
     ],
 
 ];

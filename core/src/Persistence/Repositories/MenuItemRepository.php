@@ -50,8 +50,8 @@ class MenuItemRepository extends BaseRepository
             $locale
         );
 
-
-//        $query->useResultCache(true, 3600, 'menu_items');
+        $query->useQueryCache(true);
+        $query->useResultCache(true, 3600, 'menu_items');
 
         return $query->getResult();
     }

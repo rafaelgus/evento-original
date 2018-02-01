@@ -13,6 +13,8 @@
                                 <h2>Mi cuenta</h2>
                             </div>
                             <div class="dashboard">
+                                @include('backend.messages.session')
+
                                 <div class="welcome-msg"> <strong>Hola, {{ Auth::user()->getName() }}!</strong>
                                     {{--<p>Desde Mi Cuenta prodá ver toda tu actividad reciente y actualizar tus datos personales.</p>--}}
                                 </div>
@@ -36,20 +38,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach($orders as $order)
                                             <tr class="first odd">
-                                                <td>500000002</td>
-                                                <td>9/9/10 </td>
-                                                <td><span class="price">$5.00</span></td>
-                                                <td><em>Recibida</em></td>
-                                                <td class="a-center last"><span class="nobr"> <a href="#">Ver Órden</a> </span></td>
+                                                <td>{{$order->getId()}}</td>
+                                                <td>{{$order->getCreateDate()->format('Y-m-d H:i:s')}}</td>
+                                                <td><span class="price">{{ formatted_money($order->getTotal())}}</span></td>
+                                                <td><em> {{ trans('frontend/order.status.' . $order->getStatus()) }}</em></td>
+                                                <td class="a-center last"><span class="nobr"> <a href="/{{$order->getId()}}/detalle">Ver Órden</a></span></td>
                                             </tr>
-                                            <tr class="last even">
-                                                <td>500000001</td>
-                                                <td>9/9/10 </td>
-                                                <td><span class="price">$1,397.99</span></td>
-                                                <td><em>Pendiente</em></td>
-                                                <td class="a-center last"><span class="nobr"> <a href="#">Ver Órden</a> <span class="separator"></span></span></td>
-                                            </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

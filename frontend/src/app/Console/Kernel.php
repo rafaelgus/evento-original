@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\LiquidateAffiliateCommissions;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        LiquidateAffiliateCommissions::class
     ];
 
     /**
@@ -24,8 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command(LiquidateAffiliateCommissions::class)->monthlyOn(1);
     }
 
     /**
@@ -36,5 +36,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         require base_path('routes/console.php');
+        $this->load(__DIR__.'/Commands');
     }
 }

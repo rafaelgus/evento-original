@@ -44,7 +44,7 @@
                                                         <div class="item-inner">
                                                             <div class="item-img">
                                                                 <div class="item-img-info"> <a class="product-image" title="{{$article->getName()}}" href="{{route('article.detail', ['slug' => $article->getSlug()])}}">
-                                                                        <img alt="{{$article->getSlug()}}" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): '' }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; ">
+                                                                        <img alt="{{$article->getSlug()}}" src="{{(count($article->getImages()) > 0)? "/articles/storage/" . $article->getImages()->toArray()[0]->getPath(): default_article_image_path() }}" style="max-width: 185px; max-height:207px; min-width: 185px; min-height:207px; ">
                                                                     </a>
                                                                     <div class="box-hover">
                                                                         <ul class="add-to-links">
@@ -77,7 +77,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="item-price">
-                                                                            <div class="price-box"> <span class="regular-price"> <span class="price">€ {{$article->getPrice()}}</span> </span> </div>
+                                                                            <div class="price-box"> <span class="regular-price"> <span class="price"> {{formatted_money($article->getMoneyPrice())}}</span> </span> </div>
                                                                         </div>
                                                                         <div class="action">
                                                                             <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Add to Cart"><span>{{ strtoupper(trans('frontend/home.buy')) }}</span></button>
@@ -1408,7 +1408,7 @@
 
             xhr.onreadystatechange = function () {
                 if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
+                    cartItems();
                 }
             };
             xhr.send(params);

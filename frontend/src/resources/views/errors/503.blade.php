@@ -3,9 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EventOriginal">
     <meta name="author" content="EventOriginal">

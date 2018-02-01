@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use App\Events\UserRegistered;
 use DateTime;
 use EventoOriginal\Core\Entities\Role;
 use EventoOriginal\Core\Entities\User;
@@ -10,16 +11,16 @@ use Exception;
 class UserService
 {
     private $userRepository;
+    private $walletService;
     private $roleService;
 
-    /**
-     * UserService constructor.
-     * @param UserRepository $userRepository
-     * @param RoleService $roleService
-     */
-    public function __construct(UserRepository $userRepository, RoleService $roleService)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        WalletService $walletService,
+        RoleService $roleService
+    ) {
         $this->userRepository = $userRepository;
+        $this->walletService = $walletService;
         $this->roleService = $roleService;
     }
 
@@ -41,6 +42,10 @@ class UserService
             $user->setPassword(bcrypt($password));
             $user->setRoles($roles);
             $this->userRepository->save($user);
+
+            $this->walletService->create($user);
+
+            event(new UserRegistered($user));
         } else {
             throw new Exception('This email already exist');
         }
@@ -70,7 +75,7 @@ class UserService
      */
     public function findById(int $id)
     {
-        return $this->userRepository->find($id);
+        return $this->userRepository->findById($id);
     }
 
     public function addRole(User $user, Role $role)
@@ -78,5 +83,10 @@ class UserService
         $user->addRole($role);
 
         $this->userRepository->save($user);
+    }
+
+    public function remove(User $user)
+    {
+        return $this->userRepository->remove($user);
     }
 }

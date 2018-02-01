@@ -20,6 +20,6 @@ class HomeController extends Controller
     {
         $articles = $this->articleService->findAll(App::getLocale());
 
-        return view('fronted.home')->with('articles', $articles);
+        return view('frontend.home')->with('articles', $articles);
     }
 }

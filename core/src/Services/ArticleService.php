@@ -84,7 +84,7 @@ class ArticleService
         string $internalCode,
         string $status,
         string $slug,
-        $price,
+        int $price,
         string $priceType,
         $priceCurrency,
         Tax $tax = null,
@@ -300,5 +300,14 @@ class ArticleService
         } else {
             throw new InvalidArgumentException("Invalid category slug");
         }
+    }
+
+    /**
+     * @param string $barCode
+     * @return null|Article
+     */
+    public function findByBarcode(string $barCode)
+    {
+        return $this->articleRepository->findOneByBarCode($barCode);
     }
 }

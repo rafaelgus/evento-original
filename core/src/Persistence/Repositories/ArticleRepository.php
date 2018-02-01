@@ -78,7 +78,7 @@ class ArticleRepository extends BaseRepository
 
     public function findAllPaginated(int $currentPage, int $maxItems)
     {
-        $sql = 'SELECT *FROM articles';
+        $sql = 'SELECT * FROM articles';
 
         $query = $this->getEntityManager()
             ->createQuery($sql)
@@ -251,5 +251,10 @@ class ArticleRepository extends BaseRepository
             ->setMaxResults($pageSize);
 
         return $paginator;
+    }
+
+    public function findOneByBarCode(string $barCode)
+    {
+        return $this->findOneBy(['barCode' => $barCode]);
     }
 }

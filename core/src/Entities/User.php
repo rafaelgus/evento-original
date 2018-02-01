@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Enums\RoleType;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -11,13 +13,8 @@ use Illuminate\Notifications\Notifiable;
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\UserRepository")
  * @ORM\Table(name="users")
  */
-class User implements Authenticatable, CanResetPassword
+class User implements Authenticatable, CanResetPassword, PayerInterface
 {
-    const ADMIN_ROLE = 'admin';
-    const CUSTOMER_ROLE = 'customer';
-    const SELLER_ROLE = 'seller';
-    const DESIGNER_ROLE = 'designer';
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -51,12 +48,7 @@ class User implements Authenticatable, CanResetPassword
     protected $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(
-     *     name="users_roles",
-     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     protected $roles;
 
@@ -69,6 +61,21 @@ class User implements Authenticatable, CanResetPassword
      * @ORM\OneToOne(targetEntity="Designer", mappedBy="user")
      */
     private $designer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
+     */
+    protected $customer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Wallet", mappedBy="user")
+     */
+    private $wallet;
+
+    /**
+     * @ORM\OneToOne(targetEntity="VisitorLanding", mappedBy="user")
+     */
+    private $visitorLanding;
 
     public function __construct()
     {
@@ -176,7 +183,7 @@ class User implements Authenticatable, CanResetPassword
      */
     public function getRoles()
     {
-        return $this->roles->toArray();
+        return $this->roles;
     }
 
     /**
@@ -291,7 +298,7 @@ class User implements Authenticatable, CanResetPassword
     public function isAdmin()
     {
         foreach ($this->roles as $role) {
-            if ($role->getName() === self::ADMIN_ROLE) {
+            if ($role->getName() === RoleType::ADMIN) {
                 return true;
             }
         }
@@ -308,5 +315,63 @@ class User implements Authenticatable, CanResetPassword
         }
 
         return false;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return Wallet
+     */
+    public function getWallet()
+    {
+        return $this->wallet;
+    }
+
+    /**
+     * @param Wallet  $wallet
+     */
+    public function setWallet(Wallet $wallet)
+    {
+        $this->wallet = $wallet;
+    }
+
+    /**
+     * @return VisitorLanding
+     */
+    public function getVisitorLanding()
+    {
+        return $this->visitorLanding;
+    }
+
+    /**
+     * @param VisitorLanding $visitorLanding
+     */
+    public function setVisitorLanding(VisitorLanding $visitorLanding)
+    {
+        $this->visitorLanding = $visitorLanding;
+    }
+
+    public function getPhone()
+    {
+        // TODO: Implement getPhone() method.
+    }
+
+    public function getIdentification()
+    {
+        // TODO: Implement getIdentification() method.
     }
 }

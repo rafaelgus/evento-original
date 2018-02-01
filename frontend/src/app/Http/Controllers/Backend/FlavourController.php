@@ -7,7 +7,7 @@ use App\Http\Requests\Backend\UpdateFlavourRequest;
 use EventoOriginal\Core\Services\FlavourService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class FlavourController extends Controller
 {

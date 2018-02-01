@@ -24,7 +24,14 @@ class StoreBlogPost extends FormRequest
     public function rules()
     {
         return [
-            //
+            'address' => 'required',
+            'addressNumber' => 'required',
+            'billingAddress' => 'required',
+            'billingAddressNumber' => 'required',
+            'phone' => 'required',
+            'postalCode' => 'required',
+            'city' => 'required',
+            'country' => 'required'
         ];
     }
 }

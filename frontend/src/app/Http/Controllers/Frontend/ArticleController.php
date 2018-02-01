@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 
 use DoctrineProxies\__CG__\EventoOriginal\Core\Entities\Flavour;
+use EventoOriginal\Core\Enums\VisitorEventType;
 use EventoOriginal\Core\Persistence\Repositories\CategoryRepository;
 use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\BrandService;
@@ -56,7 +57,7 @@ class ArticleController extends Controller
 
     public function getHome()
     {
-        $articles = $this->articleService->findAll(App::getLocale());
+        $articles = array_slice($this->articleService->findAll(App::getLocale()),0, 4);
 
         return view('frontend.home')
             ->with('articles', $articles);
@@ -96,7 +97,7 @@ class ArticleController extends Controller
         $flavours = (isset($request->flavours) ? $request->flavours : []);
         $licenses = (isset($request->licenses) ? $request->licenses : []);
         $tags = (isset($request->tags) ? $request->tags : []);
-        $healtyhs = (isset($request->healthys) ? $request->healthys : []);
+        $healthys = (isset($request->healthys) ? $request->healthys : []);
         $priceMin = (isset($request->priceMin) ? $request->priceMin : 0);
         $priceMax = (isset($request->priceMax) ? $request->priceMax : null);
         $pageLimit = (isset($request->pageLimit) ? $request->pageLimit : null);
@@ -111,7 +112,7 @@ class ArticleController extends Controller
             $flavours,
             $licenses,
             $tags,
-            $healtyhs,
+            $healthys,
             $priceMin,
             $priceMax,
             App::getLocale(),
@@ -124,7 +125,7 @@ class ArticleController extends Controller
         $response = [
             'total' => $paginator->count(),
             'pages' => ceil($paginator->count() / $pageLimit),
-            'data'  => $this->articleService->toJson($paginator->getQuery()->getResult()),
+            'data' => $this->articleService->toJson($paginator->getQuery()->getResult()),
         ];
 
         return $response;
@@ -137,11 +138,25 @@ class ArticleController extends Controller
         return $image;
     }
 
-    public function articleDetail(string $slug)
+    public function articleDetail(Request $request, string $slug)
     {
         $article = $this->articleService->findBySlug($slug);
 
-        return view('frontend.articles.show')
-            ->with('article', $article);
+        if ($article) {
+            if ($request->input('ref')) {
+                pushVisitorEvent(
+                    VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL,
+                    [
+                        'affiliate_code_referral' => $request->input('ref'),
+                        'article' => $article
+                    ]
+                );
+            }
+
+            return view('frontend.articles.show')
+                ->with('article', $article);
+        }
+
+        return abort(404);
     }
 }

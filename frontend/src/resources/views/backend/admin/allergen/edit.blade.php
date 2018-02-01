@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+ç@extends('backend.layouts.app')
 
 @section('header')
     <!-- Content Header (Page header) -->
