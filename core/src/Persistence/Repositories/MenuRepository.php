@@ -37,6 +37,7 @@ class MenuRepository extends BaseRepository
 
         $query = $qb->getQuery();
 
+        $query->useQueryCache(true);
         $query->useResultCache(true, 3600, 'menus');
 
         return $query->getOneOrNullResult();

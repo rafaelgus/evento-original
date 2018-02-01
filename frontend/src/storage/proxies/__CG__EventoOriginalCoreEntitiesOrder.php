@@ -64,10 +64,10 @@ class Order extends \EventoOriginal\Core\Entities\Order implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'createDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'ordersDetail', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'payment', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'billing', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'shipping'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'createDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'ordersDetail', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'payment', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'referralVisitorEvent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'billing', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'shipping'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'createDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'ordersDetail', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'payment', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'billing', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'shipping'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'createDate', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'ordersDetail', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'payment', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'user', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'referralVisitorEvent', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'billing', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Order' . "\0" . 'shipping'];
     }
 
     /**
@@ -318,6 +318,28 @@ class Order extends \EventoOriginal\Core\Entities\Order implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOrderDetail', [$orderDetail]);
 
         return parent::addOrderDetail($orderDetail);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getReferralVisitorEvent()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getReferralVisitorEvent', []);
+
+        return parent::getReferralVisitorEvent();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setReferralVisitorEvent(\EventoOriginal\Core\Entities\VisitorEvent $referralVisitorEvent)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setReferralVisitorEvent', [$referralVisitorEvent]);
+
+        return parent::setReferralVisitorEvent($referralVisitorEvent);
     }
 
     /**

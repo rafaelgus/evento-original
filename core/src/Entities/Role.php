@@ -22,6 +22,11 @@ class Role
     protected $name;
 
     /**
+     * @ORM\ManyToMany(targetEntity = "User", mappedBy = "roles")
+     */
+    protected $users;
+
+    /**
      * @return int
      */
     public function getId(): int

@@ -1,11 +1,13 @@
 <?php
 
 Auth::routes();
+Route::post('register-customer', 'Frontend\CustomerController@register')->name('register_customer');
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'Frontend\ArticleController@getHome');
 
 Route::get(
-    '/'. trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
+    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
     'Frontend\ArticleController@articleDetail'
 )->name('article.detail');
 
@@ -42,13 +44,32 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
 
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
-});
+})->name('terms_and_conditions');
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
-Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->middleware('auth');
-Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails')->middleware('auth');
+Route::post('/paypal-payouts-webhook', 'Backend\PaypalController@payoutWebhook');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/' . trans('frontend/my_account.slug'), function () {
+        return view('frontend.profile.my_account');
+    })->name('my_account');
+
+    Route::get(
+        '/' . trans('frontend/affiliates.title'),
+        'Frontend\CustomerController@affiliateSummary'
+    )->name('affiliates.summary');
+
+    Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
+    Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails');
+
+    Route::get(
+        '/' . trans('frontend/payouts.slug'),
+        'Frontend\PayoutController@getAllPaginated'
+    )->name('profile.payouts');
+
+    Route::get('/' . trans('movements.slug'), 'Frontend\MovementController@getAllPaginated')->name('profile.movements');
+});
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
@@ -195,6 +216,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
             Route::get('/{id}/edit', 'Backend\MenuItemController@edit');
             Route::put('/{id}', 'Backend\MenuItemController@update');
+        });
+        Route::group(['prefix' => '/payouts'], function () {
+            Route::get('/', 'Backend\PayoutController@index')->name('admin.payouts.index');
+            Route::get('/pendents', 'Backend\PayoutController@showPendents')->name('admin.payouts.pendents');
+            Route::get('/{id}', 'Backend\PayoutController@show')->name('admin.payouts.show');
+            Route::post('/send/{id}', 'Backend\PayoutController@send')->name('admin.payouts.send');
+            Route::post('/cancel/{id}', 'Backend\PayoutController@cancel')->name('admin.payouts.cancel');
+        });
+        Route::group(['prefix' => '/orders'], function () {
+            Route::get('/{id}', 'Backend\OrderController@show')->name('admin.orders.show');
         });
     });
 });

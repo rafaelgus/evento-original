@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class AllergenController
 {
@@ -53,7 +53,6 @@ class AllergenController
         Session::flash('message', trans('backend/messages.confirmation.edit.allergen'));
 
         return redirect('/management/allergen/'. $allergen->getId() .'/edit');
-
     }
 
     public function getDataTables()

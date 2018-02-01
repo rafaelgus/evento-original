@@ -64,10 +64,10 @@ class Role extends \EventoOriginal\Core\Entities\Role implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name'];
+            return ['__isInitialized__', 'id', 'name', 'users'];
         }
 
-        return ['__isInitialized__', 'id', 'name'];
+        return ['__isInitialized__', 'id', 'name', 'users'];
     }
 
     /**

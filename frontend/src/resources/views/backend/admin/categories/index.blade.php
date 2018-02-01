@@ -24,6 +24,9 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                <div class="box-header">
+                    <a href="/management/category/create" class="btn btn-primary pull-right">Crear nueva</a>
+                </div>
                 <div class="box">
                     <div class="box-body">
 
@@ -32,6 +35,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>{{ trans('texts.sections.categories.name') }}</th>
+                                <th>{{ trans('texts.sections.categories.affiliate_commission') }}</th>
                                 <th style="width: 120px">Accion</th>
                             </tr>
                             </thead>
@@ -61,6 +65,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'name', name: 'name' },
+                    { data: 'affiliate_commission', name: 'affiliate_commission' },
                     {
                         "mData": null,
                         "bSortable": false,

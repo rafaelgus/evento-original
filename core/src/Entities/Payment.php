@@ -62,7 +62,7 @@ class Payment implements PaymentInterface
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="payments")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
@@ -88,12 +88,12 @@ class Payment implements PaymentInterface
     private $description;
 
     /**
-     * @ORM\Column(type="text", nullable=true, length=5000)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $data;
 
     /**
-     * @ORM\Column(type="json", nullable=true, length=2000)
+     * @ORM\Column(type="json", nullable=true)
      */
     private $param;
 
@@ -125,6 +125,7 @@ class Payment implements PaymentInterface
     {
         $this->paidDate = $date;
     }
+
     /**
      * @return mixed
      */
@@ -148,6 +149,7 @@ class Payment implements PaymentInterface
     {
         return $this->status;
     }
+
     /**
      * @param string $status
      */
@@ -155,6 +157,7 @@ class Payment implements PaymentInterface
     {
         $this->status = $status;
     }
+
     /**
      * Get payer of the payment
      *
@@ -173,6 +176,7 @@ class Payment implements PaymentInterface
     {
         $this->user = $payer;
     }
+
     /**
      * Get payment gateway
      *
@@ -301,9 +305,7 @@ class Payment implements PaymentInterface
         return $this->data;
     }
 
-    /**
-     * @param array $data
-     */
+
     public function setData(array $data)
     {
         $this->data = json_encode($data);
