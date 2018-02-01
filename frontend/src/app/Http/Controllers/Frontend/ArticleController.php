@@ -144,4 +144,11 @@ class ArticleController extends Controller
         return view('frontend.articles.show')
             ->with('article', $article);
     }
+
+    public function search(string $search)
+    {
+        $articles = $this->articleService->search($search);
+
+        return $articles;
+    }
 }

@@ -301,4 +301,13 @@ class ArticleService
             throw new InvalidArgumentException("Invalid category slug");
         }
     }
+
+    public function search(string $search)
+    {
+        $articles = $this->articleRepository->search($search);
+
+        $articles = $this->toJson($articles);
+
+        return $articles;
+    }
 }
