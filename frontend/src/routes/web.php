@@ -1,11 +1,14 @@
 <?php
 
 Auth::routes();
+Route::post('register-customer', 'Frontend\CustomerController@register')->name('register_customer');
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'Frontend\ArticleController@getHome');
+Route::get('/search/{search}', 'Frontend\ArticleController@search');
 
 Route::get(
-    '/'. trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
+    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
     'Frontend\ArticleController@articleDetail'
 )->name('article.detail');
 
@@ -14,6 +17,17 @@ Route::post('/addToCart', 'Frontend\CartController@addToCart');
 Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
+Route::post('/updateQty', 'Frontend\CartController@updateQuantity');
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
+    Route::post('/checkout/shipping', 'Frontend\PaymentController@shippingInformation');
+    Route::post('/checkout/order', 'Frontend\PaymentController@checkout');
+    Route::post('/checkout/addVoucher', 'Frontend\PaymentController@addVoucherInCheckout');
+    Route::post('/payment/{id}', 'Frontend\PaymentController@process');
+    Route::get('/paypalConfirm', 'Frontend\PaymentController@getPaypalConfirm');
+    Route::get('/paypalCancel', 'Frontend\PaymentController@getPaypalCancel');
+});
 
 Route::post('/discount', 'Frontend\VoucherController@useVoucher');
 
@@ -31,14 +45,32 @@ Route::get('/' . trans('frontend/about_us.slug'), function () {
 
 Route::get('/' . trans('frontend/terms_and_conditions.slug'), function () {
     return view('frontend.terms_and_conditions');
-});
+})->name('terms_and_conditions');
 
 Route::get('/articles/storage/{filename}', 'Frontend\ArticleController@getImage');
 
-Route::get('/mi-cuenta', function () {
-    return view('frontend.profile.my_account');
-})->middleware('auth');
+Route::post('/paypal-payouts-webhook', 'Backend\PaypalController@payoutWebhook');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/' . trans('frontend/my_account.slug'), function () {
+        return view('frontend.profile.my_account');
+    })->name('my_account');
+
+    Route::get(
+        '/' . trans('frontend/affiliates.title'),
+        'Frontend\CustomerController@affiliateSummary'
+    )->name('affiliates.summary');
+
+    Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
+    Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails');
+
+    Route::get(
+        '/' . trans('frontend/payouts.slug'),
+        'Frontend\PayoutController@getAllPaginated'
+    )->name('profile.payouts');
+
+    Route::get('/' . trans('movements.slug'), 'Frontend\MovementController@getAllPaginated')->name('profile.movements');
+});
 
 Route::group(['prefix' => '/management'], function () {
     Route::get('/login', 'Auth\LoginController@showManagementLoginForm');
@@ -142,6 +174,15 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/', 'Backend\LicenseController@store');
             Route::get('/getAll', 'Backend\LicenseController@getAll');
         });
+        Route::group(['prefix' => '/healthy'], function () {
+            Route::get('/create', 'Backend\HealthyController@create');
+            Route::get('/{id}/edit', 'Backend\HealthyController@edit');
+            Route::get('/getLicenses', 'Backend\HealthyController@getDataTables');
+            Route::get('/', 'Backend\HealthyController@index');
+            Route::put('/{id}', 'Backend\HealthyController@update');
+            Route::post('/', 'Backend\HealthyController@store');
+            Route::get('/getAll', 'Backend\HealthyController@getAll');
+        });
         Route::group(['prefix' => '/users'], function () {
             Route::get('/create', 'Backend\UserController@create');
             Route::get('/{id}/edit', 'Backend\UserController@edit');
@@ -176,6 +217,16 @@ Route::group(['prefix' => '/management'], function () {
             Route::delete('/{id}/edit-subitem', 'Backend\MenuItemController@remove');
             Route::get('/{id}/edit', 'Backend\MenuItemController@edit');
             Route::put('/{id}', 'Backend\MenuItemController@update');
+        });
+        Route::group(['prefix' => '/payouts'], function () {
+            Route::get('/', 'Backend\PayoutController@index')->name('admin.payouts.index');
+            Route::get('/pendents', 'Backend\PayoutController@showPendents')->name('admin.payouts.pendents');
+            Route::get('/{id}', 'Backend\PayoutController@show')->name('admin.payouts.show');
+            Route::post('/send/{id}', 'Backend\PayoutController@send')->name('admin.payouts.send');
+            Route::post('/cancel/{id}', 'Backend\PayoutController@cancel')->name('admin.payouts.cancel');
+        });
+        Route::group(['prefix' => '/orders'], function () {
+            Route::get('/{id}', 'Backend\OrderController@show')->name('admin.orders.show');
         });
     });
 });

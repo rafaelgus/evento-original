@@ -7,7 +7,7 @@ use App\Http\Requests\Backend\UpdateBrandRequest;
 use EventoOriginal\Core\Services\BrandService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class BrandController extends Controller
 {

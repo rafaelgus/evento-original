@@ -13,6 +13,7 @@ return [
           'name' => 'Nombre',
           'slug' => 'Slug',
           'description' => 'Descripción',
+          'affiliate_commission' => 'Comisión para afiliados (%)',
       ],
       'colors' => [
           'title' => 'Colores',
@@ -79,7 +80,7 @@ return [
           'name' => 'Nombre',
           'description' => 'Descripcion',
           'costPrice' => 'Precio de costo',
-          'price' => 'Precio',
+          'price' => 'Precio Ej: 1200 = 12,00',
           'barCode' => 'Codigo de barra',
           'internalCode' => 'Codigo interno',
           'tags' => 'Tags',
@@ -135,6 +136,12 @@ return [
           'amount' => 'Monto',
           'edit' => 'Editar'
       ],
+      'payouts' => [
+          'title' => 'Pagos a usuarios',
+          'view' => 'Ver',
+          'pendent_to_approve' => 'Pendientes de aprobacion',
+          'show' => 'Ver pago enviado'
+      ]
   ],
   'errors' => [
       '404' => [

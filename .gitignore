@@ -16,6 +16,9 @@ bootstrap/cache/
 
 .idea/
 
+docae/mysql-data/
+docae/redis-data/
 laradock/logs/
-
 .composer/
+
+frontend/src/storage/proxies/

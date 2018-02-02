@@ -36,6 +36,8 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.mobile-menu.css">
     <link rel="stylesheet" type="text/css" href="/css/revslider.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
+    <link rel="stylesheet" type="text/css" href="/css/select2.min.css">
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'
@@ -62,6 +64,26 @@
 @yield('scripts_body')
 
 <script>
+    $(function () {
+        $('#search').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search/' + request.term,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1
+        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+            return $( "<li>" )
+                .append( "<div>" + item.name + "<br>" + item.price + "</div>" )
+                .appendTo( ul );
+        };
+    });
+
     cartItems();
 
     function cartItems() {

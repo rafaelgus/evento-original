@@ -84,7 +84,7 @@ class ArticleService
         string $internalCode,
         string $status,
         string $slug,
-        $price,
+        int $price,
         string $priceType,
         $priceCurrency,
         Tax $tax = null,
@@ -306,8 +306,32 @@ class ArticleService
     {
         $articles = $this->articleRepository->search($search);
 
-        $articles = $this->toJson($articles);
+        $articles = $this->searchToJson($articles);
 
         return $articles;
+    }
+
+    public function searchToJson(array $articles)
+    {
+        $articlesArray = [];
+        $now = new DateTime('now');
+        foreach ($articles as $article) {
+            $interval = date_diff($now, $article->getCreated());
+
+            $articlesArray[] = [
+                'id' => $article->getId(),
+                'name' => $article->getName(),
+                'price' => $article->getMoneyPrice()->getAmount(),
+                'price_currency' => '€',
+                'image' => (count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): ''
+            ];
+        }
+
+        return json_encode($articlesArray);
+    }
+
+    public function findByBarcode(string $barCode)
+    {
+        return $this->articleRepository->findOneByBarCode($barCode);
     }
 }

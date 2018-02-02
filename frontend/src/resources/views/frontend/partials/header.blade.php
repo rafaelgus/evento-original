@@ -36,6 +36,9 @@
                                 @if(current_user_is_admin())
                                     | <a title="Admin" href="/management">Administración</a>
                                 @endif()
+                                @if(Auth::check())
+                                    | <a title="logout" href="/logout">{{ strtolower(trans('auth.sign_out')) }}</a>
+                                @endif()
                             </div>
                         </div>
                         <!-- End Header Top Links -->
@@ -53,7 +56,7 @@
                 <div class="col-lg-5 col-md-4 col-sm-4 col-xs-12 hidden-xs">
                     <div class="search-box">
                         <form action="cat" method="POST" id="search_mini_form" name="Categories">
-                            <input type="text" placeholder="{{ trans('frontend/header.search')}}..."  maxlength="70" name="search" id="search">
+                            <input type="text" placeholder="{{ trans('frontend/header.search')}}..."  maxlength="70" class="search" name="search" id="search">
                             <button type="button" class="search-btn-bg"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
                         </form>
                     </div>
@@ -78,6 +81,7 @@
 </header>
 
 @section('scripts_body')
+    <script type="application/javascript">
 
-
+    </script>
 @endsection

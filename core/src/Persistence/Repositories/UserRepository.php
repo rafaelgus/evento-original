@@ -28,4 +28,10 @@ class UserRepository extends BaseRepository
 
         return $user ? true : false;
     }
+
+    public function remove(User $user)
+    {
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
+    }
 }

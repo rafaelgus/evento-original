@@ -21,7 +21,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class ArticleController
 {
@@ -120,17 +120,6 @@ class ArticleController
 
     public function store(StoreArticleRequest $request)
     {
-        $flavours =  [];
-        $ingredients = [];
-        $allergens = [];
-
-        if ($request->has('allergens')) {
-            $allergens = $this
-                ->allergenService
-                ->findByIds(
-                    $request->input('allergens')
-                );
-        }
         $allergens = $this
             ->allergenService
             ->findByIds(
@@ -148,14 +137,6 @@ class ArticleController
             ->findByIds(
                 ($request->input('colors') ?: [])
             );
-
-        if ($request->has('flavours')) {
-            $flavours = $this
-                ->flavourService
-                ->findByIds(
-                    $request->input('flavours')
-                );
-        }
 
         $flavours = $this
             ->flavourService
@@ -185,24 +166,21 @@ class ArticleController
                 );
         }
 
-        if ($request->has('ingredients')) {
-            $ingredients = $this
-                ->ingredientService
-                ->findByIds(
-                    $request->input('ingredients')
-                );
-        }
         $ingredients = $this
             ->ingredientService
             ->findByIds(
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+
+        }
 
         $priceType = null;
         if ($request->input('priceType') == 1) {
@@ -236,11 +214,11 @@ class ArticleController
             $data['internalCode'],
             $data['status'],
             ($request->input('slug') ?: str_slug($request->input('name'))),
-            $data['price'],
+            ($data['price'] * 100),
             $priceType,
             'EUR',
             null,
-            $data['costPrice'],
+            ($data['costPrice'] * 100),
             $brand,
             $category,
             $license,
@@ -360,11 +338,14 @@ class ArticleController
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+        }
 
         $article->setAllergens($allergens);
         $article->setColors($colors);
@@ -378,8 +359,12 @@ class ArticleController
         $article->setDescription($request->input('description'));
         $article->setBarCode($request->input('barCode'));
         $article->setInternalCode($request->input('internalCode'));
-        $article->setLicense($license);
-        $article->setBrand($brand);
+        if ($brand) {
+            $article->setBrand($brand);
+        }
+        if ($license) {
+            $article->setLicense($license);
+        }
         $article->setIngredients($ingredients);
         $article->setStatus($request->input('status'));
 
@@ -406,7 +391,6 @@ class ArticleController
                 $article->addPricePerQuantity($price);
             }
         }
-
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
         $article->setIsNew(($request->input('isNew') ?: false));
