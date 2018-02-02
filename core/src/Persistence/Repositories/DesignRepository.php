@@ -32,4 +32,21 @@ class DesignRepository extends BaseRepository
 
         return $this->paginate($query, $maxItems, $currentPage);
     }
+
+    public function getAllByDesignerAndStatusPaginated(
+        Designer $designer,
+        string $status,
+        int $currentPage = 1,
+        int $maxItems = 10
+    ): LengthAwarePaginator {
+        $query = $this->createQueryBuilder('d')
+            ->where('d.designer = :designer_id')
+            ->andWhere('d.status = :status')
+            ->orderBy('d.createdAt', 'desc')
+            ->setParameter('designer_id', $designer->getId())
+            ->setParameter('status', $status)
+            ->getQuery();
+
+        return $this->paginate($query, $maxItems, $currentPage);
+    }
 }

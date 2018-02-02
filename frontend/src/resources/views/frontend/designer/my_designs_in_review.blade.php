@@ -5,10 +5,6 @@
         .category-products .products-grid {
             margin: 0 !important;
         }
-
-        .new-design {
-            margin-bottom: 1rem !important;
-        }
     </style>
 @stop
 
@@ -25,16 +21,14 @@
                         <div class="content">
                             <div class="state_bar">
                                 <ul id="checkout-progress-state" class="checkout-progress">
-                                    <li class="active first"><a href="{{route('designer.myDesigns')}}">{{ trans('designer.status.in_process') }}</a></li>
-                                    <li><a href="{{route('designer.myDesignsInReview')}}">{{ trans('designer.status.in_review') }}</a></li>
+                                    <li><a href="{{route('designer.myDesigns')}}">{{ trans('designer.status.in_process') }}</a></li>
+                                    <li class="active first"><a href="{{route('designer.myDesignsInReview')}}">{{ trans('designer.status.in_review') }}</a></li>
                                     <li><a href="{{route('designer.myDesignsNeedChanges')}}">{{ trans('designer.status.need_changes') }}</a></li>
                                     <li><a href="{{route('designer.myDesignsPublished')}}">{{ trans('designer.status.published') }}</a></li>
                                 </ul>
                             </div>
 
-                            <button class="button new-design">{{ trans('designer.new_design') }}</button>
-
-                            <p>{{ trans('designer.my_designs.description') }}</p>
+                            <p>{{ trans('designer.my_designs_in_review.description') }}</p>
 
                             <div class="category-products">
                                 <ul class="products-grid">

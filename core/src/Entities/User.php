@@ -309,7 +309,7 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     public function isDesigner()
     {
         foreach ($this->roles as $role) {
-            if ($role->getName() === self::DESIGNER_ROLE) {
+            if ($role->getName() === RoleType::DESIGNER) {
                 return true;
             }
         }

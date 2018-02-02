@@ -71,25 +71,41 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/editor-edible-paper-a4', 'Frontend\DesignerController@showEditor');
 
+    /**
+     * Designer routes
+     */
     Route::group(['middleware' => ['auth', 'designer']], function () {
         Route::post('/save-design', 'Frontend\DesignerController@storeDesign')->name('save_design');
         Route::get(
             '/' . trans('designer.my_designs.slug'),
             'Frontend\DesignerController@showDesigns'
         )->name('designer.myDesigns');
-        Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
-        Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails');
-
         Route::get(
-            '/' . trans('frontend/payouts.slug'),
-            'Frontend\PayoutController@getAllPaginated'
-        )->name('profile.payouts');
-
+            '/' . trans('designer.my_designs_in_review.slug'),
+            'Frontend\DesignerController@showDesignsInReview'
+        )->name('designer.myDesignsInReview');
         Route::get(
-            '/' . trans('movements.slug'),
-            'Frontend\MovementController@getAllPaginated'
-        )->name('profile.movements');
+            '/' . trans('designer.my_designs_need_changes.slug'),
+            'Frontend\DesignerController@showDesignsNeedChanges'
+        )->name('designer.myDesignsNeedChanges');
+        Route::get(
+            '/' . trans('designer.my_designs_published.slug'),
+            'Frontend\DesignerController@showDesignsPublished'
+        )->name('designer.myDesignsPublished');
     });
+
+    Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
+    Route::get('/{id}/detalle', 'Frontend\AccountController@getDetails');
+
+    Route::get(
+        '/' . trans('frontend/payouts.slug'),
+        'Frontend\PayoutController@getAllPaginated'
+    )->name('profile.payouts');
+
+    Route::get(
+        '/' . trans('movements.slug'),
+        'Frontend\MovementController@getAllPaginated'
+    )->name('profile.movements');
 
     Route::group(['prefix' => '/management'], function () {
         Route::get('/login', 'Auth\LoginController@showManagementLoginForm');

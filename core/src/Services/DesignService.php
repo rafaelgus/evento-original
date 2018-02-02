@@ -5,6 +5,7 @@ use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Designer;
 use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Persistence\Repositories\DesignRepository;
+use Exception;
 
 class DesignService
 {
@@ -40,6 +41,21 @@ class DesignService
     public function getAllByDesignerPaginated(Designer $designer)
     {
         return $this->designRepository->getAllByDesignerPaginated($designer);
+    }
+
+    /**
+     * @param Designer $designer
+     * @param string $status
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     * @throws Exception
+     */
+    public function getAllByDesignerAndStatusPaginated(Designer $designer, string $status)
+    {
+        if (!DesignStatus::isValid($status)) {
+            throw new Exception("Invalid design status");
+        }
+
+        return $this->designRepository->getAllByDesignerAndStatusPaginated($designer, $status);
     }
 
     public function create(Designer $designer, array $data)

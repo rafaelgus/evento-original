@@ -11483,7 +11483,7 @@ a.button.wishlist {
 .state_bar {
     overflow: hidden;
     background-color: #FFFFFF;
-    padding: 10px 0 25px;
+    padding: 10px 0 3px;
     margin-bottom: 15px;
 }
 
@@ -11520,6 +11520,12 @@ a.button.wishlist {
     background-color: #fff;
     border-bottom: 1px solid #e94d65;
     color: #e94d65;
+}
+
+.checkout-progress li.active a{
+    background-color: #fff;
+    color: #e94d65;
+    text-decoration: none;
 }
 
 /* Multiple Addresses Checkout */

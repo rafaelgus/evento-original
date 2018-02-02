@@ -70,6 +70,11 @@ class Design
      */
     private $status;
 
+    public function __construct()
+    {
+        $this->status = DesignStatus::CREATED;
+    }
+
     /**
      * @return int
      */

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\Backend\StoreDesignRequest;
+use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Services\DesignerService;
 use EventoOriginal\Core\Services\DesignService;
 use Illuminate\Http\Request;
@@ -64,9 +65,60 @@ class DesignerController
             abort(404);
         }
 
-        $designs = $this->designService->getAllByDesignerPaginated($designer);
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::CREATED);
 
         return view('frontend/designer.my_designs')->with([
+            'designs' => $designs,
+        ]);
+    }
+
+    public function showDesignsInReview()
+    {
+        $user = current_user();
+
+        $designer = $user->getDesigner();
+
+        if (!$designer) {
+            abort(404);
+        }
+
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::IN_REVIEW);
+
+        return view('frontend/designer.my_designs_in_review')->with([
+            'designs' => $designs,
+        ]);
+    }
+
+    public function showDesignsNeedChanges()
+    {
+        $user = current_user();
+
+        $designer = $user->getDesigner();
+
+        if (!$designer) {
+            abort(404);
+        }
+
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::NEED_CHANGES);
+
+        return view('frontend/designer.my_designs_need_changes')->with([
+            'designs' => $designs,
+        ]);
+    }
+
+    public function showDesignsPublished()
+    {
+        $user = current_user();
+
+        $designer = $user->getDesigner();
+
+        if (!$designer) {
+            abort(404);
+        }
+
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::PUBLISHED);
+
+        return view('frontend/designer.my_designs_published')->with([
             'designs' => $designs,
         ]);
     }
