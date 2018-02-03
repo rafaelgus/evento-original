@@ -78,10 +78,10 @@ class Design
     private $category;
 
     /**
-     * @ManyToMany(targetEntity="Occasion")
-     * @JoinTable(name="design_occasions",
-     *      joinColumns={@JoinColumn(name="design_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="occasion_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Occasion")
+     * @ORM\JoinTable(name="design_occasions",
+     *      joinColumns={@ORM\JoinColumn(name="design_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="occasion_id", referencedColumnName="id")}
      *      )
      */
     private $occasions;
