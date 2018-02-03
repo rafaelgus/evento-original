@@ -11,7 +11,7 @@ use EventoOriginal\Core\Services\DesignMaterialTypeService;
 use EventoOriginal\Core\Services\StorageService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class CircularDesignVariantController extends Controller
 {

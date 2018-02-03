@@ -5,10 +5,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\StoreMaterialDesignSizeRequest;
 use App\Http\Requests\Backend\UpdateMaterialDesignSizeRequest;
 use EventoOriginal\Core\Services\DesignMaterialSizeService;
-use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class DesignMaterialSizeController extends Controller
 {

@@ -7,7 +7,7 @@ use App\Http\Requests\Backend\UpdateDesignMaterialTypeRequest;
 use EventoOriginal\Core\Services\DesignMaterialTypeService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class DesignMaterialTypeController extends Controller
 {
