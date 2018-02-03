@@ -1,9 +1,7 @@
 <?php
-
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
-
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
@@ -74,7 +72,6 @@ class ArticleRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
-
 
     public function findAllPaginated(int $currentPage, int $maxItems)
     {

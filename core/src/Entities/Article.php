@@ -821,5 +821,4 @@ class Article
 
         return $price;
     }
-
 }

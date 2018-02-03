@@ -184,7 +184,6 @@ class ArticleService
         $this->articleRepository->save($article);
     }
 
-
     public function findAllPaginated(int $currentPage = 1, int $maxItems = 10)
     {
         return $this->articleRepository->findAllPaginated($currentPage, $maxItems);
