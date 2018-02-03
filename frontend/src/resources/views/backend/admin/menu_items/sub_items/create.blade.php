@@ -29,9 +29,9 @@
                             @include('backend.messages.session')
 
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="menu_item_id" value="{{ $menu_selected->getId() }}">
+                            <input type="hidden" name="menu_item_id" value="{{ $menuSelected->getId() }}">
 
-                            <h4>Item para {{ $menu_selected->getTitle() }}</h4>
+                            <h4>Item para {{ $menuSelected->getTitle() }}</h4>
 
 
                             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
