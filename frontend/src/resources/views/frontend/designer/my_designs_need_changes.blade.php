@@ -41,7 +41,7 @@
                                                 </div>
                                                 <div class="item-info">
                                                     <div class="info-inner">
-                                                        <div class="item-title"> <a title="Food Processor" href="#"> {{ $design->getName() }} </a> </div>
+                                                        <div class="item-title"> <a title="{{ $design->getName() }}" href="#"> {{ $design->getName() }} </a> </div>
                                                         <div>{{ $design->getCreatedAt()->format('d/m/Y h:i') }}</div>
                                                     </div>
                                                 </div>

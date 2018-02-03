@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Entities;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Enums\DesignOrientation;
 use EventoOriginal\Core\Enums\DesignStatus;
@@ -70,9 +71,25 @@ class Design
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     */
+    private $category;
+
+    /**
+     * @ManyToMany(targetEntity="Occasion")
+     * @JoinTable(name="design_occasions",
+     *      joinColumns={@JoinColumn(name="design_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="occasion_id", referencedColumnName="id")}
+     *      )
+     */
+    private $occasions;
+
     public function __construct()
     {
         $this->status = DesignStatus::CREATED;
+        $this->occasions = new ArrayCollection();
     }
 
     /**
@@ -250,5 +267,30 @@ class Design
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+    }
+
+    public function getOccasions()
+    {
+        return $this->occasions;
+    }
+
+    public function setOccasions(array $occasions)
+    {
+        $this->occasions = $occasions;
+    }
+
+    public function addOccasion(Occasion $occasion)
+    {
+        $this->occasions[] = $occasion;
     }
 }

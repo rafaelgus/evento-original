@@ -92,6 +92,14 @@ Route::middleware(['auth'])->group(function () {
             '/' . trans('designer.my_designs_published.slug'),
             'Frontend\DesignerController@showDesignsPublished'
         )->name('designer.myDesignsPublished');
+        Route::get(
+            '/' . trans('designer.create.slug'),
+            'Frontend\DesignerController@create'
+        )->name('designer.create');
+        Route::get(
+            '/' . trans('designer.create_edible_paper.slug'),
+            'Frontend\DesignerController@createEdiblePaper'
+        )->name('designer.createEdiblePaper');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');

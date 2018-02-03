@@ -7,7 +7,10 @@
         }
 
         .new-design {
+            border-color: #e94d65;
+            color: #e94d65 !important;
             margin-bottom: 1rem !important;
+            font-size: 1.5rem !important;
         }
     </style>
 @stop
@@ -32,7 +35,7 @@
                                 </ul>
                             </div>
 
-                            <button class="button new-design">{{ trans('designer.new_design') }}</button>
+                            <a href="{{ route('designer.create') }}" class="button new-design">{{ trans('designer.new_design') }}</a>
 
                             <p>{{ trans('designer.my_designs.description') }}</p>
 
@@ -47,7 +50,7 @@
                                                 </div>
                                                 <div class="item-info">
                                                     <div class="info-inner">
-                                                        <div class="item-title"> <a title="Food Processor" href="#"> {{ $design->getName() }} </a> </div>
+                                                        <div class="item-title"> <a title="{{ $design->getName() }}" href="#"> {{ $design->getName() }} </a> </div>
                                                         <div>{{ $design->getCreatedAt()->format('d/m/Y h:i') }}</div>
                                                     </div>
                                                 </div>

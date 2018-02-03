@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\Backend\StoreDesignRequest;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Services\CircularDesignVariantService;
 use EventoOriginal\Core\Services\DesignerService;
 use EventoOriginal\Core\Services\DesignService;
 use Illuminate\Http\Request;
@@ -11,13 +12,16 @@ class DesignerController
 {
     private $designerService;
     private $designService;
+    private $circularDesignVariantService;
 
     public function __construct(
         DesignerService $designerService,
-        DesignService $designService
+        DesignService $designService,
+        CircularDesignVariantService $circularDesignVariantService
     ) {
         $this->designerService = $designerService;
         $this->designService = $designService;
+        $this->circularDesignVariantService = $circularDesignVariantService;
     }
 
     public function showEditor()
@@ -120,6 +124,20 @@ class DesignerController
 
         return view('frontend/designer.my_designs_published')->with([
             'designs' => $designs,
+        ]);
+    }
+
+    public function create()
+    {
+        return view('frontend/designer.create_design');
+    }
+
+    public function createEdiblePaper()
+    {
+        $variants = $this->circularDesignVariantService->findAll();
+
+        return view('frontend/designer.create_edible_paper')->with([
+            'variants' => $variants,
         ]);
     }
 }

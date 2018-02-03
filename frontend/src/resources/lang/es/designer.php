@@ -41,4 +41,21 @@ return [
     ],
     'empty' => 'No hay diseños en este estado',
     'new_design' => 'Crear Nuevo Diseño',
+    'create' => [
+        'title' => 'Crear Diseño',
+        'slug' => 'crear-diseño',
+        'description' => 'Crea un diseño de alguno de nuestros artículos disponibles',
+    ],
+    'create_edible_paper' => [
+        'title' => 'Crear Papel Comestible',
+        'slug' => 'crear-papel-comestible',
+        'description' => 'Seleccione la plantilla en la cual desea crear su diseño',
+    ],
+    'edible_paper' => [
+        'title' => 'Papel Comestible',
+    ],
+    'mug' => [
+        'title' => 'Tazas',
+    ],
+
 ];
