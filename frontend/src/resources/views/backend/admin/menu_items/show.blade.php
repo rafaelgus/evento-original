@@ -22,7 +22,7 @@
                 <div class="box">
 
                     <div class="box-header">
-                        <a href="{{ "/management/menu-item/create-subitem/" . $menu_item->getId() }}" class="btn btn-primary pull-right">Crear nuevo</a>
+                        <a href="{{ "/management/menu-item/create-subitem/" . $menuItem->getId() }}" class="btn btn-primary pull-right">Crear nuevo</a>
                     </div>
                     <div class="box-body">
                         <table id="colors-table" class="table table-striped table-bordered dt-responsive nowrap"
@@ -34,7 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($menu_item->getSubitems() as $item)
+                            @forelse($menuItem->getSubitems() as $item)
                                 <tr>
                                     <td>{{ $item->getTitle() }}</td>
                                     <td>
