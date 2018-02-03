@@ -7,6 +7,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
+use Money\Currency;
+use Money\Money;
 
 /**
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\ArticleRepository")
@@ -65,7 +67,7 @@ class Article
     private $status;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $price;
 
@@ -91,7 +93,7 @@ class Article
     private $tax;
 
     /**
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="integer")
      */
     private $costPrice;
 
@@ -192,14 +194,14 @@ class Article
     private $healthys;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isNew;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created", type="datetime")
+     * @ORM\Column(name="created", type="datetime", nullable=true)
      */
     private $created;
 
@@ -209,6 +211,12 @@ class Article
      * @ORM\Column(name="updated", type="datetime", nullable=true)
      */
     private $updated;
+
+    /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="article")
+     */
+    private $orderDetails;
 
     public function __construct()
     {
@@ -223,6 +231,7 @@ class Article
         $this->ingredients = new ArrayCollection();
         $this->pricePerQuantity = new ArrayCollection();
         $this->healthys = new ArrayCollection();
+        $this->orderDetails = new ArrayCollection();
     }
 
     /**
@@ -318,7 +327,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getPrice()
     {
@@ -326,9 +335,9 @@ class Article
     }
 
     /**
-     * @param mixed $price
+     * @param int $price
      */
-    public function setPrice($price)
+    public function setPrice(int $price)
     {
         $this->price = $price;
     }
@@ -366,7 +375,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getCostPrice()
     {
@@ -376,7 +385,7 @@ class Article
     /**
      * @param mixed $costPrice
      */
-    public function setCostPrice($costPrice)
+    public function setCostPrice(int $costPrice)
     {
         $this->costPrice = $costPrice;
     }
@@ -421,7 +430,7 @@ class Article
     /**
      * @return Brand
      */
-    public function getBrand(): Brand
+    public function getBrand(): ?Brand
     {
         return $this->brand;
     }
@@ -788,5 +797,28 @@ class Article
     public function setIsNew(bool $isNew)
     {
         $this->isNew = $isNew;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOrderDetails()
+    {
+        return $this->orderDetails;
+    }
+
+    /**
+     * @param OrderDetail $orderDetails
+     */
+    public function setOrderDetails(OrderDetail $orderDetails)
+    {
+        $this->orderDetails = $orderDetails;
+    }
+
+    public function getMoneyPrice()
+    {
+        $price = new Money($this->getPrice(), new Currency($this->getPriceCurrency()));
+
+        return $price;
     }
 }

@@ -56,6 +56,17 @@
                                     {!! $errors->first('description', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('affiliate_commission') ? 'has-error' : '' }}">
+                                <label for="inputAffiliateCommission"
+                                       class="col-sm-2 control-label">{{ trans('texts.sections.categories.affiliate_commission') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="inputAffiliateCommission" name="affiliate_commission" value="{{ old('affiliate_commission', $category->getAffiliateCommission()) }}"
+                                           placeholder="{{ trans('texts.sections.categories.affiliate_commission') }}">
+                                    <input type="checkbox" name="apply_commission_to_children"> Aplicar misma comisión a categorías hijas
+                                    {!! $errors->first('affiliate_commission', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="box-footer">

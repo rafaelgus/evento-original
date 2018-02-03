@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CheckForMaintenanceMode;
+use App\Http\Middleware\DesignerMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -15,7 +17,6 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -35,6 +36,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\VisitorLandingMiddleware::class,
+            CheckForMaintenanceMode::class,
         ],
 
         'api' => [
@@ -57,6 +60,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'admin' => Admin::class,
+        'admin' => AdminMiddleware::class,
+        'designer' => DesignerMiddleware::class
     ];
 }

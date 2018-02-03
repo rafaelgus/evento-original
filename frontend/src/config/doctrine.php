@@ -53,10 +53,6 @@ return [
                 'listeners'   => [],
                 'subscribers' => []
             ],
-            'filters'       => [
-                'article_brand' => EventoOriginal\Core\Persistence\Filters\ArticleBrandFilter::class,
-                'article_license' => EventoOriginal\Core\Persistence\Filters\ArticleLicenseFilter::class,
-            ],
             /*
             |--------------------------------------------------------------------------
             | Doctrine mapping types
@@ -97,7 +93,7 @@ return [
     */
     'extensions'                 => [
         LaravelDoctrine\ORM\Extensions\TablePrefix\TablePrefixExtension::class,
-        //LaravelDoctrine\Extensions\Timestamps\TimestampableExtension::class,
+        LaravelDoctrine\Extensions\Timestamps\TimestampableExtension::class,
         //LaravelDoctrine\Extensions\SoftDeletes\SoftDeleteableExtension::class,
         //LaravelDoctrine\Extensions\Sluggable\SluggableExtension::class,
         //LaravelDoctrine\Extensions\Sortable\SortableExtension::class,

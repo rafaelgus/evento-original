@@ -12,13 +12,23 @@ return [
             'ingredient' => 'El ingrediente se actualizo con exito',
             'brand' => 'La marca se gruado con exito',
             'users' => 'El usuario se guardo con exito',
-            'healthy' => 'El saludable se guardó con éxito',
+            'voucher' => 'El voucher se creo con exito',
+            'menu_item' => 'El item se guardó con éxito',
+            'design_material_size' => 'El tamaño se guardó con éxito',
+            'circular_design_variant' => 'El diseño circular se guardó con éxito',
+            'design_material_type' => 'El tipo de material se guardó con éxito',
         ],
         'edit' => [
             'article' => 'El articulo se modifico con exito',
             'allergen' => 'El alergeno se modifico con exito',
             'category' => 'La categoria se actualizo correctamente',
             'users' => 'El usuario se actualizo con exito',
+            'voucher' => 'El voucher se edito con exito'
         ],
+        'remove' => 'Eliminado con éxito',
+    ],
+    'error' => [
+        'create' => 'Ha ocurrido un error al guardar',
+        'update' => 'Ha ocurrido un error al actualizar',
     ]
 ];

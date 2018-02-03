@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use EventoOriginal\Core\Enums\VisitorEventType;
 use EventoOriginal\Core\Services\ArticleService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
@@ -54,7 +55,7 @@ class ArticleController extends Controller
 
     public function getHome()
     {
-        $articles = $this->articleService->findAll(App::getLocale());
+        $articles = array_slice($this->articleService->findAll(App::getLocale()), 0, 4);
 
         return view('frontend.home')
             ->with('articles', $articles);
@@ -63,16 +64,16 @@ class ArticleController extends Controller
     public function index(string $categorySlug = null)
     {
         $category = $this->categoryService->findBySlug($categorySlug, App::getLocale());
-        $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
-
-        $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
-        $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
-        $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
-        $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
-        $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
-        $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
-
         if ($category) {
+            $categoryAndChildren = $this->categoryService->getChildren($category, false, null, 'ASC', true);
+
+            $brands = $this->brandService->getByCategories($categoryAndChildren, App::getLocale());
+            $colors = $this->colorService->getByCategories($categoryAndChildren, App::getLocale());
+            $licenses = $this->licenseService->getByCategories($categoryAndChildren, App::getLocale());
+            $flavours = $this->flavourService->getByCategories($categoryAndChildren, App::getLocale());
+            $tags = $this->tagService->getByCategories($categoryAndChildren, App::getLocale());
+            $healthys = $this->healthyService->getByCategories($categoryAndChildren, App::getLocale());
+
             return view('frontend.articles.index')
                 ->with('category', $category)
                 ->with('brands', $brands)
@@ -96,7 +97,7 @@ class ArticleController extends Controller
         $flavours = (isset($request->flavours) ? $request->flavours : []);
         $licenses = (isset($request->licenses) ? $request->licenses : []);
         $tags = (isset($request->tags) ? $request->tags : []);
-        $healtyhs = (isset($request->healthys) ? $request->healthys : []);
+        $healthys = (isset($request->healthys) ? $request->healthys : []);
         $priceMin = (isset($request->priceMin) ? $request->priceMin : 0);
         $priceMax = (isset($request->priceMax) ? $request->priceMax : null);
         $pageLimit = (isset($request->pageLimit) ? $request->pageLimit : null);
@@ -111,7 +112,7 @@ class ArticleController extends Controller
             $flavours,
             $licenses,
             $tags,
-            $healtyhs,
+            $healthys,
             $priceMin,
             $priceMax,
             App::getLocale(),
@@ -124,26 +125,38 @@ class ArticleController extends Controller
         $response = [
             'total' => $paginator->count(),
             'pages' => ceil($paginator->count() / $pageLimit),
-            'data'  => $this->articleService->toJson($paginator->getQuery()->getResult()),
+            'data' => $this->articleService->toJson($paginator->getQuery()->getResult()),
         ];
 
         return $response;
     }
 
-    public function getImage(
-        string $filename
-    ) {
+    public function getImage(string $filename)
+    {
         $image = Storage::disk('s3')->get('/images/' . $filename);
 
         return $image;
     }
 
-    public function articleDetail(
-        string $slug
-    ) {
+    public function articleDetail(Request $request, string $slug)
+    {
         $article = $this->articleService->findBySlug($slug);
 
-        return view('frontend.articles.show')
-            ->with('article', $article);
+        if ($article) {
+            if ($request->input('ref')) {
+                pushVisitorEvent(
+                    VisitorEventType::AFFILIATE_REFERRAL_ARRIVAL,
+                    [
+                        'affiliate_code_referral' => $request->input('ref'),
+                        'article' => $article
+                    ]
+                );
+            }
+
+            return view('frontend.articles.show')
+                ->with('article', $article);
+        }
+
+        return abort(404);
     }
 }

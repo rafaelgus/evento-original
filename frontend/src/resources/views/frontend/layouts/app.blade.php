@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script src="{{ asset('js/app.js') }}"></script>
+
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -7,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="EventOriginal">
+    <meta name="author" content="EventOriginal">
 
     <title>Evento Original</title>
 
@@ -36,10 +37,13 @@
     <link rel="stylesheet" type="text/css" href="/css/jquery.mobile-menu.css">
     <link rel="stylesheet" type="text/css" href="/css/revslider.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'
           type='text/css'>
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('scripts_header')
 </head>

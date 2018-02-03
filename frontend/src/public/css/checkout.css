@@ -1,0 +1,21 @@
+.information-container {
+    border:1px solid;
+    border-radius : 6px;
+    height: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.container-inside {
+    margin-bottom: 20px;
+}
+
+.container-inside-margin {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.full-width {
+    width: 100%;
+}

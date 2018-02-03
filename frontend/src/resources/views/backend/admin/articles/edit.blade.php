@@ -92,7 +92,7 @@
                             <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}" id="priceInput">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.price') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="price" name="price"
+                                    <input type="text" class="form-control" id="price" name="price"
                                            placeholder="{{ trans('texts.sections.article.price') }}" value="{{ old('price',  $article->getPrice()) }}">
                                     {!! $errors->first('price', '<span class="help-block">* :message</span>') !!}
                                 </div>
@@ -125,7 +125,7 @@
                             <div class="form-group {{ $errors->has('costPrice') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">{{ trans('texts.sections.article.costPrice') }}</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="inputName" name="costPrice"
+                                    <input type="text" class="form-control" id="inputName" name="costPrice"
                                            placeholder="{{ trans('texts.sections.article.costPrice') }}" value="{{ old('costPrice', $article->getCostPrice())}}">
                                     {!! $errors->first('costPrice', '<span class="help-block">* :message</span>') !!}
                                 </div>

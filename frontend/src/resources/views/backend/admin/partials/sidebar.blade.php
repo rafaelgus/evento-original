@@ -88,6 +88,14 @@
 
     </li>
     <li class="treeview">
+        <a href="#"><i class="fa fa-apple"></i> <span>{{ trans('texts.sections.vouchers.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/vouchers">{{ trans('texts.sections.vouchers.view') }}</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/vouchers/create">{{ trans('texts.sections.vouchers.new') }}</a></li>
+        </ul>
+    <li>
         <a href="#"><i class="fa fa-heart"></i> <span>{{ trans('texts.sections.healthys.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
             <li><a href="/management/healthy">{{ trans('texts.sections.healthys.view') }}</a></li>
@@ -105,8 +113,44 @@
             <li><a href="/management/brand/create">{{ trans('texts.sections.brands.new') }}</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-smile-o"></i> <span>Ocasiones</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions">Ver</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions/create">Nuevo</a></li>
+        </ul>
+    </li>
 
-    <li class="header">{{ trans('texts.sections.stock.title') }}</li>
-    <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>
-    <li><a href="#"><i class="fa fa-archive"></i> <span>{{ trans('texts.sections.stock_placements.title') }}</span></a></li>
+    <li class="header">{{ trans('backend/menus.title') }}</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-list"></i> <span>{{ trans('backend/menus.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/menus">{{ trans('backend/menus.view') }}</a></li>
+        </ul>
+    </li>
+    <li class="header">Odoo</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-list"></i> <span>Articulos</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/odoo/articles">Sync articulos </a></li>
+        </ul>
+    </li>
+
+    <li class="header">{{ trans('payouts.title') }}</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-money"></i> <span>{{ trans('payouts.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/payouts">{{ trans('backend/menus.view') }}</a></li>
+        </ul>
+    </li>
+
+    <li class="header">{{ trans('texts.sections.design.title') }}</li>
+    <li class="treeview">
+        <a href="/management/design-material-size"><i class="fa fa-crosshairs"></i> <span>{{ trans('texts.sections.design_material_sizes.title') }}</span></a>
+        <a href="/management/circular-design-variant"><i class="fa fa-circle-o"></i> <span>{{ trans('texts.sections.circular_design_variants.title') }}</span></a>
+        <a href="/management/design-material-type"><i class="fa fa-eraser"></i> <span>{{ trans('texts.sections.design_material_types.title') }}</span></a>
+    </li>
+    </li>
 </ul>

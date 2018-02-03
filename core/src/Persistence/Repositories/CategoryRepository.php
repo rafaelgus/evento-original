@@ -85,6 +85,12 @@ class CategoryRepository extends NestedTreeRepository
         return $subcategories;
     }
 
+
+    public function getParents(Category $category)
+    {
+        return $this->getPath($category);
+    }
+
     public function findBySlug(string $slug, string $locale)
     {
         $qb = $this->createQueryBuilder('category')
@@ -105,5 +111,29 @@ class CategoryRepository extends NestedTreeRepository
         );
 
         return $query->getOneOrNullResult();
+    }
+
+
+    public function findOneByName(string $name, string $locale = self::DEFAULT_LOCALE)
+    {
+        $query = 'SELECT categories.* FROM categories where categories.name = "'. $name . '"';
+
+        $connection = $this->getEntityManager()->getConnection();
+        $categoryQuery = $connection
+            ->prepare($query);
+        $categoryQuery->execute();
+        $categories = $categoryQuery->fetchAll();
+
+        try {
+            $id = $categories[0]['id'];
+
+            $category = $this->findOneById($id);
+
+            return $category;
+        } catch (\Exception $exception) {
+            $category = null;
+
+            return $category;
+        }
     }
 }

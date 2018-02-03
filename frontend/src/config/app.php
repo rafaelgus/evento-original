@@ -136,7 +136,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -179,13 +178,15 @@ return [
 
         LaravelDoctrine\ORM\DoctrineServiceProvider::class,
         LaravelDoctrine\Extensions\GedmoExtensionsServiceProvider::class,
+        LaravelDoctrine\Migrations\MigrationsServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
         \App\Providers\EventoOriginalServiceProvider::class,
 
-        Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        MaxBrokman\SafeQueue\DoctrineQueueProvider::class
     ],
 
     /*
@@ -200,7 +201,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -240,6 +240,10 @@ return [
         'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+
     ],
 
 ];

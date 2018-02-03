@@ -7,7 +7,7 @@ use EventoOriginal\Core\Services\TagService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Yajra\Datatables\Facades\Datatables;
+use Yajra\DataTables\DataTables;
 
 class TagController
 {

@@ -36,7 +36,7 @@
                           <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                             <div class="slider-items slider-width-col4 block-content">
                               @foreach($article->getImages() as $image)
-                                  <div class="more-views-items"> <a href="#" data-image="/products-images/product1.jpg" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="/articles/storage/{{$image->getPath()}}" alt="product-image"/></a></div>
+                                  <div class="more-views-items"> <a href="#" data-image="/articles/storage/{{$image->getPath()}}" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="/articles/storage/{{$image->getPath()}}" alt="product-image"/></a></div>
                               @endforeach
                             </div>
                           </div>
@@ -69,8 +69,8 @@
                     </div>
                     <div class="price-block">
                       <div class="price-box">
-                        <p class="special-price"> <span class="price-label">Con Descuento:</span> <span id="product-price-48" class="price">€ {{$article->getPrice()}} </span> </p>
-                        <p class="old-price"> <span class="price-label">Precio Regular:</span> <span class="price">€ {{$article->getPrice()}} </span> </p>
+                        <p class="special-price"> <span class="price-label">Precio:</span> <span id="product-price-48" class="price">{{ formatted_money($article->getMoneyPrice()) }}</span> </p>
+                        {{--<p class="old-price"> <span class="price-label">Precio Regular:</span> <span class="price">€ {{$article->getPrice()}} </span> </p>--}}
                         <p class="availability in-stock pull-right"><span>En Stock</span></p>
                       </div>
                     </div>
@@ -80,9 +80,13 @@
                       <p>
                       <strong>Código: </strong> <label> {{$article->getBarCode()}}</label>
                       </p>
-                      <p>
-                      <strong>Marca: </strong> <label> {{$article->getBrand()->getName()}}</label>
-                      </p>
+
+                      @if($article->getBrand())
+                        <p>
+                          <strong>Marca: </strong> <label> {{$article->getBrand()->getName()}}</label>
+                        </p>
+                      @endif
+
                       <p class="color-detail">
                       <strong>Color:</strong> <label><div class="circle red" title="Rojo"></div><div class="circle blue" title="Azul"></div></label>
                       </p>

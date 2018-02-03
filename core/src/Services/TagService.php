@@ -32,10 +32,6 @@ class TagService
     {
         $tag = $this->tagRepository->findOneByName($name, $locale);
 
-        if (!$tag) {
-            throw new Exception("Doesn't exist a tag with this name");
-        }
-
         return $tag;
     }
 

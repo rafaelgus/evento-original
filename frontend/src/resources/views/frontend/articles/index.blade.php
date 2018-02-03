@@ -202,7 +202,7 @@
                                         </dd>
                                     @endif
                                     @if(count($tags) > 0)
-                                        <dt class="last even">{{ trans('frontend/articles.shop_by.licence') }}</dt>
+                                        <dt class="last even">{{ trans('frontend/articles.shop_by.license') }}</dt>
                                         <dd class="last even">
                                             <ol>
                                                 @foreach($tags as $tag)

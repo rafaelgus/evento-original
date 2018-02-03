@@ -22,7 +22,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Yajra\Datatables\Datatables;
+use Yajra\DataTables\Facades\DataTables;
 
 class ArticleController
 {
@@ -79,7 +79,7 @@ class ArticleController
         return view('backend.admin.articles.create')
             ->with([
                 'ableToLoad' => false,
-                'articleId'  => false
+                'articleId' => false
             ]);
     }
 
@@ -105,17 +105,17 @@ class ArticleController
 
         return view('backend.admin.articles.edit')
             ->with([
-                'article'     => $article,
-                'priceType'   => $priceType,
-                'allergens'   => $allergens,
-                'flavours'    => $flavours,
-                'colors'      => $colors,
-                'tags'        => $tags,
+                'article' => $article,
+                'priceType' => $priceType,
+                'allergens' => $allergens,
+                'flavours' => $flavours,
+                'colors' => $colors,
+                'tags' => $tags,
                 'ingredients' => $ingredients,
-                'licenses'    => $licenses,
-                'categories'  => $categories,
-                'brands'      => $brands,
-                'healthys'    => $healthys
+                'licenses' => $licenses,
+                'categories' => $categories,
+                'brands' => $brands,
+                'healthys' => $healthys
             ]);
     }
 
@@ -138,6 +138,7 @@ class ArticleController
             ->findByIds(
                 ($request->input('colors') ?: [])
             );
+
         $flavours = $this
             ->flavourService
             ->findByIds(
@@ -166,18 +167,21 @@ class ArticleController
                 );
         }
 
-
         $ingredients = $this
             ->ingredientService
             ->findByIds(
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+
+        }
 
         $priceType = null;
         if ($request->input('priceType') == 1) {
@@ -192,7 +196,8 @@ class ArticleController
             for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
-                    ->create(17,
+                    ->create(
+                        'EUR',
                         $request->input('quantities')[$i],
                         $request->input('prices')[$i]
                     );
@@ -211,11 +216,11 @@ class ArticleController
             $data['internalCode'],
             $data['status'],
             ($request->input('slug') ?: str_slug($request->input('name'))),
-            $data['price'],
+            ($data['price'] * 100),
             $priceType,
             'EUR',
             null,
-            $data['costPrice'],
+            ($data['costPrice'] * 100),
             $brand,
             $category,
             $license,
@@ -241,7 +246,7 @@ class ArticleController
         return view('backend.admin.articles.create')
             ->with([
                 'ableToLoad' => true,
-                'articleId'  => $article->getId()
+                'articleId' => $article->getId()
             ]);
     }
 
@@ -261,7 +266,9 @@ class ArticleController
                 ->imageService
                 ->create(
                     $imageName,
-                    'image_' . $imageNumber, $article);
+                    'image_' . $imageNumber,
+                    $article
+                );
 
             $images[] = $image;
             $imageNumber = $imageNumber + 1;
@@ -335,11 +342,14 @@ class ArticleController
                 ($request->input('ingredients') ?: [])
             );
 
-        $brand = $this
-            ->brandService
-            ->findOneById(
-                $request->input('brand')
-            );
+        $brand = null;
+        if ($request->input('brand')) {
+            $brand = $this
+                ->brandService
+                ->findOneById(
+                    $request->input('brand')
+                );
+        }
 
         $article->setAllergens($allergens);
         $article->setColors($colors);
@@ -353,8 +363,12 @@ class ArticleController
         $article->setDescription($request->input('description'));
         $article->setBarCode($request->input('barCode'));
         $article->setInternalCode($request->input('internalCode'));
-        $article->setLicense($license);
-        $article->setBrand($brand);
+        if ($brand) {
+            $article->setBrand($brand);
+        }
+        if ($license) {
+            $article->setLicense($license);
+        }
         $article->setIngredients($ingredients);
         $article->setStatus($request->input('status'));
 
@@ -373,7 +387,8 @@ class ArticleController
             for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
-                    ->create(17,
+                    ->create(
+                        'EUR',
                         $request->input('quantities')[$i],
                         $request->input('prices')[$i]
                     );
@@ -381,10 +396,9 @@ class ArticleController
                 $article->addPricePerQuantity($price);
             }
         }
-
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
-        $article->setIsNew($request->input('isNew'));
+        $article->setIsNew(($request->input('isNew') ?: false));
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
@@ -399,12 +413,12 @@ class ArticleController
 
         foreach ($articles as $article) {
             $articlesCollection->push([
-                'id'           => $article->getId(),
-                'name'         => $article->getName(),
-                'category'     => $article->getCategory()->getName(),
-                'price'        => $article->getPrice(),
-                'costPrice'    => $article->getCostPrice(),
-                'barCode'      => $article->getBarCode(),
+                'id' => $article->getId(),
+                'name' => $article->getName(),
+                'category' => $article->getCategory()->getName(),
+                'price' => $article->getPrice(),
+                'costPrice' => $article->getCostPrice(),
+                'barCode' => $article->getBarCode(),
                 'internalCode' => $article->getInternalCode()
             ]);
         }
@@ -471,9 +485,9 @@ class ArticleController
 
         foreach ($prices as $price) {
             $parsedPrices[] = [
-                'id'       => $price->getId(),
+                'id' => $price->getId(),
                 'quantity' => $price->getGramme(),
-                'price'    => $price->getPrice()
+                'price' => $price->getPrice()
             ];
         }
 

@@ -3,6 +3,8 @@ namespace EventoOriginal\Core\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use EventoOriginal\Core\Enums\RoleType;
+use EventoOriginal\Core\Infrastructure\Payments\Interfaces\PayerInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -11,13 +13,8 @@ use Illuminate\Notifications\Notifiable;
  * @ORM\Entity(repositoryClass="EventoOriginal\Core\Persistence\Repositories\UserRepository")
  * @ORM\Table(name="users")
  */
-class User implements Authenticatable, CanResetPassword
+class User implements Authenticatable, CanResetPassword, PayerInterface
 {
-    const ADMIN_ROLE = 'admin';
-    const CUSTOMER_ROLE = 'customer';
-    const SELLER_ROLE = 'seller';
-    const DESIGNER_ROLE = 'designer';
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -31,6 +28,16 @@ class User implements Authenticatable, CanResetPassword
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastName;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $email;
@@ -41,12 +48,7 @@ class User implements Authenticatable, CanResetPassword
     protected $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role")
-     * @ORM\JoinTable(
-     *     name="users_roles",
-     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      */
     protected $roles;
 
@@ -56,14 +58,24 @@ class User implements Authenticatable, CanResetPassword
     protected $rememberToken;
 
     /**
-     * @ORM\Column(type="string", name="client_id", nullable=true)
+     * @ORM\OneToOne(targetEntity="Designer", mappedBy="user")
      */
-    protected $clientId;
+    private $designer;
 
     /**
-     * @ORM\Column(type="string", name="client_secret", nullable=true)
+     * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
      */
-    protected $clientSecret;
+    protected $customer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Wallet", mappedBy="user")
+     */
+    private $wallet;
+
+    /**
+     * @ORM\OneToOne(targetEntity="VisitorLanding", mappedBy="user")
+     */
+    private $visitorLanding;
 
     public function __construct()
     {
@@ -103,6 +115,38 @@ class User implements Authenticatable, CanResetPassword
     }
 
     /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
      * @return string
      */
     public function getEmail(): string
@@ -139,7 +183,7 @@ class User implements Authenticatable, CanResetPassword
      */
     public function getRoles()
     {
-        return $this->roles->toArray();
+        return $this->roles;
     }
 
     /**
@@ -159,6 +203,22 @@ class User implements Authenticatable, CanResetPassword
     }
 
     /**
+     * @return mixed
+     */
+    public function getDesigner()
+    {
+        return $this->designer;
+    }
+
+    /**
+     * @param Designer $designer
+     */
+    public function setDesigner(Designer $designer): void
+    {
+        $this->designer = $designer;
+    }
+
+    /**
      * @return string
      */
     public function getRememberToken(): string
@@ -172,38 +232,6 @@ class User implements Authenticatable, CanResetPassword
     public function setRememberToken($rememberToken)
     {
         $this->rememberToken = $rememberToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClientId(): string
-    {
-        return $this->clientId;
-    }
-
-    /**
-     * @param string $clientId
-     */
-    public function setClientId(string $clientId)
-    {
-        $this->clientId = $clientId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClientSecret()
-    {
-        return $this->clientSecret;
-    }
-
-    /**
-     * @param mixed $clientSecret
-     */
-    public function setClientSecret($clientSecret)
-    {
-        $this->clientSecret = $clientSecret;
     }
 
     /**
@@ -270,11 +298,80 @@ class User implements Authenticatable, CanResetPassword
     public function isAdmin()
     {
         foreach ($this->roles as $role) {
-            if ($role->getName() === self::ADMIN_ROLE) {
+            if ($role->getName() === RoleType::ADMIN) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public function isDesigner()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->getName() === RoleType::DESIGNER) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return Wallet
+     */
+    public function getWallet()
+    {
+        return $this->wallet;
+    }
+
+    /**
+     * @param Wallet  $wallet
+     */
+    public function setWallet(Wallet $wallet)
+    {
+        $this->wallet = $wallet;
+    }
+
+    /**
+     * @return VisitorLanding
+     */
+    public function getVisitorLanding()
+    {
+        return $this->visitorLanding;
+    }
+
+    /**
+     * @param VisitorLanding $visitorLanding
+     */
+    public function setVisitorLanding(VisitorLanding $visitorLanding)
+    {
+        $this->visitorLanding = $visitorLanding;
+    }
+
+    public function getPhone()
+    {
+        // TODO: Implement getPhone() method.
+    }
+
+    public function getIdentification()
+    {
+        // TODO: Implement getIdentification() method.
     }
 }

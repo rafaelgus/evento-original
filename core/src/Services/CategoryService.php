@@ -1,4 +1,5 @@
 <?php
+
 namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\Category;
@@ -9,6 +10,7 @@ use Exception;
 class CategoryService
 {
     const DEFAULT_LOCALE = 'es';
+    const DEFAULT_AFFILIATE_COMMISSION = 5;
 
     private $categoryRepository;
 
@@ -17,13 +19,9 @@ class CategoryService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function findOneById(int $id, string $locale)
+    public function findOneById(int $id, string $locale = 'es')
     {
         $category = $this->categoryRepository->findOneById($id, $locale);
-
-        if (!$category) {
-            throw new Exception("This category doesn't exist");
-        }
 
         return $category;
     }
@@ -33,12 +31,17 @@ class CategoryService
         return $this->categoryRepository->findAll($locale);
     }
 
-    public function create(string $name, string $slug, string $description)
-    {
+    public function create(
+        string $name,
+        string $slug,
+        string $description,
+        $affiliateCommission = self::DEFAULT_AFFILIATE_COMMISSION
+    ) {
         $category = new Category();
         $category->setName($name);
         $category->setSlug($slug);
         $category->setDescription($description);
+        $category->setAffiliateCommission($affiliateCommission);
 
         $this->save($category, true);
 
@@ -58,11 +61,22 @@ class CategoryService
         $this->save($category);
     }
 
-    public function update(Category $category, string $name, string $slug, string $description)
-    {
+    public function update(
+        Category $category,
+        string $name,
+        string $slug,
+        string $description,
+        $affiliateCommission = null
+    ) {
         $category->setName($name);
         $category->setSlug($slug);
         $category->setDescription($description);
+        $this->save($category);
+
+        if ($affiliateCommission) {
+            $category->setAffiliateCommission($affiliateCommission);
+        }
+
         $this->save($category);
 
         return $category;
@@ -78,26 +92,70 @@ class CategoryService
         $this->categoryRepository->save($category);
     }
 
-    public function getChildren(Category $category, $direct = false, $sortByField = null, $direction = 'ASC', $includeNode = false)
-    {
-        $children = $this->categoryRepository->findSubcategories($category, $direct, $sortByField, $direction, $includeNode);
+    public function getChildren(
+        Category $category,
+        $direct = false,
+        $sortByField = null,
+        $direction = 'ASC',
+        $includeNode = false
+    ) {
+        $children = $this->categoryRepository->findSubcategories(
+            $category,
+            $direct,
+            $sortByField,
+            $direction,
+            $includeNode
+        );
 
         return $children;
     }
 
-    public function createChildren(Category $parent, string $childName, string $childSlug, string $childDescription)
-    {
+    public function createChildren(
+        Category $parent,
+        string $childName,
+        string $childSlug,
+        string $childDescription,
+        $childAffiliateCommission = self::DEFAULT_AFFILIATE_COMMISSION
+    ) {
         $category = new Category();
         $category->setName($childName);
         $category->setSlug($childSlug);
         $category->setDescription($childDescription);
         $category->setParent($parent);
+        $category->setAffiliateCommission($childAffiliateCommission);
 
         $this->save($category, true);
+
+        return $category;
+    }
+
+    public function isChildren(Category $parent, Category $children)
+    {
+        $parents = $this->categoryRepository->getPath($parent);
+
+        if (in_array($children, $parents)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function findBySlug(string $slug, string $locale = 'es')
     {
         return $this->categoryRepository->findBySlug($slug, $locale);
+    }
+
+    public function findByName(string $name)
+    {
+        return $this->categoryRepository->findOneByName($name);
+    }
+
+    public function applyCommissionToChildren(Category $category, int $affiliateCommission)
+    {
+        foreach ($category->getChildren() as $child) {
+            $child->setAffiliateCommission($affiliateCommission);
+
+            $this->save($child);
+        }
     }
 }

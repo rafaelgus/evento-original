@@ -28,6 +28,7 @@ class UpdateCategoryRequest extends FormRequest
             'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\Category,name,' . $this->route('id'),
             'slug' => 'max:255|unique:EventoOriginal\Core\Entities\Category,slug,' . $this->route('id'),
             'description' => 'required',
+            'affiliate_commission' => 'required|numeric',
         ];
     }
 }

@@ -25,7 +25,7 @@ class UpdateLicenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:EventoOriginal\Core\Entities\License,name'
+            'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\License,name'
         ];
     }
 }
