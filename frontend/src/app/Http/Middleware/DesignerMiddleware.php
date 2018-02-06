@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class DesignerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +15,10 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::user()->isDesigner()) {
             return $next($request);
         }
 
-        return abort(404);
+        return redirect()->route('designer.getRegister');
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Requests\Backend\StoreArticleRequest;
@@ -195,7 +196,8 @@ class ArticleController
             for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
-                    ->create(17,
+                    ->create(
+                        'EUR',
                         $request->input('quantities')[$i],
                         $request->input('prices')[$i]
                     );
@@ -264,7 +266,9 @@ class ArticleController
                 ->imageService
                 ->create(
                     $imageName,
-                    'image_' . $imageNumber, $article);
+                    'image_' . $imageNumber,
+                    $article
+                );
 
             $images[] = $image;
             $imageNumber = $imageNumber + 1;
@@ -383,7 +387,8 @@ class ArticleController
             for ($i = 0; $i < count($request->input('quantities')); $i++) {
                 $price = $this
                     ->priceService
-                    ->create(17,
+                    ->create(
+                        'EUR',
                         $request->input('quantities')[$i],
                         $request->input('prices')[$i]
                     );

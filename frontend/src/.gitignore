@@ -16,3 +16,4 @@ composer.phar
 error.log
 adminer.php
 Paypal.log
+composer.lock

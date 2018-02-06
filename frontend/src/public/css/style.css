@@ -10530,7 +10530,7 @@ address {
 
 input.input-text, select, textarea {
     /*background-color: #413C5E;*/
-    border: 1px #413C5E solid;
+    /*border: 1px #413C5E solid;*/
     padding: 8px 10px;
     outline: none;
     color: #e94d65;
@@ -11097,6 +11097,10 @@ select#billing-address-select {
     font-size: 11px;
 }
 
+select {
+    background-color: white;
+}
+
 select#billing-address-select:focus {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #DDDDDD;
@@ -11479,7 +11483,7 @@ a.button.wishlist {
 .state_bar {
     overflow: hidden;
     background-color: #FFFFFF;
-    padding: 10px 0 25px;
+    padding: 10px 0 3px;
     margin-bottom: 15px;
 }
 
@@ -11516,6 +11520,12 @@ a.button.wishlist {
     background-color: #fff;
     border-bottom: 1px solid #e94d65;
     color: #e94d65;
+}
+
+.checkout-progress li.active a{
+    background-color: #fff;
+    color: #e94d65;
+    text-decoration: none;
 }
 
 /* Multiple Addresses Checkout */
@@ -17499,6 +17509,10 @@ a.button.wishlist {
 
 .circle.selected-circle {
     border: 2px solid black;
+}
+
+.bootstrap-switch-handle-on {
+    background-color: #413C5E !important;
 }
 
 select {

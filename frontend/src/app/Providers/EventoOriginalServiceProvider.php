@@ -32,7 +32,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
         define('CORE_DIR', realpath(__DIR__ . '/../../../../core/src'));
 
         AnnotationRegistry::registerAutoloadNamespace(
@@ -99,6 +98,27 @@ class EventoOriginalServiceProvider extends ServiceProvider
         });
         $this->app->singleton(Repositories\MenuItemRepository::class, function () {
             return EntityManager::getRepository(Entities\MenuItem::class);
+        });
+        $this->app->singleton(Repositories\DesignerRepository::class, function () {
+            return EntityManager::getRepository(Entities\Designer::class);
+        });
+        $this->app->singleton(Repositories\DesignRepository::class, function () {
+            return EntityManager::getRepository(Entities\Design::class);
+        });
+        $this->app->singleton(Repositories\DesignMaterialSizeRepository::class, function () {
+            return EntityManager::getRepository(Entities\DesignMaterialSize::class);
+        });
+        $this->app->singleton(Repositories\CircularDesignVariantRepository::class, function () {
+            return EntityManager::getRepository(Entities\CircularDesignVariant::class);
+        });
+        $this->app->singleton(Repositories\CircularDesignVariantDetailRepository::class, function () {
+            return EntityManager::getRepository(Entities\CircularDesignVariantDetail::class);
+        });
+        $this->app->singleton(Repositories\DesignMaterialTypeRepository::class, function () {
+            return EntityManager::getRepository(Entities\DesignMaterialType::class);
+        });
+        $this->app->singleton(Repositories\OccasionRepository::class, function () {
+            return EntityManager::getRepository(Entities\Occasion::class);
         });
         $this->app->singleton(Repositories\CustomerRepository::class, function () {
             return EntityManager::getRepository(Entities\Customer::class);

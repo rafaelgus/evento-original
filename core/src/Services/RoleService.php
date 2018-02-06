@@ -32,6 +32,6 @@ class RoleService
 
     public function findByName(string $name)
     {
-        return $this->roleRepository->findByName($name);
+        return $this->roleRepository->findOneByName($name);
     }
 }

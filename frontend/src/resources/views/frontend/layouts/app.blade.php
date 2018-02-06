@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script src="{{ asset('js/app.js') }}"></script>
+
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -44,6 +45,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'
           type='text/css'>
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('scripts_header')
 </head>

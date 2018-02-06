@@ -77,7 +77,7 @@
 
     <!-- end header -->
 
-@include('frontend.partials.navbar')
+    @include('frontend.partials.navbar')
 
 </header>
 
