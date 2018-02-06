@@ -57,7 +57,7 @@ class ArticleController extends Controller
 
     public function getHome()
     {
-        $articles = $this->articleService->findAll(App::getLocale());
+        $articles = array_slice($this->articleService->findAll(App::getLocale()),0, 4);
 
         return view('frontend.home')
             ->with('articles', $articles);

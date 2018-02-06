@@ -16,9 +16,11 @@ bootstrap/cache/
 
 .idea/
 
+laradock/logs/
+
+.composer/
+
 docae/mysql-data/
 docae/redis-data/
-laradock/logs/
-.composer/
 
 frontend/src/storage/proxies/

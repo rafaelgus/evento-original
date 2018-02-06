@@ -306,7 +306,6 @@ class ArticleService
     {
         $articles = $this->articleRepository->search($search);
 
-
         return $articles;
     }
 
@@ -330,6 +329,10 @@ class ArticleService
         return json_encode($articlesArray);
     }
 
+    /**
+     * @param string $barCode
+     * @return null|Article
+     */
     public function findByBarcode(string $barCode)
     {
         return $this->articleRepository->findOneByBarCode($barCode);

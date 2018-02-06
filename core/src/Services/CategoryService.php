@@ -125,8 +125,9 @@ class CategoryService
         $category->setAffiliateCommission($childAffiliateCommission);
 
         $this->save($category, true);
-    }
 
+        return $category;
+    }
 
     public function isChildren(Category $parent, Category $children)
     {
@@ -142,6 +143,11 @@ class CategoryService
     public function findBySlug(string $slug, string $locale = 'es')
     {
         return $this->categoryRepository->findBySlug($slug, $locale);
+    }
+
+    public function findByName(string $name)
+    {
+        return $this->categoryRepository->findOneByName($name);
     }
 
     public function applyCommissionToChildren(Category $category, int $affiliateCommission)

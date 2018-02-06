@@ -77,4 +77,9 @@ class AllergenService
 
         return $allergens;
     }
+
+    public function findByName(string $name)
+    {
+        return $this->allergenRepository->findOneBy(['name' => $name]);
+    }
 }

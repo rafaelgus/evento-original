@@ -219,6 +219,12 @@ Route::group(['prefix' => '/management'], function () {
             Route::get('/{id}/edit', 'Backend\MenuItemController@edit');
             Route::put('/{id}', 'Backend\MenuItemController@update');
         });
+
+        Route::group(['prefix' => '/odoo'], function () {
+            Route::get('/articles', 'Backend\OdooController@showNotSyncArticles');
+            Route::post('/articles/sync', 'Backend\OdooController@syncArticles');
+        });
+
         Route::group(['prefix' => '/payouts'], function () {
             Route::get('/', 'Backend\PayoutController@index')->name('admin.payouts.index');
             Route::get('/pendents', 'Backend\PayoutController@showPendents')->name('admin.payouts.pendents');
@@ -226,6 +232,7 @@ Route::group(['prefix' => '/management'], function () {
             Route::post('/send/{id}', 'Backend\PayoutController@send')->name('admin.payouts.send');
             Route::post('/cancel/{id}', 'Backend\PayoutController@cancel')->name('admin.payouts.cancel');
         });
+
         Route::group(['prefix' => '/orders'], function () {
             Route::get('/{id}', 'Backend\OrderController@show')->name('admin.orders.show');
         });
