@@ -306,7 +306,6 @@ class ArticleService
     {
         $articles = $this->articleRepository->search($search);
 
-        $articles = $this->searchToJson($articles);
 
         return $articles;
     }
@@ -322,6 +321,7 @@ class ArticleService
                 'id' => $article->getId(),
                 'name' => $article->getName(),
                 'price' => $article->getMoneyPrice()->getAmount(),
+                'slug' => $article->getSlug(),
                 'price_currency' => '€',
                 'image' => (count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): ''
             ];

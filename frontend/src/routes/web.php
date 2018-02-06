@@ -6,6 +6,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/', 'Frontend\ArticleController@getHome');
 Route::get('/search/{search}', 'Frontend\ArticleController@search');
+Route::post('/articles/search', 'Frontend\ArticleController@getSearch');
 
 Route::get(
     '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',

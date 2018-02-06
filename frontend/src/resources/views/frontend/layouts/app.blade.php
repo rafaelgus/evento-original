@@ -38,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
     <link rel="stylesheet" type="text/css" href="/css/select2.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'
@@ -78,9 +80,10 @@
             },
             minLength: 1
         }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-            return $( "<li>" )
-                .append( "<div>" + item.name + "<br>" + item.price + "</div>" )
-                .appendTo( ul );
+            ul.append('<li><div class="search-container row"><div class="col-md-5 search-image-container"><img style="max-width: 150px; max-height: 150px; margin: auto;" src="/articles/storage/' + item.image + '"/></div>' +
+                '<div class="col-md-6"><a href="/articulo/detalle/'+ item.slug +'"><strong style="color: #e94d65">'+ item.name + ' <strong></a> <br> ' +item.price +' ' + item.price_currency + '<br><div><button class="button btn-cart" onclick="addItemToCart('+ item.id +', this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button></div></div></div></li>'
+        );
+            return ul;
         };
     });
 

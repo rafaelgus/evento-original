@@ -164,6 +164,15 @@ class ArticleController extends Controller
     {
         $articles = $this->articleService->search($search);
 
+        $articles = $this->articleService->searchToJson($articles);
+
         return $articles;
+    }
+
+    public function getSearch(Request $request)
+    {
+        $articles = $this->articleService->search($request->input('search'));
+
+        return view('frontend.articles.search')->with('articles', $articles);
     }
 }
