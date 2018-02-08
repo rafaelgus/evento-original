@@ -309,4 +309,13 @@ class ArticleService
     {
         return $this->articleRepository->findOneByBarCode($barCode);
     }
+
+    /**
+     * @param string $internalCode
+     * @return null|Article
+     */
+    public function findByInternalCode(string $internalCode)
+    {
+        return $this->articleRepository->findOneByInternalCode($internalCode);
+    }
 }
