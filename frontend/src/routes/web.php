@@ -7,7 +7,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('/', 'Frontend\ArticleController@getHome');
 
 Route::get(
-    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
+    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{identifier}',
     'Frontend\ArticleController@articleDetail'
 )->name('article.detail');
 

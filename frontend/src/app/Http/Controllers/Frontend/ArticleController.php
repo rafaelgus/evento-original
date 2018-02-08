@@ -138,9 +138,13 @@ class ArticleController extends Controller
         return $image;
     }
 
-    public function articleDetail(Request $request, string $slug)
+    public function articleDetail(Request $request, $identifier)
     {
-        $article = $this->articleService->findBySlug($slug);
+        if (is_int($identifier)) {
+            $article = $this->articleService->findByInternalCode($identifier);
+        } else {
+            $article = $this->articleService->findBySlug($identifier);
+        }
 
         if ($article) {
             if ($request->input('ref')) {
