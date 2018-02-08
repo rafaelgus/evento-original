@@ -140,7 +140,7 @@ class ArticleController extends Controller
 
     public function articleDetail(Request $request, $identifier)
     {
-        if (is_int($identifier)) {
+        if (is_numeric($identifier)) {
             $article = $this->articleService->findByInternalCode($identifier);
         } else {
             $article = $this->articleService->findBySlug($identifier);
