@@ -22,5 +22,3 @@ laradock/logs/
 
 docae/mysql-data/
 docae/redis-data/
-
-frontend/src/storage/proxies/
