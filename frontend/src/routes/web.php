@@ -100,6 +100,18 @@ Route::middleware(['auth'])->group(function () {
             '/' . trans('designer.create_edible_paper.slug'),
             'Frontend\DesignerController@createEdiblePaper'
         )->name('designer.createEdiblePaper');
+        Route::get(
+            '/' . trans('designer.select_edible_paper.slug') . '/{id}',
+            'Frontend\DesignerController@selectEdiblePaper'
+        )->name('designer.selectEdiblePaper');
+        Route::get(
+            '/' . trans('designer.design_edible_paper.slug') . '/{id}',
+            'Frontend\DesignerController@designEdiblePaper'
+        )->name('designer.designEdiblePaper');
+        Route::get(
+            '/' . trans('designer.send_to_review.slug') . '/{id}',
+            'Frontend\DesignerController@sendToReview'
+        )->name('designer.sendToReview');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');

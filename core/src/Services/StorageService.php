@@ -47,11 +47,12 @@ class StorageService
      * Save a picture with public status
      * @param $image
      * @param $remotePath
+     * @param $extension
      * @return mixed
      */
-    public function savePicture($image, $remotePath)
+    public function savePicture($image, $remotePath, $extension)
     {
-        $fileName = strtolower($remotePath . '/' . uniqid() . '.' . $image->getClientOriginalExtension());
+        $fileName = strtolower($remotePath . '/' . uniqid() . '.' . $extension);
         $this->store($image, $fileName, 'public');
 
         return $this->getPictureUrl($fileName);

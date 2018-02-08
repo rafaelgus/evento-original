@@ -57,5 +57,26 @@ return [
     'mug' => [
         'title' => 'Tazas',
     ],
-
+    'continue' => 'Continuar',
+    'select_edible_paper' => [
+        'slug' => 'seleccionar-papel-comestible',
+        'description' => 'Para crear el diseño tienes dos alternativas:',
+        'use_editor' => [
+            'title' => 'Usar nuestro editor para diseñar',
+            'button' => 'Ir al editor'
+        ],
+        'download_template' => [
+            'title' => 'Descargar la plantilla y crear el diseño utilizando tu editor favorito',
+            'button' => 'Descargar plantilla'
+        ],
+    ],
+    'design_edible_paper' => [
+        'slug' => 'diseñar-papel-comestible',
+    ],
+    'material_size' => 'Tamaño',
+    'finalize' => 'Finalizar',
+    'send_to_review' => [
+        'title' => 'Enviar diseño a revisión',
+        'slug' => 'enviar-a-revision',
+    ]
 ];

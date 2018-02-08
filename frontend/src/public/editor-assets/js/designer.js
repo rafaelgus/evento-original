@@ -35,7 +35,8 @@ $(document).ready(function() {
             canvas.renderAll.bind(canvas),
             {
                 width: parseInt(canvasWidth),
-                height: parseInt(canvasHeight)
+                height: parseInt(canvasHeight),
+                crossOrigin: 'Anonymous'
             }
         );
     }
@@ -904,8 +905,9 @@ $(document).ready(function() {
         event.preventDefault();
 
         var json = JSON.stringify(canvas);
-
         $('#save-design-form #json').val(json);
+
+        $('#save-design-form #image-file').val(canvas.toDataURL());
 
         $('#save-design-form').submit();
     });

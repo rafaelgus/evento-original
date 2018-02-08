@@ -318,3 +318,9 @@ WORKDIR /var/www
 CMD ["php-fpm"]
 
 EXPOSE 9000
+
+RUN apt-get -y update && \
+    apt-get install pkg-config libmagickwand-dev -y && \
+    pecl install imagick
+
+RUN docker-php-ext-enable imagick

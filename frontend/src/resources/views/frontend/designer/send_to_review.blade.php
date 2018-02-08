@@ -5,22 +5,6 @@
         .category-products .products-grid {
             margin: 0 !important;
         }
-
-         .products-grid .item .item-inner .item-img .item-img-info a.product-image img {
-             max-height: 270px;
-         }
-
-        .products-grid .item .item-inner .item-img {
-            min-height: 270px;
-            display: table;
-        }
-
-        .products-grid .item .item-inner .item-img .item-img-info {
-            height: 100%;
-            display: table-cell;
-            vertical-align: middle;
-        }
-
     </style>
 @stop
 
@@ -32,7 +16,7 @@
                 <div class="col-xs-12">
                     <ul>
                         <li class="home"><a href="/" title="Go to Home Page">{{ trans('designer.title') }}</a> <span>/</span></li>
-                        <li class="category1601"><strong>{{ trans('designer.my_designs.title') }}</strong></li>
+                        <li class="category1601"><strong>{{ trans('designer.send_to_review.title') }}</strong></li>
                     </ul>
                 </div>
             </div>

@@ -26,7 +26,7 @@ class Design
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $name;
 
@@ -37,7 +37,7 @@ class Design
 
     /**
      * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs")
-     * @ORM\JoinColumn(name="designer_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="designer_id", referencedColumnName="id", nullable=true)
      */
     private $designer;
 
@@ -78,13 +78,18 @@ class Design
     private $category;
 
     /**
-     * @ManyToMany(targetEntity="Occasion")
-     * @JoinTable(name="design_occasions",
-     *      joinColumns={@JoinColumn(name="design_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="occasion_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="Occasion")
+     * @ORM\JoinTable(name="design_occasions",
+     *      joinColumns={@ORM\JoinColumn(name="design_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="occasion_id", referencedColumnName="id")}
      *      )
      */
     private $occasions;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $source;
 
     public function __construct()
     {
@@ -292,5 +297,21 @@ class Design
     public function addOccasion(Occasion $occasion)
     {
         $this->occasions[] = $occasion;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource(string $source)
+    {
+        $this->source = $source;
     }
 }

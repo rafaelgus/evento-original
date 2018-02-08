@@ -34,15 +34,13 @@ class DesignerController
         $designer = current_user()->getDesigner();
 
         if ($designer) {
-            $this->designService->saveDesign(
-                $designer,
-                $request->get('name'),
-                $request->get('json'),
-                $request->get('description')
-            );
+            $data = $request->all();
+            $data['designer'] = $designer;
+
+            $this->designService->saveDesignerDesign($data);
         }
 
-        return redirect()->back();
+        return $this->showDesigns();
     }
 
     public function register()
@@ -139,5 +137,36 @@ class DesignerController
         return view('frontend/designer.create_edible_paper')->with([
             'variants' => $variants,
         ]);
+    }
+
+    public function selectEdiblePaper(int $id)
+    {
+        $variant = $this->circularDesignVariantService->findOneById($id);
+
+        if (!$variant) {
+            abort(404);
+        }
+
+        return view('frontend/designer.select_edible_paper_variant')->with([
+            'variant' => $variant,
+        ]);
+    }
+
+    public function designEdiblePaper(int $id)
+    {
+        $circularDesignVariant = $this->circularDesignVariantService->findOneById($id);
+
+        if (!$circularDesignVariant) {
+            abort(404);
+        }
+
+        return view('frontend/designer.design_edible_paper')->with([
+            'circularDesignVariant' => $circularDesignVariant,
+        ]);
+    }
+
+    public function sendToReview(int $id)
+    {
+        $design = $this->designService->
     }
 }

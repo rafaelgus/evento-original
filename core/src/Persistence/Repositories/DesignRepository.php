@@ -19,6 +19,11 @@ class DesignRepository extends BaseRepository
         }
     }
 
+    public function findOneById(int $id)
+    {
+        return $this->find($id);
+    }
+
     public function getAllByDesignerPaginated(
         Designer $designer,
         int $currentPage = 1,
