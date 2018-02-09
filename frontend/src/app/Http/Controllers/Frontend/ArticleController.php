@@ -182,11 +182,23 @@ class ArticleController extends Controller
 
         $paginator = $this->articleService->getPaginatedSearch($request->input('search'), 10, $page);
 
+        $pages = ceil($paginator->count() / 10);
+
+        $startPage = $page;
+
+        if (($startPage + 5) > $pages) {
+            $endPage = ceil($paginator->count() / 10);
+        } else {
+            $endPage = $startPage + 5;
+        }
+
         return view('frontend.articles.search')
             ->with('articles', $paginator->getQuery()->getResult())
             ->with('total', count($paginator))
-            ->with('pages', ceil($paginator->count() / 10))
+            ->with('pages', $page)
             ->with('search', $search)
-            ->with('actual', $page);
+            ->with('actual', $actual)
+            ->with('start', $startPage)
+            ->with('end', $endPage);
     }
 }
