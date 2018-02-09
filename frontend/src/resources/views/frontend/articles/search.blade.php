@@ -35,9 +35,11 @@
                                     <input type="hidden" name="page" value="" id="page">
                                 <label>{{ trans('frontend/articles.page') }}:</label>
                                 <ul class="pagination">
-                                    @for($i = 1; $i <= $pages; $i ++)
+                                    <li><a href="#">&laquo;</a></li>
+                                    @for($i = $start; $i <= $end; $i ++)
                                         <li class="{{($actual === $i)? 'active': ''}}"><a href="#" id="{{$i}}" onclick="Pagination({{$i}})" class="pagination-page">{{$i}}</a></li>
                                     @endfor
+                                    <li><a href="#">&raquo;</a></li>
                                 </ul>
                                 </form>
                             </div>
