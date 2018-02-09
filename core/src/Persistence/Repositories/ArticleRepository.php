@@ -289,6 +289,33 @@ class ArticleRepository extends BaseRepository
 
     }
 
+    public function paginateSearch(string $search, int $pageLimit = 10, int $page = 1)
+    {
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->leftJoin('article.colors', 'color')
+            ->leftJoin('article.ingredients', 'ingredient')
+            ->leftJoin('article.tags', 'tag')
+            ->where('article.name LIKE :search 
+                or article.description LIKE :search 
+                or color.name LIKE :search 
+                or ingredient.name LIKE :search 
+                or tag.name LIKE :search'
+            )
+            ->setParameter('search', '%'.$search.'%');
+
+
+        $firstResult = (($pageLimit * ($page - 1)) > 0 ? ($pageLimit * ($page - 1)) : 0);
+
+        $paginator = new Paginator($qb->getQuery(), true);
+        $paginator
+            ->getQuery()
+            ->setFirstResult($firstResult)
+            ->setMaxResults($pageLimit);
+
+        return $paginator;
+    }
+
     public function findOneByBarCode(string $barCode)
     {
         return $this->findOneBy(['barCode' => $barCode]);

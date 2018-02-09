@@ -12,18 +12,36 @@
 
     <!-- Main Container -->
     <section class="main-container col2-left-layout bounceInUp animated">
+
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-sm-push-3">
                     <div class="category-description std">
                         <div class="slider-items-products">
-                            <h2 class="page-heading"><span class="page-heading-title"></span>
+                            <h2 class="page-heading"><span class="page-heading-title">Resultados de la busqueda: {{$search}}</span>
                             </h2>
                             <p class="category-description">
 
                             </p>
                         </div>
 
+                    </div>
+                    <div class="col-lg-5 col-sm-7 col-md-5">
+                        <div class="pager">
+                            <div class="pages">
+                                <form id="change-pagination" method="POST" action="/articles/search">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" name="search" value="{{$search}}" id="search">
+                                    <input type="hidden" name="page" value="" id="page">
+                                <label>{{ trans('frontend/articles.page') }}:</label>
+                                <ul class="pagination">
+                                    @for($i = 1; $i <= $pages; $i ++)
+                                        <li class="{{($actual === $i)? 'active': ''}}"><a href="#" id="{{$i}}" onclick="Pagination({{$i}})" class="pagination-page">{{$i}}</a></li>
+                                    @endfor
+                                </ul>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <article class="col-main">
 
@@ -96,4 +114,14 @@
 
     <div id="result"></div>
 
+@endsection
+
+@section('scripts_body')
+    <script>
+        function Pagination(page) {
+            $('#page').val(page);
+
+            document.getElementById('change-pagination').submit()
+        }
+    </script>
 @endsection

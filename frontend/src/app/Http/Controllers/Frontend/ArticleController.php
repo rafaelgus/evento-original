@@ -175,8 +175,22 @@ class ArticleController extends Controller
 
     public function getSearch(Request $request)
     {
-        $articles = $this->articleService->search($request->input('search'));
+        $page = $request->input('page');
+        $search = $request->input('search');
 
-        return view('frontend.articles.search')->with('articles', $articles);
+        if (!$page) {
+            $page = 1;
+        }
+
+        $actual = $page;
+
+        $paginator = $this->articleService->getPaginatedSearch($request->input('search'), 10, $page);
+
+        return view('frontend.articles.search')
+            ->with('articles', $paginator->getQuery()->getResult())
+            ->with('total', count($paginator))
+            ->with('pages', ceil($paginator->count() / 10))
+            ->with('search', $search)
+            ->with('actual', $page);
     }
 }

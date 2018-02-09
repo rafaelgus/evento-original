@@ -308,6 +308,13 @@ class ArticleService
         return $articles;
     }
 
+    public function getPaginatedSearch(string $search, int $pageLimit = 10, int $page = 1)
+    {
+        $articles = $this->articleRepository->paginateSearch($search, $pageLimit, $page);
+
+        return $articles;
+    }
+
     public function searchToJson(array $articles)
     {
         $articlesArray = [];
