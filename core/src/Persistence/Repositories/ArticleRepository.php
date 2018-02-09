@@ -293,4 +293,9 @@ class ArticleRepository extends BaseRepository
     {
         return $this->findOneBy(['barCode' => $barCode]);
     }
+
+    public function findOneByInternalCode(string $internalCode)
+    {
+        return $this->findOneBy(['internalCode' => $internalCode]);
+    }
 }

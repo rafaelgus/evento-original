@@ -9,7 +9,7 @@ Route::get('/search/{search}', 'Frontend\ArticleController@search');
 Route::post('/articles/search', 'Frontend\ArticleController@getSearch');
 
 Route::get(
-    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{slug}',
+    '/' . trans('routes.article') . '/' . trans('routes.detail') . '/{identifier}',
     'Frontend\ArticleController@articleDetail'
 )->name('article.detail');
 

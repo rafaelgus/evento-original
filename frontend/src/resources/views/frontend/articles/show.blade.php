@@ -143,7 +143,7 @@
                   <div class="box-collateral box-reviews" id="customer-reviews">
                     <div class="box-reviews1">
                       <div class="form-add">
-                        <form id="review-form" method="post" action="http://www.themesmart.net/review/product/post/id/176/">
+                        <form id="review-form" method="post" action="#">
                           <h3>Escribí tu review del producto</h3>
                           <fieldset>
                             <h4>¿Que te pareció el producto? <em class="required">*</em></h4>
