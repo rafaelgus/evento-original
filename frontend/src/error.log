@@ -38,3 +38,541 @@ PHP message: PHP  39. Doctrine\ORM\Mapping\ClassMetadataFactory->getAllMetadata(
 PHP message: PHP  40. LaravelDoctrine\ORM\Extensions\MappingDriverChain->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/AbstractClassMetadataFactory.php:114
 PHP message: PHP  41. Doctrine\ORM\Mapping\Driver\AnnotationDriver->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/MappingDriverChain.php:128
 PHP message: PHP  42. require_once() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/AnnotationDriver.php:236" while reading response
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/core/src/Services/ArticleService.php on line 312
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/sr
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: " /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Middleware/S
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "outing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  60. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  61. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  90. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  91. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch(
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 119. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 120. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 121. EventoOriginal\Core\
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "dSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 149. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 150. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServic
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "al\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 179. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 180. EventoOriginal\Core\Services\ArticleService->getPaginatedSearc
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "leService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 208. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 209. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 210. EventoOrig
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "tedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 238. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 239. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServ
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "entoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php on line 120
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeli
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "l/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illumin
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "dle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/sr
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "e: PHP  75. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  76. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  77. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleSe
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "/core/src/Services/ArticleService.php:314
+PHP message: PHP 105. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 106. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP mess
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "rticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 135. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 136. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "PHP message: PHP 164. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 165. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 166. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "ww/core/src/Services/ArticleService.php:314
+PHP message: PHP 194. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 195. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP me
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 224. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 225. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "4
+PHP message: PHP 253. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 254. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 255. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314" while reading response header from upstream, client: 172.1.0.1, server: localhost, request: "POST /articles/search HTTP/1.1", upstream: "fastcgi://unix:/run/php/php7.1-fpm.sock:", host: "localhost", referrer: "http://localhost/articles/search"
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/core/src/Services/ArticleService.php on line 312
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/sr
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: " /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Middleware/S
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "outing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  60. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  61. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  90. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  91. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch(
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 119. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 120. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 121. EventoOriginal\Core\
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "dSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 149. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 150. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServic
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "al\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 179. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 180. EventoOriginal\Core\Services\ArticleService->getPaginatedSearc
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "leService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 208. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 209. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 210. EventoOrig
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "tedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 238. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 239. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServ
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "entoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php on line 120
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeli
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "l/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illumin
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "dle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/sr
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "e: PHP  75. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  76. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  77. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleSe
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "/core/src/Services/ArticleService.php:314
+PHP message: PHP 105. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 106. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP mess
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "rticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 135. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 136. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "PHP message: PHP 164. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 165. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 166. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "ww/core/src/Services/ArticleService.php:314
+PHP message: PHP 194. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 195. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP me
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 224. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 225. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "4
+PHP message: PHP 253. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 254. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 255. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314" while reading response header from upstream, client: 172.1.0.1, server: localhost, request: "POST /articles/search HTTP/1.1", upstream: "fastcgi://unix:/run/php/php7.1-fpm.sock:", host: "localhost", referrer: "http://localhost/"

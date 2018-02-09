@@ -80,8 +80,31 @@
             },
             minLength: 1
         }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-            ul.append('<li><div class="search-container row"><div class="col-md-5 search-image-container"><img style="max-width: 150px; max-height: 150px; margin: auto;" src="/articles/storage/' + item.image + '"/></div>' +
-                '<div class="col-md-6"><a href="/articulo/detalle/'+ item.slug +'"><strong style="color: #e94d65">'+ item.name + ' <strong></a> <br> ' +item.price +' ' + item.price_currency + '<br><div><button class="button btn-cart" onclick="addItemToCart('+ item.id +', this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button></div></div></div></li>'
+
+            var imageItem = '';
+
+            if (!item.image) {
+                imageItem = 'https://s3.us-east-2.amazonaws.com/evento-original-s3/img/product-default.png';
+            } else {
+                imageItem = '/articles/storage/' + item.image;
+            }
+
+            ul.append(
+                '<li>' +
+                    '<div class="search-container col-md-12" style="min-width: 495px; max-width: 495px;">' +
+                        '<div class="col-md-5">' +
+                            '<img style="max-width: 150px; max-height: 150px; width: 150px; height: 150px; margin: auto;" src="'+ imageItem +'"/>' +
+                        '</div>' +
+                        '<div class="col-md-6">' +
+                            '<a href="/articulo/detalle/'+ item.slug +'">' +
+                                '<strong style="color: #e94d65">'+ item.name + ' <strong>' +
+                            '</a><br> ' +item.price +' ' + item.price_currency + '<br>' +
+                            '<div>' +
+                                '<button class="button btn-cart" onclick="addItemToCart('+ item.id +', this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</li>'
         );
             return ul;
         };
