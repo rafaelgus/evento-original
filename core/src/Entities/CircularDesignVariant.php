@@ -49,7 +49,8 @@ class CircularDesignVariant
      * @ORM\OneToMany(
      *     targetEntity="CircularDesignVariantDetail",
      *     mappedBy="circularDesignVariant",
-     *     cascade={"persist", "remove"}
+     *     cascade={"persist", "remove"},
+     *     fetch="EAGER"
      *     )
      */
     private $details;

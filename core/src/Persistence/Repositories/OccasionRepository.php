@@ -80,4 +80,25 @@ class OccasionRepository extends BaseRepository
 
         return $query->getResult();
     }
+
+    public function findAllOnlyChildren(string $locale = self::DEFAULT_LOCALE)
+    {
+        $qb = $this->createQueryBuilder('occasion')
+            ->select('occasion')
+            ->where('occasion.parent IS NOT NULL')
+            ->orderBy('occasion.parent');
+
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
+    }
 }

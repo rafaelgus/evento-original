@@ -17540,3 +17540,15 @@ select:focus {
 .link-button:hover {
     color: white !important;
 }
+
+.select2-container--default .select2-selection--multiple {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}

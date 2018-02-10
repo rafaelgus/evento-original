@@ -17,18 +17,32 @@ class DesignService
 {
     private $designRepository;
     private $storageService;
+    /**
+     * @var CategoryService
+     */
+    private $categoryService;
+    /**
+     * @var OccasionService
+     */
+    private $occasionService;
 
     /**
      * DesignService constructor.
      * @param DesignRepository $designRepository
      * @param StorageService $storageService
+     * @param CategoryService $categoryService
+     * @param OccasionService $occasionService
      */
     public function __construct(
         DesignRepository $designRepository,
-        StorageService $storageService
+        StorageService $storageService,
+        CategoryService $categoryService,
+        OccasionService $occasionService
     ) {
         $this->designRepository = $designRepository;
         $this->storageService = $storageService;
+        $this->categoryService = $categoryService;
+        $this->occasionService = $occasionService;
     }
 
     public function findOneById(int $id)
@@ -127,6 +141,35 @@ class DesignService
 
         $design->setDescription(array_get($data, 'description'));
         $design->setStatus(DesignStatus::CREATED);
+
+        $this->designRepository->save($design);
+
+        return $design;
+    }
+
+    public function update(Design $design, array $data)
+    {
+        $design->setName(array_get($data, 'name'));
+        $design->setDescription(array_get($data, 'description'));
+        $design->setCommission(array_get($data, 'commission'));
+
+        $categoryId = array_get($data, 'category_id');
+        if ($categoryId) {
+            $category = $this->categoryService->findOneById($categoryId, app()->getLocale());
+            if ($category) {
+                $design->setCategory($category);
+            }
+        }
+
+        foreach (array_get($data, 'occasions') as $occasionId) {
+            $occasion = $this->occasionService->findOneById($occasionId);
+
+            if ($occasion) {
+                $design->addOccasion($occasion);
+            }
+        }
+
+        $design->setStatus(DesignStatus::IN_REVIEW);
 
         $this->designRepository->save($design);
 

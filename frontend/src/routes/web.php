@@ -110,8 +110,12 @@ Route::middleware(['auth'])->group(function () {
         )->name('designer.designEdiblePaper');
         Route::get(
             '/' . trans('designer.send_to_review.slug') . '/{id}',
-            'Frontend\DesignerController@sendToReview'
+            'Frontend\DesignerController@sendToReviewView'
         )->name('designer.sendToReview');
+        Route::post(
+            '/send-design-to-review/{id}',
+            'Frontend\DesignerController@sendDesignToReview'
+        )->name('designer.sendDesignToReview');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');

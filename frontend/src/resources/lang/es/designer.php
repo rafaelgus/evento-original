@@ -77,6 +77,17 @@ return [
     'finalize' => 'Finalizar',
     'send_to_review' => [
         'title' => 'Enviar diseño a revisión',
+        'description_title' => '¡Describe y organiza tu producto! El mismo será revisado por el staff de Evento Original y de estar todo bien, será publicado a la venta',
         'slug' => 'enviar-a-revision',
+        'name' => 'Nombre',
+        'name_placeholder' => 'Ingrese un nombre que describa su diseño por el cual será buscado y se mostrará a cliente',
+        'accept_terms' => '* Tengo todos los derechos para publicar y vender este producto sin violar los derechos de otros y acepto los términos y condiciones.',
+        'description' => 'Descripción',
+        'description_placeholder' => 'Intente describir su diseño para atraer a los clientes',
+        'category' => 'Categoría',
+        'occasions' => 'Ocasiones',
+        'send' => 'Enviar',
+        'select_occasion' => 'Seleccione las ocasiones adecuadas al diseño',
+        'commission' => 'Comisión por cada venta del diseño',
     ]
 ];

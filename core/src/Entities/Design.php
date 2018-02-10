@@ -91,6 +91,12 @@ class Design
      */
     private $source;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="CircularDesignVariant", fetch="EAGER")
+     * @ORM\JoinColumn(name="circular_design_variant", referencedColumnName="id", nullable=true)
+     */
+    private $circularDesignVariant;
+
     public function __construct()
     {
         $this->status = DesignStatus::CREATED;
@@ -313,5 +319,21 @@ class Design
     public function setSource(string $source)
     {
         $this->source = $source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCircularDesignVariant()
+    {
+        return $this->circularDesignVariant;
+    }
+
+    /**
+     * @param mixed $circularDesignVariant
+     */
+    public function setCircularDesignVariant($circularDesignVariant): void
+    {
+        $this->circularDesignVariant = $circularDesignVariant;
     }
 }

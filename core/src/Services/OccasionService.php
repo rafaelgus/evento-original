@@ -70,6 +70,11 @@ class OccasionService
         string $locale
     ) {
         $occasion->addTranslation(new OccasionTranslation($locale, 'name', $translatedName));
-        $this->save($flavour);
+        $this->save($occasion);
+    }
+
+    public function findAllOnlyChildren(string $locale)
+    {
+        return $this->occasionRepository->findAllOnlyChildren($locale);
     }
 }

@@ -2,10 +2,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\Backend\StoreDesignRequest;
+use App\Http\Requests\SendDesignToReviewRequest;
+use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\CircularDesignVariantService;
 use EventoOriginal\Core\Services\DesignerService;
 use EventoOriginal\Core\Services\DesignService;
+use EventoOriginal\Core\Services\OccasionService;
 use Illuminate\Http\Request;
 
 class DesignerController
@@ -13,15 +17,35 @@ class DesignerController
     private $designerService;
     private $designService;
     private $circularDesignVariantService;
+    /**
+     * @var CategoryService
+     */
+    private $categoryService;
+    /**
+     * @var OccasionService
+     */
+    private $occasionService;
 
+    /**
+     * DesignerController constructor.
+     * @param DesignerService $designerService
+     * @param DesignService $designService
+     * @param CircularDesignVariantService $circularDesignVariantService
+     * @param CategoryService $categoryService
+     * @param OccasionService $occasionService
+     */
     public function __construct(
         DesignerService $designerService,
         DesignService $designService,
-        CircularDesignVariantService $circularDesignVariantService
+        CircularDesignVariantService $circularDesignVariantService,
+        CategoryService $categoryService,
+        OccasionService $occasionService
     ) {
         $this->designerService = $designerService;
         $this->designService = $designService;
         $this->circularDesignVariantService = $circularDesignVariantService;
+        $this->categoryService = $categoryService;
+        $this->occasionService = $occasionService;
     }
 
     public function showEditor()
@@ -29,6 +53,11 @@ class DesignerController
         return view('frontend/designer.editor_edible_paper_a4');
     }
 
+    /**
+     * @param StoreDesignRequest $request
+     * @return DesignerController
+     * @throws \Exception
+     */
     public function storeDesign(StoreDesignRequest $request)
     {
         $designer = current_user()->getDesigner();
@@ -57,6 +86,10 @@ class DesignerController
         return redirect()->route('designer.myDesigns');
     }
 
+    /**
+     * @return $this
+     * @throws \Exception
+     */
     public function showDesigns()
     {
         $user = current_user();
@@ -74,6 +107,10 @@ class DesignerController
         ]);
     }
 
+    /**
+     * @return $this
+     * @throws \Exception
+     */
     public function showDesignsInReview()
     {
         $user = current_user();
@@ -91,6 +128,10 @@ class DesignerController
         ]);
     }
 
+    /**
+     * @return $this
+     * @throws \Exception
+     */
     public function showDesignsNeedChanges()
     {
         $user = current_user();
@@ -108,6 +149,10 @@ class DesignerController
         ]);
     }
 
+    /**
+     * @return $this
+     * @throws \Exception
+     */
     public function showDesignsPublished()
     {
         $user = current_user();
@@ -118,7 +163,10 @@ class DesignerController
             abort(404);
         }
 
-        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::PUBLISHED);
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated(
+            $designer,
+            DesignStatus::PUBLISHED
+        );
 
         return view('frontend/designer.my_designs_published')->with([
             'designs' => $designs,
@@ -165,8 +213,58 @@ class DesignerController
         ]);
     }
 
-    public function sendToReview(int $id)
+    public function sendToReviewView(int $id)
     {
-        $design = $this->designService->
+        $design = $this->designService->findOneById($id);
+
+        $this->validateDesign($design);
+
+        $categories = $this->categoryService->findAll(app()->getLocale());
+        $occasions = $this->occasionService->findAllOnlyChildren(app()->getLocale());
+
+        $maxPrice = 0;
+        if ($design->getCircularDesignVariant()) {
+            $circularDesignVariant = $design->getCircularDesignVariant();
+
+            foreach ($circularDesignVariant->getDetails() as $detail) {
+                if ($detail->getPrice() > $maxPrice) {
+                    $maxPrice = $detail->getPrice();
+                }
+            }
+        }
+
+        return view('frontend/designer.send_to_review')->with([
+            'design' => $design,
+            'categories' => $categories,
+            'occasions' => $occasions,
+            'maxPrice' => $maxPrice,
+        ]);
+    }
+
+    /**
+     * @param SendDesignToReviewRequest $request
+     * @param int $id
+     * @return DesignerController
+     * @throws \Exception
+     */
+    public function sendDesignToReview(SendDesignToReviewRequest $request, int $id)
+    {
+        $design = $this->designService->findOneById($id);
+
+        $this->validateDesign($design);
+
+        $this->designService->update($design, $request->all());
+
+        return $this->showDesignsInReview();
+    }
+
+    private function validateDesign(?Design $design)
+    {
+        $user = current_user();
+        $designer = $user->getDesigner();
+
+        if (!$design || $design->getDesigner()->getId() !== $designer->getId()) {
+            abort(404);
+        }
     }
 }
