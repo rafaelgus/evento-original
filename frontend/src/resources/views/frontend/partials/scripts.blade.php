@@ -1,5 +1,5 @@
 <!-- JavaScript -->
-<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/revslider.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
