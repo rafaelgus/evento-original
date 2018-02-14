@@ -1,8 +1,6 @@
 @extends('frontend.layouts.app')
 
 @section('scripts_header')
-    <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.1/css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="/css/loading.css"/>
     <link rel="stylesheet" type="text/css" href="/css/spinner.css"/>
 @stop
@@ -18,35 +16,36 @@
                 <div class="col-sm-9 col-sm-push-3">
                     <div class="category-description std">
                         <div class="slider-items-products">
-                            <h2 class="page-heading"><span class="page-heading-title">Resultados de la busqueda: {{$search}}</span>
-                            </h2>
                             <p class="category-description">
 
                             </p>
                         </div>
 
                     </div>
-                    <div class="col-lg-5 col-sm-7 col-md-5">
-                        <div class="pager">
-                            <div class="pages">
-                                <form id="change-pagination" method="POST" action="/articles/search">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="search" value="{{$search}}" id="search">
-                                    <input type="hidden" name="page" value="" id="page">
-                                <label>{{ trans('frontend/articles.page') }}:</label>
-                                <ul class="pagination">
-                                    <li><a href="#">&laquo;</a></li>
-                                    @for($i = $start; $i <= $end; $i ++)
-                                        <li class="{{($actual === $i)? 'active': ''}}"><a href="#" id="{{$i}}" onclick="Pagination({{$i}})" class="pagination-page">{{$i}}</a></li>
-                                    @endfor
-                                    <li><a href="#">&raquo;</a></li>
-                                </ul>
-                                </form>
+
+                    <article class="col-main">
+                        <h2 class="page-heading"> <span class="page-heading-title">Busqueda: {{$search}}</span> </h2>
+                        <div class="display-product-option">
+                            <div class="pager hidden-xs">
+                                <div class="pages">
+                                    <form id="change-pagination" method="POST" action="/articles/search">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="hidden" name="search" value="{{$search}}" id="search">
+                                        <input type="hidden" name="page" value="{{$actual}}" id="page">
+                                        <ul class="pagination">
+                                            <li><a href="#">&laquo;</a></li>
+                                            @for($i = $start; $i <= $end; $i ++)
+                                                <li class="{{($actual === $i)? 'active': ''}}"><a href="#" id="{{$i}}" onclick="Pagination({{$i}})" class="pagination-page">{{$i}}</a></li>
+                                            @endfor
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="sorter">
+                                <div class="view-mode"> <span title="Grid" class="button button-active button-grid">&nbsp;</span><a href="list.html" title="List" class="button-list">&nbsp;</a> </div>
                             </div>
                         </div>
-                    </div>
-                    <article class="col-main">
-
                         <div class="category-products">
                             <ul class="products-grid">
                                 @foreach($articles as $article)
@@ -96,7 +95,7 @@
                                                             <div class="price-box"><span class="regular-price"><span class="price">{{formatted_money($article->getMoneyPrice())}}</span> </span> </div>
                                                         </div>
                                                         <div class="action">
-                                                            <button class="button btn-cart" type="button" title="" data-original-title="Comprar">
+                                                            <button class="button btn-cart" onclick="addItemToCart({{$article->getId()}}, this)" type="button" title="" data-original-title="Comprar">
                                                                 <span>Comprar</span></button>
                                                         </div>
                                                     </div>
@@ -123,6 +122,10 @@
         function Pagination(page) {
             $('#page').val(page);
 
+            submitForm();
+        }
+
+        function submitForm() {
             document.getElementById('change-pagination').submit()
         }
     </script>

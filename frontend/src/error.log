@@ -576,3 +576,83 @@ PHP message: PHP 253. EventoOriginal\Core\Services\ArticleService->getPaginatedS
 PHP message: PHP 254. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
 PHP message: PHP 255. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
 PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314" while reading response header from upstream, client: 172.1.0.1, server: localhost, request: "POST /articles/search HTTP/1.1", upstream: "fastcgi://unix:/run/php/php7.1-fpm.sock:", host: "localhost", referrer: "http://localhost/"
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesLicense.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www/...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/lar
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "tion/Http/Kernel.php:176
+PHP message: PHP  20. Illuminate\Routing\Router->dispatchToRoute() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:590
+PHP message: PHP  21. Illuminate\Routing\Router->runRoute() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:601
+PHP message: PHP  22. Illuminate\Routing\Router->runRouteWithinStack() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:635
+PHP message: PHP  23. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "53
+PHP message: PHP  44. App\Http\Middleware\VisitorLandingMiddleware->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  45. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/VisitorLandingMiddleware.php:20
+PHP message: PHP  46. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  47. App\Http\Middleware\CheckForMaintenanceMode->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getHome() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Contr
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "lCoreEntitiesLicense.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /v
+2018/02/14 10:37:05 [error] 25#25: *1 FastCGI sent in stderr: "\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Mi
+2018/02/14 10:37:05 [error] 25#25: *1 FastCGI sent in stderr: "Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getHome() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->findAll() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:60
+PHP message: PHP  57. EventoOriginal\Core\Persistence\Repositories\ArticleRepository->findAll() /var/www/core/src/Services/ArticleService.php:52
+PHP message: PHP  58. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/ArticleRepository.php:57
+PHP message: PHP  59. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  60. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  61. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine

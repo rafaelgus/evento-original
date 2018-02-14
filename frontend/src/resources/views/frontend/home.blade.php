@@ -1395,24 +1395,5 @@
 
 
 @section('scripts_body')
-    <script>
-        function addItemToCart(articleId, element) {
-            element.textContent = '¡AÑADIDO!';
 
-            var quantity = 1;
-            var params = encodeURI('articleId=' + articleId + '&quantity=' + quantity);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/addToCart', true);
-            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-            xhr.onreadystatechange = function () {
-                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    cartItems();
-                }
-            };
-            xhr.send(params);
-            cartItems();
-        }
-    </script>
 @endsection
