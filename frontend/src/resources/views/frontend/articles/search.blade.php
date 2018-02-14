@@ -1,10 +1,5 @@
 @extends('frontend.layouts.app')
 
-@section('scripts_header')
-    <link rel="stylesheet" type="text/css" href="/css/loading.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/spinner.css"/>
-@stop
-
 @section('content')
 
 
@@ -31,7 +26,7 @@
                                     <form id="change-pagination" method="POST" action="/articles/search">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="hidden" name="search" value="{{$search}}" id="search">
-                                        <input type="hidden" name="page" value="{{$actual}}" id="page">
+                                        <input type="hidden" name="page" value="{{$actual}}" id="actualPage">
                                         <ul class="pagination">
                                             <li><a href="#">&laquo;</a></li>
                                             @for($i = $start; $i <= $end; $i ++)
@@ -120,7 +115,7 @@
 @section('scripts_body')
     <script>
         function Pagination(page) {
-            $('#page').val(page);
+            $('#actualPage').val(page);
 
             submitForm();
         }
