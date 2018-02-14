@@ -175,7 +175,6 @@ class ArticleController extends Controller
 
     public function getSearch(Request $request)
     {
-        dd($request->all());
         $page = $request->input('page');
         $search = $request->input('search');
 
