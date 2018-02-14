@@ -122,6 +122,8 @@
         function Pagination(page) {
             $('#page').val(page);
 
+            console.log($('#page').val());
+
             submitForm();
         }
 
