@@ -40,6 +40,20 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label for="inputCategory" class="col-sm-2 control-label">Categoría</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" name="category"
+                                            id="inputCategory" style="width: 100%">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->getId() }}">
+                                                {{ $category->getName() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('design_material_size_id') ? 'has-error' : '' }}">
                                 <label for="inputDesignMaterialSize"
                                        class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.design_material_size') }}</label>
@@ -111,10 +125,25 @@
                                 <div class="subitems" id="subitems">
 
                                     <div id="subitem">
-
                                         <div class="col-sm-8">
                                             <div class="form-group">
                                                 <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control select2" name="material_types[]"
+                                                            id="inputDesignMaterialType" style="width: 100%">
+                                                        @foreach($designMaterialTypes as $type)
+                                                            <option value="{{ $type->getId() }}">
+                                                                {{ $type->getName() }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label for="inputDesignMaterialType" class="col-sm-2 control-label">Articulo</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control select2" name="material_types[]"
                                                             id="inputDesignMaterialType" style="width: 100%">

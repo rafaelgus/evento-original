@@ -72,12 +72,6 @@ class Design
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
-     */
-    private $category;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Occasion")
      * @ORM\JoinTable(name="design_occasions",
      *      joinColumns={@ORM\JoinColumn(name="design_id", referencedColumnName="id")},

@@ -61,6 +61,12 @@ class CircularDesignVariant
     private $price;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     */
+    private $category;
+
+    /**
      * CircularDesignVariant constructor.
      */
     public function __construct()
@@ -196,5 +202,21 @@ class CircularDesignVariant
     public function getMoney()
     {
         return new Money($this->getPrice(), new Currency('EUR'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
     }
 }

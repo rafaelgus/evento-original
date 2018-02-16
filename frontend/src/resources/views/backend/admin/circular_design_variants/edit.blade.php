@@ -38,6 +38,20 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <label for="inputCategory" class="col-sm-2 control-label">Categoría</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" name="category"
+                                            id="inputCategory" style="width: 100%">
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->getId() }}" {{ ($design->getCategory()->getId() == $design->getId() ? 'selected' : '') }}>
+                                                {{ $category->getName() }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group {{ $errors->has('design_material_size_id') ? 'has-error' : '' }}">
                                 <label for="inputDesignMaterialSize" class="col-sm-2 control-label">{{ trans('texts.sections.circular_design_variants.design_material_size') }}</label>
                                 <div class="col-sm-10">
