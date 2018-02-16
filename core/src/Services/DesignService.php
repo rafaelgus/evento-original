@@ -61,7 +61,7 @@ class DesignService
 
     public function saveDesignerDesign(array $data)
     {
-        if (array_key_exists('design_id', $data)) {
+        if (array_key_exists('design_id', $data) && !empty(array_get($data, 'design_id'))) {
             $design = $this->findOneById(array_get($data, 'design_id'));
         } else {
             $design = new Design();
