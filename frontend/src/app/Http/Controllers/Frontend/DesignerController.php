@@ -72,6 +72,55 @@ class DesignerController
         return $this->showDesigns();
     }
 
+    public function showRejected(int $id)
+    {
+        $design = $this->designService->findOneById($id);
+
+        if ($design->getStatus() != DesignStatus::REJECTED) {
+            abort(404);
+        }
+
+        $this->validateDesign($design);
+
+        return view('frontend/designer.show_rejected')
+            ->with(['design' => $design]);
+    }
+
+    /**
+     * @param StoreDesignRequest $request
+     * @return DesignerController
+     * @throws \Exception
+     */
+    public function finalizeDesign(StoreDesignRequest $request)
+    {
+        $designer = current_user()->getDesigner();
+
+        if ($designer) {
+            $data = $request->all();
+            $data['designer'] = $designer;
+
+            $design = $this->designService->saveDesignerDesign($data);
+
+            return $this->sendToReviewView($design->getId());
+        }
+
+        return abort(404);
+    }
+
+    public function editDesign(int $id)
+    {
+        $design = $this->designService->findOneById($id);
+
+        if ($design->getStatus() != DesignStatus::CREATED) {
+            abort(404);
+        }
+
+        $this->validateDesign($design);
+
+        return view('frontend/designer.design_edible_paper')
+            ->with(['design' => $design, 'circularDesignVariant' => $design->getCircularDesignVariant()]);
+    }
+
     public function register()
     {
         return view('frontend/designer.register_user_as_designer');
@@ -132,7 +181,7 @@ class DesignerController
      * @return $this
      * @throws \Exception
      */
-    public function showDesignsNeedChanges()
+    public function showDesignsRejected()
     {
         $user = current_user();
 
@@ -142,9 +191,9 @@ class DesignerController
             abort(404);
         }
 
-        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::NEED_CHANGES);
+        $designs = $this->designService->getAllByDesignerAndStatusPaginated($designer, DesignStatus::REJECTED);
 
-        return view('frontend/designer.my_designs_need_changes')->with([
+        return view('frontend/designer.my_designs_rejected')->with([
             'designs' => $designs,
         ]);
     }
@@ -216,6 +265,10 @@ class DesignerController
     public function sendToReviewView(int $id)
     {
         $design = $this->designService->findOneById($id);
+
+        if ($design->getStatus() != DesignStatus::CREATED) {
+            abort(404);
+        }
 
         $this->validateDesign($design);
 

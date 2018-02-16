@@ -109,7 +109,8 @@
 
                         <hr>
 
-                        <div class="add-to-box">
+
+                        <div class="add-to-box text-center">
                             <div class="add-to-cart">
                                 <div class="form-group row">
                                     <div>
@@ -117,7 +118,7 @@
                                         : {{ $circularDesignVariant->getDesignMaterialSize()->getName() }}
                                     </div>
                                     <br>
-                                    <div class="col-sm-12 col-md-8">
+                                    <div class="col-sm-12">
                                         <form role="form" id="save-design-form" class="form-horizontal"
                                               action="{{ route('save_design') }}" enctype="multipart/form-data"
                                               method="POST">
@@ -126,7 +127,30 @@
                                             <input type="hidden" name="variant_id"
                                                    value="{{ $circularDesignVariant->getId() }}">
                                             <input type="hidden" name="image" id="image-file">
-                                            <button class="button btn-cart pull-right" id="save-design"
+                                            <input type="hidden" name="design_id" id="design_id" value="{{ (isset($design) ? $design->getId() : null) }}">
+                                            <button class="button btn-cart" id="save-design"
+                                                    title="{{ trans('designer.save') }}"
+                                                    type="button">{{ trans('designer.save') }}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-to-box text-center">
+                            <div class="add-to-cart">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <form role="form" id="finalize-design-form" class="form-horizontal"
+                                              action="{{ route('finalize_design') }}" enctype="multipart/form-data"
+                                              method="POST">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="hidden" name="json" id="json" value="">
+                                            <input type="hidden" name="variant_id"
+                                                   value="{{ $circularDesignVariant->getId() }}">
+                                            <input type="hidden" name="image" id="image-file">
+                                            <input type="hidden" name="design_id" id="design_id" value="{{ (isset($design) ? $design->getId() : null) }}">
+                                            <button class="button btn-cart btn-violet" id="finalize-design"
                                                     title="{{ trans('designer.finalize') }}"
                                                     type="button">{{ trans('designer.finalize') }}</button>
                                         </form>
@@ -396,6 +420,9 @@
         var overlayImage = '{{ $circularDesignVariant->getPreviewImage()}}';
         var canvasHeight = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getVerticalSize() / (5/11)) }}';
         var canvasWidth = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getHorizontalSize() / (5/11)) }}';
+
+        var designJson = '{{ (isset($design) ? $design->getJson() : null) }}';
+        designJson = JSON.parse(designJson.replace(/&quot;/g, '"'));
 
         $(document).ready(function() {
             $('input').iCheck({

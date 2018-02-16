@@ -20,7 +20,9 @@
             display: table-cell;
             vertical-align: middle;
         }
-
+        .col-main {
+            width: 100%;
+        }
     </style>
 @stop
 
@@ -56,7 +58,7 @@
                         <ul id="checkout-progress-state" class="checkout-progress">
                             <li><a href="{{route('designer.myDesigns')}}">{{ trans('designer.status.in_process') }}</a></li>
                             <li class="active first"><a href="{{route('designer.myDesignsInReview')}}">{{ trans('designer.status.in_review') }}</a></li>
-                            <li><a href="{{route('designer.myDesignsNeedChanges')}}">{{ trans('designer.status.need_changes') }}</a></li>
+                            <li><a href="{{route('designer.myDesignsRejected')}}">{{ trans('designer.status.rejected') }}</a></li>
                             <li><a href="{{route('designer.myDesignsPublished')}}">{{ trans('designer.status.published') }}</a></li>
                         </ul>
                     </div>

@@ -1,6 +1,8 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use App\Events\DesignApproved;
+use App\Events\DesignRejected;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Designer;
 use EventoOriginal\Core\Enums\DesignSource;
@@ -25,6 +27,10 @@ class DesignService
      * @var OccasionService
      */
     private $occasionService;
+    /**
+     * @var CircularDesignVariantService
+     */
+    private $circularDesignVariantService;
 
     /**
      * DesignService constructor.
@@ -32,17 +38,20 @@ class DesignService
      * @param StorageService $storageService
      * @param CategoryService $categoryService
      * @param OccasionService $occasionService
+     * @param CircularDesignVariantService $circularDesignVariantService
      */
     public function __construct(
         DesignRepository $designRepository,
         StorageService $storageService,
         CategoryService $categoryService,
-        OccasionService $occasionService
+        OccasionService $occasionService,
+        CircularDesignVariantService $circularDesignVariantService
     ) {
         $this->designRepository = $designRepository;
         $this->storageService = $storageService;
         $this->categoryService = $categoryService;
         $this->occasionService = $occasionService;
+        $this->circularDesignVariantService = $circularDesignVariantService;
     }
 
     public function findOneById(int $id)
@@ -52,13 +61,21 @@ class DesignService
 
     public function saveDesignerDesign(array $data)
     {
-        $design = new Design();
-        $design->setDesigner($data['designer']);
+        if (array_key_exists('design_id', $data)) {
+            $design = $this->findOneById(array_get($data, 'design_id'));
+        } else {
+            $design = new Design();
+            $design->setDesigner($data['designer']);
+            $design->setName('Design ' . uniqid());
+        }
 
         if (array_key_exists('name', $data)) {
             $design->setName(array_get($data, 'name'));
-        } else {
-            $design->setName('Design ' . uniqid());
+        }
+
+        if (array_key_exists('variant_id', $data)) {
+            $variant = $this->circularDesignVariantService->findOneById(array_get($data, 'variant_id'));
+            $design->setCircularDesignVariant($variant);
         }
 
         if (array_key_exists('json', $data)) {
@@ -172,6 +189,46 @@ class DesignService
         $design->setStatus(DesignStatus::IN_REVIEW);
 
         $this->designRepository->save($design);
+
+        return $design;
+    }
+
+    public function findAllByStatusPaginated(string $status)
+    {
+        if (!DesignStatus::isValid($status)) {
+            throw new InvalidArgumentException("Invalid design status");
+        }
+
+        return $this->designRepository->findAllByStatusPaginated($status);
+    }
+
+    public function approve(Design $design)
+    {
+        if ($design->getStatus() != DesignStatus::IN_REVIEW) {
+            throw new Exception("Invalid status to approve");
+        }
+
+        $design->setStatus(DesignStatus::PUBLISHED);
+
+        $this->designRepository->save($design);
+
+        event(new DesignApproved($design));
+
+        return $design;
+    }
+
+    public function reject(Design $design, string $observation)
+    {
+        if ($design->getStatus() != DesignStatus::IN_REVIEW) {
+            throw new Exception("Invalid status to reject");
+        }
+
+        $design->setStatus(DesignStatus::REJECTED);
+        $design->setObservation($observation);
+
+        $this->designRepository->save($design);
+
+        event(new DesignRejected($design));
 
         return $design;
     }

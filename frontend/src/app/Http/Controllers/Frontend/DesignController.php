@@ -2,19 +2,27 @@
 namespace App\Http\Controllers\Frontend;
 
 use EventoOriginal\Core\Services\CircularDesignVariantService;
+use EventoOriginal\Core\Services\DesignService;
 
 class DesignController
 {
     private $circularDesignVariantService;
+    /**
+     * @var DesignService
+     */
+    private $designService;
 
     /**
      * DesignController constructor.
      * @param CircularDesignVariantService $circularDesignVariantService
+     * @param DesignService $designService
      */
     public function __construct(
-        CircularDesignVariantService $circularDesignVariantService
+        CircularDesignVariantService $circularDesignVariantService,
+        DesignService $designService
     ) {
         $this->circularDesignVariantService = $circularDesignVariantService;
+        $this->designService = $designService;
     }
 
     public function circularDesignVariants()

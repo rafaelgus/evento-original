@@ -17552,3 +17552,8 @@ select:focus {
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
 }
+
+.btn-violet {
+    background-color: #413C5E !important;
+    border-color: #413C5E !important;
+}

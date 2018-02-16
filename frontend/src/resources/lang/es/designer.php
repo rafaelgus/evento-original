@@ -22,11 +22,11 @@ return [
         'slug' => 'mis-diseños-en-revision',
         'description' => 'Diseños en revisión. Pronto nuestro staff evaluará tus diseños.'
     ],
-    'my_designs_need_changes' => [
+    'my_designs_rejected' => [
         'title' => 'Mis diseños',
-        'slug' => 'mis-diseños-necesitan-cambios',
-        'description' => 'Diseños que necesitan cambios. Nuestro staff determinó que los siguientes diseños requiere 
-            cambios, haz click en uno para ver que cambios se requiren.'
+        'slug' => 'mis-diseños-rechazados',
+        'description' => 'Diseños rechazados. Nuestro staff determinó que los siguientes diseños fueron rechazados, 
+         haz click en uno para ver las causas.'
     ],
     'my_designs_published' => [
         'title' => 'Mis diseños',
@@ -36,7 +36,7 @@ return [
     'status' => [
         'in_process' => 'En proceso',
         'in_review' => 'En revisión',
-        'need_changes' => 'Necesitan cambios',
+        'rejected' => 'Rechazados',
         'published' => 'Publicados',
     ],
     'empty' => 'No hay diseños en este estado',
@@ -75,6 +75,16 @@ return [
     ],
     'material_size' => 'Tamaño',
     'finalize' => 'Finalizar',
+    'save' => 'Guardar',
+    'edit_design' => [
+        'title' => 'Editar diseño',
+        'slug' => 'editar-diseño',
+    ],
+    'show_rejected' => [
+        'title' => 'Diseño rechazado',
+        'slug' => 'diseño-rechazado',
+        'description' => 'El diseño fue rechazado por el siguiente motivo: ',
+    ],
     'send_to_review' => [
         'title' => 'Enviar diseño a revisión',
         'description_title' => '¡Describe y organiza tu producto! El mismo será revisado por el staff de Evento Original y de estar todo bien, será publicado a la venta',

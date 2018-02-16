@@ -36,13 +36,13 @@ class Design
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs")
+     * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs", fetch="EAGER")
      * @ORM\JoinColumn(name="designer_id", referencedColumnName="id", nullable=true)
      */
     private $designer;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $json;
 
@@ -96,6 +96,11 @@ class Design
      * @ORM\JoinColumn(name="circular_design_variant", referencedColumnName="id", nullable=true)
      */
     private $circularDesignVariant;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $observation;
 
     public function __construct()
     {
@@ -335,5 +340,21 @@ class Design
     public function setCircularDesignVariant($circularDesignVariant): void
     {
         $this->circularDesignVariant = $circularDesignVariant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
+
+    /**
+     * @param mixed $observation
+     */
+    public function setObservation($observation): void
+    {
+        $this->observation = $observation;
     }
 }

@@ -54,4 +54,17 @@ class DesignRepository extends BaseRepository
 
         return $this->paginate($query, $maxItems, $currentPage);
     }
+
+    public function findAllByStatusPaginated(
+        string $status,
+        int $currentPage = 1,
+        int $maxItems = 10
+    ) {
+        $query = $this->createQueryBuilder('d')
+            ->where('d.status = :status')
+            ->setParameter('status', $status)
+            ->getQuery();
+
+        return $this->paginate($query, $maxItems, $currentPage);
+    }
 }
