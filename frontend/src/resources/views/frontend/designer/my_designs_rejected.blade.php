@@ -21,6 +21,9 @@
             vertical-align: middle;
         }
 
+        .col-main {
+            width: 100%;
+        }
     </style>
 @stop
 
