@@ -49,7 +49,8 @@ class CircularDesignVariant
      * @ORM\OneToMany(
      *     targetEntity="CircularDesignVariantDetail",
      *     mappedBy="circularDesignVariant",
-     *     cascade={"persist", "remove"}
+     *     cascade={"persist", "remove"},
+     *     fetch="EAGER"
      *     )
      */
     private $details;
@@ -58,6 +59,12 @@ class CircularDesignVariant
      * @ORM\Column(type="integer")
      */
     private $price;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
+     */
+    private $category;
 
     /**
      * CircularDesignVariant constructor.
@@ -195,5 +202,21 @@ class CircularDesignVariant
     public function getMoney()
     {
         return new Money($this->getPrice(), new Currency('EUR'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
     }
 }

@@ -64,10 +64,10 @@ class Design extends \EventoOriginal\Core\Entities\Design implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'designer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'json', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'orientation', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'commission', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'occasions', 'createdAt', 'updatedAt'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'designer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'json', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'orientation', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'commission', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'occasions', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'source', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'observation', 'createdAt', 'updatedAt'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'designer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'json', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'orientation', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'commission', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'category', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'occasions', 'createdAt', 'updatedAt'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'description', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'designer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'json', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'image', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'orientation', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'commission', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'status', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'occasions', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'source', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\Design' . "\0" . 'observation', 'createdAt', 'updatedAt'];
     }
 
     /**
@@ -461,6 +461,72 @@ class Design extends \EventoOriginal\Core\Entities\Design implements \Doctrine\O
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addOccasion', [$occasion]);
 
         return parent::addOccasion($occasion);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSource()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSource', []);
+
+        return parent::getSource();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSource(string $source)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSource', [$source]);
+
+        return parent::setSource($source);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCircularDesignVariant()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCircularDesignVariant', []);
+
+        return parent::getCircularDesignVariant();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCircularDesignVariant($circularDesignVariant): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCircularDesignVariant', [$circularDesignVariant]);
+
+        parent::setCircularDesignVariant($circularDesignVariant);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getObservation()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getObservation', []);
+
+        return parent::getObservation();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setObservation($observation): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setObservation', [$observation]);
+
+        parent::setObservation($observation);
     }
 
     /**

@@ -36,6 +36,12 @@ class CircularDesignVariantDetail
     private $price;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
+     */
+    private $article;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -94,5 +100,21 @@ class CircularDesignVariantDetail
     public function getMoney()
     {
         return new Money($this->price, new Currency('EUR'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param mixed $article
+     */
+    public function setArticle(Article $article): void
+    {
+        $this->article = $article;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\User;
 use Exception;
 use InvalidArgumentException;
@@ -12,12 +13,18 @@ class SendinblueService
     private $client;
 
     public const WELCOME_TEMPLATE_ID = 1;
+    public const DESIGN_APPROVED_TEMPLATE_ID = 7;
+    public const DESIGN_REJECTED_TEMPLATE_ID = 8;
 
     public function __construct(Mailin $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * @param User $user
+     * @throws Exception
+     */
     public function sendWelcome(User $user)
     {
         $data = [
@@ -31,6 +38,13 @@ class SendinblueService
         $this->sendTemplate(self::WELCOME_TEMPLATE_ID, $data, $params);
     }
 
+    /**
+     * @param int $templateId
+     * @param array $data
+     * @param array $params
+     * @return mixed
+     * @throws Exception
+     */
     public function sendTemplate(int $templateId, array $data, array $params = [])
     {
         $emailData = [];
@@ -76,5 +90,46 @@ class SendinblueService
 
             throw $exception;
         }
+    }
+
+    /**
+     * @param Design $design
+     * @throws Exception
+     */
+    public function sendDesignApproved(Design $design)
+    {
+        $user = $design->getDesigner()->getUser();
+
+        $data = [
+            'to' => $user->getEmail(),
+        ];
+
+        $params = [
+            'NOMBRE' => $user->getName(),
+            'DISEÑO' => $design->getName(),
+        ];
+
+        $this->sendTemplate(self::DESIGN_APPROVED_TEMPLATE_ID, $data, $params);
+    }
+
+    /**
+     * @param Design $design
+     * @throws Exception
+     */
+    public function sendDesignRejected(Design $design)
+    {
+        $user = $design->getDesigner()->getUser();
+
+        $data = [
+            'to' => $user->getEmail(),
+        ];
+
+        $params = [
+            'NOMBRE' => $user->getName(),
+            'DISEÑO' => $design->getName(),
+            'MOTIVO' => $design->getObservation(),
+        ];
+
+        $this->sendTemplate(self::DESIGN_REJECTED_TEMPLATE_ID, $data, $params);
     }
 }

@@ -64,10 +64,10 @@ class CircularDesignVariant extends \EventoOriginal\Core\Entities\CircularDesign
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'designMaterialSize', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'numberOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'diameterOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'details', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'price'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'designMaterialSize', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'numberOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'diameterOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'details', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'category'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'designMaterialSize', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'numberOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'diameterOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'details', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'price'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'designMaterialSize', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'numberOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'diameterOfCircles', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'previewImage', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'details', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariant' . "\0" . 'category'];
     }
 
     /**
@@ -362,6 +362,28 @@ class CircularDesignVariant extends \EventoOriginal\Core\Entities\CircularDesign
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMoney', []);
 
         return parent::getMoney();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCategory()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCategory', []);
+
+        return parent::getCategory();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCategory($category): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCategory', [$category]);
+
+        parent::setCategory($category);
     }
 
 }

@@ -20,6 +20,7 @@
             display: table-cell;
             vertical-align: middle;
         }
+
         .col-main {
             width: 100%;
         }
@@ -34,7 +35,7 @@
                 <div class="col-xs-12">
                     <ul>
                         <li class="home"><a href="/" title="Go to Home Page">{{ trans('designer.title') }}</a> <span>/</span></li>
-                        <li class="category1601"><strong>{{ trans('designer.my_designs_in_review.title') }}</strong></li>
+                        <li class="category1601"><strong>{{ trans('designer.my_designs_rejected.title') }}</strong></li>
                     </ul>
                 </div>
             </div>
@@ -57,15 +58,15 @@
                     <div class="state_bar">
                         <ul id="checkout-progress-state" class="checkout-progress">
                             <li><a href="{{route('designer.myDesigns')}}">{{ trans('designer.status.in_process') }}</a></li>
-                            <li class="active first"><a href="{{route('designer.myDesignsInReview')}}">{{ trans('designer.status.in_review') }}</a></li>
-                            <li><a href="{{route('designer.myDesignsRejected')}}">{{ trans('designer.status.rejected') }}</a></li>
+                            <li><a href="{{route('designer.myDesignsInReview')}}">{{ trans('designer.status.in_review') }}</a></li>
+                            <li class="active first"><a href="{{route('designer.myDesignsRejected')}}">{{ trans('designer.status.rejected') }}</a></li>
                             <li><a href="{{route('designer.myDesignsPublished')}}">{{ trans('designer.status.published') }}</a></li>
                         </ul>
                     </div>
 
                     <a href="{{ route('designer.create') }}" class="button link-button">{{ trans('designer.new_design') }}</a>
 
-                    <p>{{ trans('designer.my_designs_in_review.description') }}</p>
+                    <p>{{ trans('designer.my_designs_rejected.description') }}</p>
 
                     <article class="col-main">
                         <div class="category-products">
@@ -74,12 +75,12 @@
                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                         <div class="item-inner">
                                             <div class="item-img">
-                                                <div class="item-img-info"><a href="#" title="{{ $design->getName() }}" class="product-image"><img src="{{ $design->getImage() }}" alt="{{ $design->getName() }}"></a>
+                                                <div class="item-img-info"><a href="{{ route('show_rejected', $design->getId()) }}" title="{{ $design->getName() }}" class="product-image"><img src="{{ $design->getImage() }}" alt="{{ $design->getName() }}"></a>
                                                 </div>
                                             </div>
                                             <div class="item-info">
                                                 <div class="info-inner">
-                                                    <div class="item-title"> <a title="{{ $design->getName() }}" href="#"> {{ $design->getName() }} </a> </div>
+                                                    <div class="item-title"> <a title="{{ $design->getName() }}" href="{{ route('show_rejected', $design->getId()) }}"> {{ $design->getName() }} </a> </div>
                                                     <div>{{ $design->getCreatedAt()->format('d/m/Y h:i') }}</div>
                                                 </div>
                                             </div>

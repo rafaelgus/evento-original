@@ -62,7 +62,7 @@
                                         <div class="item-inner">
                                             <div class="item-img">
                                                 <div class="item-img-info">
-                                                    <a href="{{ route('circular_design_variant_editor', $variant->getId()) }}" title="{{ $variant->getName() }}" class="product-image">
+                                                    <a href="{{ route('designer.selectEdiblePaper', $variant->getId()) }}" title="{{ $variant->getName() }}" class="product-image">
                                                         <img src="{{ $variant->getPreviewImage() }}"
                                                              alt="{{ $variant->getName() }}">
                                                     </a>
@@ -74,13 +74,8 @@
                                             </div>
                                             <div class="item-info">
                                                 <div class="info-inner">
-                                                    <div class="item-title"><a title="{{ $variant->getName() }}" href="{{ route('circular_design_variant_editor', $variant->getId()) }}"> {{ $variant->getName() }} </a></div>
+                                                    <div class="item-title"><a title="{{ $variant->getName() }}" href="{{ route('designer.selectEdiblePaper', $variant->getId()) }}"> {{ $variant->getName() }} </a></div>
                                                     <div><span>({{ $variant->getDesignMaterialSize()->getName() }})</span></div>
-                                                    {{--<div class="item-content">--}}
-                                                        {{--<div class="item-price">--}}
-                                                            {{--<div class="price-box"><span class="regular-price"><span class="price">~{{ formatted_money($variant->getMoney()) }}</span> </span> </div>--}}
-                                                        {{--</div>--}}
-                                                    {{--</div>--}}
                                                 </div>
                                             </div>
                                         </div>

@@ -78,6 +78,15 @@ Route::middleware(['auth'])->group(function () {
      */
     Route::group(['middleware' => ['auth', 'designer']], function () {
         Route::post('/save-design', 'Frontend\DesignerController@storeDesign')->name('save_design');
+        Route::post('/finalize-design', 'Frontend\DesignerController@finalizeDesign')->name('finalize_design');
+        Route::get(
+            '/' . trans('designer.edit_design.slug') . '/{id}',
+            'Frontend\DesignerController@editDesign'
+        )->name('edit_design');
+        Route::get(
+            '/' . trans('designer.show_rejected.slug') . '/{id}',
+            'Frontend\DesignerController@showRejected'
+        )->name('show_rejected');
         Route::get(
             '/' . trans('designer.my_designs.slug'),
             'Frontend\DesignerController@showDesigns'
@@ -87,9 +96,9 @@ Route::middleware(['auth'])->group(function () {
             'Frontend\DesignerController@showDesignsInReview'
         )->name('designer.myDesignsInReview');
         Route::get(
-            '/' . trans('designer.my_designs_need_changes.slug'),
-            'Frontend\DesignerController@showDesignsNeedChanges'
-        )->name('designer.myDesignsNeedChanges');
+            '/' . trans('designer.my_designs_rejected.slug'),
+            'Frontend\DesignerController@showDesignsRejected'
+        )->name('designer.myDesignsRejected');
         Route::get(
             '/' . trans('designer.my_designs_published.slug'),
             'Frontend\DesignerController@showDesignsPublished'
@@ -102,6 +111,22 @@ Route::middleware(['auth'])->group(function () {
             '/' . trans('designer.create_edible_paper.slug'),
             'Frontend\DesignerController@createEdiblePaper'
         )->name('designer.createEdiblePaper');
+        Route::get(
+            '/' . trans('designer.select_edible_paper.slug') . '/{id}',
+            'Frontend\DesignerController@selectEdiblePaper'
+        )->name('designer.selectEdiblePaper');
+        Route::get(
+            '/' . trans('designer.design_edible_paper.slug') . '/{id}',
+            'Frontend\DesignerController@designEdiblePaper'
+        )->name('designer.designEdiblePaper');
+        Route::get(
+            '/' . trans('designer.send_to_review.slug') . '/{id}',
+            'Frontend\DesignerController@sendToReviewView'
+        )->name('designer.sendToReview');
+        Route::post(
+            '/send-design-to-review/{id}',
+            'Frontend\DesignerController@sendDesignToReview'
+        )->name('designer.sendDesignToReview');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
@@ -318,6 +343,15 @@ Route::middleware(['auth'])->group(function () {
 
             Route::group(['prefix' => '/orders'], function () {
                 Route::get('/{id}', 'Backend\OrderController@show')->name('admin.orders.show');
+            });
+
+            Route::group(['prefix' => '/designs'], function () {
+                Route::get('/needs-review', 'Backend\DesignController@inReview')->name('admin.designs.inReview');
+                Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
+                Route::post('/approve/{id}', 'Backend\DesignController@show')->name('admin.designs.approve');
+                Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
+                Route::get('/reject/{id}', 'Backend\DesignController@rejectForm')->name('admin.designs.rejectForm');
+                Route::post('/reject/{id}', 'Backend\DesignController@reject')->name('admin.designs.reject');
             });
         });
     });

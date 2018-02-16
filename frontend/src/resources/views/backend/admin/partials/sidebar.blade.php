@@ -138,6 +138,11 @@
         </ul>
     </li>
 
+    <li class="header">{{ trans('designs.title') }}</li>
+    <li class="treeview">
+        <a href="{{ route('admin.designs.inReview') }}"><i class="fa fa-check-circle"></i> <span>{{ trans('designs.in_review.title') }}</span></a>
+    </li>
+
     <li class="header">{{ trans('payouts.title') }}</li>
     <li class="treeview">
         <a href="#"><i class="fa fa-money"></i> <span>{{ trans('payouts.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>

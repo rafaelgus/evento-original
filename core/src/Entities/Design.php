@@ -26,7 +26,7 @@ class Design
     private $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $name;
 
@@ -36,13 +36,13 @@ class Design
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs")
-     * @ORM\JoinColumn(name="designer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Designer", inversedBy="designs", fetch="EAGER")
+     * @ORM\JoinColumn(name="designer_id", referencedColumnName="id", nullable=true)
      */
     private $designer;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $json;
 
@@ -72,12 +72,6 @@ class Design
     private $status;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=true)
-     */
-    private $category;
-
-    /**
      * @ORM\ManyToMany(targetEntity="Occasion")
      * @ORM\JoinTable(name="design_occasions",
      *      joinColumns={@ORM\JoinColumn(name="design_id", referencedColumnName="id")},
@@ -85,6 +79,22 @@ class Design
      *      )
      */
     private $occasions;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $source;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CircularDesignVariant", fetch="EAGER")
+     * @ORM\JoinColumn(name="circular_design_variant", referencedColumnName="id", nullable=true)
+     */
+    private $circularDesignVariant;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $observation;
 
     public function __construct()
     {
@@ -292,5 +302,53 @@ class Design
     public function addOccasion(Occasion $occasion)
     {
         $this->occasions[] = $occasion;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource(string $source)
+    {
+        $this->source = $source;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCircularDesignVariant()
+    {
+        return $this->circularDesignVariant;
+    }
+
+    /**
+     * @param mixed $circularDesignVariant
+     */
+    public function setCircularDesignVariant($circularDesignVariant): void
+    {
+        $this->circularDesignVariant = $circularDesignVariant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getObservation()
+    {
+        return $this->observation;
+    }
+
+    /**
+     * @param mixed $observation
+     */
+    public function setObservation($observation): void
+    {
+        $this->observation = $observation;
     }
 }

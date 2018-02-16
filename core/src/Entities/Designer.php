@@ -23,7 +23,7 @@ class Designer
     private $nickname;
 
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="designer")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="designer", fetch="EAGER")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;

@@ -19,6 +19,11 @@ class DesignRepository extends BaseRepository
         }
     }
 
+    public function findOneById(int $id)
+    {
+        return $this->find($id);
+    }
+
     public function getAllByDesignerPaginated(
         Designer $designer,
         int $currentPage = 1,
@@ -44,6 +49,19 @@ class DesignRepository extends BaseRepository
             ->andWhere('d.status = :status')
             ->orderBy('d.createdAt', 'desc')
             ->setParameter('designer_id', $designer->getId())
+            ->setParameter('status', $status)
+            ->getQuery();
+
+        return $this->paginate($query, $maxItems, $currentPage);
+    }
+
+    public function findAllByStatusPaginated(
+        string $status,
+        int $currentPage = 1,
+        int $maxItems = 10
+    ) {
+        $query = $this->createQueryBuilder('d')
+            ->where('d.status = :status')
             ->setParameter('status', $status)
             ->getQuery();
 

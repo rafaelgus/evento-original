@@ -64,10 +64,10 @@ class CircularDesignVariantDetail extends \EventoOriginal\Core\Entities\Circular
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'designMaterialType', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'price'];
+            return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'designMaterialType', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'article'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'designMaterialType', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'price'];
+        return ['__isInitialized__', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'id', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'circularDesignVariant', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'designMaterialType', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'price', '' . "\0" . 'EventoOriginal\\Core\\Entities\\CircularDesignVariantDetail' . "\0" . 'article'];
     }
 
     /**
@@ -263,6 +263,28 @@ class CircularDesignVariantDetail extends \EventoOriginal\Core\Entities\Circular
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMoney', []);
 
         return parent::getMoney();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getArticle()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArticle', []);
+
+        return parent::getArticle();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setArticle(\EventoOriginal\Core\Entities\Article $article): void
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setArticle', [$article]);
+
+        parent::setArticle($article);
     }
 
 }

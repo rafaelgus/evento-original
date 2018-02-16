@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\StoreLicenseRequest;
 use App\Http\Requests\Backend\UpdateLicenseRequest;
 use EventoOriginal\Core\Services\LicenseService;
@@ -8,7 +9,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 
-class LicenseController
+class LicenseController extends Controller
 {
     const INGREDIENT_CREATE_ROUTE = '/management/licenses/create';
 

@@ -28,14 +28,14 @@ $(document).ready(function() {
         br: true
     });
 
-
     if (overlayImage !== "") {
         canvas.setOverlayImage(
             overlayImage,
             canvas.renderAll.bind(canvas),
             {
                 width: parseInt(canvasWidth),
-                height: parseInt(canvasHeight)
+                height: parseInt(canvasHeight),
+                crossOrigin: 'Anonymous'
             }
         );
     }
@@ -179,6 +179,16 @@ $(document).ready(function() {
 
     canvas.setWidth(parseInt(canvasWidth));
     canvas.setHeight(parseInt(canvasHeight));
+
+    if (designJson !== "") {
+        canvas.loadFromJSON(designJson, function() {
+            canvas.renderAll();
+        },function(o,object){
+            object.customiseCornerIcons(customizeControlsOptions, function() {
+                canvas.renderAll();
+            });
+        })
+    }
 
     $('#add-text').click(function() {
         var objectId = id;
@@ -904,10 +914,22 @@ $(document).ready(function() {
         event.preventDefault();
 
         var json = JSON.stringify(canvas);
-
         $('#save-design-form #json').val(json);
 
+        $('#save-design-form #image-file').val(canvas.toDataURL());
+
         $('#save-design-form').submit();
+    });
+
+    $('#finalize-design').click(function(event) {
+        event.preventDefault();
+
+        var json = JSON.stringify(canvas);
+        $('#finalize-design-form #json').val(json);
+
+        $('#finalize-design-form #image-file').val(canvas.toDataURL());
+
+        $('#finalize-design-form').submit();
     });
 
     function onObjectRemoved(e) {

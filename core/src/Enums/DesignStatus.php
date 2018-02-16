@@ -7,7 +7,6 @@ class DesignStatus extends Enum
 {
     const CREATED = 'created';
     const IN_REVIEW = 'in_review';
-    const NEED_CHANGES = 'need_changes';
-    const ACCEPTED = 'accepted';
+    const REJECTED = 'rejected';
     const PUBLISHED = 'published';
 }
