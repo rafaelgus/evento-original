@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use EventoOriginal\Core\Services\OrderService;
 use Illuminate\Support\Collection;
-use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrderController extends Controller
 {
@@ -31,7 +31,7 @@ class OrderController extends Controller
         return view('backend.admin.orders.index');
     }
 
-    public function getDataTables()
+    public function getOrders()
     {
         $orders = $this->orderService->findAll();
 
@@ -46,17 +46,21 @@ class OrderController extends Controller
                 $state = trans('order_state.home_delivery');
             }
 
-            $ordersCollection->push([
-                'Id' => $order->getId(),
-                'Fecha' => $order->getCreateDate()->format('Y-m-d'),
-                'Estado' => $order->getStatus(),
-                'Tipo' => $state,
-                'Total' => formatted_money($order->getTotal()),
-                'User' => $order->getUser()->getEmail(),
-                'Opciones' => '<a href="/management/order/status">Estado</a>'
-            ]);
+            $options = '<a href="/management/'. $order->getId() . '/order/">ver</a>';
+
+            if ($order->getUser()) {
+                $ordersCollection->push([
+                    'id' => $order->getId(),
+                    'date' => $order->getCreateDate()->format('Y-m-d'),
+                    'state' => $order->getStatus(),
+                    'type' => $state,
+                    'total' => formatted_money($order->getTotal()),
+                    'user' => $order->getUser()->getEmail(),
+                    'options' => $options
+                ]);
+            }
         }
 
-        return DataTable::of($ordersCollection)->make(true);
+        return DataTables::of($ordersCollection)->make(true);
     }
 }

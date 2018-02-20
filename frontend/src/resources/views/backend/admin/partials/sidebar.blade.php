@@ -128,6 +128,13 @@
             <li><a href="/management/odoo/articles">Sync articulos </a></li>
         </ul>
     </li>
+    <li class="header">Ordenes</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-list"></i> <span>Ordenes</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/orders/">ver</a></li>
+        </ul>
+    </li>
 
     <li class="header">{{ trans('payouts.title') }}</li>
     <li class="treeview">

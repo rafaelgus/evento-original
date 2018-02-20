@@ -36,7 +36,7 @@
                                 <th>Tipo</th>
                                 <th>Total</th>
                                 <th>Usuario</th>
-                                <th style="width: 120px">Opciones</th>
+                                <th>Opciones</th>
                             </tr>
                             </thead>
                         </table>
@@ -61,20 +61,15 @@
             $('#article-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/articles/getArticles',
+                ajax: '/management/orders/getOrders',
                 columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'name', name: 'name' },
-                    { data: 'category', name: 'category' },
-                    { data: 'price', name: 'price' },
-                    { data: 'costPrice', name: 'costPrice' },
-                    { data: 'barCode', name: 'barCode' },
-                    { data: 'internalCode', name: 'internalCode' },
-                    {
-                        "mData": null,
-                        "bSortable": false,
-                        "mRender": function (o) { return '<a href="/management/articles/' + o.id +'/edit" class="danger">Editar</a>'}
-                    }
+                    { data: 'date', name: 'date' },
+                    { data: 'state', name: 'state' },
+                    { data: 'type', name: 'type' },
+                    { data: 'total', name: 'total' },
+                    { data: 'user', name: 'user' },
+                    { data: 'options', name: 'options' }
                 ],
                 language: {
                     "url": "/backend/plugins/datatables/Spanish.json"
