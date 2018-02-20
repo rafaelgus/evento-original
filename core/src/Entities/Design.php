@@ -96,6 +96,8 @@ class Design
      */
     private $observation;
 
+    private $category;
+
     public function __construct()
     {
         $this->status = DesignStatus::CREATED;

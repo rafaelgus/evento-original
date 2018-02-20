@@ -64,10 +64,10 @@ class User extends \EventoOriginal\Core\Entities\User implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', 'id', 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'lastName', 'email', 'password', 'roles', 'rememberToken', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'designer', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding'];
+            return ['__isInitialized__', 'id', 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'lastName', 'email', 'password', 'roles', 'rememberToken', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'designer', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'clientId', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'clientSecret'];
         }
 
-        return ['__isInitialized__', 'id', 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'lastName', 'email', 'password', 'roles', 'rememberToken', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'designer', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding'];
+        return ['__isInitialized__', 'id', 'name', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'firstName', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'lastName', 'email', 'password', 'roles', 'rememberToken', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'designer', 'customer', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'wallet', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'visitorLanding', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'clientId', '' . "\0" . 'EventoOriginal\\Core\\Entities\\User' . "\0" . 'clientSecret'];
     }
 
     /**

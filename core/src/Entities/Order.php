@@ -65,6 +65,7 @@ class Order
      */
     private $shipping;
 
+
     public function __construct()
     {
         $this->ordersDetail = new ArrayCollection();

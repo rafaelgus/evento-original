@@ -77,6 +77,9 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
      */
     private $visitorLanding;
 
+    private $clientId;
+    private $clientSecret;
+
     public function __construct()
     {
         $this->roles = new ArrayCollection();
