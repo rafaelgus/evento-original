@@ -116,11 +116,7 @@
     <script>
         function Pagination(page) {
             $('#actualPage').val(page);
-<<<<<<< HEAD
-
             console.log($('#actualPage').val());
-=======
->>>>>>> implementar_buscador
 
             submitForm();
         }
