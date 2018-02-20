@@ -65,6 +65,11 @@ class Order
      */
     private $shipping;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $comment;
+
     public function __construct()
     {
         $this->ordersDetail = new ArrayCollection();
@@ -219,5 +224,21 @@ class Order
     public function setShipping(Shipping $shipping)
     {
         $this->shipping = $shipping;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment(): string
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment(string $comment)
+    {
+        $this->comment = $comment;
     }
 }

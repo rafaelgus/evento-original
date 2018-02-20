@@ -38,12 +38,22 @@ class OrderController extends Controller
         $ordersCollection = new Collection();
 
         foreach ($orders as $order) {
+            $shipping = $order->getShipping();
+
+            if (!$shipping) {
+                $state = trans('order_state.branch_withdrawal');
+            } else {
+                $state = trans('order_state.home_delivery');
+            }
+
             $ordersCollection->push([
                 'Id' => $order->getId(),
                 'Fecha' => $order->getCreateDate()->format('Y-m-d'),
                 'Estado' => $order->getStatus(),
-                'Tipo' => '',
-                'Opciones' => ''
+                'Tipo' => $state,
+                'Total' => formatted_money($order->getTotal()),
+                'User' => $order->getUser()->getEmail(),
+                'Opciones' => '<a href="/management/order/status">Estado</a>'
             ]);
         }
 
