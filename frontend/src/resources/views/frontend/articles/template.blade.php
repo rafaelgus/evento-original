@@ -49,7 +49,7 @@
                             <div class="price-box"><span class="regular-price"><span class="price"><%:price_currency%> <%:price%></span> </span> </div>
                           </div>
                         <div class="action">
-                            <button class="button btn-cart" type="button" title=""
+                            <button class="button btn-cart" onclick="addItemToCart(<%:id%>, this)" type="button" title=""
                                     data-original-title="{{ trans('frontend/articles.buy') }}">
                                 <span>{{ trans('frontend/articles.buy') }}</span></button>
                         </div>

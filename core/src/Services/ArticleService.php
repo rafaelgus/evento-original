@@ -277,6 +277,7 @@ class ArticleService
             $interval = date_diff($now, $article->getCreated());
 
             $articlesArray[] = [
+                'id' => $article->getId(),
                 'name' => $article->getName(),
                 'slug' => $article->getSlug(),
                 'price' => $article->getPrice(),
