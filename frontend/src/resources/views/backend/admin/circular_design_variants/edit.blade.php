@@ -1,5 +1,9 @@
 @extends('backend.layouts.app')
 
+@section('scripts_head')
+    <link href="/backend/plugins/select2/select2.min.css" rel="stylesheet" type="text/css"/>
+@stop
+
 @section('header')
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -43,8 +47,9 @@
                                 <div class="col-sm-10">
                                     <select class="form-control select2" name="category"
                                             id="inputCategory" style="width: 100%">
+                                        <option></option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->getId() }}" {{ ($design->getCategory()->getId() == $design->getId() ? 'selected' : '') }}>
+                                            <option value="{{ $category->getId() }}" {{ (($circularDesignVariant->getCategory() ? $circularDesignVariant->getCategory()->getId() : null) == $category->getId() ? 'selected' : '') }}>
                                                 {{ $category->getName() }}
                                             </option>
                                         @endforeach
@@ -114,7 +119,7 @@
 
                                     @foreach($circularDesignVariant->getDetails() as $detail)
                                         <div id="subitem">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
                                                     <div class="col-sm-10">
@@ -124,6 +129,17 @@
                                                                     {{ $type->getName() }}
                                                                 </option>
                                                             @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="inputArticle" class="col-sm-2 control-label">Artículo</label>
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control select2" name="articles[]" id="inputArticle" style="width: 100%">
+
                                                         </select>
                                                     </div>
                                                 </div>
@@ -174,6 +190,8 @@
 @endsection
 
 @section('scripts_body')
+    <script src="/backend/plugins/select2/select2.full.min.js"></script>
+
     <script>
         $('#add-sub-item').click(function () {
             $('#subitems').append("<div id=\"subitem\">\n" +
@@ -217,6 +235,10 @@
         $(document).ready(function () {
             $('.del').on("click", function () {
                 $(this).closest("#subitem").remove();
+            });
+
+            $("#inputCategory").select2({
+                placeholder: "Busque papel comestible o taza"
             });
         });
     </script>

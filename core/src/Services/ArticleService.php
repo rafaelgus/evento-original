@@ -7,6 +7,7 @@ use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\ArticleTranslation;
 use EventoOriginal\Core\Entities\Brand;
 use EventoOriginal\Core\Entities\Category;
+use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Entities\Tax;
 use EventoOriginal\Core\Persistence\Repositories\ArticleRepository;
@@ -19,11 +20,19 @@ class ArticleService
 
     private $articleRepository;
     private $categoryService;
+    /**
+     * @var ImageService
+     */
+    private $imageService;
 
-    public function __construct(ArticleRepository $articleRepository, CategoryService $categoryService)
-    {
+    public function __construct(
+        ArticleRepository $articleRepository,
+        CategoryService $categoryService,
+        ImageService $imageService
+    ) {
         $this->articleRepository = $articleRepository;
         $this->categoryService = $categoryService;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -181,7 +190,7 @@ class ArticleService
      */
     public function save(Article $article)
     {
-        $this->articleRepository->save($article);
+        return $this->articleRepository->save($article);
     }
 
 
@@ -309,5 +318,47 @@ class ArticleService
     public function findByBarcode(string $barCode)
     {
         return $this->articleRepository->findOneByBarCode($barCode);
+    }
+
+    public function createFromDesign(Design $design)
+    {
+        $article = new Article();
+        $article->setName($design->getName());
+        $article->setDescription($design->getDescription());
+        $article->setShortDescription($design->getDescription());
+        $article->setStatus(Article::STATUS_PUBLISHED);
+        $article->setSlug(str_slug($design->getName()));
+        $article->setPublishedOn(new DateTime('now'));
+        $article->setBarCode(uniqid());
+        $article->setInternalCode(uniqid());
+
+        if ($design->getCircularDesignVariant()) {
+            $variant = $design->getCircularDesignVariant();
+
+            $maxPrice = 0;
+            foreach ($variant->getDetails() as $detail) {
+                if ($detail->getPrice() > $maxPrice) {
+                    $maxPrice = $detail->getPrice();
+                }
+            }
+
+            $article->setPrice($maxPrice);
+            $article->setCostPrice($maxPrice);
+
+            if ($variant->getCategory()) {
+                $article->setCategory($variant->getCategory());
+            }
+        }
+
+        $article->setPriceCurrency('EUR');
+        $article->setPriceType('unit');
+
+        $this->save($article);
+
+        $image = $this->imageService->create($design->getImage(), $design->getDescription(), $article);
+
+        $article->addImage($image);
+
+        return $this->save($article);
     }
 }

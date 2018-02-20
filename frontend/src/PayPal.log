@@ -10377,3 +10377,25 @@
 
 ================================================================================================================================
 
+[20-02-2018 18:41:00] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/oauth2/token HTTP/1.1, Host: api.sandbox.paypal.com, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.1.4; bit=64; os=Linux_4.13.0-32-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Basic QVZRaVNOWnd2aFkxaUtvejJ4cktRZ2tEUEJzWG5PSXIxZTFlZmFHdkpEZ1ktN0JTcVBNV1czSXdqVjZWMVZ2d2ZfN18zSXdwT2xrbGhORVo6RUNIQ0xaNkxteXVCUy02Smg4MkhicjBJMFlXc1puNW9fa2d5czFTMkNYMTNKczdReFVuaUNvMXV4VFczZDlXSGdxcjFqVFJEUFNhNzRqb0o=, Accept: */*, Content-Length: 29, Content-Type: application/x-www-form-urlencoded, , 
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: grant_type=client_credentials
+--------------------------------------------------------------------------------------------------------------------------------
+
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 20 Feb 2018 18:41:04 GMT, Server: Apache, paypal-debug-id: 1b32de5fb062f, X-PAYPAL-TOKEN-SERVICE: IAAS, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: 1b32de5fb062f, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 550, Connection: close, Content-Type: application/json, 
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"scope":"https://uri.paypal.com/services/subscriptions https://api.paypal.com/v1/payments/.* https://api.paypal.com/v1/vault/credit-card https://uri.paypal.com/services/applications/webhooks openid https://uri.paypal.com/payments/payouts https://api.paypal.com/v1/vault/credit-card/.*","nonce":"2018-02-20T18:41:05ZOEkpwR4OPYM1Q63yyg7oOtJXHO27-KDTKTYL5nxbAFI","access_token":"A21AAEsTgduhiSMbLOyPaKDTL8geLabrvvnBoO8YTN9Uk5V1ds02FItgeK32Sl1AkP7psCRfEgofEeLpLgBMsZWXjwPGKkcdQ","token_type":"Bearer","app_id":"APP-80W284485P519543T","expires_in":32400}
+
+================================================================================================================================
+
+[20-02-2018 18:41:05] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[20-02-2018 18:41:08] PayPal\Core\PayPalHttpConnection : DEBUG: Request Headers 	: POST /v1/payments/payment HTTP/1.1, Host: api.sandbox.paypal.com, Accept: */*, Content-Type: application/json, User-Agent: PayPalSDK/PayPal-PHP-SDK 1.13.0 (platform-ver=7.1.4; bit=64; os=Linux_4.13.0-32-generic; machine=x86_64; crypto-lib-ver=1.0.1t; curl=7.38.0), Authorization: Bearer A21AAEsTgduhiSMbLOyPaKDTL8geLabrvvnBoO8YTN9Uk5V1ds02FItgeK32Sl1AkP7psCRfEgofEeLpLgBMsZWXjwPGKkcdQ, Content-Length: 351, , 
+[20-02-2018 18:41:08] PayPal\Core\PayPalHttpConnection : DEBUG: Request Data		: {"payer":{"payment_method":"paypal"},"redirect_urls":{"return_url":"http://localhost/paypalConfirm","cancel_url":"http://localhost/paypalCancel"},"transactions":[{"amount":{"currency":"EUR","total":"421","details":{"subtotal":"421"}},"item_list":{"items":[{"currency":"EUR","quantity":1,"price":"421","name":"payment","sku":"sku"}]}}],"intent":"sale"}
+--------------------------------------------------------------------------------------------------------------------------------
+
+[20-02-2018 18:41:08] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[20-02-2018 18:41:08] PayPal\Core\PayPalHttpConnection : DEBUG: Response Headers	: Date: Tue, 20 Feb 2018 18:41:08 GMT, Server: Apache, paypal-debug-id: c8434ca11541a, Content-Language: *, HTTP_X_PP_AZ_LOCATOR: sandbox.slc, Paypal-Debug-Id: c8434ca11541a, Set-Cookie: X-PP-SILOVER=; Expires=Thu, 01 Jan 1970 00:00:01 GMT, Vary: Authorization, Content-Length: 772, Connection: close, Content-Type: application/json, 
+[20-02-2018 18:41:08] PayPal\Core\PayPalHttpConnection : DEBUG: Response Data 	: {"id":"PAY-27930408UH388501VLKGGXRA","intent":"sale","state":"created","payer":{"payment_method":"paypal"},"transactions":[{"amount":{"total":"421.00","currency":"EUR","details":{"subtotal":"421.00"}},"item_list":{"items":[{"name":"payment","sku":"sku","price":"421.00","currency":"EUR","quantity":1}]},"related_resources":[]}],"create_time":"2018-02-20T18:41:08Z","links":[{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-27930408UH388501VLKGGXRA","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-10W7744061969803M","rel":"approval_url","method":"REDIRECT"},{"href":"https://api.sandbox.paypal.com/v1/payments/payment/PAY-27930408UH388501VLKGGXRA/execute","rel":"execute","method":"POST"}]}
+
+================================================================================================================================
+

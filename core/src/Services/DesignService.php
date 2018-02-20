@@ -9,10 +9,6 @@ use EventoOriginal\Core\Enums\DesignSource;
 use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Persistence\Repositories\DesignRepository;
 use Exception;
-use Imagecow\Image;
-use Imagecow\Utils\SvgExtractor;
-use Imagick;
-use ImagickPixel;
 use InvalidArgumentException;
 
 class DesignService
@@ -31,6 +27,10 @@ class DesignService
      * @var CircularDesignVariantService
      */
     private $circularDesignVariantService;
+    /**
+     * @var ArticleService
+     */
+    private $articleService;
 
     /**
      * DesignService constructor.
@@ -39,19 +39,22 @@ class DesignService
      * @param CategoryService $categoryService
      * @param OccasionService $occasionService
      * @param CircularDesignVariantService $circularDesignVariantService
+     * @param ArticleService $articleService
      */
     public function __construct(
         DesignRepository $designRepository,
         StorageService $storageService,
         CategoryService $categoryService,
         OccasionService $occasionService,
-        CircularDesignVariantService $circularDesignVariantService
+        CircularDesignVariantService $circularDesignVariantService,
+        ArticleService $articleService
     ) {
         $this->designRepository = $designRepository;
         $this->storageService = $storageService;
         $this->categoryService = $categoryService;
         $this->occasionService = $occasionService;
         $this->circularDesignVariantService = $circularDesignVariantService;
+        $this->articleService = $articleService;
     }
 
     public function findOneById(int $id)
@@ -208,8 +211,9 @@ class DesignService
             throw new Exception("Invalid status to approve");
         }
 
-        $design->setStatus(DesignStatus::PUBLISHED);
+        $this->articleService->createFromDesign($design);
 
+        $design->setStatus(DesignStatus::PUBLISHED);
         $this->designRepository->save($design);
 
         event(new DesignApproved($design));

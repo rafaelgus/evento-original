@@ -110,11 +110,10 @@ class CartController
                 $request->input('articleId'),
                 App::getLocale()
             );
-
-
+        
         if ($article->getImages()->count() > 0) {
             $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
-            $image = storage_url() . '/images/' . $articleImagesPath;
+            $image = $articleImagesPath;
         } else {
             $image = default_article_image_path();
         }
@@ -175,7 +174,7 @@ class CartController
         return ['message' => 'El articulo se modifico la cantidad'];
     }
 
-    public function modifyOrder(int $barCode, int $quantity, bool $discount = false)
+    public function modifyOrder(string $barCode, int $quantity, bool $discount = false)
     {
         $article = $this->articleService->findByBarcode($barCode);
 

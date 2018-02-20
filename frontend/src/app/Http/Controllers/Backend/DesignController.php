@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Services\DesignService;
+use Exception;
 use Illuminate\Http\Request;
 
 class DesignController extends Controller
@@ -41,7 +42,11 @@ class DesignController extends Controller
         return view('backend/admin.designs.show')->with(['design' => $design]);
     }
 
-    public function approve(int $id)
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function approve(Request $request, int $id)
     {
         $design = $this->designService->findOneById($id);
 
@@ -49,7 +54,11 @@ class DesignController extends Controller
             abort(404);
         }
 
-        $this->designService->approve($design);
+        try {
+            $this->designService->approve($design);
+        } catch (Exception $exception) {
+            dd($exception);
+        }
 
         return view('backend/admin.designs.show')->with(['design' => $design]);
     }

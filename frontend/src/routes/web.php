@@ -346,8 +346,7 @@ Route::middleware(['auth'])->group(function () {
             Route::group(['prefix' => '/designs'], function () {
                 Route::get('/needs-review', 'Backend\DesignController@inReview')->name('admin.designs.inReview');
                 Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
-                Route::post('/approve/{id}', 'Backend\DesignController@show')->name('admin.designs.approve');
-                Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
+                Route::post('/approve/{id}', 'Backend\DesignController@approve')->name('admin.designs.approve');
                 Route::get('/reject/{id}', 'Backend\DesignController@rejectForm')->name('admin.designs.rejectForm');
                 Route::post('/reject/{id}', 'Backend\DesignController@reject')->name('admin.designs.reject');
             });

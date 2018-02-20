@@ -96,6 +96,11 @@ class Design
      */
     private $observation;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Article", mappedBy="design")
+     */
+    private $article;
+
     public function __construct()
     {
         $this->status = DesignStatus::CREATED;
@@ -350,5 +355,21 @@ class Design
     public function setObservation($observation): void
     {
         $this->observation = $observation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param mixed $article
+     */
+    public function setArticle($article): void
+    {
+        $this->article = $article;
     }
 }
