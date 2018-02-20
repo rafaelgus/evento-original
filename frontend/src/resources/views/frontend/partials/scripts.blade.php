@@ -1,12 +1,12 @@
 <!-- JavaScript -->
 <script type="text/javascript" src="/js/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/revslider.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript" src="/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/js/jquery.mobile-menu.min.js"></script>
 <script type="text/javascript" src="/js/countdown.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
 <script type='text/javascript'>
     jQuery(document).ready(function() {
         jQuery('#rev_slider_4').show().revolution({
