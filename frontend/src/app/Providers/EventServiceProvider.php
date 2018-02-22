@@ -7,6 +7,7 @@ use App\Events\PaymentAccepted;
 use App\Events\PayoutRefunded;
 use App\Events\UserRegistered;
 use App\Listeners\LiquidateAffiliateCommission;
+use App\Listeners\LiquidateDesignerCommission;
 use App\Listeners\RefundPayoutAmount;
 use App\Listeners\SendDesignApprovedEmail;
 use App\Listeners\SendDesignRejectedEmail;
@@ -23,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         PaymentAccepted::class => [
             LiquidateAffiliateCommission::class,
+            LiquidateDesignerCommission::class,
         ],
         UserRegistered::class => [
             SendWelcomeEmail::class,

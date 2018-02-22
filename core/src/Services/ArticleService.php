@@ -331,6 +331,7 @@ class ArticleService
         $article->setPublishedOn(new DateTime('now'));
         $article->setBarCode(uniqid());
         $article->setInternalCode(uniqid());
+        $article->setDesign($design);
 
         if ($design->getCircularDesignVariant()) {
             $variant = $design->getCircularDesignVariant();

@@ -2,6 +2,7 @@
 namespace EventoOriginal\Core\Services;
 
 use EventoOriginal\Core\Entities\Designer;
+use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Enums\UserRole;
 use EventoOriginal\Core\Persistence\Repositories\DesignerRepository;

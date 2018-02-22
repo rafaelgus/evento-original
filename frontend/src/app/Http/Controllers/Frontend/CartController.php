@@ -110,7 +110,7 @@ class CartController
                 $request->input('articleId'),
                 App::getLocale()
             );
-        
+
         if ($article->getImages()->count() > 0) {
             $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
             $image = $articleImagesPath;

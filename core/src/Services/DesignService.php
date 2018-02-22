@@ -5,6 +5,7 @@ use App\Events\DesignApproved;
 use App\Events\DesignRejected;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Designer;
+use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Enums\DesignSource;
 use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Persistence\Repositories\DesignRepository;
@@ -235,5 +236,10 @@ class DesignService
         event(new DesignRejected($design));
 
         return $design;
+    }
+
+    public function findInOrder(Order $order)
+    {
+        return $this->designRepository->findInOrder($order);
     }
 }

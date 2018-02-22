@@ -147,7 +147,8 @@
     <li class="treeview">
         <a href="#"><i class="fa fa-money"></i> <span>{{ trans('payouts.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="/management/payouts">{{ trans('backend/menus.view') }}</a></li>
+            <li><a href="/management/payouts">Ver todos</a></li>
+            <li><a href="/management/payouts/pendents">Pendientes de aprobación</a></li>
         </ul>
     </li>
 

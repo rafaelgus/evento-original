@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
 use EventoOriginal\Core\Persistence\Repositories\OrderDetailRepository;
@@ -91,5 +92,10 @@ class OrderDetailService
         $orderDetail->setMoney($money);
 
         $this->orderDetailRepository->save($orderDetail);
+    }
+
+    public function findByOrderAndDesign(Order $order, Design $design)
+    {
+        return $this->orderDetailRepository->findByOrderAndDesign($order, $design);
     }
 }
