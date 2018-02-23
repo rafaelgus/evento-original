@@ -357,9 +357,17 @@ class ArticleService
         $this->save($article);
 
         $image = $this->imageService->create($design->getImage(), $design->getDescription(), $article);
-
         $article->addImage($image);
 
         return $this->save($article);
+    }
+
+    /**
+     * @param string $internalCode
+     * @return null|Article
+     */
+    public function findByInternalCode(string $internalCode)
+    {
+        return $this->articleRepository->findOneByInternalCode($internalCode);
     }
 }

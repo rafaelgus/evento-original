@@ -26,6 +26,10 @@ class OrderService
      * @var VisitorEventService
      */
     private $visitorEventService;
+    /**
+     * @var DesignService
+     */
+    private $designService;
 
     /**
      * OrderService constructor.
@@ -33,17 +37,20 @@ class OrderService
      * @param WalletService $walletService
      * @param OrderDetailService $orderDetailService
      * @param VisitorEventService $visitorEventService
+     * @param DesignService $designService
      */
     public function __construct(
         OrderRepository $orderRepository,
         WalletService $walletService,
         OrderDetailService $orderDetailService,
-        VisitorEventService $visitorEventService
+        VisitorEventService $visitorEventService,
+        DesignService $designService
     ) {
         $this->orderRepository = $orderRepository;
         $this->walletService = $walletService;
         $this->orderDetailService = $orderDetailService;
         $this->visitorEventService = $visitorEventService;
+        $this->designService = $designService;
     }
 
     /**
@@ -160,12 +167,22 @@ class OrderService
     }
 
     /**
-     * @param Order $order
-     * @param Design $design
+     * @param int $orderId
+     * @param int $designId
      * @throws Exception
      */
-    public function liquidateDesignerCommission(Order $order, Design $design)
+    public function liquidateDesignerCommission(int $orderId, int $designId)
     {
+        $order = $this->findById($orderId);
+        if (!$order) {
+            throw new Exception("Invalid order id");
+        }
+
+        $design = $this->designService->findOneById($designId);
+        if (!$design) {
+            throw new Exception("Invalid design id");
+        }
+
         $payment = $order->getPayment();
 
         if ($payment->getStatus() !== PaymentStatus::STATUS_PAYMENT_APPROVE) {

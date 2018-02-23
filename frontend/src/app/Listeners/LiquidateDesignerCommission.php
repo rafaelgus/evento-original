@@ -56,8 +56,6 @@ class LiquidateDesignerCommission implements ShouldQueue
         } catch (Exception $exception) {
             logger()->error("Error Liquidating Designer Commission: " . $exception->getMessage());
 
-            dd($exception);
-
             throw $exception;
         }
     }
