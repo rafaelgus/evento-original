@@ -38,7 +38,7 @@
 
                             @if($order->getShipping())
                                 <dt>{{trans('orders.shipping')}}</dt>
-                                <dd>{{$order->getShipping()->getAddress()}}</dd>
+                                <dd>{{$order->getShipping()->getAddress()->getAddress()}}</dd>
                             @else
                                 <dt>{{trans('orders.shipping')}}</dt>
                                 <dd>Retiro en sucursal</dd>
