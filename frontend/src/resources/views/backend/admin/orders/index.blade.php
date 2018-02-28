@@ -61,7 +61,7 @@
             $('#article-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '/management/orders/getOrders',
+                ajax: '/management/orders/data/getOrders',
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'date', name: 'date' },
