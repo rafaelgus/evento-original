@@ -111,6 +111,9 @@ class DesignService
 
             $design->setImage($image);
             $design->setSource(DesignSource::TEMPLATE);
+        } elseif (array_key_exists('image_url', $data)) {
+            $design->setImage(array_get($data, 'image_url'));
+            $design->setSource(DesignSource::TEMPLATE);
         } else {
             throw new InvalidArgumentException("Invalid design");
         }
@@ -173,6 +176,15 @@ class DesignService
         $design->setName(array_get($data, 'name'));
         $design->setDescription(array_get($data, 'description'));
         $design->setCommission(array_get($data, 'commission'));
+
+        if (isset($data['image'])) {
+            $image = $this->storageService->savePicture(
+                array_get($data, 'image'),
+                'designs',
+                $data['image']->getClientOriginalExtension()
+            );
+            $design->setImage($image);
+        }
 
         $categoryId = array_get($data, 'category_id');
         if ($categoryId) {

@@ -293,7 +293,7 @@ class ArticleService
                 'price_currency' => '€',
                 'rating' => 4,
                 'isNew' => ($article->isNew() || $interval->format('%a') <= 15),
-                'image' => (count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): ''
+                'image' => (count($article->getImages()) > 0) ? $article->getImages()->toArray()[0]->getPath() : ''
             ];
         }
 
@@ -338,12 +338,14 @@ class ArticleService
 
             $maxPrice = 0;
             foreach ($variant->getDetails() as $detail) {
-                if ($detail->getPrice() > $maxPrice) {
-                    $maxPrice = $detail->getPrice();
+                if ($detail->getBasePrice() > $maxPrice) {
+                    $maxPrice = $detail->getBasePrice();
                 }
             }
 
-            $article->setPrice($maxPrice);
+            $price = $maxPrice + ($maxPrice * ($design->getCommission() / 100));
+
+            $article->setPrice($price);
             $article->setCostPrice($maxPrice);
 
             if ($variant->getCategory()) {

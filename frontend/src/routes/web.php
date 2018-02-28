@@ -125,6 +125,10 @@ Route::middleware(['auth'])->group(function () {
             '/send-design-to-review/{id}',
             'Frontend\DesignerController@sendDesignToReview'
         )->name('designer.sendDesignToReview');
+        Route::get(
+            '/download-template/{id}',
+            'Frontend\DesignerController@downloadTemplate'
+        )->name('designer.downloadTemplate');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');

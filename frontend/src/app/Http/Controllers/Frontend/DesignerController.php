@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\Backend\StoreDesignRequest;
 use App\Http\Requests\SendDesignToReviewRequest;
 use EventoOriginal\Core\Entities\Design;
+use EventoOriginal\Core\Enums\DesignSource;
 use EventoOriginal\Core\Enums\DesignStatus;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\CircularDesignVariantService;
@@ -117,8 +118,12 @@ class DesignerController
 
         $this->validateDesign($design);
 
-        return view('frontend/designer.design_edible_paper')
-            ->with(['design' => $design, 'circularDesignVariant' => $design->getCircularDesignVariant()]);
+        if ($design->getSource() === DesignSource::EDITOR) {
+            return view('frontend/designer.design_edible_paper')
+                ->with(['design' => $design, 'circularDesignVariant' => $design->getCircularDesignVariant()]);
+        } else {
+            return $this->sendToReviewView($design->getId());
+        }
     }
 
     public function register()
@@ -262,7 +267,7 @@ class DesignerController
         ]);
     }
 
-    public function sendToReviewView(int $id)
+    public function sendToReviewView(int $id, string $templateImage = null)
     {
         $design = $this->designService->findOneById($id);
 
@@ -280,8 +285,8 @@ class DesignerController
             $circularDesignVariant = $design->getCircularDesignVariant();
 
             foreach ($circularDesignVariant->getDetails() as $detail) {
-                if ($detail->getPrice() > $maxPrice) {
-                    $maxPrice = $detail->getPrice();
+                if ($detail->getBasePrice() > $maxPrice) {
+                    $maxPrice = $detail->getBasePrice();
                 }
             }
         }
@@ -291,6 +296,7 @@ class DesignerController
             'categories' => $categories,
             'occasions' => $occasions,
             'maxPrice' => $maxPrice,
+            'templateImage' => $templateImage,
         ]);
     }
 
@@ -306,6 +312,9 @@ class DesignerController
 
         $this->validateDesign($design);
 
+        $data = $request->all();
+        $data['image'] = $request->file('image');
+        
         $this->designService->update($design, $request->all());
 
         return $this->showDesignsInReview();
@@ -318,6 +327,28 @@ class DesignerController
 
         if (!$design || $design->getDesigner()->getId() !== $designer->getId()) {
             abort(404);
+        }
+    }
+
+    public function downloadTemplate(int $variantId)
+    {
+        $circularDesignVariant = $this->circularDesignVariantService->findOneById($variantId);
+
+        if (!$circularDesignVariant) {
+            abort(404);
+        }
+
+        $designer = current_user()->getDesigner();
+
+        if ($designer) {
+            $data['designer'] = $designer;
+            $data['image_url'] = $circularDesignVariant->getPreviewImage();
+
+            $design = $this->designService->saveDesignerDesign($data);
+
+            $image = $design->getImage();
+
+            return $this->sendToReviewView($design->getId(), $image);
         }
     }
 }

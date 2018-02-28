@@ -99,5 +99,6 @@ return [
         'send' => 'Enviar',
         'select_occasion' => 'Seleccione las ocasiones adecuadas al diseño',
         'commission' => 'Comisión por cada venta del diseño',
+        'image' => 'Imagen del diseño creado desde la plantilla',
     ]
 ];

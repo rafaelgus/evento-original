@@ -119,7 +119,7 @@
 
                                     @foreach($circularDesignVariant->getDetails() as $detail)
                                         <div id="subitem">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-5">
                                                 <div class="form-group">
                                                     <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
                                                     <div class="col-sm-10">
@@ -134,13 +134,12 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label for="inputArticle" class="col-sm-2 control-label">Artículo</label>
+                                                    <label for="inputBasePrice" class="col-sm-2 control-label">Precio Base</label>
                                                     <div class="col-sm-10">
-                                                        <select class="form-control select2" name="articles[]" id="inputArticle" style="width: 100%">
-
-                                                        </select>
+                                                        <input type="text" class="form-control" id="inputBasePrice" name="base_prices[]"
+                                                               placeholder="Precio base" value="{{ $detail->getBasePrice() / 100 }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -196,7 +195,7 @@
         $('#add-sub-item').click(function () {
             $('#subitems').append("<div id=\"subitem\">\n" +
                 "\n" +
-                "                                        <div class=\"col-sm-8\">\n" +
+                "                                        <div class=\"col-sm-5\">\n" +
                 "                                            <div class=\"form-group\">\n" +
                 "                                                <label for=\"inputDesignMaterialType\" class=\"col-sm-2 control-label\">Material</label>\n" +
                 "                                                <div class=\"col-sm-10\">\n" +
@@ -207,6 +206,16 @@
                 "                                                            </option>\n" +
                 "                                                        @endforeach\n" +
                 "                                                    </select>\n" +
+                "                                                </div>\n" +
+                "                                            </div>\n" +
+                "                                        </div>\n" +
+                "\n" +
+                "                                        <div class=\"col-sm-3\">\n" +
+                "                                            <div class=\"form-group\">\n" +
+                "                                                <label for=\"inputBasePrice\" class=\"col-sm-2 control-label\">Precio base</label>\n" +
+                "                                                <div class=\"col-sm-10\">\n" +
+                "                                                    <input type=\"number\" step=\"0.01\" class=\"form-control\" id=\"inputBasePrice\" name=\"base_prices[]\"\n" +
+                "                                                           placeholder=\"Precio base\" value=\"{{ old('base_price') }}\">\n" +
                 "                                                </div>\n" +
                 "                                            </div>\n" +
                 "                                        </div>\n" +
