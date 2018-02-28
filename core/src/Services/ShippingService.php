@@ -39,4 +39,9 @@ class ShippingService
     {
         return $this->shippingRepository->find($id);
     }
+
+    public function update(Shipping $shipping)
+    {
+        $this->shippingRepository->save($shipping);
+    }
 }

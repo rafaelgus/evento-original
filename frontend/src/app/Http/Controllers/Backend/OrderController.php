@@ -2,17 +2,25 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use EventoOriginal\Core\Enums\OrderStatus;
 use EventoOriginal\Core\Services\OrderService;
+use EventoOriginal\Core\Services\ShippingService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\Facades\DataTables;
 
 class OrderController extends Controller
 {
     private $orderService;
+    private $shippingService;
 
-    public function __construct(OrderService $orderService)
-    {
+    public function __construct(
+        OrderService $orderService,
+        ShippingService $shippingService
+    ) {
         $this->orderService = $orderService;
+        $this->shippingService = $shippingService;
     }
 
     public function show(int $id)
@@ -46,8 +54,6 @@ class OrderController extends Controller
                 $state = trans('order_state.home_delivery');
             }
 
-            $options = '<a href="/management/'. $order->getId() . '/order/">ver</a>';
-
             if ($order->getUser()) {
                 $ordersCollection->push([
                     'id' => $order->getId(),
@@ -56,11 +62,32 @@ class OrderController extends Controller
                     'type' => $state,
                     'total' => formatted_money($order->getTotal()),
                     'user' => $order->getUser()->getEmail(),
-                    'options' => $options
                 ]);
             }
         }
 
         return DataTables::of($ordersCollection)->make(true);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        $order = $this->orderService->findById($id);
+
+        if ($order->getShipping()) {
+            $shipping = $order->getShipping();
+
+            $shipping->setStatus($request->input('status'));
+            $shipping->setTrackingNumber($request->input('trackingNumber'));
+
+            $this->shippingService->update($shipping);
+        }
+        $order->setComment($request->input('comment'));
+        $order->setStatus(OrderStatus::STATUS_COMMITTED);
+
+        $this->orderService->save($order);
+
+        Session::flash('message', 'La orden se actualizo correctamente');
+
+        return redirect()->to('/management/orders/'. $id . '/order');
     }
 }

@@ -69,7 +69,11 @@
                     { data: 'type', name: 'type' },
                     { data: 'total', name: 'total' },
                     { data: 'user', name: 'user' },
-                    { data: 'options', name: 'options' }
+                    {
+                        "mData": null,
+                        "bSortable": false,
+                        "mRender": function (o) { return '<a href="/management/orders/' + o.id +'/order" class="danger">Ver</a>'}
+                    }
                 ],
                 language: {
                     "url": "/backend/plugins/datatables/Spanish.json"
