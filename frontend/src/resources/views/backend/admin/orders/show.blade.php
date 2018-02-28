@@ -35,6 +35,35 @@
 
                             <dt>{{trans('orders.status')}}</dt>
                             <dd>{{$order->getStatus()}}</dd>
+
+                            @if($order->getShipping())
+                                <dt>{{trans('orders.shipping')}}</dt>
+                                <dd>{{$order->getShipping()->getAddress()}}</dd>
+                            @else
+                                <dt>{{trans('orders.shipping')}}</dt>
+                                <dd>Retiro en sucursal</dd>
+                            @endif
+                        </dl>
+                        <hr>
+                        <h3>Facturacion</h3>
+                        <dl class="dl-horizontal">
+                            <dt>Nombre</dt>
+                            <dd>{{$order->getBilling()->getName()}}</dd>
+
+                            <dt>Apellido</dt>
+                            <dd>{{$order->getBilling()->getLastName()}}</dd>
+
+                            <dt>Compania</dt>
+                            <dd>{{$order->getBilling()->getCompany()}}</dd>
+
+                            <dt>Direccion</dt>
+                            <dd>{{$order->getBilling()->getAddress()->getAddress()}}</dd>
+
+                            <dt>Pais</dt>
+                            <dd>{{$order->getBilling()->getAddress()->getCountry()->getName()}}</dd>
+
+                            <dt>Ciudad</dt>
+                            <dd>{{$order->getBilling()->getAddress()->getCity()}}</dd>
                         </dl>
 
                         <div>
@@ -50,7 +79,7 @@
                                 <tbody>
                                 @foreach($order->getOrdersDetail() as $orderDetail)
                                     <tr>
-                                        <td>{{ $orderDetail->getArticle()->getName() }}</td>
+                                        <td>{{ ($orderDetail->getArticle()) ? $orderDetail->getArticle()->getName() : 'Descuento'}}</td>
                                         <td>{{ $orderDetail->getQuantity() }}</td>
                                         <td>{{ formatted_money($orderDetail->getMoney()) }}</td>
                                     </tr>
@@ -101,6 +130,68 @@
                                 </div>
                             </div>
                         @endif
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        @include('backend.messages.session')
+                        <form method="POST" class="form-horizontal" action="/management/orders/{{$order->getId()}}/update">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            @if($order->getShipping())
+
+
+                            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                                <label for="inputName" class="col-sm-2 control-label">Estado</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control">
+                                        <option value="pending">Pendiente</option>
+                                        <option value="prepare">Preparado</option>
+                                        <option value="sent">Enviado</option>
+                                        <option value="delivered">Entregado</option>
+                                    </select>
+                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Numero de seguimiento</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" name="trackingNumber"
+                                           placeholder="Numero de seguimiento" value="{{ old('trackingNumber') }}">
+                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-2 control-label">Commentario</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputName" name="comment"
+                                           placeholder="comentario (opcional)" value="{{ old('comment') }}">
+                                    {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-danger pull-right">Guardar</button>
+                                </div>
+                            @else
+                                <div class="form-group">
+                                    <label for="inputName" class="col-sm-2 control-label">Comentario</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputName" name="comment"
+                                               placeholder="comentario (opcional)" value="{{ old('comment') }}">
+                                        {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-danger pull-right">Marcar como entregado</button>
+                                </div>
+                            @endif
+                        </form>
                     </div>
                 </div>
             </div>

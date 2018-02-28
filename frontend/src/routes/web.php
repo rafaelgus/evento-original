@@ -353,6 +353,12 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/reject/{id}', 'Backend\DesignController@rejectForm')->name('admin.designs.rejectForm');
                 Route::post('/reject/{id}', 'Backend\DesignController@reject')->name('admin.designs.reject');
             });
+            Route::group(['prefix' => '/orders'], function () {
+                Route::get('/{id}/order', 'Backend\OrderController@show')->name('admin.orders.show');
+                Route::get('/', 'Backend\OrderController@index');
+                Route::get('/getOrders', 'Backend\OrderController@getOrders');
+                Route::post('/{id}/update', 'Backend\OrderController@update');
+            });
         });
     });
 

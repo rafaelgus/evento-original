@@ -9,6 +9,7 @@ return [
     'article' => 'Artículo',
     'quantity' => 'Cantidad',
     'price' => 'Precio',
-    'affiliate_referral_data' => 'Datos de afiliado'
+    'affiliate_referral_data' => 'Datos de afiliado',
+    'shipping' => 'Envio'
 
 ];
