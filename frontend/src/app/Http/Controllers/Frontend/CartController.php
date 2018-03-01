@@ -129,11 +129,17 @@ class CartController
             $image = default_article_image_path();
         }
 
-        $price = $article->getPrice();
-
         $design = $article->getDesign();
 
-        $variantDetail = $this->getVariantDesign($design);
+        $variantDetailId = $request->input('variantDetail');
+        if ($variantDetailId) {
+            $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
+        } else {
+            $variantDetail = $this->getVariantDesign($design);
+        }
+
+        $price = $article->getPrice();
+
         if ($variantDetail) {
             $costPrice = $variantDetail->getBasePrice();
             $price = $costPrice + ($costPrice * ($design->getCommission() / 100));

@@ -105,12 +105,11 @@
                     <div class="add-to-box">
                       <div class="add-to-cart">
                         @if($article->getDesign()->getCircularDesignVariant())
-                          <div class="col-md-12">
+                          <div >
                             <select id="detail" name="detail" class="detail-select">
-                              <option>{{ trans('editor.select_options') }}</option>
                               @foreach($article->getDesign()->getCircularDesignVariant()->getDetails() as $detail)
                                 <option value="{{ $detail->getId() }}">
-                                  {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()). ")" }}
+                                  {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getPriceWithCommissionMoney($article->getDesign()->getCommission())). ")" }}
                                 </option>
                               @endforeach
                             </select>
@@ -125,11 +124,7 @@
                         </div>
                         <button onClick="addToCart()" class="button btn-cart" title="Comprar" type="button">Comprar</button>
                       </div>
-                      <div class="email-addto-box">
-                        <ul class="add-to-links">
-                          <li> <a class="link-wishlist" href="wishlist.html"><span>Add to Wishlist</span></a></li>
-                        </ul>
-                      </div>
+
                     </div>
                     
                   </div>
@@ -303,21 +298,20 @@
   <script type="text/javascript">
       function addToCart() {
           var quantity = document.getElementById('quantity').value;
-          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity);
+          var detail = document.getElementById('detail').value;
+          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity + '&variantDetail=' + detail);
           var xhr = new XMLHttpRequest();
           xhr.open('POST', '/addToCart', true);
           xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
           xhr.onreadystatechange = function () {
-              if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                  console.log('se agrego item');
-
+              if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                  cartItems();
               }
           };
-
           xhr.send(params);
-          this.cartItems();
+          cartItems();
       }
 
   </script>
