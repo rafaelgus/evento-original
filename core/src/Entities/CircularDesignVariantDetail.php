@@ -148,4 +148,12 @@ class CircularDesignVariantDetail
     {
         $this->article = $article;
     }
+
+    public function getPriceWithCommissionMoney(int $commission)
+    {
+        $costPrice = $this->getBasePrice();
+        $price = $costPrice + ($costPrice * ($commission / 100));
+
+        return new Money($price, new Currency("EUR"));
+    }
 }

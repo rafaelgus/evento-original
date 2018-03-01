@@ -30,13 +30,13 @@
                   <div class="product-img-box col-lg-4 col-sm-4 col-xs-12">
                     <div class="new-label new-top-left"> New </div>
                     <div class="product-image">
-                      <div class="product-full"> <img id="product-zoom" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" data-zoom-image="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" alt="product-image"/> </div>
+                      <div class="product-full"> <img id="product-zoom" src="{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" data-zoom-image="{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" alt="product-image"/> </div>
                       <div class="more-views">
                         <div class="slider-items-products">
                           <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                             <div class="slider-items slider-width-col4 block-content">
                               @foreach($article->getImages() as $image)
-                                  <div class="more-views-items"> <a href="#" data-image="/articles/storage/{{$image->getPath()}}" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="/articles/storage/{{$image->getPath()}}" alt="product-image"/></a></div>
+                                  <div class="more-views-items"> <a href="#" data-image="{{$image->getPath()}}" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="{{$image->getPath()}}" alt="product-image"/></a></div>
                               @endforeach
                             </div>
                           </div>
@@ -104,6 +104,18 @@
                     </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
+                        @if($article->getDesign()->getCircularDesignVariant())
+                          <div class="col-md-12">
+                            <select id="detail" name="detail" class="detail-select">
+                              <option>{{ trans('editor.select_options') }}</option>
+                              @foreach($article->getDesign()->getCircularDesignVariant()->getDetails() as $detail)
+                                <option value="{{ $detail->getId() }}">
+                                  {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()). ")" }}
+                                </option>
+                              @endforeach
+                            </select>
+                          </div>
+                        @endif
                         <div class="pull-left">
                           <div class="custom pull-left">
                             <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>

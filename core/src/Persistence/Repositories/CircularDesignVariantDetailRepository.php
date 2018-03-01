@@ -5,6 +5,11 @@ use EventoOriginal\Core\Entities\CircularDesignVariantDetail;
 
 class CircularDesignVariantDetailRepository extends BaseRepository
 {
+    public function findOneById(int $id)
+    {
+        return $this->find($id);
+    }
+
     public function save(CircularDesignVariantDetail $circularDesignVariantDetail, bool $flush = true)
     {
         $this->getEntityManager()->persist($circularDesignVariantDetail);

@@ -183,6 +183,15 @@ class CircularDesignVariant
         $this->details[] = $circularDesignVariantDetail;
     }
 
+    public function getDefaultDetail()
+    {
+        if (count($this->details) > 0) {
+            return $this->details[0];
+        }
+
+        return null;
+    }
+
     /**
      * @return int
      */

@@ -314,7 +314,7 @@ class DesignerController
 
         $data = $request->all();
         $data['image'] = $request->file('image');
-        
+
         $this->designService->update($design, $request->all());
 
         return $this->showDesignsInReview();

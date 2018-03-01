@@ -336,17 +336,17 @@ class ArticleService
         if ($design->getCircularDesignVariant()) {
             $variant = $design->getCircularDesignVariant();
 
-            $maxPrice = 0;
-            foreach ($variant->getDetails() as $detail) {
-                if ($detail->getBasePrice() > $maxPrice) {
-                    $maxPrice = $detail->getBasePrice();
-                }
+            $detail = $variant->getDefaultDetail();
+
+            $costPrice = 0;
+            if ($detail) {
+                $costPrice = $detail->getBasePrice();
             }
 
-            $price = $maxPrice + ($maxPrice * ($design->getCommission() / 100));
+            $price = $costPrice + ($costPrice * ($design->getCommission() / 100));
 
             $article->setPrice($price);
-            $article->setCostPrice($maxPrice);
+            $article->setCostPrice($costPrice);
 
             if ($variant->getCategory()) {
                 $article->setCategory($variant->getCategory());

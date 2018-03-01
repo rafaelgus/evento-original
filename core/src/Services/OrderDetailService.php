@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\CircularDesignVariantDetail;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
@@ -41,6 +42,10 @@ class OrderDetailService
 
         if (array_has($data, 'article')) {
             $detail->setArticle($data['article']);
+        }
+
+        if (array_has($data, 'circularDesignVariantDetail')) {
+            $detail->setCircularDesignVariantDetail($data['circularDesignVariantDetail']);
         }
 
         $detail->setDiscount($discount);
@@ -90,6 +95,14 @@ class OrderDetailService
 
         $orderDetail->setQuantity($qty);
         $orderDetail->setMoney($money);
+
+        $this->orderDetailRepository->save($orderDetail);
+    }
+
+    public function updateVariantDetail(OrderDetail $orderDetail, CircularDesignVariantDetail $detail, int $price)
+    {
+        $orderDetail->setCircularDesignVariantDetail($detail);
+        $orderDetail->setAmount($price);
 
         $this->orderDetailRepository->save($orderDetail);
     }

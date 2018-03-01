@@ -56,3 +56,31 @@ if (!function_exists('menu_item_url')) {
         return $menuItem->getUrl();
     }
 }
+
+if (!function_exists('get_circular_design_variant_detail')) {
+    function get_circular_design_variant_detail(int $id)
+    {
+        $repo = app()->make(
+            \EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository::class
+        );
+
+        return $repo->findOneById($id);
+    }
+}
+
+if (!function_exists('get_article_design')) {
+    function get_article_design_by_barcode(string $barCode)
+    {
+        $repo = app()->make(
+            \EventoOriginal\Core\Persistence\Repositories\ArticleRepository::class
+        );
+
+        $article = $repo->findOneByBarCode($barCode);
+
+        if ($article) {
+            return $article->getDesign();
+        }
+
+        return null;
+    }
+}
