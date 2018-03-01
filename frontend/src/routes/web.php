@@ -234,7 +234,7 @@ Route::group(['prefix' => '/management'], function () {
         Route::group(['prefix' => '/orders'], function () {
             Route::get('/{id}/order', 'Backend\OrderController@show')->name('admin.orders.show');
             Route::get('/', 'Backend\OrderController@index');
-            Route::get('/getOrders', 'Backend\OrderController@getOrders');
+            Route::get('/data/getOrders', 'Backend\OrderController@getOrders');
             Route::post('/{id}/update', 'Backend\OrderController@update');
         });
     });
