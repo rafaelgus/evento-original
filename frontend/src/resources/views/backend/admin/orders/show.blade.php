@@ -149,7 +149,7 @@
                             <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                 <label for="inputName" class="col-sm-2 control-label">Estado</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control">
+                                    <select class="form-control" name="status">
                                         <option value="pending">Pendiente</option>
                                         <option value="prepare">Preparado</option>
                                         <option value="sent">Enviado</option>
