@@ -320,13 +320,13 @@ class ArticleService
         return $this->articleRepository->findOneByBarCode($barCode);
     }
 
-    public function createFromDesign(Design $design)
+    public function createFromDesign(Design $design, string $status = Article::STATUS_PUBLISHED)
     {
         $article = new Article();
         $article->setName($design->getName());
         $article->setDescription($design->getDescription());
         $article->setShortDescription($design->getDescription());
-        $article->setStatus(Article::STATUS_PUBLISHED);
+        $article->setStatus($status);
         $article->setSlug(str_slug($design->getName()));
         $article->setPublishedOn(new DateTime('now'));
         $article->setBarCode(uniqid());
@@ -361,7 +361,9 @@ class ArticleService
         $image = $this->imageService->create($design->getImage(), $design->getDescription(), $article);
         $article->addImage($image);
 
-        return $this->save($article);
+        $this->save($article);
+
+        return $article;
     }
 
     /**

@@ -3,6 +3,7 @@ namespace EventoOriginal\Core\Services;
 
 use App\Events\DesignApproved;
 use App\Events\DesignRejected;
+use EventoOriginal\Core\Entities\Article;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Designer;
 use EventoOriginal\Core\Entities\Order;
@@ -61,6 +62,52 @@ class DesignService
     public function findOneById(int $id)
     {
         return $this->designRepository->findOneById($id);
+    }
+
+    /**
+     * @param array $data
+     * @return Article
+     */
+    public function saveDesignToBuy(array $data)
+    {
+        $design = new Design();
+        $design->setName(trans('designs.personalized'));
+        $design->setDescription('Design to buy');
+
+        if (array_key_exists('variant_id', $data)) {
+            $variant = $this->circularDesignVariantService->findOneById(array_get($data, 'variant_id'));
+            $design->setCircularDesignVariant($variant);
+        }
+
+        if (array_key_exists('json', $data)) {
+            $design->setJson(array_get($data, 'json'));
+
+            $img = array_get($data, 'image');
+
+            $img = str_replace('data:image/png;base64,', '', $img);
+            $img = str_replace(' ', '+', $img);
+            $fileData = base64_decode($img);
+            $fileName = uniqid() . 'png';
+
+            file_put_contents($fileName, $fileData);
+
+            $image = $this->storageService->savePicture($fileName, 'designs', 'png');
+
+            unlink($fileName);
+
+            $design->setImage($image);
+            $design->setSource(DesignSource::EDITOR);
+        }
+
+        $this->designRepository->save($design);
+
+        $article = $this->articleService->createFromDesign($design, Article::STATUS_DRAFT);
+
+        $design->setStatus(DesignStatus::PUBLISHED);
+
+        $this->designRepository->save($design);
+
+        return $article;
     }
 
     public function saveDesignerDesign(array $data)

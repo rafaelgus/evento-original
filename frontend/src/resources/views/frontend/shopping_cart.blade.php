@@ -61,7 +61,11 @@
                                                 <select id="productVariantDetail" onchange="changeVariantDetail('{{$item['id']}}')">
                                                     @foreach($details as $detail)
                                                         <option value="{{ $detail->getId() }}" {{ ($detail->getId() == $item['variantDetail'] ? 'selected' : '') }}>
-                                                            {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getPriceWithCommissionMoney($design->getCommission())). ")" }}
+                                                            @if ($item['toBuy'])
+                                                                {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()) . ")" }}
+                                                            @else
+                                                                {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getPriceWithCommissionMoney($design->getCommission())). ")" }}
+                                                            @endif
                                                         </option>
                                                     @endforeach
                                                 </select>

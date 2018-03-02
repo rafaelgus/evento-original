@@ -15,4 +15,6 @@ return [
     'approve_design_dialog_question' => 'Estás seguro que deseas aprobar el diseño?',
     'approve' => 'Aprobar',
     'reject' => 'Rechazar',
+    'buy' => 'Comprar',
+    'personalized' => 'Diseño personalizado',
 ];

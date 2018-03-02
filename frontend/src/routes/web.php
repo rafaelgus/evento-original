@@ -19,6 +19,10 @@ Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
 Route::post('/updateQty', 'Frontend\CartController@updateQuantity');
 Route::post('/updateVariantDetail', 'Frontend\CartController@updateVariantDetail');
 
+Route::get('/crear-diseño-desde-cero', 'Frontend\DesignController@createDesign');
+Route::get('/crear-papel-comestible-desde-cero', 'Frontend\DesignController@createEdiblePaper');
+Route::get('/diseñar-papel-comestible-desde-cero/{id}', 'Frontend\DesignController@designEdiblePaper');
+Route::post('/buy-design', 'Frontend\CartController@buyDesign')->name('buy_design');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
