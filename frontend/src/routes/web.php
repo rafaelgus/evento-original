@@ -135,6 +135,11 @@ Route::middleware(['auth'])->group(function () {
             '/download-template/{id}',
             'Frontend\DesignerController@downloadTemplate'
         )->name('designer.downloadTemplate');
+
+        Route::get(
+            '/' . trans('designer.design_mug.slug'),
+            'Frontend\DesignerController@designMug'
+        )->name('designer.designMug');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');

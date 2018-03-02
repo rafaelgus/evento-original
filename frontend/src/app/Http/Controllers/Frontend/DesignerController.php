@@ -254,6 +254,11 @@ class DesignerController
         ]);
     }
 
+    public function designMug()
+    {
+        return view('frontend/designer.design_mug');
+    }
+
     public function designEdiblePaper(int $id)
     {
         $circularDesignVariant = $this->circularDesignVariantService->findOneById($id);

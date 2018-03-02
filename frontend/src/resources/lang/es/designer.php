@@ -100,5 +100,9 @@ return [
         'select_occasion' => 'Seleccione las ocasiones adecuadas al diseño',
         'commission' => 'Comisión por cada venta del diseño',
         'image' => 'Imagen del diseño creado desde la plantilla',
-    ]
+    ],
+    'design_mug' => [
+        'slug' => 'diseñar-taza',
+        'title' => 'Diseñar taza',
+    ],
 ];

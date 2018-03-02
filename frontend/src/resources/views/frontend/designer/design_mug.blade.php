@@ -53,6 +53,10 @@
             margin: 1rem 0;
         }
 
+        .mySlides {
+            width: 40%;
+            margin-bottom: 3px !important;
+        }
 
     </style>
 
@@ -71,13 +75,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="title">{{ trans('editor.edible_paper') }} - {{ $circularDesignVariant->getName() }}</h2>
+                    <h2 class="title">{{ trans('designer.design_mug.title') }}</h2>
                 </div>
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-md-5" style="position:relative; width: auto">
                     <div class="canvas-container">
                         <canvas class="canvas-paper-a4" id="canvas-paper-a4"></canvas>
+                    </div>
+
+                    <div class="w3-content w3-display-container">
+                        <canvas class="mySlides" id="canvas1" style="margin: auto"></canvas>
+                        <canvas class="mySlides" id="canvas2" style="margin: auto"></canvas>
+                        <canvas class="mySlides" id="canvas3" style="margin: auto"></canvas>
+
+
+                        <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                        <button class="w3-button w3-black" onclick="plusDivs(1)">&#10095;</button>
                     </div>
                     {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
                 </div>
@@ -113,10 +127,6 @@
                         <div class="add-to-box text-center">
                             <div class="add-to-cart">
                                 <div class="form-group row">
-                                    <div>
-                                        {{trans('designer.material_size')}}
-                                        : {{ $circularDesignVariant->getDesignMaterialSize()->getName() }}
-                                    </div>
                                     <br>
                                     <div class="col-sm-12">
                                         <form role="form" id="save-design-form" class="form-horizontal"
@@ -125,9 +135,10 @@
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
                                             <input type="hidden" name="variant_id"
-                                                   value="{{ $circularDesignVariant->getId() }}">
+                                                   value="mug">
                                             <input type="hidden" name="image" id="image-file">
-                                            <input type="hidden" name="design_id" id="design_id" value="{{ (isset($design) ? $design->getId() : null) }}">
+                                            <input type="hidden" name="design_id" id="design_id"
+                                                   value="{{ (isset($design) ? $design->getId() : null) }}">
                                             <button class="button btn-cart" id="save-design"
                                                     title="{{ trans('designer.save') }}"
                                                     type="button">{{ trans('designer.save') }}</button>
@@ -147,9 +158,10 @@
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
                                             <input type="hidden" name="variant_id"
-                                                   value="{{ $circularDesignVariant->getId() }}">
+                                                   value="mug">
                                             <input type="hidden" name="image" id="image-file">
-                                            <input type="hidden" name="design_id" id="design_id" value="{{ (isset($design) ? $design->getId() : null) }}">
+                                            <input type="hidden" name="design_id" id="design_id"
+                                                   value="{{ (isset($design) ? $design->getId() : null) }}">
                                             <button class="button btn-cart btn-violet" id="finalize-design"
                                                     title="{{ trans('designer.finalize') }}"
                                                     type="button">{{ trans('designer.finalize') }}</button>
@@ -378,20 +390,6 @@
                 {{--</div>--}}
                 {{--</div>--}}
                 {{--<br>--}}
-
-                {{--<form role="form" id="save-design-form" class="form-horizontal" action="{{ route('save_design') }}"--}}
-                {{--method="POST">--}}
-                {{--@include('backend.messages.session')--}}
-                {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
-                {{--<input type="hidden" name="json" id="json" value="">--}}
-                {{--<div class="form-group">--}}
-                {{--<input type="text" class="form-control" id="name" name="name"--}}
-                {{--placeholder="Nombre del diseño"/>--}}
-                {{--<button type="button" class="btn btn-lg btn-success form-control" id="save-design">--}}
-                {{--Guardar diseño--}}
-                {{--</button>--}}
-                {{--</div>--}}
-                {{--</form>--}}
             </div>
 
             <div class="col-md-2">
@@ -417,9 +415,9 @@
     <script src="/editor-assets/js/jquery.fontselect.min.js"></script>
 
     <script>
-        var overlayImage = '{{ $circularDesignVariant->getPreviewImage()}}';
-        var canvasHeight = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getVerticalSize() / (5/11)) }}';
-        var canvasWidth = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getHorizontalSize() / (5/11)) }}';
+        var canvasHeight = 300;
+        var canvasWidth = 600;
+        var overlayImage = '';
 
         var designJson = '{{ (isset($design) ? $design->getJson() : null) }}';
         if (designJson) {
@@ -474,6 +472,202 @@
                 placeholder: 'Select a font',
                 lookahead: 2
             });
+
+
+
+            function canvas1() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
+
+                var canvas = document.getElementById("canvas1");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+                    console.log("height");
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/c_scale,f_auto,h_350/left_handle_cup_i7ztfs.jpg"
+
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        var xOffset = 102, //left padding
+                            yOffset = 110; //top padding
+
+                        //alert(ih)
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (4 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 9, ih, X + xOffset, y + yOffset, 1, 174);
+                        }
+                    };
+                }
+
+            }
+
+            function canvas2() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
+
+                var canvas = document.getElementById("canvas2");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/h_350/canter_handle_cup_xyxhdd.jpg"
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        // alert(iw)
+
+                        var xOffset = 101, //left padding
+                            yOffset = 110; //top padding
+
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (4 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
+
+                        }
+                    };
+                }
+
+            }
+
+            function canvas3() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
+
+                var canvas = document.getElementById("canvas3");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/h_350/right_handle_cup_dsdhr7.jpg"
+
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        //alert(iw)
+
+                        var xOffset = 102, //left padding
+                            yOffset = 110; //top padding
+
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (3 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 1.5, ih, X + xOffset, y + yOffset, 1, 174);
+                        }
+                    };
+                }
+
+            }
+
+            setTimeout(function() {
+                canvas1()
+            }, 1000);
+            setTimeout(function() {
+                canvas2()
+            }, 2000);
+            setTimeout(function() {
+                canvas3()
+            }, 3000);
+
+            setInterval(canvas1, 1000);
+            setInterval(canvas2, 1000);
+            setInterval(canvas3, 1000);
         });
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
     </script>
 @endsection
