@@ -25,7 +25,7 @@ class CircularDesignVariant
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DesignMaterialSize")
+     * @ORM\ManyToOne(targetEntity="DesignMaterialSize", fetch="EAGER")
      * @ORM\JoinColumn(name="design_material_size_id", referencedColumnName="id")
      */
     private $designMaterialSize;

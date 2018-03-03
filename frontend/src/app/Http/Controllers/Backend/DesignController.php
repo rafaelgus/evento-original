@@ -90,7 +90,7 @@ class DesignController extends Controller
         return $this->inReview();
     }
 
-    public function download(int $id)
+    public function download(int $id, int $quantity = 1)
     {
         $design = $this->designService->findOneById($id);
 
@@ -118,10 +118,11 @@ class DesignController extends Controller
             [
                 'design' => $design,
                 'width' => $width,
-                'height' => $height
+                'height' => $height,
+                'quantity' => $quantity
             ]
         );
-        $pdf->setPaper("a4");
+        $pdf->setPaper([0, 0, $width, $height]);
 
 
         return $pdf->stream();

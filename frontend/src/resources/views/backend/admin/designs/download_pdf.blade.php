@@ -13,7 +13,14 @@
 
 <body>
 
-<img src="{{ $design->getImage() }}">
+@for ($i = 0; $i < $quantity; $i++)
+    <img src="{{ $design->getImage() }}" width="{{ $width }}" height="{{ $height }}">
+
+    @if ($i < $quantity - 1)
+    <div class="page-break"></div>
+    @endif
+@endfor
+
 
 </body>
 

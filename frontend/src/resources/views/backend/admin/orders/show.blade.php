@@ -54,7 +54,7 @@
                                             {{ $orderDetail->getArticle()->getName() }}
 
                                             @if($orderDetail->getArticle()->getDesign())
-                                                <a href="{{ route('admin.designs.download', $orderDetail->getArticle()->getDesign()->getId()) }}">Descargar diseño</a>
+                                                <a href="{{ route('admin.designs.download', $orderDetail->getArticle()->getDesign()->getId(), $orderDetail->getQuantity()) }}">Descargar diseño</a>
                                             @endif
                                         </td>
                                         <td>{{ $orderDetail->getQuantity() }}</td>
