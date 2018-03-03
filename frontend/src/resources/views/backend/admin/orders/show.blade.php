@@ -25,7 +25,7 @@
                 <div class="box">
                     <div class="box-body">
                         @include('backend.messages.session')
-
+                        <h3>Orden</h3>
                         <dl class="dl-horizontal">
                             <dt>{{trans('orders.id')}}</dt>
                             <dd>{{$order->getId()}}</dd>
@@ -65,6 +65,7 @@
                             <dt>Ciudad</dt>
                             <dd>{{$order->getBilling()->getAddress()->getCity()}}</dd>
                         </dl>
+                        <hr>
                         <h3>Datos extra</h3>
                         <dl class="dl-horizontal">
                             <dt>Comentarios</dt>

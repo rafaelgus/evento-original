@@ -23,6 +23,7 @@ class EventoOriginalServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->shareNavbarsInViews();
+        $this->shareBestSellerItems();
     }
 
     /**
@@ -179,5 +180,25 @@ class EventoOriginalServiceProvider extends ServiceProvider
         }
 
         View::share('navBarMenuItems', $navbarMenuItems);
+    }
+
+    private function shareBestSellerItems()
+    {
+        $bestSeller = [];
+
+        try {
+            $menuRepository = $this->app->make(Repositories\MenuRepository::class);
+            $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+
+            $navbarMenu = $menuRepository->findByType('bestseller', App::getLocale());
+            $bestSeller = [];
+            if ($navbarMenu) {
+                $bestSeller = $menuItemRepository->findByMenu($navbarMenu);
+            }
+        } catch (Throwable $exception) {
+            logger()->error($exception->getMessage());
+        }
+
+        View::share('bestSellers', $bestSeller);
     }
 }

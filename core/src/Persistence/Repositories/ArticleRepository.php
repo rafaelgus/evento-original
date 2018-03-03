@@ -241,6 +241,36 @@ class ArticleRepository extends BaseRepository
         return $query->getResult();
     }
 
+    public function findByCategoryBestSeller(Category $category, string $locale = 'es')
+    {
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->join(
+                Category::class,
+                'category',
+                'WITH',
+                'category.id = :categoryId'
+            )
+            ->leftJoin('category.children', 'children1')
+            ->leftJoin('children1.children', 'children2')
+            ->leftJoin('children2.children', 'children3')
+            ->setParameters(['categoryId' => $category->getId()])
+            ->where('article.category = category.id OR article.category = children1.id OR 
+            article.category = children2.id OR article.category = children3.id AND article.isBestSeller =' .true);
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
+    }
+
     private function paginate($dql, $pageSize = 1, $currentPage = 1)
     {
         $paginator = new Paginator($dql, true);

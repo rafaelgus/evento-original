@@ -218,6 +218,11 @@ class Article
      */
     private $orderDetails;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isBestSeller;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -820,6 +825,22 @@ class Article
         $price = new Money($this->getPrice(), new Currency($this->getPriceCurrency()));
 
         return $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getisBestSeller()
+    {
+        return $this->isBestSeller;
+    }
+
+    /**
+     * @param bool $isBestSeller
+     */
+    public function setIsBestSeller(bool $isBestSeller)
+    {
+        $this->isBestSeller = $isBestSeller;
     }
 
 }
