@@ -2,10 +2,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\PDF;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Enums\DesignType;
 use EventoOriginal\Core\Services\DesignService;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class DesignController extends Controller
 {
@@ -85,5 +88,42 @@ class DesignController extends Controller
         $this->designService->reject($design, $request->get('observation'));
 
         return $this->inReview();
+    }
+
+    public function download(int $id)
+    {
+        $design = $this->designService->findOneById($id);
+
+        if (!$design) {
+            abort(404);
+        }
+
+        if ($design->getType() === DesignType::MUG) {
+            return redirect()->to($design->getImage());
+        }
+
+        $width = 0;
+        $height = 0;
+
+        if ($design->getCircularDesignVariant()) {
+            $materialSize = $design->getCircularDesignVariant()->getDesignMaterialSize();
+
+            $width = $materialSize->getHorizontalSizeInPx();
+            $height = $materialSize->getVerticalSizeInPx();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView(
+            'backend/admin.designs.download_pdf',
+            [
+                'design' => $design,
+                'width' => $width,
+                'height' => $height
+            ]
+        );
+        $pdf->setPaper("a4");
+
+
+        return $pdf->stream();
     }
 }

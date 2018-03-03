@@ -37,6 +37,8 @@ class DesignMaterialSizeService
         $designMaterialSize->setName(array_get($data, 'name'));
         $designMaterialSize->setHorizontalSize(array_get($data, 'horizontal_size'));
         $designMaterialSize->setVerticalSize(array_get($data, 'vertical_size'));
+        $designMaterialSize->setHorizontalSizeInPx(array_get($data, 'horizontal_size_in_px'));
+        $designMaterialSize->setVerticalSizeInPx(array_get($data, 'vertical_size_in_px'));
 
         $this->designMaterialSizeRepository->save($designMaterialSize);
 
@@ -48,6 +50,8 @@ class DesignMaterialSizeService
         $designMaterialSize->setName(array_get($data, 'name'));
         $designMaterialSize->setHorizontalSize(array_get($data, 'horizontal_size'));
         $designMaterialSize->setVerticalSize(array_get($data, 'vertical_size'));
+        $designMaterialSize->setHorizontalSizeInPx(array_get($data, 'horizontal_size_in_px'));
+        $designMaterialSize->setVerticalSizeInPx(array_get($data, 'vertical_size_in_px'));
 
         $this->designMaterialSizeRepository->save($designMaterialSize);
 

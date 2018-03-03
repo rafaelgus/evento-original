@@ -903,7 +903,18 @@ $(document).ready(function() {
     $('#save-svg').click(function() {
         var svgFile = new Blob([canvas.toSVG()], {type: "image/svg+xml;charset=utf-8"});
 
-        saveAs(svgFile, "canvas.svg");
+
+        var svgURL = new XMLSerializer().serializeToString(canvas.toSVG());
+        var img  = new Image();
+        img.onload = function(){
+            ctx.drawImage(this, 0,0);
+            callback();
+        }
+        img.src = 'data:image/svg+xml; charset=utf8, '+encodeURIComponent(svgURL);
+
+        console.log(img);
+
+        // saveAs(svgFile, "canvas.svg");
     });
 
     $('#save-json').click(function() {

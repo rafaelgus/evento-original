@@ -27,6 +27,8 @@ class UpdateMaterialDesignSizeRequest extends FormRequest
             'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\DesignMaterialSize,id,' . $this->get('id'),
             'horizontal_size' => 'required',
             'vertical_size' => 'required',
+            'horizontal_size_in_px' => 'required',
+            'vertical_size_in_px' => 'required',
         ];
     }
 }

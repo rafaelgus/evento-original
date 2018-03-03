@@ -367,6 +367,7 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('/approve/{id}', 'Backend\DesignController@approve')->name('admin.designs.approve');
                 Route::get('/reject/{id}', 'Backend\DesignController@rejectForm')->name('admin.designs.rejectForm');
                 Route::post('/reject/{id}', 'Backend\DesignController@reject')->name('admin.designs.reject');
+                Route::get('/download/{id}', 'Backend\DesignController@download')->name('admin.designs.download');
             });
         });
     });

@@ -79,7 +79,7 @@ class OrderService
                 $amount = $orderDetail[0]->getMoney()->getAmount();
                 $quantity = $orderDetail[0]->getQuantity();
 
-                $sellerCommission = ($amount * $quantity) * ($articleCommission / 100);
+                $sellerCommission = floor(($amount * $quantity) * ($articleCommission / 100));
 
                 $moneyCommission = new Money($sellerCommission, new Currency('EUR'));
 

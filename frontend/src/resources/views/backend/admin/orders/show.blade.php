@@ -50,7 +50,13 @@
                                 <tbody>
                                 @foreach($order->getOrdersDetail() as $orderDetail)
                                     <tr>
-                                        <td>{{ $orderDetail->getArticle()->getName() }}</td>
+                                        <td>
+                                            {{ $orderDetail->getArticle()->getName() }}
+
+                                            @if($orderDetail->getArticle()->getDesign())
+                                                <a href="{{ route('admin.designs.download', $orderDetail->getArticle()->getDesign()->getId()) }}">Descargar diseño</a>
+                                            @endif
+                                        </td>
                                         <td>{{ $orderDetail->getQuantity() }}</td>
                                         <td>{{ formatted_money($orderDetail->getMoney()) }}</td>
                                     </tr>

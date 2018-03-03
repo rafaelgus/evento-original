@@ -59,6 +59,11 @@ class DesignService
         $this->articleService = $articleService;
     }
 
+
+    /**
+     * @param int $id
+     * @return null|Design
+     */
     public function findOneById(int $id)
     {
         return $this->designRepository->findOneById($id);

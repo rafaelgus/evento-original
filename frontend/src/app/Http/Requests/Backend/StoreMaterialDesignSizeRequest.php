@@ -27,6 +27,8 @@ class StoreMaterialDesignSizeRequest extends FormRequest
             'name' => 'required|max:255|unique:EventoOriginal\Core\Entities\DesignMaterialSize,name',
             'horizontal_size' => 'required',
             'vertical_size' => 'required',
+            'horizontal_size_in_px' => 'required',
+            'vertical_size_in_px' => 'required',
         ];
     }
 }

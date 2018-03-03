@@ -148,6 +148,8 @@ return [
             'name' => 'Nombre',
             'horizontal_size' => 'Tamaño horizontal (en mm)',
             'vertical_size' => 'Tamaño vertical (en mm)',
+            'horizontal_size_in_px' => 'Tamaño horizontal (en pixeles)',
+            'vertical_size_in_px' => 'Tamaño vertical (en pixeles)',
         ],
         'circular_design_variants' => [
             'title' => 'Diseños circulares',

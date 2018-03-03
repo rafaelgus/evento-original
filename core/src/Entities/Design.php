@@ -332,7 +332,7 @@ class Design
     }
 
     /**
-     * @return mixed
+     * @return null|CircularDesignVariant
      */
     public function getCircularDesignVariant()
     {

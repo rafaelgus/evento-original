@@ -55,6 +55,24 @@
                                     {!! $errors->first('vertical_size', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('horizontal_size_in_px') ? 'has-error' : '' }}">
+                                <label for="inputHorizontalSizeInPx" class="col-sm-2 control-label">{{ trans('texts.sections.design_material_sizes.horizontal_size_in_px') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" step="0.01" class="form-control" id="inputHorizontalSizeInPx" name="horizontal_size_in_px"
+                                           placeholder="{{ trans('texts.sections.design_material_sizes.horizontal_size_in_px') }}" value="{{ old('horizontal_size_in_px', $designMaterialSize->getHorizontalSizeInPx()) }}">
+                                    {!! $errors->first('horizontal_size_in_px', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
+                            <div class="form-group {{ $errors->has('vertical_size_in_px') ? 'has-error' : '' }}">
+                                <label for="inputVerticalSizeInPx" class="col-sm-2 control-label">{{ trans('texts.sections.design_material_sizes.vertical_size_in_px') }}</label>
+                                <div class="col-sm-10">
+                                    <input type="number" step="0.01" class="form-control" id="inputVerticalSizeInPx" name="vertical_size_in_px"
+                                           placeholder="{{ trans('texts.sections.design_material_sizes.vertical_size_in_px') }}" value="{{ old('vertical_size_in_px', $designMaterialSize->getVerticalSizeInPx()) }}">
+                                    {!! $errors->first('vertical_size_in_px', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
                         </div>
 
                         <div class="box-footer">

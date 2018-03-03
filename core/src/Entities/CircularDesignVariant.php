@@ -99,7 +99,7 @@ class CircularDesignVariant
     }
 
     /**
-     * @return mixed
+     * @return null|DesignMaterialSize
      */
     public function getDesignMaterialSize()
     {
