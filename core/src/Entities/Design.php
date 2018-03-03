@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use EventoOriginal\Core\Enums\DesignOrientation;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Enums\DesignType;
 use Exception;
 use InvalidArgumentException;
 use LaravelDoctrine\Extensions\Timestamps\Timestamps;
@@ -52,9 +53,9 @@ class Design
     private $image;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $previewImage;
+    private $previewImages;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -100,6 +101,11 @@ class Design
      * @ORM\OneToOne(targetEntity="Article", mappedBy="design")
      */
     private $article;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $type;
 
     public function __construct()
     {
@@ -196,19 +202,19 @@ class Design
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getPreviewImage()
+    public function getPreviewImages()
     {
-        return $this->previewImage;
+        return json_decode($this->previewImages, true);
     }
 
     /**
-     * @param mixed $previewImage
+     * @param array $previewImages
      */
-    public function setPreviewImage($previewImage): void
+    public function setPreviewImages(array $previewImages): void
     {
-        $this->previewImage = $previewImage;
+        $this->previewImages = json_encode($previewImages);
     }
 
     /**
@@ -371,5 +377,25 @@ class Design
     public function setArticle($article): void
     {
         $this->article = $article;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        if (!DesignType::isValid($type)) {
+            throw new InvalidArgumentException("Invalid design type");
+        }
+
+        $this->type = $type;
     }
 }

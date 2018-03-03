@@ -134,9 +134,9 @@
                                               method="POST">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
-                                            <input type="hidden" name="variant_id"
-                                                   value="mug">
+                                            <input type="hidden" name="type" value="mug">
                                             <input type="hidden" name="image" id="image-file">
+                                            <input type="hidden" name="preview_images" id="preview_images">
                                             <input type="hidden" name="design_id" id="design_id"
                                                    value="{{ (isset($design) ? $design->getId() : null) }}">
                                             <button class="button btn-cart" id="save-design"
@@ -157,9 +157,9 @@
                                               method="POST">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
-                                            <input type="hidden" name="variant_id"
-                                                   value="mug">
+                                            <input type="hidden" name="type" value="mug">
                                             <input type="hidden" name="image" id="image-file">
+                                            <input type="hidden" name="preview_images" id="preview_images">
                                             <input type="hidden" name="design_id" id="design_id"
                                                    value="{{ (isset($design) ? $design->getId() : null) }}">
                                             <button class="button btn-cart btn-violet" id="finalize-design"
@@ -483,10 +483,10 @@
                 var ctx = canvas.getContext("2d");
 
                 var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
                 productImg.onload = function() {
                     var iw = productImg.width;
                     var ih = productImg.height;
-                    console.log("height");
 
                     canvas.width = iw;
                     canvas.height = ih;
@@ -496,7 +496,7 @@
                     loadUpperIMage()
                 };
 
-                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/c_scale,f_auto,h_350/left_handle_cup_i7ztfs.jpg"
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/c_scale,f_auto,h_350/left_handle_cup_i7ztfs.jpg";
 
 
                 function loadUpperIMage() {
@@ -535,6 +535,7 @@
                 var ctx = canvas.getContext("2d");
 
                 var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
                 productImg.onload = function() {
                     var iw = productImg.width;
                     var ih = productImg.height;
@@ -554,6 +555,7 @@
                     var img = new Image();
 
                     img.src = mugImg;
+                    img.crossOrigin = "Anonymous";
                     img.onload = function() {
 
                         var iw = img.width;
@@ -588,6 +590,7 @@
                 var ctx = canvas.getContext("2d");
 
                 var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
                 productImg.onload = function() {
                     var iw = productImg.width;
                     var ih = productImg.height;
@@ -607,6 +610,7 @@
                     var img = new Image();
 
                     img.src = mugImg;
+                    img.crossOrigin = "Anonymous";
                     img.onload = function() {
 
                         var iw = img.width;

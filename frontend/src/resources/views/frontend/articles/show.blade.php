@@ -36,7 +36,7 @@
                           <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                             <div class="slider-items slider-width-col4 block-content">
                               @foreach($article->getImages() as $image)
-                                  <div class="more-views-items"> <a href="#" data-image="{{$image->getPath()}}" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="{{$image->getPath()}}" alt="product-image"/></a></div>
+                                  <div class="more-views-items"> <a href="#" data-image="{{$image->getPath()}}" data-zoom-image="{{$image->getPath()}}"> <img id="product-zoom"  src="{{$image->getPath()}}" alt="product-image"/></a></div>
                               @endforeach
                             </div>
                           </div>

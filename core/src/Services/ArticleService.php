@@ -10,6 +10,7 @@ use EventoOriginal\Core\Entities\Category;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\License;
 use EventoOriginal\Core\Entities\Tax;
+use EventoOriginal\Core\Enums\DesignType;
 use EventoOriginal\Core\Persistence\Repositories\ArticleRepository;
 use Exception;
 use InvalidArgumentException;
@@ -108,7 +109,8 @@ class ArticleService
         array $ingredients = [],
         array $prices = [],
         array $healthys = [],
-        bool $isNew = true
+        bool $isNew = true,
+        bool $forMugsDesign = false
     ): Article {
         $article = new Article();
         $article->setName($name);
@@ -333,12 +335,13 @@ class ArticleService
         $article->setInternalCode(uniqid());
         $article->setDesign($design);
 
-        if ($design->getCircularDesignVariant()) {
+        $costPrice = 0;
+
+        if ($design->getType() === DesignType::EDIBLE_PAPER && $design->getCircularDesignVariant()) {
             $variant = $design->getCircularDesignVariant();
 
             $detail = $variant->getDefaultDetail();
 
-            $costPrice = 0;
             if ($detail) {
                 $costPrice = $detail->getBasePrice();
             }
@@ -351,12 +354,31 @@ class ArticleService
             if ($variant->getCategory()) {
                 $article->setCategory($variant->getCategory());
             }
+        } elseif ($design->getType() === DesignType::MUG) {
+            $mugArticle = $this->findOneForMugsDesign();
+
+            if ($mugArticle) {
+                $costPrice = $mugArticle->getPrice();
+
+                $price = $costPrice + ($costPrice * ($design->getCommission() / 100));
+
+                $article->setPrice($price);
+                $article->setCostPrice($costPrice);
+                $article->setCategory($mugArticle->getCategory());
+            }
         }
 
         $article->setPriceCurrency('EUR');
         $article->setPriceType('unit');
 
         $this->save($article);
+
+        if ($design->getType() === DesignType::MUG) {
+            foreach ($design->getPreviewImages() as $previewImage) {
+                $image = $this->imageService->create($previewImage, $design->getDescription(), $article);
+                $article->addImage($image);
+            }
+        }
 
         $image = $this->imageService->create($design->getImage(), $design->getDescription(), $article);
         $article->addImage($image);
@@ -373,5 +395,14 @@ class ArticleService
     public function findByInternalCode(string $internalCode)
     {
         return $this->articleRepository->findOneByInternalCode($internalCode);
+    }
+
+    /**
+     * Get the article for mugs
+     * @return null|Article
+     */
+    public function findOneForMugsDesign()
+    {
+        return $this->articleRepository->findForMugsDesign();
     }
 }

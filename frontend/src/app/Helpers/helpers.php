@@ -84,3 +84,18 @@ if (!function_exists('get_article_design')) {
         return null;
     }
 }
+
+if (!function_exists('get_design_image')) {
+    function get_design_image(\EventoOriginal\Core\Entities\Design $design)
+    {
+        if ($design->getType() === \EventoOriginal\Core\Enums\DesignType::MUG) {
+            if (count($design->getPreviewImages()) > 0) {
+                return array_values($design->getPreviewImages())[0];
+            }
+
+            return $design->getImage();
+        }
+
+        return $design->getImage();
+    }
+}

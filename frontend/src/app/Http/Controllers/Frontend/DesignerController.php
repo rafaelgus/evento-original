@@ -6,6 +6,8 @@ use App\Http\Requests\SendDesignToReviewRequest;
 use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Enums\DesignSource;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Enums\DesignType;
+use EventoOriginal\Core\Services\ArticleService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\CircularDesignVariantService;
 use EventoOriginal\Core\Services\DesignerService;
@@ -26,6 +28,10 @@ class DesignerController
      * @var OccasionService
      */
     private $occasionService;
+    /**
+     * @var ArticleService
+     */
+    private $articleService;
 
     /**
      * DesignerController constructor.
@@ -34,19 +40,22 @@ class DesignerController
      * @param CircularDesignVariantService $circularDesignVariantService
      * @param CategoryService $categoryService
      * @param OccasionService $occasionService
+     * @param ArticleService $articleService
      */
     public function __construct(
         DesignerService $designerService,
         DesignService $designService,
         CircularDesignVariantService $circularDesignVariantService,
         CategoryService $categoryService,
-        OccasionService $occasionService
+        OccasionService $occasionService,
+        ArticleService $articleService
     ) {
         $this->designerService = $designerService;
         $this->designService = $designService;
         $this->circularDesignVariantService = $circularDesignVariantService;
         $this->categoryService = $categoryService;
         $this->occasionService = $occasionService;
+        $this->articleService = $articleService;
     }
 
     public function showEditor()
@@ -102,7 +111,7 @@ class DesignerController
 
             $design = $this->designService->saveDesignerDesign($data);
 
-            return $this->sendToReviewView($design->getId());
+            return $this->sendToReviewView($design->getId(), $request->get('type'));
         }
 
         return abort(404);
@@ -272,8 +281,11 @@ class DesignerController
         ]);
     }
 
-    public function sendToReviewView(int $id, string $templateImage = null)
-    {
+    public function sendToReviewView(
+        int $id,
+        string $designType = DesignType::EDIBLE_PAPER,
+        string $templateImage = null
+    ) {
         $design = $this->designService->findOneById($id);
 
         if ($design->getStatus() != DesignStatus::CREATED) {
@@ -286,13 +298,21 @@ class DesignerController
         $occasions = $this->occasionService->findAllOnlyChildren(app()->getLocale());
 
         $maxPrice = 0;
-        if ($design->getCircularDesignVariant()) {
-            $circularDesignVariant = $design->getCircularDesignVariant();
+        if ($designType == DesignType::EDIBLE_PAPER) {
+            if ($design->getCircularDesignVariant()) {
+                $circularDesignVariant = $design->getCircularDesignVariant();
 
-            foreach ($circularDesignVariant->getDetails() as $detail) {
-                if ($detail->getBasePrice() > $maxPrice) {
-                    $maxPrice = $detail->getBasePrice();
+                foreach ($circularDesignVariant->getDetails() as $detail) {
+                    if ($detail->getBasePrice() > $maxPrice) {
+                        $maxPrice = $detail->getBasePrice();
+                    }
                 }
+            }
+        } else {
+            $mugArticle = $this->articleService->findOneForMugsDesign();
+
+            if ($mugArticle) {
+                $maxPrice = $mugArticle->getPrice();
             }
         }
 

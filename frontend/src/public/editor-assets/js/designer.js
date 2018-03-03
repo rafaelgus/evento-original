@@ -918,6 +918,22 @@ $(document).ready(function() {
 
         $('#save-design-form #image-file').val(canvas.toDataURL());
 
+
+        var canvasPreviewImage1 = document.getElementById("canvas1");
+        var canvasPreviewImage2 = document.getElementById("canvas2");
+        var canvasPreviewImage3 = document.getElementById("canvas3");
+
+        if (canvasPreviewImage1) {
+            var previewImages = {
+                left: canvasPreviewImage1.toDataURL(),
+                front: canvasPreviewImage2.toDataURL(),
+                right: canvasPreviewImage3.toDataURL()
+            };
+
+            $('#save-design-form #preview_images').val(JSON.stringify(previewImages));
+
+        }
+
         $('#save-design-form').submit();
     });
 
@@ -928,6 +944,21 @@ $(document).ready(function() {
         $('#finalize-design-form #json').val(json);
 
         $('#finalize-design-form #image-file').val(canvas.toDataURL());
+
+        var canvasPreviewImage1 = document.getElementById("canvas1");
+        var canvasPreviewImage2 = document.getElementById("canvas2");
+        var canvasPreviewImage3 = document.getElementById("canvas3");
+
+        if (canvasPreviewImage1) {
+            var previewImages = {
+                left: canvasPreviewImage1.toDataURL(),
+                front: canvasPreviewImage2.toDataURL(),
+                right: canvasPreviewImage3.toDataURL()
+            };
+
+            $('#finalize-design-form #preview_images').val(JSON.stringify(previewImages));
+
+        }
 
         $('#finalize-design-form').submit();
     });

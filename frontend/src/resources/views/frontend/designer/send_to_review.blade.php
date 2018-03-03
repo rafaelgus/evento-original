@@ -220,6 +220,8 @@
 
             var commissionValue = parseInt($('#commission').slider('getValue'));
             var originalPrice = parseInt("{{ $maxPrice  / 100}}");
+
+
             var maxPrice = originalPrice + (originalPrice * (commissionValue / 100));
             var earn = (maxPrice - originalPrice).toFixed(2);
 

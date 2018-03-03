@@ -1,5 +1,8 @@
 <?php
 
+
+Config::set('eventoriginal.designs.mugs.article_id', 1);
+
 Auth::routes();
 Route::post('register-customer', 'Frontend\CustomerController@register')->name('register_customer');
 Route::get('logout', 'Auth\LoginController@logout');

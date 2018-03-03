@@ -124,6 +124,7 @@
                                               method="POST">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
+                                            <input type="hidden" name="type" value="edible_paper">
                                             <input type="hidden" name="variant_id"
                                                    value="{{ $circularDesignVariant->getId() }}">
                                             <input type="hidden" name="image" id="image-file">
@@ -146,6 +147,7 @@
                                               method="POST">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden" name="json" id="json" value="">
+                                            <input type="hidden" name="type" value="edible_paper">
                                             <input type="hidden" name="variant_id"
                                                    value="{{ $circularDesignVariant->getId() }}">
                                             <input type="hidden" name="image" id="image-file">

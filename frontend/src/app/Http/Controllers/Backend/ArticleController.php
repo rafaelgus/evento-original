@@ -236,7 +236,8 @@ class ArticleController
             $ingredients,
             $prices,
             $healthys,
-            $data['isNew']
+            $data['isNew'],
+            $data['forMugsDesigns']
         );
 
         $this->articleService->save($article);
@@ -399,6 +400,7 @@ class ArticleController
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
         $article->setIsNew(($request->input('isNew') ?: false));
+        $article->setForMugsDesigns(($request->input('forMugsDesigns') ?: false));
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));

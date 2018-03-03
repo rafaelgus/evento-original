@@ -118,6 +118,7 @@ class DesignService
             $design = new Design();
             $design->setDesigner($data['designer']);
             $design->setName('Design ' . uniqid());
+            $design->setType($data['type']);
         }
 
         if (array_key_exists('name', $data)) {
@@ -163,6 +164,29 @@ class DesignService
             $design->setSource(DesignSource::TEMPLATE);
         } else {
             throw new InvalidArgumentException("Invalid design");
+        }
+
+        if (array_key_exists('preview_images', $data)) {
+            $previewImages = json_decode(array_get($data, 'preview_images'));
+
+            $images = [];
+
+            foreach ($previewImages as $key => $value) {
+                $img = str_replace('data:image/png;base64,', '', $value);
+                $img = str_replace(' ', '+', $img);
+                $fileData = base64_decode($img);
+                $fileName = uniqid() . 'png';
+
+                file_put_contents($fileName, $fileData);
+
+                $image = $this->storageService->savePicture($fileName, 'designs', 'png');
+
+                unlink($fileName);
+
+                $images[$key] = $image;
+            }
+
+            $design->setPreviewImages($images);
         }
 
         $this->designRepository->save($design);
