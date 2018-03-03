@@ -49,4 +49,5 @@ return [
     'pixelate' => 'Pixelado',
     'buy' => 'Comprar',
     'select_options' => 'Seleccionar opciones',
+    'select_font' => 'Seleccione una fuente',
 ];

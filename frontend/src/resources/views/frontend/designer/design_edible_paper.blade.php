@@ -53,6 +53,17 @@
             margin: 1rem 0;
         }
 
+        .font-select {
+            width: 100% !important;
+        }
+
+        .font-select > a {
+            border-radius: 0 !important;
+        }
+
+        .fs-drop {
+            width: 100% !important;
+        }
 
     </style>
 
@@ -473,7 +484,7 @@
 
             $('#fonts').fontselect({
                 style: 'font-select',
-                placeholder: 'Select a font',
+                placeholder: '{{ trans('editor.select_font') }}',
                 lookahead: 2
             });
         });

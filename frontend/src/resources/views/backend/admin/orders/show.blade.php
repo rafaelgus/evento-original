@@ -54,7 +54,16 @@
                                             {{ $orderDetail->getArticle()->getName() }}
 
                                             @if($orderDetail->getArticle()->getDesign())
-                                                <a href="{{ route('admin.designs.download', $orderDetail->getArticle()->getDesign()->getId(), $orderDetail->getQuantity()) }}">Descargar diseño</a>
+                                                <a href="{{ route(
+                                                'admin.designs.download',
+                                                [
+                                                    $orderDetail->getArticle()->getDesign()->getId(),
+                                                    $orderDetail->getQuantity(),
+                                                    $orderDetail->getArticle()->getSlug()
+                                                ])}}"
+                                                >
+                                                    Descargar diseño
+                                                </a>
                                             @endif
                                         </td>
                                         <td>{{ $orderDetail->getQuantity() }}</td>
@@ -75,12 +84,14 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="panel-ref">
                                         <h4 class="panel-title">
-                                            <a data-toggle="collapse" href="#panel-ref-colapse" aria-expanded="true" aria-controls="panel-data-colapse">
+                                            <a data-toggle="collapse" href="#panel-ref-colapse" aria-expanded="true"
+                                               aria-controls="panel-data-colapse">
                                                 {{trans('orders.affiliate_referral_data')}}
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="panel-ref-colapse" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="panel-data">
+                                    <div id="panel-ref-colapse" class="panel-collapse collapse out" role="tabpanel"
+                                         aria-labelledby="panel-data">
                                         <div class="panel-body">
                                             <dl class="dl-horizontal">
                                                 <dt>URL</dt>

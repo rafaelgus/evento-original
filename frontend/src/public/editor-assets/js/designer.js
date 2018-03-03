@@ -366,10 +366,16 @@ $(document).ready(function() {
         }
     });
 
-    $('#text-font').change(function(e) {
+    $('#fonts').change(function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && (activeObject.type === 'text' || activeObject.type === 'curvedText')) {
-            activeObject.set('fontFamily', $(this).val());
+            var font = $(this).val().replace(/\+/g, ' ');
+
+            font = font.split(":")[0];
+
+            activeObject.set('fontFamily', font);
+
+
             canvas.renderAll();
 
             if (activeObject.type === 'curvedText') {
