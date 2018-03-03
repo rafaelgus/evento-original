@@ -104,7 +104,7 @@
                     </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
-                        @if($article->getDesign()->getCircularDesignVariant())
+                        @if($article->getDesign() && $article->getDesign()->getCircularDesignVariant())
                           <div >
                             <select id="detail" name="detail" class="detail-select">
                               @foreach($article->getDesign()->getCircularDesignVariant()->getDetails() as $detail)
