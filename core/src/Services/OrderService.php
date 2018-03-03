@@ -208,7 +208,7 @@ class OrderService
             $total += ($amount * $quantity);
         }
 
-        $designerCommission = $total * ($design->getCommission() / 100);
+        $designerCommission = floor($total * ($design->getCommission() / 100));
 
         $moneyCommission = new Money($designerCommission, new Currency('EUR'));
 

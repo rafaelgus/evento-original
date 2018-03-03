@@ -49,8 +49,8 @@ class LiquidateDesignerCommission implements ShouldQueue
 
             foreach ($designs as $design) {
                 $this->orderService->liquidateDesignerCommission(
-                    $order,
-                    $design
+                    $order->getId(),
+                    $design->getId()
                 );
             }
         } catch (Exception $exception) {

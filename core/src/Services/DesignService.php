@@ -321,6 +321,10 @@ class DesignService
         return $design;
     }
 
+    /**
+     * @param Order $order
+     * @return Design|null
+     */
     public function findInOrder(Order $order)
     {
         return $this->designRepository->findInOrder($order);
