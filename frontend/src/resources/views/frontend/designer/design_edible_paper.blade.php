@@ -65,6 +65,30 @@
             width: 100% !important;
         }
 
+        .clip-art-gallery {
+            width: 100%;
+            min-height: 200px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .clip-art {
+            height: 70px;
+        }
+
+        .clip-art-gallery-container > span {
+            font-size: 2rem;
+            float: left;
+            margin-bottom: 1rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        #add-images-selected {
+            background-color: #413C5E;
+            margin-bottom: 1rem;
+        }
+
     </style>
 
     <!-- Custom Fonts -->
@@ -109,17 +133,12 @@
                             <i class="fa fa-pencil"></i> {{ trans('editor.add_text') }}
                         </button>
 
-                        <div style="height:0px;overflow:hidden">
-                            <input type="file" id="imageInput" name="imageInput"/>
-                        </div>
-
                         <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary add-button"
                                 id="add-image">
                             <i class="fa fa-camera"></i> {{ trans('editor.add_image') }}
                         </button>
 
                         <hr>
-
 
                         <div class="add-to-box text-center">
                             <div class="add-to-cart">
@@ -171,6 +190,29 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="clip-art-gallery-container" id="add-image-tools" hidden>
+                        <span>{{ trans('editor.upload_image') }}</span>
+                        <br>
+                        <input type="file" id="imageInput" name="imageInput"/>
+
+                        <br>
+
+                        <span>{{ trans('editor.or_select_image') }}</span>
+                        <br>
+                        <div class="clip-art-gallery">
+                            @foreach($images as $image)
+                                <img name="{{ $image }}" class="clip-art" src="{{ "/" . $image }}">
+                            @endforeach
+                        </div>
+
+                        <button type="button" class="btn btn-lg btn-primary"
+                                id="add-images-selected">
+                            </i> {{ trans('editor.add_selected') }}
+                        </button>
                     </div>
                 </div>
 
@@ -428,6 +470,7 @@
     <script src="/js/bootstrap-switch.min.js"></script>
     <script src="/js/icheck.min.js"></script>
     <script src="/editor-assets/js/jquery.fontselect.min.js"></script>
+    <script src="/js/jquery.imgcheckbox.js"></script>
 
     <script>
         var overlayImage = '{{ $circularDesignVariant->getPreviewImage()}}';
@@ -438,6 +481,8 @@
         if (designJson) {
             designJson = JSON.parse(designJson.replace(/&quot;/g, '"'));
         }
+
+        var clipArtsSelected = [];
 
         $(document).ready(function() {
             $('input').iCheck({
@@ -487,6 +532,34 @@
                 placeholder: '{{ trans('editor.select_font') }}',
                 lookahead: 2
             });
+
+            $('.clip-art').imgCheckbox({
+                styles: {
+                    "span.imgCheckbox.imgChked img": {
+                        // It's important to note that overriding the "filter" property will remove grayscaling
+                        "filter": "blur(5px)",
+
+                        // This is just css: remember compatibility
+                        "-webkit-filter": "blur(5px)",
+
+                        // Let's change the amount of scaling from the default of "0.8"
+                        "transform": "scale(0.9)"
+                    }
+                },
+                onclick: function(el){
+                    var isChecked = el.hasClass("imgChked"),
+                        imgEl = el.children()[0];  // the img element
+
+                    if (isChecked) {
+                        clipArtsSelected.push(imgEl.currentSrc);
+                    } else {
+                        clipArtsSelected = clipArtsSelected.filter(function(item) {
+                            return item !== imgEl.currentSrc;
+                        })
+                    }
+                }
+            });
+
         });
     </script>
 @endsection

@@ -265,7 +265,12 @@ class DesignerController
 
     public function designMug()
     {
-        return view('frontend/designer.design_mug');
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
+        return view('frontend/designer.design_mug', ['images' => $images]);
     }
 
     public function designEdiblePaper(int $id)
@@ -276,8 +281,14 @@ class DesignerController
             abort(404);
         }
 
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
         return view('frontend/designer.design_edible_paper')->with([
             'circularDesignVariant' => $circularDesignVariant,
+            'images' => $images,
         ]);
     }
 

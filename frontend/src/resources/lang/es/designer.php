@@ -74,8 +74,8 @@ return [
         'slug' => 'diseñar-papel-comestible',
     ],
     'material_size' => 'Tamaño',
-    'finalize' => 'Finalizar',
-    'save' => 'Guardar',
+    'finalize' => 'Enviar a revisión',
+    'save' => 'Guardar como borrador',
     'edit_design' => [
         'title' => 'Editar diseño',
         'slug' => 'editar-diseño',
