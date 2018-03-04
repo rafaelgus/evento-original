@@ -54,6 +54,18 @@ class Movement
     private $referralOrder;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Design", fetch="EAGER")
+     * @ORM\JoinColumn(name="design_sold_id", referencedColumnName="id", nullable=true)
+     */
+    private $designSold;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Order", fetch="EAGER")
+     * @ORM\JoinColumn(name="design_sold_order_id", referencedColumnName="id", nullable=true)
+     */
+    private $designSoldOrder;
+
+    /**
      * @return int
      */
     public function getId()
@@ -166,5 +178,37 @@ class Movement
     public function setReferralOrder(?Order $referralOrder)
     {
         $this->referralOrder = $referralOrder;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignSold()
+    {
+        return $this->designSold;
+    }
+
+    /**
+     * @param mixed $designSold
+     */
+    public function setDesignSold($designSold): void
+    {
+        $this->designSold = $designSold;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesignSoldOrder()
+    {
+        return $this->designSoldOrder;
+    }
+
+    /**
+     * @param mixed $designSoldOrder
+     */
+    public function setDesignSoldOrder($designSoldOrder): void
+    {
+        $this->designSoldOrder = $designSoldOrder;
     }
 }

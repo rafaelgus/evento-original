@@ -1,5 +1,8 @@
 <?php
 
+
+Config::set('eventoriginal.designs.mugs.article_id', 1);
+
 Auth::routes();
 Route::post('register-customer', 'Frontend\CustomerController@register')->name('register_customer');
 Route::get('logout', 'Auth\LoginController@logout');
@@ -19,6 +22,13 @@ Route::get('/removeToCart/{rowId}', 'Frontend\CartController@removeToCart');
 Route::get('/destroyCart', 'Frontend\CartController@destroyCart');
 Route::get('/cartItems', 'Frontend\CartController@getItemQuantity');
 Route::post('/updateQty', 'Frontend\CartController@updateQuantity');
+Route::post('/updateVariantDetail', 'Frontend\CartController@updateVariantDetail');
+
+Route::get('/crear-diseño-desde-cero', 'Frontend\DesignController@createDesign');
+Route::get('/crear-papel-comestible-desde-cero', 'Frontend\DesignController@createEdiblePaper');
+Route::get('/diseñar-papel-comestible-desde-cero/{id}', 'Frontend\DesignController@designEdiblePaper');
+Route::get('/diseñar-taza-desde-cero', 'Frontend\DesignController@designMug')->name('design_mug');
+Route::post('/buy-design', 'Frontend\CartController@buyDesign')->name('buy_design');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/checkout/billing', 'Frontend\PaymentController@billingInformation');
@@ -127,6 +137,15 @@ Route::middleware(['auth'])->group(function () {
             '/send-design-to-review/{id}',
             'Frontend\DesignerController@sendDesignToReview'
         )->name('designer.sendDesignToReview');
+        Route::get(
+            '/download-template/{id}',
+            'Frontend\DesignerController@downloadTemplate'
+        )->name('designer.downloadTemplate');
+
+        Route::get(
+            '/' . trans('designer.design_mug.slug'),
+            'Frontend\DesignerController@designMug'
+        )->name('designer.designMug');
     });
 
     Route::get('/mi-cuenta', 'Frontend\AccountController@getAccount')->name('my_account');
@@ -348,10 +367,10 @@ Route::middleware(['auth'])->group(function () {
             Route::group(['prefix' => '/designs'], function () {
                 Route::get('/needs-review', 'Backend\DesignController@inReview')->name('admin.designs.inReview');
                 Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
-                Route::post('/approve/{id}', 'Backend\DesignController@show')->name('admin.designs.approve');
-                Route::get('/show/{id}', 'Backend\DesignController@show')->name('admin.designs.show');
+                Route::post('/approve/{id}', 'Backend\DesignController@approve')->name('admin.designs.approve');
                 Route::get('/reject/{id}', 'Backend\DesignController@rejectForm')->name('admin.designs.rejectForm');
                 Route::post('/reject/{id}', 'Backend\DesignController@reject')->name('admin.designs.reject');
+                Route::get('/download/{id}/{quantity}/{name}', 'Backend\DesignController@download')->name('admin.designs.download');
             });
             Route::group(['prefix' => '/orders'], function () {
                 Route::get('/{id}/order', 'Backend\OrderController@show')->name('admin.orders.show');
@@ -366,10 +385,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/articles/{categorySlug?}', 'Frontend\ArticleController@getFilteredArticles');
     Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
-
-    Route::get('/diseñar/papel-comestible/desde-cero', 'Frontend\DesignController@circularDesignVariants');
-    Route::get(
-        '/diseñar/papel-comestible/desde-cero/{circularDesignVariantId}',
-        'Frontend\DesignController@circularDesignVariantsEditor'
-    )->name('circular_design_variant_editor');
 });

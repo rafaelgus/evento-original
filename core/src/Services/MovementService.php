@@ -7,6 +7,7 @@ use EventoOriginal\Core\Entities\User;
 use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Entities\Wallet;
 use DateTime;
+use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Persistence\Repositories\MovementRepository;
 use Money\Money;
 
@@ -19,7 +20,7 @@ class MovementService
         $this->movementRepository = $movementRepository;
     }
 
-    public function create(Wallet $wallet, string $type, Money $amount, DateTime $date, Order $referralOrder = null)
+    public function create(Wallet $wallet, string $type, Money $amount, DateTime $date, array $data = [])
     {
         $movement = new Movement();
         $movement->setType($type);
@@ -27,7 +28,13 @@ class MovementService
         $movement->setCurrency($amount->getCurrency());
         $movement->setDate($date);
         $movement->setWallet($wallet);
-        $movement->setReferralOrder($referralOrder);
+
+        if ($movement->getType() === MovementType::AFFILIATE_COMMISSION_CREDIT) {
+            $movement->setReferralOrder(array_get($data, 'order'));
+        } elseif ($movement->getType() === MovementType::DESIGN_COMMISSION_CREDIT) {
+            $movement->setDesignSold(array_get($data, 'design_sold'));
+            $movement->setDesignSoldOrder(array_get($data, 'order'));
+        }
 
         return $this->movementRepository->save($movement);
     }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
+use EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository;
 use EventoOriginal\Core\Services\CircularDesignVariantService;
 use EventoOriginal\Core\Services\DesignService;
 
@@ -11,18 +12,25 @@ class DesignController
      * @var DesignService
      */
     private $designService;
+    /**
+     * @var CircularDesignVariantDetailRepository
+     */
+    private $circularDesignVariantDetailRepository;
 
     /**
      * DesignController constructor.
      * @param CircularDesignVariantService $circularDesignVariantService
      * @param DesignService $designService
+     * @param CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository
      */
     public function __construct(
         CircularDesignVariantService $circularDesignVariantService,
-        DesignService $designService
+        DesignService $designService,
+        CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository
     ) {
         $this->circularDesignVariantService = $circularDesignVariantService;
         $this->designService = $designService;
+        $this->circularDesignVariantDetailRepository = $circularDesignVariantDetailRepository;
     }
 
     public function circularDesignVariants()
@@ -47,5 +55,50 @@ class DesignController
                 'circularDesignVariant' => $circularDesignVariant
             ]
         );
+    }
+
+    public function createDesign()
+    {
+        return view('frontend/designs.create_design');
+    }
+
+    public function createEdiblePaper()
+    {
+        $variants = $this->circularDesignVariantService->findAll();
+
+        return view('frontend/designs.create_edible_paper')->with([
+            'variants' => $variants,
+        ]);
+    }
+
+    public function designEdiblePaper(int $id)
+    {
+        $circularDesignVariant = $this->circularDesignVariantService->findOneById($id);
+
+        if (!$circularDesignVariant) {
+            abort(404);
+        }
+
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
+        return view('frontend/designs.design_edible_paper')->with([
+            'circularDesignVariant' => $circularDesignVariant,
+            'images' => $images,
+        ]);
+    }
+
+    public function designMug()
+    {
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
+        return view('frontend/designs.design_mug')->with([
+            'images' => $images,
+        ]);
     }
 }

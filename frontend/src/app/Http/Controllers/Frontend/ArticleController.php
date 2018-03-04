@@ -166,7 +166,7 @@ class ArticleController extends Controller
 
     public function search(string $search)
     {
-        $articles = $this->articleService->getPaginatedSearch($search,5);
+        $articles = $this->articleService->getPaginatedSearch($search, 5);
 
         $articles = $this->articleService->searchToJson($articles->getQuery()->getResult());
 

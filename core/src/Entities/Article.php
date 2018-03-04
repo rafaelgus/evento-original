@@ -218,6 +218,17 @@ class Article
      */
     private $orderDetails;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Design", inversedBy="article")
+     * @ORM\JoinColumn(name="design_id", referencedColumnName="id")
+     */
+    private $design;
+
+    /**
+     * @ORM\Column(type="boolean", name="for_mugs_designs", nullable=true)
+     */
+    private $forMugsDesigns;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -820,5 +831,37 @@ class Article
         $price = new Money($this->getPrice(), new Currency($this->getPriceCurrency()));
 
         return $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDesign()
+    {
+        return $this->design;
+    }
+
+    /**
+     * @param mixed $design
+     */
+    public function setDesign($design): void
+    {
+        $this->design = $design;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isForMugsDesigns()
+    {
+        return ($this->forMugsDesigns ?: false);
+    }
+
+    /**
+     * @param mixed $forMugsDesigns
+     */
+    public function setForMugsDesigns(bool $forMugsDesigns): void
+    {
+        $this->forMugsDesigns = $forMugsDesigns;
     }
 }

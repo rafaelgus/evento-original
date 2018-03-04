@@ -74,8 +74,8 @@ return [
         'slug' => 'diseñar-papel-comestible',
     ],
     'material_size' => 'Tamaño',
-    'finalize' => 'Finalizar',
-    'save' => 'Guardar',
+    'finalize' => 'Enviar a revisión',
+    'save' => 'Guardar como borrador',
     'edit_design' => [
         'title' => 'Editar diseño',
         'slug' => 'editar-diseño',
@@ -99,5 +99,10 @@ return [
         'send' => 'Enviar',
         'select_occasion' => 'Seleccione las ocasiones adecuadas al diseño',
         'commission' => 'Comisión por cada venta del diseño',
-    ]
+        'image' => 'Imagen del diseño creado desde la plantilla',
+    ],
+    'design_mug' => [
+        'slug' => 'diseñar-taza',
+        'title' => 'Diseñar taza',
+    ],
 ];

@@ -56,3 +56,46 @@ if (!function_exists('menu_item_url')) {
         return $menuItem->getUrl();
     }
 }
+
+if (!function_exists('get_circular_design_variant_detail')) {
+    function get_circular_design_variant_detail(int $id)
+    {
+        $repo = app()->make(
+            \EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository::class
+        );
+
+        return $repo->findOneById($id);
+    }
+}
+
+if (!function_exists('get_article_design')) {
+    function get_article_design_by_barcode(string $barCode)
+    {
+        $repo = app()->make(
+            \EventoOriginal\Core\Persistence\Repositories\ArticleRepository::class
+        );
+
+        $article = $repo->findOneByBarCode($barCode);
+
+        if ($article) {
+            return $article->getDesign();
+        }
+
+        return null;
+    }
+}
+
+if (!function_exists('get_design_image')) {
+    function get_design_image(\EventoOriginal\Core\Entities\Design $design)
+    {
+        if ($design->getType() === \EventoOriginal\Core\Enums\DesignType::MUG) {
+            if (count($design->getPreviewImages()) > 0) {
+                return array_values($design->getPreviewImages())[0];
+            }
+
+            return $design->getImage();
+        }
+
+        return $design->getImage();
+    }
+}

@@ -25,7 +25,7 @@ class CircularDesignVariant
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DesignMaterialSize")
+     * @ORM\ManyToOne(targetEntity="DesignMaterialSize", fetch="EAGER")
      * @ORM\JoinColumn(name="design_material_size_id", referencedColumnName="id")
      */
     private $designMaterialSize;
@@ -99,7 +99,7 @@ class CircularDesignVariant
     }
 
     /**
-     * @return mixed
+     * @return null|DesignMaterialSize
      */
     public function getDesignMaterialSize()
     {
@@ -181,6 +181,15 @@ class CircularDesignVariant
     public function addDetail(CircularDesignVariantDetail $circularDesignVariantDetail)
     {
         $this->details[] = $circularDesignVariantDetail;
+    }
+
+    public function getDefaultDetail()
+    {
+        if (count($this->details) > 0) {
+            return $this->details[0];
+        }
+
+        return null;
     }
 
     /**

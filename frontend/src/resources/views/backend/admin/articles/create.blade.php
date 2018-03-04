@@ -216,6 +216,15 @@
                                     {!! $errors->first('healthys', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
+
+                            <div class="form-group {{ $errors->has('forMugsDesigns') ? 'has-error' : '' }}">
+                                <label for="inputForMugsDesigns" class="col-sm-2 control-label">Es para diseño de tazas</label>
+                                <div class="col-sm-10">
+                                    <input type="checkbox" name="forMugsDesigns" id="inputForMugsDesigns" checked class="checkbox">
+                                    {!! $errors->first('forMugsDesigns', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             @if($ableToLoad)
                                 <div id="fine-uploader-gallery"></div>
                             @endif

@@ -125,7 +125,7 @@
                                 <div class="subitems" id="subitems">
 
                                     <div id="subitem">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-5">
                                             <div class="form-group">
                                                 <label for="inputDesignMaterialType" class="col-sm-2 control-label">Material</label>
                                                 <div class="col-sm-10">
@@ -141,18 +141,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="inputDesignMaterialType" class="col-sm-2 control-label">Articulo</label>
+                                                <label for="inputBasePrice" class="col-sm-2 control-label">Precio Base</label>
                                                 <div class="col-sm-10">
-                                                    <select class="form-control select2" name="material_types[]"
-                                                            id="inputDesignMaterialType" style="width: 100%">
-                                                        @foreach($designMaterialTypes as $type)
-                                                            <option value="{{ $type->getId() }}">
-                                                                {{ $type->getName() }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <input type="number" step="0.01" class="form-control" id="inputBasePrices"
+                                                           name="base_prices[]"
+                                                           placeholder="Precio base" value="{{ old('base_price') }}">
                                                 </div>
                                             </div>
                                         </div>

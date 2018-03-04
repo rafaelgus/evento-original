@@ -92,6 +92,6 @@ class DesignMaterialSizeController extends Controller
             ]);
         }
 
-        return Datatables::of($designMaterialSizesCollection)->make(true);
+        return DataTables::of($designMaterialSizesCollection)->make(true);
     }
 }

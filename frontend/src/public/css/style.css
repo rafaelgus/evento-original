@@ -17561,3 +17561,7 @@ select:focus {
     background-color: #413C5E !important;
     border-color: #413C5E !important;
 }
+
+.detail-select {
+    margin-bottom: 8px;
+}

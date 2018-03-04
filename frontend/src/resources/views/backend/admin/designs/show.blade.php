@@ -39,6 +39,12 @@
                             <dt>Diseñador</dt>
                             <dd>{{ $design->getDesigner()->getNickName() }} </dd>
 
+                            <dt>Estado</dt>
+                            <dd>{{ $design->getStatus() }} </dd>
+
+                            <dt>Tipo</dt>
+                            <dd>{{ $design->getType() }} </dd>
+
                             <dd>
                                 @if($design->getStatus() == \EventoOriginal\Core\Enums\DesignStatus::IN_REVIEW)
                                     {{ Form::open([

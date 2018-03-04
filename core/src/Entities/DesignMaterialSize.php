@@ -32,6 +32,16 @@ class DesignMaterialSize
     private $verticalSize;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $horizontalSizeInPx;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $verticalSizeInPx;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -85,5 +95,37 @@ class DesignMaterialSize
     public function setVerticalSize($verticalSize): void
     {
         $this->verticalSize = $verticalSize;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHorizontalSizeInPx()
+    {
+        return $this->horizontalSizeInPx;
+    }
+
+    /**
+     * @param mixed $horizontalSizeInPx
+     */
+    public function setHorizontalSizeInPx($horizontalSizeInPx): void
+    {
+        $this->horizontalSizeInPx = $horizontalSizeInPx;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVerticalSizeInPx()
+    {
+        return $this->verticalSizeInPx;
+    }
+
+    /**
+     * @param mixed $verticalSizeInPx
+     */
+    public function setVerticalSizeInPx($verticalSizeInPx): void
+    {
+        $this->verticalSizeInPx = $verticalSizeInPx;
     }
 }

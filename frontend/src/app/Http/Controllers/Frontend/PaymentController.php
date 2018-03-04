@@ -213,9 +213,10 @@ class PaymentController
                 Log::error('PAYPAL ' . $exception->getMessage());
                 logger()->error($exception->getTraceAsString());
 
+                $this->paymentService->cancel($payment);
                 $this->destroyCart();
 
-                return abort(400, 'Error to process payment');
+                return view('frontend.payment.cancel');
             }
         }
     }
@@ -226,18 +227,14 @@ class PaymentController
             if ($request->has('token')) {
                 $payment = $this->paymentService->findByToken($request->input('token'));
                 $this->paymentService->cancel($payment);
-
-                $this->destroyCart();
-
-                return view('frontend.payment.cancel');
             }
         } catch (Exception $exception) {
             Log::error('PAYPAL ' . $exception->getMessage());
-
-            $this->destroyCart();
-
-            return abort(400, 'Error to process payment');
         }
+
+        $this->destroyCart();
+
+        return view('frontend.payment.cancel');
     }
 
     private function destroyCart()

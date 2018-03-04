@@ -36,6 +36,11 @@ class CircularDesignVariantDetail
     private $price;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $basePrice;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Article")
      * @ORM\JoinColumn(name="article_id", referencedColumnName="id")
      */
@@ -97,6 +102,32 @@ class CircularDesignVariantDetail
         $this->price = $price;
     }
 
+    public function getPriceMoney()
+    {
+        return new Money($this->price, new Currency("EUR"));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBasePrice()
+    {
+        return $this->basePrice;
+    }
+
+    /**
+     * @param mixed $basePrice
+     */
+    public function setBasePrice(int $basePrice): void
+    {
+        $this->basePrice = $basePrice;
+    }
+
+    public function getBasePriceMoney()
+    {
+        return new Money($this->basePrice, new Currency("EUR"));
+    }
+
     public function getMoney()
     {
         return new Money($this->price, new Currency('EUR'));
@@ -116,5 +147,13 @@ class CircularDesignVariantDetail
     public function setArticle(Article $article): void
     {
         $this->article = $article;
+    }
+
+    public function getPriceWithCommissionMoney(int $commission)
+    {
+        $costPrice = $this->getBasePrice();
+        $price = $costPrice + ($costPrice * ($commission / 100));
+
+        return new Money($price, new Currency("EUR"));
     }
 }

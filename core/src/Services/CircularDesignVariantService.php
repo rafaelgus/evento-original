@@ -25,6 +25,10 @@ class CircularDesignVariantService
      * @var CircularDesignVariantDetailRepository
      */
     private $circularDesignVariantDetailRepository;
+    /**
+     * @var CategoryService
+     */
+    private $categoryService;
 
     /**
      * CircularDesignVariantService constructor.
@@ -32,17 +36,20 @@ class CircularDesignVariantService
      * @param CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository
      * @param DesignMaterialSizeService $designMaterialSizeService
      * @param DesignMaterialTypeService $designMaterialTypeService
+     * @param CategoryService $categoryService
      */
     public function __construct(
         CircularDesignVariantRepository $circularDesignVariantRepository,
         CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository,
         DesignMaterialSizeService $designMaterialSizeService,
-        DesignMaterialTypeService $designMaterialTypeService
+        DesignMaterialTypeService $designMaterialTypeService,
+        CategoryService $categoryService
     ) {
         $this->circularDesignVariantRepository = $circularDesignVariantRepository;
         $this->designMaterialSizeService = $designMaterialSizeService;
         $this->designMaterialTypeService = $designMaterialTypeService;
         $this->circularDesignVariantDetailRepository = $circularDesignVariantDetailRepository;
+        $this->categoryService = $categoryService;
     }
 
     public function findOneById(int $id)
@@ -69,6 +76,12 @@ class CircularDesignVariantService
             $circularDesignVariant->setPreviewImage(array_get($data, 'preview_image'));
         }
 
+        if (isset($data['category'])) {
+            $category = $this->categoryService->findOneById($data['category']);
+
+            $circularDesignVariant->setCategory($category);
+        }
+
         $circularDesignVariant->setDiameterOfCircles(array_get($data, 'diameter_of_circles'));
         $circularDesignVariant->setNumberOfCircles(array_get($data, 'number_of_circles'));
         $circularDesignVariant->setPrice(array_get($data, 'price') * 100);
@@ -78,6 +91,7 @@ class CircularDesignVariantService
             if ($designMaterialType) {
                 $detail = new CircularDesignVariantDetail();
                 $detail->setPrice($data['prices'][$i] * 100);
+                $detail->setBasePrice($data['base_prices'][$i] * 100);
                 $detail->setDesignMaterialType($designMaterialType);
                 $detail->setCircularDesignVariant($circularDesignVariant);
 
@@ -111,16 +125,27 @@ class CircularDesignVariantService
             $this->circularDesignVariantDetailRepository->remove($detail);
         }
 
-        foreach ($data['material_types'] as $i => $design_material_type_id) {
-            $designMaterialType = $this->designMaterialTypeService->findOneById($design_material_type_id);
-            if ($designMaterialType) {
-                $detail = new CircularDesignVariantDetail();
-                $detail->setPrice($data['prices'][$i] * 100);
-                $detail->setDesignMaterialType($designMaterialType);
-                $detail->setCircularDesignVariant($circularDesignVariant);
+        if (isset($data['category'])) {
+            $category = $this->categoryService->findOneById($data['category']);
 
-                $circularDesignVariant->addDetail($detail);
+            $circularDesignVariant->setCategory($category);
+        }
+
+        if (isset($data['material_types'])) {
+            foreach ($data['material_types'] as $i => $design_material_type_id) {
+                $designMaterialType = $this->designMaterialTypeService->findOneById($design_material_type_id);
+                if ($designMaterialType) {
+                    $detail = new CircularDesignVariantDetail();
+                    $detail->setPrice($data['prices'][$i] * 100);
+                    $detail->setBasePrice($data['base_prices'][$i] * 100);
+                    $detail->setDesignMaterialType($designMaterialType);
+                    $detail->setCircularDesignVariant($circularDesignVariant);
+
+                    $circularDesignVariant->addDetail($detail);
+                }
             }
+        } else {
+            $circularDesignVariant->setDetails([]);
         }
 
         $this->circularDesignVariantRepository->save($circularDesignVariant);

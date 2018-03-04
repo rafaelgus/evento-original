@@ -16,13 +16,14 @@ use EventoOriginal\Core\Services\ImageService;
 use EventoOriginal\Core\Services\IngredientService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\PriceService;
+use EventoOriginal\Core\Services\StorageService;
 use EventoOriginal\Core\Services\TagService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\DataTables;
 
 class ArticleController
 {
@@ -40,6 +41,10 @@ class ArticleController
     protected $brandService;
     protected $priceService;
     protected $healthyService;
+    /**
+     * @var StorageService
+     */
+    private $storageService;
 
     public function __construct(
         ArticleService $articleService,
@@ -53,7 +58,8 @@ class ArticleController
         IngredientService $ingredientService,
         BrandService $brandService,
         PriceService $priceService,
-        HealthyService $healthyService
+        HealthyService $healthyService,
+        StorageService $storageService
     ) {
         $this->articleService = $articleService;
         $this->categoryService = $categoryService;
@@ -67,6 +73,7 @@ class ArticleController
         $this->brandService = $brandService;
         $this->priceService = $priceService;
         $this->healthyService = $healthyService;
+        $this->storageService = $storageService;
     }
 
     public function index()
@@ -231,7 +238,8 @@ class ArticleController
             $ingredients,
             $prices,
             $healthys,
-            $data['isNew']
+            $data['isNew'],
+            $data['forMugsDesigns']
         );
 
         $this->articleService->save($article);
@@ -256,16 +264,12 @@ class ArticleController
         $images = [];
 
         foreach ($files as $file) {
-            $imageName = uniqid($file->getFilename()) . '.' . $file->getClientOriginalExtension();
-
-            $filePath = '/images/' . $imageName;
-
-            Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+            $image = $this->storageService->savePicture($file, 'images', $file->getClientOriginalExtension());
 
             $image = $this
                 ->imageService
                 ->create(
-                    $imageName,
+                    $image,
                     'image_' . $imageNumber,
                     $article
                 );
@@ -399,6 +403,7 @@ class ArticleController
         $article->setCostPrice($request->input('costPrice'));
         $article->setPriceCurrency('EUR');
         $article->setIsNew(($request->input('isNew') ?: false));
+        $article->setForMugsDesigns(($request->input('forMugsDesigns') ?: false));
 
         $this->articleService->update($article);
         Session::flash('message', trans('backend/messages.confirmation.create.article'));
@@ -465,13 +470,8 @@ class ArticleController
     {
         $image = $this->imageService->findById($imageId);
 
-        if (Storage::disk('s3')->exists('/images/' . $image->getPath())) {
-            Storage::disk('s3')->delete('/images/' . $image->getPath());
+        $this->imageService->delete($image);
 
-            $this->imageService->delete($image);
-        } else {
-            return ['status' => false];
-        }
         return ['status' => true];
     }
 

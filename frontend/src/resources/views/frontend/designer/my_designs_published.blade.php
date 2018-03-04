@@ -75,7 +75,7 @@
                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                         <div class="item-inner">
                                             <div class="item-img">
-                                                <div class="item-img-info"><a href="#" title="{{ $design->getName() }}" class="product-image"><img src="{{ $design->getImage() }}" alt="{{ $design->getName() }}"></a>
+                                                <div class="item-img-info"><a href="#" title="{{ $design->getName() }}" class="product-image"><img src="{{ get_design_image($design) }}" alt="{{ $design->getName() }}"></a>
                                                 </div>
                                             </div>
                                             <div class="item-info">

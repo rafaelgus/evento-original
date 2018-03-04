@@ -44,7 +44,7 @@
     <section class="main-container col2-left-layout bounceInUp animated">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 ">
+                <div class="col-sm-9">
                     <div class="category-description std">
                         <div class="slider-items-products">
                             <h2 class="page-heading"><span class="page-heading-title">{{ trans('designer.create_edible_paper.title') }}</span>

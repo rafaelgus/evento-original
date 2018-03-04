@@ -325,4 +325,9 @@ class ArticleRepository extends BaseRepository
     {
         return $this->findOneBy(['internalCode' => $internalCode]);
     }
+
+    public function findForMugsDesign()
+    {
+        return $this->findOneBy(['forMugsDesigns' => true]);
+    }
 }

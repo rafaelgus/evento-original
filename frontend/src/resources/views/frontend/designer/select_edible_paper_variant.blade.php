@@ -56,8 +56,8 @@
                     </div>
                     <section>
                         <div class="row">
-                            <div class="col-md-5" style="position:relative; width: auto">
-                                <img src="{{ $variant->getPreviewImage() }}" alt="{{ $variant->getName() }}"/>
+                            <div class="col-md-7" style="position:relative;">
+                                <img src="{{ $variant->getPreviewImage() }}" alt="{{ $variant->getName() }}" style="max-width: 100%"/>
                             </div>
                             <div class="col-md-5">
                                 {{ trans('designer.select_edible_paper.description') }}
@@ -82,7 +82,7 @@
                                         <br>
                                         <br>
 
-                                        <a class="button link-button" href="{{ route('designer.designEdiblePaper', $variant->getId()) }}">
+                                        <a class="button link-button" href="{{ route('designer.downloadTemplate', $variant->getId()) }}">
                                             {{ trans('designer.select_edible_paper.download_template.button') }}
                                         </a>
                                     </li>

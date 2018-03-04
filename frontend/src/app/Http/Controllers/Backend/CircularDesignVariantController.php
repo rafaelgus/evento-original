@@ -85,7 +85,9 @@ class CircularDesignVariantController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $image = $this->storageService->savePicture($request->file('image'), 'circular-design-variants');
+            $file = $request->file('image');
+
+            $image = $this->storageService->savePicture($file, 'circular-design-variants', $file->getClientOriginalExtension());
 
             $data['preview_image'] = $image;
         }
@@ -126,7 +128,9 @@ class CircularDesignVariantController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $image = $this->storageService->savePicture($request->file('image'), 'circular-design-variants');
+            $file = $request->file('image');
+
+            $image = $this->storageService->savePicture($file, 'circular-design-variants', $file->getClientOriginalExtension());
 
             $data['preview_image'] = $image;
         }

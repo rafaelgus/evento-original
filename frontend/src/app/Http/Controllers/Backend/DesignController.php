@@ -2,9 +2,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Barryvdh\DomPDF\PDF;
 use EventoOriginal\Core\Enums\DesignStatus;
+use EventoOriginal\Core\Enums\DesignType;
 use EventoOriginal\Core\Services\DesignService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class DesignController extends Controller
 {
@@ -41,7 +45,11 @@ class DesignController extends Controller
         return view('backend/admin.designs.show')->with(['design' => $design]);
     }
 
-    public function approve(int $id)
+    /**
+     * @param int $id
+     * @return $this
+     */
+    public function approve(Request $request, int $id)
     {
         $design = $this->designService->findOneById($id);
 
@@ -49,7 +57,11 @@ class DesignController extends Controller
             abort(404);
         }
 
-        $this->designService->approve($design);
+        try {
+            $this->designService->approve($design);
+        } catch (Exception $exception) {
+            dd($exception);
+        }
 
         return view('backend/admin.designs.show')->with(['design' => $design]);
     }
@@ -76,5 +88,43 @@ class DesignController extends Controller
         $this->designService->reject($design, $request->get('observation'));
 
         return $this->inReview();
+    }
+
+    public function download(int $id, int $quantity, string $name)
+    {
+        $design = $this->designService->findOneById($id);
+
+        if (!$design) {
+            abort(404);
+        }
+
+        if ($design->getType() === DesignType::MUG) {
+            return redirect()->to($design->getImage());
+        }
+
+        $width = 0;
+        $height = 0;
+
+        if ($design->getCircularDesignVariant()) {
+            $materialSize = $design->getCircularDesignVariant()->getDesignMaterialSize();
+
+            $width = $materialSize->getHorizontalSizeInPx();
+            $height = $materialSize->getVerticalSizeInPx();
+        }
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView(
+            'backend/admin.designs.download_pdf',
+            [
+                'design' => $design,
+                'width' => $width,
+                'height' => $height,
+                'quantity' => $quantity
+            ]
+        );
+        $pdf->setPaper([0, 0, $width, $height]);
+
+
+        return $pdf->stream($name . ".pdf");
     }
 }

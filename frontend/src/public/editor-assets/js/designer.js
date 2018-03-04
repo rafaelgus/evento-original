@@ -1,9 +1,14 @@
 $('#add-image').click(function() {
-    $('#imageInput').click();
+    $('#editor-tools').hide();
+    $('#add-image-tools').show();
 });
 
 $('#change-image').click(function() {
     $('#changeImageInput').click();
+});
+
+$('#add-images-selected').click(function() {
+
 });
 
 var canvas;
@@ -16,7 +21,8 @@ $(document).ready(function() {
         selectionBorderColor: 'blue',
         backgroundColor: 'white',
         borderColor: 'black',
-        controlsAboveOverlay: true
+        controlsAboveOverlay: true,
+        // imageSmoothingEnabled: true
     });
 
     fabric.Object.prototype.setControlsVisibility({
@@ -239,6 +245,74 @@ $(document).ready(function() {
         tour1.start();
     });
 
+    $('#add-images-selected').click(function(e) {
+        clipArtsSelected.forEach(function(clipArt) {
+            var data = clipArt;
+            var objectId = id;
+
+            fabric.Image.fromURL(data, function(img) {
+                var oImg = img.set({
+                    id: objectId,
+                    hasRotatingPoint: false,
+                    originX: 'center',
+                    originY: 'center'
+                });
+
+                canvas.centerObject(oImg);
+
+                oImg.customiseCornerIcons(customizeControlsOptions, function() {
+                    canvas.renderAll();
+                });
+
+                var rFilter = new fabric.Image.filters.Resize({
+                    resizeType: 'sliceHack'
+                });
+                oImg.resizeFilters.push(rFilter);
+                oImg.applyFilters();
+
+                oImg.scale(0.25);
+
+                canvas.add(oImg).renderAll();
+
+                canvas.setActiveObject(oImg);
+
+                $('#add-image-tools').hide();
+                $('#editor-tools').hide();
+
+                addLayer('Imagen' + objectId, objectId)
+                id++;
+
+                clipArtsSelected = [];
+
+                $('.imgCheckbox0').removeClass('imgChked');
+
+                var tour2 = new Tour({
+                    name: 'tour35',
+                    backdropPadding: 'left',
+                    steps: [
+                        {
+                            element: "#image-tools",
+                            placement: "left",
+                            title: "Edición de imagen",
+                            content: "Personalice la imagen con los siguientes controles."
+                        },
+                        {
+                            element: "#common-tools",
+                            placement: "left",
+                            title: "Otros controles",
+                            content: "Eliga otras personalizaciones aquí."
+                        }
+                    ],
+                    template: "<div class='popover tour'> <div class='arrow'></div> <h3 class='popover-title'></h3> <div class='popover-content'></div> <div class='popover-navigation'> <button class='btn btn-default btn-sm' data-role='prev'>« Ant</button> <span data-role='separator'>|</span> <button class='btn btn-default btn-sm' data-role='next'>Sig »</button>  <button class='btn btn-default btn-sm' data-role='end' style='margin-left: 5px'>Cerrar</button> </div> </div>"
+                });
+
+                tour2.init();
+                tour2.start();
+            });
+        });
+    });
+
+
     $('#imageInput').on("change", function(e) {
         var file = e.target.files[0];
         var reader = new FileReader();
@@ -252,8 +326,9 @@ $(document).ready(function() {
                     id: objectId,
                     hasRotatingPoint: false,
                     originX: 'center',
-                    originY: 'center'
-                }).scale(0.25);
+                    originY: 'center',
+                    crossOrigin: "anonymous"
+                });
 
                 canvas.centerObject(oImg);
 
@@ -261,10 +336,19 @@ $(document).ready(function() {
                     canvas.renderAll();
                 });
 
+                var rFilter = new fabric.Image.filters.Resize({
+                    resizeType: 'sliceHack'
+                });
+                oImg.resizeFilters.push(rFilter);
+                oImg.applyFilters();
+
+                oImg.scale(0.25);
+
                 canvas.add(oImg).renderAll();
 
                 canvas.setActiveObject(oImg);
 
+                $('#add-image-tools').hide();
                 $('#editor-tools').hide();
 
                 addLayer('Imagen' + objectId, objectId)
@@ -366,10 +450,16 @@ $(document).ready(function() {
         }
     });
 
-    $('#text-font').change(function(e) {
+    $('#fonts').change(function(e) {
         var activeObject = canvas.getActiveObject();
         if (activeObject && (activeObject.type === 'text' || activeObject.type === 'curvedText')) {
-            activeObject.set('fontFamily', $(this).val());
+            var font = $(this).val().replace(/\+/g, ' ');
+
+            font = font.split(":")[0];
+
+            activeObject.set('fontFamily', font);
+
+
             canvas.renderAll();
 
             if (activeObject.type === 'curvedText') {
@@ -903,7 +993,18 @@ $(document).ready(function() {
     $('#save-svg').click(function() {
         var svgFile = new Blob([canvas.toSVG()], {type: "image/svg+xml;charset=utf-8"});
 
-        saveAs(svgFile, "canvas.svg");
+
+        var svgURL = new XMLSerializer().serializeToString(canvas.toSVG());
+        var img  = new Image();
+        img.onload = function(){
+            ctx.drawImage(this, 0,0);
+            callback();
+        }
+        img.src = 'data:image/svg+xml; charset=utf8, '+encodeURIComponent(svgURL);
+
+        console.log(img);
+
+        // saveAs(svgFile, "canvas.svg");
     });
 
     $('#save-json').click(function() {
@@ -918,6 +1019,21 @@ $(document).ready(function() {
 
         $('#save-design-form #image-file').val(canvas.toDataURL());
 
+        var canvasPreviewImage1 = document.getElementById("canvas1");
+        var canvasPreviewImage2 = document.getElementById("canvas2");
+        var canvasPreviewImage3 = document.getElementById("canvas3");
+
+        if (canvasPreviewImage1) {
+            var previewImages = {
+                left: canvasPreviewImage1.toDataURL(),
+                front: canvasPreviewImage2.toDataURL(),
+                right: canvasPreviewImage3.toDataURL()
+            };
+
+            $('#save-design-form #preview_images').val(JSON.stringify(previewImages));
+
+        }
+
         $('#save-design-form').submit();
     });
 
@@ -928,6 +1044,21 @@ $(document).ready(function() {
         $('#finalize-design-form #json').val(json);
 
         $('#finalize-design-form #image-file').val(canvas.toDataURL());
+
+        var canvasPreviewImage1 = document.getElementById("canvas1");
+        var canvasPreviewImage2 = document.getElementById("canvas2");
+        var canvasPreviewImage3 = document.getElementById("canvas3");
+
+        if (canvasPreviewImage1) {
+            var previewImages = {
+                left: canvasPreviewImage1.toDataURL(),
+                front: canvasPreviewImage2.toDataURL(),
+                right: canvasPreviewImage3.toDataURL()
+            };
+
+            $('#finalize-design-form #preview_images').val(JSON.stringify(previewImages));
+
+        }
 
         $('#finalize-design-form').submit();
     });
