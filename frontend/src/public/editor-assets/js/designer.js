@@ -1019,7 +1019,6 @@ $(document).ready(function() {
 
         $('#save-design-form #image-file').val(canvas.toDataURL());
 
-
         var canvasPreviewImage1 = document.getElementById("canvas1");
         var canvasPreviewImage2 = document.getElementById("canvas2");
         var canvasPreviewImage3 = document.getElementById("canvas3");

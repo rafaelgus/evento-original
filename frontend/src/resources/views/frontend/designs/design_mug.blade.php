@@ -89,6 +89,10 @@
             margin-bottom: 1rem;
         }
 
+        .mySlides {
+            width: 40%;
+            margin-bottom: 3px !important;
+        }
 
     </style>
 
@@ -107,13 +111,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="title">{{ trans('editor.edible_paper') }} - {{ $circularDesignVariant->getName() }}</h2>
+                    <h2 class="title">{{ trans('editor.design_mug') }}</h2>
                 </div>
             </div>
             <div class="row" style="text-align: center">
                 <div class="col-md-5" style="position:relative; width: auto">
                     <div class="canvas-container">
                         <canvas class="canvas-paper-a4" id="canvas-paper-a4"></canvas>
+                    </div>
+
+                    <div class="w3-content w3-display-container">
+                        <canvas class="mySlides" id="canvas1" style="margin: auto"></canvas>
+                        <canvas class="mySlides" id="canvas2" style="margin: auto"></canvas>
+                        <canvas class="mySlides" id="canvas3" style="margin: auto"></canvas>
+
+
+                        <button class="w3-button w3-black" onclick="plusDivs(-1)">&#10094;</button>
+                        <button class="w3-button w3-black" onclick="plusDivs(1)">&#10095;</button>
                     </div>
                     {{--<span data-toggle="popover" data-placement="right" data-content="Ingrese el texto"></span>--}}
                 </div>
@@ -134,7 +148,7 @@
                             <i class="fa fa-pencil"></i> {{ trans('editor.add_text') }}
                         </button>
 
-                        <button type="button" class="btn btn-lg btn-primary add-button"
+                        <button data-target="#tools-image" type="button" class="btn btn-lg btn-primary add-button"
                                 id="add-image">
                             <i class="fa fa-camera"></i> {{ trans('editor.add_image') }}
                         </button>
@@ -150,25 +164,11 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="json" id="json" value="">
                                     <input type="hidden" name="image" id="image-file">
-                                    <input type="hidden" name="type" id="type" value="edible_paper">
-                                    <input type="hidden" name="variant_id"
-                                           value="{{ $circularDesignVariant->getId() }}">
+                                    <input type="hidden" name="preview_images" id="preview_images">
+                                    <input type="hidden" name="type" id="type" value="mug">
                                     <div class="form-group row">
-                                        <div>
-                                            {{ $circularDesignVariant->getDesignMaterialSize()->getName() }}
-                                        </div>
-
-                                        <div class="col-sm-12 col-md-12">
-                                            <select id="detail" name="variantDetail" class="detail-select">
-                                                @foreach($circularDesignVariant->getDetails() as $detail)
-                                                    <option value="{{ $detail->getId() }}">
-                                                        {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()). ")" }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                         <label for="quantity-label"
-                                               class="col-sm-12 col-md-4 col-form-label quantity-label">{{ trans('editor.quantity_of_papers') }}
+                                               class="col-sm-12 col-md-4 col-form-label quantity-label">{{ trans('editor.quantity') }}
                                             :</label>
                                         <div class="col-sm-12 col-md-8">
                                             <div class="custom pull-left">
@@ -475,9 +475,9 @@
     <script src="/js/jquery.imgcheckbox.js"></script>
 
     <script>
-        var overlayImage = '{{ $circularDesignVariant->getPreviewImage()}}';
-        var canvasHeight = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getVerticalSize() / (5/11)) }}';
-        var canvasWidth = '{{ ceil($circularDesignVariant->getDesignMaterialSize()->getHorizontalSize() / (5/11)) }}';
+        var canvasHeight = 300;
+        var canvasWidth = 600;
+        var overlayImage = '';
 
         var designJson = '{{ (isset($design) ? $design->getJson() : null) }}';
         if (designJson) {
@@ -535,32 +535,231 @@
                 lookahead: 2
             });
 
-            $('.clip-art').imgCheckbox({
-                styles: {
-                    "span.imgCheckbox.imgChked img": {
-                        // It's important to note that overriding the "filter" property will remove grayscaling
-                        "filter": "blur(5px)",
 
-                        // This is just css: remember compatibility
-                        "-webkit-filter": "blur(5px)",
 
-                        // Let's change the amount of scaling from the default of "0.8"
-                        "transform": "scale(0.9)"
-                    }
-                },
-                onclick: function(el){
-                    var isChecked = el.hasClass("imgChked"),
-                        imgEl = el.children()[0];  // the img element
+            function canvas1() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
 
-                    if (isChecked) {
-                        clipArtsSelected.push(imgEl.currentSrc);
-                    } else {
-                        clipArtsSelected = clipArtsSelected.filter(function(item) {
-                            return item !== imgEl.currentSrc;
-                        })
-                    }
+                var canvas = document.getElementById("canvas1");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/c_scale,f_auto,h_350/left_handle_cup_i7ztfs.jpg";
+
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        var xOffset = 102, //left padding
+                            yOffset = 110; //top padding
+
+                        //alert(ih)
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (4 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 9, ih, X + xOffset, y + yOffset, 1, 174);
+                        }
+                    };
                 }
-            });
+
+            }
+
+            function canvas2() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
+
+                var canvas = document.getElementById("canvas2");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/h_350/canter_handle_cup_xyxhdd.jpg"
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.crossOrigin = "Anonymous";
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        // alert(iw)
+
+                        var xOffset = 101, //left padding
+                            yOffset = 110; //top padding
+
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (4 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
+
+                        }
+                    };
+                }
+
+            }
+
+            function canvas3() {
+                var mugCanvas = document.getElementById("canvas-paper-a4");
+                var mugImg = mugCanvas.toDataURL("image/png");
+
+                var canvas = document.getElementById("canvas3");
+                var ctx = canvas.getContext("2d");
+
+                var productImg = new Image();
+                productImg.crossOrigin = "Anonymous";
+                productImg.onload = function() {
+                    var iw = productImg.width;
+                    var ih = productImg.height;
+
+                    canvas.width = iw;
+                    canvas.height = ih;
+
+                    ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,
+                        0, 0, iw, ih);
+                    loadUpperIMage()
+                };
+
+                productImg.src = "http://res.cloudinary.com/pussyhunter/image/upload/h_350/right_handle_cup_dsdhr7.jpg"
+
+
+                function loadUpperIMage() {
+                    var img = new Image();
+
+                    img.src = mugImg;
+                    img.crossOrigin = "Anonymous";
+                    img.onload = function() {
+
+                        var iw = img.width;
+                        var ih = img.height;
+
+                        //alert(iw)
+
+                        var xOffset = 102, //left padding
+                            yOffset = 110; //top padding
+
+                        var a = 75.0; //image width
+                        var b = 10; //round ness
+
+                        var scaleFactor = iw / (3 * a);
+
+                        // draw vertical slices
+                        for (var X = 0; X < iw; X += 1) {
+                            var y = b / a * Math.sqrt(a * a - (X - a) * (X - a)); // ellipsis equation
+                            ctx.drawImage(img, X * scaleFactor, 0, iw / 1.5, ih, X + xOffset, y + yOffset, 1, 174);
+                        }
+                    };
+                }
+
+            }
+
+            setTimeout(function() {
+                canvas1()
+            }, 1000);
+            setTimeout(function() {
+                canvas2()
+            }, 2000);
+            setTimeout(function() {
+                canvas3()
+            }, 3000);
+
+            setInterval(canvas1, 1000);
+            setInterval(canvas2, 1000);
+            setInterval(canvas3, 1000);
+        });
+
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
+        $('.clip-art').imgCheckbox({
+            styles: {
+                "span.imgCheckbox.imgChked img": {
+                    // It's important to note that overriding the "filter" property will remove grayscaling
+                    "filter": "blur(5px)",
+
+                    // This is just css: remember compatibility
+                    "-webkit-filter": "blur(5px)",
+
+                    // Let's change the amount of scaling from the default of "0.8"
+                    "transform": "scale(0.9)"
+                }
+            },
+            onclick: function(el){
+                var isChecked = el.hasClass("imgChked"),
+                    imgEl = el.children()[0];  // the img element
+
+                if (isChecked) {
+                    clipArtsSelected.push(imgEl.currentSrc);
+                } else {
+                    clipArtsSelected = clipArtsSelected.filter(function(item) {
+                        return item !== imgEl.currentSrc;
+                    })
+                }
+            }
         });
     </script>
 
@@ -572,6 +771,20 @@
             $('#buy-design-form #json').val(json);
 
             $('#buy-design-form #image-file').val(canvas.toDataURL());
+
+            var canvasPreviewImage1 = document.getElementById("canvas1");
+            var canvasPreviewImage2 = document.getElementById("canvas2");
+            var canvasPreviewImage3 = document.getElementById("canvas3");
+
+            if (canvasPreviewImage1) {
+                var previewImages = {
+                    left: canvasPreviewImage1.toDataURL(),
+                    front: canvasPreviewImage2.toDataURL(),
+                    right: canvasPreviewImage3.toDataURL()
+                };
+
+                $('#buy-design-form #preview_images').val(JSON.stringify(previewImages));
+            }
 
             $('#buy-design-form').submit();
         });

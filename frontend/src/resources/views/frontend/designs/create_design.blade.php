@@ -45,12 +45,12 @@
                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                         <div class="item-inner">
                                             <div class="item-img">
-                                                <div class="item-img-info"><a href="#" title="{{ trans('designer.mug.title') }}" class="product-image"><img src="/images/mug.jpg" alt="{{ trans('designer.mug.title') }}"></a>
+                                                <div class="item-img-info"><a href="{{ route('design_mug') }}" title="{{ trans('designer.mug.title') }}" class="product-image"><img src="/images/mug.jpg" alt="{{ trans('designer.mug.title') }}"></a>
                                                 </div>
                                             </div>
                                             <div class="item-info">
                                                 <div class="info-inner">
-                                                    <div class="item-title"> <a title="{{ trans('designer.mug.title') }}" href="#"> {{ trans('designer.mug.title') }} </a> </div>
+                                                    <div class="item-title"> <a title="{{ trans('designer.mug.title') }}" href="{{ route('design_mug') }}"> {{ trans('designer.mug.title') }} </a> </div>
                                                 </div>
                                             </div>
                                         </div>

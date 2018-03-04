@@ -53,4 +53,5 @@ return [
     'add_selected' => 'Agregar las seleccionadas',
     'upload_image' => 'Suba una imagen:',
     'or_select_image' => 'o agregue alguna de nuestra galería:',
+    'design_mug' => 'Diseñar taza',
 ];

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Frontend;
 
 use EventoOriginal\Core\Entities\CircularDesignVariantDetail;
 use EventoOriginal\Core\Entities\Design;
+use EventoOriginal\Core\Enums\DesignType;
 use EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository;
 use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
 use EventoOriginal\Core\Services\ArticleService;
@@ -237,12 +238,12 @@ class CartController
 
         $design = $article->getDesign();
 
-        if (array_has($params, 'variantDetail')) {
+        if (isset($params['variantDetail'])) {
             $variantDetail = array_get($params, 'variantDetail');
 
             $data['price'] = $variantDetail->getPrice();
             $data['circularDesignVariantDetail'] = $variantDetail;
-        } else {
+        } elseif ($design->getType() === DesignType::EDIBLE_PAPER) {
             $variantDetail = $this->getVariantDesign($design);
 
             if ($variantDetail) {
@@ -360,20 +361,25 @@ class CartController
 
         $article = $this->designService->saveDesignToBuy($data);
 
-        $variantDetailId = $request->input('variantDetail');
-        $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
-
-        $price = $variantDetail->getPrice();
-
         $itemData = [
-            'image' => $article->getDesign()->getImage(),
+            'image' => $article->getImages()[0]->getPath(),
             'category' => $article->getCategory()->getId(),
             'currency' => $article->getMoneyPrice()->getCurrency()->getCode(),
             'toBuy' => true,
         ];
 
-        if ($variantDetail) {
-            $itemData['variantDetail'] = $variantDetail->getId();
+        $variantDetail = null;
+        if ($request->has('variantDetail')) {
+            $variantDetailId = $request->input('variantDetail');
+            $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
+
+            $price = $variantDetail->getPrice();
+
+            if ($variantDetail) {
+                $itemData['variantDetail'] = $variantDetail->getId();
+            }
+        } else {
+            $price = $article->getPrice();
         }
 
         Cart::instance('shopping')->add(

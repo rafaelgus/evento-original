@@ -79,8 +79,26 @@ class DesignController
             abort(404);
         }
 
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
         return view('frontend/designs.design_edible_paper')->with([
             'circularDesignVariant' => $circularDesignVariant,
+            'images' => $images,
+        ]);
+    }
+
+    public function designMug()
+    {
+        $directory = "images/clipart/";
+
+        $images = glob($directory . "*.jpg");
+        $images = array_merge($images, glob($directory . "*.png"));
+
+        return view('frontend/designs.design_mug')->with([
+            'images' => $images,
         ]);
     }
 }

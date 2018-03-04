@@ -485,6 +485,8 @@
             designJson = JSON.parse(designJson.replace(/&quot;/g, '"'));
         }
 
+        var clipArtsSelected = [];
+
         $(document).ready(function() {
             $('input').iCheck({
                 checkboxClass: 'icheckbox_flat-red',
@@ -533,8 +535,6 @@
                 placeholder: 'Select a font',
                 lookahead: 2
             });
-
-
 
             function canvas1() {
                 var mugCanvas = document.getElementById("canvas-paper-a4");
@@ -751,7 +751,13 @@
                 var isChecked = el.hasClass("imgChked"),
                     imgEl = el.children()[0];  // the img element
 
-                console.log(imgEl.name + " is now " + (isChecked? "checked": "not-checked") + "!");
+                if (isChecked) {
+                    clipArtsSelected.push(imgEl.currentSrc);
+                } else {
+                    clipArtsSelected = clipArtsSelected.filter(function(item) {
+                        return item !== imgEl.currentSrc;
+                    })
+                }
             }
         });
 

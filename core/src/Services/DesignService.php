@@ -78,6 +78,7 @@ class DesignService
         $design = new Design();
         $design->setName(trans('designs.personalized'));
         $design->setDescription('Design to buy');
+        $design->setType(array_get($data, 'type'));
 
         if (array_key_exists('variant_id', $data)) {
             $variant = $this->circularDesignVariantService->findOneById(array_get($data, 'variant_id'));
@@ -102,6 +103,29 @@ class DesignService
 
             $design->setImage($image);
             $design->setSource(DesignSource::EDITOR);
+        }
+
+        if (array_key_exists('preview_images', $data)) {
+            $previewImages = json_decode(array_get($data, 'preview_images'));
+
+            $images = [];
+
+            foreach ($previewImages as $key => $value) {
+                $img = str_replace('data:image/png;base64,', '', $value);
+                $img = str_replace(' ', '+', $img);
+                $fileData = base64_decode($img);
+                $fileName = uniqid() . 'png';
+
+                file_put_contents($fileName, $fileData);
+
+                $image = $this->storageService->savePicture($fileName, 'designs', 'png');
+
+                unlink($fileName);
+
+                $images[$key] = $image;
+            }
+
+            $design->setPreviewImages($images);
         }
 
         $this->designRepository->save($design);

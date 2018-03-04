@@ -25,6 +25,7 @@ Route::post('/updateVariantDetail', 'Frontend\CartController@updateVariantDetail
 Route::get('/crear-diseño-desde-cero', 'Frontend\DesignController@createDesign');
 Route::get('/crear-papel-comestible-desde-cero', 'Frontend\DesignController@createEdiblePaper');
 Route::get('/diseñar-papel-comestible-desde-cero/{id}', 'Frontend\DesignController@designEdiblePaper');
+Route::get('/diseñar-taza-desde-cero', 'Frontend\DesignController@designMug')->name('design_mug');
 Route::post('/buy-design', 'Frontend\CartController@buyDesign')->name('buy_design');
 
 Route::group(['middleware' => ['web', 'auth']], function () {
@@ -376,10 +377,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/articles/{categorySlug?}', 'Frontend\ArticleController@getFilteredArticles');
     Route::get('/{categorySlug?}', 'Frontend\ArticleController@index');
-
-    Route::get('/diseñar/papel-comestible/desde-cero', 'Frontend\DesignController@circularDesignVariants');
-    Route::get(
-        '/diseñar/papel-comestible/desde-cero/{circularDesignVariantId}',
-        'Frontend\DesignController@circularDesignVariantsEditor'
-    )->name('circular_design_variant_editor');
 });
