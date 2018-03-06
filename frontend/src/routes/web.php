@@ -378,7 +378,9 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/data/getOrders', 'Backend\OrderController@getOrders');
                 Route::post('/{id}/update', 'Backend\OrderController@update');
             });
+
         });
+
     });
 
     Route::get('/home', 'HomeController@index')->name('home');

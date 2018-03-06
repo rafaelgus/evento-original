@@ -25,7 +25,7 @@
                 <div class="box">
                     <div class="box-body">
                         @include('backend.messages.session')
-
+                        <h3>Orden</h3>
                         <dl class="dl-horizontal">
                             <dt>{{trans('orders.id')}}</dt>
                             <dd>{{$order->getId()}}</dd>
@@ -64,6 +64,17 @@
 
                             <dt>Ciudad</dt>
                             <dd>{{$order->getBilling()->getAddress()->getCity()}}</dd>
+                        </dl>
+                        <hr>
+                        <h3>Datos extra</h3>
+                        <dl class="dl-horizontal">
+                            <dt>Comentarios</dt>
+                            <dd>{{$order->getComment()}}</dd>
+
+                            @if($order->getShipping())
+                            <dt>Numero de seguimiento</dt>
+                            <dd>{{$order->getShipping()->getTrackingNumber()}}</dd>
+                            @endif
                         </dl>
 
                         <div>
@@ -181,7 +192,7 @@
                                 <label for="inputName" class="col-sm-2 control-label">Numero de seguimiento</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="inputName" name="trackingNumber"
-                                           placeholder="Numero de seguimiento" value="{{ old('trackingNumber') }}">
+                                           placeholder="Numero de seguimiento" value="{{ old('trackingNumber', $order->getShipping()->getTrackingNumber()) }}">
                                     {!! $errors->first('name', '<span class="help-block">* :message</span>') !!}
                                 </div>
                             </div>
