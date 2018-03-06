@@ -241,7 +241,7 @@ class ArticleRepository extends BaseRepository
         return $query->getResult();
     }
 
-    public function findByCategoryBestSeller(Category $category, string $locale = 'es')
+    public function findByCategoryBestSeller(int $categoryId, string $locale = 'es')
     {
         $qb = $this->createQueryBuilder('article')
             ->select('article')
@@ -254,7 +254,7 @@ class ArticleRepository extends BaseRepository
             ->leftJoin('category.children', 'children1')
             ->leftJoin('children1.children', 'children2')
             ->leftJoin('children2.children', 'children3')
-            ->setParameters(['categoryId' => $category->getId()])
+            ->setParameters(['categoryId' => $categoryId])
             ->where('article.category = category.id OR article.category = children1.id OR 
             article.category = children2.id OR article.category = children3.id AND article.isBestSeller =' .true);
 

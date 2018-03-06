@@ -44,7 +44,7 @@
                                         <div class="tab-panel active" id="{{$bestSeller->getTitle()}}">
                                             <div class="category-products">
                                                 <ul class="products-grid">
-                                                    @foreach($articles as $article)
+                                                    @foreach($bestSellerItemCategory[$bestSeller->getCategory()->getName()] as $article)
                                                     <li class="item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                                         <div class="item-inner">
                                                             <div class="item-img">

@@ -219,7 +219,7 @@ class Article
     private $orderDetails;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", name="is_best_seller")
      */
     private $isBestSeller;
 

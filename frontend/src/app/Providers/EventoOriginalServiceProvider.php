@@ -4,6 +4,7 @@ namespace App\Providers;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use EventoOriginal\Core\Entities;
 use EventoOriginal\Core\Persistence\Repositories;
+use EventoOriginal\Core\Services\CategoryService;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -184,21 +185,29 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
     private function shareBestSellerItems()
     {
-        $bestSeller = [];
 
         try {
             $menuRepository = $this->app->make(Repositories\MenuRepository::class);
             $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
+            $articleRepository = $this->app->make(Repositories\ArticleRepository::class);
 
             $navbarMenu = $menuRepository->findByType('bestseller', App::getLocale());
-            $bestSeller = [];
+            $bestSellers = [];
+            $bestSellerItemCategory = [];
             if ($navbarMenu) {
-                $bestSeller = $menuItemRepository->findByMenu($navbarMenu);
+                $bestSellers = $menuItemRepository->findByMenu($navbarMenu);
+            }
+            foreach ($bestSellers as $bestSeller) {
+                $categoryId = intval($bestSeller->getCategory()->getId());
+
+                $items = $articleRepository->findByCategoryBestSeller($categoryId);
+
+                $bestSellerItemCategory[$bestSeller->getCategory()->getName()] = $items;
             }
         } catch (Throwable $exception) {
             logger()->error($exception->getMessage());
         }
-
-        View::share('bestSellers', $bestSeller);
+        View::share('bestSellerItemCategory', $bestSellerItemCategory);
+        View::share('bestSellers', $bestSellers);
     }
 }

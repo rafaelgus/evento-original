@@ -38,3 +38,46 @@ PHP message: PHP  39. Doctrine\ORM\Mapping\ClassMetadataFactory->getAllMetadata(
 PHP message: PHP  40. LaravelDoctrine\ORM\Extensions\MappingDriverChain->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/AbstractClassMetadataFactory.php:114
 PHP message: PHP  41. Doctrine\ORM\Mapping\Driver\AnnotationDriver->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/MappingDriverChain.php:128
 PHP message: PHP  42. require_once() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/AnnotationDriver.php:236" while reading response
+2018/03/06 14:44:33 [error] 26#26: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2789): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate
+2018/03/06 14:44:33 [error] 26#26: *1 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:716
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:912
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:966
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:152
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:162
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:492
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:271
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2789
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\
+2018/03/06 14:44:34 [error] 26#26: *1 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:176
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:716
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:912
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:966
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:152
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:162
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:492
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:271
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2789
+PHP message
