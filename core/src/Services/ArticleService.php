@@ -345,6 +345,18 @@ class ArticleService
         }
 
         return json_encode($articlesArray);
+
+    }
+
+    public function findBestSeller(string $categorySlug)
+    {
+        $category = $this->categoryService->findBySlug($categorySlug);
+
+        if ($category) {
+            return $this->articleRepository->findByCategoryBestSeller($category);
+        } else {
+            throw new Exception('Invalid category slug');
+        }
     }
 
     /**

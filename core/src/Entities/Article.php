@@ -229,6 +229,11 @@ class Article
      */
     private $forMugsDesigns;
 
+    /**
+     * @ORM\Column(type="boolean", name="is_best_seller")
+     */
+    private $isBestSeller;
+
     public function __construct()
     {
         $this->status = self::STATUS_DRAFT;
@@ -863,5 +868,18 @@ class Article
     public function setForMugsDesigns(bool $forMugsDesigns): void
     {
         $this->forMugsDesigns = $forMugsDesigns;
+    }
+
+    public function getIsBestSeller()
+    {
+        return $this->isBestSeller;
+    }
+
+    /**
+     * @param bool $isBestSeller
+     */
+    public function setIsBestSeller(bool $isBestSeller)
+    {
+        $this->isBestSeller = $isBestSeller;
     }
 }

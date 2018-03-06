@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use EventoOriginal\Core\Enums\OrderStatus;
+use EventoOriginal\Core\Enums\ShippingStatus;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\ShippingService;
 use Illuminate\Http\Request;
@@ -76,13 +77,23 @@ class OrderController extends Controller
         if ($order->getShipping()) {
             $shipping = $order->getShipping();
 
+            $trackingNumber = $request->input('trackingNumber');
+
             $shipping->setStatus($request->input('status'));
-            $shipping->setTrackingNumber($request->input('trackingNumber'));
+
+            if ($trackingNumber) {
+                $shipping->setTrackingNumber($trackingNumber);
+            }
 
             $this->shippingService->update($shipping);
+
+            if ($request->input('status') === ShippingStatus::STATUS_DELIVERED) {
+                $order->setStatus(OrderStatus::STATUS_COMMITTED);
+            }
+        } else  {
+            $order->setStatus(OrderStatus::STATUS_COMMITTED);
         }
         $order->setComment($request->input('comment'));
-        $order->setStatus(OrderStatus::STATUS_COMMITTED);
 
         $this->orderService->save($order);
 

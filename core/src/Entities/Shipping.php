@@ -22,7 +22,7 @@ class Shipping
     protected $method;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     protected $address;
