@@ -128,8 +128,27 @@ class DesignerController
         $this->validateDesign($design);
 
         if ($design->getSource() === DesignSource::EDITOR) {
-            return view('frontend/designer.design_edible_paper')
-                ->with(['design' => $design, 'circularDesignVariant' => $design->getCircularDesignVariant()]);
+            $directory = "images/clipart/";
+
+            $images = glob($directory . "*.jpg");
+            $images = array_merge($images, glob($directory . "*.png"));
+
+            if ($design->getType() === DesignType::EDIBLE_PAPER) {
+                return view('frontend/designer.design_edible_paper')
+                    ->with([
+                        'design' => $design,
+                        'circularDesignVariant' => $design->getCircularDesignVariant(),
+                        'images' => $images,
+                    ]);
+            } elseif ($design->getType() === DesignType::MUG) {
+                return view('frontend/designer.design_mug')
+                    ->with([
+                        'design' => $design,
+                        'images' => $images,
+                    ]);
+            }
+
+
         } else {
             return $this->sendToReviewView($design->getId());
         }
