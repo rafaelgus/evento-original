@@ -30,13 +30,13 @@
                   <div class="product-img-box col-lg-4 col-sm-4 col-xs-12">
                     <div class="new-label new-top-left"> New </div>
                     <div class="product-image">
-                      <div class="product-full"> <img id="product-zoom" src="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" data-zoom-image="/articles/storage/{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" alt="product-image"/> </div>
+                      <div class="product-full"> <img id="product-zoom" src="{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" data-zoom-image="{{(count($article->getImages()) > 0)? $article->getImages()->toArray()[0]->getPath(): 'hola' }}" alt="product-image"/> </div>
                       <div class="more-views">
                         <div class="slider-items-products">
                           <div id="gallery_01" class="product-flexslider hidden-buttons product-img-thumb">
                             <div class="slider-items slider-width-col4 block-content">
                               @foreach($article->getImages() as $image)
-                                  <div class="more-views-items"> <a href="#" data-image="/articles/storage/{{$image->getPath()}}" data-zoom-image="/articles/storage/{{$image->getPath()}}"> <img id="product-zoom"  src="/articles/storage/{{$image->getPath()}}" alt="product-image"/></a></div>
+                                  <div class="more-views-items"> <a href="#" data-image="{{$image->getPath()}}" data-zoom-image="{{$image->getPath()}}"> <img id="product-zoom"  src="{{$image->getPath()}}" alt="product-image"/></a></div>
                               @endforeach
                             </div>
                           </div>
@@ -104,6 +104,17 @@
                     </div>
                     <div class="add-to-box">
                       <div class="add-to-cart">
+                        @if($article->getDesign() && $article->getDesign()->getCircularDesignVariant())
+                          <div >
+                            <select id="detail" name="detail" class="detail-select">
+                              @foreach($article->getDesign()->getCircularDesignVariant()->getDetails() as $detail)
+                                <option value="{{ $detail->getId() }}">
+                                  {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getPriceWithCommissionMoney($article->getDesign()->getCommission())). ")" }}
+                                </option>
+                              @endforeach
+                            </select>
+                          </div>
+                        @endif
                         <div class="pull-left">
                           <div class="custom pull-left">
                             <button onClick="var result = document.getElementById('quantity'); var qty = result.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="fa fa-minus">&nbsp;</i></button>
@@ -113,11 +124,7 @@
                         </div>
                         <button onClick="addToCart()" class="button btn-cart" title="Comprar" type="button">Comprar</button>
                       </div>
-                      <div class="email-addto-box">
-                        <ul class="add-to-links">
-                          <li> <a class="link-wishlist" href="wishlist.html"><span>Add to Wishlist</span></a></li>
-                        </ul>
-                      </div>
+
                     </div>
                     
                   </div>
@@ -291,21 +298,20 @@
   <script type="text/javascript">
       function addToCart() {
           var quantity = document.getElementById('quantity').value;
-          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity);
+          var detail = document.getElementById('detail').value;
+          var params = encodeURI('articleId=' + '{{$article->getId()}}&quantity=' + quantity + '&variantDetail=' + detail);
           var xhr = new XMLHttpRequest();
           xhr.open('POST', '/addToCart', true);
           xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
           xhr.onreadystatechange = function () {
-              if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
-                  console.log('se agrego item');
-
+              if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                  cartItems();
               }
           };
-
           xhr.send(params);
-          this.cartItems();
+          cartItems();
       }
 
   </script>

@@ -11,6 +11,7 @@ return [
         'affiliate_commission_credit' => 'Comisión por afiliado',
         'payout_refund' => 'Pago reintegrado',
         'payout' => 'Pago',
+        'design_commission_credit' => 'Comisión por venta de diseño',
     ],
     'empty' => 'No hay movimientos en tu cuenta',
     'slug' => 'movimientos',

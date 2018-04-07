@@ -38,3 +38,1089 @@ PHP message: PHP  39. Doctrine\ORM\Mapping\ClassMetadataFactory->getAllMetadata(
 PHP message: PHP  40. LaravelDoctrine\ORM\Extensions\MappingDriverChain->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/AbstractClassMetadataFactory.php:114
 PHP message: PHP  41. Doctrine\ORM\Mapping\Driver\AnnotationDriver->getAllClassNames() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/MappingDriverChain.php:128
 PHP message: PHP  42. require_once() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/AnnotationDriver.php:236" while reading response
+<<<<<<< HEAD
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/core/src/Services/ArticleService.php on line 312
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/sr
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: " /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Middleware/S
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "outing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  60. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  61. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  90. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  91. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch(
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 119. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 120. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 121. EventoOriginal\Core\
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "dSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 149. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 150. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServic
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "al\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 179. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 180. EventoOriginal\Core\Services\ArticleService->getPaginatedSearc
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "leService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 208. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 209. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 210. EventoOrig
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "tedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 238. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 239. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServ
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "entoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php on line 120
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeli
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "l/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illumin
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "dle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/sr
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "e: PHP  75. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  76. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  77. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleSe
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "/core/src/Services/ArticleService.php:314
+PHP message: PHP 105. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 106. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP mess
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "rticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 135. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 136. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "PHP message: PHP 164. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 165. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 166. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "ww/core/src/Services/ArticleService.php:314
+PHP message: PHP 194. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 195. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP me
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 224. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 225. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var
+2018/02/08 20:08:16 [error] 25#25: *375 FastCGI sent in stderr: "4
+PHP message: PHP 253. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 254. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 255. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314" while reading response header from upstream, client: 172.1.0.1, server: localhost, request: "POST /articles/search HTTP/1.1", upstream: "fastcgi://unix:/run/php/php7.1-fpm.sock:", host: "localhost", referrer: "http://localhost/articles/search"
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/core/src/Services/ArticleService.php on line 312
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/sr
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: " /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Middleware/S
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "outing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  60. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  61. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  90. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  91. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch(
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 119. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 120. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 121. EventoOriginal\Core\
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "dSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 149. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 150. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServic
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "al\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 179. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 180. EventoOriginal\Core\Services\ArticleService->getPaginatedSearc
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "leService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 208. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 209. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 210. EventoOrig
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "tedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 238. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 239. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleServ
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "entoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP Fatal error:  Maximum function nesting level of '256' reached, aborting! in /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php on line 120
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeli
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "l/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illumin
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "dle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getSearch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:174
+PHP message: PHP  57. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  58. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  59. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/sr
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "e: PHP  75. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  76. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  77. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  78. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  79. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  80. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  81. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  82. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  83. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  84. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  85. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  86. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  87. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  88. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP  89. EventoOriginal\Core\Services\ArticleSe
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "/core/src/Services/ArticleService.php:314
+PHP message: PHP 105. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 106. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 107. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 108. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 109. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 110. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 111. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 112. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 113. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 114. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 115. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 116. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 117. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 118. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP mess
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "rticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 135. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 136. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 137. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 138. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 139. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 140. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 141. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 142. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 143. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 144. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 145. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 146. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 147. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 148. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "PHP message: PHP 164. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 165. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 166. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 167. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 168. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 169. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 170. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 171. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 172. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 173. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 174. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 175. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 176. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 177. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 178. EventoOriginal\Core\Services
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "ww/core/src/Services/ArticleService.php:314
+PHP message: PHP 194. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 195. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 196. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 197. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 198. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 199. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 200. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 201. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 202. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 203. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 204. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 205. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 206. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 207. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP me
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 224. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 225. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 226. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 227. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 228. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 229. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 230. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 231. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 232. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 233. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 234. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 235. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 236. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 237. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var
+2018/02/08 20:09:41 [error] 25#25: *389 FastCGI sent in stderr: "4
+PHP message: PHP 253. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 254. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 255. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314
+PHP message: PHP 256. EventoOriginal\Core\Services\ArticleService->getPaginatedSearch() /var/www/core/src/Services/ArticleService.php:314" while reading response header from upstream, client: 172.1.0.1, server: localhost, request: "POST /articles/search HTTP/1.1", upstream: "fastcgi://unix:/run/php/php7.1-fpm.sock:", host: "localhost", referrer: "http://localhost/"
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesLicense.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www/...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/lar
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "tion/Http/Kernel.php:176
+PHP message: PHP  20. Illuminate\Routing\Router->dispatchToRoute() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:590
+PHP message: PHP  21. Illuminate\Routing\Router->runRoute() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:601
+PHP message: PHP  22. Illuminate\Routing\Router->runRouteWithinStack() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:635
+PHP message: PHP  23. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:660
+PHP message: PHP  24. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP  25. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "53
+PHP message: PHP  44. App\Http\Middleware\VisitorLandingMiddleware->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  45. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/VisitorLandingMiddleware.php:20
+PHP message: PHP  46. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  47. App\Http\Middleware\CheckForMaintenanceMode->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  48. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/app/Http/Middleware/CheckForMaintenanceMode.php:60
+PHP message: PHP  49. Illuminate\Routing\Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getHome() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Contr
+2018/02/14 10:37:04 [error] 25#25: *1 FastCGI sent in stderr: "lCoreEntitiesLicense.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. Illuminate\Routing\Pipeline->then() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:151
+PHP message: PHP   5. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:102
+PHP message: PHP   6. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP   7. Illuminate\Foundation\Http\Middleware\ValidatePostSize->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP   8. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php:27
+PHP message: PHP   9. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  10. App\Http\Middleware\TrimStrings->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  11. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php:30
+PHP message: PHP  12. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /v
+2018/02/14 10:37:05 [error] 25#25: *1 FastCGI sent in stderr: "\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  26. App\Http\Middleware\EncryptCookies->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  27. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php:59
+PHP message: PHP  28. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  29. Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  30. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php:37
+PHP message: PHP  31. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  32. Illuminate\Session\Middleware\StartSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  33. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php:63
+PHP message: PHP  34. Illuminate\Routing\Pipeline->Illuminate\Pipeline\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:53
+PHP message: PHP  35. Illuminate\View\Middleware\ShareErrorsFromSession->handle() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php:149
+PHP message: PHP  36. Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/View/Mi
+2018/02/14 10:37:05 [error] 25#25: *1 FastCGI sent in stderr: "Router->Illuminate\Routing\{closure}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php:30
+PHP message: PHP  50. Illuminate\Routing\Route->run() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Router.php:658
+PHP message: PHP  51. Illuminate\Routing\Route->runController() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:169
+PHP message: PHP  52. Illuminate\Routing\ControllerDispatcher->dispatch() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Route.php:212
+PHP message: PHP  53. App\Http\Controllers\Frontend\ArticleController->callAction() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php:45
+PHP message: PHP  54. call_user_func_array:{/var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54}() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  55. App\Http\Controllers\Frontend\ArticleController->getHome() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:54
+PHP message: PHP  56. EventoOriginal\Core\Services\ArticleService->findAll() /var/www/frontend/src/app/Http/Controllers/Frontend/ArticleController.php:60
+PHP message: PHP  57. EventoOriginal\Core\Persistence\Repositories\ArticleRepository->findAll() /var/www/core/src/Services/ArticleService.php:52
+PHP message: PHP  58. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/ArticleRepository.php:57
+PHP message: PHP  59. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  60. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  61. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine
+2018/02/20 12:03:46 [error] 25#25: *141 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:03:46 [error] 25#25: *141 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:03:47 [error] 25#25: *141 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:18 [error] 25#25: *141 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:18 [error] 25#25: *141 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:19 [error] 25#25: *144 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:19 [error] 25#25: *144 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:20 [error] 25#25: *146 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:20 [error] 25#25: *146 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:20 [error] 25#25: *144 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:20 [error] 25#25: *141 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:21 [error] 25#25: *146 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:32 [error] 25#25: *146 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:32 [error] 25#25: *146 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:33 [error] 25#25: *146 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:45 [error] 25#25: *146 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:45 [error] 25#25: *146 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:46 [error] 25#25: *146 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:46 [error] 25#25: *141 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:46 [error] 25#25: *141 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:47 [error] 25#25: *146 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:47 [error] 25#25: *146 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:48 [error] 25#25: *141 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:48 [error] 25#25: *146 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:04:49 [error] 25#25: *144 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:04:49 [error] 25#25: *144 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. Ap
+2018/02/20 12:04:50 [error] 25#25: *144 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+2018/02/20 12:05:01 [error] 25#25: *144 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+=======
+2018/03/06 14:44:33 [error] 26#26: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  Uncaught ErrorException: require(/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php): failed to open stream: No such file or directory in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:223
+>>>>>>> ordenes_backend
+Stack trace:
+#0 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'require(/var/ww...', '/var/www/fronte...', 223, Array)
+#1 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(223): require()
+#2 /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php(133): Doctrine\Common\Proxy\AbstractProxyFactory->getProxyDefinition('EventoOriginal\\...')
+<<<<<<< HEAD
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2707): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+=======
+#3 /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php(2789): Doctrine\Common\Proxy\AbstractProxyFactory->getProxy('EventoOriginal\\...', Array)
+>>>>>>> ordenes_backend
+#4 /var/www...
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+PHP message: PHP   3. App\Http\Kernel->sendRequestThroughRouter() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:116
+PHP message: PHP   4. App\Http\Kernel->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:146
+PHP message: PHP   5. Illuminate\Foundation\Application->bootstrapWith() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:162
+PHP message: PHP   6. Illuminate\Foundation\Bootstrap\BootProviders->bootstrap() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Foundation/Application.php:213
+<<<<<<< HEAD
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illumina
+2018/02/20 12:05:01 [error] 25#25: *144 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+=======
+PHP message: PHP   7. Illuminate\Foundation\Application->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate
+2018/03/06 14:44:33 [error] 26#26: *1 FastCGI sent in stderr: "ndor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:716
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:912
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:966
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:152
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:162
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:492
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:271
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2789
+>>>>>>> ordenes_backend
+PHP message: PHP  28. Doctrine\ORM\Proxy\ProxyFactory->getProxyDefinition() /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php:133
+PHP message: PHP Fatal error:  Doctrine\Common\Proxy\AbstractProxyFactory::getProxyDefinition(): Failed opening required '/var/www/frontend/src/storage/proxies/__CG__EventoOriginalCoreEntitiesCategory.php' (include_path='.:/usr/share/php') in /var/www/frontend/src/vendor/doctrine/common/lib/Doctrine/Common/Proxy/AbstractProxyFactory.php on line 223
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/frontend/src/public/index.php:0
+PHP message: PHP   2. App\Http\Kernel->handle() /var/www/frontend/src/public/index.php:53
+<<<<<<< HEAD
+PHP message: PHP   3. Ap
+2018/02/20 12:05:02 [error] 25#25: *144 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:175
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:720
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:917
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:971
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:150
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:165
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:494
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:273
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2707
+PHP messa
+=======
+PHP message: PHP   3. App\
+2018/03/06 14:44:34 [error] 26#26: *1 FastCGI sent in stderr: "nate/Container/BoundMethod.php:29
+PHP message: PHP  16. App\Providers\EventoOriginalServiceProvider->boot() /var/www/frontend/src/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php:29
+PHP message: PHP  17. App\Providers\EventoOriginalServiceProvider->shareNavbarsInViews() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:25
+PHP message: PHP  18. EventoOriginal\Core\Persistence\Repositories\MenuItemRepository->findByMenu() /var/www/frontend/src/app/Providers/EventoOriginalServiceProvider.php:176
+PHP message: PHP  19. Doctrine\ORM\Query->getResult() /var/www/core/src/Persistence/Repositories/MenuItemRepository.php:56
+PHP message: PHP  20. Doctrine\ORM\Query->execute() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:716
+PHP message: PHP  21. Doctrine\ORM\Query->executeIgnoreQueryCache() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:912
+PHP message: PHP  22. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAll() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:966
+PHP message: PHP  23. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateAllData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/AbstractHydrator.php:152
+PHP message: PHP  24. Doctrine\ORM\Internal\Hydration\ObjectHydrator->hydrateRowData() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:162
+PHP message: PHP  25. Doctrine\ORM\Internal\Hydration\ObjectHydrator->getEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:492
+PHP message: PHP  26. Doctrine\ORM\UnitOfWork->createEntity() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/Internal/Hydration/ObjectHydrator.php:271
+PHP message: PHP  27. Doctrine\ORM\Proxy\ProxyFactory->getProxy() /var/www/frontend/src/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:2789
+PHP message
+>>>>>>> ordenes_backend

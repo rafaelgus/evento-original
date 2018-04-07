@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script src="{{ asset('js/app.js') }}"></script>
+
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -37,10 +38,15 @@
     <link rel="stylesheet" type="text/css" href="/css/revslider.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css" media="all">
     <link rel="stylesheet" type="text/css" href="/css/checkout.css" >
+    <link rel="stylesheet" type="text/css" href="/css/select2.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,700,800' rel='stylesheet'
           type='text/css'>
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('scripts_header')
 </head>
@@ -63,6 +69,50 @@
 @yield('scripts_body')
 
 <script>
+    $(function () {
+        $('#search').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/search/' + request.term,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1
+        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+
+            var imageItem = '';
+
+            if (!item.image) {
+                imageItem = 'https://s3.us-east-2.amazonaws.com/evento-original-s3/img/product-default.png';
+            } else {
+                imageItem = '/articles/storage/' + item.image;
+            }
+
+            ul.append(
+                '<li>' +
+                    '<div class="search-container col-md-12" style="min-width: 495px; max-width: 495px;">' +
+                        '<div class="col-md-5">' +
+                            '<img style="max-width: 150px; max-height: 150px; width: 150px; height: 150px; margin: auto;" src="'+ imageItem +'"/>' +
+                        '</div>' +
+                        '<div class="col-md-6">' +
+                            '<a href="/articulo/detalle/'+ item.slug +'">' +
+                                '<strong style="color: #e94d65">'+ item.name + ' <strong>' +
+                            '</a><br> ' +item.price +' ' + item.price_currency + '<br>' +
+                            '<div>' +
+                                '<button class="button btn-cart" onclick="addItemToCart('+ item.id +', this)" type="button" title="" data-original-title="Add to Cart"><span>COMPRAR</span></button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</li>'
+        );
+            return ul;
+        };
+    });
+
     cartItems();
 
     function cartItems() {
@@ -82,6 +132,25 @@
             }
         };
         xhr.send();
+    }
+
+    function addItemToCart(articleId, element) {
+        element.textContent = '¡AÑADIDO!';
+
+        var quantity = 1;
+        var params = encodeURI('articleId=' + articleId + '&quantity=' + quantity);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/addToCart', true);
+        xhr.setRequestHeader('X-CSRF-TOKEN', '<?php echo e(csrf_token()); ?>');
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                cartItems();
+            }
+        };
+        xhr.send(params);
+        cartItems();
     }
 
 </script>

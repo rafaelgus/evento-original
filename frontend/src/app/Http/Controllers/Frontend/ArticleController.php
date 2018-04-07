@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
-use DoctrineProxies\__CG__\EventoOriginal\Core\Entities\Flavour;
 use EventoOriginal\Core\Enums\VisitorEventType;
-use EventoOriginal\Core\Persistence\Repositories\CategoryRepository;
 use EventoOriginal\Core\Services\ArticleService;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
+use EventoOriginal\Core\Persistence\Repositories\CategoryRepository;
 use EventoOriginal\Core\Services\BrandService;
 use EventoOriginal\Core\Services\CategoryService;
 use EventoOriginal\Core\Services\ColorService;
@@ -16,8 +16,6 @@ use EventoOriginal\Core\Services\HealthyService;
 use EventoOriginal\Core\Services\LicenseService;
 use EventoOriginal\Core\Services\TagService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -57,7 +55,7 @@ class ArticleController extends Controller
 
     public function getHome()
     {
-        $articles = array_slice($this->articleService->findAll(App::getLocale()),0, 4);
+        $articles = array_slice($this->articleService->findAll(App::getLocale()), 0, 4);
 
         return view('frontend.home')
             ->with('articles', $articles);
@@ -89,8 +87,10 @@ class ArticleController extends Controller
         }
     }
 
-    public function getFilteredArticles(Request $request, string $categorySlug = null)
-    {
+    public function getFilteredArticles(
+        Request $request,
+        string $categorySlug = null
+    ) {
         $subCategories = (isset($request->subcategories) ? $request->subcategories : []);
         $brands = (isset($request->brands) ? $request->brands : []);
         $colors = (isset($request->colors) ? $request->colors : []);
@@ -162,5 +162,47 @@ class ArticleController extends Controller
         }
 
         return abort(404);
+    }
+
+    public function search(string $search)
+    {
+        $articles = $this->articleService->getPaginatedSearch($search, 5);
+
+        $articles = $this->articleService->searchToJson($articles->getQuery()->getResult());
+
+        return $articles;
+    }
+
+    public function getSearch(Request $request)
+    {
+        $page = $request->input('page');
+        $search = $request->input('search');
+
+        if (!$page) {
+            $page = 1;
+        }
+
+        $actual = $page;
+
+        $paginator = $this->articleService->getPaginatedSearch($request->input('search'), 10, $page);
+
+        $pages = ceil($paginator->count() / 10);
+
+        $startPage = $page;
+
+        if (($startPage + 5) > $pages) {
+            $endPage = ceil($paginator->count() / 10);
+        } else {
+            $endPage = $startPage + 5;
+        }
+
+        return view('frontend.articles.search')
+            ->with('articles', $paginator->getQuery()->getResult())
+            ->with('total', count($paginator))
+            ->with('pages', $page)
+            ->with('search', $search)
+            ->with('actual', $actual)
+            ->with('start', $startPage)
+            ->with('end', $endPage);
     }
 }

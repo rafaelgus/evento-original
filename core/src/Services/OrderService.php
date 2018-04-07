@@ -1,6 +1,7 @@
 <?php
 namespace EventoOriginal\Core\Services;
 
+use EventoOriginal\Core\Entities\Design;
 use EventoOriginal\Core\Entities\Order;
 use EventoOriginal\Core\Entities\OrderDetail;
 use EventoOriginal\Core\Entities\User;
@@ -8,6 +9,7 @@ use EventoOriginal\Core\Entities\VisitorEvent;
 use EventoOriginal\Core\Enums\MovementType;
 use EventoOriginal\Core\Enums\PaymentStatus;
 use EventoOriginal\Core\Persistence\Repositories\OrderRepository;
+use Exception;
 use Money\Currency;
 use Money\Money;
 use DateTime;
@@ -24,6 +26,10 @@ class OrderService
      * @var VisitorEventService
      */
     private $visitorEventService;
+    /**
+     * @var DesignService
+     */
+    private $designService;
 
     /**
      * OrderService constructor.
@@ -31,17 +37,20 @@ class OrderService
      * @param WalletService $walletService
      * @param OrderDetailService $orderDetailService
      * @param VisitorEventService $visitorEventService
+     * @param DesignService $designService
      */
     public function __construct(
         OrderRepository $orderRepository,
         WalletService $walletService,
         OrderDetailService $orderDetailService,
-        VisitorEventService $visitorEventService
+        VisitorEventService $visitorEventService,
+        DesignService $designService
     ) {
         $this->orderRepository = $orderRepository;
         $this->walletService = $walletService;
         $this->orderDetailService = $orderDetailService;
         $this->visitorEventService = $visitorEventService;
+        $this->designService = $designService;
     }
 
     /**
@@ -60,7 +69,7 @@ class OrderService
         $articleCommission = $article->getCategory()->getAffiliateCommission();
 
         $order = $this->orderRepository->findById($order->getId());
-        
+
         if ($order->getPayment()->getStatus() === PaymentStatus::STATUS_PAYMENT_APPROVE) {
             $orderDetail = $order->getOrdersDetail()->filter(function (OrderDetail $orderDetail) use ($article) {
                 return $orderDetail->getArticle()->getId() === $article->getId();
@@ -70,7 +79,7 @@ class OrderService
                 $amount = $orderDetail[0]->getMoney()->getAmount();
                 $quantity = $orderDetail[0]->getQuantity();
 
-                $sellerCommission = ($amount * $quantity) * ($articleCommission / 100);
+                $sellerCommission = floor(($amount * $quantity) * ($articleCommission / 100));
 
                 $moneyCommission = new Money($sellerCommission, new Currency('EUR'));
 
@@ -78,7 +87,7 @@ class OrderService
                     $seller->getWallet(),
                     $moneyCommission,
                     MovementType::AFFILIATE_COMMISSION_CREDIT,
-                    $order
+                    ['order' => $order]
                 );
 
                 $order->setReferralVisitorEvent($visitorEvent);
@@ -155,5 +164,64 @@ class OrderService
     public function save(Order $order)
     {
         $this->orderRepository->save($order);
+    }
+
+    /**
+     * @param int $orderId
+     * @param int $designId
+     * @throws Exception
+     */
+    public function liquidateDesignerCommission(int $orderId, int $designId)
+    {
+        $order = $this->findById($orderId);
+        if (!$order) {
+            throw new Exception("Invalid order id");
+        }
+
+        $design = $this->designService->findOneById($designId);
+        if (!$design) {
+            throw new Exception("Invalid design id");
+        }
+
+        $payment = $order->getPayment();
+
+        if ($payment->getStatus() !== PaymentStatus::STATUS_PAYMENT_APPROVE) {
+            throw new Exception("Invalid payment status");
+        }
+
+        $designer = $design->getDesigner();
+        if (!$designer) {
+            throw new Exception("Design has not a designer");
+        }
+
+        $orderDetails = $this->orderDetailService->findByOrderAndDesign($order, $design);
+        if (empty($orderDetails)) {
+            throw new Exception("Order has not a order detail with the design");
+        }
+
+        $total = 0;
+
+        foreach ($orderDetails as $orderDetail) {
+            $amount = $orderDetail->getMoney()->getAmount();
+            $quantity = $orderDetail->getQuantity();
+
+            $total += ($amount * $quantity);
+        }
+
+        $designerCommission = floor($total * ($design->getCommission() / 100));
+
+        $moneyCommission = new Money($designerCommission, new Currency('EUR'));
+
+        $this->walletService->addBalance(
+            $designer->getUser()->getWallet(),
+            $moneyCommission,
+            MovementType::DESIGN_COMMISSION_CREDIT,
+            [
+                'design_sold' => $design,
+                'order' => $order,
+            ]
+        );
+
+        logger()->notice("Liquidate design commission done: Order " . $order->getId() . " Design " . $design->getId());
     }
 }

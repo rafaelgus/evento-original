@@ -257,6 +257,14 @@
                                 </div>
                             </div>
 
+                            <div class="form-group {{ $errors->has('forMugsDesigns') ? 'has-error' : '' }}">
+                                <label for="inputForMugsDesigns" class="col-sm-2 control-label">Es para diseño de tazas</label>
+                                <div class="col-sm-10">
+                                    <input type="checkbox" name="forMugsDesigns" id="inputForMugsDesigns" class="checkbox" {{ ($article->isForMugsDesigns() ? 'checked' : '') }}>
+                                    {!! $errors->first('forMugsDesigns', '<span class="help-block">* :message</span>') !!}
+                                </div>
+                            </div>
+
                             <div class="box-footer">
                                 @foreach($article->getImages() as $image)
                                 <ul class="mailbox-attachments clearfix">

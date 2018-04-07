@@ -44,7 +44,33 @@
                                     @foreach($cart as $item)
                                     <tr class="first odd">
                                         <td class="image"><a class="product-image" title="{{$item['name']}}" href=""><img width="75" alt="{{$item['name']}}" src="{{ (!empty($item['image']) ? $item['image'] : '/images/logo.png')}}"></a></td>
-                                        <td><h2 class="product-name"> <a href="#">{{$item['name']}}</a> </h2></td>
+                                        <td>
+                                            <h2 class="product-name"> <a href="#">{{$item['name']}}</a> </h2>
+
+                                            @if(isset($item['variantDetail']))
+                                                @php
+                                                    $variantDetail = get_circular_design_variant_detail($item['variantDetail']);
+
+                                                    $variant = $variantDetail->getCircularDesignVariant();
+
+                                                    $details = $variant->getDetails();
+
+                                                    $design = get_article_design_by_barcode($item['barCode']);
+                                                @endphp
+
+                                                <select id="productVariantDetail" onchange="changeVariantDetail('{{$item['id']}}')">
+                                                    @foreach($details as $detail)
+                                                        <option value="{{ $detail->getId() }}" {{ ($detail->getId() == $item['variantDetail'] ? 'selected' : '') }}>
+                                                            @if ($item['toBuy'])
+                                                                {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getMoney()) . ")" }}
+                                                            @else
+                                                                {{ $detail->getDesignMaterialType()->getName() . " (" .  formatted_money($detail->getPriceWithCommissionMoney($design->getCommission())). ")" }}
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            @endif
+                                        </td>
                                         <td class="a-center"><a title="Edit item parameters" class="edit-bnt" href="#configure/id/15945/"></a></td>
                                         <td class="a-right"><span class="cart-price"><span class="price">{{formatted_money(new \Money\Money(($item['price']), new \Money\Currency($item['currency'])))}}</span> </span></td>
                                         <td class="a-center movewishlist"><input maxlength="12" class="input-text qty" title="Qty" size="4" value="{{$item['qty']}}" onchange="changeQuantity('{{$item['id']}}')" name="cart[15945][qty]" id="productQty" type="number"></td>
@@ -480,6 +506,22 @@
 
             xhr.onreadystatechange = function () {
                window.location.href = '/{{ trans('frontend/shopping_cart.slug') }}';
+            };
+            xhr.send(params);
+        }
+
+        function changeVariantDetail(rowId) {
+            var variantDetail = document.getElementById('productVariantDetail').value;
+
+            var params = encodeURI('variantDetail=' + variantDetail + '&rowId=' + rowId);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/updateVariantDetail', true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+
+            xhr.onreadystatechange = function (data) {
+                window.location.href = '/{{ trans('frontend/shopping_cart.slug') }}';
             };
             xhr.send(params);
         }

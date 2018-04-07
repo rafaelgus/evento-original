@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-debugbar": "^2.4",
+        "barryvdh/laravel-dompdf": "^0.8.2",
         "doctrine/orm": "^2.5",
         "gedmo/doctrine-extensions": "^2.4",
         "gloudemans/shoppingcart": "^2.3",
@@ -19,18 +20,18 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
         "league/flysystem-aws-s3-v3": "~1.0",
+        "mailin-api/mailin-api-php": "^1.0",
         "maxbrokman/safe-queue": "^0.3.0",
+        "mockery/mockery": "^0.9.9",
         "moneyphp/money": "^3.0",
         "myclabs/php-enum": "^1.5",
-        "mockery/mockery": "^0.9.9",
         "paypal/rest-api-sdk-php": "*",
         "pda/pheanstalk": "~3.0",
         "predis/predis": "^1.0",
         "symfony/intl": "^4.0",
         "vlucas/phpdotenv": "^2.4",
-        "yajra/laravel-datatables-oracle": "~8.0",
         "webpatser/laravel-uuid": "^3.0",
-        "mailin-api/mailin-api-php": "^1.0"
+        "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

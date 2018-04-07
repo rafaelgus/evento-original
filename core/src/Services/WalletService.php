@@ -46,9 +46,9 @@ class WalletService
         return $this->walletRepository->save($wallet);
     }
 
-    public function addBalance(Wallet $wallet, Money $money, string $movementType, Order $referralOrder = null)
+    public function addBalance(Wallet $wallet, Money $money, string $movementType, array $data = [])
     {
-        $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime(), $referralOrder);
+        $movement = $this->movementService->create($wallet, $movementType, $money, new DateTime(), $data);
         $wallet->addMovement($movement);
 
         $wallet->setBalance($wallet->getBalance() + $money->getAmount());

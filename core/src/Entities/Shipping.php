@@ -22,7 +22,7 @@ class Shipping
     protected $method;
 
     /**
-     * @ORM\OneToOne(targetEntity="Address")
+     * @ORM\ManyToOne(targetEntity="Address")
      * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
      */
     protected $address;
@@ -31,6 +31,16 @@ class Shipping
      * @ORM\OneToOne(targetEntity="Order", mappedBy="shipping")
      */
     protected $order;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $status;
+
+    /**
+     * @ORM\Column(type="string", name="tracking_number", nullable=true)
+     */
+    protected $trackingNumber;
 
     /**
      * @return int
@@ -88,4 +98,35 @@ class Shipping
         $this->order = $order;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus(string $status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTrackingNumber()
+    {
+        return $this->trackingNumber;
+    }
+
+    /**
+     * @param mixed $trackingNumber
+     */
+    public function setTrackingNumber(string $trackingNumber)
+    {
+        $this->trackingNumber = $trackingNumber;
+    }
 }

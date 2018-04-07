@@ -53,6 +53,12 @@ class OrderDetail
     private $discount;
 
     /**
+     * @ORM\ManyToOne(targetEntity="CircularDesignVariantDetail")
+     * @ORM\JoinColumn(name="circular_design_variant_detail_id", referencedColumnName="id")
+     */
+    private $circularDesignVariantDetail;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -140,5 +146,53 @@ class OrderDetail
     public function setArticle(Article $article)
     {
         $this->article = $article;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param mixed $currency
+     */
+    public function setCurrency($currency): void
+    {
+        $this->currency = $currency;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setAmount($amount): void
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCircularDesignVariantDetail()
+    {
+        return $this->circularDesignVariantDetail;
+    }
+
+    /**
+     * @param mixed $circularDesignVariantDetail
+     */
+    public function setCircularDesignVariantDetail(CircularDesignVariantDetail $circularDesignVariantDetail): void
+    {
+        $this->circularDesignVariantDetail = $circularDesignVariantDetail;
     }
 }

@@ -28,6 +28,16 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastName;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $email;
@@ -48,14 +58,9 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     protected $rememberToken;
 
     /**
-     * @ORM\Column(type="string", name="client_id", nullable=true)
+     * @ORM\OneToOne(targetEntity="Designer", mappedBy="user")
      */
-    protected $clientId;
-
-    /**
-     * @ORM\Column(type="string", name="client_secret", nullable=true)
-     */
-    protected $clientSecret;
+    private $designer;
 
     /**
      * @ORM\OneToOne(targetEntity="Customer", mappedBy="user")
@@ -71,6 +76,9 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
      * @ORM\OneToOne(targetEntity="VisitorLanding", mappedBy="user")
      */
     private $visitorLanding;
+
+    private $clientId;
+    private $clientSecret;
 
     public function __construct()
     {
@@ -107,6 +115,38 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
     }
 
     /**
@@ -166,6 +206,22 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getDesigner()
+    {
+        return $this->designer;
+    }
+
+    /**
+     * @param Designer $designer
+     */
+    public function setDesigner(Designer $designer): void
+    {
+        $this->designer = $designer;
+    }
+
+    /**
      * @return string
      */
     public function getRememberToken(): string
@@ -179,38 +235,6 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     public function setRememberToken($rememberToken)
     {
         $this->rememberToken = $rememberToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getClientId(): string
-    {
-        return $this->clientId;
-    }
-
-    /**
-     * @param string $clientId
-     */
-    public function setClientId(string $clientId)
-    {
-        $this->clientId = $clientId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClientSecret()
-    {
-        return $this->clientSecret;
-    }
-
-    /**
-     * @param mixed $clientSecret
-     */
-    public function setClientSecret($clientSecret)
-    {
-        $this->clientSecret = $clientSecret;
     }
 
     /**
@@ -278,6 +302,17 @@ class User implements Authenticatable, CanResetPassword, PayerInterface
     {
         foreach ($this->roles as $role) {
             if ($role->getName() === RoleType::ADMIN) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function isDesigner()
+    {
+        foreach ($this->roles as $role) {
+            if ($role->getName() === RoleType::DESIGNER) {
                 return true;
             }
         }

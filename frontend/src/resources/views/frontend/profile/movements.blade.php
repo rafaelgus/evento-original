@@ -47,6 +47,10 @@
 
                                                         <td><b>{{ $visitorEvent->getArticle()->getName() }}</b> <br/> {{ $visitorEvent->getCreatedAt()->format('d-m-Y H:i:s') }}
                                                             <br/> {{ ($visitorEvent->getVisitorLanding()->getUser() ? $visitorEvent->getVisitorLanding()->getUser()->getEmail() : "") }}</td>
+                                                    @elseif($movement->getDesignSold())
+                                                        <td>
+                                                            <b>{{ $movement->getDesignSold()->getName() }}</b>
+                                                        </td>
                                                     @else
                                                         <td></td>
                                                     @endif

@@ -113,6 +113,15 @@
             <li><a href="/management/brand/create">{{ trans('texts.sections.brands.new') }}</a></li>
         </ul>
     </li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-smile-o"></i> <span>Ocasiones</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions">Ver</a></li>
+        </ul>
+        <ul class="treeview-menu">
+            <li><a href="/management/occasions/create">Nuevo</a></li>
+        </ul>
+    </li>
 
     <li class="header">{{ trans('backend/menus.title') }}</li>
     <li class="treeview">
@@ -128,16 +137,33 @@
             <li><a href="/management/odoo/articles">Sync articulos </a></li>
         </ul>
     </li>
+    <li class="header">Ordenes</li>
+    <li class="treeview">
+        <a href="#"><i class="fa fa-list"></i> <span>Ordenes</span><i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="/management/orders/">ver</a></li>
+        </ul>
+    </li>
+
+    <li class="header">{{ trans('designs.title') }}</li>
+    <li class="treeview">
+        <a href="{{ route('admin.designs.inReview') }}"><i class="fa fa-check-circle"></i> <span>{{ trans('designs.in_review.title') }}</span></a>
+    </li>
 
     <li class="header">{{ trans('payouts.title') }}</li>
     <li class="treeview">
         <a href="#"><i class="fa fa-money"></i> <span>{{ trans('payouts.title') }}</span><i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="/management/payouts">{{ trans('backend/menus.view') }}</a></li>
+            <li><a href="/management/payouts">Ver todos</a></li>
+            <li><a href="/management/payouts/pendents">Pendientes de aprobación</a></li>
         </ul>
     </li>
 
-    <li class="header">{{ trans('texts.sections.stock.title') }}</li>
-    <li><a href="#"><i class="fa fa-truck"></i> <span>{{ trans('texts.sections.providers.title') }}</span></a></li>
-    <li><a href="#"><i class="fa fa-archive"></i> <span>{{ trans('texts.sections.stock_placements.title') }}</span></a></li>
+    <li class="header">{{ trans('texts.sections.design.title') }}</li>
+    <li class="treeview">
+        <a href="/management/design-material-size"><i class="fa fa-crosshairs"></i> <span>{{ trans('texts.sections.design_material_sizes.title') }}</span></a>
+        <a href="/management/circular-design-variant"><i class="fa fa-circle-o"></i> <span>{{ trans('texts.sections.circular_design_variants.title') }}</span></a>
+        <a href="/management/design-material-type"><i class="fa fa-eraser"></i> <span>{{ trans('texts.sections.design_material_types.title') }}</span></a>
+    </li>
+    </li>
 </ul>

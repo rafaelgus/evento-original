@@ -1,8 +1,13 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 
+use EventoOriginal\Core\Entities\CircularDesignVariantDetail;
+use EventoOriginal\Core\Entities\Design;
+use EventoOriginal\Core\Enums\DesignType;
+use EventoOriginal\Core\Persistence\Repositories\CircularDesignVariantDetailRepository;
 use EventoOriginal\Core\Persistence\Repositories\VisitorEventRepository;
 use EventoOriginal\Core\Services\ArticleService;
+use EventoOriginal\Core\Services\DesignService;
 use EventoOriginal\Core\Services\OrderDetailService;
 use EventoOriginal\Core\Services\OrderService;
 use EventoOriginal\Core\Services\VoucherService;
@@ -26,19 +31,41 @@ class CartController
      * @var VisitorEventRepository
      */
     private $visitorEventRepository;
+    /**
+     * @var CircularDesignVariantDetailRepository
+     */
+    private $circularDesignVariantDetailRepository;
+    /**
+     * @var DesignService
+     */
+    private $designService;
 
+    /**
+     * CartController constructor.
+     * @param ArticleService $articleService
+     * @param OrderDetailService $orderDetailService
+     * @param OrderService $orderService
+     * @param VoucherService $voucherService
+     * @param VisitorEventRepository $visitorEventRepository
+     * @param CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository
+     * @param DesignService $designService
+     */
     public function __construct(
         ArticleService $articleService,
         OrderDetailService $orderDetailService,
         OrderService $orderService,
         VoucherService $voucherService,
-        VisitorEventRepository $visitorEventRepository
+        VisitorEventRepository $visitorEventRepository,
+        CircularDesignVariantDetailRepository $circularDesignVariantDetailRepository,
+        DesignService $designService
     ) {
         $this->articleService = $articleService;
         $this->orderService = $orderService;
         $this->orderDetailService = $orderDetailService;
         $this->voucherService = $voucherService;
         $this->visitorEventRepository = $visitorEventRepository;
+        $this->circularDesignVariantDetailRepository = $circularDesignVariantDetailRepository;
+        $this->designService = $designService;
     }
 
     public function show()
@@ -55,12 +82,15 @@ class CartController
         foreach ($cart as $item) {
             $itemsAndDiscount[] = [
                 'id' => $item->rowId,
+                'barCode' => $item->id,
                 'name' => $item->name,
                 'qty' => $item->qty,
                 'price' => $item->price,
                 'image' => $item->options->has('image') ? $item->options->image : '',
                 'currency' => $item->options->has('currency') ? $item->options->currency : '',
-                'article' => true
+                'article' => true,
+                'variantDetail' => $item->options->has('variantDetail') ? $item->options->variantDetail : null,
+                'toBuy' => $item->options->has('toBuy') ? $item->options->toBuy : false,
             ];
             $itemTotal = $itemTotal + ($item->price * $item->qty);
         }
@@ -79,7 +109,7 @@ class CartController
                 'price' => -$discount->price,
                 'image' => $discount->options->has('image') ? $discount->options->image : '',
                 'currency' => $discount->options->has('currency') ? $discount->options->currency : '',
-                'article' => false
+                'article' => false,
             ];
 
             $discountsTotal = $discountsTotal + $discountAmount->getAmount();
@@ -111,25 +141,46 @@ class CartController
                 App::getLocale()
             );
 
-
         if ($article->getImages()->count() > 0) {
             $articleImagesPath = $article->getImages()->toArray()[0]->getPath();
-            $image = storage_url() . '/images/' . $articleImagesPath;
+            $image = $articleImagesPath;
         } else {
             $image = default_article_image_path();
         }
 
+        $design = $article->getDesign();
+
+        $variantDetailId = $request->input('variantDetail');
+        if ($variantDetailId) {
+            $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
+        } else {
+            $variantDetail = $this->getVariantDesign($design);
+        }
+
+        $price = $article->getPrice();
+
+        if ($variantDetail) {
+            $costPrice = $variantDetail->getBasePrice();
+            $price = $costPrice + ($costPrice * ($design->getCommission() / 100));
+        }
+
         if ($quantity > 0) {
+            $itemData = [
+                'image' => $image,
+                'category' => $article->getCategory()->getId(),
+                'currency' => $article->getMoneyPrice()->getCurrency()->getCode()
+            ];
+
+            if ($variantDetail) {
+                $itemData['variantDetail'] = $variantDetail->getId();
+            }
+
             Cart::instance('shopping')->add(
                 $article->getBarCode(),
                 $article->getName(),
                 $quantity,
-                $article->getPrice(),
-                [
-                    'image' => $image,
-                    'category' => $article->getCategory()->getId(),
-                    'currency' => $article->getMoneyPrice()->getCurrency()->getCode()
-                ]
+                $price,
+                $itemData
             );
 
             $this->modifyOrder($article->getBarCode(), $quantity);
@@ -175,15 +226,36 @@ class CartController
         return ['message' => 'El articulo se modifico la cantidad'];
     }
 
-    public function modifyOrder(int $barCode, int $quantity, bool $discount = false)
+    public function modifyOrder(string $barCode, int $quantity, bool $discount = false, array $params = [])
     {
         $article = $this->articleService->findByBarcode($barCode);
 
-        $orderDetail = $this->orderDetailService->create([
+        $data = [
             'quantity' => $quantity,
             'article' => $article,
             'price' => $article->getPrice()
-        ], $discount);
+        ];
+
+        $design = $article->getDesign();
+
+        if (isset($params['variantDetail'])) {
+            $variantDetail = array_get($params, 'variantDetail');
+
+            $data['price'] = $variantDetail->getPrice();
+            $data['circularDesignVariantDetail'] = $variantDetail;
+        } elseif ($design->getType() === DesignType::EDIBLE_PAPER) {
+            $variantDetail = $this->getVariantDesign($design);
+
+            if ($variantDetail) {
+                $costPrice = $variantDetail->getBasePrice();
+                $price = $costPrice + ($costPrice * ($design->getCommission() / 100));
+
+                $data['price'] = $price;
+                $data['circularDesignVariantDetail'] = $variantDetail;
+            }
+        }
+
+        $orderDetail = $this->orderDetailService->create($data, $discount);
 
         $orderId = Session::get('orderId');
 
@@ -218,5 +290,113 @@ class CartController
                 $this->orderDetailService->updateQty($orderDetail, $qty);
             }
         }
+    }
+
+    public function updateVariantDetail(Request $request)
+    {
+        $item = Cart::instance('shopping')->get($request->input('rowId'));
+
+        $variantDetailId = $request->input('variantDetail');
+
+        $options = $item->options;
+        $options['variantDetail'] = $variantDetailId;
+
+        $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
+
+        $article = $this->articleService->findByBarcode($item->id);
+
+        $design = $article->getDesign();
+
+        if ($item->options->toBuy ?: false) {
+            $price = $variantDetail->getMoney();
+        } else {
+            $price = $variantDetail->getPriceWithCommissionMoney($design->getCommission());
+        }
+
+        Cart::instance('shopping')->update(
+            $request->input('rowId'),
+            [
+                'options' => $options,
+                'price' => $price->getAmount(),
+            ]
+        );
+
+        $this->updateOrderDetailVariantDetail($item->id, $variantDetail, $price->getAmount());
+
+        return ['message' => 'Al articulo se le modifico la variante'];
+    }
+
+    public function updateOrderDetailVariantDetail(
+        string $code,
+        CircularDesignVariantDetail $variantDetail,
+        int $price
+    ) {
+        $orderId = Session::get('orderId');
+
+        $order = $this->orderService->findById($orderId);
+
+        $orderDetails = $order->getOrdersDetail();
+
+        foreach ($orderDetails as $orderDetail) {
+            if ($orderDetail->getArticle()->getBarCode() == $code) {
+                $this->orderDetailService->updateVariantDetail($orderDetail, $variantDetail, $price);
+            }
+        }
+    }
+
+    private function getVariantDesign(?Design $design)
+    {
+        if ($design && $design->getCircularDesignVariant()) {
+            $variant = $design->getCircularDesignVariant();
+
+            return $variant->getDefaultDetail();
+        }
+
+        return null;
+    }
+
+    public function buyDesign(Request $request)
+    {
+        $data = $request->all();
+
+        $article = $this->designService->saveDesignToBuy($data);
+
+        $itemData = [
+            'image' => $article->getImages()[0]->getPath(),
+            'category' => $article->getCategory()->getId(),
+            'currency' => $article->getMoneyPrice()->getCurrency()->getCode(),
+            'toBuy' => true,
+        ];
+
+        $variantDetail = null;
+        if ($request->has('variantDetail')) {
+            $variantDetailId = $request->input('variantDetail');
+            $variantDetail = $this->circularDesignVariantDetailRepository->findOneById($variantDetailId);
+
+            $price = $variantDetail->getPrice();
+
+            if ($variantDetail) {
+                $itemData['variantDetail'] = $variantDetail->getId();
+            }
+        } else {
+            $price = $article->getPrice();
+        }
+
+        Cart::instance('shopping')->add(
+            $article->getBarCode(),
+            $article->getName(),
+            $request->input("qty"),
+            $price,
+            $itemData
+        );
+
+        $this->modifyOrder(
+            $article->getBarCode(),
+            $request->input("qty"),
+            false,
+            ['variantDetail' => $variantDetail]
+        );
+
+        return $this->show();
     }
 }

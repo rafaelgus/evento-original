@@ -1,14 +1,17 @@
 <?php
-
 namespace App\Providers;
 
+use App\Events\DesignApproved;
+use App\Events\DesignRejected;
 use App\Events\PaymentAccepted;
 use App\Events\PayoutRefunded;
 use App\Events\UserRegistered;
 use App\Listeners\LiquidateAffiliateCommission;
+use App\Listeners\LiquidateDesignerCommission;
 use App\Listeners\RefundPayoutAmount;
+use App\Listeners\SendDesignApprovedEmail;
+use App\Listeners\SendDesignRejectedEmail;
 use App\Listeners\SendWelcomeEmail;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +24,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         PaymentAccepted::class => [
             LiquidateAffiliateCommission::class,
+            LiquidateDesignerCommission::class,
         ],
         UserRegistered::class => [
             SendWelcomeEmail::class,
@@ -28,6 +32,12 @@ class EventServiceProvider extends ServiceProvider
         PayoutRefunded::class => [
             RefundPayoutAmount::class,
         ],
+        DesignApproved::class => [
+            SendDesignApprovedEmail::class,
+        ],
+        DesignRejected::class => [
+            SendDesignRejectedEmail::class,
+        ]
     ];
 
     /**

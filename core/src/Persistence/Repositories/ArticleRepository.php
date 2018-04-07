@@ -1,9 +1,7 @@
 <?php
-
 namespace EventoOriginal\Core\Persistence\Repositories;
 
 use Doctrine\ORM\Query;
-
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use EventoOriginal\Core\Entities\Article;
@@ -74,7 +72,6 @@ class ArticleRepository extends BaseRepository
             $this->getEntityManager()->flush();
         }
     }
-
 
     public function findAllPaginated(int $currentPage, int $maxItems)
     {
@@ -241,6 +238,36 @@ class ArticleRepository extends BaseRepository
         return $query->getResult();
     }
 
+    public function findByCategoryBestSeller(int $categoryId, string $locale = 'es')
+    {
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->join(
+                Category::class,
+                'category',
+                'WITH',
+                'category.id = :categoryId'
+            )
+            ->leftJoin('category.children', 'children1')
+            ->leftJoin('children1.children', 'children2')
+            ->leftJoin('children2.children', 'children3')
+            ->setParameters(['categoryId' => $categoryId])
+            ->where('article.category = category.id OR article.category = children1.id OR 
+            article.category = children2.id OR article.category = children3.id AND article.isBestSeller =' .true);
+
+        $query = $qb->getQuery();
+        $query->setHint(
+            Query::HINT_CUSTOM_OUTPUT_WALKER,
+            TranslationWalker::class
+        );
+        $query->setHint(
+            TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        return $query->getResult();
+    }
+
     private function paginate($dql, $pageSize = 1, $currentPage = 1)
     {
         $paginator = new Paginator($dql, true);
@@ -253,6 +280,72 @@ class ArticleRepository extends BaseRepository
         return $paginator;
     }
 
+    public function search(string $search)
+    {
+        $sql = 'SELECT articles.id FROM articles
+                LEFT JOIN articles_colors on articles.id = articles_colors.article_id
+                LEFT JOIN articles_tags on articles.id = articles_tags.article_id
+                LEFT JOIN colors on colors.id = articles_colors.color_id
+                LEFT JOIN tags on tags.id = articles_tags.tag_id
+                LEFT JOIN article_ingredients on articles.id = article_ingredients.article_id
+                LEFT JOIN ingredients on ingredients.id = article_ingredients.ingredient_id
+
+                WHERE
+                
+                articles.name LIKE ' .  '"%' . $search . '%"' .' or 
+                articles.description LIKE  ' . '"% . $search . %"' .' or 
+                colors.name  LIKE  ' . '"% . $search . %"' .' or 
+                tags.name LIKE  ' . '"% . $search . %"' .' or 
+                ingredients.name LIKE  ' . '"%' . $search . '%"' ;
+
+        $connection = $this->getEntityManager()->getConnection();
+
+        $query = $connection->prepare($sql);
+        $query->execute();
+
+        $articlesIds = $query->fetchAll();
+
+        $articles = [];
+
+        foreach ($articlesIds as $articleId) {
+            $article = $this->find($articleId);
+
+            if ($article) {
+                $articles[] = $article;
+            }
+        }
+
+        return $articles;
+
+    }
+
+    public function paginateSearch(string $search, int $pageLimit = 10, int $page = 1)
+    {
+        $qb = $this->createQueryBuilder('article')
+            ->select('article')
+            ->leftJoin('article.colors', 'color')
+            ->leftJoin('article.ingredients', 'ingredient')
+            ->leftJoin('article.tags', 'tag')
+            ->where('article.name LIKE :search 
+                or article.description LIKE :search 
+                or color.name LIKE :search 
+                or ingredient.name LIKE :search 
+                or tag.name LIKE :search'
+            )
+            ->setParameter('search', '%'.$search.'%');
+
+
+        $firstResult = (($pageLimit * ($page - 1)) > 0 ? ($pageLimit * ($page - 1)) : 0);
+
+        $paginator = new Paginator($qb->getQuery(), true);
+        $paginator
+            ->getQuery()
+            ->setFirstResult($firstResult)
+            ->setMaxResults($pageLimit);
+
+        return $paginator;
+    }
+
     public function findOneByBarCode(string $barCode)
     {
         return $this->findOneBy(['barCode' => $barCode]);
@@ -261,5 +354,10 @@ class ArticleRepository extends BaseRepository
     public function findOneByInternalCode(string $internalCode)
     {
         return $this->findOneBy(['internalCode' => $internalCode]);
+    }
+
+    public function findForMugsDesign()
+    {
+        return $this->findOneBy(['forMugsDesigns' => true]);
     }
 }
