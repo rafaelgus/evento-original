@@ -205,7 +205,6 @@ class EventoOriginalServiceProvider extends ServiceProvider
 
     private function shareBestSellerItems()
     {
-
         try {
             $menuRepository = $this->app->make(Repositories\MenuRepository::class);
             $menuItemRepository = $this->app->make(Repositories\MenuItemRepository::class);
