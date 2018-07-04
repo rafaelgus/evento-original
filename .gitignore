@@ -20,5 +20,7 @@ laradock/logs/
 
 .composer/
 
-docae/mysql-data/
-docae/redis-data/
+doceo/mysql-data/
+doceo/redis-data/
+
+composer.phar
