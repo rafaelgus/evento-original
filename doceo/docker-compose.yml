@@ -12,7 +12,7 @@ services:
       MYSQL_PASSWORD: test
       USER: 1000
     networks:
-      animaedu2:
+      evento_original2:
         ipv4_address: 172.1.0.2
 
   beanstalkd:
@@ -24,7 +24,7 @@ services:
     ports:
       - "11300:11300"
     networks:
-      animaedu2:
+      evento_original2:
         ipv4_address: 172.1.0.4  
 
   redis:
@@ -35,7 +35,7 @@ services:
     volumes:
       - ./redis-data:/data
     networks:
-      animaedu2:
+      evento_original2:
         ipv4_address: 172.1.0.3
 
   phpnginx:
@@ -55,10 +55,10 @@ services:
       COMPOSER_CACHE_DIR: /var/www/.composer
       COMPOSER_HOME: /var/www/.composer
     networks:
-      - animaedu2
+      - evento_original2
 
 networks:
-  animaedu2:
+  evento_original2:
     ipam:
       driver: default
       config:
